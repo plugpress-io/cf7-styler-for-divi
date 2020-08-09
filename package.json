@@ -1,0 +1,45 @@
+{
+  "name": "cf7-styler-for-divi",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "divi-scripts": "1.0.1",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-csso": "^3.0.1",
+    "gulp-freemius-deploy": "^1.0.11",
+    "gulp-minify": "^3.1.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-zip": "^5.0.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "scripts": {
+    "start": "divi-scripts start",
+    "build": "divi-scripts build",
+    "zip": "divi-scripts build && divi-scripts zip",
+    "eject": "divi-scripts eject"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  },
+  "cde": {
+    "gettext": "dvppl-cf7-styler",
+    "prefix": "dvppl"
+  },
+  "devDependencies": {
+    "grunt-po2mo": "^0.1.2"
+  }
+}
