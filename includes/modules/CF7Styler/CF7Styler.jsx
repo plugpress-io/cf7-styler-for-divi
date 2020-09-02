@@ -173,7 +173,7 @@ class CF7_Styler extends Component {
     
     additionalCss.push([{
         selector: "%%order_class%% span.wpcf7-not-valid-tip",
-        declaration: `color: ${props.cf7_message_color}; background-color: ${props.cf7_message_bg_color}; border-color: ${props.cf7_border_highlight_color}; padding: ${props.cf7_message_padding}; margin-top: ${props.cf7_message_margin_top};`
+        declaration: `color: ${props.cf7_message_color}; background-color: ${props.cf7_message_bg_color}; border: 2px ${props.cf7_border_highlight_color}; padding: ${props.cf7_message_padding}; margin-top: ${props.cf7_message_margin_top};`
     }]);
 
     additionalCss.push([{

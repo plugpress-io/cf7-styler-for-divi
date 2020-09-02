@@ -77,6 +77,7 @@ function dipe_cf7_plugin_is_loaded()
 	}
 }
 
+#START_REPLACE
 function dipe_ajax_set_admin_notice_viewed() 
 {
 
@@ -211,3 +212,4 @@ function dipe_is_user_notice_viewed( $notice_id ) {
 add_action( 'admin_notices', 'dipe_notice_rate_us', 20 );
 add_action( 'admin_notices', 'dipe_install_wdcl', 20 );
 add_action( 'wp_ajax_dipe_set_admin_notice_viewed', 'dipe_ajax_set_admin_notice_viewed' );
+#END_REPLACE

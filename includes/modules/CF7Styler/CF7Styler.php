@@ -935,7 +935,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			ET_Builder_Element::set_style( $render_slug, array(
 				'selector'    => '%%order_class%% .dipe-cf7 span.wpcf7-not-valid-tip',
 				'declaration' => sprintf(
-					'border-color: %1$s%2$s;',
+					'border: 2px solid %1$s%2$s;',
 					esc_html( $cf7_border_highlight_color ),
 					et_is_builder_plugin_active() ? ' !important' : ''
 				),
@@ -954,83 +954,63 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			) );
 		}
 
-		if ( '' !== $cf7_success_message_bg_color ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-mail-sent-ok',
-				'declaration' => sprintf(
-					'background-color: %1$s%2$s;',
-					esc_html( $cf7_success_message_bg_color ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .wpcf7 form.sent .wpcf7-response-output',
+			'declaration' => sprintf(
+				'background-color: %1$s !important;',
+				esc_html( $cf7_success_message_bg_color )
+			),
+		) );
 
-		if ( '' !== $cf7_success_border_color ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-mail-sent-ok',
-				'declaration' => sprintf(
-					'border-color: %1$s%2$s;',
-					esc_html( $cf7_success_border_color ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .wpcf7 form.sent .wpcf7-response-output',
+			'declaration' => sprintf(
+				'border-color: %1$s%2$s;',
+				esc_html( $cf7_success_border_color ),
+				et_is_builder_plugin_active() ? ' !important' : ''
+			),
+		) );
 
 		// Error
-		if ( '' !== $cf7_error_message_color ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% .wpcf7-validation-errors',
-				'declaration' => sprintf(
-					'color: %1$s%2$s;',
-					esc_html( $cf7_error_message_color ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output',
+			'declaration' => sprintf(
+				'color: %1$s !important;',
+				esc_html( $cf7_error_message_color )
+			),
+		) );
 
-		if ( '' !== $cf7_error_message_bg_color ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% .wpcf7-validation-errors',
-				'declaration' => sprintf(
-					'background-color: %1$s%2$s;',
-					esc_html( $cf7_error_message_bg_color ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output',
+			'declaration' => sprintf(
+				'background-color: %1$s !important;',
+				esc_html( $cf7_error_message_bg_color )
+			),
+		) );
 
-		if ( '' !== $cf7_error_border_color ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% .wpcf7-validation-errors',
-				'declaration' => sprintf(
-					'border-color: %1$s%2$s;',
-					esc_html( $cf7_error_border_color ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output',
+			'declaration' => sprintf(
+				'border-color: %1$s !important;',
+				esc_html( $cf7_error_border_color )
+			),
+		) );
 
-		if ( '' !== $cf7_message_padding ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% span.wpcf7-not-valid-tip',
-				'declaration' => sprintf(
-					'padding: %1$s%2$s;',
-					esc_html( $cf7_message_padding ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% span.wpcf7-not-valid-tip',
+			'declaration' => sprintf(
+				'padding: %1$s !important;',
+				esc_html( $cf7_message_padding )
+			),
+		) );
 
-		if ( '' !== $cf7_message_margin_top ) {
-			ET_Builder_Element::set_style( $render_slug, array(
-				'selector'    => '%%order_class%% span.wpcf7-not-valid-tip',
-				'declaration' => sprintf(
-					'margin-top: %1$s%2$s;',
-					esc_html( $cf7_message_margin_top ),
-					et_is_builder_plugin_active() ? ' !important' : ''
-				),
-			) );
-		}
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% span.wpcf7-not-valid-tip',
+			'declaration' => sprintf(
+				'margin-top: %1$s !important;',
+				esc_html( $cf7_message_margin_top )
+			),
+		) );
 	}
 
 	public function _render_header_css( $render_slug ) {

@@ -137,7 +137,7 @@ class Dipe_Admin {
                                     </div>
                                 </div>
 
-
+                                <?php #START_REPLACE ?>
                                 <div class="postbox dipe-postbox">
                                     <h3 class="hndle">Wow Divi Carousel Lite</h3>
                                     <div class="inside">
@@ -145,6 +145,7 @@ class Dipe_Admin {
                                         <a href="https://wordpress.org/plugins/wow-carousel-for-divi-lite/" target="_blank" class="button button-primary">FREE DOWNLOAD</a>
                                     </div>
                                 </div>
+                                <?php #START_REPLACE ?>
                             </div>
                             <div id="tab-debug" class="dipe-cf7-styler-form-page">
                                 <div class="postbox dipe-postbox">
@@ -256,13 +257,14 @@ class Dipe_Admin {
                                 </div>
                             </div>
                         </div>
+                        <?php #START_REPLACE ?>
                         <div id="postbox-container-1" class="postbox-container">
                             <div id="side-sortables" class="meta-box-sortables ui-sortable">
                                 <div class="dipe-wdc-ads">
                                     <a href="https://wowcarousel.com/?utm_source=cf7_admin&utm_medium=cpc&utm_campaign=cf7" target="_blank">
                                         <img src="<?php echo DIPE_ASSETS_URL . 'imgs/wdc.svg'?>">
                                     </a>
-                                    <p><strong>We're offering <span style="color: #562cd4; font-weight: bold;">50% OFF</span> all of our plans for a limited time! Just use the discount code <span style="color: #562cd4; font-weight: bold;">SAVEBIG</span> at checkout.</strong></p>
+                                    <p>Powerful divi carousel modules to create beautiful websites. Premium modules with stunning design and endless customization options.</p>
                                     <ul>
                                         <li>Lightbox</li>
                                         <li>Hover Image</li>
@@ -276,6 +278,8 @@ class Dipe_Admin {
                                 </div>
                             </div>
                         </div>
+                        <?php #START_REPLACE ?>
+
                     </div>
                 </div>
             </div>

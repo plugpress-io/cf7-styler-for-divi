@@ -28,6 +28,7 @@ along with CF7 Styler. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 // Exit if accessed directly.
 if (!defined('ABSPATH')) exit;
 
+#START_REPLACE
 if ( ! function_exists( 'dipe_cf7_fs' ) ) {
     // Create a helper function for easy SDK access.
     function dipe_cf7_fs() {
@@ -66,6 +67,7 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
     // Signal that SDK was initiated.
     do_action( 'dipe_cf7_fs_loaded' );
 }
+#END_REPLACE
 
 // Defines
 define('DIPE_CF7_VERSION', '1.1.7' );

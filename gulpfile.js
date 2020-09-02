@@ -2,9 +2,6 @@ const { src, dest, series } = require('gulp');
 const zip                   = require('gulp-zip');
 const replace               = require('gulp-replace');
 const clean                 = require('gulp-clean');
-const minifyCSS             = require('gulp-csso');
-const minifyJS              = require('gulp-minify');
-const concatCss             = require('gulp-concat-css');
 const merge                 = require('merge-stream');
 
 function cleanBuild() {
@@ -14,8 +11,26 @@ function cleanBuild() {
     }).pipe(clean());
 }
 
+function prodMode() {
+    var replace1 = src(['./build/cf7-styler-for-divi/cf7-styler.php'])
+    .pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, ' '))
+    .pipe(dest('./build/cf7-styler-for-divi'));
+
+    var replace2 = src([
+        './build/cf7-styler-for-divi/includes/notice.php',
+    ]).pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, ' '))
+    .pipe(dest('./build/cf7-styler-for-divi/includes'));
+
+    var replace3 = src([
+        './build/cf7-styler-for-divi/includes/admin/admin.php'
+    ]).pipe(replace(/(?<=#START_REPLACE)([^]*?)(?=#END_REPLACE)/g, ' '))
+    .pipe(dest('./build/cf7-styler-for-divi/includes/admin/'));
+
+    return merge(replace1, replace2, replace3);
+}
+
 function cleanZip() {
-    return src('./wow-divi-carousel.zip', {
+    return src('./cf7-styler-for-divi.zip', {
     	read: false, 
     	allowEmpty: true
     }).pipe(clean());
@@ -53,10 +68,11 @@ function makeZip() {
 }
 
 exports.makeBuild   = makeBuild;
-// exports.prodMode = prodMode;
+exports.prodMode    = prodMode;
 exports.cleanBuild  = cleanBuild;
 exports.cleanZip    = cleanZip;
 exports.makeZip     = makeZip;
 exports.makeOrgCopy = makeOrgCopy;
 exports.default     = series(cleanBuild, cleanZip, makeBuild, makeZip, cleanBuild);
+exports.et          = series(cleanBuild, cleanZip, makeBuild, prodMode, makeZip, cleanBuild);
 exports.wporg       = series(cleanBuild, makeBuild, makeOrgCopy, cleanBuild);

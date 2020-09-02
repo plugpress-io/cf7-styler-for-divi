@@ -88,11 +88,14 @@
   outline: 0;
 }
 
+.dipe-wdc-ads p {
+  font-size: 14px;
+}
+
 .dipe-wdc-ads ul {
   list-style-type: square;
   padding-left: 30px;
   padding-bottom: 10px;
-  font-weight: bold;
 }
 
 .dipe-wdc-ads .button {
@@ -121,7 +124,7 @@
 }
 
 .dipe-message .dipe-message-content p {
-    font-size: 16px!important;
+    font-size: 16px !important;
 }
 
 .dipe-message .dipe-button-notice-wdc {
