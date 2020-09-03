@@ -4,7 +4,7 @@ Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 4.8
 Tested up to: 5.5
-Stable tag: 1.1.8
+Stable tag: 1.1.7
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
