@@ -4,22 +4,23 @@ Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 4.8
 Tested up to: 5.5
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
 Design your Contact Form 7 forms with Divi Visual Builder. No coding required.
 
 == Description ==
+
+> ATTENTION: [BrainAddons](https://wordpress.org/plugins/addons-for-divi/) is a powerful all in one plugin for Divi Theme & Builder. It has 20+ custom modules to create any sites with ease. Why do you need multiple plugins? Where everything under the one hood? [BrainAddons For Divi](https://wordpress.org/plugins/addons-for-divi/)
+
 [Contact Form 7 Styler for Divi](https://divipeople.com/plugins/contact-form-7-styler/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code. 
 
-[Check the Demo](https://divipeople.com/plugins/contact-form-7-styler/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin)
+[Check our Live Demos](https://divipeople.com/plugins/contact-form-7-styler/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin)
 
 You get various styling options along with the control to manage the layout and spacing within the form. You can select among the boxed or underlined layout and manage the spacing between all the fields.
 
 https://www.youtube.com/watch?v=QfvmLIj__68
-
-Divi Theme/Builder and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) are required for this plugin.
 
 = FEATURES =
 * Grid Builder ( [See Video](https://www.youtube.com/watch?v=QfvmLIj__68) )
@@ -30,8 +31,6 @@ Divi Theme/Builder and [Contact Form 7](https://wordpress.org/plugins/contact-fo
 * Button Styling
 * Style Your Messages
 
-https://www.youtube.com/watch?v=lVSo08cMKZE
-
 = JOIN US =
 
 * [Visit the DiviPeople website](http://divipeople.com/)
@@ -39,12 +38,16 @@ https://www.youtube.com/watch?v=lVSo08cMKZE
 * [Follow on Twitter](https://twitter.com/divipeople)
 * [Like us on Facebook](https://www.facebook.com/divipeople/)
 
-# Wow Carousel for Divi
+https://www.youtube.com/watch?v=lVSo08cMKZE
 
-With [Wow Carousel for Divi](https://bit.ly/2zA4kl0) adding carousel to your Divi website has never been easier. Add stunning carousels to your Divi websites in just a few clicks.
+= Other Plugins =
+
+* [WowCarousel for Divi](https://wowcarousel.com): With this plugin adding carousel to your Divi website has never been easier. Add stunning carousels to your Divi websites in just a few clicks.
 
 == Installation ==
 Note: This plugin works with Divi Theme or Divi Builder and Contact Form 7. Make sure you have Divi Theme or Divi Builder and Contact Form 7 installed.
+
+Divi Theme/Builder and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) are required for this plugin.
 
 1. Upload the plugin folder to the /wp-content/plugins/ directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the ‘Plugins’ screen in WordPress

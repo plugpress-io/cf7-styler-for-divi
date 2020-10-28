@@ -3,7 +3,7 @@
 Plugin Name: CF7 Styler for Divi by DiviPeople
 Plugin URI:  https://divipeople.com
 Description: Design beuatiful contact forms with <strong>Contact Form 7 Styler for Divi</strong>
-Version:     1.1.7
+Version:     1.1.8
 Author:      Divi People
 Author URI:  https://divipeople.com
 License:     GPL2
@@ -26,73 +26,77 @@ along with CF7 Styler. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
 // Exit if accessed directly.
-if (!defined('ABSPATH')) exit;
-
-#START_REPLACE
-if ( ! function_exists( 'dipe_cf7_fs' ) ) {
-    // Create a helper function for easy SDK access.
-    function dipe_cf7_fs() {
-        global $dipe_cf7_fs;
-
-        if ( ! isset( $dipe_cf7_fs ) ) {
-
-            // Include Freemius SDK.
-            require_once dirname(__FILE__) . '/freemius/start.php';
-
-            $dipe_cf7_fs = fs_dynamic_init( array(
-                'id'                  => '6220',
-                'slug'                => 'cf7-styler-for-divi',
-                'type'                => 'plugin',
-                'public_key'          => 'pk_5ed03b8670d0cfbf345aa03dc6c80',
-                'is_premium'          => false,
-                'has_addons'          => false,
-                'has_paid_plans'      => false,
-                'menu'                => array(
-                    'slug'           => 'dipe_cf7_styler_options',
-                    'account'        => false,
-                    'contact'        => false,
-                    'support'        => false,
-                    'parent'         => array(
-                        'slug' => 'et_divi_options',
-                    ),
-                ),
-            ) );
-        }
-
-        return $dipe_cf7_fs;
-    }
-
-    // Init Freemius.
-    dipe_cf7_fs();
-    // Signal that SDK was initiated.
-    do_action( 'dipe_cf7_fs_loaded' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-#END_REPLACE
+
+// START_REPLACE
+if ( ! function_exists( 'dipe_cf7_fs' ) ) {
+	// Create a helper function for easy SDK access.
+	function dipe_cf7_fs() {
+		global $dipe_cf7_fs;
+
+		if ( ! isset( $dipe_cf7_fs ) ) {
+
+			// Include Freemius SDK.
+			require_once dirname( __FILE__ ) . '/freemius/start.php';
+
+			$dipe_cf7_fs = fs_dynamic_init(
+				array(
+					'id'             => '6220',
+					'slug'           => 'cf7-styler-for-divi',
+					'type'           => 'plugin',
+					'public_key'     => 'pk_5ed03b8670d0cfbf345aa03dc6c80',
+					'is_premium'     => false,
+					'has_addons'     => false,
+					'has_paid_plans' => false,
+					'menu'           => array(
+						'slug'    => 'dipe_cf7_styler_options',
+						'account' => false,
+						'contact' => false,
+						'support' => false,
+						'parent'  => array(
+							'slug' => 'et_divi_options',
+						),
+					),
+				)
+			);
+		}
+
+		return $dipe_cf7_fs;
+	}
+
+	// Init Freemius.
+	dipe_cf7_fs();
+	// Signal that SDK was initiated.
+	do_action( 'dipe_cf7_fs_loaded' );
+}
+// END_REPLACE
 
 // Defines
-define('DIPE_CF7_VERSION', '1.1.7' );
-define('DIPE_CF7_STABLE_VERSION', '1.1.6' );
-define('DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
-define('DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
-define('DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
-define('DIPE_CF7_PLUGIN_BASE', plugin_basename( __FILE__ ) );
+define( 'DIPE_CF7_VERSION', '1.1.8' );
+define( 'DIPE_CF7_STABLE_VERSION', '1.1.7' );
+define( 'DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
+define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
+define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
+define( 'DIPE_CF7_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 
 // Localize
-load_plugin_textdomain( 
-	'dvppl-cf7-styler', 
+load_plugin_textdomain(
+	'dvppl-cf7-styler',
 	false,
-	dirname( plugin_basename( __FILE__ ) ) . '/languages/' 
+	dirname( plugin_basename( __FILE__ ) ) . '/languages/'
 );
 
 // Final Class
-if( ! class_exists( 'Dipe_Cf7_Module' ) ) {
+if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 	final class Dipe_Cf7_Module {
 
 		private static $instance;
 
 		private function __construct() {
-			register_activation_hook( __FILE__, [$this, 'activate'] );
+			register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		}
 
 		public static function instance() {
@@ -106,21 +110,21 @@ if( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 		}
 
 		private function init() {
-			add_action('divi_extensions_init', [$this, 'initialize_extension']);
-			add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+			add_action( 'divi_extensions_init', array( $this, 'initialize_extension' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
 
-		public function activate(){
-			update_option('dipe_version', DIPE_CF7_VERSION);
+		public function activate() {
+			update_option( 'dipe_version', DIPE_CF7_VERSION );
 		}
 
 		public function enqueue_scripts() {
 			$options = get_option( 'dipe_options' );
 			if ( 'on' === $options['grid'] ) {
-				wp_enqueue_style('dipe-grid', DIPE_ASSETS_URL . 'css/cf7-grid.css');
+				wp_enqueue_style( 'dipe-grid', DIPE_ASSETS_URL . 'css/cf7-grid.css' );
 			}
 
-			wp_enqueue_style('dipe-module', DIPE_ASSETS_URL . 'css/module.css');
+			wp_enqueue_style( 'dipe-module', DIPE_ASSETS_URL . 'css/module.css' );
 		}
 
 		private function includes() {
@@ -130,7 +134,7 @@ if( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 				require_once DIPE_CF7_PATH . 'includes/shortcode.php';
 				require_once DIPE_CF7_PATH . 'includes/tag.php';
 			}
-			
+
 			if ( is_admin() ) {
 				require_once DIPE_CF7_PATH . 'includes/notice.php';
 				require_once DIPE_CF7_PATH . 'includes/admin/admin.php';

@@ -34,6 +34,7 @@
   width: 100%;
   max-width: 100%;
   padding: .75em;
+  border-style: solid;
 }
 
 .dipe-cf7 .wpcf7 input[type=file] {
