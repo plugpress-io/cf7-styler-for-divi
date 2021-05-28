@@ -102,20 +102,21 @@ jQuery(function($) {
 	}
 
     // Ajax notice
-    $('div.notice.dipe-message-dismissed').on('click', 'button.notice-dismiss, .dipe-button-notice-dismiss', function (event) {
-        event.preventDefault();
-
-        $.post(etCore.ajaxurl, {
-            action: 'dipe_set_admin_notice_viewed',
-            notice_id: $(this).closest('.dipe-message-dismissed').data('notice_id')
-        });
-
-        var $wrapperElm = $(this).closest('.dipe-message-dismissed');
-        $wrapperElm.fadeTo(100, 0, function () {
-            $wrapperElm.slideUp(100, function () {
-                $wrapperElm.remove();
-            });
-        });
-    });
-
+    $( 'div[data-dismissible] .notice-dismiss' ).click(
+        function (event) {
+            event.preventDefault();
+            var $this = $( this );
+            var attr_value, option_name, dismissible_length, data;
+            attr_value = $this.parent().attr( 'data-dismissible' ).split( '-' );
+            dismissible_length = attr_value.pop();
+            option_name = attr_value.join( '-' );
+            data = {
+                'action': 'dismiss_admin_notice',
+                'option_name': option_name,
+                'dismissible_length': dismissible_length,
+                'nonce': dismissible_notice.nonce
+            };
+            $.post( ajaxurl, data );
+        }
+    );
 });

@@ -74,5 +74,4 @@ exports.cleanZip    = cleanZip;
 exports.makeZip     = makeZip;
 exports.makeOrgCopy = makeOrgCopy;
 exports.default     = series(cleanBuild, cleanZip, makeBuild, makeZip, cleanBuild);
-exports.et          = series(cleanBuild, cleanZip, makeBuild, prodMode, makeZip, cleanBuild);
 exports.wporg       = series(cleanBuild, makeBuild, makeOrgCopy, cleanBuild);

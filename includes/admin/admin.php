@@ -140,10 +140,10 @@ class Dipe_Admin {
 									</div>
 								</div>
 								<div class="postbox dipe-postbox">
-									<h3 class="hndle">Wow Divi Carousel Lite</h3>
+									<h3 class="hndle">Brain Addons for Divi</h3>
 									<div class="inside">
-										<p>Wow Divi Carousel Lite is a Divi touch-enabled plugin that lets you create a beautiful responsive slider or carousel. </p>
-										<a href="https://wordpress.org/plugins/wow-carousel-for-divi-lite/" target="_blank" class="button button-primary">FREE DOWNLOAD</a>
+										<p>BrainAddons WP plugin for Divi Visual Page Builder is built to take the WordPress designing abilities to an outstanding level. With this plugin designing and editing task super easy for both beginner and pro-level WordPress developer.</p>
+										<a href="https://wordpress.org/plugins/addons-for-divi/" target="_blank" class="button button-primary">FREE DOWNLOAD</a>
 									</div>
 								</div>
 							</div>
@@ -263,21 +263,13 @@ class Dipe_Admin {
 						</div>
 						<div id="postbox-container-1" class="postbox-container">
 							<div id="side-sortables" class="meta-box-sortables ui-sortable">
-								<div class="dipe-wdc-ads">
-									<a href="https://wowcarousel.com/?utm_source=cf7_dashboard&utm_medium=banner&utm_campaign=cf7" target="_blank">
-										<img src="<?php echo DIPE_ASSETS_URL . 'imgs/wdc.svg'; ?>">
+								<div class="dipe-ads">
+									<a href="https://brainaddons.com/pricing/" target="_blank">
+										<img src="https://brainaddons.com/wp-content/uploads/2020/11/logo.png">
 									</a>
-									<p>Powerful divi carousel modules to create beautiful websites. Premium modules with stunning design and endless customization options.</p>
-									<ul>
-										<li>Lightbox</li>
-										<li>Hover Image</li>
-										<li>Google Reviews</li>
-										<li>Woo Products</li>
-										<li>Blog Post</li>
-										<li>Content Carousel & 6 More…</li>
-										<li>80+ Ready Blocks</li>
-									</ul>
-									<a href="https://wowcarousel.com/?utm_source=cf7_dashboard&utm_medium=banner&utm_campaign=cf7" target="_blank" class="button button-primary">Get Started</a>
+									<h3>The Only Divi Addons You Will Ever Need!</h3>
+									<p>Optimize your design possibilities with a premium set of modules. Make your next web design project look prettier than ever before with Brain Addons.</p>
+									<a href="https://brainaddons.com/pricing/" target="_blank" class="button button-primary">Get Started</a>
 								</div>
 							</div>
 						</div>
@@ -294,8 +286,8 @@ class Dipe_Admin {
 			return;
 		}
 
-		wp_enqueue_script( 'dipe-admin-js', DIPE_ASSETS_URL . 'js/admin.js', array( 'jquery' ), '', true );
-		wp_enqueue_style( 'dipe-admin', DIPE_ASSETS_URL . 'css/admin.css' );
+		wp_enqueue_script( 'dipe-admin-js', DIPE_ASSETS_URL . 'js/admin.js', array( 'jquery' ), DIPE_CF7_VERSION, true );
+		wp_enqueue_style( 'dipe-admin', DIPE_ASSETS_URL . 'css/admin.css', null, DIPE_CF7_VERSION );
 	}
 
 }

@@ -715,7 +715,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 	public function render( $attrs, $content = null, $render_slug ) {
 
-		$this->_apply_css( $render_slug );
+		$this->apply_css( $render_slug );
 
 		$cf7_fields                = $this->props['cf7'];
 		$cr_custom_styles          = $this->props['cr_custom_styles'];
@@ -738,8 +738,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			$text        = isset( $form_header_text ) ? sprintf( '<div class="dipe-form-header-text">%1$s</div>', $form_header_text ) : '';
 			$header_info = $title || $text ? sprintf( '<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text ) : '';
 
-			$form_header = sprintf(
-				'
+			$form_header = sprintf('
             	<div class="dipe-form-header-container">
                 	<div class="dipe-form-header">
                 		%1$s%2$s
@@ -1135,6 +1134,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'declaration' => "background-color: {$form_bg};",
 			)
 		);
+
 	}
 
 	public function render_form_header_padding( $render_slug ) {

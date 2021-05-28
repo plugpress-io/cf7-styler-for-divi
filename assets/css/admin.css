@@ -77,28 +77,31 @@
   text-shadow: 0 -1px 1px #04be5b, 1px 0 1px #04be5b, 0 1px 1px #04be5b, -1px 0 1px #04be5b;
 }
 
-.dipe-wdc-ads {
+.dipe-ads {
   background: #fff;
   color: #000;
   border: 1px solid #ddd;
   padding: 25px;
 }
 
-.dipe-wdc-ads a:hover {
+.dipe-ads a:hover {
   outline: 0;
 }
 
-.dipe-wdc-ads p {
-  font-size: 14px;
+.dipe-ads h3 {
+  font-size: 24px;
+  line-height: 1.3;
 }
 
-.dipe-wdc-ads ul {
-  list-style-type: square;
-  padding-left: 30px;
-  padding-bottom: 10px;
+.dipe-ads p {
+  font-size: 16px;
 }
 
-.dipe-wdc-ads .button {
+.dipe-ads img {
+  width: 100%;
+}
+
+.dipe-ads .button {
   text-align: center;
   margin-right: 80px;
 }
@@ -138,4 +141,34 @@
 .dipe-message .dipe-button-notice-wdc:hover {
     color: #fff !important;
 
+}
+
+.dipe-notice-box-bf {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.dipe-left-side {
+  display: flex;
+  align-items: center;
+  padding: 0 25px 0 0;
+  width: 25%;
+}
+
+.dipe-notice-box-bf a {
+  text-decoration: none;
+  color: #e8de16;
+}
+
+.dipe-notice-box-bf .dipe-link:hover{
+  border-bottom: 2px dotted #e8de16;
+}
+
+.dipe-notice {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #fff;
+  color: #222;
+  padding: 25px;
 }

@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: CF7 Styler for Divi by DiviPeople
+Plugin Name: Contact Form 7 Styler for Divi
 Plugin URI:  https://divipeople.com
 Description: Design beuatiful contact forms with <strong>Contact Form 7 Styler for Divi</strong>
-Version:     1.1.8
-Author:      Divi People
+Version:     1.1.13
+Author:      DiviPeople
 Author URI:  https://divipeople.com
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -74,8 +74,8 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 // END_REPLACE
 
 // Defines
-define( 'DIPE_CF7_VERSION', '1.1.8' );
-define( 'DIPE_CF7_STABLE_VERSION', '1.1.7' );
+define( 'DIPE_CF7_VERSION', '1.1.13' );
+define( 'DIPE_CF7_STABLE_VERSION', '1.1.12' );
 define( 'DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
 define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
 define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
@@ -116,6 +116,10 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 		public function activate() {
 			update_option( 'dipe_version', DIPE_CF7_VERSION );
+
+			if ( get_option( '_dipe_cf7_installed_time' ) === false ) {
+				update_option( '_dipe_cf7_installed_time', strtotime( 'now' ) );
+			}
 		}
 
 		public function enqueue_scripts() {
@@ -136,7 +140,7 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 			}
 
 			if ( is_admin() ) {
-				require_once DIPE_CF7_PATH . 'includes/notice.php';
+				// require_once DIPE_CF7_PATH . 'includes/notice.php';
 				require_once DIPE_CF7_PATH . 'includes/admin/admin.php';
 				require_once DIPE_CF7_PATH . 'includes/admin/rollback.php';
 			}

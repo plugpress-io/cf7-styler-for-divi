@@ -1,18 +1,16 @@
-=== Contact Form 7 Styler for Divi ===
+=== Contact Form 7 Styler for Divi Theme & Divi Builder ===
 Contributors: divipeople
 Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 4.8
-Tested up to: 5.5
-Stable tag: 1.1.8
+Tested up to: 5.6
+Stable tag: trunk
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
 Design your Contact Form 7 forms with Divi Visual Builder. No coding required.
 
 == Description ==
-
-> ATTENTION: [BrainAddons](https://wordpress.org/plugins/addons-for-divi/) is a powerful all in one plugin for Divi Theme & Builder. It has 20+ custom modules to create any sites with ease. Why do you need multiple plugins? Where everything under the one hood? [BrainAddons For Divi](https://wordpress.org/plugins/addons-for-divi/)
 
 [Contact Form 7 Styler for Divi](https://divipeople.com/plugins/contact-form-7-styler/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code. 
 
@@ -35,7 +33,6 @@ https://www.youtube.com/watch?v=QfvmLIj__68
 
 * [Visit the DiviPeople website](http://divipeople.com/)
 * [Join our new Community](https://www.facebook.com/groups/divipeople/)
-* [Follow on Twitter](https://twitter.com/divipeople)
 * [Like us on Facebook](https://www.facebook.com/divipeople/)
 
 https://www.youtube.com/watch?v=lVSo08cMKZE
@@ -70,29 +67,3 @@ No. You cannot use without Contact Form 7. It must be installed.
 1. Example Forms
 
 == Changelog ==
-= 1.1.3 =
-* Fixed: Button issue
-
-= 1.1.0 =
-* Added: Grid System
-* Added: Compatible for Divi 4.0
-* Added: Header Section
-* Fix: Some minor issues
-
-= 1.0.4 =
-* Fix: Some minor issues
-
-= 1.0.3 =
-* Fix checkbox and radio issue
-* Localization support
-* Fix column 
-* Add admin notices
-
-= 1.0.2 =
-bug fix
-
-= 1.0.1 =
-bug fix
-
-= 1.0.0 =
-Initial stable release

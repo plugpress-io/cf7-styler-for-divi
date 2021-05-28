@@ -1,172 +1,219 @@
 <?php
-add_action( 'admin_init', 'dipe_cf7_plugin_is_loaded' );
 
-if ( ! function_exists( 'dipe_cf7_installed' ) ) {
-	function dipe_cf7_installed() {
-		$file_path         = 'contact-form-7/wp-contact-form-7.php';
-		$installed_plugins = get_plugins();
-		return isset( $installed_plugins[ $file_path ] );
+defined( 'ABSPATH' ) || die();
+
+class Dipe_Notices {
+
+	private static $instance = null;
+
+	public static function get_instance() {
+		if ( ! self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
-}
 
-function dipe_cf7_admin_notice() {
-	$plugin = 'contact-form-7/wp-contact-form-7.php';
+	public function __construct() {
+		add_action( 'admin_init', array( $this, 'admin_notice_init' ) );
+	}
 
-	if ( dipe_cf7_installed() ) {
+	public function admin_notice_init() {
+		add_action( 'wp_ajax_dismiss_admin_notice', array( $this, 'admin_notice' ) );
+		add_action( 'admin_notices', array( $this, 'request_review_after_seven_days' ), 10 );
+		add_action( 'admin_notices', array( $this, 'request_review_after_fifteen_days' ), 10 );
+	}
 
-		if ( ! current_user_can( 'activate_plugins' ) ) {
-			return;
+	public function admin_notice() {
+		$option_name        = sanitize_text_field( $_POST['option_name'] );
+		$dismissible_length = sanitize_text_field( $_POST['dismissible_length'] );
+
+		if ( 'forever' != $dismissible_length ) {
+			$dismissible_length = ( 0 == absint( $dismissible_length ) ) ? 1 : $dismissible_length;
+			$dismissible_length = strtotime( absint( $dismissible_length ) . ' days' );
 		}
 
-		$cf7_install_active_url = wp_nonce_url(
-			'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s',
-			'activate-plugin_' . $plugin
-		);
+		check_ajax_referer( 'dismissible-notice', 'nonce' );
 
-		$message = __(
-			'Contact Form 7 Styler for Divi requires Coctact Form 7 plugin to be active. Please activate Contact Form 7 to continue.',
-			'dvppl-cf7-styler'
-		);
+		self::set_admin_notice_cache( $option_name, $dismissible_length );
 
-		$button_text = __(
-			'Activate Contact Form 7',
-			'dvppl-cf7-styler'
-		);
-		$button      = '<a href="' . $cf7_install_active_url . '" class="button-primary">' . $button_text . '</a>';
-
-	} else {
-
-		if ( ! current_user_can( 'install_plugins' ) ) {
-			return;
-		}
-
-		$cf7_install_active_url = wp_nonce_url(
-			self_admin_url( 'update.php?action=install-plugin&plugin=contact-form-7' ),
-			'install-plugin_contact-form-7'
-		);
-
-		$message = __(
-			'Contact Form 7 Styler for Divi plugin to be installed and activated. Please install Contact Form 7 to continue.',
-			'dvppl-cf7-styler'
-		);
-
-		$button_text = __(
-			'Install Contact Form 7',
-			'dvppl-cf7-styler'
-		);
-
-		$button = '<a href="' . $cf7_install_active_url . '" class="button-primary install-now button">' . $button_text . '</a>';
-	}
-
-	printf(
-		'
-		<div id="dvppl-cf7-install-notice" class="dvppl-cf7-install-notice notice is-dismissible">
-			<p style="display: flex; align-items: center; padding:10px 10px 10px 0;">
-				%1$s &nbsp; %2$s
-			</p>
-		</div>',
-		esc_html( $message ),
-		$button
-	);
-}
-
-function dipe_cf7_plugin_is_loaded() {
-	if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
-		add_action( 'admin_notices', 'dipe_cf7_admin_notice' );
-	}
-}
-
-function dipe_ajax_set_admin_notice_viewed() {
-	if ( empty( $_REQUEST['notice_id'] ) ) {
 		wp_die();
 	}
 
-	$notices = get_option( '_dipe_cf7_notice' );
-	if ( empty( $notices ) ) {
-		$notices = array();
+	public static function set_admin_notice_cache( $id, $timeout ) {
+
+		$cache_key = 'dipe-admin-notice-' . md5( $id );
+
+		update_site_option( $cache_key, $timeout );
+
+		return true;
 	}
 
-	$notices[ $_REQUEST['notice_id'] ] = 'true';
+	public static function is_admin_notice_active( $arg ) {
 
-	update_option( '_dipe_cf7_notice', $notices );
+		$array       = explode( '-', $arg );
+		$option_name = implode( '-', $array );
 
-	if ( ! wp_doing_ajax() ) {
-		wp_safe_redirect( admin_url() );
-		die;
+		$db_record = self::get_admin_notice_cache( $option_name );
+
+		if ( 'forever' == $db_record ) {
+			return false;
+		} elseif ( absint( $db_record ) >= time() ) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
-	wp_die();
-}
+	public static function get_admin_notice_cache( $id = false ) {
+		if ( ! $id ) {
+			return false;
+		}
+		$cache_key = 'dipe-admin-notice-' . md5( $id );
+		$timeout   = get_site_option( $cache_key );
+		$timeout   = 'forever' === $timeout ? time() + 60 : $timeout;
 
-function dipe_cf7_get_install_time() {
-	$installed_time = get_option( '_dipe_cf7_installed_time' );
+		if ( empty( $timeout ) || time() > $timeout ) {
+			return false;
+		}
 
-	if ( ! $installed_time ) {
-		$installed_time = time();
-
-		update_option( '_dipe_cf7_installed_time', $installed_time );
+		return $timeout;
 	}
 
-	return $installed_time;
-}
+	public function get_total_interval( $interval, $type ) {
+		if ( ! $interval ) {
+			return;
+		}
 
-function dipe_notice_rate_us() {
-	$notice_id = 'rate_us_feedback';
-
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return false;
+		switch ( $type ) {
+			case 'years':
+				return $interval->format( '%Y' );
+				break;
+			case 'months':
+				$years  = $interval->format( '%Y' );
+				$months = 0;
+				if ( $years ) {
+					$months += $years * 12;
+				}
+				$months += $interval->format( '%m' );
+				return $months;
+				break;
+			case 'days':
+				return $interval->format( '%a' );
+				break;
+			case 'hours':
+				$days  = $interval->format( '%a' );
+				$hours = 0;
+				if ( $days ) {
+					$hours += 24 * $days;
+				}
+				$hours += $interval->format( '%H' );
+				return $hours;
+				break;
+			case 'minutes':
+				$days    = $interval->format( '%a' );
+				$minutes = 0;
+				if ( $days ) {
+					$minutes += 24 * 60 * $days;
+				}
+				$hours = $interval->format( '%H' );
+				if ( $hours ) {
+					$minutes += 60 * $hours;
+				}
+				$minutes += $interval->format( '%i' );
+				return $minutes;
+				break;
+			case 'seconds':
+				$days    = $interval->format( '%a' );
+				$seconds = 0;
+				if ( $days ) {
+					$seconds += 24 * 60 * 60 * $days;
+				}
+				$hours = $interval->format( '%H' );
+				if ( $hours ) {
+					$seconds += 60 * 60 * $hours;
+				}
+				$minutes = $interval->format( '%i' );
+				if ( $minutes ) {
+					$seconds += 60 * $minutes;
+				}
+				$seconds += $interval->format( '%s' );
+				return $seconds;
+				break;
+			case 'milliseconds':
+				$days    = $interval->format( '%a' );
+				$seconds = 0;
+				if ( $days ) {
+					$seconds += 24 * 60 * 60 * $days;
+				}
+				$hours = $interval->format( '%H' );
+				if ( $hours ) {
+					$seconds += 60 * 60 * $hours;
+				}
+				$minutes = $interval->format( '%i' );
+				if ( $minutes ) {
+					$seconds += 60 * $minutes;
+				}
+				$seconds     += $interval->format( '%s' );
+				$milliseconds = $seconds * 1000;
+				return $milliseconds;
+				break;
+			default:
+				return null;
+		}
 	}
 
-	if ( strtotime( '+24 hours', dipe_cf7_get_install_time() ) > time() ) {
-		return false;
+	public function days_differences() {
+
+		$install_date = get_option( '_dipe_cf7_installed_time' );
+
+		$install_date = isset( $install_date ) ? $install_date : strtotime( 'now' );
+
+		$datetime1 = \DateTime::createFromFormat( 'U', $install_date );
+		$datetime2 = \DateTime::createFromFormat( 'U', strtotime( 'now' ) );
+
+		$interval = $datetime2->diff( $datetime1 );
+
+		$days_diff = $this->get_total_interval( $interval, 'days' );
+		return $days_diff;
+
 	}
 
-	if ( dipe_is_user_notice_viewed( $notice_id ) ) {
-		return false;
-	}
+	public function install_plugin( $notice_key ) {
 
-	$screen = get_current_screen();
+		$notice = sprintf(
+			'Please install FREE %1$s plugin to get 20+ Divi Modules.',
+			'<a target="_blank" rel="noopener" href="' . esc_url( admin_url( 'plugin-install.php?s=Brain+Addons+for+Divi&tab=search&type=term' ) ) . '"> Brain Addons For Divi </a>'
+		);
 
-	if ( $screen->id !== 'dashboard' ) {
-		return;
-	}
+		?>
 
-	$dismiss_url = add_query_arg(
-		array(
-			'action'    => 'dipe_set_admin_notice_viewed',
-			'notice_id' => esc_attr( $notice_id ),
-		),
-		admin_url( 'admin-post.php' )
-	);
-
-	?>
-	<div class="notice updated is-dismissible dipe-message dipe-message-dismissed" data-notice_id="<?php echo $notice_id; ?>">
-		<div class="dipe-message-inner">
-			<div class="dipe-message-icon">
-				<div class="dipe-logo-wrapper">
-					<img src="<?php echo DIPE_CF7_URL . 'assets/imgs/icon-256x256.png'; ?>">
-				</div>
-			</div>
-			<div class="dipe-message-content">
-				<p><strong><?php echo __( 'Show Your Love: ', 'dvppl-cf7-styler' ); ?></strong> <?php _e( 'We love to have you in Divi People family. We are making it more awesome everyday. Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going.', 'dvppl-cf7-styler' ); ?></p>
-				<p class="dipe-message-actions">
-					<a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/#new-post" target="_blank" class="button button-primary"><?php _e( 'Happy To Help', 'dvppl-cf7-styler' ); ?></a>
-					<a href="<?php echo esc_url_raw( $dismiss_url ); ?>" class="button dipe-button-notice-dismiss"><?php _e( 'Hide Notification', 'dvppl-cf7-styler' ); ?></a>
-				</p>
+		<div data-dismissible="<?php echo esc_attr( $notice_key ); ?>" class="notice dipe-notice notice-success is-dismissible">
+			<div class="notice-right-container">
+				<?php echo $notice; ?>
 			</div>
 		</div>
-	</div>
-	<?php
-		return true;
-}
 
-function dipe_is_user_notice_viewed( $notice_id ) {
-	$notices = get_option( '_dipe_cf7_notice' );
-	if ( empty( $notices ) || empty( $notices[ $notice_id ] ) ) {
-		return false;
+		<?php
 	}
-	return true;
+
+	public function request_review_after_seven_days() {
+		if ( ! self::is_admin_notice_active( 'dipe-days-7' ) ) {
+			return; }
+		$dipe_seven_day_notice = $this->days_differences();
+		if ( $dipe_seven_day_notice >= 7 && $dipe_seven_day_notice < 15 ) {
+			$this->install_plugin( 'dipe-days-7' );
+		}
+	}
+
+	public function request_review_after_fifteen_days() {
+		if ( ! self::is_admin_notice_active( 'dipe-days-15' ) ) {
+			return; }
+		$dipe_seven_day_notice = $this->days_differences();
+		if ( $dipe_seven_day_notice > 7 && $dipe_seven_day_notice < 15 ) {
+			$this->install_plugin( 'dipe-days-15' );
+		}
+	}
+
 }
 
-add_action( 'admin_notices', 'dipe_notice_rate_us', 20 );
-add_action( 'wp_ajax_dipe_set_admin_notice_viewed', 'dipe_ajax_set_admin_notice_viewed' );
+Dipe_Notices::get_instance();
