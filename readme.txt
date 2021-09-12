@@ -1,4 +1,4 @@
-=== Contact Form 7 Styler for Divi Theme & Divi Builder ===
+=== Divi Contact Form 7 ===
 Contributors: divipeople
 Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
@@ -12,13 +12,13 @@ Design your Contact Form 7 forms with Divi Visual Builder. No coding required.
 
 == Description ==
 
-[Contact Form 7 Styler for Divi](https://divipeople.com/plugins/contact-form-7-styler/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code. 
+https://www.youtube.com/watch?v=QfvmLIj__68
 
-[Check our Live Demos](https://divipeople.com/plugins/contact-form-7-styler/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin)
+[Divi Contact Form 7](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code. 
+
+[Check our Live Demos](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin)
 
 You get various styling options along with the control to manage the layout and spacing within the form. You can select among the boxed or underlined layout and manage the spacing between all the fields.
-
-https://www.youtube.com/watch?v=QfvmLIj__68
 
 = FEATURES =
 * Grid Builder ( [See Video](https://www.youtube.com/watch?v=QfvmLIj__68) )
@@ -36,10 +36,6 @@ https://www.youtube.com/watch?v=QfvmLIj__68
 * [Like us on Facebook](https://www.facebook.com/divipeople/)
 
 https://www.youtube.com/watch?v=lVSo08cMKZE
-
-= Other Plugins =
-
-* [WowCarousel for Divi](https://wowcarousel.com): With this plugin adding carousel to your Divi website has never been easier. Add stunning carousels to your Divi websites in just a few clicks.
 
 == Installation ==
 Note: This plugin works with Divi Theme or Divi Builder and Contact Form 7. Make sure you have Divi Theme or Divi Builder and Contact Form 7 installed.

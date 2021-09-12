@@ -3,15 +3,15 @@
 class DIPE_CF7_Styler extends ET_Builder_Module {
 
 	protected $module_credits = array(
-		'module_uri' => 'https://divipeople.com/plugins/contact-form-7-styler/',
-		'author'     => 'Divi People',
+		'module_uri' => 'https://divipeople.com/plugins/contact-form-7-for-divi/',
+		'author'     => 'DiviPeople',
 		'author_uri' => 'https://divipeople.com',
 	);
 
 	public function init() {
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
-		$this->name             = esc_html__( 'Contact Form 7 Styler', 'dvppl-cf7-styler' );
+		$this->name             = esc_html__( 'CF7 Styler', 'dvppl-cf7-styler' );
 		$this->icon_path        = plugin_dir_path( __FILE__ ) . 'cf7.svg';
 		$this->main_css_element = '%%order_class%%';
 
