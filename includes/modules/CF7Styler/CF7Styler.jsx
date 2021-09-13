@@ -19,7 +19,7 @@ class CF7_Styler extends Component {
         let form_field_spacing = get_responsive_styles(
             props,
             "form_field_spacing",
-            `%%order_class%% .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit)`,
+            `%%order_class%% .dipe-cf7 .wpcf7 form>p, .dipe-cf7 .wpcf7 form>div, .dipe-cf7 .wpcf7 form>label`,
             { primary: "margin-bottom" },
             { default: "20px", important: true }
         );

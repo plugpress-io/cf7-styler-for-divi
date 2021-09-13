@@ -2,10 +2,10 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact Form 7 Styler for Divi 1.1.13\n"
+"Project-Id-Version: Divi Contact Form 7 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cf7-styler-for-"
 "divi\n"
-"POT-Creation-Date: 2021-09-10 10:07:01+00:00\n"
+"POT-Creation-Date: 2021-09-13 04:14:28+00:00\n"
 "PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,26 +33,12 @@ msgstr ""
 msgid "CF7 Styler for Divi"
 msgstr ""
 
-#: includes/admin/admin.php:159
-msgid ""
-"Your WordPress version does not yet support the WP_Debug_Data class, please "
-"update."
-msgstr ""
-
-#: includes/admin/admin.php:172
-msgid "Copy site info to clipboard"
-msgstr ""
-
-#: includes/admin/admin.php:174
-msgid "Copied!"
-msgstr ""
-
 #: includes/admin/rollback.php:82
 msgid "CF7 Styler Rollback to Previous Version"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:14
-msgid "Contact Form 7 Styler"
+msgid "CF7 Styler"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:21
@@ -382,7 +368,7 @@ msgid "3/4-col"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Contact Form 7 Styler for Divi"
+msgid "Divi Contact Form 7"
 msgstr ""
 
 #. Author URI of the plugin/theme

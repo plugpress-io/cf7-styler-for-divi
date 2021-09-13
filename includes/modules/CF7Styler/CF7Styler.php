@@ -1059,7 +1059,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 		$this->get_responsive_styles(
 			'form_field_spacing',
-			'%%order_class%% .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit)',
+			'%%order_class%% .dipe-cf7 .wpcf7 form>p, .dipe-cf7 .wpcf7 form>div, .dipe-cf7 .wpcf7 form>label',
 			array(
 				'primary'   => 'margin-bottom',
 				'important' => true,
