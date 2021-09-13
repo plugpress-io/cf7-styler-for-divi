@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Contact Form 7 Styler for Divi
+Plugin Name: Divi Contact Form 7
 Plugin URI:  https://divipeople.com
 Description: Design beuatiful contact forms with <strong>Contact Form 7 Styler for Divi</strong>
-Version:     1.1.13
+Version:     1.2.0
 Author:      DiviPeople
 Author URI:  https://divipeople.com
 License:     GPL2
@@ -11,12 +11,12 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: dvppl-cf7-styler
 Domain Path: /languages
 
-Contact Form 7 Styler for Divi is free software: you can redistribute it and/or modify
+Divi Contact Form 7 is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 any later version.
 
-Contact Form 7 Styler for Divi is distributed in the hope that it will be useful,
+Divi Contact Form 7 is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
@@ -73,9 +73,9 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 }
 // END_REPLACE.
 
-// Defines.
-define( 'DIPE_CF7_VERSION', '1.1.13' );
-define( 'DIPE_CF7_STABLE_VERSION', '1.1.12' );
+// Defines
+define( 'DIPE_CF7_VERSION', '1.2.0' );
+define( 'DIPE_CF7_STABLE_VERSION', '1.2.0' );
 define( 'DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
 define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
 define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
