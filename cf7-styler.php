@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// START_REPLACE
+// START_REPLACE.
 if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 	// Create a helper function for easy SDK access.
 	function dipe_cf7_fs() {
@@ -71,9 +71,9 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 	// Signal that SDK was initiated.
 	do_action( 'dipe_cf7_fs_loaded' );
 }
-// END_REPLACE
+// END_REPLACE.
 
-// Defines
+// Defines.
 define( 'DIPE_CF7_VERSION', '1.1.13' );
 define( 'DIPE_CF7_STABLE_VERSION', '1.1.12' );
 define( 'DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
@@ -81,14 +81,14 @@ define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
 define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DIPE_CF7_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 
-// Localize
+// Localize.
 load_plugin_textdomain(
 	'dvppl-cf7-styler',
 	false,
 	dirname( plugin_basename( __FILE__ ) ) . '/languages/'
 );
 
-// Final Class
+// Final Class.
 if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 	final class Dipe_Cf7_Module {
@@ -116,6 +116,11 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 		public function activate() {
 			update_option( 'dipe_version', DIPE_CF7_VERSION );
+
+			$options = get_option( 'dipe_options' );
+			if ( ! $options ) {
+				update_option( 'dipe_options', array( 'grid' => 'off' ) );
+			}
 
 			if ( get_option( '_dipe_cf7_installed_time' ) === false ) {
 				update_option( '_dipe_cf7_installed_time', strtotime( 'now' ) );
@@ -152,10 +157,10 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 	}
 }
 
-// Instance function
+// Instance function.
 function dipe_cf7_styler_module() {
 	return Dipe_Cf7_Module::instance();
 }
 
-// Kickoff
+// Kickoff.
 dipe_cf7_styler_module();

@@ -62,7 +62,6 @@ class Dipe_Admin {
 		}
 
 		$options = get_option( 'dipe_options' );
-
 		?>
 		<div class="wrap">
 			<div id="dipe-header">
@@ -73,7 +72,7 @@ class Dipe_Admin {
 				<div id="dipe-cf7-styler-tabs-wrapper" class="nav-tab-wrapper dipe-cf7-styler">
 					<a id='dipe-cf7-styler-tab-general' class='nav-tab nav-tab-active' href='#tab-general'>General</a>
 					<a id='dipe-cf7-styler-tab-debug' class='nav-tab' href='#tab-debug'>Debug</a>
-				</div>                
+				</div>
 			</div>
 			<div class="dipe-wrap">
 				<div id="poststuff">
@@ -119,12 +118,12 @@ class Dipe_Admin {
 															<div id="cf7_styler_grid">
 																<div>
 																	<input type="hidden" name='options[grid]' value='off' />
-																	<input 
-																		type="checkbox" 
+																	<input
+																		type="checkbox"
 																		class="checkbox"
 																		id="cf7-styler-grid"
 																		name='options[grid]'
-																		value='on' 
+																		value='on'
 																		<?php checked( $options['grid'], 'on', true ); ?>
 																	>
 																</div>
