@@ -117,11 +117,6 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 		public function activate() {
 			update_option( 'dipe_version', DIPE_CF7_VERSION );
 
-			$options = get_option( 'dipe_options' );
-			if ( ! $options ) {
-				update_option( 'dipe_options', array( 'grid' => 'off' ) );
-			}
-
 			if ( get_option( '_dipe_cf7_installed_time' ) === false ) {
 				update_option( '_dipe_cf7_installed_time', strtotime( 'now' ) );
 			}
@@ -138,8 +133,9 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 		private function includes() {
 			$options = get_option( 'dipe_options' );
+			$grid    = isset( $options['grid'] ) ? $options['grid'] : 'off';
 
-			if ( 'on' === $options['grid'] ) {
+			if ( 'on' === $grid ) {
 				require_once DIPE_CF7_PATH . 'includes/shortcode.php';
 				require_once DIPE_CF7_PATH . 'includes/tag.php';
 			}

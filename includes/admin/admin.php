@@ -61,7 +61,8 @@ class Dipe_Admin {
 
 		}
 
-		$options = get_option( 'dipe_options' );
+		$options      = get_option( 'dipe_options' );
+		$grid_options = isset( $options['grid'] ) ? $options['grid'] : 'off';
 		?>
 		<div class="wrap">
 			<div id="dipe-header">
@@ -124,7 +125,7 @@ class Dipe_Admin {
 																		id="cf7-styler-grid"
 																		name='options[grid]'
 																		value='on'
-																		<?php checked( $options['grid'], 'on', true ); ?>
+																		<?php checked( $grid_options, 'on', true ); ?>
 																	>
 																</div>
 															</div>
