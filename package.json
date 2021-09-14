@@ -1,6 +1,6 @@
 {
   "name": "cf7-styler-for-divi",
-  "version": "0.1.0",
+  "version": "1.2.4",
   "private": true,
   "dependencies": {
     "divi-scripts": "1.0.1",

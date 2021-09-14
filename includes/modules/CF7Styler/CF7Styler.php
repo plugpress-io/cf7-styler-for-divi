@@ -88,7 +88,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			if ( ! empty( $contact_forms ) && ! is_wp_error( $contact_forms ) ) {
 				$i = 0;
 				foreach ( $contact_forms as $post ) {
-					if ( 0 === $i) {
+					if ( 0 === $i ) {
 						(int) $options[0] = esc_html__( 'Select a Contact form', 'dvppl-cf7-styler' );
 					}
 					(int) $options[ $post->ID ] = $post->post_title;
@@ -314,6 +314,31 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'toggle_slug'      => 'general',
 			),
 
+			'form_field_height'            => array(
+				'label'          => esc_html__( 'Common Text Fields Height', 'dvppl-cf7-styler' ),
+				'description'    => esc_html__( 'Here you can define static height for the common text fields.', 'dvppl-cf7-styler' ),
+				'type'           => 'range',
+				'default_unit'   => 'px',
+				'mobile_options' => true,
+				'range_settings' => array(
+					'min'  => '0',
+					'max'  => '100',
+					'step' => '1',
+				),
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => 'form_field',
+			),
+
+			'form_field_padding'           => array(
+				'label'          => esc_html__( 'Form Field Padding', 'dvppl-cf7-styler' ),
+				'description'    => esc_html__( 'Here you can define a custom padding for each field.', 'dvppl-cf7-styler' ),
+				'type'           => 'custom_padding',
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => 'form_field',
+				'default'        => '10px|15px|10px|15px',
+				'mobile_options' => true,
+			),
+
 			'form_background_color'        => array(
 				'label'        => esc_html__( 'Form Field Background Color', 'dvppl-cf7-styler' ),
 				'type'         => 'color-alpha',
@@ -329,6 +354,39 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
 				'toggle_slug'  => 'form_field',
+			),
+
+			'form_field_spacing'           => array(
+				'label'          => esc_html__( 'Form Field Spacing Bottom', 'dvppl-cf7-styler' ),
+				'description'    => esc_html__( 'Set how much space the form field will take at the bottom.', 'dvppl-cf7-styler' ),
+				'type'           => 'range',
+				'default_unit'   => 'px',
+				'default'        => '20px',
+				'mobile_options' => true,
+				'range_settings' => array(
+					'min'  => '0',
+					'max'  => '200',
+					'step' => '1',
+				),
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => 'form_field',
+			),
+
+			'form_label_spacing'           => array(
+				'label'          => esc_html__( 'Form Label Spacing Bottom', 'dvppl-cf7-styler' ),
+				'description'    => esc_html__( 'Set how much space the form label will take at the bottom.', 'dvppl-cf7-styler' ),
+				'type'           => 'range',
+				'default_unit'   => 'px',
+				'default'        => '7px',
+				'mobile_options' => true,
+				'range_settings' => array(
+					'min'  => '0',
+					'max'  => '200',
+					'step' => '1',
+				),
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => 'form_text',
+				'sub_toggle'     => 'label_tab',
 			),
 
 			'cr_custom_styles'             => array(
@@ -429,7 +487,46 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				),
 			),
 
-			// Success / Error Message
+			// Success / Error Message.
+			'cf7_message_padding'          => array(
+				'label'          => esc_html__( 'Message Padding', 'dvppl-cf7-styler' ),
+				'type'           => 'range',
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => 'suc_err_msg',
+				'default_unit'   => 'px',
+				'default'        => '0px',
+				'range_settings' => array(
+					'min'  => '0',
+					'max'  => '50',
+					'step' => '1',
+				),
+			),
+
+			'cf7_message_margin_top'       => array(
+				'label'          => esc_html__( 'Message Margin Top', 'dvppl-cf7-styler' ),
+				'type'           => 'range',
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => 'suc_err_msg',
+				'default_unit'   => 'px',
+				'default'        => '0px',
+				'range_settings' => array(
+					'min'  => '0',
+					'max'  => '50',
+					'step' => '1',
+				),
+			),
+			'cf7_message_alignment'        => array(
+				'label'            => esc_html__( 'Message Text Alignment', 'brain-divi-addons' ),
+				'description'      => esc_html__( 'Align message text to the left, right or center.', 'brain-divi-addons' ),
+				'type'             => 'text_align',
+				'option_category'  => 'layout',
+				'options'          => et_builder_get_text_orientation_options( array( 'justified' ) ),
+				'options_icon'     => 'text_align',
+				'default'          => 'left',
+				'default_on_front' => 'left',
+				'toggle_slug'      => 'suc_err_msg',
+				'tab_slug'         => 'advanced',
+			),
 			'cf7_message_color'            => array(
 				'label'        => esc_html__( 'Message Text Color', 'dvppl-cf7-styler' ),
 				'type'         => 'color-alpha',
@@ -502,34 +599,6 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
 				'toggle_slug'  => 'suc_err_msg',
-			),
-
-			'cf7_message_padding'          => array(
-				'label'          => esc_html__( 'Message Padding', 'dvppl-cf7-styler' ),
-				'type'           => 'range',
-				'tab_slug'       => 'advanced',
-				'toggle_slug'    => 'suc_err_msg',
-				'default_unit'   => 'px',
-				'default'        => '0px',
-				'range_settings' => array(
-					'min'  => '0',
-					'max'  => '50',
-					'step' => '1',
-				),
-			),
-
-			'cf7_message_margin_top'       => array(
-				'label'          => esc_html__( 'Message Margin Top', 'dvppl-cf7-styler' ),
-				'type'           => 'range',
-				'tab_slug'       => 'advanced',
-				'toggle_slug'    => 'suc_err_msg',
-				'default_unit'   => 'px',
-				'default'        => '0px',
-				'range_settings' => array(
-					'min'  => '0',
-					'max'  => '50',
-					'step' => '1',
-				),
 			),
 
 			'__cf7form'                    => array(
@@ -677,7 +746,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 						%1$s .dipe-cf7-styler .wpcf7 input[type=url],
 						%1$s .dipe-cf7-styler .wpcf7 input[type=tel],
 						%1$s .dipe-cf7-styler .wpcf7 input[type=date],
-						%1$s .dipe-cf7-styler .wpcf7 select, 
+						%1$s .dipe-cf7-styler .wpcf7 select,
 						%1$s .dipe-cf7-styler .wpcf7 textarea
 						',
 						$this->main_css_element
@@ -713,6 +782,184 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		return $output;
 	}
 
+	public static function process_flex_style( $val, $type, $important ) {
+		$flex_val = 'center';
+		if ( 'left' === $val ) {
+			$flex_val = 'flex-start';
+		} elseif ( 'right' === $val ) {
+			$flex_val = 'flex-end';
+		}
+		return sprintf(
+			'%1$s:%2$s%3$s;',
+			$type,
+			$flex_val,
+			$important ? '!important;' : ''
+		);
+	}
+
+	public static function process_margin_padding(
+		$val = '0|0|0|0',
+		$type = 'padding',
+		$imp = false
+	) {
+
+		$_top     = '';
+		$_right   = '';
+		$_bottom  = '';
+		$_left    = '';
+		$imp_text = '';
+		$_val     = explode( '|', $val );
+
+		if ( $imp ) {
+			$imp_text = '!important';
+		}
+
+		if ( '' !== $_val[0] ) {
+			$_top = "{$type}-top:" . $_val[0] . $imp_text . ';';
+		}
+
+		if ( '' !== $_val[1] ) {
+			$_right = "{$type}-right:" . $_val[1] . $imp_text . ';';
+		}
+
+		if ( '' !== $_val[2] ) {
+			$_bottom = "{$type}-bottom:" . $_val[2] . $imp_text . ';';
+		}
+
+		if ( '' !== $_val[3] ) {
+			$_left = "{$type}-left:" . $_val[3] . $imp_text . ';';
+		}
+
+		return esc_html( "{$_top} {$_right} {$_bottom} {$_left}" );
+	}
+
+	function get_conditional_responsive_styles( $styles = array(), $data, $style ) {
+		$important = isset( $styles['important'] ) ? $styles['important'] : false;
+
+		if ( 'padding' === $style || 'margin' === $style ) {
+			return $this->process_margin_padding( $data, $style, $important );
+		} elseif ( 'align-self' === $style || 'align-items' === $style || 'justify-content' === $style ) {
+			return $this->process_flex_style( $data, $style, $important );
+		} elseif ( 'flex' === $style ) {
+			return 'flex: 0 0 ' . $data . ';';
+		} else {
+			return sprintf(
+				'
+                %1$s:%2$s%3$s;',
+				$style,
+				$data,
+				$important ? '!important;' : ''
+			);
+		}
+	}
+
+	protected function get_responsive_styles(
+		$opt_name,
+		$selector,
+		$styles = array(),
+		$pre_values = array(),
+		$render_slug
+	) {
+
+		$is_enabled = false;
+		$style      = $styles['primary'];
+		$_data      = $this->props[ $opt_name ];
+
+		if ( isset( $this->props[ "{$opt_name}_last_edited" ] ) ) {
+			$is_enabled = et_pb_get_responsive_status( $this->props[ "{$opt_name}_last_edited" ] );
+		}
+
+		if ( empty( $_data ) && ! empty( $pre_values ) ) {
+			$is_default = true;
+			if ( ! empty( $pre_values['conditional'] ) ) {
+				foreach ( $pre_values['conditional']['values'] as $value ) {
+					$property_val = $this->props[ $pre_values['conditional']['name'] ];
+					if ( $property_val === $value['a'] ) {
+						$_data      = $value['b'];
+						$is_default = false;
+					}
+				}
+			}
+
+			if ( $is_default ) {
+				$_data = $pre_values['default'];
+			}
+		}
+
+		if ( ! empty( $_data ) ) {
+			ET_Builder_Element::set_style(
+				$render_slug,
+				array(
+					'selector'    => $selector,
+					'declaration' => $this->get_conditional_responsive_styles( $styles, $_data, $style ),
+				)
+			);
+
+			if ( ! empty( $styles['secondary'] ) ) {
+				ET_Builder_Element::set_style(
+					$render_slug,
+					array(
+						'selector'    => $selector,
+						'declaration' => $styles['secondary'],
+					)
+				);
+			}
+		}
+
+		if ( $is_enabled ) {
+
+			$_data_tablet = $this->props[ "{$opt_name}_tablet" ];
+			$_data_phone  = $this->props[ "{$opt_name}_phone" ];
+
+			if ( ! empty( $_data_tablet ) ) {
+
+				ET_Builder_Element::set_style(
+					$render_slug,
+					array(
+						'selector'    => $selector,
+						'media_query' => ET_Builder_Element::get_media_query( 'max_width_980' ),
+						'declaration' => $this->get_conditional_responsive_styles( $styles, $_data_tablet, $style ),
+					)
+				);
+
+				if ( ! empty( $styles['secondary'] ) ) {
+					ET_Builder_Element::set_style(
+						$render_slug,
+						array(
+							'selector'    => $selector,
+							'media_query' => ET_Builder_Element::get_media_query( 'max_width_980' ),
+							'declaration' => $styles['secondary'],
+						)
+					);
+				}
+			}
+
+			if ( ! empty( $_data_phone ) ) {
+
+				ET_Builder_Element::set_style(
+					$render_slug,
+					array(
+						'selector'    => $selector,
+						'media_query' => ET_Builder_Element::get_media_query( 'max_width_767' ),
+						'declaration' => $this->get_conditional_responsive_styles( $styles, $_data_phone, $style ),
+					)
+				);
+
+				if ( ! empty( $styles['secondary'] ) ) {
+					ET_Builder_Element::set_style(
+						$render_slug,
+						array(
+							'selector'    => $selector,
+							'media_query' => ET_Builder_Element::get_media_query( 'max_width_767' ),
+							'declaration' => $styles['secondary'],
+						)
+					);
+				}
+			}
+		}
+	}
+
+
 	public function render( $attrs, $content = null, $render_slug ) {
 
 		$this->apply_css( $render_slug );
@@ -738,7 +985,8 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			$text        = isset( $form_header_text ) ? sprintf( '<div class="dipe-form-header-text">%1$s</div>', $form_header_text ) : '';
 			$header_info = $title || $text ? sprintf( '<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text ) : '';
 
-			$form_header = sprintf('
+			$form_header = sprintf(
+				'
             	<div class="dipe-form-header-container">
                 	<div class="dipe-form-header">
                 		%1$s%2$s
@@ -784,6 +1032,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$cr_border_color              = $this->props['cr_border_color'];
 		$cr_label_color               = $this->props['cr_label_color'];
 		$cf7_message_color            = $this->props['cf7_message_color'];
+		$cf7_message_alignment        = $this->props['cf7_message_alignment'];
 		$cf7_message_bg_color         = $this->props['cf7_message_bg_color'];
 		$cf7_border_highlight_color   = $this->props['cf7_border_highlight_color'];
 		$cf7_success_message_color    = $this->props['cf7_success_message_color'];
@@ -795,6 +1044,53 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$cf7_message_padding          = $this->props['cf7_message_padding'];
 		$cf7_message_margin_top       = $this->props['cf7_message_margin_top'];
 		$use_form_button_fullwidth    = $this->props['use_form_button_fullwidth'];
+		$form_field_height            = $this->props['form_field_height'];
+
+		$this->get_responsive_styles(
+			'form_label_spacing',
+			'%%order_class%% .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit)',
+			array(
+				'primary'   => 'margin-top',
+				'important' => true,
+			),
+			array( 'default' => '7px' ),
+			$render_slug
+		);
+
+		$this->get_responsive_styles(
+			'form_field_spacing',
+			'%%order_class%% .dipe-cf7 .wpcf7 form>p, .dipe-cf7 .wpcf7 form>div, .dipe-cf7 .wpcf7 form>label',
+			array(
+				'primary'   => 'margin-bottom',
+				'important' => true,
+			),
+			array( 'default' => '20px' ),
+			$render_slug
+		);
+
+		if ( '' !== $form_field_height ) {
+			$this->get_responsive_styles(
+				'form_field_height',
+				'%%order_class%% .wpcf7-form-control-wrap select, %%order_class%% .wpcf7-form-control-wrap input[type=text], %%order_class%% .wpcf7-form-control-wrap input[type=email], %%order_class%% .wpcf7-form-control-wrap input[type=number], %%order_class%% .wpcf7-form-control-wrap input[type=tel]',
+				array(
+					'primary'   => 'height',
+					'important' => true,
+				),
+				array( 'default' => 'initial' ),
+				$render_slug
+			);
+		}
+
+		$this->get_responsive_styles(
+			'form_field_padding',
+			'%%order_class%% .dipe-cf7-container .wpcf7 input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]), %%order_class%% .dipe-cf7-container .wpcf7 select, %%order_class%% .dipe-cf7-container .wpcf7 textarea',
+			array(
+				'primary'   => 'padding',
+				'important' => true,
+			),
+			array( 'default' => '10px|15px|10px|15px' ),
+			$render_slug
+		);
 
 		if ( 'on' === $use_form_button_fullwidth ) {
 			ET_Builder_Element::set_style(
@@ -965,6 +1261,17 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				)
 			);
 		}
+
+		ET_Builder_Element::set_style(
+			$render_slug,
+			array(
+				'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output, %%order_class%% .wpcf7 form span.wpcf7-not-valid-tip',
+				'declaration' => sprintf(
+					'text-align: %1$s;',
+					$cf7_message_alignment
+				),
+			)
+		);
 
 		if ( '' !== $cf7_message_bg_color ) {
 			ET_Builder_Element::set_style(

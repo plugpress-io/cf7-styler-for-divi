@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// START_REPLACE
+// START_REPLACE.
 if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 	// Create a helper function for easy SDK access.
 	function dipe_cf7_fs() {
@@ -71,7 +71,7 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 	// Signal that SDK was initiated.
 	do_action( 'dipe_cf7_fs_loaded' );
 }
-// END_REPLACE
+// END_REPLACE.
 
 // Defines
 define( 'DIPE_CF7_VERSION', '1.2.4' );
@@ -81,14 +81,14 @@ define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
 define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DIPE_CF7_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 
-// Localize
+// Localize.
 load_plugin_textdomain(
 	'dvppl-cf7-styler',
 	false,
 	dirname( plugin_basename( __FILE__ ) ) . '/languages/'
 );
 
-// Final Class
+// Final Class.
 if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 	final class Dipe_Cf7_Module {
@@ -133,8 +133,9 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 		private function includes() {
 			$options = get_option( 'dipe_options' );
+			$grid    = isset( $options['grid'] ) ? $options['grid'] : 'off';
 
-			if ( 'on' === $options['grid'] ) {
+			if ( 'on' === $grid ) {
 				require_once DIPE_CF7_PATH . 'includes/shortcode.php';
 				require_once DIPE_CF7_PATH . 'includes/tag.php';
 			}
@@ -152,10 +153,10 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 	}
 }
 
-// Instance function
+// Instance function.
 function dipe_cf7_styler_module() {
 	return Dipe_Cf7_Module::instance();
 }
 
-// Kickoff
+// Kickoff.
 dipe_cf7_styler_module();
