@@ -3,7 +3,7 @@
 Plugin Name: Divi Contact Form 7
 Plugin URI:  https://divipeople.com
 Description: Design beuatiful contact forms with <strong>Contact Form 7 Styler for Divi</strong>
-Version:     1.2.0
+Version:     1.2.4
 Author:      DiviPeople
 Author URI:  https://divipeople.com
 License:     GPL2
@@ -74,8 +74,8 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 // END_REPLACE.
 
 // Defines
-define( 'DIPE_CF7_VERSION', '1.2.0' );
-define( 'DIPE_CF7_STABLE_VERSION', '1.2.0' );
+define( 'DIPE_CF7_VERSION', '1.2.4' );
+define( 'DIPE_CF7_STABLE_VERSION', '1.2.4' );
 define( 'DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
 define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
 define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
