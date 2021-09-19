@@ -10,9 +10,8 @@
     display: block !important;
 }
 
-.dipe-cf7 .wpcf7 form > div,
-.dipe-cf7 .wpcf7 form > label,
-.dipe-cf7 .wpcf7 form > p {
+.dipe-cf7 .wpcf7 form .dp-col > label,
+.dipe-cf7 .wpcf7 form > label {
     display: block;
 }
 
