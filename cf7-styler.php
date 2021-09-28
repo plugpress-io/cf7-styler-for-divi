@@ -124,7 +124,9 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 		public function enqueue_scripts() {
 			$options = get_option( 'dipe_options' );
-			if ( 'on' === $options['grid'] ) {
+			$grid    = isset( $options['grid'] ) ? $options['grid'] : 'off';
+
+			if ( 'on' === $grid ) {
 				wp_enqueue_style( 'dipe-grid', DIPE_ASSETS_URL . 'css/cf7-grid.css' );
 			}
 
