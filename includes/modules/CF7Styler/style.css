@@ -185,7 +185,9 @@
     -webkit-appearance: button;
     cursor: pointer;
 }
-
+.dipe-cf7 .wpcf7 input[type="submit"][disabled] {
+    cursor: not-allowed;
+}
 .dipe-cf7 .wpcf7 div.wpcf7-response-output {
     margin: 0;
 }
