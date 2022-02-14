@@ -551,7 +551,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'toggle_slug'  => 'suc_err_msg',
 			),
 
-			// Success
+			// Success.
 			'cf7_success_message_color'    => array(
 				'label'        => esc_html__( 'Success Message Text Color', 'dvppl-cf7-styler' ),
 				'type'         => 'color-alpha',
@@ -576,7 +576,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'toggle_slug'  => 'suc_err_msg',
 			),
 
-			// Error
+			// Error.
 			'cf7_error_message_color'      => array(
 				'label'        => esc_html__( 'Error Message Text Color', 'dvppl-cf7-styler' ),
 				'type'         => 'color-alpha',
@@ -760,7 +760,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		return $advanced_fields;
 	}
 
-	public function get_cf7_shortcode( $args = array() ) {
+	public function get_cf7_shortcode( $args ) {
 
 		$cf7_id = $this->props['cf7'];
 
@@ -774,7 +774,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		return $cf7_shortcode;
 	}
 
-	public static function get_cf7_shortcode_html( $args = array() ) {
+	public static function get_cf7_shortcode_html( $args ) {
 
 		$cf7_shortcode        = new self();
 		$cf7_shortcode->props = $args;
@@ -798,11 +798,10 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 	}
 
 	public static function process_margin_padding(
-		$val = '0|0|0|0',
-		$type = 'padding',
-		$imp = false
+		$val,
+		$type,
+		$imp
 	) {
-
 		$_top     = '';
 		$_right   = '';
 		$_bottom  = '';
@@ -814,26 +813,26 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			$imp_text = '!important';
 		}
 
-		if ( '' !== $_val[0] ) {
+		if ( isset( $_val[0] ) && ! empty( $_val[0] ) ) {
 			$_top = "{$type}-top:" . $_val[0] . $imp_text . ';';
 		}
 
-		if ( '' !== $_val[1] ) {
+		if ( isset( $_val[1] ) && ! empty( $_val[1] ) ) {
 			$_right = "{$type}-right:" . $_val[1] . $imp_text . ';';
 		}
 
-		if ( '' !== $_val[2] ) {
+		if ( isset( $_val[2] ) && ! empty( $_val[2] ) ) {
 			$_bottom = "{$type}-bottom:" . $_val[2] . $imp_text . ';';
 		}
 
-		if ( '' !== $_val[3] ) {
+		if ( isset( $_val[3] ) && ! empty( $_val[3] ) ) {
 			$_left = "{$type}-left:" . $_val[3] . $imp_text . ';';
 		}
 
 		return esc_html( "{$_top} {$_right} {$_bottom} {$_left}" );
 	}
 
-	function get_conditional_responsive_styles( $styles = array(), $data, $style ) {
+	public function get_conditional_responsive_styles( $styles, $data, $style ) {
 		$important = isset( $styles['important'] ) ? $styles['important'] : false;
 
 		if ( 'padding' === $style || 'margin' === $style ) {
@@ -844,8 +843,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			return 'flex: 0 0 ' . $data . ';';
 		} else {
 			return sprintf(
-				'
-                %1$s:%2$s%3$s;',
+				'%1$s:%2$s%3$s;',
 				$style,
 				$data,
 				$important ? '!important;' : ''
@@ -856,13 +854,13 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 	protected function get_responsive_styles(
 		$opt_name,
 		$selector,
-		$styles = array(),
-		$pre_values = array(),
+		$styles,
+		$pre_values,
 		$render_slug
 	) {
 
 		$is_enabled = false;
-		$style      = $styles['primary'];
+		$style      = isset( $styles['primary'] ) ? $styles['primary'] : '';
 		$_data      = $this->props[ $opt_name ];
 
 		if ( isset( $this->props[ "{$opt_name}_last_edited" ] ) ) {
@@ -882,7 +880,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			}
 
 			if ( $is_default ) {
-				$_data = $pre_values['default'];
+				$_data = isset( $pre_values['default'] ) ? $pre_values['default'] : '';
 			}
 		}
 
@@ -984,10 +982,10 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			$title       = isset( $form_header_title ) ? sprintf( '<h2 class="dipe-form-header-title">%1$s</h2>', $form_header_title ) : '';
 			$text        = isset( $form_header_text ) ? sprintf( '<div class="dipe-form-header-text">%1$s</div>', $form_header_text ) : '';
 			$header_info = $title || $text ? sprintf( '<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text ) : '';
+			dipe_inject_fa_icons( $this->props['header_icon'] );
 
 			$form_header = sprintf(
-				'
-            	<div class="dipe-form-header-container">
+				'<div class="dipe-form-header-container">
                 	<div class="dipe-form-header">
                 		%1$s%2$s
                 	</div>
@@ -1000,14 +998,12 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$cr_custom_class = 'on' === $cr_custom_styles ? 'dipe-cf7-cr' : '';
 
 		return sprintf(
-			'
-			<div class="dipe-cf7-container dipe-cf7-button-%4$s">
+			'<div class="dipe-cf7-container dipe-cf7-button-%4$s">
 				%3$s
 				<div class="dipe-cf7 dipe-cf7-styler %2$s">
 					%1$s
 				</div>
-			</div>
-			',
+			</div>',
 			$this->get_cf7_shortcode( array() ),
 			$cr_custom_class,
 			$form_header,
@@ -1402,6 +1398,22 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$form_header_img_bg     = $this->props['form_header_img_bg'];
 		$form_header_icon_color = $this->props['form_header_icon_color'];
 		$form_bg                = $this->props['form_bg'];
+
+		if ( class_exists( 'ET_Builder_Module_Helper_Style_Processor' ) ) {
+			$this->generate_styles(
+				array(
+					'utility_arg'    => 'icon_font_family',
+					'render_slug'    => $render_slug,
+					'base_attr_name' => 'header_icon',
+					'important'      => true,
+					'selector'       => '%%order_class%% .dipe-form-header-icon .et-pb-icon',
+					'processor'      => array(
+						'ET_Builder_Module_Helper_Style_Processor',
+						'process_extended_icon',
+					),
+				)
+			);
+		}
 
 		ET_Builder_Element::set_style(
 			$render_slug,

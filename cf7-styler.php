@@ -2,7 +2,7 @@
 /*
 Plugin Name: Divi Contact Form 7
 Plugin URI:  https://divipeople.com
-Description: Design beuatiful contact forms with <strong>Divi Contact Form 7</strong>
+Description: Design beautiful contact forms with <strong>Divi Contact Form 7</strong>
 Version:     1.2.6
 Author:      DiviPeople
 Author URI:  https://divipeople.com
@@ -30,7 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// START_REPLACE.
+//phpcs:disable
+#ET_START_REPLACE
 if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 	// Create a helper function for easy SDK access.
 	function dipe_cf7_fs() {
@@ -71,9 +72,9 @@ if ( ! function_exists( 'dipe_cf7_fs' ) ) {
 	// Signal that SDK was initiated.
 	do_action( 'dipe_cf7_fs_loaded' );
 }
-// END_REPLACE.
+#ET_END_REPLACE
+//phpcs:enable
 
-// Defines
 define( 'DIPE_CF7_VERSION', '1.2.6' );
 define( 'DIPE_CF7_STABLE_VERSION', '1.2.4' );
 define( 'DIPE_CF7_URL', plugins_url( '/', __FILE__ ) );
@@ -81,14 +82,12 @@ define( 'DIPE_ASSETS_URL', trailingslashit( DIPE_CF7_URL . 'assets' ) );
 define( 'DIPE_CF7_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DIPE_CF7_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 
-// Localize.
 load_plugin_textdomain(
 	'dvppl-cf7-styler',
 	false,
 	dirname( plugin_basename( __FILE__ ) ) . '/languages/'
 );
 
-// Final Class.
 if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 
 	final class Dipe_Cf7_Module {
@@ -137,12 +136,15 @@ if ( ! class_exists( 'Dipe_Cf7_Module' ) ) {
 			$options = get_option( 'dipe_options' );
 			$grid    = isset( $options['grid'] ) ? $options['grid'] : 'off';
 
+			require_once DIPE_CF7_PATH . 'includes/functions.php';
+
 			if ( 'on' === $grid ) {
 				require_once DIPE_CF7_PATH . 'includes/shortcode.php';
 				require_once DIPE_CF7_PATH . 'includes/tag.php';
 			}
 
 			if ( is_admin() ) {
+                //phpcs:ignore
 				// require_once DIPE_CF7_PATH . 'includes/notice.php';
 				require_once DIPE_CF7_PATH . 'includes/admin/admin.php';
 				require_once DIPE_CF7_PATH . 'includes/admin/rollback.php';
