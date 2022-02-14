@@ -3,8 +3,8 @@ Contributors: divipeople
 Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 4.8
-Tested up to: 5.6
-Stable tag: 1.2.6
+Tested up to: 5.9
+Stable tag: 1.2.7
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -20,7 +20,7 @@ https://www.youtube.com/watch?v=QfvmLIj__68
 
 You get various styling options along with the control to manage the layout and spacing within the form. You can select among the boxed or underlined layout and manage the spacing between all the fields.
 
-= FEATURES =
+### FEATURES
 * Grid Builder ( [See Video](https://www.youtube.com/watch?v=QfvmLIj__68) )
 * Easy Contact form 7 pickup
 * Text and Background Styling
@@ -29,7 +29,12 @@ You get various styling options along with the control to manage the layout and 
 * Button Styling
 * Style Your Messages
 
-= JOIN US =
+### 🔥 WHAT’S NEXT
+If you like Divi Contact Form 7, then consider checking out our other Divi Plugins:
+
+⭐ **[Wow Divi Carousel](https://wordpress.org/plugins/wow-carousel-for-divi-lite/)**  – Divi touch-enabled plugin that lets you create a beautiful responsive slider or carousel
+
+### JOIN US
 
 * [Visit the DiviPeople website](http://divipeople.com/)
 * [Join our new Community](https://www.facebook.com/groups/divipeople/)
