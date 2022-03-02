@@ -1,12 +1,12 @@
-# Copyright (C) 2021 DiviPeople
+# Copyright (C) 2022 DiviPeople
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Divi Contact Form 7 1.2.4\n"
+"Project-Id-Version: Divi Contact Form 7 1.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cf7-styler-for-"
 "divi\n"
-"POT-Creation-Date: 2021-09-14 12:21:14+00:00\n"
-"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2022-03-02 09:20:31+00:00\n"
+"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -30,6 +30,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/admin/admin.php:40
 #: wp_org/tags/1.1.7/includes/admin/admin.php:40
 #: wp_org/tags/1.2.3/includes/admin/admin.php:40
+#: wp_org/tags/1.2.4/includes/admin/admin.php:43
 #: wp_org/trunk/includes/admin/admin.php:43
 msgid "Rollback to Previous Version"
 msgstr ""
@@ -39,6 +40,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/admin/admin.php:66
 #: wp_org/tags/1.1.7/includes/admin/admin.php:66
 #: wp_org/tags/1.2.3/includes/admin/admin.php:66
+#: wp_org/tags/1.2.4/includes/admin/admin.php:70
 #: wp_org/trunk/includes/admin/admin.php:70
 msgid "CF7 Styler for Divi"
 msgstr ""
@@ -49,11 +51,13 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/admin/rollback.php:82
 #: wp_org/tags/1.1.7/includes/admin/rollback.php:82
 #: wp_org/tags/1.2.3/includes/admin/rollback.php:82
+#: wp_org/tags/1.2.4/includes/admin/rollback.php:82
 #: wp_org/trunk/includes/admin/rollback.php:82
 msgid "CF7 Styler Rollback to Previous Version"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:14
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:14
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:14
 msgid "CF7 Styler"
 msgstr ""
@@ -69,6 +73,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:21
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:21
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:21
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:21
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:21
 msgid "General"
 msgstr ""
@@ -80,12 +85,15 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:26
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:26
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:26
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:26
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:32
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:26
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:32
 msgid "Common"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:28
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:28
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:28
 msgid "Form Header"
 msgstr ""
@@ -97,8 +105,10 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:600
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:600
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:600
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:35
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:674
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:35
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:605
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:674
 msgid "Title"
 msgstr ""
 
@@ -109,12 +119,15 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:613
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:613
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:613
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:38
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:687
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:38
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:618
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:687
 msgid "Text"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:43
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:43
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:43
 msgid "Form Text"
 msgstr ""
@@ -145,9 +158,12 @@ msgstr ""
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:650
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:554
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:650
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:47
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:622
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:724
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:47
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:553
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:655
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:622
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:724
 msgid "Field"
 msgstr ""
 
@@ -163,8 +179,10 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:577
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:577
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:577
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:50
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:648
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:50
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:579
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:648
 msgid "Label"
 msgstr ""
 
@@ -180,8 +198,10 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:587
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:587
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:587
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:54
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:658
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:54
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:589
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:658
 msgid "Placeholder"
 msgstr ""
 
@@ -191,6 +211,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:58
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:58
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:58
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:58
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:58
 msgid "Fields"
 msgstr ""
@@ -206,6 +227,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:59
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:59
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:59
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:59
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:59
 msgid "Radio & Checkbox"
 msgstr ""
@@ -222,8 +244,10 @@ msgstr ""
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:626
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:60
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:626
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:60
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:700
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:60
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:631
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:700
 msgid "Button"
 msgstr ""
 
@@ -233,6 +257,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:61
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:61
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:61
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:61
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:61
 msgid "Message"
 msgstr ""
@@ -253,6 +278,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:68
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:68
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:68
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:68
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:68
 msgid "Form Fields"
 msgstr ""
@@ -263,6 +289,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:72
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:72
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:72
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:72
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:72
 msgid "Form Label"
 msgstr ""
@@ -278,6 +305,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:92
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:92
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:92
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:92
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:92
 msgid "Select a Contact form"
 msgstr ""
@@ -288,6 +316,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:111
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:111
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:111
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:110
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:110
 msgid "Show Form Header"
 msgstr ""
@@ -318,10 +347,14 @@ msgstr ""
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:159
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:282
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:340
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:113
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:158
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:281
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:397
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:113
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:158
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:281
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:339
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:397
 msgid "Yes"
 msgstr ""
 
@@ -351,10 +384,14 @@ msgstr ""
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:160
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:283
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:341
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:114
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:159
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:282
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:398
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:114
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:159
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:282
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:340
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:398
 msgid "No"
 msgstr ""
 
@@ -364,6 +401,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:138
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:138
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:138
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:137
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:137
 msgid "Header Title"
 msgstr ""
@@ -374,6 +412,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:147
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:147
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:147
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:146
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:146
 msgid "Header Text"
 msgstr ""
@@ -384,6 +423,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:156
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:156
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:156
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:155
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:155
 msgid "Use Icon"
 msgstr ""
@@ -394,6 +434,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:170
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:170
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:170
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:169
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:169
 msgid "Header Image"
 msgstr ""
@@ -404,6 +445,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:172
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:172
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:172
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:171
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:171
 msgid "Upload an image"
 msgstr ""
@@ -414,6 +456,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:173
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:173
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:173
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:172
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:172
 msgid "Choose an Image"
 msgstr ""
@@ -424,6 +467,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:174
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:174
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:174
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:173
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:173
 msgid "Set As Image"
 msgstr ""
@@ -434,6 +478,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:183
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:183
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:183
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:182
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:182
 msgid "Header Icon"
 msgstr ""
@@ -444,6 +489,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:194
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:194
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:194
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:193
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:193
 msgid "Form Header Background"
 msgstr ""
@@ -454,6 +500,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:206
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:206
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:206
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:205
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:205
 msgid "Header Padding"
 msgstr ""
@@ -464,6 +511,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:219
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:219
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:219
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:218
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:218
 msgid "Bottom Spacing"
 msgstr ""
@@ -474,6 +522,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:237
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:237
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:237
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:236
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:236
 msgid "Header Image/Icon Background"
 msgstr ""
@@ -484,6 +533,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:249
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:249
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:249
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:248
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:248
 msgid "Header Icon Color"
 msgstr ""
@@ -494,6 +544,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:262
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:262
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:262
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:261
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:261
 msgid "Form Background"
 msgstr ""
@@ -504,6 +555,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:270
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:270
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:270
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:269
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:269
 msgid "Form Padding"
 msgstr ""
@@ -514,6 +566,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:279
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:279
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:279
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:278
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:278
 msgid "Fullwidth Button"
 msgstr ""
@@ -524,6 +577,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:291
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:291
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:291
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:290
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:290
 msgid "Button Alignment"
 msgstr ""
@@ -534,6 +588,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:294
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:294
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:294
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:293
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:293
 msgid "Left"
 msgstr ""
@@ -544,6 +599,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:295
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:295
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:295
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:294
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:294
 msgid "Center"
 msgstr ""
@@ -554,6 +610,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:296
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:296
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:296
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:295
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:295
 msgid "Right"
 msgstr ""
@@ -569,6 +626,7 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:307
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:307
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:307
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:306
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:306
 msgid "Select Form"
 msgstr ""
@@ -584,23 +642,32 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:311
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:311
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:311
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:310
 #: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:310
 msgid "Choose a contact form to display."
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:318
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:318
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:318
 msgid "Common Text Fields Height"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:319
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:319
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:319
 msgid "Here you can define static height for the common text fields."
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:333
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:333
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:333
 msgid "Form Field Padding"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:334
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:334
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:334
 msgid "Here you can define a custom padding for each field."
 msgstr ""
 
@@ -615,7 +682,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:319
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:319
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:319
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:318
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:343
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:343
 msgid "Form Field Background Color"
 msgstr ""
 
@@ -630,23 +698,32 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:328
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:328
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:328
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:327
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:352
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:352
 msgid "Form Field Active Color"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:360
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:360
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:360
 msgid "Form Field Spacing Bottom"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:361
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:361
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:361
 msgid "Set how much space the form field will take at the bottom."
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:376
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:376
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:376
 msgid "Form Label Spacing Bottom"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:377
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:377
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:377
 msgid "Set how much space the form label will take at the bottom."
 msgstr ""
 
@@ -658,7 +735,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:336
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:336
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:336
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:335
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:393
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:393
 msgid "Enable Custom Styles"
 msgstr ""
 
@@ -673,7 +751,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:352
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:352
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:352
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:351
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:409
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:409
 msgid "Size"
 msgstr ""
 
@@ -688,7 +767,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:370
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:370
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:370
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:369
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:427
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:427
 msgid "Background Color"
 msgstr ""
 
@@ -703,7 +783,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:381
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:381
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:381
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:380
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:438
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:438
 msgid "Selected Color"
 msgstr ""
 
@@ -718,7 +799,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:393
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:393
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:393
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:392
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:450
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:450
 msgid "Border Color"
 msgstr ""
 
@@ -733,7 +815,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:405
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:405
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:405
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:404
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:462
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:462
 msgid "Border Size"
 msgstr ""
 
@@ -748,7 +831,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:423
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:423
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:423
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:422
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:480
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:480
 msgid "Label Color"
 msgstr ""
 
@@ -763,7 +847,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:509
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:509
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:509
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:508
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:492
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:492
 msgid "Message Padding"
 msgstr ""
 
@@ -778,15 +863,20 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:523
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:523
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:523
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:522
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:506
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:506
 msgid "Message Margin Top"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:519
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:519
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:519
 msgid "Message Text Alignment"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:520
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:520
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:520
 msgid "Align message text to the left, right or center."
 msgstr ""
 
@@ -801,7 +891,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:435
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:435
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:435
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:434
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:531
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:531
 msgid "Message Text Color"
 msgstr ""
 
@@ -816,7 +907,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:443
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:443
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:443
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:442
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:539
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:539
 msgid "Message Background Color"
 msgstr ""
 
@@ -831,7 +923,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:451
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:451
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:451
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:450
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:547
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:547
 msgid "Border Highlight Color"
 msgstr ""
 
@@ -846,7 +939,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:460
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:460
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:460
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:459
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:556
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:556
 msgid "Success Message Text Color"
 msgstr ""
 
@@ -861,7 +955,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:468
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:468
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:468
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:467
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:564
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:564
 msgid "Success Message Background Color"
 msgstr ""
 
@@ -876,7 +971,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:476
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:476
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:476
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:475
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:572
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:572
 msgid "Success Border Color"
 msgstr ""
 
@@ -891,7 +987,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:485
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:485
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:485
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:484
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:581
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:581
 msgid "Error Message Text Color"
 msgstr ""
 
@@ -906,7 +1003,8 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:493
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:493
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:493
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:492
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:589
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:589
 msgid "Error Message Background Color"
 msgstr ""
 
@@ -921,56 +1019,57 @@ msgstr ""
 #: wp_org/tags/1.1.2/includes/modules/CF7Styler/CF7Styler.php:501
 #: wp_org/tags/1.1.7/includes/modules/CF7Styler/CF7Styler.php:501
 #: wp_org/tags/1.2.3/includes/modules/CF7Styler/CF7Styler.php:501
-#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:500
+#: wp_org/tags/1.2.4/includes/modules/CF7Styler/CF7Styler.php:597
+#: wp_org/trunk/includes/modules/CF7Styler/CF7Styler.php:597
 msgid "Error Border Color"
 msgstr ""
 
 #: includes/tag.php:15 wp_org/tags/1.1.0/includes/tag.php:15
 #: wp_org/tags/1.1.1/includes/tag.php:15 wp_org/tags/1.1.2/includes/tag.php:15
 #: wp_org/tags/1.1.7/includes/tag.php:15 wp_org/tags/1.2.3/includes/tag.php:15
-#: wp_org/trunk/includes/tag.php:15
+#: wp_org/tags/1.2.4/includes/tag.php:15 wp_org/trunk/includes/tag.php:15
 msgid "row"
 msgstr ""
 
 #: includes/tag.php:16 wp_org/tags/1.1.0/includes/tag.php:16
 #: wp_org/tags/1.1.1/includes/tag.php:16 wp_org/tags/1.1.2/includes/tag.php:16
 #: wp_org/tags/1.1.7/includes/tag.php:16 wp_org/tags/1.2.3/includes/tag.php:16
-#: wp_org/trunk/includes/tag.php:16
+#: wp_org/tags/1.2.4/includes/tag.php:16 wp_org/trunk/includes/tag.php:16
 msgid "1-col"
 msgstr ""
 
 #: includes/tag.php:17 wp_org/tags/1.1.0/includes/tag.php:17
 #: wp_org/tags/1.1.1/includes/tag.php:17 wp_org/tags/1.1.2/includes/tag.php:17
 #: wp_org/tags/1.1.7/includes/tag.php:17 wp_org/tags/1.2.3/includes/tag.php:17
-#: wp_org/trunk/includes/tag.php:17
+#: wp_org/tags/1.2.4/includes/tag.php:17 wp_org/trunk/includes/tag.php:17
 msgid "1/2-col"
 msgstr ""
 
 #: includes/tag.php:18 wp_org/tags/1.1.0/includes/tag.php:18
 #: wp_org/tags/1.1.1/includes/tag.php:18 wp_org/tags/1.1.2/includes/tag.php:18
 #: wp_org/tags/1.1.7/includes/tag.php:18 wp_org/tags/1.2.3/includes/tag.php:18
-#: wp_org/trunk/includes/tag.php:18
+#: wp_org/tags/1.2.4/includes/tag.php:18 wp_org/trunk/includes/tag.php:18
 msgid "1/3-col"
 msgstr ""
 
 #: includes/tag.php:19 wp_org/tags/1.1.0/includes/tag.php:19
 #: wp_org/tags/1.1.1/includes/tag.php:19 wp_org/tags/1.1.2/includes/tag.php:19
 #: wp_org/tags/1.1.7/includes/tag.php:19 wp_org/tags/1.2.3/includes/tag.php:19
-#: wp_org/trunk/includes/tag.php:19
+#: wp_org/tags/1.2.4/includes/tag.php:19 wp_org/trunk/includes/tag.php:19
 msgid "1/4-col"
 msgstr ""
 
 #: includes/tag.php:20 wp_org/tags/1.1.0/includes/tag.php:20
 #: wp_org/tags/1.1.1/includes/tag.php:20 wp_org/tags/1.1.2/includes/tag.php:20
 #: wp_org/tags/1.1.7/includes/tag.php:20 wp_org/tags/1.2.3/includes/tag.php:20
-#: wp_org/trunk/includes/tag.php:20
+#: wp_org/tags/1.2.4/includes/tag.php:20 wp_org/trunk/includes/tag.php:20
 msgid "2/3-col"
 msgstr ""
 
 #: includes/tag.php:21 wp_org/tags/1.1.0/includes/tag.php:21
 #: wp_org/tags/1.1.1/includes/tag.php:21 wp_org/tags/1.1.2/includes/tag.php:21
 #: wp_org/tags/1.1.7/includes/tag.php:21 wp_org/tags/1.2.3/includes/tag.php:21
-#: wp_org/trunk/includes/tag.php:21
+#: wp_org/tags/1.2.4/includes/tag.php:21 wp_org/trunk/includes/tag.php:21
 msgid "3/4-col"
 msgstr ""
 
@@ -1162,8 +1261,7 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Design beuatiful contact forms with <strong>Contact Form 7 Styler for Divi</"
-"strong>"
+"Design beuatiful contact forms with <strong>Divi Contact Form 7</strong>"
 msgstr ""
 
 #. Author of the plugin/theme
