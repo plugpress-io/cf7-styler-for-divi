@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get_responsive_styles } from "./helper";
+import { get_responsive_styles, renderFontStyle } from "./helper";
 import "./style.css";
 
 class CF7_Styler extends Component {
@@ -7,6 +7,8 @@ class CF7_Styler extends Component {
 
     static css(props) {
         const additionalCss = [];
+
+         let iconFont = renderFontStyle(props, 'header_icon', '%%order_class%% .dipe-form-header-icon .et-pb-icon');
 
         let form_label_spacing = get_responsive_styles(
             props,
@@ -292,6 +294,7 @@ class CF7_Styler extends Component {
         ]);
 
         return additionalCss
+            .concat(iconFont)
             .concat(form_field_spacing)
             .concat(form_label_spacing)
             .concat(form_field_height)

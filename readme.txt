@@ -14,7 +14,7 @@ Design your Contact Form 7 forms with Divi Visual Builder. No coding required.
 
 https://www.youtube.com/watch?v=QfvmLIj__68
 
-[Divi Contact Form 7](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code. 
+[Divi Contact Form 7](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code.
 
 [Check our Live Demos](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin)
 
@@ -56,7 +56,7 @@ In case you are unable to style them, here are a few things you need to check.
 
 * Make sure that our checkbox/radio field has “use_label_element” tag in Contact Form 7 source code.
 * Please check that your checkbox / radio field should not have “label_first” tag in Contact Form 7 source code.
-* Please make sure your acceptance field has condition statement in Contact Form 7 source code. 
+* Please make sure your acceptance field has condition statement in Contact Form 7 source code.
 
 = Can I use the plugin without Divi theme or Divi Builder? =
 No. You cannot use without Divi theme or Divi Builder.
@@ -65,8 +65,8 @@ No. You cannot use without Divi theme or Divi Builder.
 No. You cannot use without Contact Form 7. It must be installed.
 
 == Screenshots ==
-1. Example Forms
 
 == Changelog ==
-== 03/02/2022 ==
+== 1.3.0 – 2 MARCH 2022 ==
 Update Freemius SDK.
+

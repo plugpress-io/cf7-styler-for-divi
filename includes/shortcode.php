@@ -23,7 +23,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}
@@ -38,7 +38,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}
@@ -53,7 +53,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}
@@ -68,7 +68,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}
@@ -83,7 +83,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}
@@ -98,7 +98,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}
@@ -113,7 +113,7 @@ class Dipe_Shortcode {
         	</div>',
 			do_shortcode( $content )
 		);
-		echo $shortcode;
+		echo et_core_intentionally_unescaped( $shortcode, 'html' ); //phpcs:ignore.
 
 		return ob_get_clean();
 	}

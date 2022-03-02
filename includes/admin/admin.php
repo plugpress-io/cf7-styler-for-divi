@@ -72,7 +72,6 @@ class Dipe_Admin {
 				</h1>
 				<div id="dipe-cf7-styler-tabs-wrapper" class="nav-tab-wrapper dipe-cf7-styler">
 					<a id='dipe-cf7-styler-tab-general' class='nav-tab nav-tab-active' href='#tab-general'>General</a>
-					<a id='dipe-cf7-styler-tab-debug' class='nav-tab' href='#tab-debug'>Debug</a>
 				</div>
 			</div>
 			<div class="dipe-wrap">

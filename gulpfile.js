@@ -6,7 +6,7 @@ const merge                 = require('merge-stream');
 
 function cleanBuild() {
     return src('./build', {
-    	read: false, 
+    	read: false,
     	allowEmpty: true
     }).pipe(clean());
 }
@@ -31,7 +31,7 @@ function prodMode() {
 
 function cleanZip() {
     return src('./cf7-styler-for-divi.zip', {
-    	read: false, 
+    	read: false,
     	allowEmpty: true
     }).pipe(clean());
 }
@@ -40,6 +40,27 @@ function makeBuild() {
     return src([
         './**/*.*',
         '!./wp_org/**/*.*',
+        '!./build/**/*.*',
+        '!./scripts/frontend.js',
+        '!./includes/**/index.js',
+        '!./includes/loader.js',
+        '!./includes/**/**/*.jsx',
+        '!./includes/**/**/*.css',
+        '!./node_modules/**/*.*',
+        '!./*.zip',
+        '!./gulpfile.js',
+        '!./README.md',
+        '!./package.json',
+        '!./asset-manifest.json',
+        '!./package-lock.json',
+    ]).pipe(dest('build/cf7-styler-for-divi/'));
+}
+
+function makeEtBuild() {
+    return src([
+        './**/*.*',
+        '!./wp_org/**/*.*',
+        '!./freemius/**/*.*',
         '!./build/**/*.*',
         '!./scripts/frontend.js',
         '!./includes/**/index.js',
@@ -67,6 +88,13 @@ function makeZip() {
         .pipe(dest('./'))
 }
 
+function prodEtMode() {
+    return src(['./build/cf7-styler-for-divi/cf7-styler.php'])
+        .pipe(replace(/(?<=#ET_START_REPLACE)([^]*?)(?=#ET_END_REPLACE)/g, ' '))
+        .pipe(dest('./build/cf7-styler-for-divi'));
+}
+
+
 exports.makeBuild   = makeBuild;
 exports.prodMode    = prodMode;
 exports.cleanBuild  = cleanBuild;
@@ -74,4 +102,5 @@ exports.cleanZip    = cleanZip;
 exports.makeZip     = makeZip;
 exports.makeOrgCopy = makeOrgCopy;
 exports.default     = series(cleanBuild, cleanZip, makeBuild, makeZip, cleanBuild);
+exports.et          = series(cleanBuild, cleanZip, makeEtBuild, prodEtMode, makeZip, cleanBuild);
 exports.wporg       = series(cleanBuild, makeBuild, makeOrgCopy, cleanBuild);

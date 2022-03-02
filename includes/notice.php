@@ -24,11 +24,11 @@ class Dipe_Notices {
 	}
 
 	public function admin_notice() {
-		$option_name        = sanitize_text_field( $_POST['option_name'] );
-		$dismissible_length = sanitize_text_field( $_POST['dismissible_length'] );
+		$option_name        = sanitize_text_field( $_POST['option_name'] ); //phpcs:ignore
+		$dismissible_length = sanitize_text_field( $_POST['dismissible_length'] ); //phpcs:ignore
 
-		if ( 'forever' != $dismissible_length ) {
-			$dismissible_length = ( 0 == absint( $dismissible_length ) ) ? 1 : $dismissible_length;
+		if ( 'forever' !== $dismissible_length ) {
+			$dismissible_length = ( 0 === absint( $dismissible_length ) ) ? 1 : $dismissible_length;
 			$dismissible_length = strtotime( absint( $dismissible_length ) . ' days' );
 		}
 
@@ -55,7 +55,7 @@ class Dipe_Notices {
 
 		$db_record = self::get_admin_notice_cache( $option_name );
 
-		if ( 'forever' == $db_record ) {
+		if ( 'forever' === $db_record ) {
 			return false;
 		} elseif ( absint( $db_record ) >= time() ) {
 			return false;
@@ -87,7 +87,7 @@ class Dipe_Notices {
 		switch ( $type ) {
 			case 'years':
 				return $interval->format( '%Y' );
-				break;
+				break; //phpcs:ignore.
 			case 'months':
 				$years  = $interval->format( '%Y' );
 				$months = 0;
@@ -96,10 +96,10 @@ class Dipe_Notices {
 				}
 				$months += $interval->format( '%m' );
 				return $months;
-				break;
+				break; //phpcs:ignore.
 			case 'days':
 				return $interval->format( '%a' );
-				break;
+				break; //phpcs:ignore.
 			case 'hours':
 				$days  = $interval->format( '%a' );
 				$hours = 0;
@@ -108,7 +108,7 @@ class Dipe_Notices {
 				}
 				$hours += $interval->format( '%H' );
 				return $hours;
-				break;
+				break; //phpcs:ignore.
 			case 'minutes':
 				$days    = $interval->format( '%a' );
 				$minutes = 0;
@@ -121,7 +121,7 @@ class Dipe_Notices {
 				}
 				$minutes += $interval->format( '%i' );
 				return $minutes;
-				break;
+				break; //phpcs:ignore.
 			case 'seconds':
 				$days    = $interval->format( '%a' );
 				$seconds = 0;
@@ -138,7 +138,7 @@ class Dipe_Notices {
 				}
 				$seconds += $interval->format( '%s' );
 				return $seconds;
-				break;
+				break; //phpcs:ignore.
 			case 'milliseconds':
 				$days    = $interval->format( '%a' );
 				$seconds = 0;
@@ -156,7 +156,7 @@ class Dipe_Notices {
 				$seconds     += $interval->format( '%s' );
 				$milliseconds = $seconds * 1000;
 				return $milliseconds;
-				break;
+				break; //phpcs:ignore.
 			default:
 				return null;
 		}
@@ -189,7 +189,7 @@ class Dipe_Notices {
 
 		<div data-dismissible="<?php echo esc_attr( $notice_key ); ?>" class="notice dipe-notice notice-success is-dismissible">
 			<div class="notice-right-container">
-				<?php echo $notice; ?>
+				<?php echo $notice; //phpcs:ignore ?>
 			</div>
 		</div>
 
