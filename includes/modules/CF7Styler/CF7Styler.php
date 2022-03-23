@@ -185,7 +185,6 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 					'use_form_header' => 'on',
 					'use_icon'        => 'on',
 				),
-				'default'     => '',
 				'toggle_slug' => 'general',
 			),
 
@@ -1399,7 +1398,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$form_header_icon_color = $this->props['form_header_icon_color'];
 		$form_bg                = $this->props['form_bg'];
 
-		if ( class_exists( 'ET_Builder_Module_Helper_Style_Processor' ) ) {
+		if ( class_exists( 'ET_Builder_Module_Helper_Style_Processor' ) && method_exists( 'ET_Builder_Module_Helper_Style_Processor', 'process_extended_icon' ) ) {
 			$this->generate_styles(
 				array(
 					'utility_arg'    => 'icon_font_family',

@@ -17,3 +17,5 @@ function dipe_inject_fa_icons( $icon_data ) {
 		add_filter( 'et_late_global_assets_list', 'dipe_global_assets_list' );
 	}
 }
+
+
