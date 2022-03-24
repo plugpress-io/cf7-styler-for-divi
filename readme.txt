@@ -4,7 +4,7 @@ Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 4.8
 Tested up to: 5.9
-Stable tag: 1.2.8
+Stable tag: 1.3.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -67,6 +67,10 @@ No. You cannot use without Contact Form 7. It must be installed.
 == Screenshots ==
 
 == Changelog ==
-== 1.3.0 – 2 MARCH 2022 ==
-Update Freemius SDK.
+
+### 1.3.1 – 25 MARCH 2022 ###
+php error fix
+
+### 1.3.0 – 2 MARCH 2022 ###
+Security fix
 
