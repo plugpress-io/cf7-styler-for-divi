@@ -2,9 +2,9 @@
 Contributors: divipeople
 Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
-Requires at least: 4.8
-Tested up to: 5.9
-Stable tag: 1.3.2
+Requires at least: 5.0
+Tested up to: 6.2
+Stable tag: 1.3.3
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -12,35 +12,17 @@ Design your Contact Form 7 forms with Divi Visual Builder. No coding required.
 
 == Description ==
 
-https://www.youtube.com/watch?v=QfvmLIj__68
+Divi Contact Form 7 - the ultimate solution for designing stunning contact forms in a hassle-free manner. Say goodbye to the tedious task of writing code, and create custom contact forms with ease using the Divi Visual Builder.
 
-[Divi Contact Form 7](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin) Visual Page Builder. Now you can Customize and design beautiful contact forms with Divi Visual Builder and without writing a single line of code.
+= Here are some of the amazing features that come with the Divi Contact Form 7 =
 
-[Check our Live Demos](https://divipeople.com/plugins/contact-form-7-for-divi/?utm_source=cf7_wp.org&utm_medium=cpc&utm_campaign=freeplugin)
-
-You get various styling options along with the control to manage the layout and spacing within the form. You can select among the boxed or underlined layout and manage the spacing between all the fields.
-
-### FEATURES
-* Grid Builder ( [See Video](https://www.youtube.com/watch?v=QfvmLIj__68) )
-* Easy Contact form 7 pickup
-* Text and Background Styling
-* Customizable Padding, Margin & Border
-* Form Elements Styling
-* Button Styling
-* Style Your Messages
-
-### 🔥 WHAT’S NEXT
-If you like Divi Contact Form 7, then consider checking out our other Divi Plugins:
-
-⭐ **[Wow Divi Carousel](https://wordpress.org/plugins/wow-carousel-for-divi-lite/)**  – Divi touch-enabled plugin that lets you create a beautiful responsive slider or carousel
-
-### JOIN US
-
-* [Visit the DiviPeople website](http://divipeople.com/)
-* [Join our new Community](https://www.facebook.com/groups/divipeople/)
-* [Like us on Facebook](https://www.facebook.com/divipeople/)
-
-https://www.youtube.com/watch?v=lVSo08cMKZE
+- **Grid Builder** With the built-in grid builder, you can create multi-column forms effortlessly.
+- **Easy Contact Form 7 Pickup** You can easily import existing Contact Form 7 forms and customize them according to your preferences.
+- **Text and Background Styling** You have full control over the styling of your form's text and background to match your website's design.
+- **Customizable Padding, Margin & Border** Adjust the spacing between form elements and add borders as per your liking.
+- **Form Elements Styling:** Style individual form elements, such as text fields, radio buttons, checkboxes, and drop-down menus, with a wide range of customization options.
+- **Button Styling** Create visually appealing buttons with customizable colors, fonts, borders, and hover effects.
+- **Style Your Messages** You can style the success and error messages to match your website's design.
 
 == Installation ==
 Note: This plugin works with Divi Theme or Divi Builder and Contact Form 7. Make sure you have Divi Theme or Divi Builder and Contact Form 7 installed.
@@ -55,25 +37,28 @@ Divi Theme/Builder and [Contact Form 7](https://wordpress.org/plugins/contact-fo
 In case you are unable to style them, here are a few things you need to check.
 
 * Make sure that our checkbox/radio field has “use_label_element” tag in Contact Form 7 source code.
-* Please check that your checkbox / radio field should not have “label_first” tag in Contact Form 7 source code.
+* Please check that your checkbox/radio field should not have “label_first” tag in Contact Form 7 source code.
 * Please make sure your acceptance field has condition statement in Contact Form 7 source code.
 
 = Can I use the plugin without Divi theme or Divi Builder? =
-No. You cannot use without Divi theme or Divi Builder.
+No. You cannot use it without Divi theme or Divi Builder.
 
 = Can I use the plugin without Contact Form 7? =
-No. You cannot use without Contact Form 7. It must be installed.
+No. You cannot use it without Contact Form 7. It must be installed.
 
 == Screenshots ==
 
 == Changelog ==
 
-### 1.3.2 – 25 MARCH 2022 ###
-license key issue
+=Version 1.3.3=
+Remove freemius
 
-### 1.3.1 – 25 MARCH 2022 ###
-php error fix
+=Version 1.3.2=
+Resolved license key issue.
 
-### 1.3.0 – 2 MARCH 2022 ###
-Security fix
+=Version 1.3.1=
+Fixed PHP error.
+
+=Version 1.3.0=
+Implemented security fix.
 
