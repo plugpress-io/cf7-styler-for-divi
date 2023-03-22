@@ -1,6 +1,6 @@
 === Divi Contact Form 7 ===
-Contributors: divipeople
-Tags: divi, divi module, contact form 7 divi, divi builder, divi theme
+Contributors: did people
+Tags: divi, divi module, divi contact form 7, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 5.0
 Tested up to: 6.2
@@ -8,7 +8,7 @@ Stable tag: 1.3.3
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-Design your Contact Form 7 forms with Divi Visual Builder. No coding required.
+Create professional-looking Contact Form 7 forms using the Divi Contact Form 7 plugin within the Divi Builder.
 
 == Description ==
 
@@ -17,9 +17,7 @@ Divi Contact Form 7 - the ultimate solution for designing stunning contact forms
 = Here are some of the amazing features that come with the Divi Contact Form 7 =
 
 - **Grid Builder** With the built-in grid builder, you can create multi-column forms effortlessly.
-- **Easy Contact Form 7 Pickup** You can easily import existing Contact Form 7 forms and customize them according to your preferences.
 - **Text and Background Styling** You have full control over the styling of your form's text and background to match your website's design.
-- **Customizable Padding, Margin & Border** Adjust the spacing between form elements and add borders as per your liking.
 - **Form Elements Styling:** Style individual form elements, such as text fields, radio buttons, checkboxes, and drop-down menus, with a wide range of customization options.
 - **Button Styling** Create visually appealing buttons with customizable colors, fonts, borders, and hover effects.
 - **Style Your Messages** You can style the success and error messages to match your website's design.
