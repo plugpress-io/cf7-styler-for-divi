@@ -49,7 +49,8 @@ No. You cannot use it without Contact Form 7. It must be installed.
 == Changelog ==
 
 =Version 1.3.3=
-Remove freemius
+* Remove freemius
+* Remove notices
 
 =Version 1.3.2=
 Resolved license key issue.

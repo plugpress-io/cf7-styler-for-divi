@@ -7,15 +7,8 @@
 /coverage
 
 # production
-/scripts/bundle.min.js
-/styles/bundle.min.css
-asset-manifest.json
-*.map
 
-scripts/builder-bundle.min.js
-scripts/frontend-bundle.min.js
-styles/style-dbp.min.css
-styles/style.min.css
+*.map
 yarn.lock
 
 # misc
