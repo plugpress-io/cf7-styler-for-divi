@@ -1,5 +1,5 @@
 === Contact Form 7 Module For Divi Builder ===
-Contributors: divitorque
+Contributors: divipeople
 Tags: divi, divi module, divi contact form 7, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 5.0
