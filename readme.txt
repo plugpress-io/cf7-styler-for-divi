@@ -1,5 +1,5 @@
-=== Divi Contact Form 7 ===
-Contributors: divipeople
+=== Contact Form 7 Module For Divi Builder ===
+Contributors: divitorque
 Tags: divi, divi module, divi contact form 7, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 5.0
@@ -11,8 +11,6 @@ License URI: https://opensource.org/licenses/GPL-3.0
 Create professional-looking Contact Form 7 forms using the Divi Contact Form 7 plugin within the Divi Builder.
 
 == Description ==
-
-Divi Contact Form 7 - the ultimate solution for designing stunning contact forms in a hassle-free manner.
 
 This plugin introduces a new module to the Divi Builder, allowing for seamless integration with Contact Form 7. With a simple drag-and-drop functionality from a dropdown list, users can avoid the cumbersome process of navigating to CF7, copying the shortcode, and manually adding it to a text module within the Divi Builder.
 
