@@ -31,18 +31,6 @@ Divi Theme/Builder and [Contact Form 7](https://wordpress.org/plugins/contact-fo
 2. Activate the plugin through the ‘Plugins’ screen in WordPress
 
 == Frequently Asked Questions ==
-= Unable to Style Checkbox / Radio Buttons / Acceptance Control using Contact Form 7 Styler for Divi =
-In case you are unable to style them, here are a few things you need to check.
-
-* Make sure that our checkbox/radio field has “use_label_element” tag in Contact Form 7 source code.
-* Please check that your checkbox/radio field should not have “label_first” tag in Contact Form 7 source code.
-* Please make sure your acceptance field has condition statement in Contact Form 7 source code.
-
-= Can I use the plugin without Divi theme or Divi Builder? =
-No. You cannot use it without Divi theme or Divi Builder.
-
-= Can I use the plugin without Contact Form 7? =
-No. You cannot use it without Contact Form 7. It must be installed.
 
 == Screenshots ==
 
