@@ -20,7 +20,7 @@ This plugin introduces a new module to the Divi Builder, allowing for seamless i
 - Multiple style options available, including hover, focus, and custom CSS options for advanced customization.
 - Directly define styles for various components such as input, label, send button, and success messages from within the Divi Builder interface.
 
-Please note that this plugin is an extension of the Divi Builder and requires the presence of both Divi Builder and Contact Form 7 plugins for proper functioning. For more information on the Divi Builder plugin, kindly visit the Elegant Themes website at elegantthemes.com.
+** Please note that this plugin is an extension of the Divi Builder and requires the presence of both Divi Builder and Contact Form 7 plugins for proper functioning. For more information on the Divi Builder plugin, kindly visit the Elegant Themes website at elegantthemes.com. **
 
 == Installation ==
 Note: This plugin works with Divi Theme or Divi Builder and Contact Form 7. Make sure you have Divi Theme or Divi Builder and Contact Form 7 installed.
@@ -38,7 +38,7 @@ Divi Builder and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
 
 =Version 1.3.3=
 * Remove and clean some unused code
-
+.
 =Version 1.3.3=
 * Remove freemius
 * Remove notices
