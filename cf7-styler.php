@@ -79,7 +79,7 @@ if (!defined('ABSPATH')) {
 #ET_END_REPLACE
 //phpcs:enable
 define('DIPE_CF7_VERSION', '1.3.3');
-define('DIPE_CF7_STABLE_VERSION', '1.2.6');
+define('DIPE_CF7_STABLE_VERSION', '1.3.2');
 define('DIPE_CF7_URL', plugins_url('/', __FILE__));
 define('DIPE_ASSETS_URL', trailingslashit(DIPE_CF7_URL . 'assets'));
 define('DIPE_CF7_PATH', plugin_dir_path(__FILE__));
