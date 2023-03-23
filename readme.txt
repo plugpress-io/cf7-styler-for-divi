@@ -4,7 +4,7 @@ Tags: divi, divi module, divi contact form 7, divi builder, divi theme
 Donate link: http://buymeacoff.ee/divipeople
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -14,7 +14,7 @@ Create professional-looking Contact Form 7 forms using the Divi Contact Form 7 p
 
 Divi Contact Form 7 - the ultimate solution for designing stunning contact forms in a hassle-free manner.
 
-This plugin introduces a new module to the Divi Page Builder, allowing for seamless integration with Contact Form 7. With a simple drag-and-drop functionality from a dropdown list, users can avoid the cumbersome process of navigating to CF7, copying the shortcode, and manually adding it to a text module within the Divi Builder.
+This plugin introduces a new module to the Divi Builder, allowing for seamless integration with Contact Form 7. With a simple drag-and-drop functionality from a dropdown list, users can avoid the cumbersome process of navigating to CF7, copying the shortcode, and manually adding it to a text module within the Divi Builder.
 
 - Simplified drag-and-drop functionality for easy integration with Contact Form 7 within the Divi Builder.
 - Multiple style options available, including hover, focus, and custom CSS options for advanced customization.
@@ -35,6 +35,9 @@ Divi Builder and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
 == Screenshots ==
 
 == Changelog ==
+
+=Version 1.3.3=
+* Remove and clean some unused code
 
 =Version 1.3.3=
 * Remove freemius

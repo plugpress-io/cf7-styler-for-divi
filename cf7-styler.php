@@ -3,7 +3,7 @@
 Plugin Name: Divi Contact Form 7
 Plugin URI:  https://divipeople.com
 Description: Design beuatiful contact forms with <strong>Divi Contact Form 7</strong>
-Version:     1.3.3
+Version:     1.3.4
 Author:      DiviPeople
 Author URI:  https://divipeople.com
 License:     GPL2
@@ -22,7 +22,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with CF7 Styler. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
+along with Divi Contact Form 7. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
  */
 
 // Exit if accessed directly.
@@ -30,55 +30,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-#ET_START_REPLACE
-// if (!function_exists('dipe_cf7_fs')) {
-//     // Create a helper function for easy SDK access.
-//     function dipe_cf7_fs()
-//     {
-//         global $dipe_cf7_fs;
-
-//         if (!isset($dipe_cf7_fs)) {
-
-//             // Include Freemius SDK.
-//             require_once dirname(__FILE__) . '/freemius/start.php';
-
-//             $dipe_cf7_fs = fs_dynamic_init(
-//                 array(
-//                     'id'                  => '6220',
-//                     'slug'                => 'cf7-styler-for-divi',
-//                     'type'                => 'plugin',
-//                     'public_key'          => 'pk_5ed03b8670d0cfbf345aa03dc6c80',
-//                     'is_premium'          => true,
-//                     'has_premium_version' => true,
-//                     'has_addons'          => false,
-//                     'has_paid_plans'      => true,
-//                     'menu'                => array(
-//                         'slug'    => 'dipe_cf7_styler_options',
-//                         'account' => true,
-//                         'contact' => false,
-//                         'support' => false,
-//                         'parent'  => array(
-//                             'slug' => 'et_divi_options',
-//                         ),
-//                     ),
-//                 )
-//             );
-//         }
-
-//         return $dipe_cf7_fs;
-//     }
-
-//     // Init Freemius.
-//     dipe_cf7_fs();
-
-//     dipe_cf7_fs()->add_filter('show_deactivation_feedback_form', '__return_false');
-
-//     // Signal that SDK was initiated.
-//     do_action('dipe_cf7_fs_loaded');
-// }
-#ET_END_REPLACE
-//phpcs:enable
-define('DIPE_CF7_VERSION', '1.3.3');
+define('DIPE_CF7_VERSION', '1.3.4');
 define('DIPE_CF7_STABLE_VERSION', '1.3.2');
 define('DIPE_CF7_URL', plugins_url('/', __FILE__));
 define('DIPE_ASSETS_URL', trailingslashit(DIPE_CF7_URL . 'assets'));
@@ -154,8 +106,6 @@ if (!class_exists('Dipe_Cf7_Module')) {
             }
 
             if (is_admin()) {
-                //phpcs:ignore
-                // require_once DIPE_CF7_PATH . 'includes/notice.php';
                 require_once DIPE_CF7_PATH . 'includes/admin/admin.php';
                 require_once DIPE_CF7_PATH . 'includes/admin/rollback.php';
             }
@@ -168,11 +118,9 @@ if (!class_exists('Dipe_Cf7_Module')) {
     }
 }
 
-// Instance function.
 function dipe_cf7_styler_module()
 {
     return Dipe_Cf7_Module::instance();
 }
 
-// Kickoff.
 dipe_cf7_styler_module();
