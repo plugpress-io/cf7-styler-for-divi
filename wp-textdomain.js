@@ -1,6 +1,6 @@
 const wpTextdomain = require('wp-textdomain');
 
 wpTextdomain(process.argv[2], {
-    domain: 'divitorque',
+    domain: 'torque-forms-styler',
     fix: true,
 });

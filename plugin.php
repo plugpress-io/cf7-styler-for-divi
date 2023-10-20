@@ -7,11 +7,25 @@ namespace TorqueFormsStyler;
  */
 class Plugin
 {
-
     /**
      * @var Plugin
      */
     private static $instance;
+
+    const PLUGIN_PATH = TFS_PLUGIN_PATH;
+    const BASENAME_DIR = TFS_BASENAME_DIR;
+    const BASENAME = TFS_BASENAME;
+    const DOCS_LINK = 'https://divitorque.com/docs/';
+    const PRICING_LINK = 'https://divitorque.com/pricing/';
+
+    /**
+     * Plugin constructor.
+     */
+    private function __construct()
+    {
+        $this->load_dependencies();
+        $this->define_hooks();
+    }
 
     /**
      * Get an instance of the Plugin
@@ -20,71 +34,86 @@ class Plugin
      */
     public static function get_instance()
     {
-        if (!isset(self::$instance) && !(self::$instance instanceof Plugin))
-            self::$instance = new Plugin;
+        if (null === self::$instance) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
 
         return self::$instance;
     }
 
     /**
-     * Plugin constructor.
+     * Load required files
      */
-    public function __construct()
+    private function load_dependencies()
     {
-        add_action('divi_extensions_init', array($this, 'init_extension'));
-        add_action('plugins_loaded', array($this, 'load_textdomain'), 15);
-        add_filter('plugin_action_links_' . TFS_BASENAME, array($this, 'add_plugin_action_links'));
-        register_activation_hook(TFS_BASENAME, array($this, 'activation'));
+        include_once self::PLUGIN_PATH . 'includes/functions.php';
+        require_once self::PLUGIN_PATH . 'includes/deprecated/cf7-helper.php';
+        require_once self::PLUGIN_PATH . 'includes/assets-manager.php';
+        require_once self::PLUGIN_PATH . 'includes/module-manager.php';
     }
 
     /**
-     * Run the activation of the plugin
+     * Define WP hooks
      */
-    public function activation()
+    private function define_hooks()
     {
-        self::init();
+        add_action('plugins_loaded', [$this, 'load_textdomain'], 15);
+        add_action('divi_extensions_init', [$this, 'init_extension']);
+        add_filter('plugin_action_links_' . self::BASENAME, [$this, 'add_plugin_action_links']);
+        register_activation_hook(self::BASENAME, [$this, 'on_activation']);
     }
 
     /**
-     * Initialize the plugin
+     * Initialize required instances
      */
-    public static function init()
+    public function init()
     {
+        Assets_Manager::get_instance();
+
+        $deprecated_options = get_option('dipe_options');
+        if (isset($deprecated_options['grid']) && 'on' === $deprecated_options['grid']) {
+            CF7_Helper::get_instance();
+        }
     }
 
     /**
-     * Load the text domain of the plugin
+     * On plugin activation
+     */
+    public function on_activation()
+    {
+        // To be implemented
+    }
+
+    /**
+     * Load plugin translations
      */
     public function load_textdomain()
     {
-        load_plugin_textdomain('divitorque', false, TFS_BASENAME_DIR . '/languages');
+        load_plugin_textdomain('divitorque', false, self::BASENAME_DIR . '/languages');
     }
 
     /**
-     * Add plugin action links
+     * Add action links for the plugin
      *
-     * @param $links
+     * @param array $links
      * @return array
      */
     public function add_plugin_action_links($links)
     {
-        $links[] = '<a href="https://divitorque.com/docs/" target="_blank">' . __('Docs', 'divitorque') . '</a>';
-        $links[] = '<a href="https://divitorque.com/pricing/" target="_blank">' . __('Get Torque Pro', 'divitorque') . '</a>';
+
+        $links[] = sprintf('<a href="%s" target="_blank" style="color: #197efb;font-weight: 600;">%s</a>', self::DOCS_LINK, __('Docs', 'divitorque'));
+        $links[] = sprintf('<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>', self::PRICING_LINK, __('Get Torque Pro', 'divitorque'));
         return $links;
     }
 
     /**
-     *  Load the extensions.
-     *
-     * @return void
+     * Initialize extension
      */
     public function init_extension()
     {
-        ModulesManager::get_instance();
+        Module_Manager::get_instance();
     }
 }
 
-/**
- * Kicking this off by calling 'get_instance()' method
- */
 Plugin::get_instance();

@@ -1,20 +1,17 @@
 <?php
+if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
+if (!class_exists('TFS_Builder_Module')) {
+	return;
+}
+class TFS_CF7Styler extends TFS_Builder_Module
 {
-
-	protected $module_credits = array(
-		'module_uri' => 'https://divipeople.com/plugins/contact-form-7-for-divi/',
-		'author'     => 'DiviPeople',
-		'author_uri' => 'https://divipeople.com',
-	);
-
 	public function init()
 	{
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
-		$this->name             = esc_html__('CF7 Styler', 'torque-forms-styler');
-		$this->icon_path        = plugin_dir_path(__FILE__) . 'cf7.svg';
+		$this->name             = esc_html__('Contact Form 7', 'torque-forms-styler');
+		$this->icon_path        = plugin_dir_path(__FILE__) . '';
 		$this->main_css_element = '%%order_class%%';
 
 		$this->settings_modal_toggles = array(
@@ -77,39 +74,9 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 		);
 	}
 
-	public static function select_wpcf7()
-	{
-
-		if (function_exists('wpcf7')) {
-			$options       = array();
-			$args          = array(
-				'post_type'      => 'wpcf7_contact_form',
-				'posts_per_page' => -1,
-			);
-			$contact_forms = get_posts($args);
-
-			if (!empty($contact_forms) && !is_wp_error($contact_forms)) {
-				$i = 0;
-				foreach ($contact_forms as $post) {
-					if (0 === $i) {
-						(int) $options[0] = esc_html__('Select a Contact form', 'torque-forms-styler');
-					}
-					(int) $options[$post->ID] = $post->post_title;
-					$i++;
-				}
-			}
-		} else {
-			$options = array();
-		}
-
-		return $options;
-	}
-
 	public function get_fields()
 	{
-
 		return array(
-
 			'use_form_header'              => array(
 				'label'       => esc_html__('Show Form Header', 'torque-forms-styler'),
 				'type'        => 'yes_no_button',
@@ -309,7 +276,7 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 				'label'            => esc_html__('Select Form', 'torque-forms-styler'),
 				'type'             => 'select',
 				'option_category'  => 'layout',
-				'options'          => self::select_wpcf7(),
+				'options'          => self::get_contact_form7(),
 				'description'      => esc_html__('Choose a contact form to display.', 'torque-forms-styler'),
 				'computed_affects' => array(
 					'__cf7form',
@@ -606,7 +573,7 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 
 			'__cf7form'                    => array(
 				'type'                => 'computed',
-				'computed_callback'   => array('TFS_FORMS_STYLER_Styler', 'get_cf7_shortcode_html'),
+				'computed_callback'   => array('TFS_CF7Styler', 'get_cf7_html'),
 				'computed_depends_on' => array(
 					'cf7',
 				),
@@ -617,10 +584,10 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 	public function get_advanced_fields_config()
 	{
 
-		$advanced_fields                = array();
-		$advanced_fields['fonts']       = false;
-		$advanced_fields['text']        = false;
-		$advanced_fields['text_shadow'] = false;
+		$advanced_fields                = [];
+		$advanced_fields['fonts']       = [];
+		$advanced_fields['text']        = [];
+		$advanced_fields['text_shadow'] = [];
 
 		$advanced_fields['fonts']['form_field_font'] = array(
 			'label'       => esc_html__('Field', 'torque-forms-styler'),
@@ -779,7 +746,7 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 		return $cf7_shortcode;
 	}
 
-	public static function get_cf7_shortcode_html($args)
+	public static function get_cf7_html($args)
 	{
 
 		$cf7_shortcode        = new self();
@@ -787,184 +754,6 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 		$output               = $cf7_shortcode->get_cf7_shortcode(array());
 		return $output;
 	}
-
-	public static function process_flex_style($val, $type, $important)
-	{
-		$flex_val = 'center';
-		if ('left' === $val) {
-			$flex_val = 'flex-start';
-		} elseif ('right' === $val) {
-			$flex_val = 'flex-end';
-		}
-		return sprintf(
-			'%1$s:%2$s%3$s;',
-			$type,
-			$flex_val,
-			$important ? '!important;' : ''
-		);
-	}
-
-	public static function process_margin_padding(
-		$val,
-		$type,
-		$imp
-	) {
-		$_top     = '';
-		$_right   = '';
-		$_bottom  = '';
-		$_left    = '';
-		$imp_text = '';
-		$_val     = explode('|', $val);
-
-		if ($imp) {
-			$imp_text = '!important';
-		}
-
-		if (isset($_val[0]) && !empty($_val[0])) {
-			$_top = "{$type}-top:" . $_val[0] . $imp_text . ';';
-		}
-
-		if (isset($_val[1]) && !empty($_val[1])) {
-			$_right = "{$type}-right:" . $_val[1] . $imp_text . ';';
-		}
-
-		if (isset($_val[2]) && !empty($_val[2])) {
-			$_bottom = "{$type}-bottom:" . $_val[2] . $imp_text . ';';
-		}
-
-		if (isset($_val[3]) && !empty($_val[3])) {
-			$_left = "{$type}-left:" . $_val[3] . $imp_text . ';';
-		}
-
-		return esc_html("{$_top} {$_right} {$_bottom} {$_left}");
-	}
-
-	public function get_conditional_responsive_styles($styles, $data, $style)
-	{
-		$important = isset($styles['important']) ? $styles['important'] : false;
-
-		if ('padding' === $style || 'margin' === $style) {
-			return $this->process_margin_padding($data, $style, $important);
-		} elseif ('align-self' === $style || 'align-items' === $style || 'justify-content' === $style) {
-			return $this->process_flex_style($data, $style, $important);
-		} elseif ('flex' === $style) {
-			return 'flex: 0 0 ' . $data . ';';
-		} else {
-			return sprintf(
-				'%1$s:%2$s%3$s;',
-				$style,
-				$data,
-				$important ? '!important;' : ''
-			);
-		}
-	}
-
-	protected function get_responsive_styles(
-		$opt_name,
-		$selector,
-		$styles,
-		$pre_values,
-		$render_slug
-	) {
-
-		$is_enabled = false;
-		$style      = isset($styles['primary']) ? $styles['primary'] : '';
-		$_data      = $this->props[$opt_name];
-
-		if (isset($this->props["{$opt_name}_last_edited"])) {
-			$is_enabled = et_pb_get_responsive_status($this->props["{$opt_name}_last_edited"]);
-		}
-
-		if (empty($_data) && !empty($pre_values)) {
-			$is_default = true;
-			if (!empty($pre_values['conditional'])) {
-				foreach ($pre_values['conditional']['values'] as $value) {
-					$property_val = $this->props[$pre_values['conditional']['name']];
-					if ($property_val === $value['a']) {
-						$_data      = $value['b'];
-						$is_default = false;
-					}
-				}
-			}
-
-			if ($is_default) {
-				$_data = isset($pre_values['default']) ? $pre_values['default'] : '';
-			}
-		}
-
-		if (!empty($_data)) {
-			ET_Builder_Element::set_style(
-				$render_slug,
-				array(
-					'selector'    => $selector,
-					'declaration' => $this->get_conditional_responsive_styles($styles, $_data, $style),
-				)
-			);
-
-			if (!empty($styles['secondary'])) {
-				ET_Builder_Element::set_style(
-					$render_slug,
-					array(
-						'selector'    => $selector,
-						'declaration' => $styles['secondary'],
-					)
-				);
-			}
-		}
-
-		if ($is_enabled) {
-
-			$_data_tablet = $this->props["{$opt_name}_tablet"];
-			$_data_phone  = $this->props["{$opt_name}_phone"];
-
-			if (!empty($_data_tablet)) {
-
-				ET_Builder_Element::set_style(
-					$render_slug,
-					array(
-						'selector'    => $selector,
-						'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
-						'declaration' => $this->get_conditional_responsive_styles($styles, $_data_tablet, $style),
-					)
-				);
-
-				if (!empty($styles['secondary'])) {
-					ET_Builder_Element::set_style(
-						$render_slug,
-						array(
-							'selector'    => $selector,
-							'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
-							'declaration' => $styles['secondary'],
-						)
-					);
-				}
-			}
-
-			if (!empty($_data_phone)) {
-
-				ET_Builder_Element::set_style(
-					$render_slug,
-					array(
-						'selector'    => $selector,
-						'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
-						'declaration' => $this->get_conditional_responsive_styles($styles, $_data_phone, $style),
-					)
-				);
-
-				if (!empty($styles['secondary'])) {
-					ET_Builder_Element::set_style(
-						$render_slug,
-						array(
-							'selector'    => $selector,
-							'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
-							'declaration' => $styles['secondary'],
-						)
-					);
-				}
-			}
-		}
-	}
-
 
 	public function render($attrs, $content, $render_slug)
 	{
@@ -991,7 +780,7 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 			$title       = isset($form_header_title) ? sprintf('<h2 class="dipe-form-header-title">%1$s</h2>', $form_header_title) : '';
 			$text        = isset($form_header_text) ? sprintf('<div class="dipe-form-header-text">%1$s</div>', $form_header_text) : '';
 			$header_info = $title || $text ? sprintf('<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text) : '';
-			dipe_inject_fa_icons($this->props['header_icon']);
+			tfs_inject_fa_icons($this->props['header_icon']);
 
 			$form_header = sprintf(
 				'<div class="dipe-form-header-container">
@@ -1020,6 +809,7 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 		);
 	}
 
+	// Todo: Refactor this.
 	public function apply_css($render_slug)
 	{
 
@@ -1580,6 +1370,206 @@ class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
 
 		return esc_html("{$padding_top} {$padding_right} {$padding_bottom} {$padding_left}");
 	}
+
+	public static function process_flex_style($val, $type, $important)
+	{
+		$flex_val = 'center';
+		if ('left' === $val) {
+			$flex_val = 'flex-start';
+		} elseif ('right' === $val) {
+			$flex_val = 'flex-end';
+		}
+		return sprintf(
+			'%1$s:%2$s%3$s;',
+			$type,
+			$flex_val,
+			$important ? '!important;' : ''
+		);
+	}
+
+	public static function process_margin_padding(
+		$val,
+		$type,
+		$imp
+	) {
+		$_top     = '';
+		$_right   = '';
+		$_bottom  = '';
+		$_left    = '';
+		$imp_text = '';
+		$_val     = explode('|', $val);
+
+		if ($imp) {
+			$imp_text = '!important';
+		}
+
+		if (isset($_val[0]) && !empty($_val[0])) {
+			$_top = "{$type}-top:" . $_val[0] . $imp_text . ';';
+		}
+
+		if (isset($_val[1]) && !empty($_val[1])) {
+			$_right = "{$type}-right:" . $_val[1] . $imp_text . ';';
+		}
+
+		if (isset($_val[2]) && !empty($_val[2])) {
+			$_bottom = "{$type}-bottom:" . $_val[2] . $imp_text . ';';
+		}
+
+		if (isset($_val[3]) && !empty($_val[3])) {
+			$_left = "{$type}-left:" . $_val[3] . $imp_text . ';';
+		}
+
+		return esc_html("{$_top} {$_right} {$_bottom} {$_left}");
+	}
+
+	public function get_conditional_responsive_styles($styles, $data, $style)
+	{
+		$important = isset($styles['important']) ? $styles['important'] : false;
+
+		if ('padding' === $style || 'margin' === $style) {
+			return $this->process_margin_padding($data, $style, $important);
+		} elseif ('align-self' === $style || 'align-items' === $style || 'justify-content' === $style) {
+			return $this->process_flex_style($data, $style, $important);
+		} elseif ('flex' === $style) {
+			return 'flex: 0 0 ' . $data . ';';
+		} else {
+			return sprintf(
+				'%1$s:%2$s%3$s;',
+				$style,
+				$data,
+				$important ? '!important;' : ''
+			);
+		}
+	}
+
+	protected function get_responsive_styles(
+		$opt_name,
+		$selector,
+		$styles,
+		$pre_values,
+		$render_slug
+	) {
+
+		$is_enabled = false;
+		$style      = isset($styles['primary']) ? $styles['primary'] : '';
+		$_data      = $this->props[$opt_name];
+
+		if (isset($this->props["{$opt_name}_last_edited"])) {
+			$is_enabled = et_pb_get_responsive_status($this->props["{$opt_name}_last_edited"]);
+		}
+
+		if (empty($_data) && !empty($pre_values)) {
+			$is_default = true;
+			if (!empty($pre_values['conditional'])) {
+				foreach ($pre_values['conditional']['values'] as $value) {
+					$property_val = $this->props[$pre_values['conditional']['name']];
+					if ($property_val === $value['a']) {
+						$_data      = $value['b'];
+						$is_default = false;
+					}
+				}
+			}
+
+			if ($is_default) {
+				$_data = isset($pre_values['default']) ? $pre_values['default'] : '';
+			}
+		}
+
+		if (!empty($_data)) {
+			ET_Builder_Element::set_style(
+				$render_slug,
+				array(
+					'selector'    => $selector,
+					'declaration' => $this->get_conditional_responsive_styles($styles, $_data, $style),
+				)
+			);
+
+			if (!empty($styles['secondary'])) {
+				ET_Builder_Element::set_style(
+					$render_slug,
+					array(
+						'selector'    => $selector,
+						'declaration' => $styles['secondary'],
+					)
+				);
+			}
+		}
+
+		if ($is_enabled) {
+
+			$_data_tablet = $this->props["{$opt_name}_tablet"];
+			$_data_phone  = $this->props["{$opt_name}_phone"];
+
+			if (!empty($_data_tablet)) {
+
+				ET_Builder_Element::set_style(
+					$render_slug,
+					array(
+						'selector'    => $selector,
+						'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
+						'declaration' => $this->get_conditional_responsive_styles($styles, $_data_tablet, $style),
+					)
+				);
+
+				if (!empty($styles['secondary'])) {
+					ET_Builder_Element::set_style(
+						$render_slug,
+						array(
+							'selector'    => $selector,
+							'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
+							'declaration' => $styles['secondary'],
+						)
+					);
+				}
+			}
+
+			if (!empty($_data_phone)) {
+
+				ET_Builder_Element::set_style(
+					$render_slug,
+					array(
+						'selector'    => $selector,
+						'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
+						'declaration' => $this->get_conditional_responsive_styles($styles, $_data_phone, $style),
+					)
+				);
+
+				if (!empty($styles['secondary'])) {
+					ET_Builder_Element::set_style(
+						$render_slug,
+						array(
+							'selector'    => $selector,
+							'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
+							'declaration' => $styles['secondary'],
+						)
+					);
+				}
+			}
+		}
+	}
+
+	public static function get_contact_form7()
+	{
+		$options = array();
+
+		if (function_exists('wpcf7')) {
+			$args = array(
+				'post_type'      => 'wpcf7_contact_form',
+				'posts_per_page' => -1,
+			);
+
+			$contact_forms = get_posts($args);
+
+			if (!empty($contact_forms) && !is_wp_error($contact_forms)) {
+				$options[0] = esc_html__('Select a Contact form', 'torque-forms-styler');
+				foreach ($contact_forms as $post) {
+					$options[$post->ID] = $post->post_title;
+				}
+			}
+		}
+
+		return $options;
+	}
 }
 
-new TFS_FORMS_STYLER_CF7();
+new TFS_CF7Styler();

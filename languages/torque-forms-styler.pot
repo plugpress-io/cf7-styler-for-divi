@@ -1,0 +1,360 @@
+# Copyright (C) 2023 Torque Forms Styler
+# This file is distributed under the same license as the Torque Forms Styler package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Torque Forms Styler\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Divi Torque <hello@divitorque.com>\n"
+"POT-Creation-Date: 2023-10-20 20:43+0000\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/deprecated/cf7-helper.php:75
+msgid "row"
+msgstr ""
+
+#: includes/deprecated/cf7-helper.php:76
+msgid "1-col"
+msgstr ""
+
+#: includes/deprecated/cf7-helper.php:77
+msgid "1/2-col"
+msgstr ""
+
+#: includes/deprecated/cf7-helper.php:78
+msgid "1/3-col"
+msgstr ""
+
+#: includes/deprecated/cf7-helper.php:79
+msgid "1/4-col"
+msgstr ""
+
+#: includes/deprecated/cf7-helper.php:80
+msgid "2/3-col"
+msgstr ""
+
+#: includes/deprecated/cf7-helper.php:81
+msgid "3/4-col"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:13
+msgid "Contact Form 7"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:20, includes/modules/FF/FF.php:24, includes/modules/GF/GF.php:24
+msgid "General"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:25, includes/modules/CF7/CF7.php:31, includes/modules/FF/FF.php:29, includes/modules/GF/GF.php:29
+msgid "Common"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:27
+msgid "Form Header"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:34, includes/modules/CF7/CF7.php:645
+msgid "Title"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:37, includes/modules/CF7/CF7.php:658
+msgid "Text"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:42
+msgid "Form Text"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:46, includes/modules/CF7/CF7.php:593, includes/modules/CF7/CF7.php:695
+msgid "Field"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:49, includes/modules/CF7/CF7.php:619
+msgid "Label"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:53, includes/modules/CF7/CF7.php:629
+msgid "Placeholder"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:57
+msgid "Fields"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:58
+msgid "Radio & Checkbox"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:59, includes/modules/CF7/CF7.php:671
+msgid "Button"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:60
+msgid "Message"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:67
+msgid "Form Fields"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:71
+msgid "Form Label"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:81
+msgid "Show Form Header"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:84, includes/modules/CF7/CF7.php:129, includes/modules/CF7/CF7.php:251, includes/modules/CF7/CF7.php:367
+msgid "Yes"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:85, includes/modules/CF7/CF7.php:130, includes/modules/CF7/CF7.php:252, includes/modules/CF7/CF7.php:368
+msgid "No"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:108
+msgid "Header Title"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:117
+msgid "Header Text"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:126
+msgid "Use Icon"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:140
+msgid "Header Image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:142
+msgid "Upload an image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:143
+msgid "Choose an Image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:144
+msgid "Set As Image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:153
+msgid "Header Icon"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:163
+msgid "Form Header Background"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:175
+msgid "Header Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:188
+msgid "Bottom Spacing"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:206
+msgid "Header Image/Icon Background"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:218
+msgid "Header Icon Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:231
+msgid "Form Background"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:239
+msgid "Form Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:248
+msgid "Fullwidth Button"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:260
+msgid "Button Alignment"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:263
+msgid "Left"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:264
+msgid "Center"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:265
+msgid "Right"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:276
+msgid "Select Form"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:280
+msgid "Choose a contact form to display."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:288
+msgid "Common Text Fields Height"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:289
+msgid "Here you can define static height for the common text fields."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:303
+msgid "Form Field Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:304
+msgid "Here you can define a custom padding for each field."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:313
+msgid "Form Field Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:322
+msgid "Form Field Active Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:330
+msgid "Form Field Spacing Bottom"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:331
+msgid "Set how much space the form field will take at the bottom."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:346
+msgid "Form Label Spacing Bottom"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:347
+msgid "Set how much space the form label will take at the bottom."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:363
+msgid "Enable Custom Styles"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:379
+msgid "Size"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:397
+msgid "Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:408
+msgid "Selected Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:420
+msgid "Border Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:432
+msgid "Border Size"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:450
+msgid "Label Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:462
+msgid "Message Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:476
+msgid "Message Margin Top"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:501
+msgid "Message Text Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:509
+msgid "Message Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:517
+msgid "Border Highlight Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:526
+msgid "Success Message Text Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:534
+msgid "Success Message Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:542
+msgid "Success Border Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:551
+msgid "Error Message Text Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:559
+msgid "Error Message Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:567
+msgid "Error Border Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:1564
+msgid "Select a Contact form"
+msgstr ""
+
+#: includes/modules/FF/FF.php:17
+msgid "Fluent Forms"
+msgstr ""
+
+#: includes/modules/FF/FF.php:47
+msgid "Select Fluent Form"
+msgstr ""
+
+#: includes/modules/FF/FF.php:51
+msgid "Choose the Fluent Form you want to display."
+msgstr ""
+
+#: includes/modules/FF/FF.php:81
+msgid "Please select a Fluent Form."
+msgstr ""
+
+#: includes/modules/FF/FF.php:101
+msgid "No Forms Found!"
+msgstr ""
+
+#: includes/modules/FF/FF.php:104
+msgid "Select"
+msgstr ""
+
+#: includes/modules/GF/GF.php:17
+msgid "Gravity Forms"
+msgstr ""
+
+#: includes/modules/GF/GF.php:47
+msgid "Select Gravity Form"
+msgstr ""
+
+#: includes/modules/GF/GF.php:51
+msgid "Choose the Gravity Form you want to display."
+msgstr ""
