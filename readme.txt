@@ -1,10 +1,10 @@
-=== Contact Form 7 Module For Divi Builder ===
-Contributors: divipeople
-Tags: divi, divi module, divi contact form 7, divi builder, divi theme
-Donate link: http://buymeacoff.ee/divipeople
+=== Torque Forms Styler For Divi ===
+Contributors: wppaw, badhonrocks
+Tags: divi, divi modules, contact form 7, divi builder, divi theme
+Donate link: https://divitorque.com/
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -21,12 +21,12 @@ This plugin introduces a new module to the Divi Builder, allowing for seamless i
 **Please note that this plugin is an extension of the Divi Builder and requires the presence of both Divi Builder and Contact Form 7 plugins for proper functioning. For more information on the Divi Builder plugin, kindly visit the Elegant Themes website at elegantthemes.com.**
 
 == Installation ==
-Note: This plugin works with Divi Theme or Divi Builder and Contact Form 7. Make sure you have Divi Theme or Divi Builder and Contact Form 7 installed.
 
-Divi Builder and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) are required for this plugin.
+> Note: This plugin works with Divi. Make sure you have [Divi Theme](https://www.elegantthemes.com/) installed.
 
-1. Upload the plugin folder to the /wp-content/plugins/ directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the ‘Plugins’ screen in WordPress
+Install the Torque Forms Styler For Divi either via the WordPress plugin directory or by uploading the files to your server at wp-content/plugins.
+
+For more information, please visit our <a href="https://divitorque.com/docs/?utm_campaign=wporg&utm_source=torquemasonrygallery&utm_medium=textlink" target="_blank" rel="">Knowledge Base.</a>
 
 == Frequently Asked Questions ==
 
@@ -34,19 +34,19 @@ Divi Builder and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
 
 == Changelog ==
 
-=Version 1.3.3=
+= 1.3.4 =
 * Remove and clean some unused code
-.
-=Version 1.3.3=
-* Remove freemius
+
+= 1.3.3 =
+* Remove Freemius SDK
 * Remove notices
 
-=Version 1.3.2=
+= 1.3.2 =
 * Resolved license key issue
 
-=Version 1.3.1=
+= 1.3.1 =
 * Fixed PHP error
 
-=Version 1.3.0=
+= 1.3.0 =
 * Implemented security fix
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get_responsive_styles, renderFontStyle } from "./helper";
+import { get_responsive_styles, renderFontStyle } from "../../../includes/modules/CF7/helper";
 import "./style.css";
 
 class CF7_Styler extends Component {

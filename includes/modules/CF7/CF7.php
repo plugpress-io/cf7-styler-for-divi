@@ -1,6 +1,7 @@
 <?php
 
-class DIPE_CF7_Styler extends ET_Builder_Module {
+class TFS_FORMS_STYLER_CF7 extends ET_Builder_Module
+{
 
 	protected $module_credits = array(
 		'module_uri' => 'https://divipeople.com/plugins/contact-form-7-for-divi/',
@@ -8,90 +9,92 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		'author_uri' => 'https://divipeople.com',
 	);
 
-	public function init() {
+	public function init()
+	{
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
-		$this->name             = esc_html__( 'CF7 Styler', 'dvppl-cf7-styler' );
-		$this->icon_path        = plugin_dir_path( __FILE__ ) . 'cf7.svg';
+		$this->name             = esc_html__('CF7 Styler', 'torque-forms-styler');
+		$this->icon_path        = plugin_dir_path(__FILE__) . 'cf7.svg';
 		$this->main_css_element = '%%order_class%%';
 
 		$this->settings_modal_toggles = array(
 			'general'  => array(
 				'toggles' => array(
-					'general' => esc_html__( 'General', 'dvppl-cf7-styler' ),
+					'general' => esc_html__('General', 'torque-forms-styler'),
 				),
 			),
 			'advanced' => array(
 				'toggles' => array(
-					'common'         => esc_html__( 'Common', 'dvppl-cf7-styler' ),
+					'common'         => esc_html__('Common', 'torque-forms-styler'),
 					'form_header'    => array(
-						'title'             => esc_html__( 'Form Header', 'dvppl-cf7-styler' ),
+						'title'             => esc_html__('Form Header', 'torque-forms-styler'),
 						'tabbed_subtoggles' => true,
 						'sub_toggles'       => array(
 							'common_tab' => array(
-								'name' => esc_html__( 'Common', 'dvppl-cf7-styler' ),
+								'name' => esc_html__('Common', 'torque-forms-styler'),
 							),
 							'title_tab'  => array(
-								'name' => esc_html__( 'Title', 'dvppl-cf7-styler' ),
+								'name' => esc_html__('Title', 'torque-forms-styler'),
 							),
 							'text_tab'   => array(
-								'name' => esc_html__( 'Text', 'dvppl-cf7-styler' ),
+								'name' => esc_html__('Text', 'torque-forms-styler'),
 							),
 						),
 					),
 					'form_text'      => array(
-						'title'             => esc_html__( 'Form Text', 'dvppl-cf7-styler' ),
+						'title'             => esc_html__('Form Text', 'torque-forms-styler'),
 						'tabbed_subtoggles' => true,
 						'sub_toggles'       => array(
 							'field_tab'       => array(
-								'name' => esc_html__( 'Field', 'dvppl-cf7-styler' ),
+								'name' => esc_html__('Field', 'torque-forms-styler'),
 							),
 							'label_tab'       => array(
-								'name' => esc_html__( 'Label', 'dvppl-cf7-styler' ),
+								'name' => esc_html__('Label', 'torque-forms-styler'),
 							),
 
 							'placeholder_tab' => array(
-								'name' => esc_html__( 'Placeholder', 'dvppl-cf7-styler' ),
+								'name' => esc_html__('Placeholder', 'torque-forms-styler'),
 							),
 						),
 					),
-					'form_field'     => esc_html__( 'Fields', 'dvppl-cf7-styler' ),
-					'radio_checkbox' => esc_html__( 'Radio & Checkbox', 'dvppl-cf7-styler' ),
-					'submit_button'  => esc_html__( 'Button', 'dvppl-cf7-styler' ),
-					'suc_err_msg'    => esc_html__( 'Message', 'dvppl-cf7-styler' ),
+					'form_field'     => esc_html__('Fields', 'torque-forms-styler'),
+					'radio_checkbox' => esc_html__('Radio & Checkbox', 'torque-forms-styler'),
+					'submit_button'  => esc_html__('Button', 'torque-forms-styler'),
+					'suc_err_msg'    => esc_html__('Message', 'torque-forms-styler'),
 				),
 			),
 		);
 
 		$this->custom_css_fields = array(
 			'cf7_fields' => array(
-				'label'    => esc_html__( 'Form Fields', 'dvppl-cf7-styler' ),
+				'label'    => esc_html__('Form Fields', 'torque-forms-styler'),
 				'selector' => '%%order_class%% .dipe-cf7-styler input',
 			),
 			'cf7_labels' => array(
-				'label'    => esc_html__( 'Form Label', 'dvppl-cf7-styler' ),
+				'label'    => esc_html__('Form Label', 'torque-forms-styler'),
 				'selector' => '%%order_class%% .dipe-cf7-styler label',
 			),
 		);
 	}
 
-	public static function select_wpcf7() {
+	public static function select_wpcf7()
+	{
 
-		if ( function_exists( 'wpcf7' ) ) {
+		if (function_exists('wpcf7')) {
 			$options       = array();
 			$args          = array(
 				'post_type'      => 'wpcf7_contact_form',
 				'posts_per_page' => -1,
 			);
-			$contact_forms = get_posts( $args );
+			$contact_forms = get_posts($args);
 
-			if ( ! empty( $contact_forms ) && ! is_wp_error( $contact_forms ) ) {
+			if (!empty($contact_forms) && !is_wp_error($contact_forms)) {
 				$i = 0;
-				foreach ( $contact_forms as $post ) {
-					if ( 0 === $i ) {
-						(int) $options[0] = esc_html__( 'Select a Contact form', 'dvppl-cf7-styler' );
+				foreach ($contact_forms as $post) {
+					if (0 === $i) {
+						(int) $options[0] = esc_html__('Select a Contact form', 'torque-forms-styler');
 					}
-					(int) $options[ $post->ID ] = $post->post_title;
+					(int) $options[$post->ID] = $post->post_title;
 					$i++;
 				}
 			}
@@ -102,16 +105,17 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		return $options;
 	}
 
-	public function get_fields() {
+	public function get_fields()
+	{
 
 		return array(
 
 			'use_form_header'              => array(
-				'label'       => esc_html__( 'Show Form Header', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Show Form Header', 'torque-forms-styler'),
 				'type'        => 'yes_no_button',
 				'options'     => array(
-					'on'  => esc_html__( 'Yes', 'dvppl-cf7-styler' ),
-					'off' => esc_html__( 'No', 'dvppl-cf7-styler' ),
+					'on'  => esc_html__('Yes', 'torque-forms-styler'),
+					'off' => esc_html__('No', 'torque-forms-styler'),
 				),
 				'default'     => 'off',
 				'toggle_slug' => 'general',
@@ -134,7 +138,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_title'            => array(
-				'label'       => esc_html__( 'Header Title', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Header Title', 'torque-forms-styler'),
 				'type'        => 'text',
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -143,7 +147,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_text'             => array(
-				'label'       => esc_html__( 'Header Text', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Header Text', 'torque-forms-styler'),
 				'type'        => 'text',
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -152,11 +156,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'use_icon'                     => array(
-				'label'       => esc_html__( 'Use Icon', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Use Icon', 'torque-forms-styler'),
 				'type'        => 'yes_no_button',
 				'options'     => array(
-					'on'  => esc_html__( 'Yes', 'dvppl-cf7-styler' ),
-					'off' => esc_html__( 'No', 'dvppl-cf7-styler' ),
+					'on'  => esc_html__('Yes', 'torque-forms-styler'),
+					'off' => esc_html__('No', 'torque-forms-styler'),
 				),
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -166,11 +170,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'header_img'                   => array(
-				'label'              => esc_html__( 'Header Image', 'dvppl-cf7-styler' ),
+				'label'              => esc_html__('Header Image', 'torque-forms-styler'),
 				'type'               => 'upload',
-				'upload_button_text' => esc_attr__( 'Upload an image', 'dvppl-cf7-styler' ),
-				'choose_text'        => esc_attr__( 'Choose an Image', 'dvppl-cf7-styler' ),
-				'update_text'        => esc_attr__( 'Set As Image', 'dvppl-cf7-styler' ),
+				'upload_button_text' => esc_attr__('Upload an image', 'torque-forms-styler'),
+				'choose_text'        => esc_attr__('Choose an Image', 'torque-forms-styler'),
+				'update_text'        => esc_attr__('Set As Image', 'torque-forms-styler'),
 				'show_if'            => array(
 					'use_icon'        => 'off',
 					'use_form_header' => 'on',
@@ -179,7 +183,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'header_icon'                  => array(
-				'label'       => esc_html__( 'Header Icon', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Header Icon', 'torque-forms-styler'),
 				'type'        => 'select_icon',
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -189,7 +193,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_bg'               => array(
-				'label'        => esc_html__( 'Form Header Background', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Form Header Background', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'show_if'      => array(
@@ -201,7 +205,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_padding'          => array(
-				'label'          => esc_html__( 'Header Padding', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Header Padding', 'torque-forms-styler'),
 				'type'           => 'custom_padding',
 				'default'        => '0px|0px|0px|0px',
 				'show_if'        => array(
@@ -214,7 +218,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_bottom'           => array(
-				'label'          => esc_html__( 'Bottom Spacing', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Bottom Spacing', 'torque-forms-styler'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'default'        => '0px',
@@ -232,7 +236,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_img_bg'           => array(
-				'label'        => esc_html__( 'Header Image/Icon Background', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Header Image/Icon Background', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'show_if'      => array(
@@ -244,7 +248,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_header_icon_color'       => array(
-				'label'        => esc_html__( 'Header Icon Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Header Icon Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'show_if'      => array(
@@ -257,7 +261,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_bg'                      => array(
-				'label'        => esc_html__( 'Form Background', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Form Background', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -265,7 +269,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_padding'                 => array(
-				'label'          => esc_html__( 'Form Padding', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Form Padding', 'torque-forms-styler'),
 				'type'           => 'custom_padding',
 				'default'        => '0px|0px|0px|0px',
 				'tab_slug'       => 'advanced',
@@ -274,11 +278,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'use_form_button_fullwidth'    => array(
-				'label'       => esc_html__( 'Fullwidth Button', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Fullwidth Button', 'torque-forms-styler'),
 				'type'        => 'yes_no_button',
 				'options'     => array(
-					'on'  => esc_html__( 'Yes', 'dvppl-cf7-styler' ),
-					'off' => esc_html__( 'No', 'dvppl-cf7-styler' ),
+					'on'  => esc_html__('Yes', 'torque-forms-styler'),
+					'off' => esc_html__('No', 'torque-forms-styler'),
 				),
 				'default'     => 'off',
 				'tab_slug'    => 'advanced',
@@ -286,12 +290,12 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'button_alignment'             => array(
-				'label'       => esc_html__( 'Button Alignment', 'dvppl-cf7-styler' ),
+				'label'       => esc_html__('Button Alignment', 'torque-forms-styler'),
 				'type'        => 'select',
 				'options'     => array(
-					'left'   => esc_html__( 'Left', 'dvppl-cf7-styler' ),
-					'center' => esc_html__( 'Center', 'dvppl-cf7-styler' ),
-					'right'  => esc_html__( 'Right', 'dvppl-cf7-styler' ),
+					'left'   => esc_html__('Left', 'torque-forms-styler'),
+					'center' => esc_html__('Center', 'torque-forms-styler'),
+					'right'  => esc_html__('Right', 'torque-forms-styler'),
 				),
 				'show_if'     => array(
 					'use_form_button_fullwidth' => 'off',
@@ -302,11 +306,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7'                          => array(
-				'label'            => esc_html__( 'Select Form', 'dvppl-cf7-styler' ),
+				'label'            => esc_html__('Select Form', 'torque-forms-styler'),
 				'type'             => 'select',
 				'option_category'  => 'layout',
 				'options'          => self::select_wpcf7(),
-				'description'      => esc_html__( 'Choose a contact form to display.', 'dvppl-cf7-styler' ),
+				'description'      => esc_html__('Choose a contact form to display.', 'torque-forms-styler'),
 				'computed_affects' => array(
 					'__cf7form',
 				),
@@ -314,8 +318,8 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_field_height'            => array(
-				'label'          => esc_html__( 'Common Text Fields Height', 'dvppl-cf7-styler' ),
-				'description'    => esc_html__( 'Here you can define static height for the common text fields.', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Common Text Fields Height', 'torque-forms-styler'),
+				'description'    => esc_html__('Here you can define static height for the common text fields.', 'torque-forms-styler'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'mobile_options' => true,
@@ -329,8 +333,8 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_field_padding'           => array(
-				'label'          => esc_html__( 'Form Field Padding', 'dvppl-cf7-styler' ),
-				'description'    => esc_html__( 'Here you can define a custom padding for each field.', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Form Field Padding', 'torque-forms-styler'),
+				'description'    => esc_html__('Here you can define a custom padding for each field.', 'torque-forms-styler'),
 				'type'           => 'custom_padding',
 				'tab_slug'       => 'advanced',
 				'toggle_slug'    => 'form_field',
@@ -339,7 +343,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_background_color'        => array(
-				'label'        => esc_html__( 'Form Field Background Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Form Field Background Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'default'      => '#f5f5f5',
@@ -348,7 +352,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_field_active_color'      => array(
-				'label'        => esc_html__( 'Form Field Active Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Form Field Active Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -356,8 +360,8 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_field_spacing'           => array(
-				'label'          => esc_html__( 'Form Field Spacing Bottom', 'dvppl-cf7-styler' ),
-				'description'    => esc_html__( 'Set how much space the form field will take at the bottom.', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Form Field Spacing Bottom', 'torque-forms-styler'),
+				'description'    => esc_html__('Set how much space the form field will take at the bottom.', 'torque-forms-styler'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'default'        => '20px',
@@ -372,8 +376,8 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'form_label_spacing'           => array(
-				'label'          => esc_html__( 'Form Label Spacing Bottom', 'dvppl-cf7-styler' ),
-				'description'    => esc_html__( 'Set how much space the form label will take at the bottom.', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Form Label Spacing Bottom', 'torque-forms-styler'),
+				'description'    => esc_html__('Set how much space the form label will take at the bottom.', 'torque-forms-styler'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'default'        => '7px',
@@ -389,12 +393,12 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_custom_styles'             => array(
-				'label'            => esc_html__( 'Enable Custom Styles', 'dvppl-cf7-styler' ),
+				'label'            => esc_html__('Enable Custom Styles', 'torque-forms-styler'),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'configuration',
 				'options'          => array(
-					'on'  => esc_html__( 'Yes', 'dvppl-cf7-styler' ),
-					'off' => esc_html__( 'No', 'dvppl-cf7-styler' ),
+					'on'  => esc_html__('Yes', 'torque-forms-styler'),
+					'off' => esc_html__('No', 'torque-forms-styler'),
 				),
 				'default'          => 'off',
 				'computed_affects' => array(
@@ -405,7 +409,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_size'                      => array(
-				'label'           => esc_html__( 'Size', 'dvppl-cf7-styler' ),
+				'label'           => esc_html__('Size', 'torque-forms-styler'),
 				'type'            => 'range',
 				'option_category' => 'layout',
 				'default_unit'    => 'px',
@@ -423,7 +427,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_background_color'          => array(
-				'label'        => esc_html__( 'Background Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Background Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -434,7 +438,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_selected_color'            => array(
-				'label'        => esc_html__( 'Selected Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Selected Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'default'      => '#222222',
@@ -446,7 +450,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_border_color'              => array(
-				'label'        => esc_html__( 'Border Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Border Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'default'      => '#222222',
@@ -458,7 +462,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_border_size'               => array(
-				'label'           => esc_html__( 'Border Size', 'dvppl-cf7-styler' ),
+				'label'           => esc_html__('Border Size', 'torque-forms-styler'),
 				'type'            => 'range',
 				'option_category' => 'layout',
 				'tab_slug'        => 'advanced',
@@ -476,7 +480,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cr_label_color'               => array(
-				'label'        => esc_html__( 'Label Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Label Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -488,7 +492,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 			// Success / Error Message.
 			'cf7_message_padding'          => array(
-				'label'          => esc_html__( 'Message Padding', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Message Padding', 'torque-forms-styler'),
 				'type'           => 'range',
 				'tab_slug'       => 'advanced',
 				'toggle_slug'    => 'suc_err_msg',
@@ -502,7 +506,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_message_margin_top'       => array(
-				'label'          => esc_html__( 'Message Margin Top', 'dvppl-cf7-styler' ),
+				'label'          => esc_html__('Message Margin Top', 'torque-forms-styler'),
 				'type'           => 'range',
 				'tab_slug'       => 'advanced',
 				'toggle_slug'    => 'suc_err_msg',
@@ -515,11 +519,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				),
 			),
 			'cf7_message_alignment'        => array(
-				'label'            => esc_html__( 'Message Text Alignment', 'brain-divi-addons' ),
-				'description'      => esc_html__( 'Align message text to the left, right or center.', 'brain-divi-addons' ),
+				'label'            => esc_html__('Message Text Alignment', 'brain-divi-addons'),
+				'description'      => esc_html__('Align message text to the left, right or center.', 'brain-divi-addons'),
 				'type'             => 'text_align',
 				'option_category'  => 'layout',
-				'options'          => et_builder_get_text_orientation_options( array( 'justified' ) ),
+				'options'          => et_builder_get_text_orientation_options(array('justified')),
 				'options_icon'     => 'text_align',
 				'default'          => 'left',
 				'default_on_front' => 'left',
@@ -527,7 +531,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'tab_slug'         => 'advanced',
 			),
 			'cf7_message_color'            => array(
-				'label'        => esc_html__( 'Message Text Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Message Text Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -535,7 +539,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_message_bg_color'         => array(
-				'label'        => esc_html__( 'Message Background Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Message Background Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -543,7 +547,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_border_highlight_color'   => array(
-				'label'        => esc_html__( 'Border Highlight Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Border Highlight Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -552,7 +556,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 			// Success.
 			'cf7_success_message_color'    => array(
-				'label'        => esc_html__( 'Success Message Text Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Success Message Text Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -560,7 +564,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_success_message_bg_color' => array(
-				'label'        => esc_html__( 'Success Message Background Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Success Message Background Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -568,7 +572,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_success_border_color'     => array(
-				'label'        => esc_html__( 'Success Border Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Success Border Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -577,7 +581,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 			// Error.
 			'cf7_error_message_color'      => array(
-				'label'        => esc_html__( 'Error Message Text Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Error Message Text Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -585,7 +589,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_error_message_bg_color'   => array(
-				'label'        => esc_html__( 'Error Message Background Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Error Message Background Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -593,7 +597,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			),
 
 			'cf7_error_border_color'       => array(
-				'label'        => esc_html__( 'Error Border Color', 'dvppl-cf7-styler' ),
+				'label'        => esc_html__('Error Border Color', 'torque-forms-styler'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -602,7 +606,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 			'__cf7form'                    => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( 'DIPE_CF7_Styler', 'get_cf7_shortcode_html' ),
+				'computed_callback'   => array('TFS_FORMS_STYLER_Styler', 'get_cf7_shortcode_html'),
 				'computed_depends_on' => array(
 					'cf7',
 				),
@@ -610,7 +614,8 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		);
 	}
 
-	public function get_advanced_fields_config() {
+	public function get_advanced_fields_config()
+	{
 
 		$advanced_fields                = array();
 		$advanced_fields['fonts']       = false;
@@ -618,7 +623,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$advanced_fields['text_shadow'] = false;
 
 		$advanced_fields['fonts']['form_field_font'] = array(
-			'label'       => esc_html__( 'Field', 'dvppl-cf7-styler' ),
+			'label'       => esc_html__('Field', 'torque-forms-styler'),
 			'css'         => array(
 				'main'      => implode(
 					', ',
@@ -644,7 +649,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		);
 
 		$advanced_fields['fonts']['labels'] = array(
-			'label'       => esc_html__( 'Label', 'dvppl-cf7-styler' ),
+			'label'       => esc_html__('Label', 'torque-forms-styler'),
 			'css'         => array(
 				'main'      => "{$this->main_css_element} .dipe-cf7 .wpcf7 label",
 				'important' => 'all',
@@ -654,7 +659,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		);
 
 		$advanced_fields['fonts']['placeholder'] = array(
-			'label'       => esc_html__( 'Placeholder', 'dvppl-cf7-styler' ),
+			'label'       => esc_html__('Placeholder', 'torque-forms-styler'),
 			'css'         => array(
 				'main'      => implode(
 					', ',
@@ -670,7 +675,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		);
 
 		$advanced_fields['fonts']['title'] = array(
-			'label'            => esc_html__( 'Title', 'dvppl-cf7-styler' ),
+			'label'            => esc_html__('Title', 'torque-forms-styler'),
 			'css'              => array(
 				'main'      => '%%order_class%% .dipe-form-header-title',
 				'important' => 'all',
@@ -683,7 +688,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		);
 
 		$advanced_fields['fonts']['text'] = array(
-			'label'            => esc_html__( 'Text', 'dvppl-cf7-styler' ),
+			'label'            => esc_html__('Text', 'torque-forms-styler'),
 			'css'              => array(
 				'main'      => '%%order_class%% .dipe-form-header-text',
 				'important' => 'all',
@@ -696,7 +701,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		);
 
 		$advanced_fields['button']['submit_button'] = array(
-			'label'          => esc_html__( 'Button', 'dvppl-cf7-styler' ),
+			'label'          => esc_html__('Button', 'torque-forms-styler'),
 			'css'            => array(
 				'main'      => '%%order_class%% .wpcf7-form input[type=submit]',
 				'important' => 'all',
@@ -720,7 +725,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$advanced_fields['borders']['default'] = array();
 
 		$advanced_fields['borders']['field'] = array(
-			'label_prefix' => esc_html__( 'Field', 'dvppl-cf7-styler' ),
+			'label_prefix' => esc_html__('Field', 'torque-forms-styler'),
 			'toggle_slug'  => 'form_field',
 			'css'          => array(
 				'main'      => array(
@@ -759,33 +764,36 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		return $advanced_fields;
 	}
 
-	public function get_cf7_shortcode( $args ) {
+	public function get_cf7_shortcode($args)
+	{
 
 		$cf7_id = $this->props['cf7'];
 
 		$cf7_shortcode = '';
 
-		if ( 0 === $cf7_id ) {
+		if (0 === $cf7_id) {
 			$cf7_shortcode = 'Please select a Contact Form 7.';
 		} else {
-			$cf7_shortcode = do_shortcode( sprintf( '[contact-form-7 id="%1$s"]', $cf7_id ) );
+			$cf7_shortcode = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', $cf7_id));
 		}
 		return $cf7_shortcode;
 	}
 
-	public static function get_cf7_shortcode_html( $args ) {
+	public static function get_cf7_shortcode_html($args)
+	{
 
 		$cf7_shortcode        = new self();
 		$cf7_shortcode->props = $args;
-		$output               = $cf7_shortcode->get_cf7_shortcode( array() );
+		$output               = $cf7_shortcode->get_cf7_shortcode(array());
 		return $output;
 	}
 
-	public static function process_flex_style( $val, $type, $important ) {
+	public static function process_flex_style($val, $type, $important)
+	{
 		$flex_val = 'center';
-		if ( 'left' === $val ) {
+		if ('left' === $val) {
 			$flex_val = 'flex-start';
-		} elseif ( 'right' === $val ) {
+		} elseif ('right' === $val) {
 			$flex_val = 'flex-end';
 		}
 		return sprintf(
@@ -806,39 +814,40 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$_bottom  = '';
 		$_left    = '';
 		$imp_text = '';
-		$_val     = explode( '|', $val );
+		$_val     = explode('|', $val);
 
-		if ( $imp ) {
+		if ($imp) {
 			$imp_text = '!important';
 		}
 
-		if ( isset( $_val[0] ) && ! empty( $_val[0] ) ) {
+		if (isset($_val[0]) && !empty($_val[0])) {
 			$_top = "{$type}-top:" . $_val[0] . $imp_text . ';';
 		}
 
-		if ( isset( $_val[1] ) && ! empty( $_val[1] ) ) {
+		if (isset($_val[1]) && !empty($_val[1])) {
 			$_right = "{$type}-right:" . $_val[1] . $imp_text . ';';
 		}
 
-		if ( isset( $_val[2] ) && ! empty( $_val[2] ) ) {
+		if (isset($_val[2]) && !empty($_val[2])) {
 			$_bottom = "{$type}-bottom:" . $_val[2] . $imp_text . ';';
 		}
 
-		if ( isset( $_val[3] ) && ! empty( $_val[3] ) ) {
+		if (isset($_val[3]) && !empty($_val[3])) {
 			$_left = "{$type}-left:" . $_val[3] . $imp_text . ';';
 		}
 
-		return esc_html( "{$_top} {$_right} {$_bottom} {$_left}" );
+		return esc_html("{$_top} {$_right} {$_bottom} {$_left}");
 	}
 
-	public function get_conditional_responsive_styles( $styles, $data, $style ) {
-		$important = isset( $styles['important'] ) ? $styles['important'] : false;
+	public function get_conditional_responsive_styles($styles, $data, $style)
+	{
+		$important = isset($styles['important']) ? $styles['important'] : false;
 
-		if ( 'padding' === $style || 'margin' === $style ) {
-			return $this->process_margin_padding( $data, $style, $important );
-		} elseif ( 'align-self' === $style || 'align-items' === $style || 'justify-content' === $style ) {
-			return $this->process_flex_style( $data, $style, $important );
-		} elseif ( 'flex' === $style ) {
+		if ('padding' === $style || 'margin' === $style) {
+			return $this->process_margin_padding($data, $style, $important);
+		} elseif ('align-self' === $style || 'align-items' === $style || 'justify-content' === $style) {
+			return $this->process_flex_style($data, $style, $important);
+		} elseif ('flex' === $style) {
 			return 'flex: 0 0 ' . $data . ';';
 		} else {
 			return sprintf(
@@ -859,40 +868,40 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 	) {
 
 		$is_enabled = false;
-		$style      = isset( $styles['primary'] ) ? $styles['primary'] : '';
-		$_data      = $this->props[ $opt_name ];
+		$style      = isset($styles['primary']) ? $styles['primary'] : '';
+		$_data      = $this->props[$opt_name];
 
-		if ( isset( $this->props[ "{$opt_name}_last_edited" ] ) ) {
-			$is_enabled = et_pb_get_responsive_status( $this->props[ "{$opt_name}_last_edited" ] );
+		if (isset($this->props["{$opt_name}_last_edited"])) {
+			$is_enabled = et_pb_get_responsive_status($this->props["{$opt_name}_last_edited"]);
 		}
 
-		if ( empty( $_data ) && ! empty( $pre_values ) ) {
+		if (empty($_data) && !empty($pre_values)) {
 			$is_default = true;
-			if ( ! empty( $pre_values['conditional'] ) ) {
-				foreach ( $pre_values['conditional']['values'] as $value ) {
-					$property_val = $this->props[ $pre_values['conditional']['name'] ];
-					if ( $property_val === $value['a'] ) {
+			if (!empty($pre_values['conditional'])) {
+				foreach ($pre_values['conditional']['values'] as $value) {
+					$property_val = $this->props[$pre_values['conditional']['name']];
+					if ($property_val === $value['a']) {
 						$_data      = $value['b'];
 						$is_default = false;
 					}
 				}
 			}
 
-			if ( $is_default ) {
-				$_data = isset( $pre_values['default'] ) ? $pre_values['default'] : '';
+			if ($is_default) {
+				$_data = isset($pre_values['default']) ? $pre_values['default'] : '';
 			}
 		}
 
-		if ( ! empty( $_data ) ) {
+		if (!empty($_data)) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => $selector,
-					'declaration' => $this->get_conditional_responsive_styles( $styles, $_data, $style ),
+					'declaration' => $this->get_conditional_responsive_styles($styles, $_data, $style),
 				)
 			);
 
-			if ( ! empty( $styles['secondary'] ) ) {
+			if (!empty($styles['secondary'])) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
@@ -903,51 +912,51 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			}
 		}
 
-		if ( $is_enabled ) {
+		if ($is_enabled) {
 
-			$_data_tablet = $this->props[ "{$opt_name}_tablet" ];
-			$_data_phone  = $this->props[ "{$opt_name}_phone" ];
+			$_data_tablet = $this->props["{$opt_name}_tablet"];
+			$_data_phone  = $this->props["{$opt_name}_phone"];
 
-			if ( ! empty( $_data_tablet ) ) {
+			if (!empty($_data_tablet)) {
 
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => $selector,
-						'media_query' => ET_Builder_Element::get_media_query( 'max_width_980' ),
-						'declaration' => $this->get_conditional_responsive_styles( $styles, $_data_tablet, $style ),
+						'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
+						'declaration' => $this->get_conditional_responsive_styles($styles, $_data_tablet, $style),
 					)
 				);
 
-				if ( ! empty( $styles['secondary'] ) ) {
+				if (!empty($styles['secondary'])) {
 					ET_Builder_Element::set_style(
 						$render_slug,
 						array(
 							'selector'    => $selector,
-							'media_query' => ET_Builder_Element::get_media_query( 'max_width_980' ),
+							'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
 							'declaration' => $styles['secondary'],
 						)
 					);
 				}
 			}
 
-			if ( ! empty( $_data_phone ) ) {
+			if (!empty($_data_phone)) {
 
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => $selector,
-						'media_query' => ET_Builder_Element::get_media_query( 'max_width_767' ),
-						'declaration' => $this->get_conditional_responsive_styles( $styles, $_data_phone, $style ),
+						'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
+						'declaration' => $this->get_conditional_responsive_styles($styles, $_data_phone, $style),
 					)
 				);
 
-				if ( ! empty( $styles['secondary'] ) ) {
+				if (!empty($styles['secondary'])) {
 					ET_Builder_Element::set_style(
 						$render_slug,
 						array(
 							'selector'    => $selector,
-							'media_query' => ET_Builder_Element::get_media_query( 'max_width_767' ),
+							'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
 							'declaration' => $styles['secondary'],
 						)
 					);
@@ -957,9 +966,10 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 	}
 
 
-	public function render( $attrs, $content, $render_slug ) {
+	public function render($attrs, $content, $render_slug)
+	{
 
-		$this->apply_css( $render_slug );
+		$this->apply_css($render_slug);
 
 		$cf7_fields                = $this->props['cf7'];
 		$cr_custom_styles          = $this->props['cr_custom_styles'];
@@ -971,17 +981,17 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 		$form_header = '';
 
-		if ( 'on' === $use_form_header ) {
+		if ('on' === $use_form_header) {
 
 			$header_img  = '' !== $this->props['header_img'] ? $this->props['header_img'] : false;
-			$image       = $header_img ? sprintf( '<div class="dipe-form-header-image"><img src="%1$s" alt=""/></div>', $header_img ) : '';
-			$header_icon = esc_attr( et_pb_process_font_icon( $this->props['header_icon'] ) );
-			$icon        = sprintf( '<div class="dipe-form-header-icon"> <span class="et-pb-icon">%1$s</span> </div> ', $header_icon );
+			$image       = $header_img ? sprintf('<div class="dipe-form-header-image"><img src="%1$s" alt=""/></div>', $header_img) : '';
+			$header_icon = esc_attr(et_pb_process_font_icon($this->props['header_icon']));
+			$icon        = sprintf('<div class="dipe-form-header-icon"> <span class="et-pb-icon">%1$s</span> </div> ', $header_icon);
 			$icon_image  = 'on' === $this->props['use_icon'] ? $icon : $image;
-			$title       = isset( $form_header_title ) ? sprintf( '<h2 class="dipe-form-header-title">%1$s</h2>', $form_header_title ) : '';
-			$text        = isset( $form_header_text ) ? sprintf( '<div class="dipe-form-header-text">%1$s</div>', $form_header_text ) : '';
-			$header_info = $title || $text ? sprintf( '<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text ) : '';
-			dipe_inject_fa_icons( $this->props['header_icon'] );
+			$title       = isset($form_header_title) ? sprintf('<h2 class="dipe-form-header-title">%1$s</h2>', $form_header_title) : '';
+			$text        = isset($form_header_text) ? sprintf('<div class="dipe-form-header-text">%1$s</div>', $form_header_text) : '';
+			$header_info = $title || $text ? sprintf('<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text) : '';
+			dipe_inject_fa_icons($this->props['header_icon']);
 
 			$form_header = sprintf(
 				'<div class="dipe-form-header-container">
@@ -1003,21 +1013,22 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 					%1$s
 				</div>
 			</div>',
-			$this->get_cf7_shortcode( array() ),
+			$this->get_cf7_shortcode(array()),
 			$cr_custom_class,
 			$form_header,
 			'on' !== $use_form_button_fullwidth ? $button_alignment : 'fullwidth'
 		);
 	}
 
-	public function apply_css( $render_slug ) {
+	public function apply_css($render_slug)
+	{
 
-		$this->render_header_css( $render_slug );
-		$this->render_form_header_padding( $render_slug );
-		$this->render_form_padding( $render_slug );
+		$this->render_header_css($render_slug);
+		$this->render_form_header_padding($render_slug);
+		$this->render_form_padding($render_slug);
 
 		$form_background_color        = $this->props['form_background_color'];
-		$form_background_color_hover  = $this->get_hover_value( 'form_background_color' );
+		$form_background_color_hover  = $this->get_hover_value('form_background_color');
 		$form_field_active_color      = $this->props['form_field_active_color'];
 		$cr_custom_styles             = $this->props['cr_custom_styles'];
 		$cr_size                      = $this->props['cr_size'];
@@ -1048,7 +1059,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'primary'   => 'margin-top',
 				'important' => true,
 			),
-			array( 'default' => '7px' ),
+			array('default' => '7px'),
 			$render_slug
 		);
 
@@ -1060,11 +1071,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'primary'   => 'margin-bottom',
 				'important' => true,
 			),
-			array( 'default' => '20px' ),
+			array('default' => '20px'),
 			$render_slug
 		);
 
-		if ( '' !== $form_field_height ) {
+		if ('' !== $form_field_height) {
 			$this->get_responsive_styles(
 				'form_field_height',
 				'%%order_class%% .wpcf7-form-control-wrap select, %%order_class%% .wpcf7-form-control-wrap input[type=text], %%order_class%% .wpcf7-form-control-wrap input[type=email], %%order_class%% .wpcf7-form-control-wrap input[type=number], %%order_class%% .wpcf7-form-control-wrap input[type=tel]',
@@ -1072,7 +1083,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 					'primary'   => 'height',
 					'important' => true,
 				),
-				array( 'default' => 'initial' ),
+				array('default' => 'initial'),
 				$render_slug
 			);
 		}
@@ -1084,11 +1095,11 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'primary'   => 'padding',
 				'important' => true,
 			),
-			array( 'default' => '10px|15px|10px|15px' ),
+			array('default' => '10px|15px|10px|15px'),
 			$render_slug
 		);
 
-		if ( 'on' === $use_form_button_fullwidth ) {
+		if ('on' === $use_form_button_fullwidth) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
@@ -1098,7 +1109,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			);
 		}
 
-		if ( '' !== $form_background_color ) {
+		if ('' !== $form_background_color) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
@@ -1106,45 +1117,45 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 
 					'declaration' => sprintf(
 						'background-color: %1$s%2$s;',
-						esc_attr( $form_background_color ),
+						esc_attr($form_background_color),
 						et_is_builder_plugin_active() ? ' !important' : ''
 					),
 				)
 			);
 		}
 
-		if ( '' !== $form_field_active_color ) {
+		if ('' !== $form_field_active_color) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7 .wpcf7 input:not([type=submit]):focus, %%order_class%% .dipe-cf7 .wpcf7 select:focus, %%order_class%% .dipe-cf7 .wpcf7 textarea:focus',
 					'declaration' => sprintf(
 						'border-color: %1$s%2$s;',
-						esc_attr( $form_field_active_color ),
+						esc_attr($form_field_active_color),
 						et_is_builder_plugin_active() ? ' !important' : ''
 					),
 				)
 			);
 		}
 
-		if ( 'on' === $cr_custom_styles ) {
+		if ('on' === $cr_custom_styles) {
 
-			if ( '' !== $cr_size || '' !== $cr_border_size ) {
+			if ('' !== $cr_size || '' !== $cr_border_size) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-checkbox input[type="checkbox"] + span:before, %%order_class%% .dipe-cf7 .wpcf7-acceptance input[type="checkbox"] + span:before, %%order_class%% .dipe-cf7 .wpcf7-radio input[type="radio"] + span:before',
 						'declaration' => sprintf(
 							'width: %1$s%2$s; height: %1$s%2$s; border-width:%3$s%2$s;',
-							esc_attr( $cr_size ),
+							esc_attr($cr_size),
 							et_is_builder_plugin_active() ? ' !important' : '',
-							esc_attr( $cr_border_size )
+							esc_attr($cr_border_size)
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_size && is_numeric( $cr_size ) ) {
+			if ('' !== $cr_size && is_numeric($cr_size)) {
 				$font_size = $cr_size / 1.2;
 				ET_Builder_Element::set_style(
 					$render_slug,
@@ -1152,91 +1163,91 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-acceptance input[type=checkbox]:checked + span:before, %%order_class%% .dipe-cf7 .wpcf7-checkbox input[type=checkbox]:checked + span:before',
 						'declaration' => sprintf(
 							'font-size: ',
-							esc_attr( $font_size ),
+							esc_attr($font_size),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_background_color ) {
+			if ('' !== $cr_background_color) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-checkbox input[type="checkbox"] + span:before, %%order_class%% .dipe-cf7 .wpcf7-acceptance input[type="checkbox"] + span:before, %%order_class%% .dipe-cf7 .wpcf7-radio input[type="radio"]:not(:checked) + span:before',
 						'declaration' => sprintf(
 							'background-color: %1$s%2$s;',
-							esc_attr( $cr_background_color ),
+							esc_attr($cr_background_color),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_background_color ) {
+			if ('' !== $cr_background_color) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-radio input[type="radio"]:checked + span:before',
 						'declaration' => sprintf(
 							'box-shadow:inset 0px 0px 0px 4px %1$s%2$s;',
-							esc_attr( $cr_background_color ),
+							esc_attr($cr_background_color),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_selected_color ) {
+			if ('' !== $cr_selected_color) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-checkbox input[type="checkbox"]:checked + span:before, %%order_class%% .dipe-cf7 .wpcf7-acceptance input[type="checkbox"]:checked + span:before',
 						'declaration' => sprintf(
 							'color: %1$s%2$s;',
-							esc_attr( $cr_selected_color ),
+							esc_attr($cr_selected_color),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_selected_color ) {
+			if ('' !== $cr_selected_color) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-radio input[type="radio"]:checked + span:before',
 						'declaration' => sprintf(
 							'background-color: %1$s%2$s;',
-							esc_attr( $cr_selected_color ),
+							esc_attr($cr_selected_color),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_border_color ) {
+			if ('' !== $cr_border_color) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-checkbox input[type=radio] + span:before, %%order_class%% .dipe-cf7 .wpcf7-radio input[type=checkbox] + span:before, %%order_class%% .dipe-cf7 .wpcf7-acceptance input[type="checkbox"] + span:before',
 						'declaration' => sprintf(
 							'border-color: %1$s%2$s;',
-							esc_attr( $cr_border_color ),
+							esc_attr($cr_border_color),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
 				);
 			}
 
-			if ( '' !== $cr_label_color ) {
+			if ('' !== $cr_label_color) {
 				ET_Builder_Element::set_style(
 					$render_slug,
 					array(
 						'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-checkbox label, %%order_class%% .wpcf7-radio label',
 						'declaration' => sprintf(
 							'color: %1$s%2$s;',
-							esc_attr( $cr_label_color ),
+							esc_attr($cr_label_color),
 							et_is_builder_plugin_active() ? ' !important' : ''
 						),
 					)
@@ -1244,14 +1255,14 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			}
 		}
 
-		if ( '' !== $cf7_message_color ) {
+		if ('' !== $cf7_message_color) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7 span.wpcf7-not-valid-tip',
 					'declaration' => sprintf(
 						'color: %1$s%2$s;',
-						esc_attr( $cf7_message_color ),
+						esc_attr($cf7_message_color),
 						et_is_builder_plugin_active() ? ' !important' : ''
 					),
 				)
@@ -1269,42 +1280,42 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 			)
 		);
 
-		if ( '' !== $cf7_message_bg_color ) {
+		if ('' !== $cf7_message_bg_color) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7 span.wpcf7-not-valid-tip',
 					'declaration' => sprintf(
 						'background-color: %1$s%2$s;',
-						esc_attr( $cf7_message_bg_color ),
+						esc_attr($cf7_message_bg_color),
 						et_is_builder_plugin_active() ? ' !important' : ''
 					),
 				)
 			);
 		}
 
-		if ( '' !== $cf7_border_highlight_color ) {
+		if ('' !== $cf7_border_highlight_color) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7 span.wpcf7-not-valid-tip',
 					'declaration' => sprintf(
 						'border: 2px solid %1$s%2$s;',
-						esc_attr( $cf7_border_highlight_color ),
+						esc_attr($cf7_border_highlight_color),
 						et_is_builder_plugin_active() ? ' !important' : ''
 					),
 				)
 			);
 		}
 
-		if ( '' !== $cf7_success_message_color ) {
+		if ('' !== $cf7_success_message_color) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7 .wpcf7-mail-sent-ok',
 					'declaration' => sprintf(
 						'color: %1$s%2$s;',
-						esc_attr( $cf7_success_message_color ),
+						esc_attr($cf7_success_message_color),
 						et_is_builder_plugin_active() ? ' !important' : ''
 					),
 				)
@@ -1317,7 +1328,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% .wpcf7 form.sent .wpcf7-response-output',
 				'declaration' => sprintf(
 					'background-color: %1$s !important;',
-					esc_attr( $cf7_success_message_bg_color )
+					esc_attr($cf7_success_message_bg_color)
 				),
 			)
 		);
@@ -1328,7 +1339,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% .wpcf7 form.sent .wpcf7-response-output',
 				'declaration' => sprintf(
 					'border-color: %1$s%2$s;',
-					esc_attr( $cf7_success_border_color ),
+					esc_attr($cf7_success_border_color),
 					et_is_builder_plugin_active() ? ' !important' : ''
 				),
 			)
@@ -1340,7 +1351,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output',
 				'declaration' => sprintf(
 					'color: %1$s !important;',
-					esc_attr( $cf7_error_message_color )
+					esc_attr($cf7_error_message_color)
 				),
 			)
 		);
@@ -1351,7 +1362,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output',
 				'declaration' => sprintf(
 					'background-color: %1$s !important;',
-					esc_attr( $cf7_error_message_bg_color )
+					esc_attr($cf7_error_message_bg_color)
 				),
 			)
 		);
@@ -1362,7 +1373,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% .wpcf7 form .wpcf7-response-output',
 				'declaration' => sprintf(
 					'border-color: %1$s !important;',
-					esc_attr( $cf7_error_border_color )
+					esc_attr($cf7_error_border_color)
 				),
 			)
 		);
@@ -1373,7 +1384,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% span.wpcf7-not-valid-tip',
 				'declaration' => sprintf(
 					'padding: %1$s !important;',
-					esc_attr( $cf7_message_padding )
+					esc_attr($cf7_message_padding)
 				),
 			)
 		);
@@ -1384,13 +1395,14 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'selector'    => '%%order_class%% span.wpcf7-not-valid-tip',
 				'declaration' => sprintf(
 					'margin-top: %1$s !important;',
-					esc_attr( $cf7_message_margin_top )
+					esc_attr($cf7_message_margin_top)
 				),
 			)
 		);
 	}
 
-	public function render_header_css( $render_slug ) {
+	public function render_header_css($render_slug)
+	{
 
 		$form_header_bg         = $this->props['form_header_bg'];
 		$form_header_bottom     = $this->props['form_header_bottom'];
@@ -1398,7 +1410,7 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$form_header_icon_color = $this->props['form_header_icon_color'];
 		$form_bg                = $this->props['form_bg'];
 
-		if ( class_exists( 'ET_Builder_Module_Helper_Style_Processor' ) && method_exists( 'ET_Builder_Module_Helper_Style_Processor', 'process_extended_icon' ) ) {
+		if (class_exists('ET_Builder_Module_Helper_Style_Processor') && method_exists('ET_Builder_Module_Helper_Style_Processor', 'process_extended_icon')) {
 			$this->generate_styles(
 				array(
 					'utility_arg'    => 'icon_font_family',
@@ -1453,91 +1465,92 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 				'declaration' => "background-color: {$form_bg};",
 			)
 		);
-
 	}
 
-	public function render_form_header_padding( $render_slug ) {
+	public function render_form_header_padding($render_slug)
+	{
 
 		$form_header_padding                   = $this->props['form_header_padding'];
 		$form_header_padding_tablet            = $this->props['form_header_padding_tablet'];
 		$form_header_padding_phone             = $this->props['form_header_padding_phone'];
 		$form_header_padding_last_edited       = $this->props['form_header_padding_last_edited'];
-		$form_header_padding_responsive_status = et_pb_get_responsive_status( $form_header_padding_last_edited );
+		$form_header_padding_responsive_status = et_pb_get_responsive_status($form_header_padding_last_edited);
 
 		ET_Builder_Element::set_style(
 			$render_slug,
 			array(
 				'selector'    => '%%order_class%% .dipe-form-header-container',
-				'declaration' => self::process_padding( $form_header_padding, false ),
+				'declaration' => self::process_padding($form_header_padding, false),
 			)
 		);
 
-		if ( $form_header_padding_tablet && $form_header_padding_responsive_status ) {
+		if ($form_header_padding_tablet && $form_header_padding_responsive_status) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-form-header-container',
-					'media_query' => ET_Builder_Element::get_media_query( 'max_width_980' ),
-					'declaration' => self::process_padding( $form_header_padding_tablet, false ),
+					'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
+					'declaration' => self::process_padding($form_header_padding_tablet, false),
 				)
 			);
 		}
 
-		if ( $form_header_padding_phone && $form_header_padding_responsive_status ) {
+		if ($form_header_padding_phone && $form_header_padding_responsive_status) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-form-header-container',
-					'media_query' => ET_Builder_Element::get_media_query( 'max_width_767' ),
-					'declaration' => self::process_padding( $form_header_padding_phone, false ),
+					'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
+					'declaration' => self::process_padding($form_header_padding_phone, false),
 				)
 			);
 		}
 	}
 
-	public function render_form_padding( $render_slug ) {
+	public function render_form_padding($render_slug)
+	{
 
 		$form_padding                   = $this->props['form_padding'];
 		$form_padding_tablet            = $this->props['form_padding_tablet'];
 		$form_padding_phone             = $this->props['form_padding_phone'];
 		$form_padding_last_edited       = $this->props['form_padding_last_edited'];
-		$form_padding_responsive_status = et_pb_get_responsive_status( $form_padding_last_edited );
+		$form_padding_responsive_status = et_pb_get_responsive_status($form_padding_last_edited);
 
 		ET_Builder_Element::set_style(
 			$render_slug,
 			array(
 				'selector'    => '%%order_class%% .dipe-cf7-styler',
-				'declaration' => self::process_padding( $form_padding, false ),
+				'declaration' => self::process_padding($form_padding, false),
 			)
 		);
 
-		if ( $form_padding_tablet && $form_padding_responsive_status ) {
+		if ($form_padding_tablet && $form_padding_responsive_status) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7-styler',
-					'media_query' => ET_Builder_Element::get_media_query( 'max_width_980' ),
-					'declaration' => self::process_padding( $form_padding_tablet, false ),
+					'media_query' => ET_Builder_Element::get_media_query('max_width_980'),
+					'declaration' => self::process_padding($form_padding_tablet, false),
 				)
 			);
 		}
 
-		if ( $form_padding_phone && $form_padding_responsive_status ) {
+		if ($form_padding_phone && $form_padding_responsive_status) {
 			ET_Builder_Element::set_style(
 				$render_slug,
 				array(
 					'selector'    => '%%order_class%% .dipe-cf7-styler',
-					'media_query' => ET_Builder_Element::get_media_query( 'max_width_767' ),
-					'declaration' => self::process_padding( $form_padding_phone, false ),
+					'media_query' => ET_Builder_Element::get_media_query('max_width_767'),
+					'declaration' => self::process_padding($form_padding_phone, false),
 				)
 			);
 		}
-
 	}
 
-	public static function process_padding( $val = '0|0|0|0', $imp = false ) {
+	public static function process_padding($val = '0|0|0|0', $imp = false)
+	{
 
-		$_val = explode( '|', $val );
+		$_val = explode('|', $val);
 
 		$padding_top    = '';
 		$padding_right  = '';
@@ -1545,29 +1558,28 @@ class DIPE_CF7_Styler extends ET_Builder_Module {
 		$padding_left   = '';
 		$imp_text       = '';
 
-		if ( $imp ) {
+		if ($imp) {
 			$imp_text = '!important';
 		}
 
-		if ( '' !== $_val[0] ) {
+		if ('' !== $_val[0]) {
 			$padding_top = 'padding-top:' . $_val[0] . $imp_text . ';';
 		}
 
-		if ( '' !== $_val[1] ) {
+		if ('' !== $_val[1]) {
 			$padding_right = 'padding-right:' . $_val[1] . $imp_text . ';';
 		}
 
-		if ( '' !== $_val[2] ) {
+		if ('' !== $_val[2]) {
 			$padding_bottom = 'padding-bottom:' . $_val[2] . $imp_text . ';';
 		}
 
-		if ( '' !== $_val[3] ) {
+		if ('' !== $_val[3]) {
 			$padding_left = 'padding-left:' . $_val[3] . $imp_text . ';';
 		}
 
-		return esc_html( "{$padding_top} {$padding_right} {$padding_bottom} {$padding_left}" );
+		return esc_html("{$padding_top} {$padding_right} {$padding_bottom} {$padding_left}");
 	}
-
 }
 
-new DIPE_CF7_Styler();
+new TFS_FORMS_STYLER_CF7();

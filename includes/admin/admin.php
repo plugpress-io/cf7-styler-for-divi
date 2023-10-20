@@ -1,74 +1,78 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Dipe_Admin {
+class Dipe_Admin
+{
 
-	public function __construct() {
-		add_action( 'admin_menu', array( __CLASS__, 'add_menu' ), 99 );
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), 99 );
-		add_action( 'admin_post_cf7_styler_rollback', array( $this, 'post_cf7_styler_rollback' ) );
+	public function __construct()
+	{
+		add_action('admin_menu', array(__CLASS__, 'add_menu'), 99);
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'), 99);
+		add_action('admin_post_cf7_styler_rollback', array($this, 'post_cf7_styler_rollback'));
 	}
 
-	public static function add_menu() {
+	public static function add_menu()
+	{
 		add_submenu_page(
 			'et_divi_options',
 			'CF7 Styler',
 			'CF7 Styler',
 			'manage_options',
-			'dipe_cf7_styler_options',
-			array( __CLASS__, 'render_page' )
+			'TFS_FORMS_STYLER_styler_options',
+			array(__CLASS__, 'render_page')
 		);
 	}
 
-	public static function post_cf7_styler_rollback() {
+	public static function post_cf7_styler_rollback()
+	{
 
-		check_admin_referer( 'cf7_styler_rollback' );
+		check_admin_referer('cf7_styler_rollback');
 
-		$plugin_slug = basename( DIPE_CF7_PATH, '.php' );
+		$plugin_slug = basename(TFS_FORMS_STYLER_PATH, '.php');
 
 		$rollback = new Dipe_Rollback(
 			array(
-				'version'     => DIPE_CF7_STABLE_VERSION,
-				'plugin_name' => DIPE_CF7_PLUGIN_BASE,
+				'version'     => TFS_FORMS_STYLER_STABLE_VERSION,
+				'plugin_name' => TFS_FORMS_STYLER_PLUGIN_BASE,
 				'plugin_slug' => $plugin_slug,
-				'package_url' => sprintf( 'https://downloads.wordpress.org/plugin/%s.%s.zip', $plugin_slug, DIPE_CF7_STABLE_VERSION ),
+				'package_url' => sprintf('https://downloads.wordpress.org/plugin/%s.%s.zip', $plugin_slug, TFS_FORMS_STYLER_STABLE_VERSION),
 			)
 		);
 		$rollback->run();
 		wp_die(
 			'',
-			__( 'Rollback to Previous Version', 'dvppl-cf7-styler' ),
+			__('Rollback to Previous Version', 'torque-forms-styler'),
 			array(
 				'response' => 200,
 			)
 		);
 	}
 
-	public static function render_page() {
+	public static function render_page()
+	{
 
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( 'Unauthorized user' );
+		if (!current_user_can('manage_options')) {
+			wp_die('Unauthorized user');
 		}
 
-		if ( isset( $_POST['options'] ) ) {
+		if (isset($_POST['options'])) {
 
 			$value = $_POST['options'];
 
-			update_option( 'dipe_options', $value );
-
+			update_option('dipe_options', $value);
 		}
 
-		$options      = get_option( 'dipe_options' );
-		$grid_options = isset( $options['grid'] ) ? $options['grid'] : 'off';
-		?>
+		$options      = get_option('dipe_options');
+		$grid_options = isset($options['grid']) ? $options['grid'] : 'off';
+?>
 		<div class="wrap">
 			<div id="dipe-header">
 				<h1>
-					<?php echo esc_html__( 'CF7 Styler for Divi', 'dvppl-cf7-styler' ); ?>
-					<span style="font-size: 10px;">v<?php echo DIPE_CF7_VERSION; ?></span>
+					<?php echo esc_html__('CF7 Styler for Divi', 'torque-forms-styler'); ?>
+					<span style="font-size: 10px;">v<?php echo TFS_FORMS_STYLER_VERSION; ?></span>
 				</h1>
 				<div id="dipe-cf7-styler-tabs-wrapper" class="nav-tab-wrapper dipe-cf7-styler">
 					<a id='dipe-cf7-styler-tab-general' class='nav-tab nav-tab-active' href='#tab-general'>General</a>
@@ -82,7 +86,7 @@ class Dipe_Admin {
 								<div class="postbox dipe-postbox">
 									<h3 class="hndle">Rollback to Previous Version</h3>
 									<div class="inside">
-										<p>Experiencing an issue with CF7 Styler for Divi <?php echo DIPE_CF7_VERSION; ?> ? Rollback to a previous version before the issue appeared.</p>
+										<p>Experiencing an issue with CF7 Styler for Divi <?php echo TFS_FORMS_STYLER_VERSION; ?> ? Rollback to a previous version before the issue appeared.</p>
 										<table class="form-table">
 											<tbody>
 												<tr class="cf7_styler_rollback">
@@ -91,14 +95,14 @@ class Dipe_Admin {
 														<div id="cf7_styler_rollback">
 															<div>
 																<?php
-																echo sprintf( '<a target="_blank" href="%1$s" class="button wdc-btn wdc-rollback-button">%2$s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=cf7_styler_rollback' ), 'cf7_styler_rollback' ), __( 'Rollback to Version ' . DIPE_CF7_STABLE_VERSION, 'dvppl-cf7-styler' ) );
+																echo sprintf('<a target="_blank" href="%1$s" class="button wdc-btn wdc-rollback-button">%2$s</a>', wp_nonce_url(admin_url('admin-post.php?action=cf7_styler_rollback'), 'cf7_styler_rollback'), __('Rollback to Version ' . TFS_FORMS_STYLER_STABLE_VERSION, 'torque-forms-styler'));
 																?>
 															</div>
 
 															<p class="description">
 																<span style="color: red;">Warning: Please backup your database before making the rollback.</span>
 															</p>
-														 </div>
+														</div>
 													</td>
 												</tr>
 											</tbody>
@@ -118,14 +122,7 @@ class Dipe_Admin {
 															<div id="cf7_styler_grid">
 																<div>
 																	<input type="hidden" name='options[grid]' value='off' />
-																	<input
-																		type="checkbox"
-																		class="checkbox"
-																		id="cf7-styler-grid"
-																		name='options[grid]'
-																		value='on'
-																		<?php checked( $grid_options, 'on', true ); ?>
-																	>
+																	<input type="checkbox" class="checkbox" id="cf7-styler-grid" name='options[grid]' value='on' <?php checked($grid_options, 'on', true); ?>>
 																</div>
 															</div>
 														</td>
@@ -133,7 +130,7 @@ class Dipe_Admin {
 
 												</tbody>
 											</table>
-											<?php wp_nonce_field( 'dipe_cf7_styler_action' ); ?>
+											<?php wp_nonce_field('TFS_FORMS_STYLER_styler_action'); ?>
 											<p><input type="submit" value="Save All Changes" class="button button-primary"></p>
 										</form>
 									</div>
@@ -144,19 +141,19 @@ class Dipe_Admin {
 				</div>
 			</div>
 		</div>
-		<?php
+<?php
 	}
 
-	public static function enqueue_scripts() {
+	public static function enqueue_scripts()
+	{
 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if (!current_user_can('manage_options')) {
 			return;
 		}
 
-		wp_enqueue_script( 'dipe-admin-js', DIPE_ASSETS_URL . 'js/admin.js', array( 'jquery' ), DIPE_CF7_VERSION, true );
-		wp_enqueue_style( 'dipe-admin', DIPE_ASSETS_URL . 'css/admin.css', null, DIPE_CF7_VERSION );
+		wp_enqueue_script('dipe-admin-js', TFS_FORMS_STYLER_ASSETS_URL . 'js/admin.js', array('jquery'), TFS_FORMS_STYLER_VERSION, true);
+		wp_enqueue_style('dipe-admin', TFS_FORMS_STYLER_ASSETS_URL . 'css/admin.css', null, TFS_FORMS_STYLER_VERSION);
 	}
-
 }
 
 new Dipe_Admin();
