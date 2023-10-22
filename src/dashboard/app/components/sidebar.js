@@ -22,6 +22,7 @@ const Sidebar = () => {
         {
             items: [
                 {name: 'Modules', path: '/modules'},
+                {name: 'About', path: '/about'},
                 {name: 'Knowledge Base', path: 'https://divitorque.com/docs/'},
                 {name: 'Support', path: 'https://divitorque.com/support/'},
                 {name: 'Changelog', path: 'https://divitorque.com/changelog/'},

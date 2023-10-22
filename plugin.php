@@ -72,10 +72,10 @@ class Plugin
     {
         Assets_Manager::get_instance();
         Admin::get_instance();
-        CF7_Helper::get_instance();
 
         $deprecated_options = get_option('dipe_options');
         if (isset($deprecated_options['grid']) && 'on' === $deprecated_options['grid']) {
+            CF7_Helper::get_instance();
         }
     }
 

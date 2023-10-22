@@ -184,7 +184,7 @@ class GFStyler extends Component {
               attrs: props,
               name: 'form_error_padding',
               type: 'padding',
-              selector: 'div%%order_class%% .tfs-gf-styler .fluentform .ff-el-is-error .error',
+              selector: 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors',
               cssProperty: 'padding',
               important: true,
             })
@@ -195,7 +195,7 @@ class GFStyler extends Component {
               address,
               attrs: props,
               name: 'form_error_bgcolor',
-              selector: 'div%%order_class%% .tfs-gf-styler .fluentform .ff-el-is-error .error',
+              selector: 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors',
               cssProperty: 'background-color',
               important: true,
             })
@@ -207,7 +207,7 @@ class GFStyler extends Component {
               attrs: props,
               name: 'form_valid_padding',
               type: 'padding',
-              selector: 'div%%order_class%% .tfs-gf-styler .fluentform .ff-message-success',
+              selector: 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_confirmation_message',
               cssProperty: 'padding',
               important: true,
             })
@@ -218,7 +218,7 @@ class GFStyler extends Component {
               address,
               attrs: props,
               name: 'form_valid_bgcolor',
-              selector: 'div%%order_class%% .tfs-gf-styler .fluentform .ff-message-success',
+              selector: 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_confirmation_message',
               cssProperty: 'background-color',
               important: true,
             })

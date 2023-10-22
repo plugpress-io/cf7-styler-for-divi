@@ -332,7 +332,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         $advanced_fields['fonts']['error'] = array(
             'css'         => array(
                 'main' => '
-                    %%order_class%% .tfs-gf-styler .gform_wrapper div.validation_error, 
+                    div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors, 
                     %%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors'
             ),
             'toggle_slug' => 'form_error_style',
@@ -421,11 +421,9 @@ class TFS_GFStyler extends TFS_Builder_Module
         $advanced_fields['borders']['error'] = array(
             'css' => array(
                 'main'      => array(
-                    'border_radii'  => ('
-                        %%order_class%% .tfs-gf-styler .gform_wrapper div.validation_error, 
-                        %%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors'
+                    'border_radii'  => ('div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors'
                     ),
-                    'border_styles' => ('%%order_class%% .tfs-gf-styler .gform_wrapper div.validation_error'),
+                    'border_styles' => ('div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors'),
                 ),
                 'important' => 'all',
             ),
@@ -437,8 +435,8 @@ class TFS_GFStyler extends TFS_Builder_Module
         $advanced_fields['borders']['success'] = array(
             'css' => array(
                 'main'      => array(
-                    'border_radii'  => ('%%order_class%% .tfs-gf-styler .gform_confirmation_message'),
-                    'border_styles' => ('%%order_class%% .tfs-gf-styler .gform_confirmation_message'),
+                    'border_radii'  => ('div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_confirmation_message'),
+                    'border_styles' => ('div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_confirmation_message'),
                 ),
                 'important' => 'all',
             ),
@@ -675,7 +673,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         $this->generate_styles([
             'hover'          => false,
             'base_attr_name' => 'form_error_padding',
-            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper .ff-el-is-error .error',
+            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors',
             'css_property'   => 'padding',
             'type'           => 'custom_margin',
             'render_slug'    => $render_slug,
@@ -684,7 +682,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         $this->generate_styles([
             'hover'          => false,
             'base_attr_name' => 'form_error_bgcolor',
-            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper .ff-el-is-error .error',
+            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_validation_errors',
             'css_property'   => 'background-color',
             'render_slug'    => $render_slug,
         ]);
@@ -692,7 +690,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         $this->generate_styles([
             'hover'          => false,
             'base_attr_name' => 'form_valid_padding',
-            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper .ff-message-success',
+            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_confirmation_message',
             'css_property'   => 'padding',
             'type'           => 'custom_margin',
             'render_slug'    => $render_slug,
@@ -701,7 +699,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         $this->generate_styles([
             'hover'          => false,
             'base_attr_name' => 'form_valid_bgcolor',
-            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper .ff-message-success',
+            'selector'       => 'div%%order_class%% .tfs-gf-styler .gform_wrapper div.gform_confirmation_message',
             'css_property'   => 'background-color',
             'render_slug'    => $render_slug,
         ]);

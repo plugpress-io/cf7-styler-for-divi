@@ -1,6 +1,7 @@
 import {Route, Routes} from 'react-router-dom';
 import {default as Homepage} from './homepage';
 import {default as Modules} from './modules';
+import {default as About} from './about';
 
 const AppRoutes = () => {
     return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
                         <Routes>
                             <Route path="/" element={<Homepage />} />
                             <Route path="/modules" element={<Modules />} />
+                            <Route path="/about" element={<About />} />
                         </Routes>
                     </div>
                 </div>

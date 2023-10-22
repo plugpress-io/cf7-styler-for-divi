@@ -72,12 +72,22 @@ class Module_Manager
             return;
         }
 
-        $module_files = glob(__DIR__ . '/modules/*/*.php');
+        require_once TFS_PLUGIN_PATH . 'includes/modules/Base/Base.php';
+        require_once TFS_PLUGIN_PATH . 'includes/modules/CF7/CF7.php';
 
-        foreach ((array) $module_files as $module_file) {
-            if ($module_file && preg_match("/\/modules\/\b([^\/]+)\/\\1\.php$/", $module_file)) {
-                require_once $module_file;
-            }
+        // Check for Contact Form 7
+        if (function_exists('wpcf7')) {
+            require_once TFS_PLUGIN_PATH . 'includes/modules/CF7/CF7.php';
+        }
+
+        // Check for Fluent Forms
+        if (function_exists('wpFluentForm')) {
+            require_once TFS_PLUGIN_PATH . 'includes/modules/FF/FF.php';
+        }
+
+        // Check for Gravity Forms
+        if (class_exists('GFForms')) {
+            require_once TFS_PLUGIN_PATH . 'includes/modules/GF/GF.php';
         }
     }
 }

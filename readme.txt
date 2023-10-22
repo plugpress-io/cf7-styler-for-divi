@@ -33,6 +33,10 @@ For more information, please visit our <a href="https://divitorque.com/docs/?utm
 == Screenshots ==
 
 == Changelog ==
+= 2.0.0 =
+* Added Gravity Forms Styler
+* Added Fluent Forms Styler
+* Deprecated CF7 Grid feature for new users
 
 = 1.3.4 =
 * Remove and clean some unused code

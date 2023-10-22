@@ -4,3 +4,4 @@ export {default as Sidebar} from './sidebar';
 export {default as Toast} from './toast';
 export {default as PageTitle} from './page-title';
 export {default as Card} from './card';
+export {default as TFSAbout} from './about';
