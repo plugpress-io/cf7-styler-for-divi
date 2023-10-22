@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/divider",
+    "d4Shortcode": "torq_divider",
+    "title": "Torq Divider",
+    "titles": "Torq Divider",
+    "moduleIcon": "divitorque/module-divider",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

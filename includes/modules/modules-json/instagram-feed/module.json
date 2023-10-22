@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/instagram-feed",
+    "d4Shortcode": "torq_instagram_feed",
+    "title": "Torq Instagram Feed",
+    "titles": "Torq Instagram Feeds",
+    "moduleIcon": "divitorque/module-instagram-feed",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

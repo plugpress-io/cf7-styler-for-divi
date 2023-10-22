@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/alert",
+    "d4Shortcode": "torq_alert",
+    "title": "Torq Alert",
+    "titles": "Torq Alerts",
+    "moduleIcon": "divitorque/module-alert",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

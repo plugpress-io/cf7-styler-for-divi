@@ -3,7 +3,7 @@ name: Sync assets with wordpress.org
 on:
     push:
         branches:
-            - master
+            - main
         paths:
             - 'readme.txt'
             - '.wordpress-org/**'

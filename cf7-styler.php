@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Torque Forms Styler For Divi
+Plugin Name: Torque Forms Styler
 Plugin URI: https://divitorque.com
 Version: 2.0.0
 Author: Divi Torque

@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/progress-bar",
+    "d4Shortcode": "torq_progress_bar",
+    "title": "Torq Progress Bar",
+    "titles": "Torq Progress Bar",
+    "child_name": "divitorque/progress-bar-child",
+    "moduleIcon": "divitorque/progress-bar",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

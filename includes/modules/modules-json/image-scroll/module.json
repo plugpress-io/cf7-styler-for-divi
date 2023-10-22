@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/image-scroll",
+    "d4Shortcode": "torq_img_scroll",
+    "title": "Torq Image Scroll",
+    "titles": "Torq Image Scroll",
+    "moduleIcon": "divitorque/module-img-scroll",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

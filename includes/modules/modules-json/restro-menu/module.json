@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/restro-menu",
+    "d4Shortcode": "torq_restro_menu",
+    "title": "Torq Restro Menu",
+    "titles": "Torq Restro Menus",
+    "child_name": "divitorque/restro-menu-child",
+    "moduleIcon": "divitorque/module-restro-menu",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

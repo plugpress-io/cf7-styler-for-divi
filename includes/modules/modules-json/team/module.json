@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/team",
+    "d4Shortcode": "torq_team",
+    "title": "Torq Team",
+    "titles": "Torq Team",
+    "moduleIcon": "divitorque/module-team",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/checkmark-list",
+    "d4Shortcode": "torq_checkmark_list",
+    "title": "Torq Checkmark List",
+    "titles": "Torq Checkmark List",
+    "child_name": "divitorque/checkmark-list-child",
+    "moduleIcon": "divitorque/module-checkmark-list",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

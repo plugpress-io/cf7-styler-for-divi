@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/blurb",
+    "d4Shortcode": "torq_blurb",
+    "title": "Torq Blurb",
+    "titles": "Torq Blurbs",
+    "moduleIcon": "divitorque/module-blurb",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

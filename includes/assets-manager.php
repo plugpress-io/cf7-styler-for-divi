@@ -19,7 +19,6 @@ class Assets_Manager
     {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_builder_scripts'));
-        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
     }
 
     public function enqueue_frontend_scripts()
@@ -36,19 +35,32 @@ class Assets_Manager
             return;
         }
 
+        if (function_exists('wpFluentForm')) {
+            wp_enqueue_style('fluent-form-styles');
+            wp_enqueue_style('fluentform-public-default');
+            wp_enqueue_script('fluent-form-submission');
+        }
+
+        if (class_exists('GFForms')) {
+            wp_enqueue_style('gravity_forms_theme_reset');
+            wp_enqueue_style('gravity_forms_theme_foundation');
+            wp_enqueue_style('gravity_forms_theme_framework');
+            wp_enqueue_style('gform_basic');
+            wp_enqueue_style('gform_theme_components');
+            wp_enqueue_style('gform_theme');
+
+            wp_enqueue_script('gform_json');
+            wp_enqueue_script('gform_gravityforms');
+            wp_enqueue_script('gform_conditional_logic');
+            wp_enqueue_script('gform_masked_input');
+            wp_enqueue_script('gform_gravityforms_utils');
+            wp_enqueue_script('gform_gravityforms_theme');
+        }
+
         $mj = file_get_contents(TFS_PLUGIN_PATH . 'assets/mix-manifest.json');
         $mj = json_decode($mj, true);
 
         wp_enqueue_script('tfs-builder-js', TFS_PLUGIN_URL . 'assets' . $mj['/js/builder.js'], ['react-dom', 'react'], TFS_VERSION, true);
         wp_enqueue_style('torq-builder-css', TFS_PLUGIN_URL . 'assets' . $mj['/css/builder.css'], [], TFS_VERSION);
-    }
-
-    public function enqueue_admin_scripts()
-    {
-
-        $mj = file_get_contents(TFS_PLUGIN_PATH . 'assets/mix-manifest.json');
-        $mj = json_decode($mj, true);
-
-        wp_enqueue_script('tfs-admin-js', TFS_PLUGIN_URL . 'assets' . $mj['/js/admin.js'], ['jquery'], TFS_VERSION, true);
     }
 }

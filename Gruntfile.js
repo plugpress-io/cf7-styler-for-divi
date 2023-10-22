@@ -125,7 +125,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('package', ['clean:zip', 'replace-platform', 'copy:main', 'compress:main', 'clean:main']);
+    grunt.registerTask('package', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
 
     grunt.registerTask('action-package', ['clean:main', 'copy:main']);
 };

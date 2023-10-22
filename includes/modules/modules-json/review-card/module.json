@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/review-card",
+    "d4Shortcode": "torq_review_card",
+    "title": "Torq Review Card",
+    "titles": "Torq Review Card",
+    "moduleIcon": "divitorque/module-review-card",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/carousel",
+    "d4Shortcode": "torq_carousel",
+    "title": "Torq Carousel",
+    "titles": "Torq Carousel",
+    "child_name": "divitorque/carousel-child",
+    "moduleIcon": "divitorque/module-carousel",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

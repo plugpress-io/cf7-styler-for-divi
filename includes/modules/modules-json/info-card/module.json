@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/info-card",
+    "d4Shortcode": "torq_card",
+    "title": "Torq Info Card",
+    "titles": "Torq Info Cards",
+    "moduleIcon": "divitorque/module-info-card",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

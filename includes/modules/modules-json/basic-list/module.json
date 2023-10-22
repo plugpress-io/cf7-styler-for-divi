@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/basic-list",
+    "d4Shortcode": "torq_basic_list",
+    "title": "Torq Basic List",
+    "titles": "Torq Basic List",
+    "child_name": "divitorque/basic-list-child",
+    "moduleIcon": "divitorque/module-basic-list",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

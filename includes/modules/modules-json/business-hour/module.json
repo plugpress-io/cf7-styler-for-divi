@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/business-hour",
+    "d4Shortcode": "torq_business_hours",
+    "title": "Torq Business Hour",
+    "titles": "Torq Business Hours",
+    "child_name": "divitorque/business-hour-child",
+    "moduleIcon": "divitorque/module-business-hour",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

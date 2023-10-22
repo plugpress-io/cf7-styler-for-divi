@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/heading",
+    "d4Shortcode": "torq_heading",
+    "title": "Torq Heading",
+    "titles": "Torq Heading",
+    "moduleIcon": "divitorque/module-heading",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

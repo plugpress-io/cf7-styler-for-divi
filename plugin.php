@@ -49,6 +49,7 @@ class Plugin
     {
         include_once self::PLUGIN_PATH . 'includes/functions.php';
         require_once self::PLUGIN_PATH . 'includes/deprecated/cf7-helper.php';
+        require_once self::PLUGIN_PATH . 'includes/admin.php';
         require_once self::PLUGIN_PATH . 'includes/assets-manager.php';
         require_once self::PLUGIN_PATH . 'includes/module-manager.php';
     }
@@ -70,10 +71,11 @@ class Plugin
     public function init()
     {
         Assets_Manager::get_instance();
+        Admin::get_instance();
+        CF7_Helper::get_instance();
 
         $deprecated_options = get_option('dipe_options');
         if (isset($deprecated_options['grid']) && 'on' === $deprecated_options['grid']) {
-            CF7_Helper::get_instance();
         }
     }
 

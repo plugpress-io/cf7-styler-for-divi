@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/gradient-heading",
+    "d4Shortcode": "torq_gradient_heading",
+    "title": "Torq Gradient Heading",
+    "titles": "Torq Gradient Heading",
+    "moduleIcon": "divitorque/module-gradient-heading",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

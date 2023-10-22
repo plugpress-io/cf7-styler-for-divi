@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/icon-list",
+    "d4Shortcode": "torq_icon_list",
+    "title": "Torq Icon List",
+    "titles": "Torq Icon List",
+    "child_name": "divitorque/icon-list-child",
+    "moduleIcon": "divitorque/module-icon-list",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/inline-svg",
+    "d4Shortcode": "torq_svg",
+    "title": "Torq Inline SVG",
+    "titles": "Torq Inline SVG",
+    "moduleIcon": "divitorque/module-inline-svg",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

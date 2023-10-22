@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/star-rating",
+    "d4Shortcode": "torq_social_share",
+    "title": "Torq Star Rating",
+    "titles": "Torq Star Rating",
+    "moduleIcon": "divitorque/module-star-rating",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

@@ -1,0 +1,81 @@
+.tfs-ff-styler .fluentform input[type='checkbox'],
+.tfs-ff-styler .fluentform input[type='radio'],
+.tfs-ff-styler select {
+    appearance: none;
+    border-style: solid;
+}
+
+.tfs-ff-styler .fluentform input[type='checkbox'],
+.tfs-ff-styler .fluentform input[type='radio'] {
+    box-sizing: content-box;
+    display: inline-block;
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.tfs-ff-styler .fluentform input[type='checkbox']:before,
+.tfs-ff-styler .fluentform input[type='radio']:before {
+    content: '';
+    box-sizing: content-box;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.tfs-ff-styler .fluentform input[type='checkbox']:focus,
+.tfs-ff-styler .fluentform input[type='radio']:focus {
+    outline: 0;
+}
+
+.tfs-ff-styler .fluentform .ff-el-form-check label.ff-el-form-check-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+.tfs-ff-styler .fluentform input[type='radio'],
+.tfs-ff-styler .fluentform input[type='radio']:checked:before {
+    border-radius: 100%;
+}
+
+.tfs-ff-styler .fluentform input[type='checkbox']:checked:before {
+    content: '\2714';
+    line-height: 1.2;
+}
+
+// .tfs-ff-input-size-xs .tfs-ff-styler .fluentform .ff-el-form-control {
+//     font-size: 13px;
+//     padding: 8px 10px;
+// }
+
+// .tfs-ff-input-size-sm .tfs-ff-style .fluentform .ff-el-form-control {
+//     font-size: 15px;
+//     padding: 12px 10px;
+// }
+
+// .tfs-ff-input-size-md .tfs-ff-style .fluentform .ff-el-form-control {
+//     font-size: 16px;
+//     padding: 15px 10px;
+// }
+
+// .tfs-ff-input-size-lg .tfs-ff-style .fluentform .ff-el-form-control {
+//     font-size: 18px;
+//     padding: 20px 10px;
+// }
+
+// .tfs-ff-input-size-xl .tfs-ff-style .fluentform .ff-el-form-control {
+//     font-size: 20px;
+//     padding: 25px 10px;
+// }
+
+// .tfs-ff-input-size-xl .tfs-ff-style .tfs-ff-select-custom {
+//     font-size: 20px;
+// }
+
+// .tfs-ff-style .fluentform select.ff-el-form-control:not([size]):not([multiple]) {
+//     height: auto;
+// }

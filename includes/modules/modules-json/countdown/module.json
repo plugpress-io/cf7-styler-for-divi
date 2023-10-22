@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/countdown",
+    "d4Shortcode": "torq_countdown",
+    "title": "Torq Countdown",
+    "titles": "Torq Countdown",
+    "moduleIcon": "divitorque/module-countdown",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

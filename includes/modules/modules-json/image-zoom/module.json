@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/image-zoom",
+    "d4Shortcode": "torq_image_zoom",
+    "title": "Torq Image Zoom",
+    "titles": "Torq Image Zoom",
+    "moduleIcon": "divitorque/module-img-zoom",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/social-share",
+    "d4Shortcode": "torq_social_share",
+    "title": "Torq Social Share",
+    "titles": "Torq Social Share",
+    "child_name": "divitorque/social-share-child",
+    "moduleIcon": "divitorque/module-social-share",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

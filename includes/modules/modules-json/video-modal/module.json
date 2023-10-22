@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/video-modal",
+    "d4Shortcode": "torq_video_modal",
+    "title": "Torq Video Modal",
+    "titles": "Torq Video Modal",
+    "moduleIcon": "divitorque/module-video-modal",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

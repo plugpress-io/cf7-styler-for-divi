@@ -30,6 +30,21 @@ class CF7_Helper
     {
         $this->initialize_tag_generator();
         $this->initialize_shortcodes();
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
+    }
+
+    /**
+     *  Enqueue admin scripts
+     *
+     * @return void
+     */
+    public function enqueue_admin_scripts()
+    {
+
+        $mj = file_get_contents(TFS_PLUGIN_PATH . 'assets/mix-manifest.json');
+        $mj = json_decode($mj, true);
+
+        wp_enqueue_script('tfs-admin-js', TFS_PLUGIN_URL . 'assets' . $mj['/js/cf7-util.js'], ['jquery'], TFS_VERSION, true);
     }
 
     /**

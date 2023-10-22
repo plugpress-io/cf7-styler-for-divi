@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/content-toggle",
+    "d4Shortcode": "torq_content-toggle",
+    "title": "Torq Content Toggle",
+    "titles": "Torq Content Toggle",
+    "moduleIcon": "divitorque/module-content-toggle",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

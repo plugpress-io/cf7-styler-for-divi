@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/timeline",
+    "d4Shortcode": "torq_timeline",
+    "title": "Torq Timeline",
+    "titles": "Torq Timeline",
+    "child_name": "divitorque/timeline-child",
+    "moduleIcon": "divitorque/module-timeline",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

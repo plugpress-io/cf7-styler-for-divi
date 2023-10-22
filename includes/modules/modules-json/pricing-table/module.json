@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/pricing-table",
+    "d4Shortcode": "torq_pricing_table",
+    "title": "Torq Pricing Table",
+    "titles": "Torq Pricing Table",
+    "child_name": "divitorque/pricing-table-child",
+    "moduleIcon": "divitorque/module-pricing-table",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { generateStyles } from '@Dependencies/styles';
 import { renderDiviFont } from '@Dependencies/et-render-font';
 
-class CF7_Styler extends Component {
+class CF7Styler extends Component {
     static slug = "dvppl_cf7_styler";
 
     static css(props) {
@@ -444,4 +444,4 @@ class CF7_Styler extends Component {
 
 }
 
-export default CF7_Styler;
+export default CF7Styler;

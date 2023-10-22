@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/icon-box",
+    "d4Shortcode": "torq_icon_box",
+    "title": "Torq Iconbox",
+    "titles": "Torq Iconboxs",
+    "moduleIcon": "divitorque/module-icon-box",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

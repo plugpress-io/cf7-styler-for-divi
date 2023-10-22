@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/hotspots",
+    "d4Shortcode": "torq_hotspot",
+    "title": "Torq Hotspots",
+    "titles": "Torq Hotspots",
+    "child_name": "divitorque/hotspots-child",
+    "moduleIcon": "divitorque/module-hotspots",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

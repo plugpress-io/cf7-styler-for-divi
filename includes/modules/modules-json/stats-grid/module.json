@@ -1,0 +1,11 @@
+{
+    "name": "divitorque/stats-grid",
+    "d4Shortcode": "torq_stats_grid",
+    "title": "Torq Stats Grid",
+    "titles": "Torq Stats Grid",
+    "child_name": "divitorque/stats-grid-child",
+    "moduleIcon": "divitorque/module-stats-grid",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

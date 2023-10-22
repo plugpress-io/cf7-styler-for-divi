@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/filterable-gallery",
+    "d4Shortcode": "torq_filterable_gallery",
+    "title": "Torq Filterable Gallery",
+    "titles": "Torq Filterable Galleries",
+    "moduleIcon": "divitorque/filterable-gallery",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

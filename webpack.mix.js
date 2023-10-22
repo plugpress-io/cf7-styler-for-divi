@@ -1,7 +1,6 @@
 const mix = require('laravel-mix');
 const wpPot = require('wp-pot');
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 mix.setPublicPath('assets')
     .sourceMaps(false)
@@ -13,7 +12,7 @@ mix.setPublicPath('assets')
     .js('src/dashboard/index.js', 'assets/js/dashboard.js')
 
     // Admin JS
-    .js('src/dashboard/admin.js', 'assets/js/admin.js')
+    .js('src/utils/cf7-util.js', 'assets/js/cf7-util.js')
 
     // Builder CSS
     .sass('src/modules/style.scss', 'assets/css/builder.css')
@@ -30,6 +29,8 @@ mix.webpackConfig({
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
+            '@DashboardApp': path.resolve(__dirname, 'src/dashboard/app'),
+            '@DashboardComponents': path.resolve(__dirname, 'src/dashboard/app/components'),
             '@Dependencies': path.resolve(__dirname, 'src/dependencies'),
         },
     },

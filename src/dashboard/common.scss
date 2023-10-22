@@ -1,0 +1,119 @@
+#wpcontent {
+    padding-left: 0;
+}
+
+body.toplevel_page_divitorque {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.tfs-dashboard-app {
+    --color-primary: #ff6900;
+    --color-interactive-primary: #0a236d;
+    --color-link-primary: #454f59;
+    --color-link-accent: #454f59;
+    --color-link-hover: #ff6900;
+    --color-interactive-accent: #ff6900;
+    --color-interactive-accent-hover: #f8ecd9;
+    --color-interactive-accent-active: #fef2fa;
+
+    .Toastify__toast-container {
+        top: 4em;
+    }
+
+    .dt-sidebar .dashicons {
+        margin-right: 10px;
+    }
+
+    .components-form-toggle .components-form-toggle__track {
+        background-color: var(--color-link-accent);
+        border: 1px solid var(--color-link-accent);
+    }
+
+    .components-form-toggle .components-form-toggle__thumb {
+        background-color: #ffffff;
+        border: 5px solid #ffffff;
+    }
+
+    .components-form-toggle.is-checked .components-form-toggle__track {
+        background-color: var(--color-primary);
+        border: 1px solid var(--color-primary);
+    }
+
+    .components-form-toggle.is-checked .components-form-toggle__thumb {
+        background-color: #ffffff;
+        border: 5px solid #ffffff;
+    }
+
+    .components-form-toggle:focus .components-form-toggle__track {
+        box-shadow: 0 0 0 1px var(--color-primary);
+    }
+
+    .dt-app-bg {
+        --tw-bg-opacity: 1;
+        background-color: rgb(244 247 251 / var(--tw-bg-opacity));
+    }
+
+    a:focus,
+    button:focus,
+    input:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+    a {
+        color: var(--color-link-primary);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+        &:hover {
+            color: var(--color-link-hover);
+        }
+    }
+
+    .dt-active {
+        color: var(--color-primary);
+    }
+
+    .dt-primary-bg {
+        background-color: var(--color-interactive-accent);
+    }
+
+    .dt-primary-bg-hover {
+        background-color: var(--color-interactive-accent-hover);
+    }
+
+    .dt-primary-text {
+        color: var(--color-interactive-primary);
+    }
+
+    .dt-input {
+        .components-base-control__field {
+            margin-bottom: 0;
+        }
+
+        input[type='text'],
+        input[type='password'] {
+            background: transparent;
+            border-radius: 7.5px;
+            box-shadow: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: -0.011em;
+            line-height: 24px;
+            min-height: auto;
+            outline: none;
+            padding: 5px 12px;
+            width: 100%;
+        }
+    }
+
+    .dt-toggle {
+        .components-base-control__field {
+            margin-bottom: 0;
+        }
+    }
+
+    .logo-dt svg {
+        width: 100%;
+    }
+}

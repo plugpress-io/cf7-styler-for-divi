@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/flip-box",
+    "d4Shortcode": "torq_flipbox",
+    "title": "Torq Flipbox",
+    "titles": "Torq Flipbox",
+    "moduleIcon": "divitorque/module-flip-box",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

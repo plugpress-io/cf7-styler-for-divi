@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/compare-image",
+    "d4Shortcode": "torq_compare_image",
+    "title": "Torq Compare Image",
+    "titles": "Torq Compare Images",
+    "moduleIcon": "divitorque/module-compare-image",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

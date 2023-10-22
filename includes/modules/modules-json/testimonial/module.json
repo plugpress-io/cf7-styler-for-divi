@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/testimonial",
+    "d4Shortcode": "torq_testimonial",
+    "title": "Torq Testimonial",
+    "titles": "Torq Testimonial",
+    "moduleIcon": "divitorque/module-testimonial",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}

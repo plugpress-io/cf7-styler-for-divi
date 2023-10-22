@@ -1,0 +1,10 @@
+{
+    "name": "divitorque/lottie",
+    "d4Shortcode": "torq_lottie",
+    "title": "Torq Lottie",
+    "titles": "Torq Lottie",
+    "moduleIcon": "divitorque/module-lottie",
+    "category": "module",
+    "attributes": {},
+    "customCssFields": {}
+}
