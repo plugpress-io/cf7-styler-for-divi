@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: Divi Torque <hello@divitorque.com>\n"
-"POT-Creation-Date: 2023-10-22 14:47+0000\n"
+"POT-Creation-Date: 2023-10-23 18:33+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/admin.php:36, includes/admin.php:37
+#: includes/admin.php:37, includes/admin.php:38
 msgid "Torque Forms Styler"
 msgstr ""
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "Radio & Checkbox"
 msgstr ""
 
-#: includes/modules/CF7/CF7.php:59, includes/modules/CF7/CF7.php:671, includes/modules/FF/FF.php:60, includes/modules/FF/FF.php:399, includes/modules/GF/GF.php:60, includes/modules/GF/GF.php:452
+#: includes/modules/CF7/CF7.php:59, includes/modules/CF7/CF7.php:671, includes/modules/FF/FF.php:60, includes/modules/FF/FF.php:399, includes/modules/GF/GF.php:60, includes/modules/GF/GF.php:450
 msgid "Button"
 msgstr ""
 
@@ -515,10 +515,10 @@ msgstr ""
 msgid "Choose the Gravity Forms valid background color."
 msgstr ""
 
-#: includes/modules/GF/GF.php:480, includes/modules/GF/GF.php:496
+#: includes/modules/GF/GF.php:478, includes/modules/GF/GF.php:494
 msgid "Please install Gravity Forms plugin."
 msgstr ""
 
-#: includes/modules/GF/GF.php:511
+#: includes/modules/GF/GF.php:509
 msgid "Please select a Gravity Form."
 msgstr ""

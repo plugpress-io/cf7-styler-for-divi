@@ -68,12 +68,17 @@ module.exports = function (grunt) {
             },
 
             plugin_main: {
-                src: ['cf7-styler.php'],
+                src: ['cf7-styler.php', 'readme.txt'],
                 overwrite: true,
                 replacements: [
                     {
                         from: /Version: \bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?(?:\+[\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\b/g,
                         to: 'Version: <%= pkg.version %>',
+                    },
+
+                    {
+                        from: /Stable tag: \bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?(?:\+[\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\b/g,
+                        to: 'Stable tag: <%= pkg.version %>',
                     },
                 ],
             },

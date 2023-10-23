@@ -17,9 +17,10 @@ class Admin
     private function __construct()
     {
         add_action('admin_menu', array($this, 'admin_menu'), 99);
+        add_action('wp_ajax_tfs_close_modal', array($this, 'tfs_handle_close_modal'));
+        add_action('wp_ajax_nopriv_tfs_close_modal', array($this, 'tfs_handle_close_modal'));
     }
 
-    // The object is created from within the class itself only if the class has no instance.
     public static function get_instance()
     {
         if (self::$instance == null) {
@@ -93,13 +94,35 @@ class Admin
     private function get_localized_data()
     {
         return apply_filters('divitorque_admin_localize', [
+            'ajaxUrl' => esc_url_raw(admin_url('admin-ajax.php')),
             'root' => esc_url_raw(get_rest_url()),
-            'nonce' => wp_create_nonce('wp_rest'),
             'assetsPath' => esc_url_raw(TFS_PLUGIN_ASSETS),
             'version' => TFS_VERSION,
             'home_slug' => self::TFS_SLUG,
             'modules' => Module_Manager::get_all_modules(),
+            'isModalVisible' => self::is_modal_visible(),
+            'isProInstalled' => self::is_divi_torque_pro_installed(),
+            'nonce'    => wp_create_nonce('tfs_nonce'),
         ]);
+    }
+
+    private function is_modal_visible()
+    {
+        return get_option('tfs_modal_displayed') !== '1';
+    }
+
+    function tfs_handle_close_modal()
+    {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'tfs_nonce')) {
+            echo json_encode(array('status' => 'error', 'message' => 'Unauthorized request!'));
+            wp_die();
+        }
+
+        update_option('tfs_modal_displayed', '1');
+
+        echo json_encode(array('status' => 'success', 'message' => 'Modal display option updated.'));
+
+        wp_die();
     }
 
     public function menu_icon()

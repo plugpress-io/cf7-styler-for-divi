@@ -1,24 +1,45 @@
 === Torque Forms Styler For Divi ===
-Contributors: wppaw, badhonrocks
+Contributors: wppaw, divitorque, badhonrocks, asifsiam97
 Tags: divi, divi modules, contact form 7, divi builder, divi theme
 Donate link: https://divitorque.com/
 Requires at least: 5.0
-Tested up to: 6.2
-Stable tag: 1.3.5
+Tested up to: 6.3
+Stable tag: 2.0.0
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-Create professional-looking Contact Form 7 forms using the Divi Contact Form 7 plugin within the Divi Builder.
+The Torque Forms Styler module for Divi Builder allows you to style your Contact Form 7, Gravity Forms, and Fluent Forms.
 
 == Description ==
 
-This plugin introduces a new module to the Divi Builder, allowing for seamless integration with Contact Form 7. With a simple drag-and-drop functionality from a dropdown list, users can avoid the cumbersome process of navigating to CF7, copying the shortcode, and manually adding it to a text module within the Divi Builder.
+<strong>TORQUE FORMS STYLER: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
 
-- Simplified drag-and-drop functionality for easy integration with Contact Form 7 within the Divi Builder.
-- Multiple style options available, including hover, focus, and custom CSS options for advanced customization.
-- Directly define styles for various components such as input, label, send button, and success messages from within the Divi Builder interface.
+★★★★★
 
-**Please note that this plugin is an extension of the Divi Builder and requires the presence of both Divi Builder and Contact Form 7 plugins for proper functioning. For more information on the Divi Builder plugin, kindly visit the Elegant Themes website at elegantthemes.com.**
+Most helpful links
+<ul>
+ 	<li><a href="https://divitorque.com/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Divi Torque Plugin</a></li>
+ 	<li><a href="https://divitorque.com/changelog/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Divi Torque Changelog</a></li>
+ 	<li><a href="https://divitorque.com/docs/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Knowledge Base</a></li>
+</ul>
+
+Unleash the power of seamless design with the Torque Forms Styler module for Divi Builder. No longer will you wrestle with shortcodes or be confined to limited customization. With our module, integrating and designing Contact Form 7, Gravity Forms, or Fluent Forms becomes an effortless task.
+
+<strong>SOME POWERFUL FEATURES  💪</strong>
+
+<ul>
+    <li><strong>Contact Form 7 Module:</strong></li> Seamlessly integrate and design your Contact Form 7 right inside the Divi Builder. A dedicated module ensures that every detail of your contact form aligns perfectly with your overall design.
+
+    <li><strong>Gravity Forms Module:</strong></li> Directly craft and stylize Gravity Forms within the Divi Builder. Experience firsthand the power of cohesive design integration without any hiccups.
+
+    <li><strong>Fluent Forms Module:</strong></li> Bring Fluent Forms to life inside Divi Builder. This module provides intuitive tools and design options, making form customization more immersive than ever.
+
+    <li><strong>Intuitive Design Options for All Forms:</strong></li> Each module is equipped with the unmatched design capabilities of the Divi Builder. From simple color changes to advanced styling, every element of your forms can be perfected.
+
+    <li><strong>Easy to Use:</strong></li> The Torque Forms Styler module is designed to be intuitive and easy to use. No coding knowledge is required to create stunning forms that will elevate your website.
+</ul>
+
+Dive into a world where design meets functionality, all thanks to the Torque Forms Styler for Divi Builder. With our plugin, you can easily customize your contact form within the Divi builder. No more shortcodes, no more limited customization. Just a seamless experience that will make your website stand out from the crowd.
 
 == Installation ==
 
@@ -26,17 +47,19 @@ This plugin introduces a new module to the Divi Builder, allowing for seamless i
 
 Install the Torque Forms Styler For Divi either via the WordPress plugin directory or by uploading the files to your server at wp-content/plugins.
 
-For more information, please visit our <a href="https://divitorque.com/docs/?utm_campaign=wporg&utm_source=torquemasonrygallery&utm_medium=textlink" target="_blank" rel="">Knowledge Base.</a>
+For more information, please visit our <a href="https://divitorque.com/docs/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Knowledge Base.</a>
 
 == Frequently Asked Questions ==
 
 == Screenshots ==
 
 == Changelog ==
+
 = 2.0.0 =
 * Added Gravity Forms Styler
 * Added Fluent Forms Styler
 * Deprecated CF7 Grid feature for new users
+* Rebranding from Divi Contact Form Styler to Torque Forms Styler
 
 = 1.3.4 =
 * Remove and clean some unused code
@@ -54,3 +77,8 @@ For more information, please visit our <a href="https://divitorque.com/docs/?utm
 = 1.3.0 =
 * Implemented security fix
 
+== Upgrade Notice ==
+
+= 2.0.0 =
+
+We have optimized the internal structure of the Torque Form Styler in this update. To ensure the safety of your website, we recommend that you back up your website before updating it. Additionally, we have changed the name from Divi Contact Form Styler to Torque Forms Styler.

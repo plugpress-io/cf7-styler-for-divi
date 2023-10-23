@@ -63,6 +63,7 @@ class Plugin
         add_action('divi_extensions_init', [$this, 'init_extension']);
         add_filter('plugin_action_links_' . self::BASENAME, [$this, 'add_plugin_action_links']);
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
+        add_action('admin_init', [$this, 'plugin_activation_redirect']);
     }
 
     /**
@@ -84,7 +85,19 @@ class Plugin
      */
     public function on_activation()
     {
-        // To be implemented
+        add_option('tfs_plugin_do_activation_redirect', true);
+    }
+
+    /**
+     * Redirect to plugin page after activation
+     */
+    public function plugin_activation_redirect()
+    {
+        if (get_option('tfs_plugin_do_activation_redirect', false)) {
+            delete_option('tfs_plugin_do_activation_redirect');
+            wp_redirect(admin_url('admin.php?page=tfs'));
+            exit;
+        }
     }
 
     /**
@@ -103,7 +116,6 @@ class Plugin
      */
     public function add_plugin_action_links($links)
     {
-
         $links[] = sprintf('<a href="%s" target="_blank" style="color: #197efb;font-weight: 600;">%s</a>', self::DOCS_LINK, __('Docs', 'divitorque'));
         $links[] = sprintf('<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>', self::PRICING_LINK, __('Get Torque Pro', 'divitorque'));
         return $links;

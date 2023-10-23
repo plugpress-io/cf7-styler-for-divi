@@ -1,9 +1,9 @@
 import {__} from '@wordpress/i18n';
 import {Card} from '@DashboardApp/components';
 
-const Homepage = () => {
+const Help = () => {
     return (
-        <div className="dt-home">
+        <div className="dt-help">
             <div className="grid gap-3 lg:gap-10 grid-cols-3">
                 <Card
                     title={__('Knowledge Base', 'divitorque')}
@@ -32,11 +32,11 @@ const Homepage = () => {
                         'divitorque'
                     )}
                     buttonText={__('Join Now →', 'divitorque')}
-                    onButtonClick="https://www.facebook.com/groups/wppaw"
+                    onButtonClick="https://www.facebook.com/groups/divitorque"
                 />
             </div>
         </div>
     );
 };
 
-export default Homepage;
+export default Help;

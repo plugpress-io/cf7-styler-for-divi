@@ -1,10 +1,10 @@
 import AppRoutes from './routes';
-import {Sidebar} from '@DashboardApp/components';
+import {Header, Modal} from '@DashboardApp/components';
 
 const App = () => {
     return (
-        <div className="h-full min-h-screen flex gap-0 dt-app-bg">
-            <Sidebar />
+        <div className="h-full flex flex-col gap-[3rem]">
+            <Header />
             <AppRoutes />
         </div>
     );
