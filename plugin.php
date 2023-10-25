@@ -95,9 +95,20 @@ class Plugin
     {
         if (get_option('tfs_plugin_do_activation_redirect', false)) {
             delete_option('tfs_plugin_do_activation_redirect');
+
+            if ($this->is_divi_torque_pro_installed()) {
+                wp_redirect(admin_url('admin.php?page=divitorque-pro'));
+                exit;
+            }
+
             wp_redirect(admin_url('admin.php?page=tfs'));
             exit;
         }
+    }
+
+    public function is_divi_torque_pro_installed()
+    {
+        return defined('DTP_VERSION');
     }
 
     /**
