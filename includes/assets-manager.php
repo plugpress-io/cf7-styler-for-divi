@@ -60,7 +60,7 @@ class Assets_Manager
         $mj = file_get_contents(TFS_PLUGIN_PATH . 'assets/mix-manifest.json');
         $mj = json_decode($mj, true);
 
-        wp_enqueue_script('tfs-builder-js', TFS_PLUGIN_URL . 'assets' . $mj['/js/builder.js'], ['react-dom', 'react'], TFS_VERSION, true);
-        wp_enqueue_style('torq-builder-css', TFS_PLUGIN_URL . 'assets' . $mj['/css/builder.css'], [], TFS_VERSION);
+        wp_enqueue_script('tfs-builder', TFS_PLUGIN_URL . 'assets' . $mj['/js/builder.js'], ['react-dom', 'react'], TFS_VERSION, true);
+        wp_enqueue_style('tfs-builder', TFS_PLUGIN_URL . 'assets' . $mj['/css/builder.css'], [], TFS_VERSION);
     }
 }

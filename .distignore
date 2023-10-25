@@ -19,7 +19,7 @@ Gruntfile.js
 postcss.config.js
 webpack.mix.js
 wp-textdomain.js
-mix-manifest.json
+tailwind.config.js
 .prettierignore
 .prettierrc.json
 /src
