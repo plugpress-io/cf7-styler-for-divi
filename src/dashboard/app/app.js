@@ -1,5 +1,5 @@
 import AppRoutes from './routes';
-import {Header, Modal} from '@DashboardApp/components';
+import {Header} from '@DashboardApp/components';
 
 const App = () => {
     return (

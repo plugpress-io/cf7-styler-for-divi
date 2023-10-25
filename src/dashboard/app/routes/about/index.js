@@ -5,16 +5,14 @@ function About() {
     const modules = {
         modules: [
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/image-carousel.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/image-carousel.svg',
                 imageAlt: 'Image Carousel',
                 title: 'Image Carousel',
                 description: 'Enhance your web pages with the dynamic flair of the Image Carousel.',
                 url: 'https://divitorque.com/image-carousel-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/lottie.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/lottie.svg',
                 imageAlt: 'Lottie Animation',
                 title: 'Lottie Animation',
                 description:
@@ -22,8 +20,7 @@ function About() {
                 url: 'https://divitorque.com/lottie-animation-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/toggle.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/toggle.svg',
                 imageAlt: 'Content Toggle',
                 title: 'Content Toggle',
                 description:
@@ -31,8 +28,7 @@ function About() {
                 url: 'https://divitorque.com/content-toggle-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/Timeline.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/Timeline.svg',
                 imageAlt: 'Timeline Module',
                 title: 'Timeline Module',
                 description:
@@ -40,8 +36,7 @@ function About() {
                 url: 'https://divitorque.com/vertical-timeline-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/heading.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/heading.svg',
                 imageAlt: 'Gradient Heading',
                 title: 'Gradient Heading',
                 description:
@@ -49,8 +44,7 @@ function About() {
                 url: 'https://divitorque.com/gradient-heading-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/Modal.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/Modal.svg',
                 imageAlt: 'Video Modal',
                 title: 'Video Modal',
                 description:
@@ -58,8 +52,7 @@ function About() {
                 url: 'https://divitorque.com/video-popup-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/social-share.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/social-share.svg',
                 imageAlt: 'Social Share',
                 title: 'Social Share Buttons',
                 description:
@@ -67,8 +60,7 @@ function About() {
                 url: 'https://divitorque.com/social-share-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/testimonial.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/testimonial.svg',
                 imageAlt: 'Testimonial',
                 title: 'Testimonial Module',
                 description:
@@ -76,8 +68,7 @@ function About() {
                 url: 'https://divitorque.com/testimonial-module/',
             },
             {
-                imageUrl:
-                    'https://cdn.divitorque.com/spai/q_lossy+w_80+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/review.svg',
+                imageUrl: 'https://divitorque.b-cdn.net/dashboard/review.svg',
                 imageAlt: 'Product Review',
                 title: 'Product Review',
                 description:
@@ -108,7 +99,7 @@ function About() {
                 </div>
                 <div className="container px-10 flex flex-col items-center justify-center">
                     <img
-                        src="https://cdn.divitorque.com/spai/q_lossy+w_2360+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/hero-image-1.png"
+                        src="https://divitorque.b-cdn.net/dashboard/hero-image.png"
                         alt="Divi Torque Pro"
                     />
                 </div>
@@ -120,7 +111,7 @@ function About() {
                 </div>
 
                 <FeatureBox
-                    imageUrl="https://cdn.divitorque.com/spai/q_lossy+w_1145+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/InstagramModule.png"
+                    imageUrl="https://divitorque.b-cdn.net/dashboard/instagram-feed.png"
                     imageAlt="Instagram Feed"
                     title="Instagram Feed"
                     description="Enhance user experience and boost brand visibility by integrating captivating live feeds from your Instagram profile(s) into your website using our user-friendly and adaptable Instagram module."
@@ -128,7 +119,7 @@ function About() {
                 />
 
                 <FeatureBox
-                    imageUrl="https://cdn.divitorque.com/spai/q_lossy+w_1145+to_webp+ret_img/divitorque.com/wp-content/uploads/2023/10/FilterableGalleryModule.png"
+                    imageUrl="https://divitorque.b-cdn.net/dashboard/filterable-gallery.png"
                     imageAlt="Filterable Gallery"
                     title="Filterable Gallery"
                     description="Elevate your visual showcase with the Filterable Gallery module. Effortlessly organize and display high-quality images with dynamic filtering options in a beautifully crafted layout."

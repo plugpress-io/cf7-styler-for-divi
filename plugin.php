@@ -105,7 +105,7 @@ class Plugin
      */
     public function load_textdomain()
     {
-        load_plugin_textdomain('divitorque', false, self::BASENAME_DIR . '/languages');
+        load_plugin_textdomain('torque-forms-styler', false, self::BASENAME_DIR . '/languages');
     }
 
     /**
@@ -116,8 +116,8 @@ class Plugin
      */
     public function add_plugin_action_links($links)
     {
-        $links[] = sprintf('<a href="%s" target="_blank" style="color: #197efb;font-weight: 600;">%s</a>', self::DOCS_LINK, __('Docs', 'divitorque'));
-        $links[] = sprintf('<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>', self::PRICING_LINK, __('Get Torque Pro', 'divitorque'));
+        $links[] = sprintf('<a href="%s" target="_blank" style="color: #197efb;font-weight: 600;">%s</a>', self::DOCS_LINK, __('Docs', 'torque-forms-styler'));
+        $links[] = sprintf('<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>', self::PRICING_LINK, __('Get Torque Pro', 'torque-forms-styler'));
         return $links;
     }
 

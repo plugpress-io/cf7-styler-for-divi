@@ -2,7 +2,7 @@ import {render} from '@wordpress/element';
 import {HashRouter} from 'react-router-dom';
 import domReady from '@wordpress/dom-ready';
 import App from './app/app';
-import {Header, Modal} from '@DashboardApp/components';
+import {Modal} from '@DashboardApp/components';
 
 domReady(() => {
     const root = document.getElementById('tfs-root');
