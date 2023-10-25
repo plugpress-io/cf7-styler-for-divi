@@ -4,7 +4,7 @@ Tags: divi, divi modules, contact form 7, divi builder, divi theme
 Donate link: https://divitorque.com/
 Requires at least: 5.0
 Tested up to: 6.3
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
