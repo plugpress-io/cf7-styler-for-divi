@@ -55,6 +55,9 @@ For more information, please visit our <a href="https://divitorque.com/docs/?utm
 
 == Changelog ==
 
+= 2.0.1 =
+* Fixed PHP error ( Asset file not found )
+
 = 2.0.0 =
 * Added Gravity Forms Styler
 * Added Fluent Forms Styler
