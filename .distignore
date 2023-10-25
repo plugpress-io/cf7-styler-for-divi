@@ -16,8 +16,10 @@ composer.json
 composer.lock
 phpcs.xml.dist
 Gruntfile.js
+postcss.config.js
 webpack.mix.js
 wp-textdomain.js
+mix-manifest.json
 .prettierignore
 .prettierrc.json
 /src
