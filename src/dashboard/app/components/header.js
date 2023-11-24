@@ -4,7 +4,7 @@ import {Logo, Menu, RightMenu} from '@DashboardApp/components';
 
 const Header = () => {
     return (
-        <header className="bg-[#0A236D] p-4 md:p-6">
+        <header className="bg-[#4350dc] p-4 md:p-6">
             <div className="container mx-auto max-w-screen-xl px-4 md:px-0 flex items-center justify-between">
                 <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <Link

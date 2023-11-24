@@ -74,20 +74,7 @@ class Module_Manager
 
         require_once TFS_PLUGIN_PATH . 'includes/modules/Base/Base.php';
         require_once TFS_PLUGIN_PATH . 'includes/modules/CF7/CF7.php';
-
-        // Check for Contact Form 7
-        if (function_exists('wpcf7')) {
-            require_once TFS_PLUGIN_PATH . 'includes/modules/CF7/CF7.php';
-        }
-
-        // Check for Fluent Forms
-        if (function_exists('wpFluentForm')) {
-            require_once TFS_PLUGIN_PATH . 'includes/modules/FF/FF.php';
-        }
-
-        // Check for Gravity Forms
-        if (class_exists('GFForms')) {
-            require_once TFS_PLUGIN_PATH . 'includes/modules/GF/GF.php';
-        }
+        require_once TFS_PLUGIN_PATH . 'includes/modules/FF/FF.php';
+        require_once TFS_PLUGIN_PATH . 'includes/modules/GF/GF.php';
     }
 }

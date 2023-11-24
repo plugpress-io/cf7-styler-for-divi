@@ -26,7 +26,7 @@ const Modules = () => {
         <div className="rounded-xl w-full max-w-screen-xl mx-auto p-[24px] bg-white shadow-lg">
             <div className="pb-5 border-b border-slate-200">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center">
-                    {__('Torque Modules', 'divitorque')}
+                    {__('Divi Modules', 'divitorque')}
                     {moduleCount && (
                         <span className="ml-3 text-sm font-medium text-white bg-[#ff6900] rounded-full w-7 h-7 flex items-center justify-center">
                             {moduleCount}
@@ -41,7 +41,7 @@ const Modules = () => {
                     )}
                 </p>
             </div>
-            <div className="mt-5 mx-auto grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5">
+            <div className="mt-5 mx-auto grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 py-5">
                 {modules?.map((module, index) => (
                     <ModuleCard key={index} moduleInfo={module} />
                 ))}

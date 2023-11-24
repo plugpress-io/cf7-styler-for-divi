@@ -34,10 +34,10 @@ class Admin
         if (!$this->is_divi_torque_pro_installed()) {
             add_submenu_page(
                 'et_divi_options',
-                __('Torque Forms Styler', 'torque-forms-styler'),
-                __('Torque Forms Styler', 'torque-forms-styler'),
+                __('Divi Forms Styler', 'torque-forms-styler'),
+                __('Divi Forms Styler', 'torque-forms-styler'),
                 'manage_options',
-                'tfs',
+                'divi-forms-styler',
                 [$this, 'load_page']
             );
         } else {
@@ -108,7 +108,7 @@ class Admin
 
     private function is_modal_visible()
     {
-        return get_option('tfs_modal_displayed') !== '1';
+        return get_option('tfs_modal_bfcm') !== '1';
     }
 
     function tfs_handle_close_modal()
@@ -118,7 +118,7 @@ class Admin
             wp_die();
         }
 
-        update_option('tfs_modal_displayed', '1');
+        update_option('tfs_modal_bfcm', '1');
 
         echo json_encode(array('status' => 'success', 'message' => 'Modal display option updated.'));
 

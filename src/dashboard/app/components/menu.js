@@ -5,7 +5,7 @@ const MenuComponent = () => {
         <NavLink
             key={path}
             to={path}
-            className="flex items-center text-base font-normal text-[#fff] hover:text-slate-100 transition duration-300"
+            className="flex items-center text-base font-normal text-[#fff] active:text-[#fff] hover:text-[#fff] transition duration-400"
             aria-label={`Navigate to ${name}`}
         >
             {name}
@@ -13,7 +13,7 @@ const MenuComponent = () => {
     );
 
     const menuItems = [
-        {name: 'Modules', path: '/modules'},
+        // {name: 'Modules', path: '/modules'},
         {name: 'About', path: '/about'},
         {name: 'Help', path: '/help'},
     ];

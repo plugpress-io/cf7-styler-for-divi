@@ -1,4 +1,4 @@
-=== Torque Forms Styler For Divi ===
+=== Divi Forms Styler - Gravity Forms, Fluent Forms & Contact Form 7 ===
 Contributors: wppaw, divitorque, badhonrocks, asifsiam97
 Tags: divi, divi modules, contact form 7, divi builder, divi theme
 Donate link: https://divitorque.com/
@@ -8,11 +8,11 @@ Stable tag: 2.0.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-The Torque Forms Styler module for Divi Builder allows you to style your Contact Form 7, Gravity Forms, and Fluent Forms.
+The Divi Forms Styler module for Divi Builder allows you to style your Contact Form 7, Gravity Forms, and Fluent Forms.
 
 == Description ==
 
-<strong>TORQUE FORMS STYLER: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
+<strong>DIVI FORMS STYLER: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
 
 ★★★★★
 
