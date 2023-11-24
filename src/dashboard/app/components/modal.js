@@ -92,7 +92,7 @@ async function sendTfsCloseModalRequest() {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-                action: 'tfs_modal_bfcm',
+                action: 'tfs_close_modal',
                 nonce: tfsApp.nonce,
             }),
         });
