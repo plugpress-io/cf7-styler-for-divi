@@ -31,7 +31,8 @@ class Assets_Manager
 
     public function enqueue_builder_scripts()
     {
-        if (!et_core_is_fb_enabled()) {
+
+        if (function_exists('et_core_is_fb_enabled') && !et_core_is_fb_enabled()) {
             return;
         }
 

@@ -10,7 +10,7 @@ if (mktime(0, 0, 0, 11, 23, 2023) <= $current && $current < mktime(0, 0, 0, 12, 
 
                 <h3 style="margin:0;">Don't miss out on our biggest sale of the year!</h3>
 
-                <p style="margin:0 0 2px;">Get your <b>Divi Torque Pro plan</b> with <b> 50% OFF</b>! This limited time offer expires on November 29.</p>
+                <p style="margin:0 0 2px;">Get your <b>Divi Torque Pro plan</b> with <b> 50% OFF</b>! This limited time offer expires on December 24.</p>
 
                 <p style="margin:0;">
                     <a class="button button-primary" href="https://divitorque.com/pricing/?coupon=BF2023&utm_source=wpfree&utm_medium=wp&utm_campaign=bf23" target="_blank">

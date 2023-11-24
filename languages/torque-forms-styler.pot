@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: Divi Torque <hello@divitorque.com>\n"
-"POT-Creation-Date: 2023-10-25 05:37+0000\n"
+"POT-Creation-Date: 2023-11-24 18:12+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: includes/admin.php:37, includes/admin.php:38
-msgid "Torque Forms Styler"
+msgid "Divi Forms Styler"
 msgstr ""
 
 #: includes/deprecated/cf7-helper.php:90
@@ -523,10 +523,10 @@ msgstr ""
 msgid "Please select a Gravity Form."
 msgstr ""
 
-#: plugin.php:119
+#: plugin.php:116
 msgid "Docs"
 msgstr ""
 
-#: plugin.php:120
+#: plugin.php:117
 msgid "Get Torque Pro"
 msgstr ""

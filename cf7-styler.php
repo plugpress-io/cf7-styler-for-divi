@@ -3,7 +3,7 @@
 Plugin Name: Divi Forms Styler
 Plugin URI: https://divitorque.com
 Description: Effortlessly style Contact Form 7, Gravity Forms, and Fluent Forms to match your site's design.
-Version: 2.0.1
+Version: 2.0.2
 Author: Divi Torque
 Author URI:  https://divitorque.com
 License: GPL2
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('TFS_VERSION', '2.0.1');
+define('TFS_VERSION', '2.0.2');
 define('TFS_BASENAME', plugin_basename(__FILE__));
 define('TFS_BASENAME_DIR', plugin_basename(__DIR__));
 define('TFS_PLUGIN_PATH', plugin_dir_path(__FILE__));
