@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 function ModalComponent() {
-    const [isVisible, setIsVisible] = useState(window.tfsApp?.isModalVisible || false);
+    const [isVisible, setIsVisible] = useState(window.tfsApp?.cd || false);
 
     const handleClose = () => {
         setIsVisible(false);
