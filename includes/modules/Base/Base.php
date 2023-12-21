@@ -2,15 +2,15 @@
 
 abstract class TFS_Builder_Module extends ET_Builder_Module
 {
-    protected $module_credits = array(
+    public $module_credits = array(
         'module_uri' => 'https://divitorque.com/?utm_source=builder&utm_medium=tfs&utm_campaign=divi-torque-pro',
         'author'     => 'Divi Torque',
         'author_uri' => 'https://divitorque.com/?utm_source=builder&utm_medium=tfs&utm_campaign=divi-torque-pro',
     );
 
-    protected $folder_name = 'et_pb_divi_forms_styler';
+    public $folder_name = 'et_pb_divi_forms_styler';
 
-    protected function _getResponsiveValues($optionName, $presetValues = null)
+    public function _getResponsiveValues($optionName, $presetValues = null)
     {
         $presetValues = $presetValues ?? [];
         $responsiveEnabled = false;
