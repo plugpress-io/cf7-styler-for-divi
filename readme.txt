@@ -1,5 +1,5 @@
 === Divi Forms Styler - Gravity Forms, Fluent Forms & Contact Form 7 ===
-Contributors: diviepic, badhonrocks
+Contributors: badhonrocks
 Tags: divi, divi modules, contact form 7, divi builder, Divi theme
 Donate link: https://diviepic.com/
 Requires at least: 5.0
