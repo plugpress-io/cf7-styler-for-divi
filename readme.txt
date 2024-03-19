@@ -55,8 +55,8 @@ For more information, please visit our <a href="https://diviepic.com/docs/?utm_c
 
 == Changelog ==
 = 2.0.4 =
-* Clean Code base
-* Remove unwanted code from dashboard
+* Clean Codebase
+* Remove unwanted code from the dashboard
 
 = 2.0.1 =
 * Fixed PHP error ( Asset file not found )
