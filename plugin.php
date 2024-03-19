@@ -10,8 +10,8 @@ class Plugin
     const PLUGIN_PATH = TFS_PLUGIN_PATH;
     const BASENAME_DIR = TFS_BASENAME_DIR;
     const BASENAME = TFS_BASENAME;
-    const DOCS_LINK = 'https://divitorque.com/docs/';
-    const PRICING_LINK = 'https://divitorque.com/pricing/';
+    const DOCS_LINK = 'https://diviepic.com/docs/divi-form-styler';
+    const PRICING_LINK = 'https://diviepic.com/pricing/';
 
 
     private function __construct()
@@ -37,7 +37,6 @@ class Plugin
         require_once self::PLUGIN_PATH . 'includes/admin.php';
         require_once self::PLUGIN_PATH . 'includes/assets-manager.php';
         require_once self::PLUGIN_PATH . 'includes/module-manager.php';
-        require_once self::PLUGIN_PATH . 'includes/special-notices.php';
     }
 
 
@@ -114,7 +113,7 @@ class Plugin
     public function add_plugin_action_links($links)
     {
         $links[] = sprintf('<a href="%s" target="_blank" style="color: #197efb;font-weight: 600;">%s</a>', self::DOCS_LINK, __('Docs', 'torque-forms-styler'));
-        $links[] = sprintf('<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>', self::PRICING_LINK, __('Get Torque Pro', 'torque-forms-styler'));
+        $links[] = sprintf('<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>', self::PRICING_LINK, __('Get Epic Suite', 'torque-forms-styler'));
         return $links;
     }
 

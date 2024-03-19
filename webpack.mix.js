@@ -29,8 +29,8 @@ mix.webpackConfig({
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            '@DashboardApp': path.resolve(__dirname, 'src/dashboard/app'),
-            '@DashboardComponents': path.resolve(__dirname, 'src/dashboard/app/components'),
+            '@DashboardApp': path.resolve(__dirname, 'src/dashboard'),
+            '@DashboardComponents': path.resolve(__dirname, 'src/dashboard/components'),
             '@Dependencies': path.resolve(__dirname, 'src/dependencies'),
         },
     },

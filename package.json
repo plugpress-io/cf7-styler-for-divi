@@ -1,6 +1,6 @@
 {
   "name": "torque-forms-styler",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "private": true,
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.19.0",

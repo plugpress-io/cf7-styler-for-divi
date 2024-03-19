@@ -1,9 +1,0 @@
-export {default as Logo} from './logo';
-export {default as Card} from './card';
-export {default as Header} from './header';
-export {default as Menu} from './menu';
-export {default as RightMenu} from './right-menu';
-export {default as IconBox} from './icon-box';
-export {default as FeatureBox} from './feature-box';
-export {default as DtArrow} from './arrow';
-export {default as Modal} from './modal';
