@@ -55,6 +55,9 @@ For more information, please visit our <a href="https://diviepic.com/docs/?utm_c
 == Screenshots ==
 
 == Changelog ==
+= 2.0.5 =
+* Added Playground Support
+
 = 2.0.4 =
 * Clean Codebase
 * Remove unwanted code from the dashboard
