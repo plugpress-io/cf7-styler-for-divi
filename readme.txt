@@ -5,7 +5,7 @@ Tags: divi, divi modules, contact form 7, divi builder, divi theme
 Donate link: https://diviepic.com/
 Requires at least: 5.0
 Tested up to: 6.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -55,6 +55,9 @@ For more information, please visit our <a href="https://diviepic.com/docs/?utm_c
 == Screenshots ==
 
 == Changelog ==
+= 2.1.1 =
+* Fix playground support issue
+
 = 2.1.0 =
 * Added playground support for WP Repo
 * Clean Codebase
