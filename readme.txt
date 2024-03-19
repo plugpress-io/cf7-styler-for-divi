@@ -18,9 +18,9 @@ The Divi Forms Styler module for Divi Builder allows you to style your Contact F
 
 Most helpful links
 <ul>
- 	<li><a href="https://divitorque.com/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Divi Torque Plugin</a></li>
- 	<li><a href="https://divitorque.com/changelog/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Divi Torque Changelog</a></li>
- 	<li><a href="https://divitorque.com/docs/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Knowledge Base</a></li>
+ 	<li><a href="https://diviepic.com/?utm_campaign=wporg&utm_source=forms-styler" target="_blank" rel="">Divi Epic Plugins</a></li>
+ 	<li><a href="https://diviepic.com/pricing/?utm_campaign=wporg&utm_source=forms-styler" target="_blank" rel="">Divi Epic Suite</a></li>
+ 	<li><a href="https://diviepic.com/docs/?utm_campaign=wporg&utm_source=forms-styler" target="_blank" rel="">Knowledge Base</a></li>
 </ul>
 
 Unleash the power of seamless design with the Torque Forms Styler module for Divi Builder. No longer will you wrestle with shortcodes or be confined to limited customization. With our module, integrating and designing Contact Form 7, Gravity Forms, or Fluent Forms becomes an effortless task.
@@ -47,13 +47,16 @@ Dive into a world where design meets functionality, all thanks to the Torque For
 
 Install the Torque Forms Styler For Divi either via the WordPress plugin directory or by uploading the files to your server at wp-content/plugins.
 
-For more information, please visit our <a href="https://divitorque.com/docs/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Knowledge Base.</a>
+For more information, please visit our <a href="https://diviepic.com/docs/?utm_campaign=wporg&utm_source=tfs&utm_medium=textlink" target="_blank" rel="">Knowledge Base.</a>
 
 == Frequently Asked Questions ==
 
 == Screenshots ==
 
 == Changelog ==
+= 2.0.4 =
+* Clean Code base
+* Remove unwanted code from dashboard
 
 = 2.0.1 =
 * Fixed PHP error ( Asset file not found )
