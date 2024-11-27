@@ -1,8 +1,8 @@
 <?php
 
-namespace TorqueFormsStyler;
+namespace Divi_Forms_Styler;
 
-use TorqueFormsStyler\Module_Manager;
+use Divi_Forms_Styler\Module_Manager;
 
 class Admin
 {
@@ -70,8 +70,16 @@ class Admin
     public function wp_deps()
     {
         return [
-            'react', 'wp-api', 'wp-i18n', 'lodash', 'wp-components',
-            'wp-element', 'wp-api-fetch', 'wp-core-data', 'wp-data', 'wp-dom-ready',
+            'react',
+            'wp-api',
+            'wp-i18n',
+            'lodash',
+            'wp-components',
+            'wp-element',
+            'wp-api-fetch',
+            'wp-core-data',
+            'wp-data',
+            'wp-dom-ready',
         ];
     }
 
