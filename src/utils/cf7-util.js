@@ -1,42 +1,81 @@
+/**
+ * Contact Form 7 Grid Layout Utility
+ * Handles grid layout shortcode insertion in the CF7 form editor
+ *
+ * @see /includes/cf7-grid-helper.php - For grid shortcode definitions and rendering
+ * @see /includes/tag.php - For tag generator registration
+ * @since 2.2.0
+ */
 jQuery(function ($) {
-    $(document).ready(function () {
-        $('#tag-generator-list a').on('click', function (e) {
-            var href = $(this).attr('href'),
-                name = tfsGetUrlParam('inlineId', href);
+    /**
+     * List of grid layout shortcode types that should not use thickbox
+     * These correspond to the shortcodes registered in CF7_Grid_Helper class
+     */
+    const gridShortcodeTypes = [
+        'dipe_row', // Full width row container
+        'dipe_one', // Single column (12/12)
+        'dipe_one_half', // Half width column (6/12)
+        'dipe_one_third', // One third width column (4/12)
+        'dipe_one_fourth', // One fourth width column (3/12)
+        'dipe_two_third', // Two thirds width column (8/12)
+        'dipe_three_fourth', // Three fourths width column (9/12)
+    ];
 
-            if (name && name.startsWith('dipe')) {
-                $(this).removeClass('thickbox');
-                tfsGridInsert(name);
-            }
-
-            e.preventDefault();
-        });
+    gridShortcodeTypes.forEach((shortcodeType) => {
+        $(
+            `#tag-generator-list button[data-target="tag-generator-panel-${shortcodeType}"]`
+        ).removeClass('tag-generator-dialog');
     });
 
-    function tfsGetUrlParam(param, href) {
-        param = param.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + param + '=([^&#]*)'),
-            results = regex.exec(href);
-        return results
-            ? decodeURIComponent(results[1].replace(/\+/g, ' ')).replace('tag-generator-panel-', '')
-            : null;
+    /**
+     * Handle click on tag generator buttons
+     */
+    $('#tag-generator-list button').on('click', function (e) {
+        e.preventDefault();
+        const target = $(this).data('target');
+        const shortcodeType = extractShortcodeType('target', target);
+
+        // Only handle grid layout shortcodes
+        if (shortcodeType.startsWith('dipe')) {
+            insertGridLayoutShortcode(shortcodeType);
+        }
+    });
+
+    /**
+     * Extracts shortcode type from target attribute
+     */
+    function extractShortcodeType(paramName, target) {
+        if (!target) {
+            return '';
+        }
+        return target.replace('tag-generator-panel-', '');
     }
 
-    function tfsGridInsert(name) {
-        var form = $('#wpcf7-form'),
-            selection_start = form[0].selectionStart,
-            selection_end = form[0].selectionEnd,
-            shortcode_start = '[' + name + ']',
-            shortcode_end = '[/' + name + ']';
+    /**
+     * Inserts grid layout shortcode at cursor position in form editor
+     * Wraps any selected text with the grid shortcode tags
+     *
+     * @param {string} shortcodeType - Type of grid shortcode to insert
+     * @see CF7_Grid_Helper::render_shortcode() - For shortcode rendering
+     */
+    function insertGridLayoutShortcode(shortcodeType) {
+        const $formEditor = $('#wpcf7-form');
+        const formElement = $formEditor[0];
+        const shortcodeOpen = `[${shortcodeType}]`;
+        const shortcodeClose = `[/${shortcodeType}]`;
 
-        tfsGridUpdate(selection_start, shortcode_start);
-        tfsGridUpdate(selection_end + shortcode_end.length, shortcode_end);
-    }
+        const cursorStart = formElement.selectionStart;
+        const cursorEnd = formElement.selectionEnd;
+        const currentContent = $formEditor.val();
 
-    function tfsGridUpdate(i, t) {
-        var form = $('#wpcf7-form'),
-            val = form.val(),
-            new_val = [val.slice(0, i), t, val.slice(i)].join('');
-        form.val(new_val);
+        // Build new content with shortcode wrapping selected text
+        const updatedContent =
+            currentContent.slice(0, cursorStart) +
+            shortcodeOpen +
+            currentContent.slice(cursorStart, cursorEnd) +
+            shortcodeClose +
+            currentContent.slice(cursorEnd);
+
+        $formEditor.val(updatedContent);
     }
 });

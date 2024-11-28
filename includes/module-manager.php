@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_Forms_Styler;
+namespace Divi_Form_Styler;
 
 
 class Module_Manager

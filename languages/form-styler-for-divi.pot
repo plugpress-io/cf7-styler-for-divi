@@ -1,0 +1,596 @@
+# Copyright (C) 2024 Contact Form Styler for Divi
+# This file is distributed under the same license as the Contact Form Styler for Divi package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Contact Form Styler for Divi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: DiviEpic <help@diviepic.com>\n"
+"POT-Creation-Date: 2024-11-28 19:05+0000\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/cf7-grid-helper.php:96, includes/cf7-grid-helper.php:99
+msgid "row"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:100
+msgid "Generate a row shortcode"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:119
+msgid "1-col"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:120
+msgid "Generate a full width column"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:123
+msgid "1/2-col"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:124
+msgid "Generate a half width column"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:127
+msgid "1/3-col"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:128
+msgid "Generate a one-third width column"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:131
+msgid "1/4-col"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:132
+msgid "Generate a one-fourth width column"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:135
+msgid "2/3-col"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:136
+msgid "Generate a two-thirds width column"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:139
+msgid "3/4-col"
+msgstr ""
+
+#: includes/cf7-grid-helper.php:140
+msgid "Generate a three-fourths width column"
+msgstr ""
+
+#: includes/upsell/notices.php:173
+msgid "Dismiss this notice."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:13
+msgid "Contact Form 7"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:20
+msgid "General"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:25, includes/modules/CF7/CF7.php:31, includes/modules/FF/FF.php:34, includes/modules/GF/GF.php:34
+msgid "Common"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:27
+msgid "Form Header"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:34, includes/modules/CF7/CF7.php:645
+msgid "Title"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:37, includes/modules/CF7/CF7.php:658
+msgid "Text"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:42
+msgid "Form Text"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:46, includes/modules/CF7/CF7.php:593, includes/modules/CF7/CF7.php:695, includes/modules/FF/FF.php:301, includes/modules/FF/FF.php:334, includes/modules/GF/GF.php:315, includes/modules/GF/GF.php:354
+msgid "Field"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:49, includes/modules/CF7/CF7.php:619, includes/modules/FF/FF.php:37, includes/modules/FF/FF.php:286, includes/modules/GF/GF.php:37, includes/modules/GF/GF.php:291
+msgid "Label"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:53, includes/modules/CF7/CF7.php:629
+msgid "Placeholder"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:57
+msgid "Fields"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:58, includes/modules/FF/FF.php:45, includes/modules/GF/GF.php:45
+msgid "Radio & Checkbox"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:59, includes/modules/CF7/CF7.php:671, includes/modules/FF/FF.php:60, includes/modules/FF/FF.php:397, includes/modules/GF/GF.php:60, includes/modules/GF/GF.php:450
+msgid "Button"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:60
+msgid "Message"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:67, includes/modules/FF/FF.php:30, includes/modules/GF/GF.php:30
+msgid "Form Fields"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:71
+msgid "Form Label"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:81
+msgid "Show Form Header"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:84, includes/modules/CF7/CF7.php:129, includes/modules/CF7/CF7.php:251, includes/modules/CF7/CF7.php:367, includes/modules/GF/GF.php:118
+msgid "Yes"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:85, includes/modules/CF7/CF7.php:130, includes/modules/CF7/CF7.php:252, includes/modules/CF7/CF7.php:368, includes/modules/GF/GF.php:119
+msgid "No"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:108
+msgid "Header Title"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:117
+msgid "Header Text"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:126
+msgid "Use Icon"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:140
+msgid "Header Image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:142
+msgid "Upload an image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:143
+msgid "Choose an Image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:144
+msgid "Set As Image"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:153
+msgid "Header Icon"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:163
+msgid "Form Header Background"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:175
+msgid "Header Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:188
+msgid "Bottom Spacing"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:206
+msgid "Header Image/Icon Background"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:218
+msgid "Header Icon Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:231
+msgid "Form Background"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:239
+msgid "Form Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:248
+msgid "Fullwidth Button"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:260
+msgid "Button Alignment"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:263
+msgid "Left"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:264
+msgid "Center"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:265
+msgid "Right"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:276
+msgid "Select Form"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:280
+msgid "Choose a contact form to display."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:288
+msgid "Common Text Fields Height"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:289
+msgid "Here you can define static height for the common text fields."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:303
+msgid "Form Field Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:304
+msgid "Here you can define a custom padding for each field."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:313
+msgid "Form Field Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:322
+msgid "Form Field Active Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:330
+msgid "Form Field Spacing Bottom"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:331
+msgid "Set how much space the form field will take at the bottom."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:346
+msgid "Form Label Spacing Bottom"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:347
+msgid "Set how much space the form label will take at the bottom."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:363
+msgid "Enable Custom Styles"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:379
+msgid "Size"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:397, includes/modules/FF/FF.php:142, includes/modules/FF/FF.php:186, includes/modules/GF/GF.php:150, includes/modules/GF/GF.php:193
+msgid "Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:408, includes/modules/FF/FF.php:195, includes/modules/GF/GF.php:202
+msgid "Selected Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:420
+msgid "Border Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:432
+msgid "Border Size"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:450, includes/modules/FF/FF.php:204, includes/modules/GF/GF.php:211
+msgid "Label Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:462
+msgid "Message Padding"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:476
+msgid "Message Margin Top"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:489
+msgid "Message Text Alignment"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:490
+msgid "Align message text to the left, right or center."
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:501
+msgid "Message Text Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:509
+msgid "Message Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:517
+msgid "Border Highlight Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:526
+msgid "Success Message Text Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:534
+msgid "Success Message Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:542
+msgid "Success Border Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:551
+msgid "Error Message Text Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:559
+msgid "Error Message Background Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:567
+msgid "Error Border Color"
+msgstr ""
+
+#: includes/modules/CF7/CF7.php:1564
+msgid "Select a Contact form"
+msgstr ""
+
+#: includes/modules/FF/FF.php:17
+msgid "Fluent Forms"
+msgstr ""
+
+#: includes/modules/FF/FF.php:24, includes/modules/GF/GF.php:24
+msgid "Content"
+msgstr ""
+
+#: includes/modules/FF/FF.php:40, includes/modules/GF/GF.php:40
+msgid "Input Text"
+msgstr ""
+
+#: includes/modules/FF/FF.php:48, includes/modules/GF/GF.php:48
+msgid "Success / Error Message"
+msgstr ""
+
+#: includes/modules/FF/FF.php:52, includes/modules/GF/GF.php:52
+msgid "Success"
+msgstr ""
+
+#: includes/modules/FF/FF.php:55, includes/modules/GF/GF.php:55
+msgid "Error"
+msgstr ""
+
+#: includes/modules/FF/FF.php:78
+msgid "No Forms Found!"
+msgstr ""
+
+#: includes/modules/FF/FF.php:81, includes/modules/GF/GF.php:78
+msgid "Select"
+msgstr ""
+
+#: includes/modules/FF/FF.php:105
+msgid "Select Fluent Form"
+msgstr ""
+
+#: includes/modules/FF/FF.php:109
+msgid "Choose the Fluent Form you want to display."
+msgstr ""
+
+#: includes/modules/FF/FF.php:124, includes/modules/GF/GF.php:132
+msgid "Padding"
+msgstr ""
+
+#: includes/modules/FF/FF.php:135
+msgid "Choose the Fluent Form input padding."
+msgstr ""
+
+#: includes/modules/FF/FF.php:145
+msgid "Choose the Fluent Form input background color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:152, includes/modules/GF/GF.php:160
+msgid "Required Color"
+msgstr ""
+
+#: includes/modules/FF/FF.php:155
+msgid "Choose the Fluent Form required color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:169, includes/modules/GF/GF.php:176
+msgid "Radio & Checkbox Size"
+msgstr ""
+
+#: includes/modules/FF/FF.php:180
+msgid "Choose the Fluent Form radio & checkbox size."
+msgstr ""
+
+#: includes/modules/FF/FF.php:189
+msgid "Choose the Fluent Form radio & checkbox background color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:198
+msgid "Choose the Fluent Form selected color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:207
+msgid "Choose the Fluent Form label color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:219, includes/modules/GF/GF.php:226
+msgid "Field Validation Padding"
+msgstr ""
+
+#: includes/modules/FF/FF.php:222
+msgid "Choose the Fluent Form field validation padding."
+msgstr ""
+
+#: includes/modules/FF/FF.php:229, includes/modules/GF/GF.php:236
+msgid "Form Error Field Background Color"
+msgstr ""
+
+#: includes/modules/FF/FF.php:232
+msgid "Choose the Fluent Form error field background color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:239, includes/modules/GF/GF.php:246
+msgid "Form Valid Message Padding"
+msgstr ""
+
+#: includes/modules/FF/FF.php:242
+msgid "Choose the Fluent Form valid message padding."
+msgstr ""
+
+#: includes/modules/FF/FF.php:249, includes/modules/GF/GF.php:256
+msgid "Form Valid Background Color"
+msgstr ""
+
+#: includes/modules/FF/FF.php:252
+msgid "Choose the Fluent Form valid background color."
+msgstr ""
+
+#: includes/modules/FF/FF.php:425, includes/modules/FF/FF.php:441
+msgid "Please install Fluent Forms plugin."
+msgstr ""
+
+#: includes/modules/FF/FF.php:461
+msgid "Please select a Fluent Form."
+msgstr ""
+
+#: includes/modules/GF/GF.php:17
+msgid "Gravity Forms"
+msgstr ""
+
+#: includes/modules/GF/GF.php:69, includes/modules/GF/GF.php:75
+msgid "You have not added any Gravity Forms yet."
+msgstr ""
+
+#: includes/modules/GF/GF.php:102
+msgid "Select Gravity Forms"
+msgstr ""
+
+#: includes/modules/GF/GF.php:106
+msgid "Choose the Gravity Forms you want to display."
+msgstr ""
+
+#: includes/modules/GF/GF.php:114
+msgid "Enable AJAX Form Submission"
+msgstr ""
+
+#: includes/modules/GF/GF.php:121
+msgid "Enable AJAX for the form."
+msgstr ""
+
+#: includes/modules/GF/GF.php:143
+msgid "Choose the Gravity Forms input padding."
+msgstr ""
+
+#: includes/modules/GF/GF.php:153
+msgid "Choose the Gravity Forms input background color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:163
+msgid "Choose the Gravity Forms required color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:187
+msgid "Choose the Gravity Forms radio & checkbox size."
+msgstr ""
+
+#: includes/modules/GF/GF.php:196
+msgid "Choose the Gravity Forms radio & checkbox background color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:205
+msgid "Choose the Gravity Forms selected color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:214
+msgid "Choose the Gravity Forms label color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:229
+msgid "Choose the Gravity Forms field validation padding."
+msgstr ""
+
+#: includes/modules/GF/GF.php:239
+msgid "Choose the Gravity Forms error field background color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:249
+msgid "Choose the Gravity Forms valid message padding."
+msgstr ""
+
+#: includes/modules/GF/GF.php:259
+msgid "Choose the Gravity Forms valid background color."
+msgstr ""
+
+#: includes/modules/GF/GF.php:478, includes/modules/GF/GF.php:494
+msgid "Please install Gravity Forms plugin."
+msgstr ""
+
+#: includes/modules/GF/GF.php:509
+msgid "Please select a Gravity Form."
+msgstr ""
+
+#: plugin.php:68
+msgid "Cyber Sale - Divi Torque Pro just $89!"
+msgstr ""
+
+#: plugin.php:69
+msgid "Hurry! Get lifetime access to Divi Torque Pro just $89!  Limited Time Offer!!"
+msgstr ""
+
+#: plugin.php:75
+msgid "Claim Your Cyber Sale Offer Now"
+msgstr ""
+
+#: plugin.php:85
+msgid "Please rate and review Contact Form Styler for Divi!"
+msgstr ""
+
+#: plugin.php:86
+msgid "We hope you're enjoying using Contact Form Styler for Divi. Please take a moment to rate and review the plugin. Your feedback helps us improve and serve you better!"
+msgstr ""
+
+#: plugin.php:92
+msgid "Rate and Review"
+msgstr ""
+
+#: plugin.php:98
+msgid "No, Thanks"
+msgstr ""
+
+#: plugin.php:216
+msgid "Docs"
+msgstr ""
+
+#: plugin.php:221
+msgid "Get Divi Torque Pro"
+msgstr ""

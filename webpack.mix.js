@@ -14,6 +14,8 @@ mix.setPublicPath('assets')
     // Admin JS
     .js('src/utils/cf7-util.js', 'assets/js/cf7-util.js')
 
+    .js('src/admin-notice.js', 'assets/admin/js/admin-notice.js')
+
     // Builder CSS
     .sass('src/modules/style.scss', 'assets/css/builder.css')
 
@@ -27,7 +29,7 @@ mix.setPublicPath('assets')
 
 mix.webpackConfig({
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.json'],
         alias: {
             '@DashboardApp': path.resolve(__dirname, 'src/dashboard'),
             '@DashboardComponents': path.resolve(__dirname, 'src/dashboard/components'),
@@ -42,10 +44,10 @@ mix.webpackConfig({
 
 if (mix.inProduction()) {
     wpPot({
-        package: 'Torque Forms Styler',
-        domain: 'torque-forms-styler',
-        destFile: 'languages/torque-forms-styler.pot',
+        package: 'Contact Form Styler for Divi',
+        domain: 'form-styler-for-divi',
+        destFile: 'languages/form-styler-for-divi.pot',
         relativeTo: './',
-        team: 'Divi Torque <hello@divitorque.com>',
+        team: 'DiviEpic <help@diviepic.com>',
     });
 }

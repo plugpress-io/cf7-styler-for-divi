@@ -1,8 +1,9 @@
 {
-    "/js/builder.js": "/js/builder.js?id=e2cd905b9e29843bf568ae3897644a32",
-    "/js/dashboard.js": "/js/dashboard.js?id=450cdac938aac2f962a82e2b2363fabe",
-    "/js/cf7-util.js": "/js/cf7-util.js?id=4a46e7a3aa039d0f4db6d3ea10b41e93",
-    "/css/dashboard.css": "/css/dashboard.css?id=edbfbaa8ddc0300c6005d057f66b469a",
-    "/css/frontend.css": "/css/frontend.css?id=3643fdeba41cbb0c456ea24960353f42",
-    "/css/builder.css": "/css/builder.css?id=3643fdeba41cbb0c456ea24960353f42"
+    "/js/builder.js": "/js/builder.js?id=86b1b6be0a3d2d0cf32531533d1c4e4d",
+    "/js/dashboard.js": "/js/dashboard.js?id=6fdf89646e5b44d0711075d2014bfeb1",
+    "/js/cf7-util.js": "/js/cf7-util.js?id=1ae0c9ec8fa49f380fbcd470a089c3da",
+    "/admin/js/admin-notice.js": "/admin/js/admin-notice.js?id=ab8f607ce400713d69037ed9905c11ac",
+    "/css/dashboard.css": "/css/dashboard.css?id=ce72fda9331288779b2be768accf6e2d",
+    "/css/frontend.css": "/css/frontend.css?id=925f454f8636da5ffd4e685a0a11a0d1",
+    "/css/builder.css": "/css/builder.css?id=2ae7d0a281b46bd2e40f8f5273c6c3b3"
 }

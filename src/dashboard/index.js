@@ -33,33 +33,33 @@ domReady(() => {
                         <div className="container mx-auto max-w-screen-xl px-4 md:px-0 flex flex-row">
                             <div className="grid gap-3 lg:gap-10 grid-cols-3">
                                 <Card
-                                    title={__('Knowledge Base', 'divi-forms-styler')}
+                                    title={__('Knowledge Base', 'form-styler-for-divi')}
                                     description={__(
                                         'Get started by spending some time with the docs to get familiar with Divi Torque.',
-                                        'divi-forms-styler'
+                                        'form-styler-for-divi'
                                     )}
-                                    buttonText={__('Read Docs →', 'divi-forms-styler')}
+                                    buttonText={__('Read Docs →', 'form-styler-for-divi')}
                                     onButtonClick="https://diviepic.com/docs/"
                                 />
 
                                 <Card
-                                    title={__('Need Help?', 'divi-forms-styler')}
+                                    title={__('Need Help?', 'form-styler-for-divi')}
                                     description={__(
                                         'Stuck with something? Get help from live chat or submit a support ticket.',
-                                        'divi-forms-styler'
+                                        'form-styler-for-divi'
                                     )}
-                                    buttonText={__('Get Support →', 'divi-forms-styler')}
-                                    onButtonClick="https://diviepic.com/contact/"
+                                    buttonText={__('Get Support →', 'form-styler-for-divi')}
+                                    onButtonClick="https://diviepic.com/contact-us/"
                                 />
 
                                 <Card
-                                    title={__('Divi Epic Suite', 'divi-forms-styler')}
+                                    title={__('All In One Plugin', 'form-styler-for-divi')}
                                     description={__(
-                                        'The essential toolkit for crafting websites with Divi.',
-                                        'divi-forms-styler'
+                                        '10 Sites Lifetime Access for only $89',
+                                        'form-styler-for-divi'
                                     )}
-                                    buttonText={__('Get Epic Suite →', 'divi-forms-styler')}
-                                    onButtonClick="https://diviepic.com/pricing/"
+                                    buttonText={__('Get Divi Torque Pro →', 'form-styler-for-divi')}
+                                    onButtonClick="https://diviepic.com/divi-torque-pro/"
                                 />
                             </div>
                         </div>

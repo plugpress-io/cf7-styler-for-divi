@@ -3,12 +3,12 @@
 /**
  * Main plugin class that handles initialization and core functionality
  *
- * @package Divi_Forms_Styler
+ * @package Divi_Form_Styler
  */
 
-namespace Divi_Forms_Styler;
+namespace Divi_Form_Styler;
 
-use Divi_Forms_Styler\Admin_Notices;
+use Divi_Form_Styler\Admin_Notices;
 
 /**
  * Main Plugin Class
@@ -29,8 +29,9 @@ class Plugin
     const PLUGIN_PATH = TFS_PLUGIN_PATH;
     const BASENAME_DIR = TFS_BASENAME_DIR;
     const BASENAME = TFS_BASENAME;
-    const DOCS_LINK = 'https://diviepic.com/docs/divi-form-styler';
-    const PRICING_LINK = 'https://diviepic.com/pricing/';
+
+    const DOCS_LINK = 'https://diviepic.com/docs/';
+    const PRICING_LINK = 'https://diviepic.com/divi-torque-pro/';
 
     /**
      * Initialize the plugin
@@ -61,19 +62,44 @@ class Plugin
      */
     public function init_admin_notices()
     {
+        // Upsell
         new Admin_Notices([
-            'slug' => 'divi_forms_styler_cyber_sale',
-            'title' => __('Cyber Sale - Lifetime Access to Divi Torque just $89!', 'divi-forms-styler'),
-            'message' => __('Hurry! Get lifetime access to Divi Torque just $89/lifetime!  Limited Time Offer!!', 'divi-forms-styler'),
+            'slug' => 'divi_form_styler_cyber_sale',
+            'title' => __('Cyber Sale - Divi Torque Pro just $89!', 'form-styler-for-divi'),
+            'message' => __('Hurry! Get lifetime access to Divi Torque Pro just $89!  Limited Time Offer!!', 'form-styler-for-divi'),
+            'type' => 'success',
+            'show_after' => 'hour',
+            'screens' => ['plugins', 'dashboard'],
+            'buttons' => [
+                [
+                    'text' => __('Claim Your Cyber Sale Offer Now', 'form-styler-for-divi'),
+                    'url' => 'https://diviepic.com/sale/',
+                    'class' => 'button-primary',
+                    'target' => '_blank'
+                ]
+            ]
+        ]);
+
+        new Admin_Notices([
+            'slug' => 'divi_form_styler_ask_review',
+            'title' => __('Please rate and review Contact Form Styler for Divi!', 'form-styler-for-divi'),
+            'message' => __('We hope you\'re enjoying using Contact Form Styler for Divi. Please take a moment to rate and review the plugin. Your feedback helps us improve and serve you better!', 'form-styler-for-divi'),
             'type' => 'success',
             'show_after' => 'minute',
             'screens' => ['plugins', 'dashboard'],
             'buttons' => [
                 [
-                    'text' => __('Claim Your Cyber Sale Offer Now', 'divi-forms-styler'),
-                    'url' => 'https://diviepic.com/sale/',
+                    'text' => __('Rate and Review', 'form-styler-for-divi'),
+                    'url' => 'https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post',
                     'class' => 'button-primary',
                     'target' => '_blank'
+                ],
+                [
+                    'text' => __('No, Thanks', 'form-styler-for-divi'),
+                    'url' => '#',
+                    'class' => 'button-secondary notice-dismiss',
+                    'target' => '_self',
+                    'dismiss' => true
                 ]
             ]
         ]);
@@ -84,14 +110,23 @@ class Plugin
      */
     private function load_dependencies()
     {
+        // Common
         include_once self::PLUGIN_PATH . 'includes/functions.php';
-        require_once self::PLUGIN_PATH . 'includes/deprecated/cf7-helper.php';
-        require_once self::PLUGIN_PATH . 'includes/admin.php';
-        require_once self::PLUGIN_PATH . 'includes/assets-manager.php';
-        require_once self::PLUGIN_PATH . 'includes/module-manager.php';
+
+        // Assets
+        include_once self::PLUGIN_PATH . 'includes/assets-manager.php';
+
+        // Modules
+        include_once self::PLUGIN_PATH . 'includes/module-manager.php';
+
+        // Required
+        include_once self::PLUGIN_PATH . 'includes/admin.php';
+
+        // CF7 Grid
+        include_once self::PLUGIN_PATH . 'includes/cf7-grid-helper.php';
 
         // Upsell
-        require_once self::PLUGIN_PATH . 'includes/upsell/notices.php';
+        include_once self::PLUGIN_PATH . 'includes/upsell/notices.php';
     }
 
     /**
@@ -103,7 +138,6 @@ class Plugin
         add_action('divi_extensions_init', [$this, 'init_extension']);
         add_filter('plugin_action_links_' . self::BASENAME, [$this, 'add_plugin_action_links']);
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
-        add_action('admin_init', [$this, 'plugin_activation_redirect']);
         add_action('admin_init', [$this, 'check_for_update']);
         add_action('admin_init', [$this, 'init_admin_notices']);
     }
@@ -115,12 +149,6 @@ class Plugin
     {
         Assets_Manager::get_instance();
         Admin::get_instance();
-
-        // Handle deprecated options
-        $deprecated_options = get_option('dipe_options');
-        if (isset($deprecated_options['grid']) && 'on' === $deprecated_options['grid']) {
-            CF7_Helper::get_instance();
-        }
     }
 
     /**
@@ -128,7 +156,12 @@ class Plugin
      */
     public function store_current_version()
     {
-        update_option('tfs_plugin_current_version', TFS_VERSION);
+        update_option('divi_form_styler_current_version', TFS_VERSION);
+
+        // Install Date
+        if (!get_option('divi_form_styler_install_date')) {
+            update_option('divi_form_styler_install_date', time());
+        }
     }
 
     /**
@@ -136,10 +169,9 @@ class Plugin
      */
     public function check_for_update()
     {
-        $stored_version = get_option('tfs_plugin_current_version');
+        $stored_version = get_option('divi_form_styler_current_version');
 
         if (version_compare(TFS_VERSION, $stored_version, '>')) {
-            update_option('tfs_plugin_do_activation_redirect', true);
             $this->store_current_version();
         }
     }
@@ -150,25 +182,6 @@ class Plugin
     public function on_activation()
     {
         $this->store_current_version();
-        add_option('tfs_plugin_do_activation_redirect', true);
-    }
-
-    /**
-     * Handle activation redirect
-     */
-    public function plugin_activation_redirect()
-    {
-        if (get_option('tfs_plugin_do_activation_redirect', false)) {
-            delete_option('tfs_plugin_do_activation_redirect');
-
-            if ($this->is_divi_torque_pro_installed()) {
-                wp_redirect(admin_url('admin.php?page=divitorque-pro'));
-                exit;
-            }
-
-            wp_redirect(admin_url('admin.php?page=divi-forms-styler'));
-            exit;
-        }
     }
 
     /**
@@ -186,7 +199,7 @@ class Plugin
      */
     public function load_textdomain()
     {
-        load_plugin_textdomain('torque-forms-styler', false, self::BASENAME_DIR . '/languages');
+        load_plugin_textdomain('form-styler-for-divi', false, self::BASENAME_DIR . '/languages');
     }
 
     /**
@@ -200,12 +213,12 @@ class Plugin
         $links[] = sprintf(
             '<a href="%s" target="_blank" style="color: #197efb;font-weight: 600;">%s</a>',
             self::DOCS_LINK,
-            __('Docs', 'torque-forms-styler')
+            __('Docs', 'form-styler-for-divi')
         );
         $links[] = sprintf(
             '<a href="%s" target="_blank" style="color: #FF6900;font-weight: 600;">%s</a>',
             self::PRICING_LINK,
-            __('Get Epic Suite', 'torque-forms-styler')
+            __('Get Divi Torque Pro', 'form-styler-for-divi')
         );
         return $links;
     }
@@ -215,7 +228,19 @@ class Plugin
      */
     public function init_extension()
     {
-        Module_Manager::get_instance();
+        add_action('et_builder_ready', [$this, 'load_modules'], 9);
+    }
+
+    public function load_modules()
+    {
+        if (!class_exists('ET_Builder_Element')) {
+            return;
+        }
+
+        require_once TFS_PLUGIN_PATH . 'includes/modules/Base/Base.php';
+        require_once TFS_PLUGIN_PATH . 'includes/modules/CF7/CF7.php';
+        require_once TFS_PLUGIN_PATH . 'includes/modules/FF/FF.php';
+        require_once TFS_PLUGIN_PATH . 'includes/modules/GF/GF.php';
     }
 }
 

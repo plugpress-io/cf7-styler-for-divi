@@ -14,50 +14,50 @@ class TFS_FFStyler extends TFS_Builder_Module
 
     public function init()
     {
-        $this->name             = esc_html__('Fluent Forms', 'torque-forms-styler');
+        $this->name             = esc_html__('Fluent Forms', 'form-styler-for-divi');
         $this->icon_path        = plugin_dir_path(__FILE__) . '';
         $this->main_css_element = '%%order_class%%';
 
         $this->settings_modal_toggles = array(
             'general'  => array(
                 'toggles' => array(
-                    'main_content' => esc_html__('Content', 'torque-forms-styler'),
+                    'main_content' => esc_html__('Content', 'form-styler-for-divi'),
                 ),
             ),
             'advanced' => array(
                 'toggles' => array(
                     'form_input_style'    => array(
-                        'title'             => esc_html__('Form Fields', 'torque-forms-styler'),
+                        'title'             => esc_html__('Form Fields', 'form-styler-for-divi'),
                         'tabbed_subtoggles' => true,
                         'sub_toggles'       => array(
                             'common' => array(
-                                'name' => esc_html__('Common', 'torque-forms-styler'),
+                                'name' => esc_html__('Common', 'form-styler-for-divi'),
                             ),
                             'label'   => array(
-                                'name' => esc_html__('Label', 'torque-forms-styler'),
+                                'name' => esc_html__('Label', 'form-styler-for-divi'),
                             ),
                             'field'  => array(
-                                'name' => esc_html__('Input Text', 'torque-forms-styler'),
+                                'name' => esc_html__('Input Text', 'form-styler-for-divi'),
                             ),
                         ),
                     ),
 
-                    'form_radio_check'    => esc_html__('Radio & Checkbox', 'torque-forms-styler'),
+                    'form_radio_check'    => esc_html__('Radio & Checkbox', 'form-styler-for-divi'),
 
                     'form_error_style'    => array(
-                        'title'             => esc_html__('Success / Error Message', 'torque-forms-styler'),
+                        'title'             => esc_html__('Success / Error Message', 'form-styler-for-divi'),
                         'tabbed_subtoggles' => true,
                         'sub_toggles'       => array(
                             'success'  => array(
-                                'name' => esc_html__('Success', 'torque-forms-styler'),
+                                'name' => esc_html__('Success', 'form-styler-for-divi'),
                             ),
                             'error'   => array(
-                                'name' => esc_html__('Error', 'torque-forms-styler'),
+                                'name' => esc_html__('Error', 'form-styler-for-divi'),
                             ),
                         ),
                     ),
 
-                    'form_button' => esc_html__('Button', 'torque-forms-styler'),
+                    'form_button' => esc_html__('Button', 'form-styler-for-divi'),
                 ),
             ),
         );
@@ -75,10 +75,10 @@ class TFS_FFStyler extends TFS_Builder_Module
             ->get();
 
         if (!$ffList) {
-            return [0 => esc_html__('No Forms Found!', 'torque-forms-styler')];
+            return [0 => esc_html__('No Forms Found!', 'form-styler-for-divi')];
         }
 
-        $forms = [0 => esc_html__('Select', 'torque-forms-styler')];
+        $forms = [0 => esc_html__('Select', 'form-styler-for-divi')];
         foreach ($ffList as $form) {
             $forms[$form->id] = $form->title . ' (' . $form->id . ')';
         }
@@ -102,11 +102,11 @@ class TFS_FFStyler extends TFS_Builder_Module
     {
         return array(
             'form_id' => array(
-                'label'           => esc_html__('Select Fluent Form', 'torque-forms-styler'),
+                'label'           => esc_html__('Select Fluent Form', 'form-styler-for-divi'),
                 'type'            => 'select',
                 'option_category' => 'basic_option',
                 'options'         => self::get_fluent_forms(),
-                'description'     => esc_html__('Choose the Fluent Form you want to display.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form you want to display.', 'form-styler-for-divi'),
                 'computed_affects' => array(
                     '__fluent_forms',
                 ),
@@ -121,7 +121,7 @@ class TFS_FFStyler extends TFS_Builder_Module
         return array(
 
             'form_input_padding' => array(
-                'label'           => esc_html__('Padding', 'torque-forms-styler'),
+                'label'           => esc_html__('Padding', 'form-styler-for-divi'),
                 'type'            => 'range',
                 'option_category' => 'basic_option',
                 'default'         => '10px',
@@ -132,27 +132,27 @@ class TFS_FFStyler extends TFS_Builder_Module
                 ),
                 'mobile_options'   => true,
                 'validate_unit'   => true,
-                'description'     => esc_html__('Choose the Fluent Form input padding.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form input padding.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_input_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'common',
             ),
 
             'form_input_bgcolor' => array(
-                'label'           => esc_html__('Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form input background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form input background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_input_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'common',
             ),
 
             'form_required_color' => array(
-                'label'           => esc_html__('Required Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Required Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form required color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form required color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_input_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'common',
@@ -166,7 +166,7 @@ class TFS_FFStyler extends TFS_Builder_Module
         return array(
 
             'ff_radio_check_size' => array(
-                'label'           => esc_html__('Radio & Checkbox Size', 'torque-forms-styler'),
+                'label'           => esc_html__('Radio & Checkbox Size', 'form-styler-for-divi'),
                 'type'            => 'range',
                 'option_category' => 'basic_option',
                 'default'         => '20px',
@@ -177,34 +177,34 @@ class TFS_FFStyler extends TFS_Builder_Module
                 ),
                 'mobile_options'   => true,
                 'validate_unit'   => true,
-                'description'     => esc_html__('Choose the Fluent Form radio & checkbox size.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form radio & checkbox size.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
 
             'ff_radio_check_bgcolor' => array(
-                'label'           => esc_html__('Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form radio & checkbox background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form radio & checkbox background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
 
             'ff_selected_color' => array(
-                'label'           => esc_html__('Selected Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Selected Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form selected color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form selected color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
 
             'ff_select_color' => array(
-                'label'           => esc_html__('Label Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Label Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form label color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form label color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
@@ -216,40 +216,40 @@ class TFS_FFStyler extends TFS_Builder_Module
 
         return array(
             'form_error_padding' => array(
-                'label'           => esc_html__('Field Validation Padding', 'torque-forms-styler'),
+                'label'           => esc_html__('Field Validation Padding', 'form-styler-for-divi'),
                 'type'            => 'custom_padding',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form field validation padding.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form field validation padding.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'error',
             ),
 
             'form_error_bgcolor' => array(
-                'label'           => esc_html__('Form Error Field Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Form Error Field Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form error field background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form error field background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'error',
             ),
 
             'form_valid_padding' => array(
-                'label'           => esc_html__('Form Valid Message Padding', 'torque-forms-styler'),
+                'label'           => esc_html__('Form Valid Message Padding', 'form-styler-for-divi'),
                 'type'            => 'custom_padding',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form valid message padding.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form valid message padding.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'success',
             ),
 
             'form_valid_bgcolor' => array(
-                'label'           => esc_html__('Form Valid Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Form Valid Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Fluent Form valid background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Fluent Form valid background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'success',
@@ -257,9 +257,7 @@ class TFS_FFStyler extends TFS_Builder_Module
         );
     }
 
-    private function register_ff_star_rating_fields()
-    {
-    }
+    private function register_ff_star_rating_fields() {}
 
     private function register_ff_computed_fields()
     {
@@ -285,7 +283,7 @@ class TFS_FFStyler extends TFS_Builder_Module
 
         // Text
         $advanced_fields['fonts']['input_label'] = array(
-            'label'       => esc_html__('Label', 'torque-forms-styler'),
+            'label'       => esc_html__('Label', 'form-styler-for-divi'),
             'css'         => array(
                 'main' => '
                 %%order_class%% .tfs-ff-styler .fluentform .ff-el-form-control, 
@@ -300,7 +298,7 @@ class TFS_FFStyler extends TFS_Builder_Module
         );
 
         $advanced_fields['fonts']['input_field'] = array(
-            'label'       => esc_html__('Field', 'torque-forms-styler'),
+            'label'       => esc_html__('Field', 'form-styler-for-divi'),
             'css'         => array(
                 'main' => '
                     %%order_class%% .tfs-ff-styler .fluentform .ff-el-form-control::-webkit-input-placeholder, 
@@ -333,7 +331,7 @@ class TFS_FFStyler extends TFS_Builder_Module
 
         // Borders
         $advanced_fields['borders']['input_field'] = array(
-            'label_prefix' => esc_html__('Field', 'torque-forms-styler'),
+            'label_prefix' => esc_html__('Field', 'form-styler-for-divi'),
             'css' => array(
                 'main'      => array(
                     'border_radii'  => ('
@@ -396,7 +394,7 @@ class TFS_FFStyler extends TFS_Builder_Module
 
         // Button
         $advanced_fields['button']['submit_button'] = array(
-            'label'          => esc_html__('Button', 'torque-forms-styler'),
+            'label'          => esc_html__('Button', 'form-styler-for-divi'),
             'css'            => array(
                 'main'      => '%%order_class%% .tfs-ff-styler .fluentform .ff_submit_btn_wrapper button.ff-btn-submit, %%order_class%% .tfs-ff-styler .fluentform .step-nav button.ff-btn-secondary',
                 'important' => 'all',
@@ -424,7 +422,7 @@ class TFS_FFStyler extends TFS_Builder_Module
     {
         $form_id = $args['form_id'];
         if (!self::is_fluent_form_plugin_active()) {
-            return esc_html__('Please install Fluent Forms plugin.', 'torque-forms-styler');
+            return esc_html__('Please install Fluent Forms plugin.', 'form-styler-for-divi');
         }
 
         ob_start();
@@ -440,7 +438,7 @@ class TFS_FFStyler extends TFS_Builder_Module
         $form_id = $this->props['form_id'];
 
         if (!self::is_fluent_form_plugin_active()) {
-            return esc_html__('Please install Fluent Forms plugin.', 'torque-forms-styler');
+            return esc_html__('Please install Fluent Forms plugin.', 'form-styler-for-divi');
         }
 
         $output = '<div class="tfs-ff-styler">';
@@ -460,7 +458,7 @@ class TFS_FFStyler extends TFS_Builder_Module
         if ('0' !== $form_id && $form_id) {
             return do_shortcode(sprintf('[fluentform id="%1$s"]', absint($form_id)));
         }
-        return esc_html__('Please select a Fluent Form.', 'torque-forms-styler');
+        return esc_html__('Please select a Fluent Form.', 'form-styler-for-divi');
     }
 
     public function dt_generate_styles($render_slug)

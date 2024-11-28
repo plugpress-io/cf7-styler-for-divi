@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_Forms_Styler;
+namespace Divi_Form_Styler;
 
 if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly
@@ -122,14 +122,14 @@ class Admin_Notices
         }
 
         wp_enqueue_script(
-            'divi-forms-styler-admin-notice',
+            'form-styler-for-divi-admin-notice',
             TFS_PLUGIN_URL . 'assets/admin/js/admin-notice.js',
             [],
             TFS_VERSION,
             true
         );
 
-        wp_localize_script('divi-forms-styler-admin-notice', 'adminNoticeData', array(
+        wp_localize_script('form-styler-for-divi-admin-notice', 'adminNoticeData', array(
             'ajax_url'    => admin_url('admin-ajax.php'),
             'security'    => wp_create_nonce('dismiss_notice_' . $this->slug),
             'notice_slug' => $this->slug,
@@ -170,7 +170,7 @@ class Admin_Notices
                 <?php endif; ?>
 
                 <button type="button" class="notice-dismiss" data-notice-id="<?php echo esc_attr($this->slug); ?>">
-                    <span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'addons-for-divi'); ?></span>
+                    <span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'form-styler-for-divi'); ?></span>
                 </button>
             </div>
 <?php
@@ -203,10 +203,10 @@ class Admin_Notices
      */
     private function is_time_to_show()
     {
-        $install_date = get_option('divi_carousel_lite_install_date');
+        $install_date = get_option('divi_form_styler_install_date');
         if (!$install_date) {
             $install_date = current_time('timestamp');
-            update_option('divi_carousel_lite_install_date', $install_date);
+            update_option('divi_form_styler_install_date', $install_date);
         }
 
         $current_date = current_time('timestamp');

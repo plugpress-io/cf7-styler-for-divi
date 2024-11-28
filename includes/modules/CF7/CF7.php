@@ -10,65 +10,65 @@ class TFS_CF7Styler extends TFS_Builder_Module
 	{
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
-		$this->name             = esc_html__('Contact Form 7', 'torque-forms-styler');
+		$this->name             = esc_html__('Contact Form 7', 'form-styler-for-divi');
 		$this->icon_path        = plugin_dir_path(__FILE__) . '';
 		$this->main_css_element = '%%order_class%%';
 
 		$this->settings_modal_toggles = array(
 			'general'  => array(
 				'toggles' => array(
-					'general' => esc_html__('General', 'torque-forms-styler'),
+					'general' => esc_html__('General', 'form-styler-for-divi'),
 				),
 			),
 			'advanced' => array(
 				'toggles' => array(
-					'common'         => esc_html__('Common', 'torque-forms-styler'),
+					'common'         => esc_html__('Common', 'form-styler-for-divi'),
 					'form_header'    => array(
-						'title'             => esc_html__('Form Header', 'torque-forms-styler'),
+						'title'             => esc_html__('Form Header', 'form-styler-for-divi'),
 						'tabbed_subtoggles' => true,
 						'sub_toggles'       => array(
 							'common_tab' => array(
-								'name' => esc_html__('Common', 'torque-forms-styler'),
+								'name' => esc_html__('Common', 'form-styler-for-divi'),
 							),
 							'title_tab'  => array(
-								'name' => esc_html__('Title', 'torque-forms-styler'),
+								'name' => esc_html__('Title', 'form-styler-for-divi'),
 							),
 							'text_tab'   => array(
-								'name' => esc_html__('Text', 'torque-forms-styler'),
+								'name' => esc_html__('Text', 'form-styler-for-divi'),
 							),
 						),
 					),
 					'form_text'      => array(
-						'title'             => esc_html__('Form Text', 'torque-forms-styler'),
+						'title'             => esc_html__('Form Text', 'form-styler-for-divi'),
 						'tabbed_subtoggles' => true,
 						'sub_toggles'       => array(
 							'field_tab'       => array(
-								'name' => esc_html__('Field', 'torque-forms-styler'),
+								'name' => esc_html__('Field', 'form-styler-for-divi'),
 							),
 							'label_tab'       => array(
-								'name' => esc_html__('Label', 'torque-forms-styler'),
+								'name' => esc_html__('Label', 'form-styler-for-divi'),
 							),
 
 							'placeholder_tab' => array(
-								'name' => esc_html__('Placeholder', 'torque-forms-styler'),
+								'name' => esc_html__('Placeholder', 'form-styler-for-divi'),
 							),
 						),
 					),
-					'form_field'     => esc_html__('Fields', 'torque-forms-styler'),
-					'radio_checkbox' => esc_html__('Radio & Checkbox', 'torque-forms-styler'),
-					'submit_button'  => esc_html__('Button', 'torque-forms-styler'),
-					'suc_err_msg'    => esc_html__('Message', 'torque-forms-styler'),
+					'form_field'     => esc_html__('Fields', 'form-styler-for-divi'),
+					'radio_checkbox' => esc_html__('Radio & Checkbox', 'form-styler-for-divi'),
+					'submit_button'  => esc_html__('Button', 'form-styler-for-divi'),
+					'suc_err_msg'    => esc_html__('Message', 'form-styler-for-divi'),
 				),
 			),
 		);
 
 		$this->custom_css_fields = array(
 			'cf7_fields' => array(
-				'label'    => esc_html__('Form Fields', 'torque-forms-styler'),
+				'label'    => esc_html__('Form Fields', 'form-styler-for-divi'),
 				'selector' => '%%order_class%% .dipe-cf7-styler input',
 			),
 			'cf7_labels' => array(
-				'label'    => esc_html__('Form Label', 'torque-forms-styler'),
+				'label'    => esc_html__('Form Label', 'form-styler-for-divi'),
 				'selector' => '%%order_class%% .dipe-cf7-styler label',
 			),
 		);
@@ -78,11 +78,11 @@ class TFS_CF7Styler extends TFS_Builder_Module
 	{
 		return array(
 			'use_form_header'              => array(
-				'label'       => esc_html__('Show Form Header', 'torque-forms-styler'),
+				'label'       => esc_html__('Show Form Header', 'form-styler-for-divi'),
 				'type'        => 'yes_no_button',
 				'options'     => array(
-					'on'  => esc_html__('Yes', 'torque-forms-styler'),
-					'off' => esc_html__('No', 'torque-forms-styler'),
+					'on'  => esc_html__('Yes', 'form-styler-for-divi'),
+					'off' => esc_html__('No', 'form-styler-for-divi'),
 				),
 				'default'     => 'off',
 				'toggle_slug' => 'general',
@@ -105,7 +105,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_title'            => array(
-				'label'       => esc_html__('Header Title', 'torque-forms-styler'),
+				'label'       => esc_html__('Header Title', 'form-styler-for-divi'),
 				'type'        => 'text',
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -114,7 +114,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_text'             => array(
-				'label'       => esc_html__('Header Text', 'torque-forms-styler'),
+				'label'       => esc_html__('Header Text', 'form-styler-for-divi'),
 				'type'        => 'text',
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -123,11 +123,11 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'use_icon'                     => array(
-				'label'       => esc_html__('Use Icon', 'torque-forms-styler'),
+				'label'       => esc_html__('Use Icon', 'form-styler-for-divi'),
 				'type'        => 'yes_no_button',
 				'options'     => array(
-					'on'  => esc_html__('Yes', 'torque-forms-styler'),
-					'off' => esc_html__('No', 'torque-forms-styler'),
+					'on'  => esc_html__('Yes', 'form-styler-for-divi'),
+					'off' => esc_html__('No', 'form-styler-for-divi'),
 				),
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -137,11 +137,11 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'header_img'                   => array(
-				'label'              => esc_html__('Header Image', 'torque-forms-styler'),
+				'label'              => esc_html__('Header Image', 'form-styler-for-divi'),
 				'type'               => 'upload',
-				'upload_button_text' => esc_attr__('Upload an image', 'torque-forms-styler'),
-				'choose_text'        => esc_attr__('Choose an Image', 'torque-forms-styler'),
-				'update_text'        => esc_attr__('Set As Image', 'torque-forms-styler'),
+				'upload_button_text' => esc_attr__('Upload an image', 'form-styler-for-divi'),
+				'choose_text'        => esc_attr__('Choose an Image', 'form-styler-for-divi'),
+				'update_text'        => esc_attr__('Set As Image', 'form-styler-for-divi'),
 				'show_if'            => array(
 					'use_icon'        => 'off',
 					'use_form_header' => 'on',
@@ -150,7 +150,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'header_icon'                  => array(
-				'label'       => esc_html__('Header Icon', 'torque-forms-styler'),
+				'label'       => esc_html__('Header Icon', 'form-styler-for-divi'),
 				'type'        => 'select_icon',
 				'show_if'     => array(
 					'use_form_header' => 'on',
@@ -160,7 +160,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_bg'               => array(
-				'label'        => esc_html__('Form Header Background', 'torque-forms-styler'),
+				'label'        => esc_html__('Form Header Background', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'show_if'      => array(
@@ -172,7 +172,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_padding'          => array(
-				'label'          => esc_html__('Header Padding', 'torque-forms-styler'),
+				'label'          => esc_html__('Header Padding', 'form-styler-for-divi'),
 				'type'           => 'custom_padding',
 				'default'        => '0px|0px|0px|0px',
 				'show_if'        => array(
@@ -185,7 +185,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_bottom'           => array(
-				'label'          => esc_html__('Bottom Spacing', 'torque-forms-styler'),
+				'label'          => esc_html__('Bottom Spacing', 'form-styler-for-divi'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'default'        => '0px',
@@ -203,7 +203,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_img_bg'           => array(
-				'label'        => esc_html__('Header Image/Icon Background', 'torque-forms-styler'),
+				'label'        => esc_html__('Header Image/Icon Background', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'show_if'      => array(
@@ -215,7 +215,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_header_icon_color'       => array(
-				'label'        => esc_html__('Header Icon Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Header Icon Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'show_if'      => array(
@@ -228,7 +228,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_bg'                      => array(
-				'label'        => esc_html__('Form Background', 'torque-forms-styler'),
+				'label'        => esc_html__('Form Background', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -236,7 +236,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_padding'                 => array(
-				'label'          => esc_html__('Form Padding', 'torque-forms-styler'),
+				'label'          => esc_html__('Form Padding', 'form-styler-for-divi'),
 				'type'           => 'custom_padding',
 				'default'        => '0px|0px|0px|0px',
 				'tab_slug'       => 'advanced',
@@ -245,11 +245,11 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'use_form_button_fullwidth'    => array(
-				'label'       => esc_html__('Fullwidth Button', 'torque-forms-styler'),
+				'label'       => esc_html__('Fullwidth Button', 'form-styler-for-divi'),
 				'type'        => 'yes_no_button',
 				'options'     => array(
-					'on'  => esc_html__('Yes', 'torque-forms-styler'),
-					'off' => esc_html__('No', 'torque-forms-styler'),
+					'on'  => esc_html__('Yes', 'form-styler-for-divi'),
+					'off' => esc_html__('No', 'form-styler-for-divi'),
 				),
 				'default'     => 'off',
 				'tab_slug'    => 'advanced',
@@ -257,12 +257,12 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'button_alignment'             => array(
-				'label'       => esc_html__('Button Alignment', 'torque-forms-styler'),
+				'label'       => esc_html__('Button Alignment', 'form-styler-for-divi'),
 				'type'        => 'select',
 				'options'     => array(
-					'left'   => esc_html__('Left', 'torque-forms-styler'),
-					'center' => esc_html__('Center', 'torque-forms-styler'),
-					'right'  => esc_html__('Right', 'torque-forms-styler'),
+					'left'   => esc_html__('Left', 'form-styler-for-divi'),
+					'center' => esc_html__('Center', 'form-styler-for-divi'),
+					'right'  => esc_html__('Right', 'form-styler-for-divi'),
 				),
 				'show_if'     => array(
 					'use_form_button_fullwidth' => 'off',
@@ -273,11 +273,11 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7'                          => array(
-				'label'            => esc_html__('Select Form', 'torque-forms-styler'),
+				'label'            => esc_html__('Select Form', 'form-styler-for-divi'),
 				'type'             => 'select',
 				'option_category'  => 'layout',
 				'options'          => self::get_contact_form7(),
-				'description'      => esc_html__('Choose a contact form to display.', 'torque-forms-styler'),
+				'description'      => esc_html__('Choose a contact form to display.', 'form-styler-for-divi'),
 				'computed_affects' => array(
 					'__cf7form',
 				),
@@ -285,8 +285,8 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_field_height'            => array(
-				'label'          => esc_html__('Common Text Fields Height', 'torque-forms-styler'),
-				'description'    => esc_html__('Here you can define static height for the common text fields.', 'torque-forms-styler'),
+				'label'          => esc_html__('Common Text Fields Height', 'form-styler-for-divi'),
+				'description'    => esc_html__('Here you can define static height for the common text fields.', 'form-styler-for-divi'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'mobile_options' => true,
@@ -300,8 +300,8 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_field_padding'           => array(
-				'label'          => esc_html__('Form Field Padding', 'torque-forms-styler'),
-				'description'    => esc_html__('Here you can define a custom padding for each field.', 'torque-forms-styler'),
+				'label'          => esc_html__('Form Field Padding', 'form-styler-for-divi'),
+				'description'    => esc_html__('Here you can define a custom padding for each field.', 'form-styler-for-divi'),
 				'type'           => 'custom_padding',
 				'tab_slug'       => 'advanced',
 				'toggle_slug'    => 'form_field',
@@ -310,7 +310,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_background_color'        => array(
-				'label'        => esc_html__('Form Field Background Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Form Field Background Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'default'      => '#f5f5f5',
@@ -319,7 +319,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_field_active_color'      => array(
-				'label'        => esc_html__('Form Field Active Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Form Field Active Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -327,8 +327,8 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_field_spacing'           => array(
-				'label'          => esc_html__('Form Field Spacing Bottom', 'torque-forms-styler'),
-				'description'    => esc_html__('Set how much space the form field will take at the bottom.', 'torque-forms-styler'),
+				'label'          => esc_html__('Form Field Spacing Bottom', 'form-styler-for-divi'),
+				'description'    => esc_html__('Set how much space the form field will take at the bottom.', 'form-styler-for-divi'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'default'        => '20px',
@@ -343,8 +343,8 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'form_label_spacing'           => array(
-				'label'          => esc_html__('Form Label Spacing Bottom', 'torque-forms-styler'),
-				'description'    => esc_html__('Set how much space the form label will take at the bottom.', 'torque-forms-styler'),
+				'label'          => esc_html__('Form Label Spacing Bottom', 'form-styler-for-divi'),
+				'description'    => esc_html__('Set how much space the form label will take at the bottom.', 'form-styler-for-divi'),
 				'type'           => 'range',
 				'default_unit'   => 'px',
 				'default'        => '7px',
@@ -360,12 +360,12 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_custom_styles'             => array(
-				'label'            => esc_html__('Enable Custom Styles', 'torque-forms-styler'),
+				'label'            => esc_html__('Enable Custom Styles', 'form-styler-for-divi'),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'configuration',
 				'options'          => array(
-					'on'  => esc_html__('Yes', 'torque-forms-styler'),
-					'off' => esc_html__('No', 'torque-forms-styler'),
+					'on'  => esc_html__('Yes', 'form-styler-for-divi'),
+					'off' => esc_html__('No', 'form-styler-for-divi'),
 				),
 				'default'          => 'off',
 				'computed_affects' => array(
@@ -376,7 +376,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_size'                      => array(
-				'label'           => esc_html__('Size', 'torque-forms-styler'),
+				'label'           => esc_html__('Size', 'form-styler-for-divi'),
 				'type'            => 'range',
 				'option_category' => 'layout',
 				'default_unit'    => 'px',
@@ -394,7 +394,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_background_color'          => array(
-				'label'        => esc_html__('Background Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Background Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -405,7 +405,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_selected_color'            => array(
-				'label'        => esc_html__('Selected Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Selected Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'default'      => '#222222',
@@ -417,7 +417,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_border_color'              => array(
-				'label'        => esc_html__('Border Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Border Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'default'      => '#222222',
@@ -429,7 +429,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_border_size'               => array(
-				'label'           => esc_html__('Border Size', 'torque-forms-styler'),
+				'label'           => esc_html__('Border Size', 'form-styler-for-divi'),
 				'type'            => 'range',
 				'option_category' => 'layout',
 				'tab_slug'        => 'advanced',
@@ -447,7 +447,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cr_label_color'               => array(
-				'label'        => esc_html__('Label Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Label Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -459,7 +459,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 
 			// Success / Error Message.
 			'cf7_message_padding'          => array(
-				'label'          => esc_html__('Message Padding', 'torque-forms-styler'),
+				'label'          => esc_html__('Message Padding', 'form-styler-for-divi'),
 				'type'           => 'range',
 				'tab_slug'       => 'advanced',
 				'toggle_slug'    => 'suc_err_msg',
@@ -473,7 +473,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_message_margin_top'       => array(
-				'label'          => esc_html__('Message Margin Top', 'torque-forms-styler'),
+				'label'          => esc_html__('Message Margin Top', 'form-styler-for-divi'),
 				'type'           => 'range',
 				'tab_slug'       => 'advanced',
 				'toggle_slug'    => 'suc_err_msg',
@@ -486,8 +486,8 @@ class TFS_CF7Styler extends TFS_Builder_Module
 				),
 			),
 			'cf7_message_alignment'        => array(
-				'label'            => esc_html__('Message Text Alignment', 'brain-divi-addons'),
-				'description'      => esc_html__('Align message text to the left, right or center.', 'brain-divi-addons'),
+				'label'            => esc_html__('Message Text Alignment', 'form-styler-for-divi'),
+				'description'      => esc_html__('Align message text to the left, right or center.', 'form-styler-for-divi'),
 				'type'             => 'text_align',
 				'option_category'  => 'layout',
 				'options'          => et_builder_get_text_orientation_options(array('justified')),
@@ -498,7 +498,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 				'tab_slug'         => 'advanced',
 			),
 			'cf7_message_color'            => array(
-				'label'        => esc_html__('Message Text Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Message Text Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -506,7 +506,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_message_bg_color'         => array(
-				'label'        => esc_html__('Message Background Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Message Background Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -514,7 +514,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_border_highlight_color'   => array(
-				'label'        => esc_html__('Border Highlight Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Border Highlight Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -523,7 +523,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 
 			// Success.
 			'cf7_success_message_color'    => array(
-				'label'        => esc_html__('Success Message Text Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Success Message Text Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -531,7 +531,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_success_message_bg_color' => array(
-				'label'        => esc_html__('Success Message Background Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Success Message Background Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -539,7 +539,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_success_border_color'     => array(
-				'label'        => esc_html__('Success Border Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Success Border Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -548,7 +548,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 
 			// Error.
 			'cf7_error_message_color'      => array(
-				'label'        => esc_html__('Error Message Text Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Error Message Text Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -556,7 +556,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_error_message_bg_color'   => array(
-				'label'        => esc_html__('Error Message Background Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Error Message Background Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -564,7 +564,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			),
 
 			'cf7_error_border_color'       => array(
-				'label'        => esc_html__('Error Border Color', 'torque-forms-styler'),
+				'label'        => esc_html__('Error Border Color', 'form-styler-for-divi'),
 				'type'         => 'color-alpha',
 				'custom_color' => true,
 				'tab_slug'     => 'advanced',
@@ -590,7 +590,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		$advanced_fields['text_shadow'] = [];
 
 		$advanced_fields['fonts']['form_field_font'] = array(
-			'label'       => esc_html__('Field', 'torque-forms-styler'),
+			'label'       => esc_html__('Field', 'form-styler-for-divi'),
 			'css'         => array(
 				'main'      => implode(
 					', ',
@@ -616,7 +616,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		);
 
 		$advanced_fields['fonts']['labels'] = array(
-			'label'       => esc_html__('Label', 'torque-forms-styler'),
+			'label'       => esc_html__('Label', 'form-styler-for-divi'),
 			'css'         => array(
 				'main'      => "{$this->main_css_element} .dipe-cf7 .wpcf7 label",
 				'important' => 'all',
@@ -626,7 +626,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		);
 
 		$advanced_fields['fonts']['placeholder'] = array(
-			'label'       => esc_html__('Placeholder', 'torque-forms-styler'),
+			'label'       => esc_html__('Placeholder', 'form-styler-for-divi'),
 			'css'         => array(
 				'main'      => implode(
 					', ',
@@ -642,7 +642,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		);
 
 		$advanced_fields['fonts']['title'] = array(
-			'label'            => esc_html__('Title', 'torque-forms-styler'),
+			'label'            => esc_html__('Title', 'form-styler-for-divi'),
 			'css'              => array(
 				'main'      => '%%order_class%% .dipe-form-header-title',
 				'important' => 'all',
@@ -655,7 +655,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		);
 
 		$advanced_fields['fonts']['text'] = array(
-			'label'            => esc_html__('Text', 'torque-forms-styler'),
+			'label'            => esc_html__('Text', 'form-styler-for-divi'),
 			'css'              => array(
 				'main'      => '%%order_class%% .dipe-form-header-text',
 				'important' => 'all',
@@ -668,7 +668,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		);
 
 		$advanced_fields['button']['submit_button'] = array(
-			'label'          => esc_html__('Button', 'torque-forms-styler'),
+			'label'          => esc_html__('Button', 'form-styler-for-divi'),
 			'css'            => array(
 				'main'      => '%%order_class%% .wpcf7-form input[type=submit]',
 				'important' => 'all',
@@ -692,7 +692,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 		$advanced_fields['borders']['default'] = array();
 
 		$advanced_fields['borders']['field'] = array(
-			'label_prefix' => esc_html__('Field', 'torque-forms-styler'),
+			'label_prefix' => esc_html__('Field', 'form-styler-for-divi'),
 			'toggle_slug'  => 'form_field',
 			'css'          => array(
 				'main'      => array(
@@ -1561,7 +1561,7 @@ class TFS_CF7Styler extends TFS_Builder_Module
 			$contact_forms = get_posts($args);
 
 			if (!empty($contact_forms) && !is_wp_error($contact_forms)) {
-				$options[0] = esc_html__('Select a Contact form', 'torque-forms-styler');
+				$options[0] = esc_html__('Select a Contact form', 'form-styler-for-divi');
 				foreach ($contact_forms as $post) {
 					$options[$post->ID] = $post->post_title;
 				}

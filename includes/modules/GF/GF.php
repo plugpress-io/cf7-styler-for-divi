@@ -14,50 +14,50 @@ class TFS_GFStyler extends TFS_Builder_Module
 
     public function init()
     {
-        $this->name             = esc_html__('Gravity Forms', 'torque-forms-styler');
+        $this->name             = esc_html__('Gravity Forms', 'form-styler-for-divi');
         $this->icon_path        = plugin_dir_path(__FILE__) . '';
         $this->main_css_element = '%%order_class%%';
 
         $this->settings_modal_toggles = array(
             'general'  => array(
                 'toggles' => array(
-                    'main_content' => esc_html__('Content', 'torque-forms-styler'),
+                    'main_content' => esc_html__('Content', 'form-styler-for-divi'),
                 ),
             ),
             'advanced' => array(
                 'toggles' => array(
                     'form_input_style'    => array(
-                        'title'             => esc_html__('Form Fields', 'torque-forms-styler'),
+                        'title'             => esc_html__('Form Fields', 'form-styler-for-divi'),
                         'tabbed_subtoggles' => true,
                         'sub_toggles'       => array(
                             'common' => array(
-                                'name' => esc_html__('Common', 'torque-forms-styler'),
+                                'name' => esc_html__('Common', 'form-styler-for-divi'),
                             ),
                             'label'   => array(
-                                'name' => esc_html__('Label', 'torque-forms-styler'),
+                                'name' => esc_html__('Label', 'form-styler-for-divi'),
                             ),
                             'field'  => array(
-                                'name' => esc_html__('Input Text', 'torque-forms-styler'),
+                                'name' => esc_html__('Input Text', 'form-styler-for-divi'),
                             ),
                         ),
                     ),
 
-                    'form_radio_check'    => esc_html__('Radio & Checkbox', 'torque-forms-styler'),
+                    'form_radio_check'    => esc_html__('Radio & Checkbox', 'form-styler-for-divi'),
 
                     'form_error_style'    => array(
-                        'title'             => esc_html__('Success / Error Message', 'torque-forms-styler'),
+                        'title'             => esc_html__('Success / Error Message', 'form-styler-for-divi'),
                         'tabbed_subtoggles' => true,
                         'sub_toggles'       => array(
                             'success'  => array(
-                                'name' => esc_html__('Success', 'torque-forms-styler'),
+                                'name' => esc_html__('Success', 'form-styler-for-divi'),
                             ),
                             'error'   => array(
-                                'name' => esc_html__('Error', 'torque-forms-styler'),
+                                'name' => esc_html__('Error', 'form-styler-for-divi'),
                             ),
                         ),
                     ),
 
-                    'form_button' => esc_html__('Button', 'torque-forms-styler'),
+                    'form_button' => esc_html__('Button', 'form-styler-for-divi'),
                 ),
             ),
         );
@@ -66,16 +66,16 @@ class TFS_GFStyler extends TFS_Builder_Module
     public static function get_gf()
     {
         if (!class_exists('GFForms')) {
-            return ['-1' => __('You have not added any Gravity Forms yet.', 'torque-forms-styler')];
+            return ['-1' => __('You have not added any Gravity Forms yet.', 'form-styler-for-divi')];
         }
 
         $gfforms = \RGFormsModel::get_forms(null, 'title');
 
         if (!is_array($gfforms) || empty($gfforms)) {
-            return ['-1' => __('You have not added any Gravity Forms yet.', 'torque-forms-styler')];
+            return ['-1' => __('You have not added any Gravity Forms yet.', 'form-styler-for-divi')];
         }
 
-        $forms = [0 => esc_html__('Select', 'torque-forms-styler')];
+        $forms = [0 => esc_html__('Select', 'form-styler-for-divi')];
         foreach ($gfforms as $form) {
             $forms[$form->id] = $form->title;
         }
@@ -99,11 +99,11 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         return array(
             'gf_form_id' => array(
-                'label'           => esc_html__('Select Gravity Forms', 'torque-forms-styler'),
+                'label'           => esc_html__('Select Gravity Forms', 'form-styler-for-divi'),
                 'type'            => 'select',
                 'option_category' => 'basic_option',
                 'options'         => self::get_gf(),
-                'description'     => esc_html__('Choose the Gravity Forms you want to display.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms you want to display.', 'form-styler-for-divi'),
                 'computed_affects' => array(
                     '__gravity_forms',
                 ),
@@ -111,14 +111,14 @@ class TFS_GFStyler extends TFS_Builder_Module
             ),
 
             'form_ajax_option' => array(
-                'label'           => esc_html__('Enable AJAX Form Submission', 'torque-forms-styler'),
+                'label'           => esc_html__('Enable AJAX Form Submission', 'form-styler-for-divi'),
                 'type'            => 'select',
                 'option_category' => 'basic_option',
                 'options'         => array(
-                    'yes' => esc_html__('Yes', 'torque-forms-styler'),
-                    'no'  => esc_html__('No', 'torque-forms-styler'),
+                    'yes' => esc_html__('Yes', 'form-styler-for-divi'),
+                    'no'  => esc_html__('No', 'form-styler-for-divi'),
                 ),
-                'description'     => esc_html__('Enable AJAX for the form.', 'torque-forms-styler'),
+                'description'     => esc_html__('Enable AJAX for the form.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'main_content',
             ),
         );
@@ -129,7 +129,7 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         return array(
             'form_input_padding' => array(
-                'label'           => esc_html__('Padding', 'torque-forms-styler'),
+                'label'           => esc_html__('Padding', 'form-styler-for-divi'),
                 'type'            => 'range',
                 'option_category' => 'basic_option',
                 'default'         => '10px',
@@ -140,27 +140,27 @@ class TFS_GFStyler extends TFS_Builder_Module
                 ),
                 'mobile_options'   => true,
                 'validate_unit'   => true,
-                'description'     => esc_html__('Choose the Gravity Forms input padding.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms input padding.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_input_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'common',
             ),
 
             'form_input_bgcolor' => array(
-                'label'           => esc_html__('Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms input background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms input background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_input_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'common',
             ),
 
             'form_required_color' => array(
-                'label'           => esc_html__('Required Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Required Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms required color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms required color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_input_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'common',
@@ -173,7 +173,7 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         return array(
             'gf_radio_check_size' => array(
-                'label'           => esc_html__('Radio & Checkbox Size', 'torque-forms-styler'),
+                'label'           => esc_html__('Radio & Checkbox Size', 'form-styler-for-divi'),
                 'type'            => 'range',
                 'option_category' => 'basic_option',
                 'default'         => '20px',
@@ -184,34 +184,34 @@ class TFS_GFStyler extends TFS_Builder_Module
                 ),
                 'mobile_options'   => true,
                 'validate_unit'   => true,
-                'description'     => esc_html__('Choose the Gravity Forms radio & checkbox size.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms radio & checkbox size.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
 
             'gf_radio_check_bgcolor' => array(
-                'label'           => esc_html__('Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms radio & checkbox background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms radio & checkbox background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
 
             'gf_selected_color' => array(
-                'label'           => esc_html__('Selected Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Selected Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms selected color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms selected color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
 
             'gf_select_color' => array(
-                'label'           => esc_html__('Label Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Label Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms label color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms label color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_radio_check',
                 'tab_slug'        => 'advanced',
             ),
@@ -223,40 +223,40 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         return array(
             'form_error_padding' => array(
-                'label'           => esc_html__('Field Validation Padding', 'torque-forms-styler'),
+                'label'           => esc_html__('Field Validation Padding', 'form-styler-for-divi'),
                 'type'            => 'custom_padding',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms field validation padding.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms field validation padding.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'error',
             ),
 
             'form_error_bgcolor' => array(
-                'label'           => esc_html__('Form Error Field Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Form Error Field Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms error field background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms error field background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'error',
             ),
 
             'form_valid_padding' => array(
-                'label'           => esc_html__('Form Valid Message Padding', 'torque-forms-styler'),
+                'label'           => esc_html__('Form Valid Message Padding', 'form-styler-for-divi'),
                 'type'            => 'custom_padding',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms valid message padding.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms valid message padding.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'success',
             ),
 
             'form_valid_bgcolor' => array(
-                'label'           => esc_html__('Form Valid Background Color', 'torque-forms-styler'),
+                'label'           => esc_html__('Form Valid Background Color', 'form-styler-for-divi'),
                 'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
-                'description'     => esc_html__('Choose the Gravity Forms valid background color.', 'torque-forms-styler'),
+                'description'     => esc_html__('Choose the Gravity Forms valid background color.', 'form-styler-for-divi'),
                 'toggle_slug'     => 'form_error_style',
                 'tab_slug'        => 'advanced',
                 'sub_toggle'      => 'success',
@@ -288,7 +288,7 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         // Text
         $advanced_fields['fonts']['input_label'] = array(
-            'label'       => esc_html__('Label', 'torque-forms-styler'),
+            'label'       => esc_html__('Label', 'form-styler-for-divi'),
             'css'         => array(
                 'main' => '
                     div%%order_class%% .tfs-gf-styler .gfield_label,
@@ -312,7 +312,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         );
 
         $advanced_fields['fonts']['input_field'] = array(
-            'label'       => esc_html__('Field', 'torque-forms-styler'),
+            'label'       => esc_html__('Field', 'form-styler-for-divi'),
             'css'         => array(
                 'main' => '
                     div%%order_class%% .tfs-gf-styler .gform_wrapper .gfield input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="button"]):not([type="image"]):not([type="file"]),
@@ -351,7 +351,7 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         // Borders
         $advanced_fields['borders']['input_field'] = array(
-            'label_prefix' => esc_html__('Field', 'torque-forms-styler'),
+            'label_prefix' => esc_html__('Field', 'form-styler-for-divi'),
             'css' => array(
                 'main'      => array(
                     'border_radii'  => ('
@@ -447,7 +447,7 @@ class TFS_GFStyler extends TFS_Builder_Module
 
         // Button
         $advanced_fields['button']['submit_button'] = array(
-            'label'          => esc_html__('Button', 'torque-forms-styler'),
+            'label'          => esc_html__('Button', 'form-styler-for-divi'),
             'css'            => array(
                 'main'      => '%%order_class%% .tfs-gf-styler input[type="submit"], %%order_class%% .tfs-gf-styler input[type="button"], %%order_class%% .tfs-gf-styler .gf_progressbar_percentage span, %%order_class%% .tfs-gf-styler .percentbar_blue span',
                 'important' => 'all',
@@ -475,7 +475,7 @@ class TFS_GFStyler extends TFS_Builder_Module
     {
         $gf_form_id = $args['gf_form_id'];
         if (!class_exists('GFForms')) {
-            return esc_html__('Please install Gravity Forms plugin.', 'torque-forms-styler');
+            return esc_html__('Please install Gravity Forms plugin.', 'form-styler-for-divi');
         }
 
         return self::generate_form_output($gf_form_id);
@@ -491,7 +491,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         $ajax = $this->props['form_ajax_option'] === 'yes' ? true : false;
 
         if (!class_exists('GFForms')) {
-            return esc_html__('Please install Gravity Forms plugin.', 'torque-forms-styler');
+            return esc_html__('Please install Gravity Forms plugin.', 'form-styler-for-divi');
         }
 
         $output = '<div class="tfs-gf-styler">';
@@ -506,7 +506,7 @@ class TFS_GFStyler extends TFS_Builder_Module
         if ('0' !== $gf_form_id && $gf_form_id) {
             return do_shortcode(sprintf('[gravityform id="%1$s" ajax="' . $ajax . '" title="false"]', absint($gf_form_id)));
         }
-        return esc_html__('Please select a Gravity Form.', 'torque-forms-styler');
+        return esc_html__('Please select a Gravity Form.', 'form-styler-for-divi');
     }
 
     public function dt_generate_styles($render_slug)
