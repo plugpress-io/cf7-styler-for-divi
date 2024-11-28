@@ -21,12 +21,6 @@ jQuery(function ($) {
         'dipe_three_fourth', // Three fourths width column (9/12)
     ];
 
-    gridShortcodeTypes.forEach((shortcodeType) => {
-        $(
-            `#tag-generator-list button[data-target="tag-generator-panel-${shortcodeType}"]`
-        ).removeClass('tag-generator-dialog');
-    });
-
     /**
      * Handle click on tag generator buttons
      */
@@ -37,9 +31,23 @@ jQuery(function ($) {
 
         // Only handle grid layout shortcodes
         if (shortcodeType.startsWith('dipe')) {
-            insertGridLayoutShortcode(shortcodeType);
+            // Show dialog instead of direct insertion
+            $(`#${target}`).dialog({
+                modal: true,
+                dialogClass: 'wp-dialog',
+                width: 'auto',
+                title: $(this).text(),
+            });
         }
     });
+
+    /**
+     * Insert grid shortcode from dialog
+     */
+    window.insertGridShortcode = function (shortcodeType) {
+        insertGridLayoutShortcode(shortcodeType);
+        $(`#tag-generator-panel-${shortcodeType}`).dialog('close');
+    };
 
     /**
      * Extracts shortcode type from target attribute
