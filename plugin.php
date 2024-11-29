@@ -65,15 +65,15 @@ class Plugin
         // Upsell
         new Admin_Notices([
             'slug' => 'divi_form_styler_cyber_sale',
-            'title' => __('Cyber Sale - Divi Torque Pro just $89!', 'form-styler-for-divi'),
-            'message' => __('Hurry! Get lifetime access to Divi Torque Pro just $89!  Limited Time Offer!!', 'form-styler-for-divi'),
+            'title' => __('Only 50 Spots!', 'form-styler-for-divi'),
+            'message' => __('Hurry! Get Divi Torque Pro just $89!  Limited Time Offer!!', 'form-styler-for-divi'),
             'type' => 'success',
             'show_after' => 'hour',
             'screens' => ['plugins', 'dashboard'],
             'buttons' => [
                 [
                     'text' => __('Claim Your Cyber Sale Offer Now', 'form-styler-for-divi'),
-                    'url' => 'https://diviepic.com/sale/',
+                    'url' => 'https://diviepic.com/divi-torque-pro/',
                     'class' => 'button-primary',
                     'target' => '_blank'
                 ]
