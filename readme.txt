@@ -1,4 +1,4 @@
-=== Contact Form Styler for Divi ===
+=== Divi Form Styler for CF7, Gravity, Fluent ===
 
 Contributors: diviepic, badhonrocks
 Tags: divi, divi builder, contact form 7, gravity forms, fluent forms
@@ -9,13 +9,13 @@ Stable tag: 2.2.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-The Contact Form Styler for Divi enables you to style Contact Form 7, Gravity Forms, and Fluent Forms directly within the Divi Builder.
+The Divi Form Styler enables you to style Contact Form 7, Gravity Forms, and Fluent Forms directly within the Divi Builder.
 
 == Description ==
 
-<strong>CONTACT FORM STYLER: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
+<strong>Divi Form Styler: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
 
-Transform your form design experience with the Contact Form Styler for Divi Builder. Say goodbye to wrestling with shortcodes and limited customization options. Integrating and styling Contact Form 7, Gravity Forms, or Fluent Forms becomes effortless with our dedicated modules.
+Transform your form design experience with the Divi Form Styler for Divi Builder. Say goodbye to wrestling with shortcodes and limited customization options. Integrating and styling Contact Form 7, Gravity Forms, or Fluent Forms becomes effortless with our dedicated modules.
 
 Most helpful links
 <ul>
@@ -34,10 +34,10 @@ Most helpful links
 
     <li><strong>Fluent Forms Module:</strong> Enhance Fluent Forms within Divi Builder. Access intuitive tools and design options for comprehensive form customization.</li>
 
-    <li><strong>User-Friendly Interface:</strong> The Contact Form Styler for Divi is intuitive and requires no coding knowledge to create professional-looking forms that enhance your website.</li>
+    <li><strong>User-Friendly Interface:</strong> The Divi Form Styler for Divi is intuitive and requires no coding knowledge to create professional-looking forms that enhance your website.</li>
 </ul>
 
-Experience the perfect blend of design and functionality with Contact Form Styler for Divi Builder. Our plugin empowers you to customize forms directly within the Divi builder - no shortcodes, no limitations, just a seamless experience that makes your website stand out.
+Experience the perfect blend of design and functionality with Divi Form Styler for Divi Builder. Our plugin empowers you to customize forms directly within the Divi builder - no shortcodes, no limitations, just a seamless experience that makes your website stand out.
 
 
 == Installation ==
@@ -80,7 +80,7 @@ For more information, please visit our <a href="https://diviepic.com/docs/?utm_c
 * Added Gravity Forms Styler
 * Added Fluent Forms Styler
 * Deprecated CF7 Grid feature for new users
-* Rebranding from Divi Contact Form Styler to Form Styler for Divi
+* Rebranding from Divi Divi Form Styler to Form Styler for Divi
 
 = 1.3.4 =
 * Remove and clean some unused code
@@ -102,4 +102,4 @@ For more information, please visit our <a href="https://diviepic.com/docs/?utm_c
 
 = 2.0.0 =
 
-We have optimized the internal structure of the Torque Form Styler in this update. To ensure the safety of your website, we recommend that you back up your website before updating it. Additionally, we have changed the name from Divi Contact Form Styler to Form Styler for Divi.
+We have optimized the internal structure of the Torque Form Styler in this update. To ensure the safety of your website, we recommend that you back up your website before updating it. Additionally, we have changed the name from Divi Divi Form Styler to Form Styler for Divi.
