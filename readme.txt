@@ -1,4 +1,4 @@
-=== Divi Form Styler for CF7, Gravity, Fluent ===
+=== Divi Form Styler for CF7, Gravity Forms, Fluent Forms ===
 
 Contributors: diviepic, badhonrocks
 Tags: divi, divi builder, contact form 7, gravity forms, fluent forms
