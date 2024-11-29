@@ -25,24 +25,3 @@ define('TFS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('TFS_PLUGIN_ASSETS', trailingslashit(TFS_PLUGIN_URL . 'assets'));
 
 require_once 'plugin.php';
-
-add_action('wpcf7_admin_init', 'custom_tag_generator', 15);
-
-function custom_tag_generator()
-{
-    // Check if the tag generator class exists
-    if (class_exists('WPCF7_TagGenerator')) {
-        $tag_generator = WPCF7_TagGenerator::get_instance();
-        $tag_generator->add(
-            'custom_text',
-            __('Custom Text Field', 'contact-form-7'),
-            'jj'
-        );
-    }
-}
-
-// Function to define the custom tag form in the Contact Form 7 editor
-function custom_text_tag_generator($contact_form, $args = '')
-{
-    $args = wp_parse_args($args, array());
-}
