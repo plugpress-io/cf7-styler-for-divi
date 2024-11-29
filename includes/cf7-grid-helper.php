@@ -46,7 +46,7 @@ class CF7_Grid_Helper
         $mj = file_get_contents(TFS_PLUGIN_PATH . 'assets/mix-manifest.json');
         $mj = json_decode($mj, true);
 
-        wp_enqueue_script('dp-admin-js', TFS_PLUGIN_URL . 'assets' . $mj['/js/cf7-util.js'], ['jquery'], TFS_VERSION, true);
+        wp_enqueue_script('dfs-admin-js', TFS_PLUGIN_URL . 'assets' . $mj['/js/cf7-util.js'], ['jquery'], TFS_VERSION, true);
     }
 
     /**
@@ -175,7 +175,7 @@ class CF7_Grid_Helper
     public function row_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-row',
+            'dfs-row',
             $attrs,
             $content
         );
@@ -184,7 +184,7 @@ class CF7_Grid_Helper
     public function one_col_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-col dp-col-12',
+            'dfs-col dfs-col-12',
             $attrs,
             $content
         );
@@ -193,7 +193,7 @@ class CF7_Grid_Helper
     public function one_half_col_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-col dp-col-12 dp-col-md-6 dp-col-lg-6',
+            'dfs-col dfs-col-12 dfs-col-md-6 dfs-col-lg-6',
             $attrs,
             $content
         );
@@ -202,7 +202,7 @@ class CF7_Grid_Helper
     public function one_third_col_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-col dp-col-12 dp-col-md-4 dp-col-lg-4',
+            'dfs-col dfs-col-12 dfs-col-md-4 dfs-col-lg-4',
             $attrs,
             $content
         );
@@ -211,7 +211,7 @@ class CF7_Grid_Helper
     public function one_fourth_col_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-col dp-col-12 dp-col-md-3 dp-col-lg-3',
+            'dfs-col dfs-col-12 dfs-col-md-3 dfs-col-lg-3',
             $attrs,
             $content
         );
@@ -220,7 +220,7 @@ class CF7_Grid_Helper
     public function two_third_col_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-col dp-col-12 dp-col-md-8 dp-col-lg-8',
+            'dfs-col dfs-col-12 dfs-col-md-8 dfs-col-lg-8',
             $attrs,
             $content
         );
@@ -229,12 +229,11 @@ class CF7_Grid_Helper
     public function three_fourth_col_render($attrs, $content = null)
     {
         return $this->render_shortcode(
-            'dp-col dp-col-12 dp-col-md-9 dp-col-lg-9',
+            'dfs-col dfs-col-12 dfs-col-md-9 dfs-col-lg-9',
             $attrs,
             $content
         );
     }
-
 
     private function render_shortcode($class, $attrs, $content)
     {

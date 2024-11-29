@@ -27,7 +27,6 @@ class Assets_Manager
         $mj = json_decode($mj, true);
 
         wp_enqueue_style('tfs-frontend', TFS_PLUGIN_URL . 'assets/css/frontend.css', [], TFS_VERSION);
-        wp_enqueue_style('cf7-grid', TFS_PLUGIN_URL . 'assets/css/cf7-grid.css', [], TFS_VERSION);
     }
 
     public function enqueue_builder_scripts()

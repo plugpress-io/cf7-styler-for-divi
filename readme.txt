@@ -5,7 +5,7 @@ Tags: divi, divi builder, contact form 7, gravity forms, fluent forms
 Donate link: https://diviepic.com/
 Requires at least: 5.0
 Tested up to: 6.7.1
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -55,6 +55,10 @@ For more information, please visit our <a href="https://diviepic.com/docs/?utm_c
 2. Contact Form 7 Grid Builder
 
 == Changelog ==
+
+= 2.2.1 =
+* Fix dismiss notice issue
+* Fix some PHP error for grid css
 
 = 2.2.0 =
 * Added Grid Builder for Contact Form 7 

@@ -3,56 +3,20 @@
 namespace Divi_Form_Styler;
 
 if (! defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+    exit;
 }
 
-/**
- * Class Admin_Notices
- * Handles admin notices with dismissible functionality and screen-specific targeting
- * 
- * @package DiviCarouselLite
- * @since 1.0.0
- */
 class Admin_Notices
 {
-    /** @var string Unique identifier for the notice */
     private $slug;
-
-    /** @var string Notice title */
     private $title;
-
-    /** @var string Notice message content */
     private $message;
-
-    /** @var string Notice type (info, success, warning, error) */
     private $type;
-
-    /** @var string When to show notice (minute, hour, day, week, month) */
     private $show_after;
-
-    /** @var string Option name for dismissed state */
     private $option_key;
-
-    /** @var array Array of button configurations */
     private $buttons;
-
-    /** @var array Array of screen IDs where notice should appear */
     private $screens;
 
-    /**
-     * Initialize the admin notice
-     * 
-     * @param array $args {
-     *     Configuration arguments
-     *     @type string $slug       Unique identifier
-     *     @type string $title      Notice title
-     *     @type string $message    Notice message
-     *     @type string $type       Notice type (info, success, warning, error)
-     *     @type string $show_after Time to wait before showing
-     *     @type array  $buttons    Array of button configs
-     *     @type array  $screens    Array of screen IDs to show notice on
-     * }
-     */
     public function __construct($args = array())
     {
         $defaults = array(
@@ -76,46 +40,36 @@ class Admin_Notices
         $this->screens    = array_map('sanitize_key', $args['screens']);
         $this->option_key = "wp_notice_{$this->slug}_dismissed";
 
-        // Initialize hooks
         $this->init_hooks();
     }
 
-    /**
-     * Initialize WordPress hooks
-     */
     private function init_hooks()
     {
         add_action('admin_notices', array($this, 'display_notice'));
-        add_action('wp_ajax_dismiss_admin_notice', array($this, 'dismiss_notice'));
+        add_action('wp_ajax_dismiss_notice', array($this, 'dismiss_notice'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
     }
 
-    /**
-     * Sanitize button configurations
-     * 
-     * @param array $buttons Raw button configurations
-     * @return array Sanitized button configurations
-     */
     private function sanitize_buttons($buttons)
     {
+        if (!is_array($buttons)) {
+            return array();
+        }
+
         $sanitized = array();
         foreach ($buttons as $button) {
             $sanitized[] = array(
-                'text' => sanitize_text_field($button['text']),
-                'url' => esc_url_raw($button['url']),
-                'class' => sanitize_html_class($button['class'] ?? ''),
-                'target' => in_array($button['target'] ?? '_self', array('_self', '_blank')) ? $button['target'] : '_self'
+                'text'      => sanitize_text_field($button['text']),
+                'url'       => esc_url_raw($button['url']),
+                'class'     => sanitize_html_class($button['class'] ?? ''),
+                'target'    => in_array($button['target'] ?? '_self', array('_self', '_blank')) ? $button['target'] : '_self'
             );
         }
         return $sanitized;
     }
 
-    /**
-     * Enqueue required scripts and localize data
-     */
     public function enqueue_scripts()
     {
-        // Only enqueue on screens where notice might show
         $screen = get_current_screen();
         if (!empty($this->screens) && !in_array($screen->id, $this->screens)) {
             return;
@@ -129,19 +83,15 @@ class Admin_Notices
             true
         );
 
-        wp_localize_script('form-styler-for-divi-admin-notice', 'adminNoticeData', array(
+        wp_localize_script('form-styler-for-divi-admin-notice', 'dfsAdminNoticeData', array(
             'ajax_url'    => admin_url('admin-ajax.php'),
             'security'    => wp_create_nonce('dismiss_notice_' . $this->slug),
             'notice_slug' => $this->slug,
         ));
     }
 
-    /**
-     * Display the admin notice if conditions are met
-     */
     public function display_notice()
     {
-        // Check if we should show on current screen
         $screen = get_current_screen();
         if (!empty($this->screens) && !in_array($screen->id, $this->screens)) {
             return;
@@ -177,9 +127,6 @@ class Admin_Notices
         }
     }
 
-    /**
-     * AJAX handler for dismissing the notice
-     */
     public function dismiss_notice()
     {
         if (!isset($_POST['notice']) || !isset($_POST['security'])) {
@@ -196,11 +143,6 @@ class Admin_Notices
         wp_send_json_error('Invalid notice ID');
     }
 
-    /**
-     * Check if enough time has passed to show the notice
-     * 
-     * @return boolean Whether the notice should be shown
-     */
     private function is_time_to_show()
     {
         $install_date = get_option('divi_form_styler_install_date');

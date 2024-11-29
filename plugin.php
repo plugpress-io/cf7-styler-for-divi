@@ -80,29 +80,22 @@ class Plugin
             ]
         ]);
 
-        new Admin_Notices([
-            'slug' => 'divi_form_styler_ask_review',
-            'title' => __('Please rate and review Contact Form Styler for Divi!', 'form-styler-for-divi'),
-            'message' => __('We hope you\'re enjoying using Contact Form Styler for Divi. Please take a moment to rate and review the plugin. Your feedback helps us improve and serve you better!', 'form-styler-for-divi'),
-            'type' => 'success',
-            'show_after' => 'minute',
-            'screens' => ['plugins', 'dashboard'],
-            'buttons' => [
-                [
-                    'text' => __('Rate and Review', 'form-styler-for-divi'),
-                    'url' => 'https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post',
-                    'class' => 'button-primary',
-                    'target' => '_blank'
-                ],
-                [
-                    'text' => __('No, Thanks', 'form-styler-for-divi'),
-                    'url' => '#',
-                    'class' => 'button-secondary notice-dismiss',
-                    'target' => '_self',
-                    'dismiss' => true
-                ]
-            ]
-        ]);
+        // new Admin_Notices([
+        //     'slug' => 'divi_form_styler_ask_review',
+        //     'title' => __('Please rate and review Contact Form Styler for Divi!', 'form-styler-for-divi'),
+        //     'message' => __('We hope you\'re enjoying using Contact Form Styler for Divi. Please take a moment to rate and review the plugin. Your feedback helps us improve and serve you better!', 'form-styler-for-divi'),
+        //     'type' => 'success',
+        //     'show_after' => 'hour',
+        //     'screens' => ['plugins', 'dashboard'],
+        //     'buttons' => [
+        //         [
+        //             'text' => __('Rate and Review', 'form-styler-for-divi'),
+        //             'url' => 'https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post',
+        //             'class' => 'button-primary',
+        //             'target' => '_blank'
+        //         ],
+        //     ]
+        // ]);
     }
 
     /**

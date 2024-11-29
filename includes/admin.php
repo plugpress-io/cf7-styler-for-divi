@@ -17,8 +17,6 @@ class Admin
     private function __construct()
     {
         add_action('admin_menu', array($this, 'admin_menu'), 99);
-        add_action('wp_ajax_tfs_close_modal', array($this, 'tfs_handle_close_modal'));
-        add_action('wp_ajax_nopriv_tfs_close_modal', array($this, 'tfs_handle_close_modal'));
     }
 
     public static function get_instance()
@@ -105,7 +103,7 @@ class Admin
             'version' => TFS_VERSION,
             'home_slug' => self::TFS_SLUG,
             'modules' => Module_Manager::get_all_modules(),
-            'nonce'    => wp_create_nonce('tfs_nonce'),
+            'notice_slug' => 'tfs-notice',
         ]);
     }
 }

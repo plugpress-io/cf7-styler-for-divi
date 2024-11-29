@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviEpic <help@diviepic.com>\n"
-"POT-Creation-Date: 2024-11-28 21:56+0000\n"
+"POT-Creation-Date: 2024-11-29 22:50+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Generate a three-fourths width column"
 msgstr ""
 
-#: includes/upsell/notices.php:173
+#: includes/upsell/notices.php:123
 msgid "Dismiss this notice."
 msgstr ""
 
@@ -571,26 +571,10 @@ msgstr ""
 msgid "Claim Your Cyber Sale Offer Now"
 msgstr ""
 
-#: plugin.php:85
-msgid "Please rate and review Contact Form Styler for Divi!"
-msgstr ""
-
-#: plugin.php:86
-msgid "We hope you're enjoying using Contact Form Styler for Divi. Please take a moment to rate and review the plugin. Your feedback helps us improve and serve you better!"
-msgstr ""
-
-#: plugin.php:92
-msgid "Rate and Review"
-msgstr ""
-
-#: plugin.php:98
-msgid "No, Thanks"
-msgstr ""
-
-#: plugin.php:216
+#: plugin.php:209
 msgid "Docs"
 msgstr ""
 
-#: plugin.php:221
+#: plugin.php:214
 msgid "Get Divi Torque Pro"
 msgstr ""
