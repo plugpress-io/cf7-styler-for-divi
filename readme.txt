@@ -1,6 +1,6 @@
-=== Divi Form Styler for CF7, Gravity Forms, Fluent Forms ===
+=== Divi CF7 Styler for Contact Form 7 ===
 
-Contributors: diviepic, badhonrocks
+Contributors: badhonrocks
 Tags: divi, divi builder, contact form 7, gravity forms, fluent forms
 Donate link: https://diviepic.com/
 Requires at least: 5.0
@@ -9,13 +9,13 @@ Stable tag: 2.2.2
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-The Divi Form Styler enables you to style Contact Form 7, Gravity Forms, and Fluent Forms directly within the Divi Builder.
+The Divi CF7 Styler enables you to style Contact Form 7, Gravity Forms, and Fluent Forms directly within the Divi Builder.
 
 == Description ==
 
-<strong>Divi Form Styler: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
+<strong>Divi CF7 Styler: THE ULTIMATE SOLUTION FOR STYLING YOUR CONTACT FORMS</strong>
 
-Transform your form design experience with the Divi Form Styler for Divi Builder. Say goodbye to wrestling with shortcodes and limited customization options. Integrating and styling Contact Form 7, Gravity Forms, or Fluent Forms becomes effortless with our dedicated modules.
+Transform your form design experience with the Divi CF7 Styler for Divi Builder. Say goodbye to wrestling with shortcodes and limited customization options. Integrating and styling Contact Form 7, Gravity Forms, or Fluent Forms becomes effortless with our dedicated modules.
 
 Most helpful links
 <ul>
