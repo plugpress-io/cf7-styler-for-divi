@@ -1,6 +1,6 @@
-=== Divi CF7 Styler for Contact Form 7 ===
+=== Divi Contact Form 7 Styler ===
 
-Contributors: badhonrocks
+Contributors: badhonrocks, plugpressco
 Tags: divi, divi builder, contact form 7, gravity forms, fluent forms
 Donate link: https://diviepic.com/
 Requires at least: 5.0
