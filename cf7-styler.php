@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Divi Form Styler
+Plugin Name: CF7 Styler for Divi
 Plugin URI: https://diviepic.com
 Description: Effortlessly style Contact Form 7, Gravity Forms, and Fluent Forms to match your site's design.
 Version: 2.2.1
