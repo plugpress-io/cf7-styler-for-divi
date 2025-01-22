@@ -5,7 +5,7 @@ Plugin URI: https://diviepic.com
 Description: Effortlessly style Contact Form 7, Gravity Forms, and Fluent Forms to match your site's design.
 Version: 2.2.1
 Author: DiviEpic
-Author URI:  https://diviepic.com/divi-form-styler
+Author URI:  https://diviextensions.com/cf7-styler
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: form-styler-for-divi
