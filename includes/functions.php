@@ -1,5 +1,5 @@
 <?php
-function tfs_global_assets_list($global_list)
+function dcs_global_assets_list($global_list)
 {
 
 	$assets_list   = array();
@@ -12,10 +12,10 @@ function tfs_global_assets_list($global_list)
 	return array_merge($global_list, $assets_list);
 }
 
-function tfs_inject_fa_icons($icon_data)
+function dcs_inject_fa_icons($icon_data)
 {
 	if (function_exists('et_pb_maybe_fa_font_icon') && et_pb_maybe_fa_font_icon($icon_data)) {
-		add_filter('et_global_assets_list', 'tfs_global_assets_list');
-		add_filter('et_late_global_assets_list', 'tfs_global_assets_list');
+		add_filter('et_global_assets_list', 'dcs_global_assets_list');
+		add_filter('et_late_global_assets_list', 'dcs_global_assets_list');
 	}
 }

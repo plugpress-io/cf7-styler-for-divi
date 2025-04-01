@@ -17,9 +17,10 @@ composer.lock
 phpcs.xml.dist
 Gruntfile.js
 postcss.config.js
-webpack.mix.js
+webpack.config.js
 wp-textdomain.js
 tailwind.config.js
 .prettierignore
 .prettierrc.json
+
 /src
