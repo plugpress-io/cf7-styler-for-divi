@@ -1,7 +1,7 @@
 === Contact Form 7 Styler for Divi - Easy Form Design & Customization ===
 
 Contributors: badhonrocks, plugpressco
-Tags: contact form 7, divi, divi builder, cf7 styler, form styling, contact forms, form design
+Tags: contact form 7, divi, divi builder, cf7 styler, form design
 Donate link: https://diviextensions.com/
 Requires at least: 5.0
 Tested up to: 6.7.1
