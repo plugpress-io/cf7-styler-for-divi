@@ -19,8 +19,9 @@ Are you tired of plain, boring Contact Form 7 forms that don't match your websit
 
 Most helpful links
 <ul>
- 	<li><a href="https://diviextensions.com/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">DiviExtensions Plugins</a></li>
- 	<li><a href="https://diviextensions.com/docs/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Knowledge Base</a></li>
+    <li><a href="https://diviextensions.com/divi-cf7-styler/demo//?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Contact Form 7 Styler for Divi</a></li>
+    <li><a href="https://diviextensions.com/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">DiviExtensions Plugins</a></li>
+    <li><a href="https://diviextensions.com/docs/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Knowledge Base</a></li>
 </ul>
 
 <strong>🌟 KEY FEATURES</strong>
