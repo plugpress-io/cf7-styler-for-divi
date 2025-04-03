@@ -1,11 +1,11 @@
-=== Contact Form 7 Styler for Divi - Easy Form Design & Customization ===
+=== Contact Form 7 Styler for Divi ===
 
 Contributors: badhonrocks, plugpressco
 Tags: contact form 7, divi, divi builder, cf7 styler, form design
 Donate link: https://diviextensions.com/
 Requires at least: 5.0
 Tested up to: 6.7.1
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -65,6 +65,11 @@ For detailed setup instructions, please visit our <a href="https://diviextension
 2. Contact Form 7 Grid Builder
 
 == Changelog ==
+
+= 2.3.1 =
+* Fix compatibility issue with Fluent Forms
+* Fix compatibility issue with Gravity Forms
+* Fix icon font issue
 
 = 2.3.0 =
 * Enhanced form styling capabilities
