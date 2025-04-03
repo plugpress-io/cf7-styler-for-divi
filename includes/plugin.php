@@ -88,7 +88,7 @@ class Plugin
 
         $base_path = DCS_PLUGIN_PATH . 'includes/modules/divi-4/';
         $this->load_required_modules($base_path);
-        $this->maybe_load_additional_modules($base_path);
+        $this->maybe_load_deprecated_modules($base_path);
     }
 
     private function load_required_modules(string $base_path): void
@@ -97,11 +97,17 @@ class Plugin
         require_once $base_path . 'CF7/CF7.php';
     }
 
-    private function maybe_load_additional_modules(string $base_path): void
+    private function maybe_load_deprecated_modules(string $base_path): void
     {
-        if (!get_option('divi_form_styler_current_version')) {
-            require_once $base_path . 'FF/FF.php';
-            require_once $base_path . 'GF/GF.php';
+        $current_version = get_option('divi_form_styler_current_version');
+        if (!empty($current_version)) {
+            if (function_exists('wpFluentForm')) {
+                require_once $base_path . 'FF/FF.php';
+            }
+
+            if (class_exists('GFForms')) {
+                require_once $base_path . 'GF/GF.php';
+            }
         }
     }
 
