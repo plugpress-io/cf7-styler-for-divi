@@ -67,9 +67,9 @@ For detailed setup instructions, please visit our <a href="https://diviextension
 == Changelog ==
 
 = 2.3.1 =
-* Fix compatibility issue with Fluent Forms
-* Fix compatibility issue with Gravity Forms
-* Fix icon font issue
+* Fixed compatibility issue with Fluent Forms
+* Fixed compatibility issue with Gravity Forms
+* Fixed icon font issue
 
 = 2.3.0 =
 * Enhanced form styling capabilities
