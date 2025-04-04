@@ -72,6 +72,11 @@ For detailed setup instructions, please visit our <a href="https://diviextension
 
 == Changelog ==
 
+= 2.4.0 =
+* Improved grid builder functionality
+* Remove deprecated code
+* Fixed some issues
+
 = 2.3.2 =
 * Fixed name of the plugin
 * Icon deprecated path fix
