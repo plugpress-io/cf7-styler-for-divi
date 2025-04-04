@@ -3,10 +3,12 @@
 abstract class DCS_Builder_Module extends ET_Builder_Module
 {
     public $module_credits = array(
-        'module_uri' => 'https://diviepic.com/?utm_source=builder&utm_medium=tfs&utm_campaign=divi-form-styler',
-        'author'     => 'DiviEpic',
-        'author_uri' => 'https://diviepic.com/?utm_source=builder&utm_medium=tfs&utm_campaign=divi-form-styler',
+        'module_uri' => 'https://diviextensions.com',
+        'author'     => 'DiviExtensions',
+        'author_uri' => 'https://diviextensions.com',
     );
+
+    public $icon_path;
 
     public function _getResponsiveValues($optionName, $presetValues = null)
     {
