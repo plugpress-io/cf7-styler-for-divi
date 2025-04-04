@@ -2,7 +2,7 @@
 /*
 Plugin Name: Divi CF7 Styler (Free)
 Plugin URI: https://diviextensions.com/divi-cf7-styler
-Description: Effortlessly style Contact Form 7, Gravity Forms, and Fluent Forms to match your site's design.
+Description: Effortlessly style Contact Form 7 to match your site's design.
 Version: 2.3.2
 Author: DiviExtensions
 Author URI:  https://diviextensions.com
