@@ -1,4 +1,4 @@
-=== Contact Form 7 Styler for Divi ===
+=== Divi Contact Form 7 Styler ===
 
 Contributors: badhonrocks, plugpressco
 Tags: contact form 7, divi, divi builder, cf7 styler, form design
