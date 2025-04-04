@@ -5,7 +5,7 @@ Tags: contact form 7, divi, divi builder, cf7 styler, form design
 Donate link: https://diviextensions.com/
 Requires at least: 5.0
 Tested up to: 6.7.1
-Stable tag: 2.4.0
+Stable tag: 2.3.3
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -73,9 +73,9 @@ For detailed setup instructions, please visit our <a href="https://diviextension
 == Changelog ==
 
 = 2.4.0 =
+* Added new styling options
 * Improved grid builder functionality
-* Remove deprecated code
-* Fixed some issues
+* Performance optimizations
 
 = 2.3.2 =
 * Fixed name of the plugin
