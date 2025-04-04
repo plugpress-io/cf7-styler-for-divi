@@ -1,9 +1,6 @@
 <?php
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-if (!class_exists('DCS_Builder_Module')) {
-	return;
-}
 class DCS_CF7Styler extends DCS_Builder_Module
 {
 	public function init()
@@ -11,7 +8,7 @@ class DCS_CF7Styler extends DCS_Builder_Module
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
 		$this->name             = esc_html__('Contact Form 7', 'cf7-styler-for-divi');
-		$this->icon_path        = plugin_dir_path(__FILE__) . '';
+		$this->icon_path        = plugin_dir_path(__FILE__) . 'icon.svg';
 		$this->main_css_element = '%%order_class%%';
 
 		$this->settings_modal_toggles = array(

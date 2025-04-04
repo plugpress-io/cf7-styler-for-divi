@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviExtensions <support@diviextensions.com>\n"
-"POT-Creation-Date: 2025-04-04 02:43+0000\n"
+"POT-Creation-Date: 2025-04-04 07:57+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -71,291 +71,291 @@ msgstr ""
 msgid "Generate a three-fourths width column"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:13
+#: includes/modules/divi-4/CF7/CF7.php:10
 msgid "Contact Form 7"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:20
+#: includes/modules/divi-4/CF7/CF7.php:17
 msgid "General"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:25, includes/modules/divi-4/CF7/CF7.php:31, includes/modules/divi-4/FF/FF.php:34, includes/modules/divi-4/GF/GF.php:34
+#: includes/modules/divi-4/CF7/CF7.php:22, includes/modules/divi-4/CF7/CF7.php:28, includes/modules/divi-4/FF/FF.php:34, includes/modules/divi-4/GF/GF.php:34
 msgid "Common"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:27
+#: includes/modules/divi-4/CF7/CF7.php:24
 msgid "Form Header"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:34, includes/modules/divi-4/CF7/CF7.php:645
+#: includes/modules/divi-4/CF7/CF7.php:31, includes/modules/divi-4/CF7/CF7.php:642
 msgid "Title"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:37, includes/modules/divi-4/CF7/CF7.php:658
+#: includes/modules/divi-4/CF7/CF7.php:34, includes/modules/divi-4/CF7/CF7.php:655
 msgid "Text"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:42
+#: includes/modules/divi-4/CF7/CF7.php:39
 msgid "Form Text"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:46, includes/modules/divi-4/CF7/CF7.php:593, includes/modules/divi-4/CF7/CF7.php:695, includes/modules/divi-4/FF/FF.php:301, includes/modules/divi-4/FF/FF.php:334, includes/modules/divi-4/GF/GF.php:315, includes/modules/divi-4/GF/GF.php:354
+#: includes/modules/divi-4/CF7/CF7.php:43, includes/modules/divi-4/CF7/CF7.php:590, includes/modules/divi-4/CF7/CF7.php:692, includes/modules/divi-4/FF/FF.php:301, includes/modules/divi-4/FF/FF.php:334, includes/modules/divi-4/GF/GF.php:315, includes/modules/divi-4/GF/GF.php:354
 msgid "Field"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:49, includes/modules/divi-4/CF7/CF7.php:619, includes/modules/divi-4/FF/FF.php:37, includes/modules/divi-4/FF/FF.php:286, includes/modules/divi-4/GF/GF.php:37, includes/modules/divi-4/GF/GF.php:291
+#: includes/modules/divi-4/CF7/CF7.php:46, includes/modules/divi-4/CF7/CF7.php:616, includes/modules/divi-4/FF/FF.php:37, includes/modules/divi-4/FF/FF.php:286, includes/modules/divi-4/GF/GF.php:37, includes/modules/divi-4/GF/GF.php:291
 msgid "Label"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:53, includes/modules/divi-4/CF7/CF7.php:629
+#: includes/modules/divi-4/CF7/CF7.php:50, includes/modules/divi-4/CF7/CF7.php:626
 msgid "Placeholder"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:57
+#: includes/modules/divi-4/CF7/CF7.php:54
 msgid "Fields"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:58, includes/modules/divi-4/FF/FF.php:45, includes/modules/divi-4/GF/GF.php:45
+#: includes/modules/divi-4/CF7/CF7.php:55, includes/modules/divi-4/FF/FF.php:45, includes/modules/divi-4/GF/GF.php:45
 msgid "Radio & Checkbox"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:59, includes/modules/divi-4/CF7/CF7.php:671, includes/modules/divi-4/FF/FF.php:60, includes/modules/divi-4/FF/FF.php:397, includes/modules/divi-4/GF/GF.php:60, includes/modules/divi-4/GF/GF.php:450
+#: includes/modules/divi-4/CF7/CF7.php:56, includes/modules/divi-4/CF7/CF7.php:668, includes/modules/divi-4/FF/FF.php:60, includes/modules/divi-4/FF/FF.php:397, includes/modules/divi-4/GF/GF.php:60, includes/modules/divi-4/GF/GF.php:450
 msgid "Button"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:60
+#: includes/modules/divi-4/CF7/CF7.php:57
 msgid "Message"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:67, includes/modules/divi-4/FF/FF.php:30, includes/modules/divi-4/GF/GF.php:30
+#: includes/modules/divi-4/CF7/CF7.php:64, includes/modules/divi-4/FF/FF.php:30, includes/modules/divi-4/GF/GF.php:30
 msgid "Form Fields"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:71
+#: includes/modules/divi-4/CF7/CF7.php:68
 msgid "Form Label"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:81
+#: includes/modules/divi-4/CF7/CF7.php:78
 msgid "Show Form Header"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:84, includes/modules/divi-4/CF7/CF7.php:129, includes/modules/divi-4/CF7/CF7.php:251, includes/modules/divi-4/CF7/CF7.php:367, includes/modules/divi-4/GF/GF.php:118
+#: includes/modules/divi-4/CF7/CF7.php:81, includes/modules/divi-4/CF7/CF7.php:126, includes/modules/divi-4/CF7/CF7.php:248, includes/modules/divi-4/CF7/CF7.php:364, includes/modules/divi-4/GF/GF.php:118
 msgid "Yes"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:85, includes/modules/divi-4/CF7/CF7.php:130, includes/modules/divi-4/CF7/CF7.php:252, includes/modules/divi-4/CF7/CF7.php:368, includes/modules/divi-4/GF/GF.php:119
+#: includes/modules/divi-4/CF7/CF7.php:82, includes/modules/divi-4/CF7/CF7.php:127, includes/modules/divi-4/CF7/CF7.php:249, includes/modules/divi-4/CF7/CF7.php:365, includes/modules/divi-4/GF/GF.php:119
 msgid "No"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:108
+#: includes/modules/divi-4/CF7/CF7.php:105
 msgid "Header Title"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:117
+#: includes/modules/divi-4/CF7/CF7.php:114
 msgid "Header Text"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:126
+#: includes/modules/divi-4/CF7/CF7.php:123
 msgid "Use Icon"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:140
+#: includes/modules/divi-4/CF7/CF7.php:137
 msgid "Header Image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:142
+#: includes/modules/divi-4/CF7/CF7.php:139
 msgid "Upload an image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:143
+#: includes/modules/divi-4/CF7/CF7.php:140
 msgid "Choose an Image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:144
+#: includes/modules/divi-4/CF7/CF7.php:141
 msgid "Set As Image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:153
+#: includes/modules/divi-4/CF7/CF7.php:150
 msgid "Header Icon"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:163
+#: includes/modules/divi-4/CF7/CF7.php:160
 msgid "Form Header Background"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:175
+#: includes/modules/divi-4/CF7/CF7.php:172
 msgid "Header Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:188
+#: includes/modules/divi-4/CF7/CF7.php:185
 msgid "Bottom Spacing"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:206
+#: includes/modules/divi-4/CF7/CF7.php:203
 msgid "Header Image/Icon Background"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:218
+#: includes/modules/divi-4/CF7/CF7.php:215
 msgid "Header Icon Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:231
+#: includes/modules/divi-4/CF7/CF7.php:228
 msgid "Form Background"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:239
+#: includes/modules/divi-4/CF7/CF7.php:236
 msgid "Form Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:248
+#: includes/modules/divi-4/CF7/CF7.php:245
 msgid "Fullwidth Button"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:260
+#: includes/modules/divi-4/CF7/CF7.php:257
 msgid "Button Alignment"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:263
+#: includes/modules/divi-4/CF7/CF7.php:260
 msgid "Left"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:264
+#: includes/modules/divi-4/CF7/CF7.php:261
 msgid "Center"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:265
+#: includes/modules/divi-4/CF7/CF7.php:262
 msgid "Right"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:276
+#: includes/modules/divi-4/CF7/CF7.php:273
 msgid "Select Form"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:280
+#: includes/modules/divi-4/CF7/CF7.php:277
 msgid "Choose a contact form to display."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:288
+#: includes/modules/divi-4/CF7/CF7.php:285
 msgid "Common Text Fields Height"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:289
+#: includes/modules/divi-4/CF7/CF7.php:286
 msgid "Here you can define static height for the common text fields."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:303
+#: includes/modules/divi-4/CF7/CF7.php:300
 msgid "Form Field Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:304
+#: includes/modules/divi-4/CF7/CF7.php:301
 msgid "Here you can define a custom padding for each field."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:313
+#: includes/modules/divi-4/CF7/CF7.php:310
 msgid "Form Field Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:322
+#: includes/modules/divi-4/CF7/CF7.php:319
 msgid "Form Field Active Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:330
+#: includes/modules/divi-4/CF7/CF7.php:327
 msgid "Form Field Spacing Bottom"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:331
+#: includes/modules/divi-4/CF7/CF7.php:328
 msgid "Set how much space the form field will take at the bottom."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:346
+#: includes/modules/divi-4/CF7/CF7.php:343
 msgid "Form Label Spacing Bottom"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:347
+#: includes/modules/divi-4/CF7/CF7.php:344
 msgid "Set how much space the form label will take at the bottom."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:363
+#: includes/modules/divi-4/CF7/CF7.php:360
 msgid "Enable Custom Styles"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:379
+#: includes/modules/divi-4/CF7/CF7.php:376
 msgid "Size"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:397, includes/modules/divi-4/FF/FF.php:142, includes/modules/divi-4/FF/FF.php:186, includes/modules/divi-4/GF/GF.php:150, includes/modules/divi-4/GF/GF.php:193
+#: includes/modules/divi-4/CF7/CF7.php:394, includes/modules/divi-4/FF/FF.php:142, includes/modules/divi-4/FF/FF.php:186, includes/modules/divi-4/GF/GF.php:150, includes/modules/divi-4/GF/GF.php:193
 msgid "Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:408, includes/modules/divi-4/FF/FF.php:195, includes/modules/divi-4/GF/GF.php:202
+#: includes/modules/divi-4/CF7/CF7.php:405, includes/modules/divi-4/FF/FF.php:195, includes/modules/divi-4/GF/GF.php:202
 msgid "Selected Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:420
+#: includes/modules/divi-4/CF7/CF7.php:417
 msgid "Border Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:432
+#: includes/modules/divi-4/CF7/CF7.php:429
 msgid "Border Size"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:450, includes/modules/divi-4/FF/FF.php:204, includes/modules/divi-4/GF/GF.php:211
+#: includes/modules/divi-4/CF7/CF7.php:447, includes/modules/divi-4/FF/FF.php:204, includes/modules/divi-4/GF/GF.php:211
 msgid "Label Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:462
+#: includes/modules/divi-4/CF7/CF7.php:459
 msgid "Message Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:476
+#: includes/modules/divi-4/CF7/CF7.php:473
 msgid "Message Margin Top"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:489
+#: includes/modules/divi-4/CF7/CF7.php:486
 msgid "Message Text Alignment"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:490
+#: includes/modules/divi-4/CF7/CF7.php:487
 msgid "Align message text to the left, right or center."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:501
+#: includes/modules/divi-4/CF7/CF7.php:498
 msgid "Message Text Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:509
+#: includes/modules/divi-4/CF7/CF7.php:506
 msgid "Message Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:517
+#: includes/modules/divi-4/CF7/CF7.php:514
 msgid "Border Highlight Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:526
+#: includes/modules/divi-4/CF7/CF7.php:523
 msgid "Success Message Text Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:534
+#: includes/modules/divi-4/CF7/CF7.php:531
 msgid "Success Message Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:542
+#: includes/modules/divi-4/CF7/CF7.php:539
 msgid "Success Border Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:551
+#: includes/modules/divi-4/CF7/CF7.php:548
 msgid "Error Message Text Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:559
+#: includes/modules/divi-4/CF7/CF7.php:556
 msgid "Error Message Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:567
+#: includes/modules/divi-4/CF7/CF7.php:564
 msgid "Error Border Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:1564
+#: includes/modules/divi-4/CF7/CF7.php:1561
 msgid "Select a Contact form"
 msgstr ""
 

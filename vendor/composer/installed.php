@@ -3,7 +3,7 @@
         'name' => 'diviextensions/cf7-styler-for-divi',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'a0988488203736c0d8557df8fe99fef975fa0d21',
+        'reference' => '5961a9b22f8653e3237e50fb11584f8a1b108099',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'diviextensions/cf7-styler-for-divi' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'a0988488203736c0d8557df8fe99fef975fa0d21',
+            'reference' => '5961a9b22f8653e3237e50fb11584f8a1b108099',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -27,15 +27,21 @@ Most helpful links
 <strong>🌟 KEY FEATURES</strong>
 
 <ul>
-    <li><strong>Visual Form Styling:</strong> Style every element of your Contact Form 7 forms using Divi's intuitive visual builder. Customize colors, fonts, spacing, borders and more with just a few clicks.</li>
-
-    <li><strong>Powerful Grid Builder:</strong> Create responsive, multi-column form layouts easily with our built-in grid system. Design forms that look great on all devices.</li>
-
-    <li><strong>Complete Design Control:</strong> Customize form fields, labels, buttons, success messages, and error states to match your brand perfectly.</li>
-
-    <li><strong>Zero Coding Required:</strong> Our user-friendly interface makes form styling accessible to everyone - no CSS or technical knowledge needed.</li>
-
-    <li><strong>Responsive Design:</strong> All styled forms automatically adapt to mobile devices, ensuring a great user experience across all screen sizes.</li>
+    <li>
+        <strong>Visual Form Styling:</strong> Style every element of your Contact Form 7 forms using Divi's intuitive visual builder. Customize colors, fonts, spacing, borders and more with just a few clicks.
+    </li>
+    <li>
+        <strong>Powerful Grid Builder:</strong> Create responsive, multi-column form layouts easily with our built-in grid system. Design forms that look great on all devices.
+    </li>
+    <li>
+        <strong>Complete Design Control:</strong> Customize form fields, labels, buttons, success messages, and error states to match your brand perfectly.
+    </li>
+    <li>
+        <strong>Zero Coding Required:</strong> Our user-friendly interface makes form styling accessible to everyone - no CSS or technical knowledge needed.
+    </li>
+    <li>
+        <strong>Responsive Design:</strong> All styled forms automatically adapt to mobile devices, ensuring a great user experience across all screen sizes.
+    </li>
 </ul>
 
 <strong>🚀 WHY CHOOSE CONTACT FORM 7 STYLER FOR DIVI?</strong>
