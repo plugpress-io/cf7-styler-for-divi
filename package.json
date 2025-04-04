@@ -1,6 +1,6 @@
 {
   "name": "cf7-styler-for-divi",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.1",
@@ -57,6 +57,6 @@
     "build": "wp-scripts build",
     "start": "wp-scripts start",
     "packages-update": "wp-scripts packages-update",
-    "make-pot": "wp i18n make-pot . languages/divi-google-reviews.pot --domain=divi-google-reviews"
+    "make-pot": "wp i18n make-pot . languages/cf7-styler-for-divi.pot --domain=cf7-styler-for-divi"
   }
 }

@@ -1,20 +1,21 @@
 <?php
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
-
-if (!class_exists('DCS_Builder_Module')) {
-    return;
-}
-
-class DCS_FFStyler extends DCS_Builder_Module
+class DCS_FFStyler extends ET_Builder_Module
 {
 
+    public $module_credits = array(
+        'module_uri' => 'https://diviextensions.com',
+        'author'     => 'DiviExtensions',
+        'author_uri' => 'https://diviextensions.com',
+    );
+
+    public $icon_path;
     public $slug = 'tfs_fluent_forms_styler';
     public $vb_support = 'on';
 
     public function init()
     {
-        $this->name             = esc_html__('Fluent Forms', 'cf7-styler-for-divi');
+        $this->name             = esc_html__('Fluent Forms Styler', 'cf7-styler-for-divi');
         $this->icon_path        = plugin_dir_path(__FILE__) . '';
         $this->main_css_element = '%%order_class%%';
 

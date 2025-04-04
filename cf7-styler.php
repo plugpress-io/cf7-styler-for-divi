@@ -3,7 +3,7 @@
 Plugin Name: Divi CF7 Styler (Free)
 Plugin URI: https://diviextensions.com/divi-cf7-styler
 Description: Effortlessly style Contact Form 7 to match your site's design.
-Version: 2.3.2
+Version: 2.4.0
 Author: DiviExtensions
 Author URI:  https://diviextensions.com
 License: GPL2
@@ -17,15 +17,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
-}
-
-define('DCS_VERSION', '2.3.2');
+define('DCS_VERSION', '2.4.0');
 define('DCS_BASENAME', plugin_basename(__FILE__));
 define('DCS_BASENAME_DIR', plugin_basename(__DIR__));
 define('DCS_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('DCS_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('DCS_PLUGIN_ASSETS', trailingslashit(DCS_PLUGIN_URL . 'assets'));
 
-require_once 'includes/plugin.php';
+require_once DCS_PLUGIN_PATH . 'includes/plugin.php';

@@ -53,7 +53,7 @@ class Plugin
     {
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
         add_action('plugins_loaded', [$this, 'load_textdomain']);
-        add_action('et_builder_ready', [$this, 'load_modules'], 9);
+        add_action('et_builder_ready', [$this, 'load_modules'], 11);
         add_filter('plugin_action_links_' . self::BASENAME, [$this, 'add_plugin_action_links']);
     }
 
@@ -82,25 +82,14 @@ class Plugin
 
     public function load_modules()
     {
+
         if (!class_exists('ET_Builder_Element')) {
             return;
         }
 
-        $base_path = self::PLUGIN_PATH . 'includes/modules/divi-4/';
-        $this->load_required_modules($base_path);
-        $this->maybe_load_deprecated_modules($base_path);
-    }
-
-    private function load_required_modules($base_path)
-    {
-        require_once $base_path . 'Base/Base.php';
-        require_once $base_path . 'CF7/CF7.php';
-    }
-
-    private function maybe_load_deprecated_modules($base_path)
-    {
-        require_once $base_path . 'FF/FF.php';
-        require_once $base_path . 'GF/GF.php';
+        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
+        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
+        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
     }
 
     public function add_plugin_action_links($links)

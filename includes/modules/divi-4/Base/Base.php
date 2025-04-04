@@ -1,6 +1,6 @@
 <?php
 
-abstract class DCS_Builder_Module extends ET_Builder_Module
+class DCS_Builder_Module extends ET_Builder_Module
 {
     public $module_credits = array(
         'module_uri' => 'https://diviextensions.com',

@@ -1,14 +1,20 @@
 <?php
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-class DCS_CF7Styler extends DCS_Builder_Module
+class DCS_CF7Styler extends ET_Builder_Module
 {
+	public $module_credits = array(
+		'module_uri' => 'https://diviextensions.com',
+		'author'     => 'DiviExtensions',
+		'author_uri' => 'https://diviextensions.com',
+	);
+
+	public $icon_path;
+
 	public function init()
 	{
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
-		$this->name             = esc_html__('Contact Form 7', 'cf7-styler-for-divi');
-		$this->icon_path        = plugin_dir_path(__FILE__) . 'icon.svg';
+		$this->name             = esc_html__('CF7 Styler Lite', 'cf7-styler-for-divi');
 		$this->main_css_element = '%%order_class%%';
 
 		$this->settings_modal_toggles = array(

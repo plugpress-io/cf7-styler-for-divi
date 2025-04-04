@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviExtensions <support@diviextensions.com>\n"
-"POT-Creation-Date: 2025-04-04 07:57+0000\n"
+"POT-Creation-Date: 2025-04-04 09:30+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -71,486 +71,486 @@ msgstr ""
 msgid "Generate a three-fourths width column"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:10
-msgid "Contact Form 7"
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
+msgid "CF7 Styler Lite"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:17
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:23
 msgid "General"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:22, includes/modules/divi-4/CF7/CF7.php:28, includes/modules/divi-4/FF/FF.php:34, includes/modules/divi-4/GF/GF.php:34
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:28, includes/modules/divi-4/CF7Styler/CF7Styler.php:34, includes/modules/divi-4/FluentForms/FluentForms.php:35, includes/modules/divi-4/GravityForms/GravityForms.php:34
 msgid "Common"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:24
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:30
 msgid "Form Header"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:31, includes/modules/divi-4/CF7/CF7.php:642
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:37, includes/modules/divi-4/CF7Styler/CF7Styler.php:648
 msgid "Title"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:34, includes/modules/divi-4/CF7/CF7.php:655
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:661
 msgid "Text"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:39
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:45
 msgid "Form Text"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:43, includes/modules/divi-4/CF7/CF7.php:590, includes/modules/divi-4/CF7/CF7.php:692, includes/modules/divi-4/FF/FF.php:301, includes/modules/divi-4/FF/FF.php:334, includes/modules/divi-4/GF/GF.php:315, includes/modules/divi-4/GF/GF.php:354
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:49, includes/modules/divi-4/CF7Styler/CF7Styler.php:596, includes/modules/divi-4/CF7Styler/CF7Styler.php:698, includes/modules/divi-4/FluentForms/FluentForms.php:302, includes/modules/divi-4/FluentForms/FluentForms.php:335, includes/modules/divi-4/GravityForms/GravityForms.php:315, includes/modules/divi-4/GravityForms/GravityForms.php:354
 msgid "Field"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:46, includes/modules/divi-4/CF7/CF7.php:616, includes/modules/divi-4/FF/FF.php:37, includes/modules/divi-4/FF/FF.php:286, includes/modules/divi-4/GF/GF.php:37, includes/modules/divi-4/GF/GF.php:291
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:52, includes/modules/divi-4/CF7Styler/CF7Styler.php:622, includes/modules/divi-4/FluentForms/FluentForms.php:38, includes/modules/divi-4/FluentForms/FluentForms.php:287, includes/modules/divi-4/GravityForms/GravityForms.php:37, includes/modules/divi-4/GravityForms/GravityForms.php:291
 msgid "Label"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:50, includes/modules/divi-4/CF7/CF7.php:626
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:56, includes/modules/divi-4/CF7Styler/CF7Styler.php:632
 msgid "Placeholder"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:54
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:60
 msgid "Fields"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:55, includes/modules/divi-4/FF/FF.php:45, includes/modules/divi-4/GF/GF.php:45
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:61, includes/modules/divi-4/FluentForms/FluentForms.php:46, includes/modules/divi-4/GravityForms/GravityForms.php:45
 msgid "Radio & Checkbox"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:56, includes/modules/divi-4/CF7/CF7.php:668, includes/modules/divi-4/FF/FF.php:60, includes/modules/divi-4/FF/FF.php:397, includes/modules/divi-4/GF/GF.php:60, includes/modules/divi-4/GF/GF.php:450
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:62, includes/modules/divi-4/CF7Styler/CF7Styler.php:674, includes/modules/divi-4/FluentForms/FluentForms.php:61, includes/modules/divi-4/FluentForms/FluentForms.php:398, includes/modules/divi-4/GravityForms/GravityForms.php:60, includes/modules/divi-4/GravityForms/GravityForms.php:450
 msgid "Button"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:57
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:63
 msgid "Message"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:64, includes/modules/divi-4/FF/FF.php:30, includes/modules/divi-4/GF/GF.php:30
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:70, includes/modules/divi-4/FluentForms/FluentForms.php:31, includes/modules/divi-4/GravityForms/GravityForms.php:30
 msgid "Form Fields"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:68
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:74
 msgid "Form Label"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:78
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:84
 msgid "Show Form Header"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:81, includes/modules/divi-4/CF7/CF7.php:126, includes/modules/divi-4/CF7/CF7.php:248, includes/modules/divi-4/CF7/CF7.php:364, includes/modules/divi-4/GF/GF.php:118
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:87, includes/modules/divi-4/CF7Styler/CF7Styler.php:132, includes/modules/divi-4/CF7Styler/CF7Styler.php:254, includes/modules/divi-4/CF7Styler/CF7Styler.php:370, includes/modules/divi-4/GravityForms/GravityForms.php:118
 msgid "Yes"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:82, includes/modules/divi-4/CF7/CF7.php:127, includes/modules/divi-4/CF7/CF7.php:249, includes/modules/divi-4/CF7/CF7.php:365, includes/modules/divi-4/GF/GF.php:119
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:88, includes/modules/divi-4/CF7Styler/CF7Styler.php:133, includes/modules/divi-4/CF7Styler/CF7Styler.php:255, includes/modules/divi-4/CF7Styler/CF7Styler.php:371, includes/modules/divi-4/GravityForms/GravityForms.php:119
 msgid "No"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:105
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:111
 msgid "Header Title"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:114
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:120
 msgid "Header Text"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:123
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:129
 msgid "Use Icon"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:137
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:143
 msgid "Header Image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:139
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:145
 msgid "Upload an image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:140
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:146
 msgid "Choose an Image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:141
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:147
 msgid "Set As Image"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:150
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:156
 msgid "Header Icon"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:160
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:166
 msgid "Form Header Background"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:172
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:178
 msgid "Header Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:185
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:191
 msgid "Bottom Spacing"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:203
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:209
 msgid "Header Image/Icon Background"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:215
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:221
 msgid "Header Icon Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:228
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:234
 msgid "Form Background"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:236
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:242
 msgid "Form Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:245
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:251
 msgid "Fullwidth Button"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:257
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:263
 msgid "Button Alignment"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:260
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:266
 msgid "Left"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:261
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:267
 msgid "Center"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:262
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:268
 msgid "Right"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:273
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:279
 msgid "Select Form"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:277
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:283
 msgid "Choose a contact form to display."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:285
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:291
 msgid "Common Text Fields Height"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:286
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:292
 msgid "Here you can define static height for the common text fields."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:300
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:306
 msgid "Form Field Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:301
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:307
 msgid "Here you can define a custom padding for each field."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:310
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:316
 msgid "Form Field Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:319
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:325
 msgid "Form Field Active Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:327
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:333
 msgid "Form Field Spacing Bottom"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:328
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:334
 msgid "Set how much space the form field will take at the bottom."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:343
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:349
 msgid "Form Label Spacing Bottom"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:344
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:350
 msgid "Set how much space the form label will take at the bottom."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:360
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:366
 msgid "Enable Custom Styles"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:376
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:382
 msgid "Size"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:394, includes/modules/divi-4/FF/FF.php:142, includes/modules/divi-4/FF/FF.php:186, includes/modules/divi-4/GF/GF.php:150, includes/modules/divi-4/GF/GF.php:193
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:400, includes/modules/divi-4/FluentForms/FluentForms.php:143, includes/modules/divi-4/FluentForms/FluentForms.php:187, includes/modules/divi-4/GravityForms/GravityForms.php:150, includes/modules/divi-4/GravityForms/GravityForms.php:193
 msgid "Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:405, includes/modules/divi-4/FF/FF.php:195, includes/modules/divi-4/GF/GF.php:202
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:411, includes/modules/divi-4/FluentForms/FluentForms.php:196, includes/modules/divi-4/GravityForms/GravityForms.php:202
 msgid "Selected Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:417
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:423
 msgid "Border Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:429
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:435
 msgid "Border Size"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:447, includes/modules/divi-4/FF/FF.php:204, includes/modules/divi-4/GF/GF.php:211
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:453, includes/modules/divi-4/FluentForms/FluentForms.php:205, includes/modules/divi-4/GravityForms/GravityForms.php:211
 msgid "Label Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:459
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:465
 msgid "Message Padding"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:473
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:479
 msgid "Message Margin Top"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:486
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:492
 msgid "Message Text Alignment"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:487
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:493
 msgid "Align message text to the left, right or center."
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:498
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:504
 msgid "Message Text Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:506
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:512
 msgid "Message Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:514
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:520
 msgid "Border Highlight Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:523
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:529
 msgid "Success Message Text Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:531
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:537
 msgid "Success Message Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:539
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:545
 msgid "Success Border Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:548
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:554
 msgid "Error Message Text Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:556
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:562
 msgid "Error Message Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:564
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:570
 msgid "Error Border Color"
 msgstr ""
 
-#: includes/modules/divi-4/CF7/CF7.php:1561
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:1567
 msgid "Select a Contact form"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:17
-msgid "Fluent Forms"
+#: includes/modules/divi-4/FluentForms/FluentForms.php:18
+msgid "Fluent Forms Styler"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:24, includes/modules/divi-4/GF/GF.php:24
+#: includes/modules/divi-4/FluentForms/FluentForms.php:25, includes/modules/divi-4/GravityForms/GravityForms.php:24
 msgid "Content"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:40, includes/modules/divi-4/GF/GF.php:40
+#: includes/modules/divi-4/FluentForms/FluentForms.php:41, includes/modules/divi-4/GravityForms/GravityForms.php:40
 msgid "Input Text"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:48, includes/modules/divi-4/GF/GF.php:48
+#: includes/modules/divi-4/FluentForms/FluentForms.php:49, includes/modules/divi-4/GravityForms/GravityForms.php:48
 msgid "Success / Error Message"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:52, includes/modules/divi-4/GF/GF.php:52
+#: includes/modules/divi-4/FluentForms/FluentForms.php:53, includes/modules/divi-4/GravityForms/GravityForms.php:52
 msgid "Success"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:55, includes/modules/divi-4/GF/GF.php:55
+#: includes/modules/divi-4/FluentForms/FluentForms.php:56, includes/modules/divi-4/GravityForms/GravityForms.php:55
 msgid "Error"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:78
+#: includes/modules/divi-4/FluentForms/FluentForms.php:79
 msgid "No Forms Found!"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:81, includes/modules/divi-4/GF/GF.php:78
+#: includes/modules/divi-4/FluentForms/FluentForms.php:82, includes/modules/divi-4/GravityForms/GravityForms.php:78
 msgid "Select"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:105
+#: includes/modules/divi-4/FluentForms/FluentForms.php:106
 msgid "Select Fluent Form"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:109
+#: includes/modules/divi-4/FluentForms/FluentForms.php:110
 msgid "Choose the Fluent Form you want to display."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:124, includes/modules/divi-4/GF/GF.php:132
+#: includes/modules/divi-4/FluentForms/FluentForms.php:125, includes/modules/divi-4/GravityForms/GravityForms.php:132
 msgid "Padding"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:135
+#: includes/modules/divi-4/FluentForms/FluentForms.php:136
 msgid "Choose the Fluent Form input padding."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:145
+#: includes/modules/divi-4/FluentForms/FluentForms.php:146
 msgid "Choose the Fluent Form input background color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:152, includes/modules/divi-4/GF/GF.php:160
+#: includes/modules/divi-4/FluentForms/FluentForms.php:153, includes/modules/divi-4/GravityForms/GravityForms.php:160
 msgid "Required Color"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:155
+#: includes/modules/divi-4/FluentForms/FluentForms.php:156
 msgid "Choose the Fluent Form required color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:169, includes/modules/divi-4/GF/GF.php:176
+#: includes/modules/divi-4/FluentForms/FluentForms.php:170, includes/modules/divi-4/GravityForms/GravityForms.php:176
 msgid "Radio & Checkbox Size"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:180
+#: includes/modules/divi-4/FluentForms/FluentForms.php:181
 msgid "Choose the Fluent Form radio & checkbox size."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:189
+#: includes/modules/divi-4/FluentForms/FluentForms.php:190
 msgid "Choose the Fluent Form radio & checkbox background color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:198
+#: includes/modules/divi-4/FluentForms/FluentForms.php:199
 msgid "Choose the Fluent Form selected color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:207
+#: includes/modules/divi-4/FluentForms/FluentForms.php:208
 msgid "Choose the Fluent Form label color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:219, includes/modules/divi-4/GF/GF.php:226
+#: includes/modules/divi-4/FluentForms/FluentForms.php:220, includes/modules/divi-4/GravityForms/GravityForms.php:226
 msgid "Field Validation Padding"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:222
+#: includes/modules/divi-4/FluentForms/FluentForms.php:223
 msgid "Choose the Fluent Form field validation padding."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:229, includes/modules/divi-4/GF/GF.php:236
+#: includes/modules/divi-4/FluentForms/FluentForms.php:230, includes/modules/divi-4/GravityForms/GravityForms.php:236
 msgid "Form Error Field Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:232
+#: includes/modules/divi-4/FluentForms/FluentForms.php:233
 msgid "Choose the Fluent Form error field background color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:239, includes/modules/divi-4/GF/GF.php:246
+#: includes/modules/divi-4/FluentForms/FluentForms.php:240, includes/modules/divi-4/GravityForms/GravityForms.php:246
 msgid "Form Valid Message Padding"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:242
+#: includes/modules/divi-4/FluentForms/FluentForms.php:243
 msgid "Choose the Fluent Form valid message padding."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:249, includes/modules/divi-4/GF/GF.php:256
+#: includes/modules/divi-4/FluentForms/FluentForms.php:250, includes/modules/divi-4/GravityForms/GravityForms.php:256
 msgid "Form Valid Background Color"
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:252
+#: includes/modules/divi-4/FluentForms/FluentForms.php:253
 msgid "Choose the Fluent Form valid background color."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:425, includes/modules/divi-4/FF/FF.php:441
+#: includes/modules/divi-4/FluentForms/FluentForms.php:426, includes/modules/divi-4/FluentForms/FluentForms.php:442
 msgid "Please install Fluent Forms plugin."
 msgstr ""
 
-#: includes/modules/divi-4/FF/FF.php:461
+#: includes/modules/divi-4/FluentForms/FluentForms.php:462
 msgid "Please select a Fluent Form."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:17
-msgid "Gravity Forms"
+#: includes/modules/divi-4/GravityForms/GravityForms.php:16
+msgid "Gravity Forms Styler"
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:69, includes/modules/divi-4/GF/GF.php:75
+#: includes/modules/divi-4/GravityForms/GravityForms.php:69, includes/modules/divi-4/GravityForms/GravityForms.php:75
 msgid "You have not added any Gravity Forms yet."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:102
+#: includes/modules/divi-4/GravityForms/GravityForms.php:102
 msgid "Select Gravity Forms"
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:106
+#: includes/modules/divi-4/GravityForms/GravityForms.php:106
 msgid "Choose the Gravity Forms you want to display."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:114
+#: includes/modules/divi-4/GravityForms/GravityForms.php:114
 msgid "Enable AJAX Form Submission"
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:121
+#: includes/modules/divi-4/GravityForms/GravityForms.php:121
 msgid "Enable AJAX for the form."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:143
+#: includes/modules/divi-4/GravityForms/GravityForms.php:143
 msgid "Choose the Gravity Forms input padding."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:153
+#: includes/modules/divi-4/GravityForms/GravityForms.php:153
 msgid "Choose the Gravity Forms input background color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:163
+#: includes/modules/divi-4/GravityForms/GravityForms.php:163
 msgid "Choose the Gravity Forms required color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:187
+#: includes/modules/divi-4/GravityForms/GravityForms.php:187
 msgid "Choose the Gravity Forms radio & checkbox size."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:196
+#: includes/modules/divi-4/GravityForms/GravityForms.php:196
 msgid "Choose the Gravity Forms radio & checkbox background color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:205
+#: includes/modules/divi-4/GravityForms/GravityForms.php:205
 msgid "Choose the Gravity Forms selected color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:214
+#: includes/modules/divi-4/GravityForms/GravityForms.php:214
 msgid "Choose the Gravity Forms label color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:229
+#: includes/modules/divi-4/GravityForms/GravityForms.php:229
 msgid "Choose the Gravity Forms field validation padding."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:239
+#: includes/modules/divi-4/GravityForms/GravityForms.php:239
 msgid "Choose the Gravity Forms error field background color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:249
+#: includes/modules/divi-4/GravityForms/GravityForms.php:249
 msgid "Choose the Gravity Forms valid message padding."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:259
+#: includes/modules/divi-4/GravityForms/GravityForms.php:259
 msgid "Choose the Gravity Forms valid background color."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:478, includes/modules/divi-4/GF/GF.php:494
+#: includes/modules/divi-4/GravityForms/GravityForms.php:478, includes/modules/divi-4/GravityForms/GravityForms.php:494
 msgid "Please install Gravity Forms plugin."
 msgstr ""
 
-#: includes/modules/divi-4/GF/GF.php:509
+#: includes/modules/divi-4/GravityForms/GravityForms.php:509
 msgid "Please select a Gravity Form."
 msgstr ""
