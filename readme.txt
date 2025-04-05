@@ -9,17 +9,17 @@ Stable tag: 2.3.3
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-The ultimate Contact Form 7 styling solution for Divi Builder - Create beautiful, customized contact forms without any coding.
+Divi Contact Form 7 Styler is a powerful Divi module that lets you easily customize and style Contact Form 7 forms.
 
 == Description ==
 
 <strong>Transform Your Contact Form 7 Forms with the Most Powerful Divi Styling Solution</strong>
 
-Are you tired of plain, boring Contact Form 7 forms that don't match your website's design? Contact Form 7 Styler for Divi is here to revolutionize your form design experience. Create stunning, professional-looking forms directly within the Divi Builder interface - no coding required!
+Are you tired of plain, boring Contact Form 7 forms that don't match your website's design? <a href="https://diviextensions.com/divi-cf7-styler/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Divi Contact Form 7 Styler</a> is here to revolutionize your form design experience. Create stunning, professional-looking forms directly within the Divi Builder interface - no coding required!
 
 Most helpful links
 <ul>
-    <li><a href="https://diviextensions.com/divi-cf7-styler/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Contact Form 7 Styler for Divi</a></li>
+    <li><a href="https://diviextensions.com/divi-cf7-styler/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Divi Contact Form 7 Styler</a></li>
     <li><a href="https://diviextensions.com/docs/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Knowledge Base</a></li>
     <li><a href="https://diviextensions.com/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">All DiviExtensions Plugins</a></li>
 </ul>
