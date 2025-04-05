@@ -84,6 +84,7 @@ For detailed setup instructions, please visit our <a href="https://diviextension
 * Fixed compatibility issue with Fluent Forms
 * Fixed compatibility issue with Gravity Forms
 * Fixed icon font issue
+* Contact Form Styler menu item removed
 
 = 2.3.0 =
 * Enhanced form styling capabilities
