@@ -1,0 +1,90 @@
+{
+  "slug": "dvppl_cf7_styler",
+  "name": "CF7 Styler",
+  "description": "Style your Contact Form 7 forms with Divi.",
+  "settings": {
+    "general": {
+      "toggles": {
+        "general": {
+          "title": "General",
+          "settings": [
+            "cf7"
+          ]
+        }
+      }
+    },
+    "advanced": {
+      "toggles": {
+        "common": {
+          "title": "Common",
+          "settings": [
+            "use_form_button_fullwidth",
+            "button_alignment"
+          ]
+        },
+        "form_header": {
+          "title": "Form Header",
+          "tabbedSubtoggles": true,
+          "subToggles": {
+            "common_tab": {
+              "name": "Common"
+            },
+            "title_tab": {
+              "name": "Title"
+            },
+            "text_tab": {
+              "name": "Text"
+            }
+          }
+        },
+        "form_text": {
+          "title": "Form Text",
+          "tabbedSubtoggles": true,
+          "subToggles": {
+            "field_tab": {
+              "name": "Field"
+            },
+            "label_tab": {
+              "name": "Label"
+            },
+            "placeholder_tab": {
+              "name": "Placeholder"
+            }
+          }
+        }
+      }
+    }
+  },
+  "attributes": {
+    "elementAttributes": {
+      "content": {
+        "optionAttributes": {
+          "cf7": {
+            "type": "select",
+            "label": "Select Form",
+            "description": "Choose a contact form to display.",
+            "default": "0"
+          },
+          "use_form_button_fullwidth": {
+            "type": "boolean",
+            "label": "Fullwidth Button",
+            "default": false
+          },
+          "button_alignment": {
+            "type": "select",
+            "label": "Button Alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ],
+            "default": "left",
+            "show_if": {
+              "use_form_button_fullwidth": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

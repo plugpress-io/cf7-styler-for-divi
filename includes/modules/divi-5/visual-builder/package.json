@@ -1,0 +1,25 @@
+{
+  "name": "divi-cf7-styler",
+  "version": "1.0.0",
+  "description": "Contact Form 7 Styler for Divi 5",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "@divi/data": "^1.0.0",
+    "@divi/module": "^1.0.0",
+    "@divi/module-utils": "^1.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.8.0"
+  }
+}

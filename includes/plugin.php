@@ -82,14 +82,40 @@ class Plugin
 
     public function load_modules()
     {
-
         if (!class_exists('ET_Builder_Element')) {
             return;
         }
 
-        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
-        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
-        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
+        if (defined('ET_BUILDER_VERSION')) {
+            if (version_compare(ET_BUILDER_VERSION, '5.0.0', '<')) {
+                require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
+                require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
+                require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
+            }
+            
+            if (version_compare(ET_BUILDER_VERSION, '5.0.0', '>=')) {
+                add_action('rest_api_init', function() {
+                    $rest_registration = new \DiviCF7Styler\Modules\RESTRegistration();
+                    $rest_registration->register_routes();
+                });
+                
+                add_action('et_builder_modules_loaded', function() {
+                    require_once DCS_PLUGIN_PATH . 'includes/modules/divi-5/index.php';
+                });
+                
+                add_action('et_builder_ready', function() {
+                    if (function_exists('et_core_is_fb_enabled') && et_core_is_fb_enabled()) {
+                        wp_enqueue_script(
+                            'divi-cf7-styler-visual-builder',
+                            DCS_PLUGIN_URL . 'includes/modules/divi-5/visual-builder/dist/bundle.js',
+                            array('react', 'react-dom', 'wp-i18n'),
+                            DCS_VERSION,
+                            true
+                        );
+                    }
+                });
+            }
+        }
     }
 
     public function add_plugin_action_links($links)
