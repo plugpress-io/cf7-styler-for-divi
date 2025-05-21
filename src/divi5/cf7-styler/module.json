@@ -1,0 +1,212 @@
+{
+  "slug": "dvppl_cf7_styler",
+  "name": "plugpress/cf7-styler",
+  "d4Shortcode": "dvppl_cf7_styler",
+  "title": "Contact form 7 Styler",
+  "titles": "Contact form 7 Stylers",
+  "category": "module",
+  "description": "Style your Contact Form 7 forms with Divi.",
+  "settings": {
+    "content": {
+      "toggles": {
+        "main_content": {
+          "title": "Form",
+          "priority": 1
+        },
+        "form_header": {
+          "title": "Form Header",
+          "priority": 2
+        }
+      }
+    },
+    "design": {
+      "toggles": {
+        "form_styling": {
+          "title": "Form Styling",
+          "priority": 1
+        },
+        "field_styling": {
+          "title": "Field Styling",
+          "priority": 2
+        },
+        "button_styling": {
+          "title": "Button Styling",
+          "priority": 3
+        },
+        "header_styling": {
+          "title": "Header Styling",
+          "priority": 4
+        }
+      }
+    },
+    "advanced": {
+      "toggles": {
+        "message_styling": {
+          "title": "Message Styling",
+          "priority": 1
+        }
+      }
+    }
+  },
+  "fields": {
+    "content": {
+      "main_content": {
+        "cf7": {
+          "type": "select",
+          "label": "Select Form",
+          "description": "Choose a contact form to display.",
+          "default": "0",
+          "options": []
+        },
+        "use_form_button_fullwidth": {
+          "type": "yes_no_button",
+          "label": "Fullwidth Button",
+          "default": "off",
+          "options": {
+            "off": "No",
+            "on": "Yes"
+          }
+        },
+        "button_alignment": {
+          "type": "select",
+          "label": "Button Alignment",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "show_if": {
+            "use_form_button_fullwidth": "off"
+          }
+        }
+      },
+      "form_header": {
+        "use_form_header": {
+          "type": "yes_no_button",
+          "label": "Show Form Header",
+          "default": "off",
+          "options": {
+            "off": "No",
+            "on": "Yes"
+          }
+        },
+        "form_header_title": {
+          "type": "text",
+          "label": "Header Title",
+          "show_if": {
+            "use_form_header": "on"
+          }
+        },
+        "form_header_text": {
+          "type": "text",
+          "label": "Header Text",
+          "show_if": {
+            "use_form_header": "on"
+          }
+        },
+        "use_icon": {
+          "type": "yes_no_button",
+          "label": "Use Icon",
+          "default": "off",
+          "options": {
+            "off": "No",
+            "on": "Yes"
+          },
+          "show_if": {
+            "use_form_header": "on"
+          }
+        },
+        "header_icon": {
+          "type": "select_icon",
+          "label": "Header Icon",
+          "show_if": {
+            "use_form_header": "on",
+            "use_icon": "on"
+          }
+        },
+        "header_img": {
+          "type": "upload",
+          "label": "Header Image",
+          "show_if": {
+            "use_form_header": "on",
+            "use_icon": "off"
+          }
+        }
+      }
+    },
+    "design": {
+      "form_styling": {
+        "form_bg": {
+          "type": "color",
+          "label": "Form Background",
+          "default": ""
+        },
+        "form_padding": {
+          "type": "range",
+          "label": "Form Padding",
+          "default": "0px",
+          "range_settings": {
+            "min": "0",
+            "max": "100",
+            "step": "1"
+          }
+        }
+      },
+      "header_styling": {
+        "form_header_bg": {
+          "type": "color",
+          "label": "Form Header Background",
+          "default": ""
+        },
+        "form_header_bottom": {
+          "type": "range",
+          "label": "Bottom Spacing",
+          "default": "0px",
+          "range_settings": {
+            "min": "0",
+            "max": "100",
+            "step": "1"
+          }
+        },
+        "form_header_img_bg": {
+          "type": "color",
+          "label": "Header Image/Icon Background",
+          "default": ""
+        },
+        "form_header_icon_color": {
+          "type": "color",
+          "label": "Header Icon Color",
+          "default": "",
+          "show_if": {
+            "use_icon": "on"
+          }
+        }
+      }
+    },
+    "advanced": {
+      "message_styling": {
+        "success_message_bg": {
+          "type": "color",
+          "label": "Success Message Background",
+          "default": ""
+        },
+        "success_message_text_color": {
+          "type": "color",
+          "label": "Success Message Text Color",
+          "default": ""
+        },
+        "error_message_bg": {
+          "type": "color",
+          "label": "Error Message Background",
+          "default": ""
+        },
+        "error_message_text_color": {
+          "type": "color",
+          "label": "Error Message Text Color",
+          "default": ""
+        }
+      }
+    }
+  }
+}

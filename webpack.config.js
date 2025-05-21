@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
     entry: {
         builder4: ['./src/index.js'],
-        builder5: ['./src/index-divi5.js'],
+        builder5: ['./src/divi5/index.js'],
         utils: ['./src/utils/index.js'],
         frontend4: ['./src/frontend.js'],
     },
