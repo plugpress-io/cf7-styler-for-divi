@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { __ } from '@wordpress/i18n';
+
 import { 
     FieldContainer, 
     SelectField, 
@@ -8,6 +10,12 @@ import {
 } from '@divi/field-library';
 import { useModuleProps } from '@divi/module-library';
 
+/**
+ * Content settings panel component.
+ *
+ * @param {Object} props - React component props
+ * @returns {React.ReactElement} Content settings panel
+ */
 export const SettingsContent = props => {
     const { 
         content: {

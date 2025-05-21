@@ -1,11 +1,19 @@
 import React from 'react';
+
 import { __ } from '@wordpress/i18n';
+
 import { 
     FieldContainer, 
     ColorField 
 } from '@divi/field-library';
 import { useModuleProps } from '@divi/module-library';
 
+/**
+ * Advanced settings panel component.
+ *
+ * @param {Object} props - React component props
+ * @returns {React.ReactElement} Advanced settings panel
+ */
 export const SettingsAdvanced = props => {
     const { 
         advanced: {
