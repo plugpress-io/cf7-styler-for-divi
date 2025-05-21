@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react';
+
+import { ModuleContainer } from '@divi/module';
 import { useModuleProps } from '@divi/module-library';
 
+/**
+ * CF7 Styler edit component of visual builder.
+ *
+ * @param {ModuleProps} props React component props.
+ * @returns {React.ReactElement}
+ */
 export const cf7StylerEdit = props => {
+    const { 
+        attrs,
+        elements,
+        id,
+        name,
+    } = props;
+    
     const { 
         content: {
             main_content: {
@@ -30,7 +45,7 @@ export const cf7StylerEdit = props => {
                 form_header_icon_color
             }
         }
-    } = useModuleProps(props);
+    } = attrs;
     
     const [formContent, setFormContent] = useState('');
     const [isLoading, setIsLoading] = useState(true);
@@ -133,20 +148,27 @@ export const cf7StylerEdit = props => {
     }
     
     return (
-        <div className={`dipe-cf7-container ${buttonClass}`}>
-            {renderHeader()}
-            <div 
-                className="dipe-cf7" 
-                style={{
-                    backgroundColor: form_bg,
-                    padding: form_padding
-                }}
-            >
+        <ModuleContainer
+            attrs={attrs}
+            elements={elements}
+            id={id}
+            name={name}
+        >
+            <div className={`dipe-cf7-container ${buttonClass}`}>
+                {renderHeader()}
                 <div 
-                    className="dipe-cf7-content" 
-                    dangerouslySetInnerHTML={{ __html: formContent }} 
-                />
+                    className="dipe-cf7" 
+                    style={{
+                        backgroundColor: form_bg,
+                        padding: form_padding
+                    }}
+                >
+                    <div 
+                        className="dipe-cf7-content" 
+                        dangerouslySetInnerHTML={{ __html: formContent }} 
+                    />
+                </div>
             </div>
-        </div>
+        </ModuleContainer>
     );
 };

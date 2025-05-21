@@ -1,6 +1,6 @@
-const {addAction} = window?.vendor?.wp?.hooks;
+const { addAction } = window?.vendor?.wp?.hooks;
 
-const {registerModule} = window?.divi?.moduleLibrary;
+const { registerModule } = window?.divi?.moduleLibrary;
 
 import {cf7StylerMetadata, cf7StylerModule} from './cf7-styler';
 

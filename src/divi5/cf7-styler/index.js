@@ -1,15 +1,19 @@
 import metadata from './module.json';
 
-export const cf7StylerMetadata = metadata;
-
 import {cf7StylerEdit} from './edit';
 import {SettingsContent} from './settings-content';
 import {SettingsDesign} from './settings-design';
 import {SettingsAdvanced} from './settings-advanced';
 
+
+/**
+ * CF7 Styler module definition.
+ */
+export const cf7StylerMetadata = metadata;
+
 export const cf7StylerModule = {
     metadata,
-
+    
     settings: {
         content: SettingsContent,
         design: SettingsDesign,
