@@ -107,7 +107,7 @@ class Plugin
                     if (function_exists('et_core_is_fb_enabled') && et_core_is_fb_enabled()) {
                         wp_enqueue_script(
                             'divi-cf7-styler-visual-builder',
-                            DCS_PLUGIN_URL . 'includes/modules/divi-5/visual-builder/dist/bundle.js',
+                            DCS_PLUGIN_URL . 'dist/js/builder5.js',
                             array('react', 'react-dom', 'wp-i18n'),
                             DCS_VERSION,
                             true
