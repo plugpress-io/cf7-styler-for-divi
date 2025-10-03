@@ -9,6 +9,7 @@ module.exports = {
         builder4: ['./src/index.js'],
         utils: ['./src/utils/index.js'],
         frontend4: ['./src/frontend.js'],
+        'admin-notice': ['./src/admin-notice.js'],
     },
     watch: !isProduction,
     performance: {

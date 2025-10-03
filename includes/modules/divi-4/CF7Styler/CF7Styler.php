@@ -3,9 +3,9 @@
 class DCS_CF7Styler extends ET_Builder_Module
 {
 	public $module_credits = array(
-		'module_uri' => 'https://diviextensions.com',
-		'author'     => 'DiviExtensions',
-		'author_uri' => 'https://diviextensions.com',
+		'module_uri' => 'https://plugpress.io/lean-forms',
+		'author'     => 'PlugPress',
+		'author_uri' => 'https://plugpress.io/lean-forms',
 	);
 
 	public $icon_path;
@@ -14,7 +14,7 @@ class DCS_CF7Styler extends ET_Builder_Module
 	{
 		$this->vb_support       = 'on';
 		$this->slug             = 'dvppl_cf7_styler';
-		$this->name             = esc_html__('CF7 Styler Lite', 'cf7-styler-for-divi');
+		$this->name             = esc_html__('CF7 Styler', 'cf7-styler-for-divi');
 		$this->main_css_element = '%%order_class%%';
 
 		$this->settings_modal_toggles = array(

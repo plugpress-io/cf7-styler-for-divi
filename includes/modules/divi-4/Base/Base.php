@@ -3,9 +3,9 @@
 class DCS_Builder_Module extends ET_Builder_Module
 {
     public $module_credits = array(
-        'module_uri' => 'https://diviextensions.com',
-        'author'     => 'DiviExtensions',
-        'author_uri' => 'https://diviextensions.com',
+        'module_uri' => 'https://plugpress.io/lean-forms',
+        'author'     => 'PlugPress',
+        'author_uri' => 'https://plugpress.io/lean-forms',
     );
 
     public $icon_path;

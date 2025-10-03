@@ -6,14 +6,10 @@ class Plugin
 {
     private static $instance = null;
 
-    const PLUGIN_PATH = DCS_PLUGIN_PATH;
-    const BASENAME_DIR = DCS_BASENAME_DIR;
     const BASENAME = DCS_BASENAME;
-    const DOCS_LINK = 'https://diviextensions.com/docs/';
-    const PRICING_LINK = 'https://diviextensions.com/divi-cf7-styler/';
     const TEXT_DOMAIN = 'cf7-styler-for-divi';
 
-    public static function get_instance()
+    public static function instance()
     {
         if (null === self::$instance) {
             self::$instance = new self();
@@ -30,7 +26,7 @@ class Plugin
     {
         $this->include_files();
         $this->define_hooks();
-        Assets::get_instance();
+        $this->init_components();
     }
 
     private function include_files()
@@ -38,11 +34,13 @@ class Plugin
         $required_files = [
             'functions.php',
             'assets.php',
-            'grid.php'
+            'grid.php',
+            'admin-notice.php',
+            'admin-review-notice.php'
         ];
 
         foreach ($required_files as $file) {
-            $filepath = self::PLUGIN_PATH . 'includes/' . $file;
+            $filepath = DCS_PLUGIN_PATH . 'includes/' . $file;
             if (file_exists($filepath)) {
                 require_once $filepath;
             }
@@ -54,7 +52,6 @@ class Plugin
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
         add_action('plugins_loaded', [$this, 'load_textdomain']);
         add_action('et_builder_ready', [$this, 'load_modules'], 11);
-        add_filter('plugin_action_links_' . self::BASENAME, [$this, 'add_plugin_action_links']);
     }
 
     public function on_activation()
@@ -77,7 +74,7 @@ class Plugin
 
     public function load_textdomain()
     {
-        load_plugin_textdomain(self::TEXT_DOMAIN, false, self::BASENAME_DIR . '/languages');
+        load_plugin_textdomain('cf7-styler-for-divi', false, DCS_BASENAME_DIR . '/languages');
     }
 
     public function load_modules()
@@ -88,29 +85,18 @@ class Plugin
         }
 
         require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
+
+        // Diprecated
         require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
         require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
     }
 
-    public function add_plugin_action_links($links)
+    private function init_components()
     {
-        $additional_links = [
-            $this->create_link(self::DOCS_LINK, 'Docs', '#197efb'),
-            $this->create_link(self::PRICING_LINK, 'Get Pro', '#FF6900')
-        ];
-
-        return array_merge($links, $additional_links);
-    }
-
-    private function create_link($url, $text, $color)
-    {
-        return sprintf(
-            '<a href="%s" target="_blank" style="color: %s;font-weight: 600;">%s</a>',
-            esc_url($url),
-            esc_attr($color),
-            esc_html__($text, self::TEXT_DOMAIN)
-        );
+        // Initialize admin notices
+        Admin_Notice::instance();
+        Admin_Review_Notice::instance();
     }
 }
 
-Plugin::get_instance();
+Plugin::instance();

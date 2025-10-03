@@ -6,10 +6,9 @@ use WPCF7_TagGenerator;
 
 class CF7_Grid
 {
-
     private static $instance;
 
-    public static function get_instance()
+    public static function instance()
     {
         if (null === self::$instance) {
             self::$instance = new self();
@@ -225,4 +224,4 @@ class CF7_Grid
     }
 }
 
-new CF7_Grid();
+CF7_Grid::instance();

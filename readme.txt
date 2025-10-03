@@ -1,11 +1,11 @@
-=== Divi Contact Form 7 Styler ===
+=== CF7 Styler for Divi - Lean Forms ===
 
 Contributors: badhonrocks, plugpressco
 Tags: contact form, divi, divi builder, divi theme, contact form 7 styler
-Donate link: https://diviextensions.com/
+Donate link: https://plugpress.io/lean-forms
 Requires at least: 5.0
 Tested up to: 6.7.1
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -15,13 +15,12 @@ Divi Contact Form 7 Styler is a powerful Divi module that lets you easily custom
 
 <strong>Transform Your Contact Form 7 Forms with the Most Powerful Divi Styling Solution</strong>
 
-Are you tired of plain, boring Contact Form 7 forms that don't match your website's design? <a href="https://diviextensions.com/divi-cf7-styler/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Divi Contact Form 7 Styler</a> is here to revolutionize your form design experience. Create stunning, professional-looking forms directly within the Divi Builder interface - no coding required!
+Are you tired of plain, boring Contact Form 7 forms that don't match your website's design? <a href="https://plugpress.io/lean-forms" target="_blank" rel="">CF7 Styler for Divi - Lean Forms</a> is here to revolutionize your form design experience. Create stunning, professional-looking forms directly within the Divi Builder interface - no coding required!
 
 Most helpful links
 <ul>
-    <li><a href="https://diviextensions.com/divi-cf7-styler/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Divi Contact Form 7 Styler</a></li>
-    <li><a href="https://diviextensions.com/docs/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">Knowledge Base</a></li>
-    <li><a href="https://diviextensions.com/?utm_campaign=wporg&utm_source=cf7-styler" target="_blank" rel="">All DiviExtensions Plugins</a></li>
+    <li><a href="https://plugpress.io/lean-forms" target="_blank" rel="">CF7 Styler for Divi - Lean Forms</a></li>
+    <li><a href="https://plugpress.io/docs-category/lean-forms/" target="_blank" rel="">Knowledge Base</a></li>
 </ul>
 
 <strong>🌟 KEY FEATURES</strong>
@@ -71,6 +70,11 @@ For detailed setup instructions, please visit our <a href="https://diviextension
 2. Contact Form 7 Grid Builder
 
 == Changelog ==
+
+= 2.4.0 = 
+* Migrated to Lean Forms
+* Fixed compatibility issues
+* Fixed some PHP error
 
 = 2.3.3 =
 * Fixed compatibility issues

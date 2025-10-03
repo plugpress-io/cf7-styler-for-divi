@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviExtensions <support@diviextensions.com>\n"
-"POT-Creation-Date: 2025-04-04 09:36+0000\n"
+"POT-Creation-Date: 2025-10-03 09:43+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,64 +15,88 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/grid.php:77, includes/grid.php:80
+#: includes/admin-notice.php:98
+msgid "Lean Forms Pro"
+msgstr ""
+
+#: includes/admin-notice.php:100
+msgid "Get multi-step forms, Google Sheets integration, and 5+ premium field types. Transform your Contact Form 7 into a powerful lead generation tool."
+msgstr ""
+
+#: includes/admin-notice.php:105
+msgid "Get Lean Forms Pro"
+msgstr ""
+
+#: includes/admin-review-notice.php:96
+msgid "Love CF7 Styler for Divi?"
+msgstr ""
+
+#: includes/admin-review-notice.php:98
+msgid "If you're enjoying our plugin, we'd be incredibly grateful if you could take a moment to leave us a 5-star review on WordPress.org. Your feedback helps us improve and helps other users discover our plugin."
+msgstr ""
+
+#: includes/admin-review-notice.php:103
+msgid "Leave a Review"
+msgstr ""
+
+#: includes/grid.php:76, includes/grid.php:79
 msgid "row"
 msgstr ""
 
-#: includes/grid.php:81
+#: includes/grid.php:80
 msgid "Generate a row shortcode"
 msgstr ""
 
-#: includes/grid.php:97
+#: includes/grid.php:96
 msgid "1-col"
 msgstr ""
 
-#: includes/grid.php:98
+#: includes/grid.php:97
 msgid "Generate a full width column"
 msgstr ""
 
-#: includes/grid.php:101
+#: includes/grid.php:100
 msgid "1/2-col"
 msgstr ""
 
-#: includes/grid.php:102
+#: includes/grid.php:101
 msgid "Generate a half width column"
 msgstr ""
 
-#: includes/grid.php:105
+#: includes/grid.php:104
 msgid "1/3-col"
 msgstr ""
 
-#: includes/grid.php:106
+#: includes/grid.php:105
 msgid "Generate a one-third width column"
 msgstr ""
 
-#: includes/grid.php:109
+#: includes/grid.php:108
 msgid "1/4-col"
 msgstr ""
 
-#: includes/grid.php:110
+#: includes/grid.php:109
 msgid "Generate a one-fourth width column"
 msgstr ""
 
-#: includes/grid.php:113
+#: includes/grid.php:112
 msgid "2/3-col"
 msgstr ""
 
-#: includes/grid.php:114
+#: includes/grid.php:113
 msgid "Generate a two-thirds width column"
 msgstr ""
 
-#: includes/grid.php:117
+#: includes/grid.php:116
 msgid "3/4-col"
 msgstr ""
 
-#: includes/grid.php:118
+#: includes/grid.php:117
 msgid "Generate a three-fourths width column"
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
-msgid "CF7 Styler Lite"
+msgid "CF7 Styler"
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:23
