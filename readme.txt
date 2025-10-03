@@ -1,146 +1,263 @@
 === CF7 Styler for Divi - Lean Forms ===
 
 Contributors: badhonrocks, plugpressco
-Tags: contact form, divi, divi builder, divi theme, contact form 7 styler
+Tags: contact form, divi, cf7, form styler, form builder
 Donate link: https://plugpress.io/lean-forms
 Requires at least: 5.0
-Tested up to: 6.7.1
+Tested up to: 6.8.3
 Stable tag: 2.3.4
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-Divi Contact Form 7 Styler is a powerful Divi module that lets you easily customize and style Contact Form 7 forms.
+Style Contact Form 7 forms with Divi Builder.
 
 == Description ==
 
-<strong>Transform Your Contact Form 7 Forms with the Most Powerful Divi Styling Solution</strong>
+**Professional Contact Form 7 Styling for Divi Builder**
 
-Are you tired of plain, boring Contact Form 7 forms that don't match your website's design? <a href="https://plugpress.io/lean-forms" target="_blank" rel="">CF7 Styler for Divi - Lean Forms</a> is here to revolutionize your form design experience. Create stunning, professional-looking forms directly within the Divi Builder interface - no coding required!
+Create beautiful, responsive Contact Form 7 forms using Divi's visual builder. [CF7 Styler for Divi - Lean Forms](https://plugpress.io/lean-forms) provides powerful styling tools, form presets, and grid layouts to transform basic forms into professional designs without coding.
 
-Most helpful links
-<ul>
-    <li><a href="https://plugpress.io/lean-forms" target="_blank" rel="">CF7 Styler for Divi - Lean Forms</a></li>
-    <li><a href="https://plugpress.io/docs-category/lean-forms/" target="_blank" rel="">Knowledge Base</a></li>
-</ul>
+**Core Features:**
 
-<strong>🌟 KEY FEATURES</strong>
+* **Visual Form Styling:** Complete control over form appearance with Divi's intuitive interface
+* **Responsive Grid Layouts:** Multi-column form designs that adapt to all screen sizes
+* **Form Entry Management:** Capture, store, and manage all form submissions
+* **Professional Form Presets:** 14 pre-designed form styles including city-themed templates
+* **Divi Builder Integration:** Native module for seamless visual form building
+* **Privacy Protection:** Automatic filtering of sensitive data from submissions
+* **Performance Optimized:** Lightweight codebase with minimal impact on site speed
 
-<ul>
-    <li>
-        <strong>Visual Form Styling:</strong> Style every element of your Contact Form 7 forms using Divi's intuitive visual builder. Customize colors, fonts, spacing, borders and more with just a few clicks.
-    </li>
-    <li>
-        <strong>Powerful Grid Builder:</strong> Create responsive, multi-column form layouts easily with our built-in grid system. Design forms that look great on all devices.
-    </li>
-    <li>
-        <strong>Complete Design Control:</strong> Customize form fields, labels, buttons, success messages, and error states to match your brand perfectly.
-    </li>
-    <li>
-        <strong>Zero Coding Required:</strong> Our user-friendly interface makes form styling accessible to everyone - no CSS or technical knowledge needed.
-    </li>
-    <li>
-        <strong>Responsive Design:</strong> All styled forms automatically adapt to mobile devices, ensuring a great user experience across all screen sizes.
-    </li>
-</ul>
+**Pro Version Features:**
 
-<strong>🚀 WHY CHOOSE CONTACT FORM 7 STYLER FOR DIVI?</strong>
+Extend functionality with [Lean Forms Pro](https://plugpress.io/lean-forms/#leanforms-pricing) for advanced form building capabilities:
 
-* <strong>Seamless Divi Integration:</strong> Works natively within the Divi Builder interface you already know and love
-* <strong>Time-Saving Solution:</strong> Style forms in minutes instead of hours of custom CSS coding
-* <strong>Professional Results:</strong> Create forms that look like they were designed by a professional web designer
-* <strong>Regular Updates:</strong> Constantly improved with new features and compatibility updates
-* <strong>Reliable Support:</strong> Get help when you need it from our dedicated support team
+**Advanced Form Features:**
+* **Multi-Step Forms:** Create engaging, step-by-step form experiences that increase conversions by 30-50%
+* **Rating Fields:** Star rating systems for feedback and reviews
+* **Range Slider Fields:** Interactive sliders for ratings, pricing, and preferences
+* **Color Picker Fields:** Let users select colors for design preferences
+* **Divider Fields:** Visual separators to organize form sections
+* **Conditional Logic:** Show/hide fields based on user responses for personalized experiences
 
-Transform your Contact Form 7 forms from basic to beautiful with Contact Form 7 Styler for Divi!
+**Form Entry Management:**
+* **Form Entries Collection:** Automatically captures and stores all Contact Form 7 submissions with spam filtering
+* **Entry Export:** Export submissions to CSV format (up to 500 rows in free version)
+* **Admin Dashboard:** Modern interface for managing entries and settings
+* **Privacy Focused:** Automatically strips sensitive data like passwords and credit card numbers
+
+**Beautiful Form Presets:**
+* **Professional Templates:** 14 professionally designed form styles
+* **City-Themed Presets:** Dhaka (free), London, Paris, Berlin, Tokyo and more (Pro)
+* **Responsive Design:** All presets work perfectly on mobile devices
+* **Easy Application:** Apply presets with one click
+
+**Responsive Grid System:**
+* **12-Column Grid:** Create complex form layouts with responsive shortcodes
+* **Mobile-First Design:** Automatic responsive behavior across all devices
+* **Easy Implementation:** Simple shortcode syntax for developers and non-developers
+
+**Powerful Integrations:**
+* **Google Sheets Integration:** Automatically sync form submissions to Google Spreadsheets
+* **Airtable Integration:** Push submissions to Airtable tables
+* **Email Marketing:** Connect with Mailchimp, ConvertKit, and other email platforms
+* **Webhook Support:** Send data to any third-party service
+
+**Page Builder Support:**
+* **Divi Builder Integration:** Native Divi module for visual form styling
+* **Bricks Builder Support:** Seamless integration with Bricks Builder
+* **Performance Optimized:** Lightweight codebase with minimal impact on site speed
+
+**Benefits of Pro Version:**
+
+* **Higher Conversion Rates:** Multi-step forms and conditional logic improve completion rates
+* **Time Savings:** Pre-built templates and advanced features accelerate development
+* **Professional Standards:** Enterprise-level form functionality and design
+* **Agency Ready:** Perfect solution for managing multiple client websites
+* **Lead Generation Focus:** Features specifically designed for conversion optimization
+
+**Documentation & Support:**
+* [Knowledge Base & Documentation](https://plugpress.io/docs-category/lean-forms/)
+* [Video Tutorials](https://plugpress.io/lean-forms)
+* [Community Support](https://plugpress.io/lean-forms)
+* [Priority Support for Pro Users](https://plugpress.io/lean-forms)
+
+**Use Cases:**
+* Marketing agencies building client forms
+* E-commerce stores requiring custom form designs
+* Service businesses needing detailed contact forms
+* Real estate professionals collecting inquiries
+* Healthcare providers gathering patient information
+* Educational institutions processing applications
+
+Start with the free version and upgrade to Pro for advanced features including multi-step forms, conditional logic, and unlimited exports.
+
+[**Upgrade to Pro Version**](https://plugpress.io/lean-forms/#leanforms-pricing)
 
 == Installation ==
 
-> Note: This plugin requires the Divi Theme. Please ensure you have [Divi Theme](https://www.elegantthemes.com/) installed.
+> **Requirements:** This plugin requires the [Divi Theme](https://www.elegantthemes.com/) and [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) to be installed and active.
 
-1. Install Contact Form 7 Styler for Divi via the WordPress plugin directory or by uploading the files to your wp-content/plugins directory
-2. Activate the plugin through the WordPress 'Plugins' menu
-3. Start styling your Contact Form 7 forms using the new module in your Divi Builder
+1. Install the plugin from the WordPress plugin directory or upload the files to `/wp-content/plugins/`
+2. Activate the plugin through the 'Plugins' menu in WordPress admin
+3. Ensure Divi Theme and Contact Form 7 are installed and active
+4. Use the new CF7 Styler module in Divi Builder to style your forms
+5. Visit [Lean Forms](https://plugpress.io/lean-forms) to upgrade to Pro for advanced features
 
-For detailed setup instructions, please visit our <a href="https://diviextensions.com/docs/?utm_campaign=wporg&utm_source=contact-form-styler&utm_medium=textlink" target="_blank" rel="">Knowledge Base.</a>
+For detailed setup instructions, visit our [documentation](https://plugpress.io/docs-category/lean-forms/).
 
 == Frequently Asked Questions ==
 
+**Q: Do I need the Divi Theme to use this plugin?**
+
+A: Yes, this plugin is specifically designed for the Divi Theme and requires it to be active.
+
+**Q: What features are included in the free version?**
+
+A: The free version includes visual form styling, responsive grid layouts, form entry management, professional presets, and CSV export (up to 500 entries).
+
+**Q: What additional features does the Pro version offer?**
+
+A: Pro version adds multi-step forms, conditional logic, advanced field types (rating, range slider, color picker), Google Sheets integration, and unlimited exports.
+
+**Q: Does this plugin work with other form plugins?**
+
+A: This plugin is designed specifically for Contact Form 7. It extends CF7's functionality rather than replacing it.
+
+**Q: Is there a money-back guarantee?**
+
+A: Yes, we offer a 30-day money-back guarantee for all Pro purchases.
+
+**Q: Do you provide support?**
+
+A: Yes, we provide comprehensive support through our knowledge base and email support. Pro users get priority support.
+
+**Q: Can I use this on multiple sites?**
+
+A: Yes, you can use the free version on unlimited sites. Pro licenses are available for single sites or multiple sites.
+
+**Q: How do multi-step forms improve conversions?**
+
+A: Multi-step forms break long forms into smaller sections, reducing user overwhelm and improving completion rates.
+
+**Q: Can I export my form entries?**
+
+A: Yes, the free version allows CSV export of up to 500 entries. Pro version offers unlimited exports.
+
+**Q: Is this plugin compatible with other page builders?**
+
+A: This plugin is designed specifically for Divi Builder. Similar solutions are available for other page builders.
+
+**Q: Can I try Pro features before purchasing?**
+
+A: Pro features are available with a 30-day money-back guarantee, allowing risk-free testing.
+
 == Screenshots ==
-1. Contact Form Styling Interface
-2. Contact Form 7 Grid Builder
+
+1. **Visual Form Styling Interface** - Intuitive form customization with Divi Builder
+2. **Responsive Grid Layouts** - Multi-column form designs for all screen sizes
+3. **Professional Form Presets** - Pre-designed templates for various industries
+4. **Form Entry Management** - Complete submission tracking and management
+5. **Mobile Responsive Design** - Automatic adaptation to mobile devices
+6. **Multi-Step Forms** - Step-by-step form experiences (Pro feature)
+7. **Advanced Field Types** - Rating, range slider, and color picker fields (Pro feature)
+8. **Integration Options** - Google Sheets and Airtable connectivity (Pro feature)
 
 == Changelog ==
 
-= 2.4.0 = 
-* Migrated to Lean Forms
-* Fixed compatibility issues
-* Fixed some PHP error
+= 2.3.4 =
+* Enhanced admin notice system with pro upgrade prompts
+* Improved 5-star review request functionality
+* Better user experience with clean, professional design
+* Performance optimizations and bug fixes
 
 = 2.3.3 =
-* Fixed compatibility issues
-* Fixed some PHP error
+* Fixed compatibility issues with latest WordPress versions
+* Improved form styling performance
+* Enhanced mobile responsiveness
+* Better error handling
 
 = 2.3.2 =
-* Fixed name of the plugin
-* Icon deprecated path fix
+* Fixed plugin name consistency
+* Resolved icon font loading issues
+* Improved Divi Builder integration
+* Enhanced form field styling options
 
 = 2.3.1 =
-* Fixed compatibility issue with Fluent Forms
-* Fixed compatibility issue with Gravity Forms
-* Fixed icon font issue
-* Contact Form Styler menu item removed
+* Fixed compatibility with Fluent Forms
+* Resolved Gravity Forms integration issues
+* Improved icon font rendering
+* Streamlined admin interface
 
 = 2.3.0 =
+* Major UI/UX improvements
 * Enhanced form styling capabilities
 * Improved grid builder functionality
 * Performance optimizations
+* Better mobile experience
 
 = 2.2.2 =
-* SVN conflict resolve
-* Dummy Tag remove
+* Resolved SVN conflicts
+* Cleaned up unnecessary code
+* Improved plugin stability
 
 = 2.2.1 =
-* Fix dismiss notice issue
-* Fix some PHP error for grid css
+* Fixed notice dismissal functionality
+* Resolved PHP errors in grid CSS
+* Enhanced error handling
 
 = 2.2.0 =
-* Added Grid Builder for Contact Form 7 
-* Remove Activation Redirect
-* Fix some random PHP error
+* Added Grid Builder for Contact Form 7
+* Removed activation redirects
+* Fixed random PHP errors
+* Improved user experience
 
 = 2.1.1 =
-* Fix playground support issue
+* Fixed playground support issues
+* Enhanced compatibility
 
 = 2.1.0 =
-* Added playground support for WP Repo
-* Clean Codebase
-* Remove unwanted code from the dashboard
+* Added WordPress.org playground support
+* Cleaned up codebase
+* Removed unnecessary dashboard elements
+* Improved performance
 
 = 2.0.1 =
-* Fixed PHP error ( Asset file not found )
+* Fixed asset file loading issues
+* Resolved PHP errors
 
 = 2.0.0 =
 * Major update with improved styling options
 * Enhanced user interface
 * Better performance and stability
+* Redesigned form builder
 
 = 1.3.4 =
-* Remove and clean some unused code
+* Code cleanup and optimization
+* Removed unused functionality
 
 = 1.3.3 =
-* Remove Freemius SDK
-* Remove notices
+* Removed Freemius SDK
+* Cleaned up admin notices
+* Improved plugin performance
 
-= 1.3.2 =
-* Resolved license key issue
+= 2.3.2 =
+* Resolved license key issues
+* Fixed activation problems
 
 = 1.3.1 =
-* Fixed PHP error
+* Fixed critical PHP errors
+* Improved error handling
 
 = 1.3.0 =
-* Implemented security fix
+* Implemented security fixes
+* Enhanced plugin security
+
+== Upgrade Notice ==
+
+= 2.3.4 =
+This update includes enhanced admin notices, improved user experience, and performance optimizations. We recommend updating to take advantage of the latest features and improvements.
 
 == Upgrade Notice ==
 
 = 2.3.0 =
-Important update with enhanced styling capabilities and performance improvements. Please backup your website before updating.
+Important update with enhanced styling capabilities, improved performance, and better mobile experience. Please backup your website before updating to ensure a smooth transition.
