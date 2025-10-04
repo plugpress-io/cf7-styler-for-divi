@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviExtensions <support@diviextensions.com>\n"
-"POT-Creation-Date: 2025-10-03 09:43+0000\n"
+"POT-Creation-Date: 2025-10-04 08:26+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,27 +15,27 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/admin-notice.php:98
+#: includes/admin-notice.php:97
 msgid "Lean Forms Pro"
 msgstr ""
 
-#: includes/admin-notice.php:100
+#: includes/admin-notice.php:99
 msgid "Get multi-step forms, Google Sheets integration, and 5+ premium field types. Transform your Contact Form 7 into a powerful lead generation tool."
 msgstr ""
 
-#: includes/admin-notice.php:105
+#: includes/admin-notice.php:104
 msgid "Get Lean Forms Pro"
 msgstr ""
 
-#: includes/admin-review-notice.php:96
+#: includes/admin-review-notice.php:97
 msgid "Love CF7 Styler for Divi?"
 msgstr ""
 
-#: includes/admin-review-notice.php:98
+#: includes/admin-review-notice.php:99
 msgid "If you're enjoying our plugin, we'd be incredibly grateful if you could take a moment to leave us a 5-star review on WordPress.org. Your feedback helps us improve and helps other users discover our plugin."
 msgstr ""
 
-#: includes/admin-review-notice.php:103
+#: includes/admin-review-notice.php:104
 msgid "Leave a Review"
 msgstr ""
 

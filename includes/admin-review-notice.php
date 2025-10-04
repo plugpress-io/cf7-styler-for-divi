@@ -9,8 +9,8 @@ class Admin_Review_Notice
     const NOTICE_ID = 'dcs_review_notice';
     const DISMISSED_OPTION = 'dcs_review_notice_dismissed';
     const INSTALL_DATE_OPTION = 'divi_cf7_styler_install_date';
-    const REVIEW_DELAY = 7 * 24 * 60 * 60; // 7 days in seconds
-    // const REVIEW_DELAY = 60; // 1 minute in seconds
+    // const REVIEW_DELAY = 7 * 24 * 60 * 60; // 7 days in seconds
+    const REVIEW_DELAY = 60; // 1 minute in seconds
 
     public static function instance()
     {
@@ -112,7 +112,6 @@ class Admin_Review_Notice
                 color: rgb(12, 13, 14);
                 box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
                 background-color: rgb(255, 255, 255);
-                width: calc(100% - 72px) !important;
                 padding: 24px 32px 24px 32px !important;
                 position: relative !important;
                 transition: all 0.2s ease-out !important;
