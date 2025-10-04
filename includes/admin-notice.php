@@ -9,8 +9,8 @@ class Admin_Notice
     const NOTICE_ID = 'dcs_pro_notice';
     const DISMISSED_OPTION = 'dcs_pro_notice_dismissed';
     const INSTALL_DATE_OPTION = 'divi_cf7_styler_install_date';
-    // const NOTICE_DELAY = 24 * 60 * 60; // 24 hours in seconds
-    const NOTICE_DELAY = 60; // 1 minute in seconds
+    const NOTICE_DELAY = 24 * 60 * 60; // 24 hours in seconds
+    // const NOTICE_DELAY = 60; // 1 minute in seconds
 
     public static function instance()
     {
