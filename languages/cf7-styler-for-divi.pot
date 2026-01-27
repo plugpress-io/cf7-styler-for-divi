@@ -1,4 +1,4 @@
-# Copyright (C) 2025 CF7 Styler for Divi
+# Copyright (C) 2026 CF7 Styler for Divi
 # This file is distributed under the same license as the CF7 Styler for Divi package.
 msgid ""
 msgstr ""
@@ -6,8 +6,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language-Team: DiviExtensions <support@diviextensions.com>\n"
-"POT-Creation-Date: 2025-10-05 14:57+0000\n"
+"Language-Team: DiviPeople <support@divipeople.com>\n"
+"POT-Creation-Date: 2026-01-27 16:11+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,88 +15,108 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/admin-notice.php:97
-msgid "Lean Forms Pro"
+#: includes/rest-api.php:92
+msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/admin-notice.php:99
-msgid "Get multi-step forms, Google Sheets integration, and 5+ premium field types. Transform your Contact Form 7 into a powerful lead generation tool."
+#: includes/rest-api.php:108
+msgid "Select a form"
 msgstr ""
 
-#: includes/admin-notice.php:104
-msgid "Get Lean Forms Pro"
+#: includes/rest-api.php:115
+msgid "Form #%d"
 msgstr ""
 
-#: includes/admin-review-notice.php:97
+#: includes/rest-api.php:158
+msgid "Onboarding reset successfully."
+msgstr ""
+
+#: includes/admin/add-menu.php:114, includes/admin/add-menu.php:115, includes/admin/add-menu.php:104, includes/modules/divi-4/CF7Styler/CF7Styler.php:17
+msgid "CF7 Styler"
+msgstr ""
+
+#: includes/admin/add-menu.php:103, includes/admin/add-menu.php:138
+msgid "CF7 Styler for Divi"
+msgstr ""
+
+#: includes/admin/add-menu.php:127
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: includes/admin/add-menu.php:141
+msgid "Admin dashboard files not found. Please run:"
+msgstr ""
+
+#: includes/notices/review.php:97
 msgid "Love CF7 Styler for Divi?"
 msgstr ""
 
-#: includes/admin-review-notice.php:99
+#: includes/notices/review.php:99
 msgid "If you're enjoying our plugin, we'd be incredibly grateful if you could take a moment to leave us a 5-star review on WordPress.org. Your feedback helps us improve and helps other users discover our plugin."
 msgstr ""
 
-#: includes/admin-review-notice.php:104
+#: includes/notices/review.php:104
 msgid "Leave a Review"
 msgstr ""
 
-#: includes/grid.php:76, includes/grid.php:79
+#: includes/utils/grid.php:76, includes/utils/grid.php:79
 msgid "row"
 msgstr ""
 
-#: includes/grid.php:80
+#: includes/utils/grid.php:80
 msgid "Generate a row shortcode"
 msgstr ""
 
-#: includes/grid.php:96
+#: includes/utils/grid.php:96
 msgid "1-col"
 msgstr ""
 
-#: includes/grid.php:97
+#: includes/utils/grid.php:97
 msgid "Generate a full width column"
 msgstr ""
 
-#: includes/grid.php:100
+#: includes/utils/grid.php:100
 msgid "1/2-col"
 msgstr ""
 
-#: includes/grid.php:101
+#: includes/utils/grid.php:101
 msgid "Generate a half width column"
 msgstr ""
 
-#: includes/grid.php:104
+#: includes/utils/grid.php:104
 msgid "1/3-col"
 msgstr ""
 
-#: includes/grid.php:105
+#: includes/utils/grid.php:105
 msgid "Generate a one-third width column"
 msgstr ""
 
-#: includes/grid.php:108
+#: includes/utils/grid.php:108
 msgid "1/4-col"
 msgstr ""
 
-#: includes/grid.php:109
+#: includes/utils/grid.php:109
 msgid "Generate a one-fourth width column"
 msgstr ""
 
-#: includes/grid.php:112
+#: includes/utils/grid.php:112
 msgid "2/3-col"
 msgstr ""
 
-#: includes/grid.php:113
+#: includes/utils/grid.php:113
 msgid "Generate a two-thirds width column"
 msgstr ""
 
-#: includes/grid.php:116
+#: includes/utils/grid.php:116
 msgid "3/4-col"
 msgstr ""
 
-#: includes/grid.php:117
+#: includes/utils/grid.php:117
 msgid "Generate a three-fourths width column"
 msgstr ""
 
-#: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
-msgid "CF7 Styler"
+#: includes/modules/CF7Styler/CF7Styler.php:75
+msgid "Please select a Contact Form 7 form."
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:23

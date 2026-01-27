@@ -3,9 +3,9 @@
 class DCS_CF7Styler extends ET_Builder_Module
 {
 	public $module_credits = array(
-		'module_uri' => 'https://plugpress.io/lean-forms',
+		'module_uri' => 'https://divipeople.com/divi-cf7-styler/',
 		'author'     => 'PlugPress',
-		'author_uri' => 'https://plugpress.io/lean-forms',
+		'author_uri' => 'https://divipeople.com',
 	);
 
 	public $icon_path;

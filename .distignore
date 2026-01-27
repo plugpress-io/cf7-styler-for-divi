@@ -18,6 +18,7 @@ phpcs.xml.dist
 Gruntfile.js
 postcss.config.js
 webpack.config.js
+webpack.divi5.config.js
 wp-textdomain.js
 tailwind.config.js
 .prettierignore

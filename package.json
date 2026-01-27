@@ -1,16 +1,19 @@
 {
   "name": "cf7-styler-for-divi",
-  "version": "2.3.4",
+  "version": "3.0.0",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.1",
     "@wordpress/scripts": "^18.0.1",
     "ajv": "^8.12.0",
     "ajv-keywords": "^5.1.0",
+    "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
+    "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^6.8.1",
     "cssnano": "^5.1.13",
     "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.9.0",
     "grunt": "^1.6.1",
     "grunt-bumpup": "^0.6.3",
     "grunt-contrib-clean": "^2.0.1",
@@ -54,8 +57,14 @@
   "scripts": {
     "package:et": "grunt package --platform=et",
     "package:fs": "grunt package --platform=fs",
-    "build": "wp-scripts build",
-    "start": "wp-scripts start",
+    "build": "npm run build:all",
+    "build:all": "npm run build:divi4 && npm run build:divi5",
+    "build:divi4": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build:divi5": "cross-env NODE_ENV=production webpack --config webpack.divi5.config.js",
+    "start": "npm run start:all",
+    "start:all": "concurrently \"npm run start:divi4\" \"npm run start:divi5\"",
+    "start:divi4": "cross-env NODE_ENV=development webpack --config webpack.config.js",
+    "start:divi5": "cross-env NODE_ENV=development webpack --config webpack.divi5.config.js",
     "packages-update": "wp-scripts packages-update",
     "make-pot": "wp i18n make-pot . languages/cf7-styler-for-divi.pot --domain=cf7-styler-for-divi"
   }

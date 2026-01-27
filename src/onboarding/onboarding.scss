@@ -1,0 +1,396 @@
+/**
+ * Onboarding Styles - Minimal Tailwind-based Design
+ *
+ * @since 3.0.0
+ */
+
+.dcs-onboarding-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.dcs-onboarding-modal {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #ffffff;
+}
+
+.dcs-onboarding-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #6b7280;
+  border-radius: 6px;
+  transition: all 0.2s;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #111827;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.dcs-onboarding-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 120px;
+  min-height: calc(100vh - 200px);
+}
+
+.dcs-onboarding-step {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dcs-onboarding-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f9ff;
+  border-radius: 50%;
+  color: #0285ff;
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.dcs-onboarding-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: #111827;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.dcs-onboarding-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #6b7280;
+  margin: 0 0 32px;
+  max-width: 500px;
+}
+
+.dcs-onboarding-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  text-align: left;
+  max-width: 400px;
+  width: 100%;
+
+  li {
+    padding: 12px 0;
+    padding-left: 32px;
+    position: relative;
+    font-size: 16px;
+    color: #374151;
+    line-height: 1.5;
+
+    &:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 20px;
+      height: 20px;
+      background: #0285ff;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+.dcs-onboarding-upsell {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 32px;
+  margin: 32px 0;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.dcs-upsell-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.dcs-upsell-description {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 24px;
+}
+
+.dcs-discount-code-wrapper {
+  margin: 24px 0;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dcs-discount-label {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+
+.dcs-discount-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 2px dashed #0285ff;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0285ff;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+
+  code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+.dcs-copy-code {
+  background: #0285ff;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #0066cc;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.dcs-upsell-button {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #0285ff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s;
+  margin-top: 8px;
+
+  &:hover {
+    background: #0066cc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 133, 255, 0.3);
+  }
+}
+
+.dcs-onboarding-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.dcs-onboarding-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: #0285ff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #0066cc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 133, 255, 0.3);
+  }
+
+  &.dcs-onboarding-link-secondary {
+    background: #fff;
+    color: #0285ff;
+    border: 1px solid #0285ff;
+
+    &:hover {
+      background: #f0f9ff;
+    }
+  }
+}
+
+.dcs-onboarding-footer {
+  padding: 32px 24px;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.dcs-onboarding-progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.dcs-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+  transition: all 0.3s;
+
+  &.active {
+    background: #0285ff;
+    width: 32px;
+    border-radius: 4px;
+  }
+}
+
+.dcs-onboarding-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dcs-onboarding-actions-right {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.dcs-onboarding-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  font-family: inherit;
+
+  &-primary {
+    background: #0285ff;
+    color: #fff;
+
+    &:hover {
+      background: #0066cc;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(2, 133, 255, 0.3);
+    }
+  }
+
+  &-secondary {
+    background: #fff;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+
+    &:hover {
+      background: #f9fafb;
+      border-color: #9ca3af;
+    }
+  }
+
+  &-skip {
+    background: transparent;
+    color: #6b7280;
+    border: none;
+
+    &:hover {
+      color: #111827;
+      background: #f3f4f6;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .dcs-onboarding-content {
+    padding: 60px 16px 100px;
+  }
+
+  .dcs-onboarding-title {
+    font-size: 28px;
+  }
+
+  .dcs-onboarding-description {
+    font-size: 16px;
+  }
+
+  .dcs-onboarding-actions {
+    flex-direction: column;
+  }
+
+  .dcs-onboarding-actions-right {
+    margin-left: 0;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .dcs-onboarding-btn {
+    width: 100%;
+  }
+}

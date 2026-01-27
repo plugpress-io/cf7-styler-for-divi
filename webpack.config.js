@@ -1,130 +1,159 @@
 const path = require('path');
+const fs = require('fs');
 const wpPot = require('wp-pot');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    entry: {
-        builder4: ['./src/index.js'],
-        utils: ['./src/utils/index.js'],
-        frontend4: ['./src/frontend.js'],
-        'admin-notice': ['./src/admin-notice.js'],
-    },
-    watch: !isProduction,
-    performance: {
-        hints: false,
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000,
-    },
-    resolve: {
-        extensions: ['.js', '.jsx'],
-        alias: {
-            '@Dependencies': path.resolve(__dirname, 'src/modules/divi-4/dependencies'),
-        },
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-        }),
-    ],
+	entry: {
+		builder4: ['./src/divi4/index.js'],
+		utils: ['./src/utils/index.js'],
+		frontend4: ['./src/frontend/index.js'],
+		'admin-notice': ['./src/admin/admin-notice.js'],
+		onboarding: ['./src/onboarding/index.jsx'],
+		admin: ['./src/admin/index.js'],
+	},
+	watch: !isProduction,
+	performance: {
+		hints: false,
+		maxEntrypointSize: 512000,
+		maxAssetSize: 512000,
+	},
+	resolve: {
+		extensions: ['.js', '.jsx'],
+		alias: {
+			'@Dependencies': path.resolve(__dirname, 'src/divi4/dependencies'),
+		},
+	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css',
+		}),
+	],
 
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env', '@babel/preset-react'],
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.(css|scss)$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcssOptions: {
-                                plugins: [require('tailwindcss'), require('autoprefixer')],
-                            },
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: !isProduction,
-                            sassOptions: {
-                                outputStyle: isProduction ? 'compressed' : 'expanded',
-                                includePaths: [path.resolve(__dirname, 'src')],
-                            },
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.svg$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,
-                            name: '[name].[ext]',
-                            outputPath: 'imgs/',
-                            publicPath: '../imgs/',
-                            esModule: false,
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'imgs/',
-                            publicPath: '../imgs/',
-                            esModule: false,
-                        },
-                    },
-                ],
-            },
-        ],
-    },
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: [
+								'@babel/preset-env',
+								[
+									'@babel/preset-react',
+									{
+										runtime: 'classic',
+									},
+								],
+							],
+						},
+					},
+				],
+			},
+			{
+				test: /\.(css|scss)$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [
+									require('tailwindcss'),
+									require('autoprefixer'),
+								],
+							},
+						},
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: !isProduction,
+							sassOptions: {
+								outputStyle: isProduction
+									? 'compressed'
+									: 'expanded',
+								includePaths: [path.resolve(__dirname, 'src')],
+							},
+						},
+					},
+				],
+			},
+			{
+				test: /\.svg$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192,
+							name: '[name].[ext]',
+							outputPath: 'imgs/',
+							publicPath: '../imgs/',
+							esModule: false,
+						},
+					},
+				],
+			},
+			{
+				test: /\.(png|jpg|gif)$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]',
+							outputPath: 'imgs/',
+							publicPath: '../imgs/',
+							esModule: false,
+						},
+					},
+				],
+			},
+		],
+	},
 
-    externals: {
-        $: 'jQuery',
-        jquery: 'jQuery',
-    },
+	externals: {
+		$: 'jQuery',
+		jquery: 'jQuery',
+		lodash: 'lodash',
+		'@wordpress/element': ['wp', 'element'],
+		'@wordpress/i18n': ['wp', 'i18n'],
+		'@wordpress/components': ['wp', 'components'],
+		'@wordpress/dom-ready': ['wp', 'domReady'],
+		'@wordpress/api-fetch': ['wp', 'apiFetch'],
+		'@wordpress/data': ['wp', 'data'],
+		react: ['wp', 'element'],
+		'react-dom': ['wp', 'element'],
+	},
 
-    output: {
-        filename: 'js/[name].js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
-    },
+	output: {
+		filename: 'js/[name].js',
+		path: path.resolve(__dirname, 'dist'),
+		clean: true,
+	},
 
-    mode: isProduction ? 'production' : 'development',
+	mode: isProduction ? 'production' : 'development',
 
-    stats: {
-        errorDetails: true,
-    },
+	stats: {
+		errorDetails: true,
+	},
 };
 
 // POT file generation in production mode
 if (isProduction) {
-    wpPot({
-        package: 'CF7 Styler for Divi',
-        domain: 'cf7-styler-for-divi',
-        destFile: 'languages/cf7-styler-for-divi.pot',
-        relativeTo: './',
-        team: 'DiviExtensions <support@diviextensions.com>',
-    });
+	const langDir = path.resolve(__dirname, 'languages');
+	if (!fs.existsSync(langDir)) {
+		fs.mkdirSync(langDir, { recursive: true });
+	}
+	wpPot({
+		package: 'CF7 Styler for Divi',
+		domain: 'cf7-styler-for-divi',
+		destFile: 'languages/cf7-styler-for-divi.pot',
+		relativeTo: './',
+		team: 'DiviPeople <support@divipeople.com>',
+	});
 }

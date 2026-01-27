@@ -3,9 +3,9 @@
 class DCS_GFStyler extends ET_Builder_Module
 {
     public $module_credits = array(
-        'module_uri' => 'https://diviextensions.com',
-        'author'     => 'DiviExtensions',
-        'author_uri' => 'https://diviextensions.com',
+        'module_uri' => 'https://divipeople.com',
+        'author'     => 'DiviPeople',
+        'author_uri' => 'https://divipeople.com',
     );
 
     public $vb_support = 'on';

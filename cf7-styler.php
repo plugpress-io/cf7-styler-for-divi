@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: CF7 Styler for Divi - Lean Forms
-Plugin URI: https://plugpress.io/lean-forms
+Plugin Name: CF7 Styler for Divi
+Plugin URI: https://divipeople.com/cf7-styler-for-divi
 Description: Effortlessly style Contact Form 7 to match your site's design.
-Version: 2.3.4
+Version: 3.0.0
 Author: PlugPress
-Author URI:  https://plugpress.io
+Author URI:  https://divipeople.com
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cf7-styler-for-divi
@@ -17,10 +17,17 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('DCS_VERSION', '2.3.4');
+define('DCS_VERSION', '3.0.0');
 define('DCS_BASENAME', plugin_basename(__FILE__));
 define('DCS_BASENAME_DIR', plugin_basename(__DIR__));
 define('DCS_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('DCS_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('DCS_MODULES_JSON_PATH', DCS_PLUGIN_PATH . 'modules-json/');
+define('DCS_SELF_HOSTED_ACTIVE', 'true');
+
+// Freemius
+if ('true' === DCS_SELF_HOSTED_ACTIVE) {
+    require_once DCS_PLUGIN_PATH . 'freemius.php'; // phpcs:ignore
+}
 
 require_once DCS_PLUGIN_PATH . 'includes/plugin.php';

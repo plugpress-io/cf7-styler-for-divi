@@ -19,6 +19,12 @@ class Plugin
 
     private function __construct()
     {
+        // Try to load Divi 5 modules immediately if Divi is already loaded
+        $this->maybe_load_divi5_modules();
+
+        // Also try on plugins_loaded with high priority as fallback
+        add_action('plugins_loaded', [$this, 'maybe_load_divi5_modules'], 5);
+
         $this->init();
     }
 
@@ -34,9 +40,12 @@ class Plugin
         $required_files = [
             'functions.php',
             'assets.php',
-            'grid.php',
-            'admin-notice.php',
-            'admin-review-notice.php'
+            'utils/grid.php',
+            'notices/review.php',
+            // Load admin entry file, which in turn loads add-menu & onboarding classes.
+            'admin.php',
+            // REST API endpoints (moved to includes/rest-api.php).
+            'rest-api.php',
         ];
 
         foreach ($required_files as $file) {
@@ -86,16 +95,70 @@ class Plugin
 
         require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
 
-        // Diprecated
-        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
-        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
+        // Only load deprecated modules for existing users (before version 3.0.0)
+        if ($this->should_load_deprecated_modules()) {
+            require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
+            require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
+        }
+    }
+
+    /**
+     * Check if deprecated modules should be loaded.
+     * Only load for existing users (install date before version 3.0.0 release).
+     *
+     * @since 3.0.0
+     * @return bool
+     */
+    private function should_load_deprecated_modules()
+    {
+        $install_date = get_option('divi_cf7_styler_install_date');
+
+        // If no install date, user is new - don't load deprecated modules
+        if (!$install_date) {
+            return false;
+        }
+
+        // Version 3.0.0 release date: January 2026 (approximate timestamp)
+        // Load deprecated modules only if installed before this date
+        $version_3_release_date = strtotime('2026-01-01');
+
+        return $install_date < $version_3_release_date;
     }
 
     private function init_components()
     {
-        // Initialize admin notices
-        Admin_Notice::instance();
+        // Initialize review notice (star rating)
         Admin_Review_Notice::instance();
+
+        // Initialize onboarding
+        Onboarding::instance();
+
+        // Initialize admin dashboard
+        Admin::get_instance();
+    }
+
+    /**
+     * Load Divi 5 modules if available.
+     * Tries immediately and also on plugins_loaded hook with priority 5.
+     *
+     * @since 3.0.0
+     */
+    public function maybe_load_divi5_modules()
+    {
+        // Prevent loading multiple times
+        static $loaded = false;
+        if ($loaded) {
+            return;
+        }
+
+        $dependency_interface_path = ABSPATH . 'wp-content/themes/Divi/includes/builder-5/server/Framework/DependencyManagement/Interfaces/DependencyInterface.php';
+
+        if (!file_exists($dependency_interface_path)) {
+            return;
+        }
+
+        require_once DCS_PLUGIN_PATH . 'includes/modules/Modules.php';
+        $loaded = true;
     }
 }
 

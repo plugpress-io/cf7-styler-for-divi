@@ -3,7 +3,7 @@ Main Product License
 
 Contact Form 7 Styler for Divi
 -----------------------------
-- Copyright: 2025 PlugPress 
+- Copyright: 2026 PlugPress
 - License: GPL
 - License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 
