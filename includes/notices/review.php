@@ -220,17 +220,16 @@ class Admin_Review_Notice
 
     public function dismiss_notice()
     {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'dcs_dismiss_notice')) {
-            wp_die('Security check failed');
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+
+        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_dismiss_notice')) {
+            wp_send_json_error(['message' => 'Security check failed']);
         }
 
-        // Check user capabilities
         if (!current_user_can('manage_options')) {
-            wp_die('Insufficient permissions');
+            wp_send_json_error(['message' => 'Insufficient permissions']);
         }
 
-        // Dismiss the notice for this user
         update_user_meta(get_current_user_id(), self::DISMISSED_OPTION, '1');
 
         wp_send_json_success();

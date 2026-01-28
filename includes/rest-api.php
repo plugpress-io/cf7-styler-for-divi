@@ -64,6 +64,27 @@ class Rest_API
                 'permission_callback' => [$this, 'check_permissions'],
             ]
         );
+
+        // Features settings
+        register_rest_route(
+            'cf7-styler/v1',
+            '/settings/features',
+            [
+                'methods' => 'GET',
+                'callback' => [$this, 'get_features'],
+                'permission_callback' => [$this, 'check_admin_permissions'],
+            ]
+        );
+
+        register_rest_route(
+            'cf7-styler/v1',
+            '/settings/features',
+            [
+                'methods' => 'POST',
+                'callback' => [$this, 'save_features'],
+                'permission_callback' => [$this, 'check_admin_permissions'],
+            ]
+        );
     }
 
     /**
@@ -75,6 +96,104 @@ class Rest_API
     public function check_permissions()
     {
         return current_user_can('edit_posts');
+    }
+
+    /**
+     * Check if user has admin permission.
+     *
+     * @since 3.0.0
+     * @return bool
+     */
+    public function check_admin_permissions()
+    {
+        return current_user_can('manage_options');
+    }
+
+    /**
+     * Get features settings.
+     *
+     * @since 3.0.0
+     * @return \WP_REST_Response
+     */
+    public function get_features()
+    {
+        $defaults = self::get_default_features();
+        $saved = get_option('dcs_features', []);
+        $features = wp_parse_args($saved, $defaults);
+
+        return rest_ensure_response([
+            'features' => $features,
+            'is_pro' => defined('DCS_PRO_VERSION'),
+        ]);
+    }
+
+    /**
+     * Save features settings.
+     *
+     * @since 3.0.0
+     * @param \WP_REST_Request $request Request object.
+     * @return \WP_REST_Response
+     */
+    public function save_features($request)
+    {
+        $features = $request->get_param('features');
+
+        if (!is_array($features)) {
+            return new \WP_Error(
+                'invalid_data',
+                __('Invalid features data.', 'cf7-styler-for-divi'),
+                ['status' => 400]
+            );
+        }
+
+        $defaults = self::get_default_features();
+        $sanitized = [];
+
+        foreach ($defaults as $key => $default) {
+            $sanitized[$key] = isset($features[$key]) ? (bool) $features[$key] : $default;
+        }
+
+        update_option('dcs_features', $sanitized);
+
+        return rest_ensure_response([
+            'success' => true,
+            'features' => $sanitized,
+        ]);
+    }
+
+    /**
+     * Get default features.
+     *
+     * @since 3.0.0
+     * @return array
+     */
+    public static function get_default_features()
+    {
+        return [
+            'cf7_module' => true,
+            'grid_layout' => true,
+            'multi_column' => true,
+            'multi_step' => true,
+            'star_rating' => true,
+            'database_entries' => true,
+            'range_slider' => true,
+        ];
+    }
+
+    /**
+     * Check if a feature is enabled.
+     *
+     * @since 3.0.0
+     * @param string $feature Feature key.
+     * @return bool
+     */
+    public static function is_feature_enabled($feature)
+    {
+        $defaults = self::get_default_features();
+        $saved = get_option('dcs_features', []);
+        $features = wp_parse_args($saved, $defaults);
+
+        return isset($features[$feature]) ? (bool) $features[$feature] : false;
     }
 
     /**

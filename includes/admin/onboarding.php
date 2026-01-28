@@ -39,8 +39,17 @@ class Onboarding
 
     public function enqueue_scripts($hook)
     {
-        // Only show onboarding on plugin pages and dashboard
-        if (!in_array($hook, ['index.php', 'plugins.php', 'toplevel_page_cf7-styler-for-divi'])) {
+        // Only show onboarding on plugin pages and dashboard.
+        // Hook can be top-level or submenu under Divi (divi_page_cf7-styler).
+        $allowed_hooks = [
+            'index.php',
+            'plugins.php',
+            'toplevel_page_cf7-styler',
+            'toplevel_page_cf7-styler-for-divi',
+            'divi_page_cf7-styler',
+        ];
+
+        if (!in_array($hook, $allowed_hooks, true)) {
             return;
         }
 
@@ -49,17 +58,11 @@ class Onboarding
             return;
         }
 
-        // Enqueue WordPress React dependencies
-        wp_enqueue_script('wp-element');
-        wp_enqueue_script('wp-i18n');
-        wp_enqueue_script('react');
-        wp_enqueue_script('react-dom');
-
         $onboarding_js = DCS_PLUGIN_PATH . 'dist/js/onboarding.js';
         wp_enqueue_script(
             'dcs-onboarding',
             DCS_PLUGIN_URL . 'dist/js/onboarding.js',
-            ['react', 'react-dom', 'wp-element', 'wp-i18n'],
+            ['react', 'wp-element', 'wp-i18n', 'wp-dom-ready'],
             DCS_VERSION . (file_exists($onboarding_js) ? '.' . filemtime($onboarding_js) : ''),
             true
         );
@@ -91,9 +94,17 @@ class Onboarding
             return;
         }
 
-        // Only show on allowed pages
+        // Only show on allowed pages.
         $screen = get_current_screen();
-        if (!$screen || !in_array($screen->id, ['dashboard', 'plugins', 'toplevel_page_cf7-styler-for-divi'])) {
+        $allowed_screens = [
+            'dashboard',
+            'plugins',
+            'toplevel_page_cf7-styler',
+            'toplevel_page_cf7-styler-for-divi',
+            'divi_page_cf7-styler',
+        ];
+
+        if (!$screen || !in_array($screen->id, $allowed_screens, true)) {
             return;
         }
 
@@ -102,12 +113,11 @@ class Onboarding
 
     public function check_onboarding_status()
     {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'dcs_onboarding_nonce')) {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
-        // Check user capabilities
         if (!current_user_can('manage_options')) {
             wp_send_json_error(['message' => 'Insufficient permissions']);
         }
@@ -123,12 +133,11 @@ class Onboarding
 
     public function skip_onboarding()
     {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'dcs_onboarding_nonce')) {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
-        // Check user capabilities
         if (!current_user_can('manage_options')) {
             wp_send_json_error(['message' => 'Insufficient permissions']);
         }
@@ -141,17 +150,16 @@ class Onboarding
 
     public function next_step()
     {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'dcs_onboarding_nonce')) {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
-        // Check user capabilities
         if (!current_user_can('manage_options')) {
             wp_send_json_error(['message' => 'Insufficient permissions']);
         }
 
-        $step = isset($_POST['step']) ? (int) $_POST['step'] : $this->get_current_step();
+        $step = isset($_POST['step']) ? absint(wp_unslash($_POST['step'])) : $this->get_current_step();
         update_option(self::ONBOARDING_STEP_OPTION, $step);
 
         wp_send_json_success([
@@ -161,12 +169,11 @@ class Onboarding
 
     public function complete_onboarding()
     {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'dcs_onboarding_nonce')) {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
-        // Check user capabilities
         if (!current_user_can('manage_options')) {
             wp_send_json_error(['message' => 'Insufficient permissions']);
         }

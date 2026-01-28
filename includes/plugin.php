@@ -42,9 +42,8 @@ class Plugin
             'assets.php',
             'utils/grid.php',
             'notices/review.php',
-            // Load admin entry file, which in turn loads add-menu & onboarding classes.
-            'admin.php',
-            // REST API endpoints (moved to includes/rest-api.php).
+            'admin/admin.php',
+            'admin/onboarding.php',
             'rest-api.php',
         ];
 
@@ -128,13 +127,19 @@ class Plugin
     private function init_components()
     {
         // Initialize review notice (star rating)
-        Admin_Review_Notice::instance();
+        if (class_exists(__NAMESPACE__ . '\Admin_Review_Notice')) {
+            Admin_Review_Notice::instance();
+        }
 
         // Initialize onboarding
-        Onboarding::instance();
+        if (class_exists(__NAMESPACE__ . '\Onboarding')) {
+            Onboarding::instance();
+        }
 
         // Initialize admin dashboard
-        Admin::get_instance();
+        if (class_exists(__NAMESPACE__ . '\Admin')) {
+            Admin::get_instance();
+        }
     }
 
     /**

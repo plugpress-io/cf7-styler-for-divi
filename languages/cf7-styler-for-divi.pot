@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-01-27 16:11+0000\n"
+"POT-Creation-Date: 2026-01-28 21:41+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,36 +15,36 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/rest-api.php:92
+#: includes/rest-api.php:144
+msgid "Invalid features data."
+msgstr ""
+
+#: includes/rest-api.php:211
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:108
+#: includes/rest-api.php:227
 msgid "Select a form"
 msgstr ""
 
-#: includes/rest-api.php:115
+#: includes/rest-api.php:234
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:158
+#: includes/rest-api.php:277
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/add-menu.php:114, includes/admin/add-menu.php:115, includes/admin/add-menu.php:104, includes/modules/divi-4/CF7Styler/CF7Styler.php:17
+#: includes/admin/admin.php:74, includes/admin/admin.php:76, includes/admin/admin.php:106, includes/admin/admin.php:120, includes/admin/admin.php:121, includes/modules/divi-4/CF7Styler/CF7Styler.php:17
 msgid "CF7 Styler"
 msgstr ""
 
-#: includes/admin/add-menu.php:103, includes/admin/add-menu.php:138
+#: includes/admin/admin.php:105
 msgid "CF7 Styler for Divi"
 msgstr ""
 
-#: includes/admin/add-menu.php:127
+#: includes/admin/admin.php:132
 msgid "Sorry, you are not allowed to access this page."
-msgstr ""
-
-#: includes/admin/add-menu.php:141
-msgid "Admin dashboard files not found. Please run:"
 msgstr ""
 
 #: includes/notices/review.php:97
@@ -59,63 +59,11 @@ msgstr ""
 msgid "Leave a Review"
 msgstr ""
 
-#: includes/utils/grid.php:76, includes/utils/grid.php:79
-msgid "row"
+#: includes/utils/grid.php:142
+msgid "Insert"
 msgstr ""
 
-#: includes/utils/grid.php:80
-msgid "Generate a row shortcode"
-msgstr ""
-
-#: includes/utils/grid.php:96
-msgid "1-col"
-msgstr ""
-
-#: includes/utils/grid.php:97
-msgid "Generate a full width column"
-msgstr ""
-
-#: includes/utils/grid.php:100
-msgid "1/2-col"
-msgstr ""
-
-#: includes/utils/grid.php:101
-msgid "Generate a half width column"
-msgstr ""
-
-#: includes/utils/grid.php:104
-msgid "1/3-col"
-msgstr ""
-
-#: includes/utils/grid.php:105
-msgid "Generate a one-third width column"
-msgstr ""
-
-#: includes/utils/grid.php:108
-msgid "1/4-col"
-msgstr ""
-
-#: includes/utils/grid.php:109
-msgid "Generate a one-fourth width column"
-msgstr ""
-
-#: includes/utils/grid.php:112
-msgid "2/3-col"
-msgstr ""
-
-#: includes/utils/grid.php:113
-msgid "Generate a two-thirds width column"
-msgstr ""
-
-#: includes/utils/grid.php:116
-msgid "3/4-col"
-msgstr ""
-
-#: includes/utils/grid.php:117
-msgid "Generate a three-fourths width column"
-msgstr ""
-
-#: includes/modules/CF7Styler/CF7Styler.php:75
+#: includes/modules/CF7Styler/CF7Styler.php:234
 msgid "Please select a Contact Form 7 form."
 msgstr ""
 

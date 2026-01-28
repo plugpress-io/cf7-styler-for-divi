@@ -25,8 +25,6 @@ if (! function_exists('dcs_fs')) {
                     'contact'        => false,
                     'support'        => false,
                     'pricing'        => true,
-                    // Removed parent menu - Freemius will create top-level menu
-                    // Custom admin page is handled in includes/admin.php under et_divi_options
                 ),
             ));
         }

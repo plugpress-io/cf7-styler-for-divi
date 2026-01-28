@@ -1,10 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// ===========================================
+// CF7 Styler Admin - Clean Design
+// ===========================================
 
-// ===========================================
-// CF7 Styler Admin Theme Variables
-// ===========================================
 :root {
 	--dcs-primary: #0285FF;
 	--dcs-primary-dark: #0066cc;
@@ -14,45 +11,58 @@
 	--dcs-bg: #f3f4f6;
 	--dcs-success: #10b981;
 	--dcs-danger: #ef4444;
-	--dcs-link: #0285FF;
-	--dcs-warning: #f59e0b;
+	--dcs-pro: #7c3aed;
 }
 
 // ===========================================
-// Admin Wrapper & Layout Shell
+// Base Layout
 // ===========================================
 #cf7-styler-for-divi-root {
-	@apply min-h-screen flex flex-col;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	background: var(--dcs-bg);
 	margin-left: -20px;
 	padding: 0;
+	box-sizing: border-box;
+
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
 }
 
 .dcs-admin-wrapper {
-	@apply min-h-screen flex flex-col;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	background: var(--dcs-bg);
 }
 
 .dcs-admin {
-	@apply flex-1 flex justify-center;
-	padding: 48px 24px;
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	padding: 32px 24px;
 
 	@media (max-width: 640px) {
-		padding: 24px 16px;
+		padding: 20px 16px;
 	}
 
 	&__content {
-		@apply w-full;
-		max-width: 940px;
+		width: 100%;
+		max-width: 720px;
 	}
 }
 
 // ===========================================
-// Full-width Header
+// Header
 // ===========================================
 .dcs-admin__header {
-	@apply flex items-center justify-between w-full;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 	padding: 14px 32px;
 	background: #fff;
 	border-bottom: 1px solid var(--dcs-border);
@@ -63,243 +73,372 @@
 }
 
 .dcs-admin__logo {
-	@apply flex items-center gap-3;
+	display: flex;
+	align-items: center;
+	gap: 12px;
 
 	svg {
-		@apply w-7 h-7;
+		width: 28px;
+		height: 28px;
 		color: var(--dcs-primary);
 	}
 }
 
 .dcs-admin__title {
-	@apply text-base font-semibold m-0;
+	font-size: 15px;
+	font-weight: 600;
+	margin: 0;
 	color: var(--dcs-text);
 }
 
 .dcs-admin__nav {
-	@apply flex items-center gap-4;
+	display: flex;
+	align-items: center;
+	gap: 16px;
 }
 
 .dcs-admin__nav-link {
-	@apply flex items-center gap-2 text-sm no-underline transition-colors;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
 	color: var(--dcs-text-muted);
+	text-decoration: none;
+	transition: color 0.15s;
 
 	&:hover {
 		color: var(--dcs-primary);
 	}
-
-	svg {
-		@apply w-4 h-4;
-	}
 }
 
 // ===========================================
-// Card Component
+// Card
 // ===========================================
-.dcs-admin__card {
-	@apply bg-white rounded-xl border;
-	border-color: var(--dcs-border);
-	margin-bottom: 24px;
-	max-width: 940px;
-	width: 100%;
+.dcs-card {
+	background: #fff;
+	border-radius: 12px;
+	border: 1px solid var(--dcs-border);
+	margin-bottom: 20px;
+	overflow: hidden;
 
-	&--padding {
-		padding: 24px 28px;
+	&__header {
+		padding: 20px 24px 16px;
+		border-bottom: 1px solid var(--dcs-border);
 
 		@media (max-width: 640px) {
-			padding: 20px;
+			padding: 16px 20px 14px;
 		}
+	}
+
+	&__title {
+		font-size: 16px;
+		font-weight: 600;
+		margin: 0 0 4px;
+		color: var(--dcs-text);
+	}
+
+	&__desc {
+		font-size: 14px;
+		margin: 0;
+		color: var(--dcs-text-muted);
 	}
 }
 
 // ===========================================
-// Welcome Section
+// Features
 // ===========================================
-.dcs-admin__welcome {
-	@apply flex items-start gap-6;
+.dcs-features {
+	display: flex;
+	flex-direction: column;
+}
+
+.dcs-feature {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 16px 24px;
+	border-bottom: 1px solid var(--dcs-border);
+
+	&:last-child {
+		border-bottom: none;
+	}
 
 	@media (max-width: 640px) {
-		@apply flex-col gap-4;
+		padding: 14px 20px;
 	}
-}
 
-.dcs-admin__welcome-icon {
-	@apply flex-shrink-0 flex items-center justify-center;
-	width: 64px;
-	height: 64px;
-	background: #f3f4f6;
-	border-radius: 12px;
-	color: var(--dcs-primary);
-
-	svg {
-		@apply w-8 h-8;
+	&--pro {
+		background: #faf5ff;
 	}
-}
 
-.dcs-admin__welcome-content {
-	@apply flex-1;
-}
+	&__info {
+		flex: 1;
+		min-width: 0;
+	}
 
-.dcs-admin__welcome-title {
-	@apply text-xl font-semibold m-0 mb-2;
-	color: var(--dcs-text);
-}
+	&__header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 4px;
+	}
 
-.dcs-admin__welcome-desc {
-	@apply text-sm m-0 leading-relaxed;
-	color: var(--dcs-text-muted);
+	&__name {
+		font-size: 14px;
+		font-weight: 600;
+		margin: 0;
+		color: var(--dcs-text);
+	}
 
-	a {
-		color: var(--dcs-link);
-		text-decoration: none;
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		padding: 2px 8px;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		color: var(--dcs-pro);
+		background: rgba(124, 58, 237, 0.1);
+		border-radius: 4px;
+	}
+
+	&__desc {
+		font-size: 13px;
+		margin: 0;
+		color: var(--dcs-text-muted);
+		line-height: 1.4;
+	}
+
+	&__toggle {
+		flex-shrink: 0;
+	}
+
+	&__upgrade {
+		display: inline-flex;
+		align-items: center;
+		padding: 6px 14px;
+		font-size: 13px;
 		font-weight: 500;
+		color: #fff;
+		background: var(--dcs-pro);
+		border-radius: 6px;
+		text-decoration: none;
+		transition: background 0.15s;
 
 		&:hover {
-			text-decoration: underline;
+			background: #6d28d9;
+			color: #fff;
 		}
 	}
 }
 
 // ===========================================
-// Section Header
+// Toggle Switch
 // ===========================================
-.dcs-admin__section-header {
-	@apply flex items-center justify-between flex-wrap gap-4 mb-6;
+.dcs-toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+	outline: none;
+
+	&__track {
+		position: relative;
+		width: 44px;
+		height: 24px;
+		background: #d1d5db;
+		border-radius: 12px;
+		transition: background 0.2s;
+	}
+
+	&__thumb {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 20px;
+		height: 20px;
+		background: #fff;
+		border-radius: 10px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+		transition: transform 0.2s;
+	}
+
+	&--active {
+		.dcs-toggle__track {
+			background: var(--dcs-primary);
+		}
+
+		.dcs-toggle__thumb {
+			transform: translateX(20px);
+		}
+	}
+
+	&--disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	&:focus-visible .dcs-toggle__track {
+		box-shadow: 0 0 0 2px rgba(2, 133, 255, 0.3);
+	}
 }
 
-.dcs-admin__section-title {
-	@apply text-lg font-semibold m-0;
-	color: var(--dcs-text);
+// ===========================================
+// Quick Start
+// ===========================================
+.dcs-quickstart {
+	margin: 0;
+	padding: 20px 24px 20px 44px;
+	list-style: decimal;
+
+	@media (max-width: 640px) {
+		padding: 16px 20px 16px 40px;
+	}
+
+	li {
+		font-size: 14px;
+		color: var(--dcs-text-muted);
+		padding: 6px 0;
+		line-height: 1.5;
+
+		&::marker {
+			color: var(--dcs-primary);
+			font-weight: 600;
+		}
+	}
 }
 
 // ===========================================
 // Support Section
 // ===========================================
-.dcs-admin__support {
-	@apply flex items-center gap-4 bg-white rounded-xl p-5 border;
-	border-color: var(--dcs-border);
-	max-width: 940px;
-	width: 100%;
+.dcs-support {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: #fff;
+	border-radius: 12px;
+	padding: 20px 24px;
+	border: 1px solid var(--dcs-border);
 
 	@media (max-width: 640px) {
-		@apply flex-col items-start text-center p-5;
+		flex-direction: column;
+		text-align: center;
+		padding: 20px;
 	}
 
-	&-icon {
-		@apply flex-shrink-0 flex items-center justify-center rounded-full;
+	&__icon {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 48px;
 		height: 48px;
 		background: #e0f2fe;
+		border-radius: 50%;
 		color: var(--dcs-primary);
 
 		svg {
-			@apply w-6 h-6;
-		}
-
-		@media (max-width: 640px) {
-			@apply mx-auto;
+			width: 24px;
+			height: 24px;
 		}
 	}
 
-	&-content {
-		@apply flex-1;
-
-		@media (max-width: 640px) {
-			@apply text-center;
-		}
+	&__content {
+		flex: 1;
 	}
 
-	&-title {
-		@apply text-sm font-semibold m-0;
+	&__title {
+		font-size: 14px;
+		font-weight: 600;
+		margin: 0 0 2px;
 		color: var(--dcs-text);
 	}
 
-	&-desc {
-		@apply text-sm m-0;
+	&__desc {
+		font-size: 14px;
+		margin: 0;
 		color: var(--dcs-text-muted);
 	}
 
-	&-btn {
-		@apply flex-shrink-0 text-sm font-medium no-underline px-4 py-2.5 text-gray-900 bg-white border rounded-lg transition-colors;
-		border-color: var(--dcs-border);
+	&__btn {
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		padding: 10px 18px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--dcs-text);
+		background: #fff;
+		border: 1px solid var(--dcs-border);
+		border-radius: 8px;
+		text-decoration: none;
+		transition: background 0.15s;
 
 		&:hover {
 			background: var(--dcs-bg);
 		}
 
 		@media (max-width: 640px) {
-			@apply w-full text-center;
+			width: 100%;
+			justify-content: center;
 		}
 	}
 }
 
 // ===========================================
-// Onboarding Notice
+// Loading
 // ===========================================
-.dcs-admin__onboarding-notice {
-	@apply bg-white rounded-xl border mb-6 p-7;
-	border-color: var(--dcs-border);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-	@media (max-width: 640px) {
-		padding: 20px;
-	}
-}
-
-.dcs-admin__notice-content {
-	@apply flex items-center gap-5;
-
-	@media (max-width: 640px) {
-		@apply flex-col items-start gap-4;
-	}
-}
-
-.dcs-admin__notice-icon {
-	@apply flex-shrink-0 flex items-center justify-center rounded-xl;
-	width: 48px;
-	height: 48px;
-	background: #e0f2fe;
-	color: var(--dcs-primary);
-
-	svg {
-		@apply w-6 h-6;
-	}
-}
-
-.dcs-admin__notice-text {
-	@apply flex-1;
-}
-
-.dcs-admin__notice-title {
-	@apply text-base font-semibold m-0 mb-1;
-	color: var(--dcs-text);
-}
-
-.dcs-admin__notice-description {
-	@apply text-sm m-0 leading-relaxed;
+.dcs-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 200px;
+	font-size: 14px;
 	color: var(--dcs-text-muted);
 }
 
-.dcs-admin__notice-button {
-	@apply flex-shrink-0 inline-flex items-center justify-center bg-blue-500 text-white no-underline px-5 py-2.5 rounded-md font-medium text-sm transition-all border-none cursor-pointer;
+// ===========================================
+// Toast Notification
+// ===========================================
+.dcs-toast {
+	position: fixed;
+	bottom: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 20px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #fff;
+	background: #1a1a1a;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	z-index: 9999;
+	animation: toastIn 0.2s ease-out;
 
-	&:hover:not(:disabled) {
-		@apply bg-blue-600;
-		transform: translateY(-1px);
-		box-shadow: 0 2px 8px rgba(2, 133, 255, 0.25);
+	&--success {
+		background: var(--dcs-success);
 	}
 
-	&:active:not(:disabled) {
-		transform: translateY(0);
-		box-shadow: 0 1px 4px rgba(2, 133, 255, 0.2);
+	&--error {
+		background: var(--dcs-danger);
 	}
+}
 
-	&:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
+@keyframes toastIn {
+	from {
+		opacity: 0;
+		transform: translateX(-50%) translateY(10px);
 	}
-
-	@media (max-width: 640px) {
-		@apply w-full;
+	to {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
 	}
 }

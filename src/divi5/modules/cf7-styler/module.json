@@ -92,7 +92,18 @@
           "cf7SuccessBorderColor": { "desktop": { "value": "" } },
           "cf7ErrorMessageColor": { "desktop": { "value": "" } },
           "cf7ErrorMessageBgColor": { "desktop": { "value": "" } },
-          "cf7ErrorBorderColor": { "desktop": { "value": "" } }
+          "cf7ErrorBorderColor": { "desktop": { "value": "" } },
+          "buttonBg": { "desktop": { "value": "" } },
+          "buttonColor": { "desktop": { "value": "" } },
+          "buttonPadding": { "desktop": { "value": "10px|20px|10px|20px" } },
+          "buttonBorderColor": { "desktop": { "value": "" } },
+          "buttonBorderWidth": { "desktop": { "value": "0px" } },
+          "buttonBorderRadius": { "desktop": { "value": "0px" } },
+          "formFieldBorderColor": { "desktop": { "value": "" } },
+          "formFieldBorderWidth": { "desktop": { "value": "1px" } },
+          "formFieldBorderRadius": { "desktop": { "value": "0px" } },
+          "formFieldTextColor": { "desktop": { "value": "" } },
+          "formLabelColor": { "desktop": { "value": "" } }
         }
       },
       "settings": {
@@ -667,6 +678,138 @@
               "priority": 120,
               "render": true,
               "label": "Error Border Color",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/color-picker" }
+            }
+          },
+          "buttonBg": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonBg",
+              "priority": 10,
+              "render": true,
+              "label": "Button Background",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/color-picker" }
+            }
+          },
+          "buttonColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonColor",
+              "priority": 20,
+              "render": true,
+              "label": "Button Text Color",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/color-picker" }
+            }
+          },
+          "buttonPadding": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonPadding",
+              "priority": 30,
+              "render": true,
+              "label": "Button Padding",
+              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/spacing", "props": { "padding": true } }
+            }
+          },
+          "buttonBorderColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonBorderColor",
+              "priority": 40,
+              "render": true,
+              "label": "Button Border Color",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/color-picker" }
+            }
+          },
+          "buttonBorderWidth": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonBorderWidth",
+              "priority": 50,
+              "render": true,
+              "label": "Button Border Width",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 10, "step": 1, "defaultUnit": "px" } }
+            }
+          },
+          "buttonBorderRadius": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonBorderRadius",
+              "priority": 60,
+              "render": true,
+              "label": "Button Border Radius",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+            }
+          },
+          "formFieldBorderColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_field",
+              "attrName": "cf7.advanced.formFieldBorderColor",
+              "priority": 60,
+              "render": true,
+              "label": "Field Border Color",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/color-picker" }
+            }
+          },
+          "formFieldBorderWidth": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_field",
+              "attrName": "cf7.advanced.formFieldBorderWidth",
+              "priority": 70,
+              "render": true,
+              "label": "Field Border Width",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 10, "step": 1, "defaultUnit": "px" } }
+            }
+          },
+          "formFieldBorderRadius": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_field",
+              "attrName": "cf7.advanced.formFieldBorderRadius",
+              "priority": 80,
+              "render": true,
+              "label": "Field Border Radius",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+            }
+          },
+          "formFieldTextColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_field",
+              "attrName": "cf7.advanced.formFieldTextColor",
+              "priority": 90,
+              "render": true,
+              "label": "Field Text Color",
+              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
+              "component": { "type": "field", "name": "divi/color-picker" }
+            }
+          },
+          "formLabelColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.formLabelColor",
+              "priority": 20,
+              "render": true,
+              "label": "Label Color",
               "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
               "component": { "type": "field", "name": "divi/color-picker" }
             }

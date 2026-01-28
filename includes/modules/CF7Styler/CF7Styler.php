@@ -12,6 +12,115 @@ use ET\Builder\Framework\DependencyManagement\Interfaces\DependencyInterface;
 
 class CF7Styler implements DependencyInterface
 {
+    /**
+     * Get a responsive attr value from Divi 5 attrs.
+     *
+     * Expected shape:
+     * $attrs['cf7']['advanced']['formBg']['desktop']['value']
+     *
+     * @param array  $attrs
+     * @param array  $path        Key path, e.g. ['cf7','advanced','formBg']
+     * @param string $breakpoint  desktop|tablet|phone
+     * @return string
+     */
+    private static function get_attr_value(array $attrs, array $path, string $breakpoint = 'desktop'): string
+    {
+        $node = $attrs;
+        foreach ($path as $key) {
+            if (!is_array($node) || !array_key_exists($key, $node)) {
+                return '';
+            }
+            $node = $node[$key];
+        }
+
+        if (!is_array($node) || !isset($node[$breakpoint]['value'])) {
+            return '';
+        }
+
+        $value = $node[$breakpoint]['value'];
+        if (is_bool($value)) {
+            return $value ? 'on' : 'off';
+        }
+        if (is_scalar($value)) {
+            return (string) $value;
+        }
+
+        return '';
+    }
+
+    /**
+     * Basic CSS color sanitization (supports hex, rgb/rgba, hsl/hsla, transparent, currentColor, inherit, var()).
+     */
+    private static function sanitize_css_color(string $value): string
+    {
+        $value = trim(wp_strip_all_tags($value));
+        if ($value === '') {
+            return '';
+        }
+
+        // Allow CSS variables.
+        if (preg_match('/^var\(--[A-Za-z0-9\-_]+\)$/', $value)) {
+            return $value;
+        }
+
+        // Allow common keywords.
+        $keywords = ['transparent', 'currentColor', 'inherit', 'initial', 'unset'];
+        if (in_array($value, $keywords, true)) {
+            return $value;
+        }
+
+        // Hex (3/4/6/8).
+        if (preg_match('/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/', $value)) {
+            return $value;
+        }
+
+        // rgb/rgba/hsl/hsla.
+        if (preg_match('/^(rgb|rgba|hsl|hsla)\([0-9,\s.%]+\)$/', $value)) {
+            return $value;
+        }
+
+        return '';
+    }
+
+    /**
+     * Basic CSS length sanitization (supports px, em, rem, %, vh, vw, vmin, vmax, ch, ex and zero).
+     */
+    private static function sanitize_css_length(string $value): string
+    {
+        $value = trim(wp_strip_all_tags($value));
+        if ($value === '') {
+            return '';
+        }
+        if ($value === '0' || $value === '0px') {
+            return '0';
+        }
+        if (preg_match('/^[0-9.]+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex)$/', $value)) {
+            return $value;
+        }
+        // Some controls may return "initial".
+        if (in_array($value, ['initial', 'inherit', 'unset'], true)) {
+            return $value;
+        }
+        return '';
+    }
+
+    /**
+     * Convert Divi padding format "t|r|b|l" into "t r b l".
+     */
+    private static function padding_pipe_to_css(string $value): string
+    {
+        $value = trim((string) $value);
+        if ($value === '') {
+            return '';
+        }
+        if (strpos($value, '|') === false) {
+            return $value;
+        }
+        $parts = array_map('trim', explode('|', $value));
+        $parts = array_pad($parts, 4, '0');
+        return implode(' ', array_slice($parts, 0, 4));
+    }
+
     public function load()
     {
         $module_json_folder_path = DCS_MODULES_JSON_PATH . 'cf7-styler/';
@@ -41,33 +150,83 @@ class CF7Styler implements DependencyInterface
      */
     public static function render_callback($attrs)
     {
+        $attrs = is_array($attrs) ? $attrs : [];
+
+        // Unique scope for per-module CSS (prevents cross-module bleed).
+        $scope_id = function_exists('wp_unique_id') ? wp_unique_id('dcs-cf7-styler-') : ('dcs-cf7-styler-' . uniqid());
+
         // Get form ID from attributes (new structure: cf7.advanced.formId)
-        $form_id = $attrs['cf7']['advanced']['formId']['desktop']['value'] ?? '0';
+        $form_id = self::get_attr_value($attrs, ['cf7', 'advanced', 'formId'], 'desktop');
+        if ($form_id === '') {
+            $form_id = '0';
+        }
 
         // Get header settings
-        $use_form_header = ($attrs['cf7']['advanced']['useFormHeader']['desktop']['value'] ?? 'off') === 'on';
-        $header_title    = $attrs['cf7']['advanced']['formHeaderTitle']['desktop']['value'] ?? '';
-        $header_text     = $attrs['cf7']['advanced']['formHeaderText']['desktop']['value'] ?? '';
+        $use_form_header = self::get_attr_value($attrs, ['cf7', 'advanced', 'useFormHeader'], 'desktop') === 'on';
+        $header_title    = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderTitle'], 'desktop');
+        $header_text     = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderText'], 'desktop');
+
+        // Header media options (parity with Divi 4).
+        $use_icon        = self::get_attr_value($attrs, ['cf7', 'advanced', 'useIcon'], 'desktop') === 'on';
+        $header_image    = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerImage'], 'desktop');
+        $header_icon     = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerIcon'], 'desktop');
 
         // Button alignment & custom radio/checkbox styles – mirror Divi 4 behavior.
-        $button_alignment         = $attrs['cf7']['advanced']['buttonAlignment']['desktop']['value'] ?? 'left';
-        $use_form_button_fullwide = $attrs['cf7']['advanced']['useFormButtonFullwidth']['desktop']['value'] ?? 'off';
-        $cr_custom_styles         = $attrs['cf7']['advanced']['crCustomStyles']['desktop']['value'] ?? 'off';
+        $button_alignment         = self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonAlignment'], 'desktop') ?: 'left';
+        $use_form_button_fullwide = self::get_attr_value($attrs, ['cf7', 'advanced', 'useFormButtonFullwidth'], 'desktop') ?: 'off';
+        $cr_custom_styles         = self::get_attr_value($attrs, ['cf7', 'advanced', 'crCustomStyles'], 'desktop') ?: 'off';
 
         $button_class    = 'on' !== $use_form_button_fullwide ? $button_alignment : 'fullwidth';
         $cr_custom_class = 'on' === $cr_custom_styles ? 'dipe-cf7-cr dcs-cf7-cr' : '';
 
-        // Build header HTML (keeps new dcs-* prefix, works for both Divi 4 & 5).
+        // Build header HTML (parity with Divi 4 markup, plus dcs-* classes).
         $form_header = '';
         if ($use_form_header && (! empty($header_title) || ! empty($header_text))) {
-            $form_header .= '<div class="dcs-cf7-header">';
-            if (! empty($header_title)) {
-                $form_header .= '<h3 class="dcs-cf7-header__title">' . esc_html($header_title) . '</h3>';
+            $media_html = '';
+
+            if ($use_icon && $header_icon !== '') {
+                // Divi 4 uses et_pb_process_font_icon; keep it when available.
+                $icon_processed = function_exists('et_pb_process_font_icon') ? et_pb_process_font_icon($header_icon) : $header_icon;
+                $icon_processed = esc_html($icon_processed);
+
+                if (function_exists('dcs_inject_fa_icons')) {
+                    dcs_inject_fa_icons($header_icon);
+                }
+
+                $media_html = sprintf(
+                    '<div class="dipe-form-header-icon dcs-form-header-icon"><span class="et-pb-icon">%1$s</span></div>',
+                    $icon_processed
+                );
+            } elseif (!$use_icon && $header_image !== '') {
+                $media_html = sprintf(
+                    '<div class="dipe-form-header-image dcs-form-header-image"><img src="%1$s" alt="" /></div>',
+                    esc_url($header_image)
+                );
             }
-            if (! empty($header_text)) {
-                $form_header .= '<p class="dcs-cf7-header__text">' . esc_html($header_text) . '</p>';
-            }
-            $form_header .= '</div>';
+
+            $title_html = !empty($header_title) ? sprintf(
+                '<h2 class="dipe-form-header-title dcs-form-header-title">%1$s</h2>',
+                esc_html($header_title)
+            ) : '';
+            $text_html = !empty($header_text) ? sprintf(
+                '<div class="dipe-form-header-text dcs-form-header-text">%1$s</div>',
+                esc_html($header_text)
+            ) : '';
+            $info_html = ($title_html || $text_html) ? sprintf(
+                '<div class="dipe-form-header-info dcs-form-header-info">%1$s%2$s</div>',
+                $title_html,
+                $text_html
+            ) : '';
+
+            $form_header = sprintf(
+                '<div class="dipe-form-header-container dcs-form-header-container">
+                    <div class="dipe-form-header dcs-form-header">
+                        %1$s%2$s
+                    </div>
+                </div>',
+                $media_html,
+                $info_html
+            );
         }
 
         // Build form HTML or placeholder.
@@ -75,6 +234,206 @@ class CF7Styler implements DependencyInterface
             $form_html = '<p class="dcs-cf7-styler__placeholder">' . esc_html__('Please select a Contact Form 7 form.', 'cf7-styler-for-divi') . '</p>';
         } else {
             $form_html = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', esc_attr($form_id)));
+        }
+
+        // Build scoped CSS (mirrors Divi 4 styling behavior for the migrated options).
+        $css = '';
+
+        // Header styles.
+        $form_header_bg         = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderBg'], 'desktop'));
+        $form_header_img_bg     = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderImgBg'], 'desktop'));
+        $form_header_icon_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderIconColor'], 'desktop'));
+        $form_header_bottom     = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderBottom'], 'desktop'));
+        $form_header_padding    = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderPadding'], 'desktop'));
+
+        if ($form_header_bg !== '') {
+            $css .= "#{$scope_id} .dipe-form-header-container{background-color:{$form_header_bg};}";
+        }
+        if ($form_header_bottom !== '') {
+            $css .= "#{$scope_id} .dipe-form-header-container{margin-bottom:{$form_header_bottom};}";
+        }
+        if ($form_header_padding !== '') {
+            $css .= "#{$scope_id} .dipe-form-header-container{padding:{$form_header_padding};}";
+        }
+        if ($form_header_img_bg !== '') {
+            $css .= "#{$scope_id} .dipe-form-header-icon,#{$scope_id} .dipe-form-header-image{background-color:{$form_header_img_bg};}";
+        }
+        if ($form_header_icon_color !== '') {
+            $css .= "#{$scope_id} .dipe-form-header-icon span{color:{$form_header_icon_color};}";
+        }
+
+        // Form wrapper styles.
+        $form_bg      = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formBg'], 'desktop'));
+        $form_padding = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'formPadding'], 'desktop'));
+        if ($form_bg !== '') {
+            $css .= "#{$scope_id} .dipe-cf7-styler{background-color:{$form_bg};}";
+        }
+        if ($form_padding !== '') {
+            $css .= "#{$scope_id} .dipe-cf7-styler{padding:{$form_padding};}";
+        }
+
+        // Field styles (background, padding, spacing, active border).
+        $field_bg       = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formBackgroundColor'], 'desktop'));
+        $field_active   = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldActiveColor'], 'desktop'));
+        $field_height   = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldHeight'], 'desktop'));
+        $field_padding  = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldPadding'], 'desktop'));
+        $field_spacing  = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldSpacing'], 'desktop'));
+        $label_spacing  = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formLabelSpacing'], 'desktop'));
+
+        $field_selector = "#{$scope_id} .dipe-cf7 input:not([type=submit]),#{$scope_id} .dipe-cf7 select,#{$scope_id} .dipe-cf7 textarea";
+        if ($field_bg !== '') {
+            $css .= "{$field_selector}{background-color:{$field_bg} !important;}";
+        }
+        if ($field_padding !== '') {
+            $css .= "{$field_selector}{padding:{$field_padding} !important;}";
+        }
+        if ($field_active !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 .wpcf7 input:not([type=submit]):focus,#{$scope_id} .dipe-cf7 .wpcf7 select:focus,#{$scope_id} .dipe-cf7 .wpcf7 textarea:focus{border-color:{$field_active} !important;}";
+        }
+        if ($field_height !== '') {
+            $css .= "#{$scope_id} .wpcf7-form-control-wrap select,#{$scope_id} .wpcf7-form-control-wrap input[type=text],#{$scope_id} .wpcf7-form-control-wrap input[type=email],#{$scope_id} .wpcf7-form-control-wrap input[type=number],#{$scope_id} .wpcf7-form-control-wrap input[type=tel]{height:{$field_height} !important;}";
+        }
+        if ($field_spacing !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 .wpcf7 form>p,#{$scope_id} .dipe-cf7 .wpcf7 form>div,#{$scope_id} .dipe-cf7 .wpcf7 form>label,#{$scope_id} .dipe-cf7 .wpcf7 form .dp-col>p,#{$scope_id} .dipe-cf7 .wpcf7 form .dp-col>div,#{$scope_id} .dipe-cf7 .wpcf7 form .dp-col>label{margin-bottom:{$field_spacing} !important;}";
+        }
+        if ($label_spacing !== '') {
+            $css .= "#{$scope_id} .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit){margin-top:{$label_spacing} !important;}";
+        }
+
+        // Radio/checkbox custom styles.
+        if ($cr_custom_styles === 'on') {
+            $cr_size        = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'crSize'], 'desktop'));
+            $cr_border_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'crBorderSize'], 'desktop'));
+            $cr_bg          = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'crBackgroundColor'], 'desktop'));
+            $cr_selected    = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'crSelectedColor'], 'desktop'));
+            $cr_border      = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'crBorderColor'], 'desktop'));
+            $cr_label       = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'crLabelColor'], 'desktop'));
+
+            if ($cr_size !== '' || $cr_border_size !== '') {
+                $w = $cr_size !== '' ? $cr_size : '14px';
+                $b = $cr_border_size !== '' ? $cr_border_size : '1px';
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox input[type=\"checkbox\"] + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-acceptance input[type=\"checkbox\"] + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-radio input[type=\"radio\"] + span:before{width:{$w} !important;height:{$w} !important;border-width:{$b} !important;}";
+            }
+            if ($cr_bg !== '') {
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox input[type=\"checkbox\"] + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-acceptance input[type=\"checkbox\"] + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-radio input[type=\"radio\"]:not(:checked) + span:before{background-color:{$cr_bg} !important;}";
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-radio input[type=\"radio\"]:checked + span:before{box-shadow:inset 0 0 0 4px {$cr_bg} !important;}";
+            }
+            if ($cr_selected !== '') {
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox input[type=\"checkbox\"]:checked + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-acceptance input[type=\"checkbox\"]:checked + span:before{color:{$cr_selected} !important;}";
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-radio input[type=\"radio\"]:checked + span:before{background-color:{$cr_selected} !important;}";
+            }
+            if ($cr_border !== '') {
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox input[type=\"checkbox\"] + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-radio input[type=\"radio\"] + span:before,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-acceptance input[type=\"checkbox\"] + span:before{border-color:{$cr_border} !important;}";
+            }
+            if ($cr_label !== '') {
+                $css .= "#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox label,#{$scope_id} .dipe-cf7.dipe-cf7-cr .wpcf7-radio label{color:{$cr_label} !important;}";
+            }
+        }
+
+        // Message styles.
+        $msg_padding       = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessagePadding'], 'desktop'));
+        $msg_margin_top    = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageMarginTop'], 'desktop'));
+        $msg_align         = self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageAlignment'], 'desktop') ?: 'left';
+        $msg_color         = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageColor'], 'desktop'));
+        $msg_bg            = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageBgColor'], 'desktop'));
+        $msg_border_hl     = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7BorderHighlightColor'], 'desktop'));
+        $success_color     = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7SuccessMessageColor'], 'desktop'));
+        $success_bg        = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7SuccessMessageBgColor'], 'desktop'));
+        $success_border    = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7SuccessBorderColor'], 'desktop'));
+        $error_color       = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7ErrorMessageColor'], 'desktop'));
+        $error_bg          = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7ErrorMessageBgColor'], 'desktop'));
+        $error_border      = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7ErrorBorderColor'], 'desktop'));
+
+        $css .= "#{$scope_id} .wpcf7 form .wpcf7-response-output,#{$scope_id} .wpcf7 form span.wpcf7-not-valid-tip{text-align:" . esc_attr($msg_align) . ";}";
+        if ($msg_color !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 span.wpcf7-not-valid-tip{color:{$msg_color} !important;}";
+        }
+        if ($msg_bg !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 span.wpcf7-not-valid-tip{background-color:{$msg_bg} !important;}";
+        }
+        if ($msg_border_hl !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 span.wpcf7-not-valid-tip{border:2px solid {$msg_border_hl} !important;}";
+        }
+        if ($success_color !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 .wpcf7-mail-sent-ok{color:{$success_color} !important;}";
+        }
+        if ($success_bg !== '') {
+            $css .= "#{$scope_id} .wpcf7 form.sent .wpcf7-response-output{background-color:{$success_bg} !important;}";
+        }
+        if ($success_border !== '') {
+            $css .= "#{$scope_id} .wpcf7 form.sent .wpcf7-response-output{border-color:{$success_border} !important;}";
+        }
+        if ($error_color !== '') {
+            $css .= "#{$scope_id} .wpcf7 form .wpcf7-response-output{color:{$error_color} !important;}";
+        }
+        if ($error_bg !== '') {
+            $css .= "#{$scope_id} .wpcf7 form .wpcf7-response-output{background-color:{$error_bg} !important;}";
+        }
+        if ($error_border !== '') {
+            $css .= "#{$scope_id} .wpcf7 form .wpcf7-response-output{border-color:{$error_border} !important;}";
+        }
+        if ($msg_padding !== '') {
+            $css .= "#{$scope_id} span.wpcf7-not-valid-tip{padding:{$msg_padding} !important;}";
+        }
+        if ($msg_margin_top !== '') {
+            $css .= "#{$scope_id} span.wpcf7-not-valid-tip{margin-top:{$msg_margin_top} !important;}";
+        }
+
+        // Field border styles.
+        $field_border_color  = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderColor'], 'desktop'));
+        $field_border_width  = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderWidth'], 'desktop'));
+        $field_border_radius = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderRadius'], 'desktop'));
+        $field_text_color    = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldTextColor'], 'desktop'));
+
+        if ($field_border_color !== '') {
+            $css .= "{$field_selector}{border-color:{$field_border_color} !important;}";
+        }
+        if ($field_border_width !== '' && $field_border_width !== '0') {
+            $css .= "{$field_selector}{border-width:{$field_border_width} !important;border-style:solid;}";
+        }
+        if ($field_border_radius !== '' && $field_border_radius !== '0') {
+            $css .= "{$field_selector}{border-radius:{$field_border_radius} !important;}";
+        }
+        if ($field_text_color !== '') {
+            $css .= "{$field_selector}{color:{$field_text_color} !important;}";
+        }
+
+        // Label color.
+        $label_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formLabelColor'], 'desktop'));
+        if ($label_color !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 label,#{$scope_id} .dcs-cf7-styler label{color:{$label_color} !important;}";
+        }
+
+        // Button styles.
+        $button_bg           = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBg'], 'desktop'));
+        $button_color        = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonColor'], 'desktop'));
+        $button_padding      = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonPadding'], 'desktop'));
+        $button_border_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBorderColor'], 'desktop'));
+        $button_border_width = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBorderWidth'], 'desktop'));
+        $button_border_radius= self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBorderRadius'], 'desktop'));
+
+        $button_selector = "#{$scope_id} .dipe-cf7 input[type=submit],#{$scope_id} .dcs-cf7-styler input[type=submit]";
+
+        if ($button_bg !== '') {
+            $css .= "{$button_selector}{background-color:{$button_bg} !important;}";
+        }
+        if ($button_color !== '') {
+            $css .= "{$button_selector}{color:{$button_color} !important;}";
+        }
+        if ($button_padding !== '' && $button_padding !== '0 0 0 0') {
+            $css .= "{$button_selector}{padding:{$button_padding} !important;}";
+        }
+        if ($button_border_color !== '') {
+            $css .= "{$button_selector}{border-color:{$button_border_color} !important;}";
+        }
+        if ($button_border_width !== '' && $button_border_width !== '0') {
+            $css .= "{$button_selector}{border-width:{$button_border_width} !important;border-style:solid;}";
+        }
+        if ($button_border_radius !== '' && $button_border_radius !== '0') {
+            $css .= "{$button_selector}{border-radius:{$button_border_radius} !important;}";
+        }
+        if ($use_form_button_fullwide === 'on') {
+            $css .= "{$button_selector}{width:100% !important;}";
         }
 
         // Wrap output to mirror Divi 4 structure, but with both old and new prefixes:
@@ -90,7 +449,10 @@ class CF7Styler implements DependencyInterface
             esc_attr($cr_custom_class)
         );
 
-        $output  = '<div class="' . $container_classes . '">';
+        $output  = '<div id="' . esc_attr($scope_id) . '" class="' . $container_classes . '">';
+        if ($css !== '') {
+            $output .= '<style>' . $css . '</style>';
+        }
         $output .= $form_header;
         $output .= '<div class="' . $wrapper_classes . '">';
         $output .= $form_html;

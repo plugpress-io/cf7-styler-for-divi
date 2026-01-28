@@ -2,72 +2,121 @@
 
 > **Last Updated:** 2026-01-28
 
-## Module Inventory
+## Summary Counts (Family-Based)
 
-| Module | D4 Shortcode | D5 Name | Status | D5 Source | PHP Module |
-|--------|--------------|---------|--------|-----------|------------|
-| CF7 Styler | `dvppl_cf7_styler` | `cf7-styler-for-divi/cf7-styler` | ✅ D5 Complete | `src/divi5/modules/cf7-styler/` | `includes/modules/CF7Styler/` |
-| Fluent Forms | `dvppl_ff_styler` | — | ❌ D4 Only | — | `includes/modules/divi-4/FluentForms/` |
-| Gravity Forms | `dvppl_gf_styler` | — | ❌ D4 Only | — | `includes/modules/divi-4/GravityForms/` |
+| Metric | Count |
+|--------|-------|
+| **Total Module Families** | 3 |
+| Hybrid (D4 + D5) | 1 |
+| Divi4-only | 2 |
+| Divi5-only | 0 |
+| Migratable | 0 |
+| **Child Items** | 0 |
 
-## D5 Module Files - CF7 Styler
+All modules are standalone (no parent/child relationships).
 
-| File | Status | Path |
-|------|--------|------|
-| module.json | ✅ | `src/divi5/modules/cf7-styler/module.json` |
-| index.js | ✅ | `src/divi5/modules/cf7-styler/index.js` |
-| edit.jsx | ✅ | `src/divi5/modules/cf7-styler/edit.jsx` |
-| styles.jsx | ✅ | `src/divi5/modules/cf7-styler/styles.jsx` |
-| module-classnames.js | ✅ | `src/divi5/modules/cf7-styler/module-classnames.js` |
-| conversion-outline.js | ✅ | `src/divi5/modules/cf7-styler/conversion-outline.js` |
-| placeholder-content.js | ✅ | `src/divi5/modules/cf7-styler/placeholder-content.js` |
-| settings-content.js | ✅ | `src/divi5/modules/cf7-styler/settings-content.js` |
-| settings-design.js | ✅ | `src/divi5/modules/cf7-styler/settings-design.js` |
-| module.scss | ✅ | `src/divi5/modules/cf7-styler/module.scss` |
-| callbacks/ | ✅ | `src/divi5/modules/cf7-styler/callbacks/` |
+## Module Family Table
 
-## PHP Structure
+| Family | Role | Slug/Name | Divi4 | Divi5 | conversion-outline | Notes |
+|--------|------|-----------|-------|-------|-------------------|-------|
+| **CF7 Styler** | Standalone | `dvppl_cf7_styler` / `cf7-styler-for-divi/cf7-styler` | ✅ Y | ✅ Y | ✅ Y | **Hybrid** - Static module, styles Contact Form 7 |
+| **Fluent Forms Styler** | Standalone | `tfs_fluent_forms_styler` | ✅ Y | ❌ N | ❌ N | **D4-only** - Static module, styles Fluent Forms |
+| **Gravity Forms Styler** | Standalone | `tfs_gravity_forms_styler` | ✅ Y | ❌ N | ❌ N | **D4-only** - Static module, styles Gravity Forms |
 
-| Trait | Status | Path |
-|-------|--------|------|
-| ModuleClassnamesTrait | ⚠️ Missing | — |
-| ModuleStylesTrait | ⚠️ Missing | — |
-| ModuleScriptDataTrait | ⚠️ Missing | — |
-| RenderCallbackTrait | ⚠️ Missing | — |
+## Detailed File Paths
 
-**Note:** PHP traits may be in alternate location or using different pattern. Verify implementation.
+### CF7 Styler (Hybrid) ✅
 
-## Features by Module
+| Component | Path |
+|-----------|------|
+| **Divi 4 PHP** | `includes/modules/divi-4/CF7Styler/CF7Styler.php` |
+| **Divi 4 VB JSX** | `src/divi4/cf7/cf7.jsx` |
+| **Divi 4 Styles** | `src/divi4/cf7/style.scss` |
+| **Divi 5 PHP** | `includes/modules/CF7Styler/CF7Styler.php` |
+| **Divi 5 module.json** | `src/divi5/modules/cf7-styler/module.json` |
+| **Divi 5 Built JSON** | `modules-json/cf7-styler/module.json` |
+| **Divi 5 VB JSX** | `src/divi5/modules/cf7-styler/edit.jsx` |
+| **Divi 5 Styles** | `src/divi5/modules/cf7-styler/styles.jsx` |
+| **conversion-outline** | `src/divi5/modules/cf7-styler/conversion-outline.js` |
+| **Icon** | `src/divi5/icons/cf7-styler/index.jsx` |
 
-### CF7 Styler Features (D5)
+### Fluent Forms Styler (D4-only) ❌
 
-- Form selection dropdown
-- Form header (title + icon/image)
-- Field styling (height, padding, background, spacing)
-- Label styling
-- Radio/checkbox custom styles
-- Submit button styling
-- Success/error message styling
+| Component | Path |
+|-----------|------|
+| **Divi 4 PHP** | `includes/modules/divi-4/FluentForms/FluentForms.php` |
+| **Divi 4 VB JSX** | `src/divi4/ff/ff.jsx` |
+| **Divi 4 Styles** | `src/divi4/ff/style.scss` |
+| **Divi 5 PHP** | — |
+| **Divi 5 module.json** | — |
+| **conversion-outline** | — |
 
-### Fluent Forms (D4 Only)
+### Gravity Forms Styler (D4-only) ❌
 
-- Similar feature set to CF7
-- Fluent Forms plugin integration
+| Component | Path |
+|-----------|------|
+| **Divi 4 PHP** | `includes/modules/divi-4/GravityForms/GravityForms.php` |
+| **Divi 4 VB JSX** | `src/divi4/gf/gf.jsx` |
+| **Divi 4 Styles** | `src/divi4/gf/style.scss` |
+| **Divi 5 PHP** | — |
+| **Divi 5 module.json** | — |
+| **conversion-outline** | — |
 
-### Gravity Forms (D4 Only)
+## D5 Module Implementation Details
 
-- Similar feature set to CF7
-- Gravity Forms plugin integration
+### CF7 Styler - Complete File List
+
+| File | Status | Purpose |
+|------|--------|---------|
+| `module.json` | ✅ | Module metadata, attributes, settings schema |
+| `index.js` | ✅ | Module registration entry point |
+| `edit.jsx` | ✅ | VB React component |
+| `styles.jsx` | ✅ | Style components |
+| `module-classnames.js` | ✅ | Dynamic classnames |
+| `module.scss` | ✅ | Module styles |
+| `placeholder-content.js` | ✅ | Default content for new instances |
+| `settings-content.js` | ✅ | Content tab settings |
+| `settings-design.js` | ✅ | Design tab settings |
+| `conversion-outline.js` | ✅ | D4 → D5 attribute mapping |
+| `callbacks/index.js` | ✅ | Visibility callbacks |
+| `callbacks/is-visible-fields/index.js` | ✅ | Field visibility logic |
+
+### PHP Architecture Note
+
+The D5 PHP implementation uses a **simplified pattern** (single class with `render_callback`) rather than the trait-based pattern from `references/*`. This is functional but differs from canonical ET examples. It also outputs **scoped per-module CSS** inside `render_callback()` to mirror D4 dynamic styling for migrated controls while avoiding cross-module style bleed.
+
+```
+includes/modules/CF7Styler/CF7Styler.php
+├── implements DependencyInterface
+├── load() - Registers module with ModuleRegistration
+└── render_callback() - Returns HTML output
+```
 
 ## Build Configuration
 
 | File | Purpose |
 |------|---------|
-| `webpack.config.js` | D4 builder bundle |
-| `webpack.divi5.config.js` | D5 VB bundle |
+| `webpack.config.js` | D4 builder bundle → `dist/js/builder4.js` |
+| `webpack.divi5.config.js` | D5 VB bundle → `dist/js/bundle.js` |
+| `package.json` | npm scripts for `build:divi4`, `build:divi5`, `start` |
+
+## WP Integration Points
+
+| Hook | File | Purpose |
+|------|------|---------|
+| `wp_enqueue_scripts` | `includes/assets.php` | D4 frontend styles |
+| `et_builder_api_ready` | `src/divi4/index.js` | D4 VB module registration |
+| `divi_module_library_modules_dependency_tree` | `includes/modules/Modules.php` | D5 module registration |
+| `divi_visual_builder_assets_before_enqueue_scripts` | `includes/assets.php` | D5 VB assets |
 
 ## Notes
 
-- CF7 Styler D5 module has comprehensive settings across 8 design groups
-- D4 modules for FluentForms and GravityForms need full D5 conversion
-- Common Base class at `includes/modules/divi-4/Base/Base.php` could inform shared patterns
+- All 3 modules are **standalone** (no parent/child relationships)
+- CF7 Styler has **full D5 implementation** with conversion outline
+- Fluent Forms and Gravity Forms share similar structure - can reuse CF7 patterns
+- D4 modules share common dependencies in `src/divi4/dependencies/`
+- Base class at `includes/modules/divi-4/Base/Base.php` provides shared D4 functionality
+
+---
+
+*Updated: 2026-01-28 - Corrected D4 slugs and added complete file paths*
