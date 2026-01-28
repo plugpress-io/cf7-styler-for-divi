@@ -23,5 +23,6 @@ wp-textdomain.js
 tailwind.config.js
 .prettierignore
 .prettierrc.json
-
+.cursorrules
 /src
+/docs
