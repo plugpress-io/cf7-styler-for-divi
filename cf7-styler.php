@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: CF7 Styler for Divi
-Plugin URI: https://divipeople.com/cf7-styler-for-divi
-Description: Effortlessly style Contact Form 7 to match your site's design.
+Plugin Name: CF7 Mate for Divi
+Plugin URI: https://divipeople.com/cf7-mate
+Description: The complete Contact Form 7 companion for Divi - style forms, add entries, star ratings, range sliders, and more.
 Version: 3.0.0
 Author: PlugPress
 Author URI:  https://divipeople.com

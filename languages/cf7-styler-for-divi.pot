@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-01-28 21:41+0000\n"
+"POT-Creation-Date: 2026-01-29 21:57+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -35,12 +35,12 @@ msgstr ""
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:74, includes/admin/admin.php:76, includes/admin/admin.php:106, includes/admin/admin.php:120, includes/admin/admin.php:121, includes/modules/divi-4/CF7Styler/CF7Styler.php:17
-msgid "CF7 Styler"
+#: includes/admin/admin.php:74, includes/admin/admin.php:76, includes/admin/admin.php:106, includes/admin/admin.php:120, includes/admin/admin.php:121
+msgid "CF7 Mate"
 msgstr ""
 
 #: includes/admin/admin.php:105
-msgid "CF7 Styler for Divi"
+msgid "CF7 Mate for Divi"
 msgstr ""
 
 #: includes/admin/admin.php:132
@@ -48,7 +48,7 @@ msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
 #: includes/notices/review.php:97
-msgid "Love CF7 Styler for Divi?"
+msgid "Love CF7 Mate for Divi?"
 msgstr ""
 
 #: includes/notices/review.php:99
@@ -65,6 +65,10 @@ msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:234
 msgid "Please select a Contact Form 7 form."
+msgstr ""
+
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
+msgid "CF7 Styler"
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:23

@@ -1,13 +1,16 @@
 /**
- * Onboarding Modal - Full Screen Component
+ * Onboarding Modal - Full Screen Component (UserFeedback Style)
  *
  * @since 3.0.0
  */
 
 import { __ } from '@wordpress/i18n';
 import StepWelcome from './StepWelcome';
-import StepQuickstart from './StepQuickstart';
-import StepGetStarted from './StepGetStarted';
+import StepFeatures from './StepFeatures';
+import StepHelp from './StepHelp';
+import StepFinish from './StepFinish';
+
+const TOTAL_STEPS = 4;
 
 const OnboardingModal = ({
 	currentStep,
@@ -16,92 +19,119 @@ const OnboardingModal = ({
 	onNext,
 	onPrev,
 	onComplete,
+	featureSettings,
+	onFeatureToggle,
 }) => {
 	const renderStep = () => {
 		switch (currentStep) {
 			case 1:
 				return <StepWelcome />;
 			case 2:
-				return <StepQuickstart />;
+				return <StepFeatures onFeaturesChange={onFeatureToggle} />;
 			case 3:
-				return <StepGetStarted />;
+				return <StepHelp />;
+			case 4:
+				return <StepFinish onComplete={onComplete} />;
 			default:
 				return <StepWelcome />;
 		}
 	};
 
+	const getNextButtonText = () => {
+		switch (currentStep) {
+			case 1:
+				return __('Start', 'cf7-styler-for-divi');
+			case 2:
+				return __('Next Step: Help', 'cf7-styler-for-divi');
+			case 3:
+				return __('Next Step: Finish', 'cf7-styler-for-divi');
+			case 4:
+				return __('Complete Setup', 'cf7-styler-for-divi');
+			default:
+				return __('Next', 'cf7-styler-for-divi');
+		}
+	};
+
 	return (
 		<div className="dcs-onboarding-overlay">
-			<div className="dcs-onboarding-modal">
-				{/* Close Button */}
+			{/* Header */}
+			<div className="dcs-onboarding-header">
 				<button
-					className="dcs-onboarding-close"
-					onClick={onClose}
-					aria-label={__('Close', 'cf7-styler-for-divi')}
+					className="dcs-exit-setup"
+					onClick={onSkip}
+					aria-label={__('Exit Setup', 'cf7-styler-for-divi')}
 				>
-					<svg
-						width="20"
-						height="20"
-						viewBox="0 0 20 20"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-					>
-						<line x1="5" y1="5" x2="15" y2="15" />
-						<line x1="15" y1="5" x2="5" y2="15" />
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+						<line x1="18" y1="6" x2="6" y2="18" />
+						<line x1="6" y1="6" x2="18" y2="18" />
 					</svg>
+					{__('Exit Setup', 'cf7-styler-for-divi')}
 				</button>
 
-				{/* Content */}
-				<div className="dcs-onboarding-content">{renderStep()}</div>
+				{/* Logo */}
+				<div className="dcs-onboarding-logo">
+					<svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+						<rect width="32" height="32" rx="6" fill="#5733ff" />
+						<path d="M8 11h16M8 16h12M8 21h8" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+					</svg>
+					<span>{__('CF7 Mate', 'cf7-styler-for-divi')}</span>
+				</div>
 
-				{/* Footer */}
-				<div className="dcs-onboarding-footer">
-					{/* Progress Dots */}
-					<div className="dcs-onboarding-progress">
-						{[1, 2, 3].map((step) => (
-							<span
-								key={step}
-								className={`dcs-progress-dot ${step <= currentStep ? 'active' : ''}`}
-							/>
-						))}
-					</div>
-
-					{/* Actions */}
-					<div className="dcs-onboarding-actions">
-						{currentStep > 1 && (
-							<button
-								className="dcs-onboarding-btn dcs-onboarding-btn-secondary"
-								onClick={onPrev}
+				{/* Progress Bar */}
+				<div className="dcs-progress-bar">
+					{[1, 2, 3, 4].map((step, index) => (
+						<div key={step} className="dcs-progress-step">
+							<div
+								className={`dcs-progress-dot ${
+									step < currentStep ? 'completed' : step === currentStep ? 'active' : ''
+								}`}
 							>
-								{__('Previous', 'cf7-styler-for-divi')}
-							</button>
-						)}
-						<div className="dcs-onboarding-actions-right">
-							{currentStep < 3 ? (
-								<>
-									<button
-										className="dcs-onboarding-btn dcs-onboarding-btn-skip"
-										onClick={onSkip}
-									>
-										{__('Skip', 'cf7-styler-for-divi')}
-									</button>
-									<button
-										className="dcs-onboarding-btn dcs-onboarding-btn-primary"
-										onClick={onNext}
-									>
-										{__('Next', 'cf7-styler-for-divi')}
-									</button>
-								</>
-							) : (
-								<button
-									className="dcs-onboarding-btn dcs-onboarding-btn-primary"
-									onClick={onComplete}
-								>
-									{__('Get Started', 'cf7-styler-for-divi')}
-								</button>
+								{step < currentStep ? (
+									<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								) : null}
+							</div>
+							{index < TOTAL_STEPS - 1 && (
+								<div
+									className={`dcs-progress-line ${step < currentStep ? 'completed' : ''}`}
+								/>
 							)}
 						</div>
+					))}
+				</div>
+			</div>
+
+			{/* Main Content */}
+			<div className="dcs-onboarding-main">
+				<div className="dcs-onboarding-card">
+					<div className="dcs-onboarding-content">{renderStep()}</div>
+
+					{/* Footer Navigation */}
+					<div className="dcs-onboarding-footer">
+						{currentStep > 1 && currentStep < 4 && (
+							<button
+								className="dcs-onboarding-btn dcs-onboarding-btn-back"
+								onClick={onPrev}
+							>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+									<polyline points="15 18 9 12 15 6" />
+								</svg>
+								{__('Back', 'cf7-styler-for-divi')}
+							</button>
+						)}
+						
+						{currentStep < 4 && (
+							<button
+								className="dcs-onboarding-btn dcs-onboarding-btn-primary"
+								onClick={onNext}
+							>
+								{getNextButtonText()}
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+									<polyline points="9 18 15 12 9 6" />
+								</svg>
+							</button>
+						)}
 					</div>
 				</div>
 			</div>

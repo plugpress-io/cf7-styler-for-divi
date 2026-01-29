@@ -37,22 +37,54 @@ class Plugin
 
     private function include_files()
     {
-        $required_files = [
+        // Core files that are always loaded
+        $core_files = [
             'functions.php',
             'assets.php',
-            'utils/grid.php',
+            'rest-api.php', // Load early so feature check is available
             'notices/review.php',
             'admin/admin.php',
             'admin/onboarding.php',
-            'rest-api.php',
         ];
 
-        foreach ($required_files as $file) {
+        foreach ($core_files as $file) {
             $filepath = DCS_PLUGIN_PATH . 'includes/' . $file;
             if (file_exists($filepath)) {
                 require_once $filepath;
             }
         }
+
+        // Load Grid Layout only if feature is enabled
+        if ($this->is_feature_enabled('grid_layout')) {
+            $grid_path = DCS_PLUGIN_PATH . 'includes/utils/grid.php';
+            if (file_exists($grid_path)) {
+                require_once $grid_path;
+            }
+        }
+    }
+
+    /**
+     * Check if a feature is enabled.
+     *
+     * @since 3.0.0
+     * @param string $feature Feature key.
+     * @return bool
+     */
+    private function is_feature_enabled($feature)
+    {
+        $defaults = [
+            'cf7_module' => true,
+            'grid_layout' => true,
+            'multi_column' => true,
+            'multi_step' => true,
+            'star_rating' => true,
+            'database_entries' => true,
+            'range_slider' => true,
+        ];
+        $saved = get_option('cf7m_features', []);
+        $features = wp_parse_args($saved, $defaults);
+
+        return isset($features[$feature]) ? (bool) $features[$feature] : false;
     }
 
     private function define_hooks()
@@ -87,12 +119,14 @@ class Plugin
 
     public function load_modules()
     {
-
         if (!class_exists('ET_Builder_Element')) {
             return;
         }
 
-        require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
+        // Only load CF7 Styler module if feature is enabled
+        if ($this->is_feature_enabled('cf7_module')) {
+            require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
+        }
 
         // Only load deprecated modules for existing users (before version 3.0.0)
         if ($this->should_load_deprecated_modules()) {
@@ -153,6 +187,11 @@ class Plugin
         // Prevent loading multiple times
         static $loaded = false;
         if ($loaded) {
+            return;
+        }
+
+        // Only load if CF7 module feature is enabled
+        if (!$this->is_feature_enabled('cf7_module')) {
             return;
         }
 

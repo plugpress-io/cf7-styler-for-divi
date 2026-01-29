@@ -118,12 +118,12 @@ class Rest_API
     public function get_features()
     {
         $defaults = self::get_default_features();
-        $saved = get_option('dcs_features', []);
+        $saved = get_option('cf7m_features', []);
         $features = wp_parse_args($saved, $defaults);
 
         return rest_ensure_response([
             'features' => $features,
-            'is_pro' => defined('DCS_PRO_VERSION'),
+            'is_pro' => defined('DCS_PRO_VERSION') || defined('CF7M_PRO_VERSION'),
         ]);
     }
 
@@ -153,7 +153,7 @@ class Rest_API
             $sanitized[$key] = isset($features[$key]) ? (bool) $features[$key] : $default;
         }
 
-        update_option('dcs_features', $sanitized);
+        update_option('cf7m_features', $sanitized);
 
         return rest_ensure_response([
             'success' => true,
@@ -190,7 +190,7 @@ class Rest_API
     public static function is_feature_enabled($feature)
     {
         $defaults = self::get_default_features();
-        $saved = get_option('dcs_features', []);
+        $saved = get_option('cf7m_features', []);
         $features = wp_parse_args($saved, $defaults);
 
         return isset($features[$feature]) ? (bool) $features[$feature] : false;
@@ -247,8 +247,8 @@ class Rest_API
      */
     public function get_onboarding_status($request)
     {
-        $is_completed = get_option('dcs_onboarding_completed', false) === '1';
-        $is_skipped = get_option('dcs_onboarding_skipped', false) === '1';
+        $is_completed = get_option('cf7m_onboarding_completed', false) === '1';
+        $is_skipped = get_option('cf7m_onboarding_skipped', false) === '1';
         $should_show = !$is_completed && $is_skipped;
 
         return rest_ensure_response([
@@ -268,9 +268,9 @@ class Rest_API
     public function complete_onboarding($request)
     {
         // Reset onboarding to show it again
-        delete_option('dcs_onboarding_skipped');
-        delete_option('dcs_onboarding_completed');
-        update_option('dcs_onboarding_step', 1);
+        delete_option('cf7m_onboarding_skipped');
+        delete_option('cf7m_onboarding_completed');
+        update_option('cf7m_onboarding_step', 1);
 
         return rest_ensure_response([
             'success' => true,

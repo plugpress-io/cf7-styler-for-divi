@@ -10,9 +10,11 @@ class Onboarding
 {
     private static $instance = null;
 
-    const ONBOARDING_COMPLETED_OPTION = 'dcs_onboarding_completed';
-    const ONBOARDING_SKIPPED_OPTION = 'dcs_onboarding_skipped';
-    const ONBOARDING_STEP_OPTION = 'dcs_onboarding_step';
+    const ONBOARDING_COMPLETED_OPTION = 'cf7m_onboarding_completed';
+    const ONBOARDING_SKIPPED_OPTION = 'cf7m_onboarding_skipped';
+    const ONBOARDING_STEP_OPTION = 'cf7m_onboarding_step';
+    const REBRAND_SEEN_OPTION = 'cf7m_rebrand_seen';
+    const REBRAND_VERSION = '3.0.0';
 
     public static function instance()
     {
@@ -31,30 +33,36 @@ class Onboarding
     {
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('admin_footer', [$this, 'render_onboarding_root']);
-        add_action('wp_ajax_dcs_check_onboarding_status', [$this, 'check_onboarding_status']);
-        add_action('wp_ajax_dcs_complete_onboarding', [$this, 'complete_onboarding']);
-        add_action('wp_ajax_dcs_skip_onboarding', [$this, 'skip_onboarding']);
-        add_action('wp_ajax_dcs_next_onboarding_step', [$this, 'next_step']);
+        add_action('wp_ajax_cf7m_check_onboarding_status', [$this, 'check_onboarding_status']);
+        add_action('wp_ajax_cf7m_complete_onboarding', [$this, 'complete_onboarding']);
+        add_action('wp_ajax_cf7m_skip_onboarding', [$this, 'skip_onboarding']);
+        add_action('wp_ajax_cf7m_next_onboarding_step', [$this, 'next_step']);
+        add_action('wp_ajax_cf7m_dismiss_rebrand', [$this, 'dismiss_rebrand']);
     }
 
     public function enqueue_scripts($hook)
     {
         // Only show onboarding on plugin pages and dashboard.
-        // Hook can be top-level or submenu under Divi (divi_page_cf7-styler).
+        // Hook can be top-level or submenu under Divi (divi_page_cf7-mate).
         $allowed_hooks = [
             'index.php',
             'plugins.php',
-            'toplevel_page_cf7-styler',
+            'toplevel_page_cf7-mate',
             'toplevel_page_cf7-styler-for-divi',
-            'divi_page_cf7-styler',
+            'divi_page_cf7-mate',
         ];
 
         if (!in_array($hook, $allowed_hooks, true)) {
             return;
         }
 
-        // Check if onboarding is already completed or skipped
-        if ($this->is_onboarding_completed() || $this->is_onboarding_skipped()) {
+        // Show onboarding if:
+        // 1. Rebrand hasn't been seen yet (always show for rebrand announcement)
+        // 2. OR onboarding not completed/skipped (normal flow for new users)
+        $rebrand_seen = $this->is_rebrand_seen();
+        $onboarding_done = $this->is_onboarding_completed() || $this->is_onboarding_skipped();
+        
+        if ($rebrand_seen && $onboarding_done) {
             return;
         }
 
@@ -77,20 +85,26 @@ class Onboarding
             );
         }
 
-        $discount_code = $this->get_discount_code();
         wp_localize_script('dcs-onboarding', 'dcsOnboarding', [
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('dcs_onboarding_nonce'),
+            'nonce' => wp_create_nonce('cf7m_onboarding_nonce'),
             'current_step' => $this->get_current_step(),
-            'discount_code' => $discount_code,
             'create_page_url' => admin_url('post-new.php?post_type=page'),
+            'cf7_admin_url' => admin_url('admin.php?page=wpcf7'),
+            'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing'),
+            'is_pro' => defined('DCS_PRO_VERSION') || defined('CF7M_PRO_VERSION'),
+            'rebrand_seen' => $this->is_rebrand_seen(),
+            'onboarding_completed' => $this->is_onboarding_completed(),
         ]);
     }
 
     public function render_onboarding_root()
     {
-        // Check if onboarding is already completed or skipped
-        if ($this->is_onboarding_completed() || $this->is_onboarding_skipped()) {
+        // Show onboarding if rebrand not seen OR onboarding not completed
+        $rebrand_seen = $this->is_rebrand_seen();
+        $onboarding_done = $this->is_onboarding_completed() || $this->is_onboarding_skipped();
+        
+        if ($rebrand_seen && $onboarding_done) {
             return;
         }
 
@@ -99,9 +113,9 @@ class Onboarding
         $allowed_screens = [
             'dashboard',
             'plugins',
-            'toplevel_page_cf7-styler',
+            'toplevel_page_cf7-mate',
             'toplevel_page_cf7-styler-for-divi',
-            'divi_page_cf7-styler',
+            'divi_page_cf7-mate',
         ];
 
         if (!$screen || !in_array($screen->id, $allowed_screens, true)) {
@@ -114,7 +128,7 @@ class Onboarding
     public function check_onboarding_status()
     {
         $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
+        if (!$nonce || !wp_verify_nonce($nonce, 'cf7m_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
@@ -134,7 +148,7 @@ class Onboarding
     public function skip_onboarding()
     {
         $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
+        if (!$nonce || !wp_verify_nonce($nonce, 'cf7m_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
@@ -151,7 +165,7 @@ class Onboarding
     public function next_step()
     {
         $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
+        if (!$nonce || !wp_verify_nonce($nonce, 'cf7m_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
@@ -170,7 +184,7 @@ class Onboarding
     public function complete_onboarding()
     {
         $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-        if (!$nonce || !wp_verify_nonce($nonce, 'dcs_onboarding_nonce')) {
+        if (!$nonce || !wp_verify_nonce($nonce, 'cf7m_onboarding_nonce')) {
             wp_send_json_error(['message' => 'Security check failed']);
         }
 
@@ -178,9 +192,55 @@ class Onboarding
             wp_send_json_error(['message' => 'Insufficient permissions']);
         }
 
+        // Save feature settings if provided
+        if (isset($_POST['features'])) {
+            $features_json = sanitize_text_field(wp_unslash($_POST['features']));
+            $features = json_decode($features_json, true);
+            
+            if (is_array($features)) {
+                $defaults = [
+                    'cf7_module' => true,
+                    'grid_layout' => true,
+                    'multi_column' => true,
+                    'multi_step' => true,
+                    'star_rating' => true,
+                    'database_entries' => true,
+                    'range_slider' => true,
+                ];
+                
+                $sanitized = [];
+                foreach ($defaults as $key => $default) {
+                    $sanitized[$key] = isset($features[$key]) ? (bool) $features[$key] : $default;
+                }
+                
+                update_option('cf7m_features', $sanitized);
+            }
+        }
+
         update_option(self::ONBOARDING_COMPLETED_OPTION, '1');
         delete_option(self::ONBOARDING_STEP_OPTION);
         delete_option(self::ONBOARDING_SKIPPED_OPTION);
+
+        wp_send_json_success();
+    }
+
+    /**
+     * Dismiss rebrand notification.
+     *
+     * @since 3.0.0
+     */
+    public function dismiss_rebrand()
+    {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'cf7m_onboarding_nonce')) {
+            wp_send_json_error(['message' => 'Security check failed']);
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Insufficient permissions']);
+        }
+
+        update_option(self::REBRAND_SEEN_OPTION, '1');
 
         wp_send_json_success();
     }
@@ -193,6 +253,17 @@ class Onboarding
     private function is_onboarding_skipped()
     {
         return get_option(self::ONBOARDING_SKIPPED_OPTION, false) === '1';
+    }
+
+    /**
+     * Check if rebrand notification has been seen.
+     *
+     * @since 3.0.0
+     * @return bool
+     */
+    private function is_rebrand_seen()
+    {
+        return get_option(self::REBRAND_SEEN_OPTION, false) === '1';
     }
 
     private function get_current_step()

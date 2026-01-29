@@ -1,31 +1,38 @@
-=== Contact Form 7 Styler for Divi Builder ===
+=== CF7 Mate for Divi ===
 
 Contributors: divipeople, badhonrocks, plugpressco
-Tags: divi, contact form 7, divi builder, form styler
+Tags: divi, contact form 7, divi builder, form styler, form entries
 Requires at least: 5.0
 Tested up to: 6.9
 Stable tag: 3.0.0
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-Style Contact Form 7 forms with Divi Builder.
+The complete Contact Form 7 companion for Divi - style forms, add entries, star ratings, and more.
 
 == Description ==
 
-**Professional Contact Form 7 Styling for Divi Builder**
+**Your Complete Contact Form 7 Companion for Divi**
 
-CF7 Styler for Divi allows you to style Contact Form 7 forms using Divi's visual builder. Create beautiful, responsive forms that match your site's design without writing any code.
+CF7 Mate for Divi (formerly CF7 Styler) is more than just a form styler - it's your complete CF7 toolkit. Style forms with Divi's visual builder, save form entries to your database, add star ratings, range sliders, multi-step forms, and more.
 
-**Key Features:**
+**Free Features:**
 
 * **Visual Form Styling:** Complete control over form appearance with Divi's intuitive interface
 * **Responsive Design:** Forms automatically adapt to all screen sizes
 * **Divi Builder Integration:** Native module for seamless visual form building
+* **Grid Layout:** Arrange form fields in responsive grid columns
 * **Form Header Options:** Add custom headers with titles, text, icons, or images
 * **Field Customization:** Style form fields, labels, placeholders, and buttons
 * **Message Styling:** Customize success and error message appearance
-* **Radio & Checkbox Styling:** Full control over radio buttons and checkboxes
-* **Performance Optimized:** Lightweight codebase with minimal impact on site speed
+
+**Pro Features:**
+
+* **Form Entries:** Save form submissions to your database and export to CSV
+* **Multi-Step Forms:** Create wizard-style forms with progress indicators
+* **Multi-Column Layouts:** Advanced column layouts with custom breakpoints
+* **Star Rating Field:** Collect customer feedback with star ratings
+* **Range Slider Field:** Add sliders for precise value selection
 
 **Perfect For:**
 
@@ -43,9 +50,13 @@ CF7 Styler for Divi allows you to style Contact Form 7 forms using Divi's visual
 1. Install the plugin from the WordPress plugin directory or upload the files to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu in WordPress admin
 3. Ensure Divi Theme and Contact Form 7 are installed and active
-4. Use the new CF7 Styler module in Divi Builder to style your forms
+4. Use the new CF7 Mate module in Divi Builder to style your forms
 
 == Frequently Asked Questions ==
+
+**Q: Why did the plugin name change from CF7 Styler to CF7 Mate?**
+
+A: We've added many features beyond just styling - form entries, star ratings, range sliders, and more. The new name better reflects what the plugin does.
 
 **Q: Do I need the Divi Theme to use this plugin?**
 
@@ -65,7 +76,7 @@ A: Yes, you can use this plugin on unlimited sites.
 
 **Q: Do you provide support?**
 
-A: Yes, we provide support through our documentation and support channels.
+A: Yes, we provide support through our documentation and support channels at divipeople.com.
 
 == Screenshots ==
 
@@ -77,9 +88,10 @@ A: Yes, we provide support through our documentation and support channels.
 == Changelog ==
 
 = 3.0.0 =
+* Rebranded to CF7 Mate for Divi (formerly CF7 Styler)
 * Added Divi 5 support with new module structure
 * Created admin dashboard for better user experience
-* Updated branding and removed legacy references
+* Added feature toggles for better control
 * Improved codebase structure and organization
 * Enhanced compatibility with latest WordPress versions
 
@@ -98,4 +110,4 @@ A: Yes, we provide support through our documentation and support channels.
 == Upgrade Notice ==
 
 = 3.0.0 =
-This major update includes Divi 5 support, a new admin dashboard, and improved codebase structure. We recommend updating to take advantage of the latest features and improvements.
+This major update includes a rebrand to CF7 Mate, Divi 5 support, a new admin dashboard, and improved codebase structure. All your settings and forms will continue to work exactly the same.

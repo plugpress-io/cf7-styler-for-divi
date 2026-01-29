@@ -94,7 +94,7 @@ class Admin_Review_Notice
         <div id="<?php echo esc_attr(self::NOTICE_ID); ?>" class="dcs-admin-notice dcs-review-notice notice notice-info is-dismissible">
             <div class="dcs-notice-content">
                 <div class="dcs-notice-text">
-                    <h3 class="dcs-notice-title"><?php esc_html_e('Love CF7 Styler for Divi?', 'cf7-styler-for-divi'); ?></h3>
+                    <h3 class="dcs-notice-title"><?php esc_html_e('Love CF7 Mate for Divi?', 'cf7-styler-for-divi'); ?></h3>
                     <p class="dcs-notice-description">
                         <?php esc_html_e('If you\'re enjoying our plugin, we\'d be incredibly grateful if you could take a moment to leave us a 5-star review on WordPress.org. Your feedback helps us improve and helps other users discover our plugin.', 'cf7-styler-for-divi'); ?>
                     </p>

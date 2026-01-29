@@ -3,8 +3,8 @@
 class DCS_CF7Styler extends ET_Builder_Module
 {
 	public $module_credits = array(
-		'module_uri' => 'https://divipeople.com/divi-cf7-styler/',
-		'author'     => 'PlugPress',
+		'module_uri' => 'https://divipeople.com/cf7-mate/',
+		'author'     => 'DiviPeople',
 		'author_uri' => 'https://divipeople.com',
 	);
 

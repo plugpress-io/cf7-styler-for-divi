@@ -1,5 +1,5 @@
 /**
- * CF7 Styler Onboarding - Main Component
+ * CF7 Mate Onboarding - Main Component
  *
  * @since 3.0.0
  */
@@ -7,13 +7,27 @@
 import { useState, useEffect, render } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 import OnboardingModal from './components/OnboardingModal';
+import StepRebrand from './components/StepRebrand';
 import './onboarding.scss';
+
+const TOTAL_STEPS = 4;
 
 const Onboarding = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [currentStep, setCurrentStep] = useState(1);
+	const [featureSettings, setFeatureSettings] = useState({});
+	const [showRebrand, setShowRebrand] = useState(false);
+	const [rebrandSeen, setRebrandSeen] = useState(true);
+	const [onboardingCompleted, setOnboardingCompleted] = useState(false);
 
 	useEffect(() => {
+		// Check initial state from localized data
+		const rebrandAlreadySeen = dcsOnboarding.rebrand_seen === true || dcsOnboarding.rebrand_seen === '1';
+		const alreadyCompleted = dcsOnboarding.onboarding_completed === true || dcsOnboarding.onboarding_completed === '1';
+		
+		setRebrandSeen(rebrandAlreadySeen);
+		setOnboardingCompleted(alreadyCompleted);
+
 		// Check if onboarding should be shown
 		fetch(dcsOnboarding.ajax_url, {
 			method: 'POST',
@@ -21,15 +35,22 @@ const Onboarding = () => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: new URLSearchParams({
-				action: 'dcs_check_onboarding_status',
+				action: 'cf7m_check_onboarding_status',
 				nonce: dcsOnboarding.nonce,
 			}),
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				if (data.success && data.data.should_show) {
-					setIsVisible(true);
-					setCurrentStep(data.data.current_step || 1);
+				if (data.success) {
+					// Show rebrand screen first if not seen
+					if (!rebrandAlreadySeen) {
+						setShowRebrand(true);
+						setIsVisible(true);
+					} else if (data.data.should_show) {
+						// Normal onboarding flow
+						setIsVisible(true);
+						setCurrentStep(data.data.current_step || 1);
+					}
 				}
 			})
 			.catch((error) => {
@@ -37,8 +58,42 @@ const Onboarding = () => {
 			});
 	}, []);
 
+	const handleRebrandContinue = () => {
+		// Mark rebrand as seen
+		fetch(dcsOnboarding.ajax_url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: new URLSearchParams({
+				action: 'cf7m_dismiss_rebrand',
+				nonce: dcsOnboarding.nonce,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.success) {
+					setRebrandSeen(true);
+					setShowRebrand(false);
+					
+					// If onboarding was already completed, close everything
+					// Otherwise, continue to normal onboarding
+					if (onboardingCompleted) {
+						setIsVisible(false);
+					}
+				}
+			})
+			.catch((error) => {
+				console.error('Error dismissing rebrand:', error);
+			});
+	};
+
 	const handleClose = () => {
-		skipOnboarding();
+		if (showRebrand) {
+			handleRebrandContinue();
+		} else {
+			skipOnboarding();
+		}
 	};
 
 	const handleSkip = () => {
@@ -52,7 +107,7 @@ const Onboarding = () => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: new URLSearchParams({
-				action: 'dcs_skip_onboarding',
+				action: 'cf7m_skip_onboarding',
 				nonce: dcsOnboarding.nonce,
 			}),
 		})
@@ -60,7 +115,6 @@ const Onboarding = () => {
 			.then((data) => {
 				if (data.success) {
 					setIsVisible(false);
-					window.location.reload();
 				}
 			})
 			.catch((error) => {
@@ -69,7 +123,7 @@ const Onboarding = () => {
 	};
 
 	const handleNext = () => {
-		if (currentStep < 3) {
+		if (currentStep < TOTAL_STEPS) {
 			const nextStep = currentStep + 1;
 			updateStep(nextStep);
 		} else {
@@ -91,7 +145,7 @@ const Onboarding = () => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: new URLSearchParams({
-				action: 'dcs_next_onboarding_step',
+				action: 'cf7m_next_onboarding_step',
 				nonce: dcsOnboarding.nonce,
 				step: step,
 			}),
@@ -114,15 +168,15 @@ const Onboarding = () => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: new URLSearchParams({
-				action: 'dcs_complete_onboarding',
+				action: 'cf7m_complete_onboarding',
 				nonce: dcsOnboarding.nonce,
+				features: JSON.stringify(featureSettings),
 			}),
 		})
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.success) {
 					setIsVisible(false);
-					window.location.reload();
 				}
 			})
 			.catch((error) => {
@@ -130,8 +184,17 @@ const Onboarding = () => {
 			});
 	};
 
+	const handleFeatureToggle = (newSettings) => {
+		setFeatureSettings(newSettings);
+	};
+
 	if (!isVisible) {
 		return null;
+	}
+
+	// Show rebrand screen if not seen yet
+	if (showRebrand) {
+		return <StepRebrand onContinue={handleRebrandContinue} />;
 	}
 
 	return (
@@ -142,6 +205,8 @@ const Onboarding = () => {
 			onNext={handleNext}
 			onPrev={handlePrev}
 			onComplete={completeOnboarding}
+			featureSettings={featureSettings}
+			onFeatureToggle={handleFeatureToggle}
 		/>
 	);
 };

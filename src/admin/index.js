@@ -88,16 +88,16 @@ const Header = () => (
 				<line x1="7" y1="12" x2="17" y2="12" />
 				<line x1="7" y1="16" x2="12" y2="16" />
 			</svg>
-			<h1 className="dcs-admin__title">
-				{__('CF7 Styler for Divi', 'cf7-styler-for-divi')}
-			</h1>
+		<h1 className="dcs-admin__title">
+			{__('CF7 Mate', 'cf7-styler-for-divi')}
+		</h1>
 		</div>
 		<nav className="dcs-admin__nav">
-			<a
-				href="https://divipeople.com/docs/"
-				target="_blank"
-				rel="noopener noreferrer"
-				className="dcs-admin__nav-link"
+		<a
+			href="https://divipeople.com/cf7-mate/"
+			target="_blank"
+			rel="noopener noreferrer"
+			className="dcs-admin__nav-link"
 			>
 				{__('Docs', 'cf7-styler-for-divi')}
 			</a>
@@ -125,6 +125,11 @@ const Toggle = ({ checked, onChange, disabled }) => (
 const FeatureCard = ({ feature, enabled, isPro, onToggle, saving }) => {
 	const isProLocked = feature.isPro && !isPro;
 
+	const handleUpgrade = () => {
+		// Navigate to Freemius pricing page in dashboard
+		window.location.href = '/wp-admin/admin.php?page=cf7-mate-pricing';
+	};
+
 	return (
 		<div className={`dcs-feature ${isProLocked ? 'dcs-feature--pro' : ''}`}>
 			<div className="dcs-feature__info">
@@ -140,14 +145,13 @@ const FeatureCard = ({ feature, enabled, isPro, onToggle, saving }) => {
 			</div>
 			<div className="dcs-feature__toggle">
 				{isProLocked ? (
-					<a
-						href="https://divipeople.com/"
-						target="_blank"
-						rel="noopener noreferrer"
+					<button
+						type="button"
+						onClick={handleUpgrade}
 						className="dcs-feature__upgrade"
 					>
 						{__('Upgrade', 'cf7-styler-for-divi')}
-					</a>
+					</button>
 				) : (
 					<Toggle
 						checked={enabled}
@@ -252,7 +256,7 @@ const SupportSection = () => (
 			</p>
 		</div>
 		<a
-			href="https://developer.elegantthemes.com/support/"
+			href="https://divipeople.com/support/"
 			target="_blank"
 			rel="noopener noreferrer"
 			className="dcs-support__btn"

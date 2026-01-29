@@ -31,7 +31,7 @@ class Admin
     {
         global $menu, $submenu;
         $parent_slug = 'et_divi_options';
-        $menu_slug = 'cf7-styler';
+        $menu_slug = 'cf7-mate';
 
         if (!isset($submenu[$parent_slug]) || empty($menu) || !is_array($menu)) {
             return;
@@ -64,16 +64,16 @@ class Admin
         }
 
         global $submenu, $menu;
-        $menu_slug = 'cf7-styler';
+        $menu_slug = 'cf7-mate';
         $parent_slug = 'et_divi_options';
 
         // If Freemius already created the submenu under Divi, re-register it with our page callback.
         if (isset($submenu[$parent_slug])) {
             foreach ($submenu[$parent_slug] as $key => $item) {
                 if (isset($item[2]) && $item[2] === $menu_slug) {
-                    $menu_title = isset($item[0]) ? $item[0] : __('CF7 Styler', 'cf7-styler-for-divi');
+                    $menu_title = isset($item[0]) ? $item[0] : __('CF7 Mate', 'cf7-styler-for-divi');
                     $capability = isset($item[1]) ? $item[1] : 'manage_options';
-                    $page_title = isset($item[3]) ? $item[3] : __('CF7 Styler', 'cf7-styler-for-divi');
+                    $page_title = isset($item[3]) ? $item[3] : __('CF7 Mate', 'cf7-styler-for-divi');
 
                     remove_submenu_page($parent_slug, $menu_slug);
                     add_submenu_page(
@@ -102,8 +102,8 @@ class Admin
         // If Divi parent doesn't exist, create a top-level menu.
         if (!isset($submenu[$parent_slug]) && !$top_level_exists) {
             add_menu_page(
-                __('CF7 Styler for Divi', 'cf7-styler-for-divi'),
-                __('CF7 Styler', 'cf7-styler-for-divi'),
+                __('CF7 Mate for Divi', 'cf7-styler-for-divi'),
+                __('CF7 Mate', 'cf7-styler-for-divi'),
                 'manage_options',
                 $menu_slug,
                 [$this, 'render_page'],
@@ -117,8 +117,8 @@ class Admin
         if (isset($submenu[$parent_slug]) && !$top_level_exists) {
             add_submenu_page(
                 $parent_slug,
-                __('CF7 Styler', 'cf7-styler-for-divi'),
-                __('CF7 Styler', 'cf7-styler-for-divi'),
+                __('CF7 Mate', 'cf7-styler-for-divi'),
+                __('CF7 Mate', 'cf7-styler-for-divi'),
                 'manage_options',
                 $menu_slug,
                 [$this, 'render_page']
@@ -152,7 +152,7 @@ class Admin
             'root' => esc_url_raw(get_rest_url()),
             'ajax_url' => admin_url('admin-ajax.php'),
             'fs_is_active' => 'true' === DCS_SELF_HOSTED_ACTIVE,
-            'fs_account_url' => function_exists('dcs_fs') ? dcs_fs()->get_account_url() : '',
+            'fs_account_url' => function_exists('cf7m_fs') ? cf7m_fs()->get_account_url() : '',
             'nonce' => wp_create_nonce('wp_rest'),
             'pluginUrl' => DCS_PLUGIN_URL,
         ]);
