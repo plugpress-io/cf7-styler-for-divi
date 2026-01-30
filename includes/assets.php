@@ -1,7 +1,15 @@
 <?php
 
-namespace Divi_CF7_Styler;
+namespace CF7_Mate;
 
+/**
+ * Frontend and builder asset enqueue.
+ *
+ * Free bundle (builder4.css, frontend4.css) is enqueued only when the page has
+ * a CF7 form (shortcode or Divi CF7 Styler module). Pro-only assets (tag-admin
+ * CSS, multi-column, multi-steps, star-rating, range-slider, icon dashicons) are
+ * enqueued only when Pro is active and, where applicable, only on pages with a CF7 form.
+ */
 class Assets
 {
     private static $instance;
@@ -25,11 +33,21 @@ class Assets
 
     public function enqueue_scripts()
     {
+        global $post;
+        if (!$post || !is_singular()) {
+            return;
+        }
+        $has_cf7 = has_shortcode($post->post_content, 'contact-form-7')
+            || (strpos($post->post_content, 'dvppl_cf7_styler') !== false)
+            || (strpos($post->post_content, 'cf7-styler-for-divi/cf7-styler') !== false);
+        if (!$has_cf7) {
+            return;
+        }
         wp_enqueue_style(
             'cf7-styler-for-divi',
-            DCS_PLUGIN_URL . 'dist/css/builder4.css',
+            CF7M_PLUGIN_URL . 'dist/css/builder4.css',
             [],
-            DCS_VERSION
+            CF7M_VERSION
         );
     }
 
@@ -42,16 +60,16 @@ class Assets
 
         wp_enqueue_style(
             'cf7-styler-for-divi-builder',
-            DCS_PLUGIN_URL . 'dist/css/builder4.css',
+            CF7M_PLUGIN_URL . 'dist/css/builder4.css',
             [],
-            DCS_VERSION
+            CF7M_VERSION
         );
 
         wp_enqueue_script(
             'cf7-styler-for-divi-builder',
-            DCS_PLUGIN_URL . 'dist/js/builder4.js',
+            CF7M_PLUGIN_URL . 'dist/js/builder4.js',
             ['react-dom', 'react'],
-            DCS_VERSION,
+            CF7M_VERSION,
             true
         );
     }
@@ -63,14 +81,14 @@ class Assets
      */
     public function enqueue_d5_vb_assets()
     {
-        $plugin_dir_url = DCS_PLUGIN_URL;
+        $plugin_dir_url = CF7M_PLUGIN_URL;
 
         // Register the module bundle
         if (class_exists('\ET\Builder\VisualBuilder\Assets\PackageBuildManager')) {
             \ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
                 array(
                     'name'    => 'cf7-styler-for-divi-builder-bundle-script',
-                    'version' => DCS_VERSION,
+                    'version' => CF7M_VERSION,
                     'script'  => array(
                         'src'                => "{$plugin_dir_url}dist/js/bundle.js",
                         'deps'               => array(
@@ -86,7 +104,7 @@ class Assets
             \ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
                 array(
                     'name'    => 'cf7-styler-for-divi-builder-bundle-style',
-                    'version' => DCS_VERSION,
+                    'version' => CF7M_VERSION,
                     'style'   => array(
                         'src'                => "{$plugin_dir_url}dist/css/bundle.css",
                         'deps'               => array(),
@@ -111,13 +129,23 @@ class Assets
         if (function_exists('et_core_is_fb_enabled') && et_core_is_fb_enabled()) {
             return;
         }
+        global $post;
+        if (!$post || !is_singular()) {
+            return;
+        }
+        $has_cf7 = has_shortcode($post->post_content, 'contact-form-7')
+            || (strpos($post->post_content, 'dvppl_cf7_styler') !== false)
+            || (strpos($post->post_content, 'cf7-styler-for-divi/cf7-styler') !== false);
+        if (!$has_cf7) {
+            return;
+        }
 
-        // Enqueue Divi 5 frontend CSS
+        // Enqueue Divi 5 frontend CSS only when page has CF7 form
         wp_enqueue_style(
             'cf7-styler-for-divi-d5-frontend-style',
-            esc_url(DCS_PLUGIN_URL . 'dist/css/bundle.css'),
+            esc_url(CF7M_PLUGIN_URL . 'dist/css/bundle.css'),
             array(),
-            DCS_VERSION
+            CF7M_VERSION
         );
     }
 }

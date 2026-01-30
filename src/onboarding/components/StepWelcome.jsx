@@ -1,5 +1,7 @@
 /**
- * Step Welcome Component - Overview of Features
+ * Step Welcome – value early, quick win (SaaS onboarding principles)
+ * @see https://www.userflow.com/blog/saas-onboarding-flow-a-complete-guide
+ * @see https://www.paddle.com/resources/saas-onboarding
  *
  * @since 3.0.0
  */
@@ -7,23 +9,11 @@
 import { __ } from '@wordpress/i18n';
 
 const StepWelcome = () => {
+	// Show product value early; keep it simple and focused (Fogg: Motivation + Ability)
 	const highlights = [
-		{
-			id: 'visual_styling',
-			text: __('Style Contact Form 7 forms visually with Divi Builder', 'cf7-styler-for-divi'),
-		},
-		{
-			id: 'no_code',
-			text: __('No coding required — just point, click, and customize', 'cf7-styler-for-divi'),
-		},
-		{
-			id: 'responsive',
-			text: __('Fully responsive forms that look great on any device', 'cf7-styler-for-divi'),
-		},
-		{
-			id: 'integration',
-			text: __('Seamless integration with your existing CF7 forms', 'cf7-styler-for-divi'),
-		},
+		__('Style Contact Form 7 in Divi — no code, just point and click', 'cf7-styler-for-divi'),
+		__('Get to your first styled form in under a minute', 'cf7-styler-for-divi'),
+		__('Works with your existing forms; change settings anytime', 'cf7-styler-for-divi'),
 	];
 
 	return (
@@ -31,32 +21,24 @@ const StepWelcome = () => {
 			<div className="dcs-step-header">
 				<span className="dcs-step-label">{__('Step 1 of 4', 'cf7-styler-for-divi')}</span>
 				<h2 className="dcs-onboarding-title">
-					{__('Welcome to CF7 Mate!', 'cf7-styler-for-divi')}
+					{__('Welcome to CF7 Mate', 'cf7-styler-for-divi')}
 				</h2>
 				<p className="dcs-onboarding-description">
-					{__('This quick setup will help you get the most out of CF7 Mate for Divi. It only takes a minute.', 'cf7-styler-for-divi')}
+					{__('A short setup to get you to your first win. Four steps, about a minute.', 'cf7-styler-for-divi')}
 				</p>
 			</div>
-
-			<div className="dcs-welcome-content">
-				<div className="dcs-welcome-card">
-					<h3 className="dcs-welcome-subtitle">
-						{__('With CF7 Mate you can:', 'cf7-styler-for-divi')}
-					</h3>
-					<ul className="dcs-welcome-list">
-						{highlights.map((item) => (
-							<li key={item.id}>
-								<span className="dcs-check-icon">
-									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-										<polyline points="20 6 9 17 4 12" />
-									</svg>
-								</span>
-								{item.text}
-							</li>
-						))}
-					</ul>
-				</div>
-			</div>
+			<ul className="dcs-welcome-list">
+				{highlights.map((text, i) => (
+					<li key={i}>
+						<span className="dcs-check-icon" aria-hidden="true">
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+								<polyline points="20 6 9 17 4 12" />
+							</svg>
+						</span>
+						{text}
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 };

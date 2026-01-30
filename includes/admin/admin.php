@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_CF7_Styler;
+namespace CF7_Mate;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -9,6 +9,12 @@ if (!defined('ABSPATH')) {
 class Admin
 {
     private static $instance;
+
+    /** Our page slug – dashboard style. */
+    const PAGE_SLUG = 'cf7-mate-dashboard';
+
+    /** Features page slug – registered so URL works; not shown under Divi (reachable via in-app nav or direct URL). */
+    const FEATURES_PAGE_SLUG = 'cf7-mate-features';
 
     public static function get_instance()
     {
@@ -20,42 +26,25 @@ class Admin
 
     public function __construct()
     {
-        add_action('admin_menu', [$this, 'add_menu'], 999);
-        add_action('admin_menu', [$this, 'move_freemius_menu'], 998);
+        add_action('admin_menu', [$this, 'add_menu'], 20);
+        add_action('admin_init', [$this, 'redirect_cf7_mate_to_settings'], 5);
     }
 
     /**
-     * Move Freemius menu items under et_divi_options if parent exists.
+     * Redirect page=cf7-mate to our dashboard (cf7-mate-dashboard).
      */
-    public function move_freemius_menu()
+    public function redirect_cf7_mate_to_settings()
     {
-        global $menu, $submenu;
-        $parent_slug = 'et_divi_options';
-        $menu_slug = 'cf7-mate';
-
-        if (!isset($submenu[$parent_slug]) || empty($menu) || !is_array($menu)) {
+        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+        if ($page !== 'cf7-mate' || !current_user_can('manage_options')) {
             return;
         }
-
-        foreach ($menu as $key => $item) {
-            if (!isset($item[2]) || $item[2] !== $menu_slug) {
-                continue;
-            }
-
-            if (isset($submenu[$menu_slug]) && is_array($submenu[$menu_slug])) {
-                foreach ($submenu[$menu_slug] as $sub_item) {
-                    $submenu[$parent_slug][] = $sub_item;
-                }
-                unset($submenu[$menu_slug]);
-            }
-
-            unset($menu[$key]);
-            break;
-        }
+        wp_safe_redirect(admin_url('admin.php?page=' . self::PAGE_SLUG));
+        exit;
     }
 
     /**
-     * Add or override menu callback.
+     * Add "CF7 Mate" under Divi. Our own menu = our own capability (manage_options).
      */
     public function add_menu()
     {
@@ -63,99 +52,94 @@ class Admin
             return;
         }
 
-        global $submenu, $menu;
-        $menu_slug = 'cf7-mate';
-        $parent_slug = 'et_divi_options';
-
-        // If Freemius already created the submenu under Divi, re-register it with our page callback.
-        if (isset($submenu[$parent_slug])) {
-            foreach ($submenu[$parent_slug] as $key => $item) {
-                if (isset($item[2]) && $item[2] === $menu_slug) {
-                    $menu_title = isset($item[0]) ? $item[0] : __('CF7 Mate', 'cf7-styler-for-divi');
-                    $capability = isset($item[1]) ? $item[1] : 'manage_options';
-                    $page_title = isset($item[3]) ? $item[3] : __('CF7 Mate', 'cf7-styler-for-divi');
-
-                    remove_submenu_page($parent_slug, $menu_slug);
-                    add_submenu_page(
-                        $parent_slug,
-                        $page_title,
-                        $menu_title,
-                        $capability,
-                        $menu_slug,
-                        [$this, 'render_page']
-                    );
-                    return;
-                }
-            }
-        }
-
-        $top_level_exists = false;
-        if (!empty($menu) && is_array($menu)) {
-            foreach ($menu as $item) {
-                if (isset($item[2]) && $item[2] === $menu_slug) {
-                    $top_level_exists = true;
-                    break;
-                }
-            }
-        }
-
-        // If Divi parent doesn't exist, create a top-level menu.
-        if (!isset($submenu[$parent_slug]) && !$top_level_exists) {
-            add_menu_page(
-                __('CF7 Mate for Divi', 'cf7-styler-for-divi'),
-                __('CF7 Mate', 'cf7-styler-for-divi'),
-                'manage_options',
-                $menu_slug,
-                [$this, 'render_page'],
-                'dashicons-email-alt',
-                30
-            );
+        if (!defined('ET_BUILDER_VERSION') && !defined('ET_CORE_VERSION')) {
             return;
         }
 
-        // If Divi parent exists (and no top-level menu), add as submenu.
-        if (isset($submenu[$parent_slug]) && !$top_level_exists) {
-            add_submenu_page(
-                $parent_slug,
-                __('CF7 Mate', 'cf7-styler-for-divi'),
-                __('CF7 Mate', 'cf7-styler-for-divi'),
-                'manage_options',
-                $menu_slug,
-                [$this, 'render_page']
-            );
-        }
+        add_submenu_page(
+            'et_divi_options',
+            __('CF7 Mate', 'cf7-styler-for-divi'),
+            __('CF7 Mate', 'cf7-styler-for-divi'),
+            'manage_options',
+            self::PAGE_SLUG,
+            [$this, 'render_page']
+        );
+
+        // Register Features page as submenu of dashboard so admin.php?page=cf7-mate-features works.
+        // Not added under Divi directly – only one item "CF7 Mate" under Divi.
+        add_submenu_page(
+            self::PAGE_SLUG,
+            __('Features', 'cf7-styler-for-divi'),
+            __('Features', 'cf7-styler-for-divi'),
+            'manage_options',
+            self::FEATURES_PAGE_SLUG,
+            [$this, 'render_features_page']
+        );
     }
 
     public function render_page()
     {
-        if (!current_user_can('manage_options')) {
-            wp_die(__('Sorry, you are not allowed to access this page.', 'cf7-styler-for-divi'));
-        }
+        $this->render_app_root([]);
+    }
 
-        // Enqueue scripts here (like divi-instagram-feed) to ensure proper loading order
+    /**
+     * Render Features page (admin.php?page=cf7-mate-features). Direct URL or bookmark.
+     */
+    public function render_features_page()
+    {
+        $this->render_app_root(['current_page' => 'features']);
+    }
+
+    /**
+     * Enqueue admin app assets, localize config, output root div.
+     * Used by both dashboard page and Entries page (under Contact).
+     *
+     * @param array $options Optional. 'entries_only' => true when rendering from CF7 Entries submenu.
+     */
+    public function render_app_root(array $options = [])
+    {
+        $entries_only = !empty($options['entries_only']);
+        $current_page  = isset($options['current_page']) ? $options['current_page'] : 'dashboard';
+
         wp_enqueue_script(
             'dcs-admin',
-            DCS_PLUGIN_URL . 'dist/js/admin.js',
+            CF7M_PLUGIN_URL . 'dist/js/admin.js',
             ['react', 'wp-api', 'wp-i18n', 'wp-element', 'wp-api-fetch', 'wp-dom-ready'],
-            DCS_VERSION,
+            CF7M_VERSION,
             true
         );
 
         wp_enqueue_style(
             'dcs-admin',
-            DCS_PLUGIN_URL . 'dist/css/admin.css',
+            CF7M_PLUGIN_URL . 'dist/css/admin.css',
             [],
-            DCS_VERSION
+            CF7M_VERSION
         );
 
-        wp_localize_script('dcs-admin', 'dcsCF7Styler', [
+        $rebrand_seen = get_option('cf7m_rebrand_seen', '') === '1';
+        $onboarding_done = get_option('cf7m_onboarding_completed', '') === '1' || get_option('cf7m_onboarding_skipped', '') === '1';
+
+        $localize = [
             'root' => esc_url_raw(get_rest_url()),
             'ajax_url' => admin_url('admin-ajax.php'),
-            'fs_is_active' => 'true' === DCS_SELF_HOSTED_ACTIVE,
+            'fs_is_active' => 'true' === CF7M_SELF_HOSTED_ACTIVE,
             'fs_account_url' => function_exists('cf7m_fs') ? cf7m_fs()->get_account_url() : '',
+            'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing&coupon=NEW2026'),
             'nonce' => wp_create_nonce('wp_rest'),
-            'pluginUrl' => DCS_PLUGIN_URL,
-        ]);
+            'pluginUrl' => CF7M_PLUGIN_URL,
+            'show_v3_banner' => !$rebrand_seen && $onboarding_done,
+            'dismiss_rebrand_nonce' => wp_create_nonce('cf7m_onboarding_nonce'),
+            'version' => defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0',
+            'dashboard_url' => admin_url('admin.php?page=' . self::PAGE_SLUG),
+            'currentPage' => $current_page,
+        ];
+
+        if ($entries_only) {
+            $localize['entriesOnlyPage'] = true;
+            $localize['cf7_admin_url'] = admin_url('admin.php?page=wpcf7');
+        }
+
+        wp_localize_script('dcs-admin', 'dcsCF7Styler', $localize);
 
         echo '<div id="cf7-styler-for-divi-root"></div>';
     }

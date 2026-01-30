@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_CF7_Styler\API;
+namespace CF7_Mate\API;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -85,6 +85,16 @@ class Rest_API
                 'permission_callback' => [$this, 'check_admin_permissions'],
             ]
         );
+
+        register_rest_route(
+            'cf7-styler/v1',
+            '/dashboard-stats',
+            [
+                'methods' => 'GET',
+                'callback' => [$this, 'get_dashboard_stats'],
+                'permission_callback' => [$this, 'check_admin_permissions'],
+            ]
+        );
     }
 
     /**
@@ -123,7 +133,7 @@ class Rest_API
 
         return rest_ensure_response([
             'features' => $features,
-            'is_pro' => defined('DCS_PRO_VERSION') || defined('CF7M_PRO_VERSION'),
+            'is_pro'   => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
         ]);
     }
 
@@ -162,6 +172,76 @@ class Rest_API
     }
 
     /**
+     * Get dashboard stats (entries, forms, features count).
+     *
+     * @since 3.0.0
+     * @return \WP_REST_Response
+     */
+    public function get_dashboard_stats()
+    {
+        $total_entries = 0;
+        $new_today = 0;
+
+        if (post_type_exists('cf7m_entry')) {
+            $total_query = new \WP_Query([
+                'post_type'      => 'cf7m_entry',
+                'post_status'    => 'publish',
+                'posts_per_page' => 1,
+                'fields'         => 'ids',
+            ]);
+            $total_entries = (int) $total_query->found_posts;
+            wp_reset_postdata();
+
+            $today_start = gmdate('Y-m-d 00:00:00', strtotime('today'));
+            $today_end   = gmdate('Y-m-d 23:59:59', strtotime('today'));
+            $new_query   = new \WP_Query([
+                'post_type'      => 'cf7m_entry',
+                'post_status'    => 'publish',
+                'posts_per_page' => 1,
+                'date_query'     => [
+                    [
+                        'after'  => $today_start,
+                        'before' => $today_end,
+                        'inclusive' => true,
+                    ],
+                ],
+                'fields' => 'ids',
+            ]);
+            $new_today = (int) $new_query->found_posts;
+            wp_reset_postdata();
+        }
+
+        $total_forms = 0;
+        if (post_type_exists('wpcf7_contact_form')) {
+            $forms_query = new \WP_Query([
+                'post_type'      => 'wpcf7_contact_form',
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,
+                'fields'         => 'ids',
+            ]);
+            $total_forms = (int) $forms_query->found_posts;
+            wp_reset_postdata();
+        }
+
+        $defaults = self::get_default_features();
+        $saved    = get_option('cf7m_features', []);
+        $features = wp_parse_args($saved, $defaults);
+        $enabled_features = 0;
+        foreach ($features as $enabled) {
+            if ($enabled) {
+                $enabled_features++;
+            }
+        }
+
+        return rest_ensure_response([
+            'total_entries'     => $total_entries,
+            'new_today'         => $new_today,
+            'total_forms'       => $total_forms,
+            'enabled_features'  => $enabled_features,
+        ]);
+    }
+
+    /**
      * Get default features.
      *
      * @since 3.0.0
@@ -177,6 +257,10 @@ class Rest_API
             'star_rating' => true,
             'database_entries' => true,
             'range_slider' => true,
+            'separator' => true,
+            'heading' => true,
+            'image' => true,
+            'icon' => true,
         ];
     }
 

@@ -12,10 +12,11 @@ import { StyleContainer } from '@divi/module';
 
 /**
  * Helper to get attribute value from nested structure.
+ * Handles both Divi 4 and Divi 5 attribute formats.
  * @param {object} attrs - Attributes object
  * @param {string} path - Dot-separated path like 'cf7.advanced.formBg'
  * @param {string} breakpoint - Breakpoint (desktop, tablet, phone)
- * @returns {string} Value or empty string
+ * @returns {string|object} Value or empty string
  */
 const getAttrValue = (attrs, path, breakpoint = 'desktop') => {
   const parts = path.split('.');
@@ -28,29 +29,77 @@ const getAttrValue = (attrs, path, breakpoint = 'desktop') => {
     node = node[part];
   }
   
-  if (!node || typeof node !== 'object' || !node[breakpoint]) {
+  // Handle case where node is the value directly
+  if (typeof node === 'string' || typeof node === 'number') {
+    return node;
+  }
+  
+  if (!node || typeof node !== 'object') {
     return '';
   }
   
-  const value = node[breakpoint].value;
-  if (typeof value === 'boolean') {
-    return value ? 'on' : 'off';
+  // Try to get value from breakpoint structure
+  if (node[breakpoint]) {
+    const bpValue = node[breakpoint];
+    if (typeof bpValue === 'object' && 'value' in bpValue) {
+      const value = bpValue.value;
+      if (typeof value === 'boolean') {
+        return value ? 'on' : 'off';
+      }
+      return value ?? '';
+    }
+    return bpValue ?? '';
   }
-  return value || '';
+  
+  // Return the node itself if it's a value object (for padding/margin objects)
+  if ('top' in node || 'right' in node || 'bottom' in node || 'left' in node) {
+    return node;
+  }
+  
+  // Try 'value' property directly
+  if ('value' in node) {
+    const value = node.value;
+    if (typeof value === 'boolean') {
+      return value ? 'on' : 'off';
+    }
+    return value ?? '';
+  }
+  
+  return '';
 };
 
 /**
- * Convert Divi padding format "t|r|b|l" to CSS "t r b l".
- * @param {string} value - Padding value in Divi format
+ * Convert Divi padding format to CSS.
+ * Handles multiple formats:
+ * - "t|r|b|l" (Divi 4 format)
+ * - "10px 20px 10px 20px" (already CSS)
+ * - Object { top, right, bottom, left }
+ * @param {string|object} value - Padding value in Divi format
  * @returns {string} CSS padding value
  */
 const paddingToCss = (value) => {
-  if (!value || typeof value !== 'string') return '';
-  if (!value.includes('|')) return value;
+  if (!value) return '';
   
-  const parts = value.split('|').map(p => p.trim());
-  while (parts.length < 4) parts.push('0');
-  return parts.slice(0, 4).join(' ');
+  // Handle object format { top, right, bottom, left }
+  if (typeof value === 'object' && value !== null) {
+    const t = value.top || '0px';
+    const r = value.right || '0px';
+    const b = value.bottom || '0px';
+    const l = value.left || '0px';
+    return `${t} ${r} ${b} ${l}`;
+  }
+  
+  if (typeof value !== 'string') return '';
+  
+  // Handle pipe-separated format "t|r|b|l"
+  if (value.includes('|')) {
+    const parts = value.split('|').map(p => p.trim() || '0px');
+    while (parts.length < 4) parts.push('0px');
+    return parts.slice(0, 4).join(' ');
+  }
+  
+  // Already in CSS format
+  return value;
 };
 
 /**

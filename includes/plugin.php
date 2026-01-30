@@ -1,12 +1,12 @@
 <?php
 
-namespace Divi_CF7_Styler;
+namespace CF7_Mate;
 
 class Plugin
 {
     private static $instance = null;
 
-    const BASENAME = DCS_BASENAME;
+    const BASENAME = CF7M_BASENAME;
     const TEXT_DOMAIN = 'cf7-styler-for-divi';
 
     public static function instance()
@@ -48,7 +48,7 @@ class Plugin
         ];
 
         foreach ($core_files as $file) {
-            $filepath = DCS_PLUGIN_PATH . 'includes/' . $file;
+            $filepath = CF7M_PLUGIN_PATH . 'includes/' . $file;
             if (file_exists($filepath)) {
                 require_once $filepath;
             }
@@ -56,11 +56,32 @@ class Plugin
 
         // Load Grid Layout only if feature is enabled
         if ($this->is_feature_enabled('grid_layout')) {
-            $grid_path = DCS_PLUGIN_PATH . 'includes/utils/grid.php';
+            $grid_path = CF7M_PLUGIN_PATH . 'includes/utils/grid.php';
             if (file_exists($grid_path)) {
                 require_once $grid_path;
             }
         }
+
+        // Load Premium Features on plugins_loaded with lower priority so feature options
+        // (cf7m_features) are available and toggles take effect on next page load.
+        add_action('plugins_loaded', [$this, 'load_premium_loader'], 20);
+    }
+
+    /**
+     * Load premium features loader after free plugin and options are ready.
+     *
+     * @since 3.0.0
+     */
+    public function load_premium_loader()
+    {
+        $premium_loader = CF7M_PLUGIN_PATH . 'includes/pro/loader.php';
+        if (!file_exists($premium_loader)) {
+            return;
+        }
+        if (!function_exists('cf7m_fs') || !(cf7m_fs()->is__premium_only() || cf7m_can_use_premium())) {
+            return;
+        }
+        require_once $premium_loader;
     }
 
     /**
@@ -80,6 +101,10 @@ class Plugin
             'star_rating' => true,
             'database_entries' => true,
             'range_slider' => true,
+            'separator' => true,
+            'heading' => true,
+            'image' => true,
+            'icon' => true,
         ];
         $saved = get_option('cf7m_features', []);
         $features = wp_parse_args($saved, $defaults);
@@ -92,6 +117,33 @@ class Plugin
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
         add_action('plugins_loaded', [$this, 'load_textdomain']);
         add_action('et_builder_ready', [$this, 'load_modules'], 11);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_styles'], 20);
+    }
+
+    /**
+     * Enqueue CSS on CF7 admin so our tag generator buttons look distinct (CF7 Mate color).
+     *
+     * @since 3.0.0
+     */
+    public function enqueue_cf7_tag_admin_styles($hook)
+    {
+        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
+            return;
+        }
+        $screen = get_current_screen();
+        if (!$screen || strpos($screen->id, 'wpcf7') === false) {
+            return;
+        }
+        $url = CF7M_PLUGIN_URL . 'assets/css/cf7m-tag-admin.css';
+        if (!file_exists(CF7M_PLUGIN_PATH . 'assets/css/cf7m-tag-admin.css')) {
+            return;
+        }
+        wp_enqueue_style(
+            'cf7m-tag-admin',
+            $url,
+            [],
+            CF7M_VERSION
+        );
     }
 
     public function on_activation()
@@ -109,12 +161,12 @@ class Plugin
 
     private function update_plugin_version()
     {
-        update_option('divi_cf7_styler_current_version', DCS_VERSION);
+        update_option('divi_cf7_styler_current_version', CF7M_VERSION);
     }
 
     public function load_textdomain()
     {
-        load_plugin_textdomain('cf7-styler-for-divi', false, DCS_BASENAME_DIR . '/languages');
+        load_plugin_textdomain('cf7-styler-for-divi', false, CF7M_BASENAME_DIR . '/languages');
     }
 
     public function load_modules()
@@ -125,13 +177,13 @@ class Plugin
 
         // Only load CF7 Styler module if feature is enabled
         if ($this->is_feature_enabled('cf7_module')) {
-            require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
+            require_once CF7M_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
         }
 
         // Only load deprecated modules for existing users (before version 3.0.0)
         if ($this->should_load_deprecated_modules()) {
-            require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
-            require_once DCS_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
+            require_once CF7M_PLUGIN_PATH . 'includes/modules/divi-4/FluentForms/FluentForms.php';
+            require_once CF7M_PLUGIN_PATH . 'includes/modules/divi-4/GravityForms/GravityForms.php';
         }
     }
 
@@ -201,7 +253,7 @@ class Plugin
             return;
         }
 
-        require_once DCS_PLUGIN_PATH . 'includes/modules/Modules.php';
+        require_once CF7M_PLUGIN_PATH . 'includes/modules/Modules.php';
         $loaded = true;
     }
 }

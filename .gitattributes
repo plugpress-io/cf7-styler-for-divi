@@ -1,3 +1,7 @@
+# Git attributes for clean exports
+# Files marked export-ignore are excluded from git archive/export
+
+# Config/Build files
 .eslintrc  	        export-ignore
 .gitignore  	    export-ignore
 phpcs.xml  	        export-ignore
@@ -7,7 +11,8 @@ tests               export-ignore
 .github             export-ignore
 .wordpress-org      export-ignore
 .releaserc.yml      export-ignore
-gulpfile.js        export-ignore
+gulpfile.js         export-ignore
+Gruntfile.js        export-ignore
 asset-manifest.json export-ignore
 composer.json 	    export-ignore
 composer.lock 	    export-ignore
@@ -17,6 +22,18 @@ bin 	            export-ignore
 phpunit.xml         export-ignore
 docker-compose.yml  export-ignore
 grunt               export-ignore
+webpack.config.js   export-ignore
+webpack.divi5.config.js export-ignore
+postcss.config.js   export-ignore
+tailwind.config.js  export-ignore
+.cursorrules        export-ignore
+/src                export-ignore
+/docs               export-ignore
+
+# Premium-only features (excluded from free WordPress.org version)
+# Note: These ARE included in Freemius deployment but excluded from wp.org
+includes/pro export-ignore
+
 # Set the default behavior for all files.
 * text=auto
 

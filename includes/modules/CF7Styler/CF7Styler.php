@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_CF7_Styler\Modules\CF7Styler;
+namespace CF7_Mate\Modules\CF7Styler;
 
 if (!defined('ABSPATH')) {
     die('Direct access forbidden.');
@@ -123,7 +123,7 @@ class CF7Styler implements DependencyInterface
 
     public function load()
     {
-        $module_json_folder_path = DCS_MODULES_JSON_PATH . 'cf7-styler/';
+        $module_json_folder_path = CF7M_MODULES_JSON_PATH . 'cf7-styler/';
 
         add_action(
             'init',

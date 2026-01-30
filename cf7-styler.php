@@ -2,7 +2,7 @@
 /*
 Plugin Name: CF7 Mate for Divi
 Plugin URI: https://divipeople.com/cf7-mate
-Description: The complete Contact Form 7 companion for Divi - style forms, add entries, star ratings, range sliders, and more.
+Description: Built for CF7 power users—your all-in-one toolkit for Contact Form 7.
 Version: 3.0.0
 Author: PlugPress
 Author URI:  https://divipeople.com
@@ -10,6 +10,8 @@ License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cf7-styler-for-divi
 Domain Path: /languages
+
+@fs_premium_only /includes/pro/
 */
 
 // Exit if accessed directly.
@@ -17,17 +19,17 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('DCS_VERSION', '3.0.0');
-define('DCS_BASENAME', plugin_basename(__FILE__));
-define('DCS_BASENAME_DIR', plugin_basename(__DIR__));
-define('DCS_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('DCS_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('DCS_MODULES_JSON_PATH', DCS_PLUGIN_PATH . 'modules-json/');
-define('DCS_SELF_HOSTED_ACTIVE', 'true');
+define('CF7M_VERSION', '3.0.0');
+define('CF7M_BASENAME', plugin_basename(__FILE__));
+define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
+define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('CF7M_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('CF7M_MODULES_JSON_PATH', CF7M_PLUGIN_PATH . 'modules-json/');
+define('CF7M_SELF_HOSTED_ACTIVE', 'true');
 
 // Freemius
-if ('true' === DCS_SELF_HOSTED_ACTIVE) {
-    require_once DCS_PLUGIN_PATH . 'freemius.php'; // phpcs:ignore
+if ('true' === CF7M_SELF_HOSTED_ACTIVE) {
+    require_once CF7M_PLUGIN_PATH . 'freemius.php'; // phpcs:ignore
 }
 
-require_once DCS_PLUGIN_PATH . 'includes/plugin.php';
+require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';

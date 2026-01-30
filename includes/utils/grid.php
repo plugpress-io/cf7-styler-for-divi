@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_CF7_Styler;
+namespace CF7_Mate;
 
 use WPCF7_TagGenerator;
 
@@ -86,9 +86,9 @@ class CF7_Grid {
 	public function enqueue_admin_scripts() {
 		wp_enqueue_script(
 			'dfs-admin-js',
-			DCS_PLUGIN_URL . 'dist/js/utils.js',
+			CF7M_PLUGIN_URL . 'dist/js/utils.js',
 			array( 'jquery' ),
-			DCS_VERSION,
+			CF7M_VERSION,
 			true
 		);
 	}

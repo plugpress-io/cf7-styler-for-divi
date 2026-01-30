@@ -1,0 +1,19 @@
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="cf7m-"],
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="dipe_"] {
+	border-left: 3px solid #5733ff;
+	background: rgba(87, 51, 255, 0.06);
+	padding-left: 10px;
+}
+
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="cf7m-"]:hover,
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="dipe_"]:hover {
+	background: rgba(87, 51, 255, 0.1);
+}
+
+.cf7m-tag-panel .control-box legend::after {
+	content: " (CF7 Mate)";
+	font-size: 11px;
+	color: #5733ff;
+	font-weight: normal;
+	margin-left: 4px;
+}

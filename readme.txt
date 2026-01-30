@@ -1,14 +1,14 @@
 === CF7 Mate for Divi ===
 
 Contributors: divipeople, badhonrocks, plugpressco
-Tags: divi, contact form 7, divi builder, form styler, form entries
+Tags: divi, divi contact form, contact form 7, divi builder, divi cf7
 Requires at least: 5.0
 Tested up to: 6.9
 Stable tag: 3.0.0
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-The complete Contact Form 7 companion for Divi - style forms, add entries, star ratings, and more.
+Built for CF7 power users—your all-in-one toolkit for Contact Form 7.
 
 == Description ==
 

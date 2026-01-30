@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_CF7_Styler;
+namespace CF7_Mate;
 
 class Admin_Review_Notice
 {
@@ -41,9 +41,9 @@ class Admin_Review_Notice
 
         wp_enqueue_script(
             'dcs-admin-notice',
-            DCS_PLUGIN_URL . 'dist/js/admin-notice.js',
+            CF7M_PLUGIN_URL . 'dist/js/admin-notice.js',
             ['jquery'],
-            DCS_VERSION,
+            CF7M_VERSION,
             true
         );
 

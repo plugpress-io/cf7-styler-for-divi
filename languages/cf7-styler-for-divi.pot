@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-01-29 21:57+0000\n"
+"POT-Creation-Date: 2026-01-30 22:17+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,36 +15,32 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/rest-api.php:144
+#: includes/rest-api.php:154
 msgid "Invalid features data."
 msgstr ""
 
-#: includes/rest-api.php:211
+#: includes/rest-api.php:295
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:227
+#: includes/rest-api.php:311
 msgid "Select a form"
 msgstr ""
 
-#: includes/rest-api.php:234
+#: includes/rest-api.php:318
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:277
+#: includes/rest-api.php:361
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:74, includes/admin/admin.php:76, includes/admin/admin.php:106, includes/admin/admin.php:120, includes/admin/admin.php:121
+#: includes/admin/admin.php:61, includes/admin/admin.php:62
 msgid "CF7 Mate"
 msgstr ""
 
-#: includes/admin/admin.php:105
-msgid "CF7 Mate for Divi"
-msgstr ""
-
-#: includes/admin/admin.php:132
-msgid "Sorry, you are not allowed to access this page."
+#: includes/admin/admin.php:72, includes/admin/admin.php:73
+msgid "Features"
 msgstr ""
 
 #: includes/notices/review.php:97
@@ -87,7 +83,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: includes/modules/divi-4/CF7Styler/CF7Styler.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:661
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:661, includes/pro/features/heading/module.php:104
 msgid "Text"
 msgstr ""
 
@@ -549,4 +545,268 @@ msgstr ""
 
 #: includes/modules/divi-4/GravityForms/GravityForms.php:509
 msgid "Please select a Gravity Form."
+msgstr ""
+
+#: includes/pro/features/entries/api.php:146, includes/pro/features/entries/api.php:155, includes/pro/features/entries/api.php:166
+msgid "Entry not found."
+msgstr ""
+
+#: includes/pro/features/entries/api.php:158
+msgid "Entry updated."
+msgstr ""
+
+#: includes/pro/features/entries/api.php:169
+msgid "Delete failed."
+msgstr ""
+
+#: includes/pro/features/entries/api.php:171
+msgid "Entry deleted."
+msgstr ""
+
+#. translators: %d: number
+#: includes/pro/features/entries/api.php:189, includes/pro/features/entries/api.php:217
+msgid "%d entry deleted."
+msgid_plural "%d entries deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/pro/features/entries/api.php:244
+msgid "No entries to export."
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:28, includes/pro/features/entries/cpt.php:30, includes/pro/features/entries/module.php:70
+msgid "Form Entries"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:29
+msgid "Form Entry"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:31
+msgid "No entries found"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:32
+msgid "No entries found in trash"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:53
+msgid "Contact Form 7 ID"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:59
+msgid "Form title at submission"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:65
+msgid "Entry status (new, read, spam)"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:71
+msgid "Form submission data as JSON"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:77
+msgid "Submission timestamp"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:83
+msgid "Submitter IP"
+msgstr ""
+
+#: includes/pro/features/entries/cpt.php:89
+msgid "Submitter user agent"
+msgstr ""
+
+#: includes/pro/features/entries/module.php:71
+msgid "Entries"
+msgstr ""
+
+#. translators: 1: form title, 2: date
+#: includes/pro/features/entries/save.php:51
+msgid "%1$s — %2$s"
+msgstr ""
+
+#: includes/pro/features/heading/module.php:80
+msgid "heading"
+msgstr ""
+
+#: includes/pro/features/heading/module.php:90
+msgid "Heading"
+msgstr ""
+
+#: includes/pro/features/heading/module.php:94
+msgid "Level"
+msgstr ""
+
+#: includes/pro/features/heading/module.php:105
+msgid "Your heading text"
+msgstr ""
+
+#: includes/pro/features/icon/module.php:85
+msgid "icon"
+msgstr ""
+
+#: includes/pro/features/icon/module.php:95
+msgid "Icon"
+msgstr ""
+
+#: includes/pro/features/icon/module.php:98
+msgid "Dashicon name"
+msgstr ""
+
+#: includes/pro/features/icon/module.php:101
+msgid "Use Dashicons class (e.g. dashicons-email, dashicons-phone)"
+msgstr ""
+
+#: includes/pro/features/icon/module.php:105
+msgid "Size (px)"
+msgstr ""
+
+#: includes/pro/features/image/module.php:96
+msgid "image"
+msgstr ""
+
+#: includes/pro/features/image/module.php:106
+msgid "Image"
+msgstr ""
+
+#: includes/pro/features/image/module.php:109
+msgid "Image URL"
+msgstr ""
+
+#: includes/pro/features/image/module.php:113
+msgid "Alt text"
+msgstr ""
+
+#: includes/pro/features/image/module.php:117, includes/pro/features/multi-column/module.php:171
+msgid "Width"
+msgstr ""
+
+#: includes/pro/features/image/module.php:121
+msgid "Height"
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:126
+msgid "row"
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:127
+msgid "column"
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:141
+msgid "Multi-Column Row"
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:144
+msgid "Gap (px)"
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:168
+msgid "Multi-Column Column"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:55
+msgid "Step %d"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:78
+msgid "Previous"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:79
+msgid "Next"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:102
+msgid "step"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:119
+msgid "Multi-Step"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:121
+msgid "Step Title"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:43
+msgid "range slider"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:100
+msgid "Range Slider"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:102, includes/pro/features/star-rating/module.php:106
+msgid "Field type"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:102, includes/pro/features/star-rating/module.php:106
+msgid "Required"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:103, includes/pro/features/star-rating/module.php:107
+msgid "Name"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:104
+msgid "Min"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:105
+msgid "Max"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:106
+msgid "Step"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:107, includes/pro/features/star-rating/module.php:109
+msgid "Default"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:108
+msgid "Prefix"
+msgstr ""
+
+#: includes/pro/features/range-slider/module.php:109
+msgid "Suffix"
+msgstr ""
+
+#: includes/pro/features/separator/module.php:79
+msgid "separator"
+msgstr ""
+
+#: includes/pro/features/separator/module.php:89
+msgid "Separator"
+msgstr ""
+
+#: includes/pro/features/separator/module.php:92
+msgid "Style"
+msgstr ""
+
+#: includes/pro/features/separator/module.php:95
+msgid "Line"
+msgstr ""
+
+#: includes/pro/features/separator/module.php:96
+msgid "Space only"
+msgstr ""
+
+#: includes/pro/features/separator/module.php:101
+msgid "Margin (px)"
+msgstr ""
+
+#: includes/pro/features/star-rating/module.php:43
+msgid "star rating"
+msgstr ""
+
+#: includes/pro/features/star-rating/module.php:104
+msgid "Star Rating"
+msgstr ""
+
+#: includes/pro/features/star-rating/module.php:108
+msgid "Max Stars"
 msgstr ""

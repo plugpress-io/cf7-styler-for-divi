@@ -1,7 +1,16 @@
+# WordPress.org distribution ignore file
+# These files/folders are excluded when deploying to WordPress.org SVN
+
+# Directories
 /.wordpress-org
 /.git
 /.github
+/src
+/docs
+/node_modules
+/tests
 
+# Build/Config files
 .distignore
 .DS_Store
 .editorconfig
@@ -24,5 +33,10 @@ tailwind.config.js
 .prettierignore
 .prettierrc.json
 .cursorrules
-/src
-/docs
+
+# Pro bootstrap (free build uses cf7-styler.php only)
+cf7-mate-pro.php
+
+# Premium-only features (excluded from free WordPress.org version)
+# Freemius auto-strips these via @fs_premium_only directive
+/includes/pro

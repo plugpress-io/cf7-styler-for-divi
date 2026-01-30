@@ -34,9 +34,17 @@
 
 ---
 
+### PHP namespace: CF7_Mate
+
+**Decision:** All plugin PHP code uses namespace `CF7_Mate` (and sub-namespaces: `CF7_Mate\Pro`, `CF7_Mate\Features\*`, `CF7_Mate\Modules\*`, `CF7_Mate\API`).
+
+**Rationale:** Aligns with product name "CF7 Mate"; avoids legacy "Divi_CF7_Styler" in code.
+
+---
+
 ### Module Naming: Vendor Prefix
 
-**Decision:** Use `cf7-styler-for-divi` as vendor prefix
+**Decision:** Use `cf7-styler-for-divi` as vendor prefix (plugin slug, D5 module names)
 
 **Examples:**
 - D5 name: `cf7-styler-for-divi/cf7-styler`
@@ -123,6 +131,42 @@ $container_classes = sprintf(
 - [ ] Divi 5 reaches widespread adoption (>50% users?)
 
 **Timeline:** TBD - wait for Divi 5 GA and user migration data
+
+---
+
+### Pro build: cf7-mate-pro/cf7-mate-pro.php
+
+**Decision:** Pro package uses folder `cf7-mate-pro` and main file `cf7-mate-pro.php` (not `cf7-styler.php`).
+
+**Structure:**
+- Free: `cf7-styler-for-divi/cf7-styler.php`
+- Pro: `cf7-mate-pro/cf7-mate-pro.php` (same codebase; Pro zip excludes `cf7-styler.php`)
+
+**How:**
+- Repo contains both `cf7-styler.php` (free entry) and `cf7-mate-pro.php` (Pro entry). Both bootstrap the same plugin; Pro file defines `CF7M_PRO_VERSION`.
+- `.distignore` excludes `cf7-mate-pro.php` so the WordPress.org free zip only has the free entry.
+- Build Pro zip: `grunt package:pro` → produces `cf7-mate-pro-{version}.zip` with `cf7-mate-pro/cf7-mate-pro.php` and no `cf7-styler.php`.
+- Bump version: `grunt bump-version --ver=patch` (or minor/major) updates version in both main files.
+
+---
+
+### Pro features: base class + traits
+
+**Decision:** Pro features use a shared base, abstract form-tag base, and traits for singleton and shortcode atts.
+
+**Structure:**
+- `includes/pro/feature-base.php` – abstract base; subclasses implement `init()`.
+- `includes/pro/form-tag-feature.php` – extends base; registers CF7 form tag, tag generator, validation, enqueue. Used by Star Rating and Range Slider.
+- `includes/pro/Traits/singleton.php` – `instance()` per feature class.
+- `includes/pro/Traits/shortcode-atts.php` – `parse_atts()` for step/row/col shortcodes.
+- `includes/pro/loader.php` – config-driven: loads bootstrap files, then feature modules by option `cf7m_features`.
+
+**Feature types:**
+- Form-tag features (Star_Rating, Range_Slider): extend `CF7_Form_Tag_Feature`, use `Singleton`; implement tag names, render, validate, tag generator UI, enqueue.
+- Shortcode features (Multi_Steps, Multi_Column): extend `Pro_Feature_Base`, use `Singleton` + `Shortcode_Atts_Trait`.
+- Entries: extends `Pro_Feature_Base`, use `Singleton`; post type, save on submit, admin page, REST.
+
+**Adding a new Pro feature:** add entry to `Premium_Loader::$features`, create `features/<slug>/module.php` extending the appropriate base and using traits.
 
 ---
 

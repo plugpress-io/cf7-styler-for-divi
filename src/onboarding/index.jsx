@@ -1,5 +1,6 @@
 /**
  * CF7 Mate Onboarding - Main Component
+ * Rebrand is not part of onboarding; it is shown as a subtle dashboard banner only.
  *
  * @since 3.0.0
  */
@@ -7,7 +8,6 @@
 import { useState, useEffect, render } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 import OnboardingModal from './components/OnboardingModal';
-import StepRebrand from './components/StepRebrand';
 import './onboarding.scss';
 
 const TOTAL_STEPS = 4;
@@ -16,89 +16,30 @@ const Onboarding = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [currentStep, setCurrentStep] = useState(1);
 	const [featureSettings, setFeatureSettings] = useState({});
-	const [showRebrand, setShowRebrand] = useState(false);
-	const [rebrandSeen, setRebrandSeen] = useState(true);
-	const [onboardingCompleted, setOnboardingCompleted] = useState(false);
 
 	useEffect(() => {
-		// Check initial state from localized data
-		const rebrandAlreadySeen = dcsOnboarding.rebrand_seen === true || dcsOnboarding.rebrand_seen === '1';
-		const alreadyCompleted = dcsOnboarding.onboarding_completed === true || dcsOnboarding.onboarding_completed === '1';
-		
-		setRebrandSeen(rebrandAlreadySeen);
-		setOnboardingCompleted(alreadyCompleted);
-
-		// Check if onboarding should be shown
 		fetch(dcsOnboarding.ajax_url, {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: new URLSearchParams({
 				action: 'cf7m_check_onboarding_status',
 				nonce: dcsOnboarding.nonce,
 			}),
 		})
-			.then((response) => response.json())
+			.then((res) => res.json())
 			.then((data) => {
-				if (data.success) {
-					// Show rebrand screen first if not seen
-					if (!rebrandAlreadySeen) {
-						setShowRebrand(true);
-						setIsVisible(true);
-					} else if (data.data.should_show) {
-						// Normal onboarding flow
-						setIsVisible(true);
-						setCurrentStep(data.data.current_step || 1);
-					}
-				}
+				if (!data.success || !data.data.should_show) return;
+				const show = () => {
+					setIsVisible(true);
+					setCurrentStep(data.data.current_step || 1);
+				};
+				window.requestAnimationFrame(() => setTimeout(show, 150));
 			})
-			.catch((error) => {
-				console.error('Error checking onboarding status:', error);
-			});
+			.catch((err) => console.error('Onboarding status:', err));
 	}, []);
 
-	const handleRebrandContinue = () => {
-		// Mark rebrand as seen
-		fetch(dcsOnboarding.ajax_url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: new URLSearchParams({
-				action: 'cf7m_dismiss_rebrand',
-				nonce: dcsOnboarding.nonce,
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.success) {
-					setRebrandSeen(true);
-					setShowRebrand(false);
-					
-					// If onboarding was already completed, close everything
-					// Otherwise, continue to normal onboarding
-					if (onboardingCompleted) {
-						setIsVisible(false);
-					}
-				}
-			})
-			.catch((error) => {
-				console.error('Error dismissing rebrand:', error);
-			});
-	};
-
-	const handleClose = () => {
-		if (showRebrand) {
-			handleRebrandContinue();
-		} else {
-			skipOnboarding();
-		}
-	};
-
-	const handleSkip = () => {
-		skipOnboarding();
-	};
+	const handleClose = () => skipOnboarding();
+	const handleSkip = () => skipOnboarding();
 
 	const skipOnboarding = () => {
 		fetch(dcsOnboarding.ajax_url, {
@@ -190,11 +131,6 @@ const Onboarding = () => {
 
 	if (!isVisible) {
 		return null;
-	}
-
-	// Show rebrand screen if not seen yet
-	if (showRebrand) {
-		return <StepRebrand onContinue={handleRebrandContinue} />;
 	}
 
 	return (

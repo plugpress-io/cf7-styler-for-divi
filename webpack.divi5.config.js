@@ -56,7 +56,7 @@ module.exports = {
     {
       jquery: 'jQuery',
       underscore: '_',
-      lodash: 'lodash',
+      lodash: '_',
       react: ['vendor', 'React'],
       'react-dom': ['vendor', 'ReactDOM'],
       '@wordpress/i18n': ['vendor', 'wp', 'i18n'],

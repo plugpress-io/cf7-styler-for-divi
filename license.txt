@@ -1,7 +1,7 @@
 Main Product License
 ====================
 
-Contact Form 7 Styler for Divi
+CF7 Mate for Divi
 -----------------------------
 - Copyright: 2026 PlugPress
 - License: GPL

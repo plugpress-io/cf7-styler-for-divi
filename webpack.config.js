@@ -119,7 +119,7 @@ module.exports = {
 	externals: {
 		$: 'jQuery',
 		jquery: 'jQuery',
-		lodash: 'lodash',
+		lodash: '_',
 		'@wordpress/element': ['wp', 'element'],
 		'@wordpress/i18n': ['wp', 'i18n'],
 		'@wordpress/components': ['wp', 'components'],

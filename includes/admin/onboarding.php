@@ -1,6 +1,6 @@
 <?php
 
-namespace Divi_CF7_Styler;
+namespace CF7_Mate;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -42,46 +42,41 @@ class Onboarding
 
     public function enqueue_scripts($hook)
     {
-        // Only show onboarding on plugin pages and dashboard.
-        // Hook can be top-level or submenu under Divi (divi_page_cf7-mate).
+        // Only show onboarding on CF7 Mate admin page. Rebrand is separate (shown in admin app).
         $allowed_hooks = [
-            'index.php',
-            'plugins.php',
             'toplevel_page_cf7-mate',
-            'toplevel_page_cf7-styler-for-divi',
+            'toplevel_page_cf7-mate-dashboard',
             'divi_page_cf7-mate',
+            'divi_page_cf7-mate-dashboard',
         ];
 
         if (!in_array($hook, $allowed_hooks, true)) {
             return;
         }
 
-        // Show onboarding if:
-        // 1. Rebrand hasn't been seen yet (always show for rebrand announcement)
-        // 2. OR onboarding not completed/skipped (normal flow for new users)
-        $rebrand_seen = $this->is_rebrand_seen();
+        // Only show full-screen onboarding for new users (not yet completed/skipped).
+        // Rebrand is handled by the subtle dashboard banner (V3Banner), not part of onboarding.
         $onboarding_done = $this->is_onboarding_completed() || $this->is_onboarding_skipped();
-        
-        if ($rebrand_seen && $onboarding_done) {
+        if ($onboarding_done) {
             return;
         }
 
-        $onboarding_js = DCS_PLUGIN_PATH . 'dist/js/onboarding.js';
+        $onboarding_js = CF7M_PLUGIN_PATH . 'dist/js/onboarding.js';
         wp_enqueue_script(
             'dcs-onboarding',
-            DCS_PLUGIN_URL . 'dist/js/onboarding.js',
+            CF7M_PLUGIN_URL . 'dist/js/onboarding.js',
             ['react', 'wp-element', 'wp-i18n', 'wp-dom-ready'],
-            DCS_VERSION . (file_exists($onboarding_js) ? '.' . filemtime($onboarding_js) : ''),
+            CF7M_VERSION . (file_exists($onboarding_js) ? '.' . filemtime($onboarding_js) : ''),
             true
         );
 
-        $onboarding_css = DCS_PLUGIN_PATH . 'dist/css/onboarding.css';
+        $onboarding_css = CF7M_PLUGIN_PATH . 'dist/css/onboarding.css';
         if (file_exists($onboarding_css)) {
             wp_enqueue_style(
                 'dcs-onboarding',
-                DCS_PLUGIN_URL . 'dist/css/onboarding.css',
+                CF7M_PLUGIN_URL . 'dist/css/onboarding.css',
                 [],
-                DCS_VERSION . '.' . filemtime($onboarding_css)
+                CF7M_VERSION . '.' . filemtime($onboarding_css)
             );
         }
 
@@ -91,31 +86,29 @@ class Onboarding
             'current_step' => $this->get_current_step(),
             'create_page_url' => admin_url('post-new.php?post_type=page'),
             'cf7_admin_url' => admin_url('admin.php?page=wpcf7'),
-            'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing'),
-            'is_pro' => defined('DCS_PRO_VERSION') || defined('CF7M_PRO_VERSION'),
+            'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing&coupon=NEW2026'),
+            'is_pro' => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
             'rebrand_seen' => $this->is_rebrand_seen(),
             'onboarding_completed' => $this->is_onboarding_completed(),
+            'version' => defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0',
         ]);
     }
 
     public function render_onboarding_root()
     {
-        // Show onboarding if rebrand not seen OR onboarding not completed
-        $rebrand_seen = $this->is_rebrand_seen();
+        // Only render onboarding root for new users (rebrand is not part of onboarding)
         $onboarding_done = $this->is_onboarding_completed() || $this->is_onboarding_skipped();
-        
-        if ($rebrand_seen && $onboarding_done) {
+        if ($onboarding_done) {
             return;
         }
 
-        // Only show on allowed pages.
+        // Only on CF7 Mate pages.
         $screen = get_current_screen();
         $allowed_screens = [
-            'dashboard',
-            'plugins',
             'toplevel_page_cf7-mate',
-            'toplevel_page_cf7-styler-for-divi',
+            'toplevel_page_cf7-mate-dashboard',
             'divi_page_cf7-mate',
+            'divi_page_cf7-mate-dashboard',
         ];
 
         if (!$screen || !in_array($screen->id, $allowed_screens, true)) {
@@ -196,7 +189,7 @@ class Onboarding
         if (isset($_POST['features'])) {
             $features_json = sanitize_text_field(wp_unslash($_POST['features']));
             $features = json_decode($features_json, true);
-            
+
             if (is_array($features)) {
                 $defaults = [
                     'cf7_module' => true,
@@ -207,12 +200,12 @@ class Onboarding
                     'database_entries' => true,
                     'range_slider' => true,
                 ];
-                
+
                 $sanitized = [];
                 foreach ($defaults as $key => $default) {
                     $sanitized[$key] = isset($features[$key]) ? (bool) $features[$key] : $default;
                 }
-                
+
                 update_option('cf7m_features', $sanitized);
             }
         }
