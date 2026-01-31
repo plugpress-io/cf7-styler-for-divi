@@ -1,13 +1,4 @@
-/**
- * CF7 Styler Module - Edit Component.
- *
- * Renders the Visual Builder preview with proper class names
- * for CSS targeting to match frontend rendering.
- *
- * @since 3.0.0
- */
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 
 import { ModuleStyles } from './styles';
@@ -16,40 +7,128 @@ import { moduleClassnames } from './module-classnames';
 const { ModuleContainer } = window?.divi?.module ?? {};
 
 /**
- * CF7 Styler Edit Component
+ * Resolve header icon for Visual Builder: Divi 5 icon-picker stores an object
+ * { unicode, type, weight }; Divi 4 / legacy may store a string. Process via
+ * Divi APIs when available so the icon renders correctly.
  */
-const CF7StylerEdit = (props) => {
-  const {
-    attrs,
-    id,
-    name,
-    elements,
-  } = props;
+function resolveHeaderIcon(value) {
+  if (value == null || value === '') return null;
+  const processD5 = window?.divi?.iconLibrary?.processFontIcon;
+  const processD4 = window?.ET_Builder?.API?.Utils?.processFontIcon;
+  if (typeof value === 'object' && value.unicode != null) {
+    if (typeof processD5 === 'function') return processD5(value);
+    const unicode = value.unicode;
+    const decoded =
+      typeof unicode === 'string' && /^&#x[0-9a-f]+;$/i.test(unicode)
+        ? String.fromCodePoint(parseInt(unicode.replace(/^&#x|;/gi, ''), 16))
+        : unicode;
+    const fontFamily = value.type === 'fa' ? 'FontAwesome' : 'ETmodules';
+    return (
+      <span className="et-pb-icon" style={{ fontFamily }} aria-hidden>
+        {decoded}
+      </span>
+    );
+  }
+  if (typeof value === 'string') {
+    if (typeof processD4 === 'function') return processD4(value);
+    return value;
+  }
+  return null;
+}
 
-  // Get CF7 settings from advanced attributes
-  const formId = attrs?.cf7?.advanced?.formId?.desktop?.value || '0';
+function getFormPreviewUrl(formId) {
+  const root =
+    typeof window !== 'undefined' && window.wp?.apiFetch?.root
+      ? window.wp.apiFetch.root
+      : (typeof window !== 'undefined' ? window.location.origin : '') + '/wp-json';
+  return `${root}/cf7-styler/v1/form-preview?id=${encodeURIComponent(formId)}`;
+}
+
+const CF7StylerEdit = (props) => {
+  const { attrs: attrsProp, id, name, elements } = props;
+  const attrs = attrsProp ?? props?.attributes ?? {};
+
+  const [formHtml, setFormHtml] = useState('');
+  const [formLoading, setFormLoading] = useState(false);
+  const [formError, setFormError] = useState(false);
+
+  const formIdRaw =
+    attrs?.cf7?.advanced?.formId?.desktop?.value ??
+    attrs?.cf7?.advanced?.formId?.value ??
+    attrs?.cf7?.advanced?.formId ??
+    attrs?.module?.cf7?.advanced?.formId?.desktop?.value ??
+    attrs?.module?.cf7?.advanced?.formId?.value ??
+    attrs?.module?.cf7?.advanced?.formId;
+  const formId = formIdRaw !== undefined && formIdRaw !== null ? String(formIdRaw) : '0';
+  const formIdNum = formId === '0' || formId === '' ? 0 : parseInt(formId, 10);
+
+  useEffect(() => {
+    if (!formIdNum) {
+      setFormHtml('');
+      setFormError(false);
+      return;
+    }
+    let cancelled = false;
+    setFormLoading(true);
+    setFormError(false);
+    const url = getFormPreviewUrl(formIdNum);
+    const headers = {};
+    if (typeof window !== 'undefined' && window.wpApiSettings?.nonce) {
+      headers['X-WP-Nonce'] = window.wpApiSettings.nonce;
+    }
+    fetch(url, { credentials: 'include', headers })
+      .then((res) =>
+        res.json().then((data) => ({ ok: res.ok, status: res.status, data }))
+      )
+      .then(({ ok, data }) => {
+        if (cancelled) return;
+        const isError =
+          !ok ||
+          (data &&
+            (data.code === 'rest_forbidden' || data.code === 'missing_id' || data.code === 'invalid_id'));
+        if (isError) {
+          setFormError(true);
+          setFormHtml('');
+        } else {
+          setFormHtml(data?.html ?? '');
+        }
+        setFormLoading(false);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFormError(true);
+          setFormHtml('');
+          setFormLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [formIdNum]);
+
   const useFormHeader = attrs?.cf7?.advanced?.useFormHeader?.desktop?.value === 'on';
   const formHeaderTitle = attrs?.cf7?.advanced?.formHeaderTitle?.desktop?.value || '';
   const formHeaderText = attrs?.cf7?.advanced?.formHeaderText?.desktop?.value || '';
   const useIcon = attrs?.cf7?.advanced?.useIcon?.desktop?.value === 'on';
-  const headerIcon = attrs?.cf7?.advanced?.headerIcon?.desktop?.value || '';
+  const headerIconRaw = attrs?.cf7?.advanced?.headerIcon?.desktop?.value;
+  const headerIconResolved = resolveHeaderIcon(headerIconRaw);
+  const hasHeaderIcon =
+    headerIconResolved != null ||
+    (headerIconRaw && (typeof headerIconRaw === 'string' ? headerIconRaw : headerIconRaw?.unicode));
   const headerImage = attrs?.cf7?.advanced?.headerImage?.desktop?.value || '';
-  
-  // Button settings
   const buttonFullwidth = attrs?.cf7?.advanced?.useFormButtonFullwidth?.desktop?.value === 'on';
   const buttonAlignment = attrs?.cf7?.advanced?.buttonAlignment?.desktop?.value || 'left';
-  
-  // Radio/checkbox custom styles
   const crCustomStyles = attrs?.cf7?.advanced?.crCustomStyles?.desktop?.value === 'on';
 
   if (!ModuleContainer) {
     return null;
   }
 
-  // Build container classes to match PHP output
   const buttonClass = buttonFullwidth ? 'fullwidth' : buttonAlignment;
   const containerClasses = `dipe-cf7-container dipe-cf7-button-${buttonClass} dcs-cf7-container dcs-cf7-button-${buttonClass}`;
   const wrapperClasses = `dipe-cf7 dipe-cf7-styler dcs-cf7 dcs-cf7-styler${crCustomStyles ? ' dipe-cf7-cr dcs-cf7-cr' : ''}`;
+
+  const noForm = formId === '0' || !formId;
 
   return (
     <ModuleContainer
@@ -61,14 +140,20 @@ const CF7StylerEdit = (props) => {
       classnamesFunction={moduleClassnames}
     >
       <div className={containerClasses}>
-        {/* Form Header */}
-        {useFormHeader && (formHeaderTitle || formHeaderText || headerIcon || headerImage) && (
+        {useFormHeader && (formHeaderTitle || formHeaderText || hasHeaderIcon || headerImage) && (
           <div className="dipe-form-header-container dcs-form-header-container dcs-cf7-header">
             <div className="dipe-form-header dcs-form-header">
-              {/* Icon or Image */}
-              {useIcon && headerIcon && (
+              {useIcon && hasHeaderIcon && (
                 <div className="dipe-form-header-icon dcs-form-header-icon">
-                  <span className="et-pb-icon">{headerIcon}</span>
+                  {headerIconResolved != null ? (
+                    typeof headerIconResolved === 'string' ? (
+                      <span className="et-pb-icon">{headerIconResolved}</span>
+                    ) : (
+                      headerIconResolved
+                    )
+                  ) : (
+                    <span className="et-pb-icon">{typeof headerIconRaw === 'string' ? headerIconRaw : ''}</span>
+                  )}
                 </div>
               )}
               {!useIcon && headerImage && (
@@ -76,7 +161,6 @@ const CF7StylerEdit = (props) => {
                   <img src={headerImage} alt="" />
                 </div>
               )}
-              {/* Title and Text */}
               {(formHeaderTitle || formHeaderText) && (
                 <div className="dipe-form-header-info dcs-form-header-info">
                   {formHeaderTitle && (
@@ -95,9 +179,8 @@ const CF7StylerEdit = (props) => {
           </div>
         )}
 
-        {/* Form Content */}
         <div className={wrapperClasses}>
-          {formId === '0' || !formId ? (
+          {noForm ? (
             <div className="dcs-cf7-placeholder">
               <div className="dcs-cf7-placeholder__icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,50 +197,22 @@ const CF7StylerEdit = (props) => {
                 {__('Select a Contact Form 7 form to display.', 'cf7-styler-for-divi')}
               </p>
             </div>
+          ) : formLoading ? (
+            <div className="dcs-cf7-form-preview dcs-cf7-form-preview--loading">
+              <p className="dcs-cf7-styler__placeholder">{__('Loading form…', 'cf7-styler-for-divi')}</p>
+            </div>
+          ) : formError ? (
+            <div className="dcs-cf7-form-preview dcs-cf7-form-preview--error">
+              <p className="dcs-cf7-styler__placeholder">{__('Could not load form preview.', 'cf7-styler-for-divi')}</p>
+            </div>
+          ) : formHtml ? (
+            <div
+              className="dcs-cf7-form-preview wpcf7 dcs-cf7-form-preview--live"
+              dangerouslySetInnerHTML={{ __html: formHtml }}
+            />
           ) : (
-            <div className="dcs-cf7-form-preview wpcf7">
-              <div className="dcs-cf7-form-preview__fields wpcf7-form">
-                <div className="dcs-cf7-form-preview__field">
-                  <label>{__('Your Name', 'cf7-styler-for-divi')}</label>
-                  <span className="wpcf7-form-control-wrap">
-                    <input 
-                      type="text" 
-                      className="wpcf7-form-control wpcf7-text" 
-                      placeholder={__('Enter your name', 'cf7-styler-for-divi')} 
-                      readOnly 
-                    />
-                  </span>
-                </div>
-                <div className="dcs-cf7-form-preview__field">
-                  <label>{__('Your Email', 'cf7-styler-for-divi')}</label>
-                  <span className="wpcf7-form-control-wrap">
-                    <input 
-                      type="email" 
-                      className="wpcf7-form-control wpcf7-email" 
-                      placeholder={__('Enter your email', 'cf7-styler-for-divi')} 
-                      readOnly 
-                    />
-                  </span>
-                </div>
-                <div className="dcs-cf7-form-preview__field">
-                  <label>{__('Your Message', 'cf7-styler-for-divi')}</label>
-                  <span className="wpcf7-form-control-wrap">
-                    <textarea 
-                      className="wpcf7-form-control wpcf7-textarea" 
-                      placeholder={__('Enter your message', 'cf7-styler-for-divi')} 
-                      readOnly 
-                      rows="4" 
-                    />
-                  </span>
-                </div>
-                <p className="dcs-cf7-form-preview__submit-wrap">
-                  <input 
-                    type="submit" 
-                    value={__('Submit', 'cf7-styler-for-divi')} 
-                    className="wpcf7-form-control wpcf7-submit dcs-cf7-form-preview__submit"
-                  />
-                </p>
-              </div>
+            <div className="dcs-cf7-form-preview">
+              <p className="dcs-cf7-styler__placeholder">{__('No form content.', 'cf7-styler-for-divi')}</p>
             </div>
           )}
         </div>

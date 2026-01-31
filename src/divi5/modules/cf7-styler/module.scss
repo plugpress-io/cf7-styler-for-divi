@@ -147,3 +147,132 @@
   background: #f9fafb;
   border-radius: 6px;
 }
+
+// Pro form fields – so VB and frontend render identically (multi-step, row/col, star, range).
+.cf7m-pro-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * var(--cf7m-row-gap, 16px) / 2);
+  margin-right: calc(-1 * var(--cf7m-row-gap, 16px) / 2);
+}
+
+.cf7m-pro-col {
+  box-sizing: border-box;
+  flex: 0 0 var(--cf7m-col-width, 50%);
+  max-width: var(--cf7m-col-width, 50%);
+  padding-left: calc(var(--cf7m-row-gap, 16px) / 2);
+  padding-right: calc(var(--cf7m-row-gap, 16px) / 2);
+}
+
+.cf7m-steps-progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.cf7m-progress-step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+
+  &.active {
+    background: #5733ff;
+    color: #fff;
+  }
+
+  &.completed {
+    background: #10b981;
+    color: #fff;
+  }
+}
+
+.cf7m-step {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.cf7m-steps-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.cf7m-prev-step,
+.cf7m-next-step {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cf7m-prev-step {
+  background: #e5e7eb;
+}
+
+.cf7m-next-step {
+  background: #5733ff;
+  color: #fff;
+}
+
+.dcs-star-rating {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.dcs-star {
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.15s;
+
+  &:hover,
+  &.active {
+    color: #ffc107;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.dcs-range-slider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf7m-range-input {
+  flex: 1;
+  height: 8px;
+  -webkit-appearance: none;
+  background: #e5e7eb;
+  border-radius: 4px;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #5733ff;
+    cursor: pointer;
+  }
+}
+
+.dcs-range-value {
+  min-width: 50px;
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  text-align: center;
+}

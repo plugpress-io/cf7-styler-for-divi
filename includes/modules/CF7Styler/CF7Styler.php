@@ -3,7 +3,7 @@
 namespace CF7_Mate\Modules\CF7Styler;
 
 if (!defined('ABSPATH')) {
-    die('Direct access forbidden.');
+    exit;
 }
 
 require_once ABSPATH . 'wp-content/themes/Divi/includes/builder-5/server/Framework/DependencyManagement/Interfaces/DependencyInterface.php';
@@ -12,17 +12,6 @@ use ET\Builder\Framework\DependencyManagement\Interfaces\DependencyInterface;
 
 class CF7Styler implements DependencyInterface
 {
-    /**
-     * Get a responsive attr value from Divi 5 attrs.
-     *
-     * Expected shape:
-     * $attrs['cf7']['advanced']['formBg']['desktop']['value']
-     *
-     * @param array  $attrs
-     * @param array  $path        Key path, e.g. ['cf7','advanced','formBg']
-     * @param string $breakpoint  desktop|tablet|phone
-     * @return string
-     */
     private static function get_attr_value(array $attrs, array $path, string $breakpoint = 'desktop'): string
     {
         $node = $attrs;
@@ -48,65 +37,42 @@ class CF7Styler implements DependencyInterface
         return '';
     }
 
-    /**
-     * Basic CSS color sanitization (supports hex, rgb/rgba, hsl/hsla, transparent, currentColor, inherit, var()).
-     */
     private static function sanitize_css_color(string $value): string
     {
         $value = trim(wp_strip_all_tags($value));
         if ($value === '') {
             return '';
         }
-
-        // Allow CSS variables.
         if (preg_match('/^var\(--[A-Za-z0-9\-_]+\)$/', $value)) {
             return $value;
         }
-
-        // Allow common keywords.
-        $keywords = ['transparent', 'currentColor', 'inherit', 'initial', 'unset'];
-        if (in_array($value, $keywords, true)) {
+        if (in_array($value, ['transparent', 'currentColor', 'inherit', 'initial', 'unset'], true)) {
             return $value;
         }
-
-        // Hex (3/4/6/8).
         if (preg_match('/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/', $value)) {
             return $value;
         }
-
-        // rgb/rgba/hsl/hsla.
         if (preg_match('/^(rgb|rgba|hsl|hsla)\([0-9,\s.%]+\)$/', $value)) {
             return $value;
         }
-
         return '';
     }
 
-    /**
-     * Basic CSS length sanitization (supports px, em, rem, %, vh, vw, vmin, vmax, ch, ex and zero).
-     */
     private static function sanitize_css_length(string $value): string
     {
         $value = trim(wp_strip_all_tags($value));
-        if ($value === '') {
-            return '';
-        }
-        if ($value === '0' || $value === '0px') {
-            return '0';
+        if ($value === '' || $value === '0' || $value === '0px') {
+            return $value === '' ? '' : '0';
         }
         if (preg_match('/^[0-9.]+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex)$/', $value)) {
             return $value;
         }
-        // Some controls may return "initial".
         if (in_array($value, ['initial', 'inherit', 'unset'], true)) {
             return $value;
         }
         return '';
     }
 
-    /**
-     * Convert Divi padding format "t|r|b|l" into "t r b l".
-     */
     private static function padding_pipe_to_css(string $value): string
     {
         $value = trim((string) $value);
@@ -143,49 +109,34 @@ class CF7Styler implements DependencyInterface
         );
     }
 
-    /**
-     * Render callback for the module.
-     *
-     * @since 3.0.0
-     */
     public static function render_callback($attrs)
     {
         $attrs = is_array($attrs) ? $attrs : [];
-
-        // Unique scope for per-module CSS (prevents cross-module bleed).
         $scope_id = function_exists('wp_unique_id') ? wp_unique_id('dcs-cf7-styler-') : ('dcs-cf7-styler-' . uniqid());
 
-        // Get form ID from attributes (new structure: cf7.advanced.formId)
         $form_id = self::get_attr_value($attrs, ['cf7', 'advanced', 'formId'], 'desktop');
         if ($form_id === '') {
             $form_id = '0';
         }
 
-        // Get header settings
         $use_form_header = self::get_attr_value($attrs, ['cf7', 'advanced', 'useFormHeader'], 'desktop') === 'on';
-        $header_title    = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderTitle'], 'desktop');
-        $header_text     = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderText'], 'desktop');
-
-        // Header media options (parity with Divi 4).
-        $use_icon        = self::get_attr_value($attrs, ['cf7', 'advanced', 'useIcon'], 'desktop') === 'on';
-        $header_image    = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerImage'], 'desktop');
-        $header_icon     = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerIcon'], 'desktop');
-
-        // Button alignment & custom radio/checkbox styles – mirror Divi 4 behavior.
-        $button_alignment         = self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonAlignment'], 'desktop') ?: 'left';
+        $header_title = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderTitle'], 'desktop');
+        $header_text = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderText'], 'desktop');
+        $use_icon = self::get_attr_value($attrs, ['cf7', 'advanced', 'useIcon'], 'desktop') === 'on';
+        $header_image = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerImage'], 'desktop');
+        $header_icon = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerIcon'], 'desktop');
+        $button_alignment = self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonAlignment'], 'desktop') ?: 'left';
         $use_form_button_fullwide = self::get_attr_value($attrs, ['cf7', 'advanced', 'useFormButtonFullwidth'], 'desktop') ?: 'off';
-        $cr_custom_styles         = self::get_attr_value($attrs, ['cf7', 'advanced', 'crCustomStyles'], 'desktop') ?: 'off';
+        $cr_custom_styles = self::get_attr_value($attrs, ['cf7', 'advanced', 'crCustomStyles'], 'desktop') ?: 'off';
 
-        $button_class    = 'on' !== $use_form_button_fullwide ? $button_alignment : 'fullwidth';
+        $button_class = 'on' !== $use_form_button_fullwide ? $button_alignment : 'fullwidth';
         $cr_custom_class = 'on' === $cr_custom_styles ? 'dipe-cf7-cr dcs-cf7-cr' : '';
 
-        // Build header HTML (parity with Divi 4 markup, plus dcs-* classes).
         $form_header = '';
         if ($use_form_header && (! empty($header_title) || ! empty($header_text))) {
             $media_html = '';
 
             if ($use_icon && $header_icon !== '') {
-                // Divi 4 uses et_pb_process_font_icon; keep it when available.
                 $icon_processed = function_exists('et_pb_process_font_icon') ? et_pb_process_font_icon($header_icon) : $header_icon;
                 $icon_processed = esc_html($icon_processed);
 
@@ -229,18 +180,14 @@ class CF7Styler implements DependencyInterface
             );
         }
 
-        // Build form HTML or placeholder.
         if ($form_id === '0' || empty($form_id)) {
             $form_html = '<p class="dcs-cf7-styler__placeholder">' . esc_html__('Please select a Contact Form 7 form.', 'cf7-styler-for-divi') . '</p>';
         } else {
             $form_html = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', esc_attr($form_id)));
         }
 
-        // Build scoped CSS (mirrors Divi 4 styling behavior for the migrated options).
         $css = '';
-
-        // Header styles.
-        $form_header_bg         = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderBg'], 'desktop'));
+        $form_header_bg = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderBg'], 'desktop'));
         $form_header_img_bg     = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderImgBg'], 'desktop'));
         $form_header_icon_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderIconColor'], 'desktop'));
         $form_header_bottom     = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderBottom'], 'desktop'));
@@ -262,8 +209,7 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-form-header-icon span{color:{$form_header_icon_color};}";
         }
 
-        // Form wrapper styles.
-        $form_bg      = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formBg'], 'desktop'));
+        $form_bg = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formBg'], 'desktop'));
         $form_padding = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'formPadding'], 'desktop'));
         if ($form_bg !== '') {
             $css .= "#{$scope_id} .dipe-cf7-styler{background-color:{$form_bg};}";
@@ -272,8 +218,7 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-cf7-styler{padding:{$form_padding};}";
         }
 
-        // Field styles (background, padding, spacing, active border).
-        $field_bg       = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formBackgroundColor'], 'desktop'));
+        $field_bg = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formBackgroundColor'], 'desktop'));
         $field_active   = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldActiveColor'], 'desktop'));
         $field_height   = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldHeight'], 'desktop'));
         $field_padding  = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldPadding'], 'desktop'));
@@ -300,7 +245,6 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit){margin-top:{$label_spacing} !important;}";
         }
 
-        // Radio/checkbox custom styles.
         if ($cr_custom_styles === 'on') {
             $cr_size        = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'crSize'], 'desktop'));
             $cr_border_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'crBorderSize'], 'desktop'));
@@ -330,8 +274,7 @@ class CF7Styler implements DependencyInterface
             }
         }
 
-        // Message styles.
-        $msg_padding       = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessagePadding'], 'desktop'));
+        $msg_padding = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessagePadding'], 'desktop'));
         $msg_margin_top    = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageMarginTop'], 'desktop'));
         $msg_align         = self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageAlignment'], 'desktop') ?: 'left';
         $msg_color         = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageColor'], 'desktop'));
@@ -379,8 +322,7 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} span.wpcf7-not-valid-tip{margin-top:{$msg_margin_top} !important;}";
         }
 
-        // Field border styles.
-        $field_border_color  = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderColor'], 'desktop'));
+        $field_border_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderColor'], 'desktop'));
         $field_border_width  = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderWidth'], 'desktop'));
         $field_border_radius = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldBorderRadius'], 'desktop'));
         $field_text_color    = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formFieldTextColor'], 'desktop'));
@@ -398,14 +340,12 @@ class CF7Styler implements DependencyInterface
             $css .= "{$field_selector}{color:{$field_text_color} !important;}";
         }
 
-        // Label color.
         $label_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'formLabelColor'], 'desktop'));
         if ($label_color !== '') {
             $css .= "#{$scope_id} .dipe-cf7 label,#{$scope_id} .dcs-cf7-styler label{color:{$label_color} !important;}";
         }
 
-        // Button styles.
-        $button_bg           = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBg'], 'desktop'));
+        $button_bg = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBg'], 'desktop'));
         $button_color        = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonColor'], 'desktop'));
         $button_padding      = self::padding_pipe_to_css(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonPadding'], 'desktop'));
         $button_border_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonBorderColor'], 'desktop'));
@@ -436,9 +376,6 @@ class CF7Styler implements DependencyInterface
             $css .= "{$button_selector}{width:100% !important;}";
         }
 
-        // Wrap output to mirror Divi 4 structure, but with both old and new prefixes:
-        // - dipe-cf7*, dipe-cf7-styler (backwards-compatible with existing CSS)
-        // - dcs-cf7*,  dcs-cf7-styler (new, clearer prefix for Divi 5)
         $container_classes = sprintf(
             'dipe-cf7-container dipe-cf7-button-%1$s dcs-cf7-container dcs-cf7-button-%1$s',
             esc_attr($button_class)

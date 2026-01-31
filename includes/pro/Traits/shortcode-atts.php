@@ -1,6 +1,6 @@
 <?php
 /**
- * Parse shortcode-style attributes from text (e.g. [step title:"Step 1"]).
+ * Parse shortcode-style attributes (e.g. title:"Step 1" gap:16).
  *
  * @package CF7_Mate\Pro\Traits
  * @since 3.0.0
@@ -14,12 +14,6 @@ if (!defined('ABSPATH')) {
 
 trait Shortcode_Atts_Trait
 {
-    /**
-     * Parse attribute string into associative array.
-     *
-     * @param string $text e.g. 'title:"Step 1" gap:16'
-     * @return array<string, string>
-     */
     protected function parse_atts(string $text): array
     {
         $atts = [];

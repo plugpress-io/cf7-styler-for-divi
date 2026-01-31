@@ -14,23 +14,40 @@ class Icon extends Pro_Feature_Base
     use Shortcode_Atts_Trait;
     use Singleton;
 
-    /** @inheritdoc */
     protected function __construct()
     {
         parent::__construct();
     }
 
-    /** @inheritdoc */
     protected function init()
     {
         add_filter('wpcf7_form_elements', [$this, 'process_shortcodes'], 10, 1);
         add_action('wpcf7_admin_init', [$this, 'add_tag_generators'], 25);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_dashicons']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_icon_tag_admin_script'], 20);
     }
 
-    /**
-     * Ensure Dashicons are enqueued only on frontend pages that have a CF7 form.
-     */
+    public function enqueue_icon_tag_admin_script($hook)
+    {
+        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+        if (!$screen || strpos($screen->id ?? '', 'wpcf7') === false) {
+            return;
+        }
+        wp_enqueue_style('dashicons');
+        wp_enqueue_media();
+        $path = CF7M_PLUGIN_PATH . 'assets/js/cf7m-icon-tag-admin.js';
+        if (!file_exists($path)) {
+            return;
+        }
+        wp_enqueue_script(
+            'cf7m-icon-tag-admin',
+            CF7M_PLUGIN_URL . 'assets/js/cf7m-icon-tag-admin.js',
+            ['jquery'],
+            defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0',
+            true
+        );
+    }
+
     public function enqueue_dashicons()
     {
         global $post;
@@ -40,12 +57,6 @@ class Icon extends Pro_Feature_Base
         wp_enqueue_style('dashicons');
     }
 
-    /**
-     * Process [cf7m-icon] shortcode.
-     *
-     * @param string $form Form content.
-     * @return string
-     */
     public function process_shortcodes($form)
     {
         if (strpos($form, '[cf7m-icon') === false) {
@@ -59,25 +70,52 @@ class Icon extends Pro_Feature_Base
         );
     }
 
-    /**
-     * @param array $matches
-     * @return string
-     */
     public function render_icon($matches)
     {
         $atts = $this->parse_atts(isset($matches[1]) ? $matches[1] : '');
-        $name = isset($atts['name']) ? sanitize_text_field($atts['name']) : 'dashicons-star-filled';
         $size = isset($atts['size']) ? absint($atts['size']) : 24;
         if ($size < 8 || $size > 96) {
             $size = 24;
         }
-        // Allow only dashicons-* for security.
+        $size_attr = sprintf('width="%d" height="%d"', $size, $size);
+        $src = isset($atts['src']) ? esc_url($atts['src']) : '';
+        if ($src !== '') {
+            $style = sprintf('width:%dpx;height:%dpx;display:inline-block;vertical-align:middle;', $size, $size);
+            return sprintf(
+                '<span class="cf7m-icon cf7m-icon--img"><img src="%s" alt="" class="cf7m-icon-img" %s style="%s" loading="lazy" /></span>',
+                $src,
+                $size_attr,
+                esc_attr($style)
+            );
+        }
+
+        $name = isset($atts['name']) ? sanitize_text_field($atts['name']) : 'dashicons-star-filled';
         if (strpos($name, 'dashicons-') !== 0) {
             $name = 'dashicons-star-filled';
         }
         $class = 'cf7m-icon dashicons ' . esc_attr($name);
         $style = sprintf('font-size: %dpx; width: %dpx; height: %dpx;', $size, $size, $size);
         return sprintf('<span class="%s" style="%s" aria-hidden="true"></span>', esc_attr($class), esc_attr($style));
+    }
+
+    private static function get_browser_icons()
+    {
+        return [
+            'dashicons-email', 'dashicons-email-alt', 'dashicons-phone', 'dashicons-location',
+            'dashicons-location-alt', 'dashicons-calendar', 'dashicons-calendar-alt', 'dashicons-clock',
+            'dashicons-admin-users', 'dashicons-id', 'dashicons-id-alt', 'dashicons-admin-generic',
+            'dashicons-star-filled', 'dashicons-heart', 'dashicons-yes', 'dashicons-yes-alt',
+            'dashicons-no', 'dashicons-no-alt', 'dashicons-plus', 'dashicons-minus', 'dashicons-dismiss',
+            'dashicons-arrow-right', 'dashicons-arrow-left', 'dashicons-arrow-up', 'dashicons-arrow-down',
+            'dashicons-external-link', 'dashicons-admin-links', 'dashicons-format-chat', 'dashicons-cart',
+            'dashicons-money-alt', 'dashicons-lock', 'dashicons-unlock', 'dashicons-visibility',
+            'dashicons-marker', 'dashicons-camera', 'dashicons-format-image', 'dashicons-media-default',
+            'dashicons-admin-home', 'dashicons-building', 'dashicons-book', 'dashicons-book-alt',
+            'dashicons-portfolio', 'dashicons-awards', 'dashicons-tag', 'dashicons-category',
+            'dashicons-admin-comments', 'dashicons-share', 'dashicons-facebook', 'dashicons-twitter',
+            'dashicons-instagram', 'dashicons-format-quote', 'dashicons-info', 'dashicons-warning',
+            'dashicons-search', 'dashicons-privacy', 'dashicons-thumbs-up', 'dashicons-thumbs-down',
+        ];
     }
 
     public function add_tag_generators()
@@ -92,22 +130,43 @@ class Icon extends Pro_Feature_Base
     /** @param \WPCF7_ContactForm $contact_form */
     public function tag_generator($contact_form, $options = '')
     {
+        $icons = self::get_browser_icons();
         ?>
-        <div class="cf7m-tag-panel">
+        <div class="cf7m-tag-panel cf7m-icon-tag-panel">
         <div class="control-box">
             <fieldset>
                 <legend><?php esc_html_e('Icon', 'cf7-styler-for-divi'); ?></legend>
                 <table class="form-table"><tbody>
                     <tr>
-                        <th scope="row"><label><?php esc_html_e('Dashicon name', 'cf7-styler-for-divi'); ?></label></th>
+                        <th scope="row"><?php esc_html_e('Icon type', 'cf7-styler-for-divi'); ?></th>
                         <td>
-                            <input type="text" name="name" class="oneline" value="dashicons-star-filled" placeholder="dashicons-star-filled" />
-                            <p class="description"><?php esc_html_e('Use Dashicons class (e.g. dashicons-email, dashicons-phone)', 'cf7-styler-for-divi'); ?></p>
+                            <label><input type="radio" name="cf7m_icon_type" class="cf7m-icon-type" value="dashicon" checked /> <?php esc_html_e('Dashicon (browse below)', 'cf7-styler-for-divi'); ?></label>
+                            <br />
+                            <label><input type="radio" name="cf7m_icon_type" class="cf7m-icon-type" value="image" /> <?php esc_html_e('Custom image (upload)', 'cf7-styler-for-divi'); ?></label>
+                        </td>
+                    </tr>
+                    <tr class="cf7m-icon-row-dashicon">
+                        <th scope="row"><label><?php esc_html_e('Icon browser', 'cf7-styler-for-divi'); ?></label></th>
+                        <td>
+                            <div class="cf7m-icon-browser" role="listbox" aria-label="<?php esc_attr_e('Choose an icon', 'cf7-styler-for-divi'); ?>">
+                                <?php foreach ($icons as $icon_class) : ?>
+                                    <span class="cf7m-icon-picker-item dashicons <?php echo esc_attr($icon_class); ?>" data-name="<?php echo esc_attr($icon_class); ?>" role="option" tabindex="0" title="<?php echo esc_attr($icon_class); ?>"></span>
+                                <?php endforeach; ?>
+                            </div>
+                            <p class="description"><?php esc_html_e('Click an icon to select it.', 'cf7-styler-for-divi'); ?></p>
+                            <input type="text" name="name" class="oneline cf7m-icon-name-input" value="dashicons-star-filled" placeholder="dashicons-star-filled" style="margin-top:6px; max-width:240px;" />
+                        </td>
+                    </tr>
+                    <tr class="cf7m-icon-row-image" style="display:none;">
+                        <th scope="row"><label><?php esc_html_e('Image URL', 'cf7-styler-for-divi'); ?></label></th>
+                        <td>
+                            <input type="url" name="src" class="oneline cf7m-icon-src-input" placeholder="https://" style="max-width:240px;" />
+                            <button type="button" class="button cf7m-icon-upload-trigger" style="margin-left:6px;"><?php esc_html_e('Select Image', 'cf7-styler-for-divi'); ?></button>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label><?php esc_html_e('Size (px)', 'cf7-styler-for-divi'); ?></label></th>
-                        <td><input type="number" name="size" class="oneline" value="24" min="8" max="96" /></td>
+                        <td><input type="number" name="size" class="oneline cf7m-icon-size-input" value="24" min="8" max="96" /></td>
                     </tr>
                 </tbody></table>
             </fieldset>

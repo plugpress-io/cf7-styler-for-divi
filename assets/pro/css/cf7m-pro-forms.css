@@ -1,0 +1,196 @@
+/**
+ * CF7 Mate Pro – form field styles (multi-column, multi-step, star-rating, range-slider).
+ * Premium-only. Enqueued on frontend when a CF7 form uses these fields.
+ *
+ * @package CF7_Mate
+ * @since 3.0.0
+ */
+
+/* Multi-column [cf7m-row] [cf7m-col] */
+.cf7m-pro-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * var(--cf7m-row-gap, 16px) / 2);
+  margin-right: calc(-1 * var(--cf7m-row-gap, 16px) / 2);
+}
+
+.cf7m-pro-col {
+  box-sizing: border-box;
+  flex: 0 0 var(--cf7m-col-width, 50%);
+  max-width: var(--cf7m-col-width, 50%);
+  padding-left: calc(var(--cf7m-row-gap, 16px) / 2);
+  padding-right: calc(var(--cf7m-row-gap, 16px) / 2);
+}
+
+/* Multi-step [cf7m-step] */
+.cf7m-steps-progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.cf7m-progress-step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.cf7m-progress-step.active {
+  background: #5733ff;
+  color: #fff;
+}
+
+.cf7m-progress-step.completed {
+  background: #10b981;
+  color: #fff;
+}
+
+.cf7m-step {
+  display: none;
+}
+
+.cf7m-step.active {
+  display: block;
+}
+
+.cf7m-steps-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.cf7m-prev-step,
+.cf7m-next-step {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cf7m-prev-step {
+  background: #e5e7eb;
+}
+
+.cf7m-next-step {
+  background: #5733ff;
+  color: #fff;
+}
+
+/* Star rating [cf7m-star] – new implementation */
+.cf7m-star-rating {
+  --cf7m-star-size: 28px;
+  --cf7m-star-off: #e5e7eb;
+  --cf7m-star-on: #f59e0b;
+  --cf7m-star-hover: #fbbf24;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.cf7m-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf7m-star-size);
+  height: var(--cf7m-star-size);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--cf7m-star-off);
+  transition: color 0.2s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cf7m-star:hover {
+  color: var(--cf7m-star-hover);
+  transform: scale(1.1);
+}
+
+.cf7m-star:focus {
+  outline: 2px solid var(--cf7m-star-on);
+  outline-offset: 2px;
+}
+
+.cf7m-star.cf7m-star--on,
+.cf7m-star-rating:hover .cf7m-star.cf7m-star--on {
+  color: var(--cf7m-star-on);
+}
+
+.cf7m-star-svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Legacy class support */
+.dcs-star-rating {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.dcs-star {
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.15s;
+}
+
+.dcs-star:hover,
+.dcs-star.active {
+  color: #ffc107;
+}
+
+.dcs-star svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Range slider [cf7m-range] */
+.dcs-range-slider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf7m-range-input {
+  flex: 1;
+  height: 8px;
+  -webkit-appearance: none;
+  background: var(--cf7m-range-track, #e5e7eb);
+  border-radius: 4px;
+}
+
+.cf7m-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--cf7m-range-thumb, #5733ff);
+  cursor: pointer;
+}
+
+.cf7m-range-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--cf7m-range-thumb, #5733ff);
+  cursor: pointer;
+  border: none;
+}
+
+.dcs-range-value {
+  min-width: 50px;
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  text-align: center;
+}

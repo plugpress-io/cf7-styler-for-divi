@@ -44,12 +44,12 @@ class Multi_Column extends Pro_Feature_Base
             return;
         }
 
-        $css = '.cf7m-pro-row{display:flex;flex-wrap:wrap;margin-left:calc(-1 * var(--cf7m-row-gap, 16px) / 2);margin-right:calc(-1 * var(--cf7m-row-gap, 16px) / 2)}'
-            . '.cf7m-pro-col{box-sizing:border-box;flex:0 0 var(--cf7m-col-width, 50%);max-width:var(--cf7m-col-width, 50%);padding-left:calc(var(--cf7m-row-gap, 16px) / 2);padding-right:calc(var(--cf7m-row-gap, 16px) / 2)}';
-
-        wp_register_style('cf7m-multi-column', false);
-        wp_enqueue_style('cf7m-multi-column');
-        wp_add_inline_style('cf7m-multi-column', $css);
+        wp_enqueue_style(
+            'cf7m-pro-forms',
+            CF7M_PLUGIN_URL . 'assets/pro/css/cf7m-pro-forms.css',
+            [],
+            defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0'
+        );
     }
 
     /**

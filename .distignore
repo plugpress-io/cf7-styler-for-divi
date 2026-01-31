@@ -40,3 +40,4 @@ cf7-mate-pro.php
 # Premium-only features (excluded from free WordPress.org version)
 # Freemius auto-strips these via @fs_premium_only directive
 /includes/pro
+/assets/pro

@@ -1,9 +1,6 @@
 <?php
 /**
- * Premium Features Loader.
- *
- * Loads base classes and traits, then feature modules by config.
- * This file is excluded from the free version via @fs_premium_only.
+ * Pro features loader. Excluded from free via @fs_premium_only.
  *
  * @package CF7_Mate
  * @since 3.0.0
@@ -15,15 +12,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-/**
- * Premium Features Manager.
- */
 class Premium_Loader
 {
-    /** @var self|null */
     private static $instance = null;
 
-    /** @var string[] Map feature_key => default (true/false) */
     private static $defaults = [
         'multi_column'     => true,
         'multi_step'        => true,
@@ -36,7 +28,6 @@ class Premium_Loader
         'icon'              => true,
     ];
 
-    /** @var array<string, array{file: string, class: string}> Map feature_key => [file, class] */
     private static $features = [
         'multi_column'    => [
             'file'  => 'multi-column/module.php',
@@ -76,9 +67,6 @@ class Premium_Loader
         ],
     ];
 
-    /**
-     * @return self
-     */
     public static function instance()
     {
         if (null === self::$instance) {
@@ -97,9 +85,6 @@ class Premium_Loader
         $this->load_features();
     }
 
-    /**
-     * Load base classes and traits (required by feature modules).
-     */
     private function load_bootstrap()
     {
         $base = CF7M_PLUGIN_PATH . 'includes/pro/';
@@ -109,6 +94,7 @@ class Premium_Loader
             'Traits/shortcode-atts.php',
             'feature-base.php',
             'form-tag-feature.php',
+            'cf7-editor-styles-panel.php',
         ];
 
         foreach ($files as $file) {
@@ -117,11 +103,12 @@ class Premium_Loader
                 require_once $path;
             }
         }
+
+        if (class_exists(\CF7_Mate\Pro\CF7_Editor_Styles_Panel::class)) {
+            \CF7_Mate\Pro\CF7_Editor_Styles_Panel::register();
+        }
     }
 
-    /**
-     * Load enabled feature modules.
-     */
     private function load_features()
     {
         $saved    = get_option('cf7m_features', []);
@@ -146,12 +133,6 @@ class Premium_Loader
         }
     }
 
-    /**
-     * Check if a premium feature is enabled.
-     *
-     * @param string $feature Feature key.
-     * @return bool
-     */
     public static function is_feature_enabled($feature)
     {
         if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
@@ -164,11 +145,6 @@ class Premium_Loader
         return isset($features[$feature]) ? (bool) $features[$feature] : false;
     }
 
-    /**
-     * Get all premium feature states.
-     *
-     * @return array<string, bool>
-     */
     public static function get_all_features()
     {
         $saved = get_option('cf7m_features', []);

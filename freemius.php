@@ -94,15 +94,21 @@ function cf7m_dev_can_use_premium()
 
 /**
  * Helper function to check if premium code can be used.
- * True when: valid license/trial OR dev bypass (CF7M_DEV_PRO_TEST) for local testing.
+ * True when: valid license/trial, dev bypass, or self-hosted build (pro files present).
  *
  * @since 3.0.0
- * @return bool True if user has valid license, trial, or dev test flag.
+ * @return bool True if user has valid license, trial, or dev/self-hosted flag.
  */
 function cf7m_can_use_premium()
 {
     if (cf7m_dev_can_use_premium()) {
         return true;
+    }
+    if (defined('CF7M_SELF_HOSTED_ACTIVE') && 'true' === CF7M_SELF_HOSTED_ACTIVE) {
+        $pro_loader = defined('CF7M_PLUGIN_PATH') ? CF7M_PLUGIN_PATH . 'includes/pro/loader.php' : '';
+        if ($pro_loader && file_exists($pro_loader)) {
+            return true;
+        }
     }
     if (!function_exists('cf7m_fs')) {
         return false;

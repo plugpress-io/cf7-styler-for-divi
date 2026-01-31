@@ -60,15 +60,41 @@ class Heading extends Pro_Feature_Base
      */
     public function render_heading($matches)
     {
-        $atts = $this->parse_atts(isset($matches[1]) ? $matches[1] : '');
+        $atts   = $this->parse_atts(isset($matches[1]) ? $matches[1] : '');
         $content = isset($matches[2]) ? trim($matches[2]) : '';
-        $level = isset($atts['level']) ? absint($atts['level']) : 3;
+        $level  = isset($atts['level']) ? absint($atts['level']) : 3;
         if ($level < 1 || $level > 6) {
             $level = 3;
         }
-        $tag = 'h' . $level;
+        $tag   = 'h' . $level;
         $class = 'cf7m-heading';
-        return sprintf('<%1$s class="%2$s">%3$s</%1$s>', $tag, esc_attr($class), wp_kses_post($content));
+
+        $style_parts = [];
+        if (!empty($atts['font_size'])) {
+            $style_parts[] = 'font-size:' . esc_attr(wp_strip_all_tags(trim($atts['font_size'])));
+        }
+        if (!empty($atts['font_family'])) {
+            $style_parts[] = 'font-family:' . esc_attr(wp_strip_all_tags($atts['font_family']));
+        }
+        if (!empty($atts['text_color']) && $this->is_valid_color($atts['text_color'])) {
+            $style_parts[] = 'color:' . esc_attr(trim($atts['text_color']));
+        }
+        $style_attr = !empty($style_parts) ? ' style="' . implode(';', $style_parts) . '"' : '';
+
+        return sprintf('<%1$s class="%2$s"%3$s>%4$s</%1$s>', $tag, esc_attr($class), $style_attr, wp_kses_post($content));
+    }
+
+    /**
+     * Check if value is a valid CSS color (hex or rgb/rgba).
+     *
+     * @param string $value Raw value.
+     * @return bool
+     */
+    private function is_valid_color($value)
+    {
+        $value = trim($value);
+        return (bool) preg_match('/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/', $value)
+            || preg_match('/^rgb\(|^rgba\(/', $value);
     }
 
     public function add_tag_generators()
@@ -103,6 +129,18 @@ class Heading extends Pro_Feature_Base
                         <tr>
                             <th scope="row"><label><?php esc_html_e('Text', 'cf7-styler-for-divi'); ?></label></th>
                             <td><input type="text" name="content" class="oneline" placeholder="<?php esc_attr_e('Your heading text', 'cf7-styler-for-divi'); ?>" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf7m-heading-font-size"><?php esc_html_e('Font size', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="text" id="cf7m-heading-font-size" name="font_size" class="oneline option" placeholder="e.g. 24px" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf7m-heading-font-family"><?php esc_html_e('Font family', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="text" id="cf7m-heading-font-family" name="font_family" class="oneline option" placeholder="e.g. Arial, sans-serif" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf7m-heading-text-color"><?php esc_html_e('Text color', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="text" id="cf7m-heading-text-color" name="text_color" class="oneline option cf7m-color-input" placeholder="#333" /></td>
                         </tr>
                     </tbody>
                 </table>

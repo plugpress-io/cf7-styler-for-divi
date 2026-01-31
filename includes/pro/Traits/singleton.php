@@ -14,14 +14,8 @@ if (!defined('ABSPATH')) {
 
 trait Singleton
 {
-    /** @var static|null */
     private static $instance = null;
 
-    /**
-     * Get the singleton instance.
-     *
-     * @return static
-     */
     public static function instance()
     {
         if (null === self::$instance) {

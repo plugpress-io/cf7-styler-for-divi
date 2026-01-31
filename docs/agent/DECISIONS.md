@@ -34,6 +34,20 @@
 
 ---
 
+### CF7 Editor Panel: Pro Styling Metabox
+
+**Decision:** Add a "CF7 Styler" tab to the Contact Form 7 form editor with custom fields for Pro styling defaults (star color, range track/thumb color, heading font size/family/text color). Store as post meta; apply on frontend via `wpcf7_form_elements` and `wpcf7_form_class_attr`.
+
+**Implementation (2026-01-31):**
+- **File:** `includes/pro/cf7-editor-styles-panel.php` – `CF7_Editor_Styles_Panel` class
+- **Hooks:** `wpcf7_editor_panels` (add panel), `wpcf7_save_contact_form` + `save_post_wpcf7_contact_form` (save meta), `wpcf7_form_class_attr` (add class), `wpcf7_form_elements` (inject `<style>`)
+- **Meta key:** `cf7m_pro_styles` (array of field values)
+- Per-tag overrides: star rating, range slider, and heading tag generators have optional style fields (star_color, track_color, thumb_color, font_size, font_family, text_color) that override form-level defaults when set in the shortcode.
+
+**Status:** Implemented
+
+---
+
 ### PHP namespace: CF7_Mate
 
 **Decision:** All plugin PHP code uses namespace `CF7_Mate` (and sub-namespaces: `CF7_Mate\Pro`, `CF7_Mate\Features\*`, `CF7_Mate\Modules\*`, `CF7_Mate\API`).

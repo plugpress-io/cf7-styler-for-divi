@@ -1,44 +1,21 @@
-/**
- * CF7 Styler Module - Style Components.
- *
- * Generates CSS for both Visual Builder and frontend rendering.
- * This must match the PHP render_callback CSS generation for VB/frontend parity.
- *
- * @since 3.0.0
- */
-
 import React from 'react';
 import { StyleContainer } from '@divi/module';
 
-/**
- * Helper to get attribute value from nested structure.
- * Handles both Divi 4 and Divi 5 attribute formats.
- * @param {object} attrs - Attributes object
- * @param {string} path - Dot-separated path like 'cf7.advanced.formBg'
- * @param {string} breakpoint - Breakpoint (desktop, tablet, phone)
- * @returns {string|object} Value or empty string
- */
 const getAttrValue = (attrs, path, breakpoint = 'desktop') => {
   const parts = path.split('.');
   let node = attrs;
-  
   for (const part of parts) {
     if (!node || typeof node !== 'object' || !(part in node)) {
       return '';
     }
     node = node[part];
   }
-  
-  // Handle case where node is the value directly
   if (typeof node === 'string' || typeof node === 'number') {
     return node;
   }
-  
   if (!node || typeof node !== 'object') {
     return '';
   }
-  
-  // Try to get value from breakpoint structure
   if (node[breakpoint]) {
     const bpValue = node[breakpoint];
     if (typeof bpValue === 'object' && 'value' in bpValue) {
@@ -50,13 +27,9 @@ const getAttrValue = (attrs, path, breakpoint = 'desktop') => {
     }
     return bpValue ?? '';
   }
-  
-  // Return the node itself if it's a value object (for padding/margin objects)
   if ('top' in node || 'right' in node || 'bottom' in node || 'left' in node) {
     return node;
   }
-  
-  // Try 'value' property directly
   if ('value' in node) {
     const value = node.value;
     if (typeof value === 'boolean') {
@@ -64,23 +37,11 @@ const getAttrValue = (attrs, path, breakpoint = 'desktop') => {
     }
     return value ?? '';
   }
-  
   return '';
 };
 
-/**
- * Convert Divi padding format to CSS.
- * Handles multiple formats:
- * - "t|r|b|l" (Divi 4 format)
- * - "10px 20px 10px 20px" (already CSS)
- * - Object { top, right, bottom, left }
- * @param {string|object} value - Padding value in Divi format
- * @returns {string} CSS padding value
- */
 const paddingToCss = (value) => {
   if (!value) return '';
-  
-  // Handle object format { top, right, bottom, left }
   if (typeof value === 'object' && value !== null) {
     const t = value.top || '0px';
     const r = value.right || '0px';
@@ -88,23 +49,15 @@ const paddingToCss = (value) => {
     const l = value.left || '0px';
     return `${t} ${r} ${b} ${l}`;
   }
-  
   if (typeof value !== 'string') return '';
-  
-  // Handle pipe-separated format "t|r|b|l"
   if (value.includes('|')) {
     const parts = value.split('|').map(p => p.trim() || '0px');
     while (parts.length < 4) parts.push('0px');
     return parts.slice(0, 4).join(' ');
   }
-  
-  // Already in CSS format
   return value;
 };
 
-/**
- * Module's style components.
- */
 const ModuleStyles = ({
   attrs,
   settings,
@@ -114,13 +67,9 @@ const ModuleStyles = ({
   noStyleTag,
   elements,
 }) => {
-  // Generate custom CSS for CF7 styling
   let customCss = '';
-  
-  // Base selector for scoped CSS
   const baseSelector = orderClass;
-  
-  // === FORM CONTAINER STYLES ===
+
   const formBg = getAttrValue(attrs, 'cf7.advanced.formBg');
   const formPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.formPadding'));
   
@@ -130,8 +79,7 @@ const ModuleStyles = ({
   if (formPadding && formPadding !== '0 0 0 0' && formPadding !== '0px 0px 0px 0px') {
     customCss += `${baseSelector} .dcs-cf7-styler,${baseSelector} .dipe-cf7-styler{padding:${formPadding};}`;
   }
-  
-  // === FORM HEADER STYLES ===
+
   const formHeaderBg = getAttrValue(attrs, 'cf7.advanced.formHeaderBg');
   const formHeaderPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.formHeaderPadding'));
   const formHeaderBottom = getAttrValue(attrs, 'cf7.advanced.formHeaderBottom');
@@ -153,8 +101,7 @@ const ModuleStyles = ({
   if (formHeaderIconColor) {
     customCss += `${baseSelector} .dcs-form-header-icon span,${baseSelector} .dipe-form-header-icon span{color:${formHeaderIconColor};}`;
   }
-  
-  // === FORM FIELD STYLES ===
+
   const fieldBg = getAttrValue(attrs, 'cf7.advanced.formBackgroundColor');
   const fieldPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.formFieldPadding'));
   const fieldHeight = getAttrValue(attrs, 'cf7.advanced.formFieldHeight');
@@ -164,8 +111,6 @@ const ModuleStyles = ({
   const fieldBorderWidth = getAttrValue(attrs, 'cf7.advanced.formFieldBorderWidth');
   const fieldBorderRadius = getAttrValue(attrs, 'cf7.advanced.formFieldBorderRadius');
   const fieldTextColor = getAttrValue(attrs, 'cf7.advanced.formFieldTextColor');
-  
-  // Field selectors for both VB preview and frontend
   const fieldSelectors = `${baseSelector} .dcs-cf7-styler input:not([type=submit]),${baseSelector} .dcs-cf7-styler select,${baseSelector} .dcs-cf7-styler textarea,${baseSelector} .dipe-cf7 input:not([type=submit]),${baseSelector} .dipe-cf7 select,${baseSelector} .dipe-cf7 textarea,${baseSelector} .dcs-cf7-form-preview input,${baseSelector} .dcs-cf7-form-preview textarea`;
   
   if (fieldBg) {
@@ -195,8 +140,7 @@ const ModuleStyles = ({
   if (fieldSpacing && fieldSpacing !== '0px' && fieldSpacing !== '0') {
     customCss += `${baseSelector} .dipe-cf7 .wpcf7 form>p,${baseSelector} .dipe-cf7 .wpcf7 form>div,${baseSelector} .dipe-cf7 .wpcf7 form>label,${baseSelector} .dcs-cf7-form-preview__field{margin-bottom:${fieldSpacing} !important;}`;
   }
-  
-  // === LABEL STYLES ===
+
   const labelSpacing = getAttrValue(attrs, 'cf7.advanced.formLabelSpacing');
   const labelColor = getAttrValue(attrs, 'cf7.advanced.formLabelColor');
   
@@ -206,8 +150,7 @@ const ModuleStyles = ({
   if (labelColor) {
     customCss += `${baseSelector} .dipe-cf7 label,${baseSelector} .dcs-cf7-styler label,${baseSelector} .dcs-cf7-form-preview label{color:${labelColor} !important;}`;
   }
-  
-  // === BUTTON STYLES ===
+
   const buttonBg = getAttrValue(attrs, 'cf7.advanced.buttonBg');
   const buttonColor = getAttrValue(attrs, 'cf7.advanced.buttonColor');
   const buttonPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.buttonPadding'));
@@ -244,8 +187,7 @@ const ModuleStyles = ({
     const flexAlign = buttonAlignment === 'center' ? 'center' : 'flex-end';
     customCss += `${baseSelector} .dcs-cf7-form-preview__fields,${baseSelector} .dipe-cf7 p:has(input[type=submit]){display:flex;flex-direction:column;align-items:${flexAlign};}`;
   }
-  
-  // === RADIO/CHECKBOX STYLES ===
+
   const crCustomStyles = getAttrValue(attrs, 'cf7.advanced.crCustomStyles');
   
   if (crCustomStyles === 'on') {
@@ -278,8 +220,7 @@ const ModuleStyles = ({
       customCss += `${baseSelector} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox label,${baseSelector} .dipe-cf7.dipe-cf7-cr .wpcf7-radio label{color:${crLabel} !important;}`;
     }
   }
-  
-  // === MESSAGE STYLES ===
+
   const msgPadding = getAttrValue(attrs, 'cf7.advanced.cf7MessagePadding');
   const msgMarginTop = getAttrValue(attrs, 'cf7.advanced.cf7MessageMarginTop');
   const msgAlign = getAttrValue(attrs, 'cf7.advanced.cf7MessageAlignment');
@@ -330,9 +271,85 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .wpcf7 form .wpcf7-response-output{border-color:${errorBorder} !important;}`;
   }
 
+  const proHeadingFontSize = getAttrValue(attrs, 'cf7.advanced.proHeadingFontSize');
+  const proHeadingFontWeight = getAttrValue(attrs, 'cf7.advanced.proHeadingFontWeight');
+  const proHeadingTextColor = getAttrValue(attrs, 'cf7.advanced.proHeadingTextColor');
+  const proHeadingMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proHeadingMargin'));
+  
+  if (proHeadingFontSize || proHeadingFontWeight || proHeadingTextColor || (proHeadingMargin && proHeadingMargin !== '0px 0px 0px 0px')) {
+    const headingSelector = `${baseSelector} .cf7m-heading`;
+    if (proHeadingFontSize) customCss += `${headingSelector}{font-size:${proHeadingFontSize} !important;}`;
+    if (proHeadingFontWeight) customCss += `${headingSelector}{font-weight:${proHeadingFontWeight} !important;}`;
+    if (proHeadingTextColor) customCss += `${headingSelector}{color:${proHeadingTextColor} !important;}`;
+    if (proHeadingMargin && proHeadingMargin !== '0px 0px 0px 0px') customCss += `${headingSelector}{margin:${proHeadingMargin} !important;}`;
+  }
+
+  const proIconSize = getAttrValue(attrs, 'cf7.advanced.proIconSize');
+  const proIconColor = getAttrValue(attrs, 'cf7.advanced.proIconColor');
+  const proIconMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proIconMargin'));
+  
+  if (proIconSize || proIconColor || (proIconMargin && proIconMargin !== '0px 0px 0px 0px')) {
+    const iconSelector = `${baseSelector} .cf7m-icon`;
+    if (proIconSize) customCss += `${iconSelector}{font-size:${proIconSize} !important;}`;
+    if (proIconColor) customCss += `${iconSelector}{color:${proIconColor} !important;}`;
+    if (proIconMargin && proIconMargin !== '0px 0px 0px 0px') customCss += `${iconSelector}{margin:${proIconMargin} !important;}`;
+  }
+
+  const proImageWidth = getAttrValue(attrs, 'cf7.advanced.proImageWidth');
+  const proImageHeight = getAttrValue(attrs, 'cf7.advanced.proImageHeight');
+  const proImageBorderColor = getAttrValue(attrs, 'cf7.advanced.proImageBorderColor');
+  const proImageBorderWidth = getAttrValue(attrs, 'cf7.advanced.proImageBorderWidth');
+  const proImageBorderRadius = getAttrValue(attrs, 'cf7.advanced.proImageBorderRadius');
+  const proImagePadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proImagePadding'));
+  const proImageMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proImageMargin'));
+  
+  if (proImageWidth || proImageHeight || proImageBorderColor || proImageBorderWidth || proImageBorderRadius || proImagePadding || proImageMargin) {
+    const imageSelector = `${baseSelector} .cf7m-image`;
+    if (proImageWidth) customCss += `${imageSelector}{width:${proImageWidth} !important;}`;
+    if (proImageHeight) customCss += `${imageSelector}{height:${proImageHeight} !important;object-fit:cover;}`;
+    if (proImageBorderColor) customCss += `${imageSelector}{border-color:${proImageBorderColor} !important;}`;
+    if (proImageBorderWidth && proImageBorderWidth !== '0px') customCss += `${imageSelector}{border-width:${proImageBorderWidth} !important;border-style:solid;}`;
+    if (proImageBorderRadius && proImageBorderRadius !== '0px') customCss += `${imageSelector}{border-radius:${proImageBorderRadius} !important;}`;
+    if (proImagePadding && proImagePadding !== '0px 0px 0px 0px') customCss += `${imageSelector}{padding:${proImagePadding} !important;}`;
+    if (proImageMargin && proImageMargin !== '0px 0px 0px 0px') customCss += `${imageSelector}{margin:${proImageMargin} !important;}`;
+  }
+
+  const proRangeTrackColor = getAttrValue(attrs, 'cf7.advanced.proRangeTrackColor');
+  const proRangeThumbColor = getAttrValue(attrs, 'cf7.advanced.proRangeThumbColor');
+  const proRangeHeight = getAttrValue(attrs, 'cf7.advanced.proRangeHeight');
+  const proRangeMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proRangeMargin'));
+  
+  if (proRangeTrackColor || proRangeThumbColor || proRangeHeight || (proRangeMargin && proRangeMargin !== '0px 0px 0px 0px')) {
+    const rangeSelector = `${baseSelector} .cf7m-range-input`;
+    if (proRangeTrackColor) customCss += `${rangeSelector}{background:${proRangeTrackColor} !important;}`;
+    if (proRangeHeight) customCss += `${rangeSelector}{height:${proRangeHeight} !important;}`;
+    if (proRangeThumbColor) {
+      customCss += `${rangeSelector}::-webkit-slider-thumb{background:${proRangeThumbColor} !important;}`;
+      customCss += `${rangeSelector}::-moz-range-thumb{background:${proRangeThumbColor} !important;}`;
+    }
+    if (proRangeMargin && proRangeMargin !== '0px 0px 0px 0px') {
+      customCss += `${baseSelector} .dcs-range-slider{margin:${proRangeMargin} !important;}`;
+    }
+  }
+
+  const proStarColor = getAttrValue(attrs, 'cf7.advanced.proStarColor');
+  const proStarActiveColor = getAttrValue(attrs, 'cf7.advanced.proStarActiveColor');
+  const proStarSize = getAttrValue(attrs, 'cf7.advanced.proStarSize');
+  const proStarMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proStarMargin'));
+  
+  if (proStarColor || proStarActiveColor || proStarSize || (proStarMargin && proStarMargin !== '0px 0px 0px 0px')) {
+    const starSel = `${baseSelector} .cf7m-star-rating .cf7m-star, ${baseSelector} .dcs-star-rating .dcs-star`;
+    const activeSel = `${baseSelector} .cf7m-star-rating .cf7m-star.cf7m-star--on, ${baseSelector} .dcs-star-rating .dcs-star.filled, ${baseSelector} .dcs-star-rating .dcs-star.hover`;
+    if (proStarColor) customCss += `${starSel}{color:${proStarColor} !important;}`;
+    if (proStarActiveColor) customCss += `${activeSel}{color:${proStarActiveColor} !important;}`;
+    if (proStarSize) customCss += `${starSel}{font-size:${proStarSize} !important;} ${baseSelector} .cf7m-star-rating .cf7m-star-svg{width:1em;height:1em;} ${baseSelector} .cf7m-star-rating{--cf7m-star-size:1em;}`;
+    if (proStarMargin && proStarMargin !== '0px 0px 0px 0px') {
+      customCss += `${baseSelector} .cf7m-star-rating, ${baseSelector} .dcs-star-rating{margin:${proStarMargin} !important;}`;
+    }
+  }
+
   return (
     <StyleContainer mode={mode} state={state} noStyleTag={noStyleTag}>
-      {/* Module container styles (Divi built-in decoration) */}
       {elements.style({
         attrName: 'module',
         styleProps: {
@@ -341,8 +358,6 @@ const ModuleStyles = ({
           },
         },
       })}
-
-      {/* CF7 container styles (Divi built-in decoration) */}
       {elements.style({
         attrName: 'cf7',
         styleProps: {
@@ -351,11 +366,7 @@ const ModuleStyles = ({
           },
         },
       })}
-
-      {/* Custom CF7 styling CSS */}
-      {customCss && (
-        <style>{customCss}</style>
-      )}
+      {customCss && <style>{customCss}</style>}
     </StyleContainer>
   );
 };

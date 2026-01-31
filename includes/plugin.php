@@ -23,7 +23,7 @@ class Plugin
         $this->maybe_load_divi5_modules();
 
         // Also try on plugins_loaded with high priority as fallback
-        add_action('plugins_loaded', [$this, 'maybe_load_divi5_modules'], 5);
+        add_action('plugins_loaded', [$this, 'maybe_load_divi5_modules'], 99);
 
         $this->init();
     }
@@ -62,9 +62,8 @@ class Plugin
             }
         }
 
-        // Load Premium Features on plugins_loaded with lower priority so feature options
-        // (cf7m_features) are available and toggles take effect on next page load.
-        add_action('plugins_loaded', [$this, 'load_premium_loader'], 20);
+        // Load Premium Features early so form-tag registration (wpcf7_init) is hooked before CF7 runs.
+        add_action('plugins_loaded', [$this, 'load_premium_loader'], 5);
     }
 
     /**
@@ -78,7 +77,8 @@ class Plugin
         if (!file_exists($premium_loader)) {
             return;
         }
-        if (!function_exists('cf7m_fs') || !(cf7m_fs()->is__premium_only() || cf7m_can_use_premium())) {
+        // Use cf7m_can_use_premium() which handles all cases: dev mode, self-hosted, and licensed
+        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
             return;
         }
         require_once $premium_loader;
@@ -118,6 +118,7 @@ class Plugin
         add_action('plugins_loaded', [$this, 'load_textdomain']);
         add_action('et_builder_ready', [$this, 'load_modules'], 11);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_styles'], 20);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_scripts'], 20);
     }
 
     /**
@@ -143,6 +144,33 @@ class Plugin
             $url,
             [],
             CF7M_VERSION
+        );
+    }
+
+    /**
+     * Enqueue JS on CF7 admin so cf7m-star and cf7m-range tag code stays in sync with panel fields.
+     *
+     * @since 3.0.0
+     */
+    public function enqueue_cf7_tag_admin_scripts($hook)
+    {
+        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
+            return;
+        }
+        $screen = get_current_screen();
+        if (!$screen || strpos($screen->id, 'wpcf7') === false) {
+            return;
+        }
+        $path = CF7M_PLUGIN_PATH . 'assets/js/cf7m-tag-generator.js';
+        if (!file_exists($path)) {
+            return;
+        }
+        wp_enqueue_script(
+            'cf7m-tag-generator',
+            CF7M_PLUGIN_URL . 'assets/js/cf7m-tag-generator.js',
+            [],
+            CF7M_VERSION,
+            true
         );
     }
 

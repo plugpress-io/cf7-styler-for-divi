@@ -95,6 +95,23 @@ class Rest_API
                 'permission_callback' => [$this, 'check_admin_permissions'],
             ]
         );
+
+        register_rest_route(
+            'cf7-styler/v1',
+            '/form-preview',
+            [
+                'methods' => 'GET',
+                'callback' => [$this, 'get_form_preview'],
+                'permission_callback' => [$this, 'check_permissions'],
+                'args' => [
+                    'id' => [
+                        'required' => true,
+                        'type' => 'string',
+                        'sanitize_callback' => 'absint',
+                    ],
+                ],
+            ]
+        );
     }
 
     /**
@@ -238,6 +255,40 @@ class Rest_API
             'new_today'         => $new_today,
             'total_forms'       => $total_forms,
             'enabled_features'  => $enabled_features,
+        ]);
+    }
+
+    /**
+     * Get rendered form HTML for Visual Builder preview (includes [cf7m-row], [cf7m-step], etc.).
+     *
+     * @since 3.0.0
+     * @param \WP_REST_Request $request Request object with 'id' (form ID).
+     * @return \WP_REST_Response|\WP_Error
+     */
+    public function get_form_preview($request)
+    {
+        $form_id = $request->get_param('id');
+        if (!$form_id) {
+            return new \WP_Error(
+                'missing_id',
+                __('Form ID is required.', 'cf7-styler-for-divi'),
+                ['status' => 400]
+            );
+        }
+
+        $form_id = absint($form_id);
+        if (!$form_id) {
+            return new \WP_Error(
+                'invalid_id',
+                __('Invalid form ID.', 'cf7-styler-for-divi'),
+                ['status' => 400]
+            );
+        }
+
+        $html = do_shortcode(sprintf('[contact-form-7 id="%d"]', $form_id));
+
+        return rest_ensure_response([
+            'html' => $html,
         ]);
     }
 

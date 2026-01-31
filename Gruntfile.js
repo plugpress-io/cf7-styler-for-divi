@@ -1,16 +1,6 @@
 module.exports = function (grunt) {
 	'use strict';
 
-	/**
-	 * Freemius Deployment Model:
-	 * - Use `grunt package --platform=fs` for Freemius deployment
-	 * - Freemius auto-strips files/folders with __premium_only suffix
-	 * - Free version: Deployed to WordPress.org (premium code removed)
-	 * - Premium version: Delivered via Freemius to paying customers
-	 *
-	 * @see https://freemius.com/help/documentation/wordpress-sdk/software-licensing/
-	 */
-
 	// Configuration
 	const platform = grunt.option('platform') || 'et';
 	const pkg = grunt.file.readJSON('package.json');
@@ -62,10 +52,8 @@ module.exports = function (grunt) {
 		'!vendor/freemius/**',
 		'!freemius.php',
 	];
-	// FS (Freemius): Full plugin with SDK and premium features
-	// Freemius deployment system will auto-strip __premium_only files for free version
+
 	const fs_src = ['**', ...commonExcludes];
-	// Pro package: same as fs but folder cf7-mate-pro, exclude free main file (cf7-styler.php)
 	const pro_src = ['**', ...commonExcludes, '!cf7-styler.php'];
 
 	grunt.initConfig({
@@ -223,7 +211,11 @@ if ('true' === CF7M_SELF_HOSTED_ACTIVE) {
 require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 `;
 		grunt.file.write('package/cf7-mate-pro/cf7-mate-pro.php', content);
-		grunt.log.writeln('Written package/cf7-mate-pro/cf7-mate-pro.php (Version: ' + version + ')');
+		grunt.log.writeln(
+			'Written package/cf7-mate-pro/cf7-mate-pro.php (Version: ' +
+				version +
+				')'
+		);
 	});
 
 	// Pro package: cf7-mate-pro.zip with cf7-mate-pro/cf7-mate-pro.php (no cf7-styler.php)
