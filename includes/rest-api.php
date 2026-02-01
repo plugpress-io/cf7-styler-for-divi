@@ -1,417 +1,457 @@
 <?php
+/**
+ * REST API Endpoints.
+ *
+ * @package CF7_Mate\API
+ * @since   3.0.0
+ */
 
 namespace CF7_Mate\API;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-class Rest_API
-{
-    private static $instance = null;
+/**
+ * Class Rest_API
+ *
+ * @since 3.0.0
+ */
+class Rest_API {
 
-    public static function instance()
-    {
-        if (null === self::$instance) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
+	/**
+	 * Instance.
+	 *
+	 * @var Rest_API|null
+	 */
+	private static $instance = null;
 
-    private function __construct()
-    {
-        $this->init();
-    }
+	/**
+	 * Get instance.
+	 *
+	 * @since  3.0.0
+	 * @return Rest_API
+	 */
+	public static function instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
 
-    private function init()
-    {
-        add_action('rest_api_init', [$this, 'register_routes']);
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @since 3.0.0
+	 */
+	private function __construct() {
+		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
+	}
 
-    /**
-     * Register REST API routes.
-     *
-     * @since 3.0.0
-     */
-    public function register_routes()
-    {
-        register_rest_route(
-            'cf7-styler/v1',
-            '/forms',
-            [
-                'methods' => 'GET',
-                'callback' => [$this, 'get_cf7_forms'],
-                'permission_callback' => [$this, 'check_permissions'],
-            ]
-        );
+	/**
+	 * Register REST routes.
+	 *
+	 * @since  3.0.0
+	 * @return void
+	 */
+	public function register_routes() {
+		$namespace = 'cf7-styler/v1';
 
-        register_rest_route(
-            'cf7-styler/v1',
-            '/onboarding/status',
-            [
-                'methods' => 'GET',
-                'callback' => [$this, 'get_onboarding_status'],
-                'permission_callback' => [$this, 'check_permissions'],
-            ]
-        );
+		register_rest_route(
+			$namespace,
+			'/forms',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_cf7_forms' ),
+				'permission_callback' => array( $this, 'check_edit_permission' ),
+			)
+		);
 
-        register_rest_route(
-            'cf7-styler/v1',
-            '/onboarding/complete',
-            [
-                'methods' => 'POST',
-                'callback' => [$this, 'complete_onboarding'],
-                'permission_callback' => [$this, 'check_permissions'],
-            ]
-        );
+		register_rest_route(
+			$namespace,
+			'/onboarding/status',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_onboarding_status' ),
+				'permission_callback' => array( $this, 'check_edit_permission' ),
+			)
+		);
 
-        // Features settings
-        register_rest_route(
-            'cf7-styler/v1',
-            '/settings/features',
-            [
-                'methods' => 'GET',
-                'callback' => [$this, 'get_features'],
-                'permission_callback' => [$this, 'check_admin_permissions'],
-            ]
-        );
+		register_rest_route(
+			$namespace,
+			'/onboarding/complete',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'complete_onboarding' ),
+				'permission_callback' => array( $this, 'check_edit_permission' ),
+			)
+		);
 
-        register_rest_route(
-            'cf7-styler/v1',
-            '/settings/features',
-            [
-                'methods' => 'POST',
-                'callback' => [$this, 'save_features'],
-                'permission_callback' => [$this, 'check_admin_permissions'],
-            ]
-        );
+		register_rest_route(
+			$namespace,
+			'/settings/features',
+			array(
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_features' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
+				),
+				array(
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'save_features' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
+				),
+			)
+		);
 
-        register_rest_route(
-            'cf7-styler/v1',
-            '/dashboard-stats',
-            [
-                'methods' => 'GET',
-                'callback' => [$this, 'get_dashboard_stats'],
-                'permission_callback' => [$this, 'check_admin_permissions'],
-            ]
-        );
+		register_rest_route(
+			$namespace,
+			'/dashboard-stats',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_dashboard_stats' ),
+				'permission_callback' => array( $this, 'check_admin_permission' ),
+			)
+		);
 
-        register_rest_route(
-            'cf7-styler/v1',
-            '/form-preview',
-            [
-                'methods' => 'GET',
-                'callback' => [$this, 'get_form_preview'],
-                'permission_callback' => [$this, 'check_permissions'],
-                'args' => [
-                    'id' => [
-                        'required' => true,
-                        'type' => 'string',
-                        'sanitize_callback' => 'absint',
-                    ],
-                ],
-            ]
-        );
-    }
+		register_rest_route(
+			$namespace,
+			'/form-preview',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_form_preview' ),
+				'permission_callback' => array( $this, 'check_edit_permission' ),
+				'args'                => array(
+					'id' => array(
+						'required'          => true,
+						'type'              => 'integer',
+						'sanitize_callback' => 'absint',
+						'validate_callback' => function ( $value ) {
+							return is_numeric( $value ) && $value > 0;
+						},
+					),
+				),
+			)
+		);
+	}
 
-    /**
-     * Check if user has permission to access the API.
-     *
-     * @since 3.0.0
-     * @return bool
-     */
-    public function check_permissions()
-    {
-        return current_user_can('edit_posts');
-    }
+	/**
+	 * Check edit permission.
+	 *
+	 * @since  3.0.0
+	 * @return bool
+	 */
+	public function check_edit_permission() {
+		return current_user_can( 'edit_posts' );
+	}
 
-    /**
-     * Check if user has admin permission.
-     *
-     * @since 3.0.0
-     * @return bool
-     */
-    public function check_admin_permissions()
-    {
-        return current_user_can('manage_options');
-    }
+	/**
+	 * Check admin permission.
+	 *
+	 * @since  3.0.0
+	 * @return bool
+	 */
+	public function check_admin_permission() {
+		return current_user_can( 'manage_options' );
+	}
 
-    /**
-     * Get features settings.
-     *
-     * @since 3.0.0
-     * @return \WP_REST_Response
-     */
-    public function get_features()
-    {
-        $defaults = self::get_default_features();
-        $saved = get_option('cf7m_features', []);
-        $features = wp_parse_args($saved, $defaults);
+	/**
+	 * Get features settings.
+	 *
+	 * @since  3.0.0
+	 * @return \WP_REST_Response
+	 */
+	public function get_features() {
+		$defaults = self::get_default_features();
+		$saved    = get_option( 'cf7m_features', array() );
+		$features = wp_parse_args( $saved, $defaults );
 
-        return rest_ensure_response([
-            'features' => $features,
-            'is_pro'   => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
-        ]);
-    }
+		return rest_ensure_response(
+			array(
+				'features' => $features,
+				'is_pro'   => function_exists( 'cf7m_can_use_premium' ) && cf7m_can_use_premium(),
+			)
+		);
+	}
 
-    /**
-     * Save features settings.
-     *
-     * @since 3.0.0
-     * @param \WP_REST_Request $request Request object.
-     * @return \WP_REST_Response
-     */
-    public function save_features($request)
-    {
-        $features = $request->get_param('features');
+	/**
+	 * Save features settings.
+	 *
+	 * @since  3.0.0
+	 * @param  \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function save_features( \WP_REST_Request $request ) {
+		$features = $request->get_param( 'features' );
 
-        if (!is_array($features)) {
-            return new \WP_Error(
-                'invalid_data',
-                __('Invalid features data.', 'cf7-styler-for-divi'),
-                ['status' => 400]
-            );
-        }
+		if ( ! is_array( $features ) ) {
+			return new \WP_Error(
+				'invalid_data',
+				__( 'Invalid features data.', 'cf7-styler-for-divi' ),
+				array( 'status' => 400 )
+			);
+		}
 
-        $defaults = self::get_default_features();
-        $sanitized = [];
+		$defaults  = self::get_default_features();
+		$sanitized = array();
 
-        foreach ($defaults as $key => $default) {
-            $sanitized[$key] = isset($features[$key]) ? (bool) $features[$key] : $default;
-        }
+		foreach ( $defaults as $key => $default ) {
+			$sanitized[ $key ] = isset( $features[ $key ] ) ? (bool) $features[ $key ] : $default;
+		}
 
-        update_option('cf7m_features', $sanitized);
+		update_option( 'cf7m_features', $sanitized, false );
 
-        return rest_ensure_response([
-            'success' => true,
-            'features' => $sanitized,
-        ]);
-    }
+		return rest_ensure_response(
+			array(
+				'success'  => true,
+				'features' => $sanitized,
+			)
+		);
+	}
 
-    /**
-     * Get dashboard stats (entries, forms, features count).
-     *
-     * @since 3.0.0
-     * @return \WP_REST_Response
-     */
-    public function get_dashboard_stats()
-    {
-        $total_entries = 0;
-        $new_today = 0;
+	/**
+	 * Get dashboard stats.
+	 *
+	 * @since  3.0.0
+	 * @return \WP_REST_Response
+	 */
+	public function get_dashboard_stats() {
+		$total_entries = 0;
+		$new_today     = 0;
 
-        if (post_type_exists('cf7m_entry')) {
-            $total_query = new \WP_Query([
-                'post_type'      => 'cf7m_entry',
-                'post_status'    => 'publish',
-                'posts_per_page' => 1,
-                'fields'         => 'ids',
-            ]);
-            $total_entries = (int) $total_query->found_posts;
-            wp_reset_postdata();
+		if ( post_type_exists( 'cf7m_entry' ) ) {
+			$total_query = new \WP_Query(
+				array(
+					'post_type'      => 'cf7m_entry',
+					'post_status'    => 'publish',
+					'posts_per_page' => 1,
+					'fields'         => 'ids',
+					'no_found_rows'  => false,
+				)
+			);
+			$total_entries = (int) $total_query->found_posts;
+			wp_reset_postdata();
 
-            $today_start = gmdate('Y-m-d 00:00:00', strtotime('today'));
-            $today_end   = gmdate('Y-m-d 23:59:59', strtotime('today'));
-            $new_query   = new \WP_Query([
-                'post_type'      => 'cf7m_entry',
-                'post_status'    => 'publish',
-                'posts_per_page' => 1,
-                'date_query'     => [
-                    [
-                        'after'  => $today_start,
-                        'before' => $today_end,
-                        'inclusive' => true,
-                    ],
-                ],
-                'fields' => 'ids',
-            ]);
-            $new_today = (int) $new_query->found_posts;
-            wp_reset_postdata();
-        }
+			$today_start = wp_date( 'Y-m-d 00:00:00' );
+			$today_end   = wp_date( 'Y-m-d 23:59:59' );
 
-        $total_forms = 0;
-        if (post_type_exists('wpcf7_contact_form')) {
-            $forms_query = new \WP_Query([
-                'post_type'      => 'wpcf7_contact_form',
-                'post_status'    => 'publish',
-                'posts_per_page' => -1,
-                'fields'         => 'ids',
-            ]);
-            $total_forms = (int) $forms_query->found_posts;
-            wp_reset_postdata();
-        }
+			$new_query = new \WP_Query(
+				array(
+					'post_type'      => 'cf7m_entry',
+					'post_status'    => 'publish',
+					'posts_per_page' => 1,
+					'date_query'     => array(
+						array(
+							'after'     => $today_start,
+							'before'    => $today_end,
+							'inclusive' => true,
+						),
+					),
+					'fields'         => 'ids',
+					'no_found_rows'  => false,
+				)
+			);
+			$new_today = (int) $new_query->found_posts;
+			wp_reset_postdata();
+		}
 
-        $defaults = self::get_default_features();
-        $saved    = get_option('cf7m_features', []);
-        $features = wp_parse_args($saved, $defaults);
-        $enabled_features = 0;
-        foreach ($features as $enabled) {
-            if ($enabled) {
-                $enabled_features++;
-            }
-        }
+		$total_forms = 0;
+		if ( post_type_exists( 'wpcf7_contact_form' ) ) {
+			$forms_query = new \WP_Query(
+				array(
+					'post_type'      => 'wpcf7_contact_form',
+					'post_status'    => 'publish',
+					'posts_per_page' => -1,
+					'fields'         => 'ids',
+					'no_found_rows'  => true,
+				)
+			);
+			$total_forms = count( $forms_query->posts );
+			wp_reset_postdata();
+		}
 
-        return rest_ensure_response([
-            'total_entries'     => $total_entries,
-            'new_today'         => $new_today,
-            'total_forms'       => $total_forms,
-            'enabled_features'  => $enabled_features,
-        ]);
-    }
+		$defaults = self::get_default_features();
+		$saved    = get_option( 'cf7m_features', array() );
+		$features = wp_parse_args( $saved, $defaults );
 
-    /**
-     * Get rendered form HTML for Visual Builder preview (includes [cf7m-row], [cf7m-step], etc.).
-     *
-     * @since 3.0.0
-     * @param \WP_REST_Request $request Request object with 'id' (form ID).
-     * @return \WP_REST_Response|\WP_Error
-     */
-    public function get_form_preview($request)
-    {
-        $form_id = $request->get_param('id');
-        if (!$form_id) {
-            return new \WP_Error(
-                'missing_id',
-                __('Form ID is required.', 'cf7-styler-for-divi'),
-                ['status' => 400]
-            );
-        }
+		$enabled_features = 0;
+		foreach ( $features as $enabled ) {
+			if ( $enabled ) {
+				++$enabled_features;
+			}
+		}
 
-        $form_id = absint($form_id);
-        if (!$form_id) {
-            return new \WP_Error(
-                'invalid_id',
-                __('Invalid form ID.', 'cf7-styler-for-divi'),
-                ['status' => 400]
-            );
-        }
+		return rest_ensure_response(
+			array(
+				'total_entries'    => $total_entries,
+				'new_today'        => $new_today,
+				'total_forms'      => $total_forms,
+				'enabled_features' => $enabled_features,
+			)
+		);
+	}
 
-        $html = do_shortcode(sprintf('[contact-form-7 id="%d"]', $form_id));
+	/**
+	 * Get form preview HTML.
+	 *
+	 * @since  3.0.0
+	 * @param  \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function get_form_preview( \WP_REST_Request $request ) {
+		$form_id = absint( $request->get_param( 'id' ) );
 
-        return rest_ensure_response([
-            'html' => $html,
-        ]);
-    }
+		if ( ! $form_id ) {
+			return new \WP_Error(
+				'invalid_id',
+				__( 'Invalid form ID.', 'cf7-styler-for-divi' ),
+				array( 'status' => 400 )
+			);
+		}
 
-    /**
-     * Get default features.
-     *
-     * @since 3.0.0
-     * @return array
-     */
-    public static function get_default_features()
-    {
-        return [
-            'cf7_module' => true,
-            'grid_layout' => true,
-            'multi_column' => true,
-            'multi_step' => true,
-            'star_rating' => true,
-            'database_entries' => true,
-            'range_slider' => true,
-            'separator' => true,
-            'heading' => true,
-            'image' => true,
-            'icon' => true,
-        ];
-    }
+		// Verify form exists.
+		$form = get_post( $form_id );
+		if ( ! $form || 'wpcf7_contact_form' !== $form->post_type ) {
+			return new \WP_Error(
+				'form_not_found',
+				__( 'Form not found.', 'cf7-styler-for-divi' ),
+				array( 'status' => 404 )
+			);
+		}
 
-    /**
-     * Check if a feature is enabled.
-     *
-     * @since 3.0.0
-     * @param string $feature Feature key.
-     * @return bool
-     */
-    public static function is_feature_enabled($feature)
-    {
-        $defaults = self::get_default_features();
-        $saved = get_option('cf7m_features', []);
-        $features = wp_parse_args($saved, $defaults);
+		$html = do_shortcode( sprintf( '[contact-form-7 id="%d"]', $form_id ) );
 
-        return isset($features[$feature]) ? (bool) $features[$feature] : false;
-    }
+		return rest_ensure_response(
+			array(
+				'html' => $html,
+			)
+		);
+	}
 
-    /**
-     * Get list of Contact Form 7 forms.
-     *
-     * @since 3.0.0
-     * @param \WP_REST_Request $request Request object.
-     * @return \WP_REST_Response|\WP_Error
-     */
-    public function get_cf7_forms($request)
-    {
-        if (!function_exists('wpcf7_contact_form')) {
-            return new \WP_Error(
-                'cf7_not_installed',
-                __('Contact Form 7 is not installed.', 'cf7-styler-for-divi'),
-                ['status' => 404]
-            );
-        }
+	/**
+	 * Get default features.
+	 *
+	 * @since  3.0.0
+	 * @return array
+	 */
+	public static function get_default_features() {
+		return array(
+			'cf7_module'       => true,
+			'grid_layout'      => true,
+			'multi_column'     => true,
+			'multi_step'       => true,
+			'star_rating'      => true,
+			'database_entries' => true,
+			'range_slider'     => true,
+			'separator'        => true,
+			'heading'          => true,
+			'image'            => true,
+			'icon'             => true,
+			'calculator'       => true,
+			'conditional'      => true,
+			'ai_form_generator' => true,
+		);
+	}
 
-        $forms = get_posts([
-            'post_type' => 'wpcf7_contact_form',
-            'posts_per_page' => -1,
-            'post_status' => 'publish',
-            'orderby' => 'title',
-            'order' => 'ASC',
-        ]);
+	/**
+	 * Check if feature is enabled.
+	 *
+	 * @since  3.0.0
+	 * @param  string $feature Feature key.
+	 * @return bool
+	 */
+	public static function is_feature_enabled( $feature ) {
+		$defaults = self::get_default_features();
+		$saved    = get_option( 'cf7m_features', array() );
+		$features = wp_parse_args( $saved, $defaults );
 
-        $form_list = [
-            [
-                'value' => '0',
-                'label' => __('Select a form', 'cf7-styler-for-divi'),
-            ],
-        ];
+		return isset( $features[ $feature ] ) ? (bool) $features[ $feature ] : false;
+	}
 
-        foreach ($forms as $form) {
-            $form_list[] = [
-                'value' => (string) $form->ID,
-                'label' => $form->post_title ? $form->post_title : sprintf(__('Form #%d', 'cf7-styler-for-divi'), $form->ID),
-            ];
-        }
+	/**
+	 * Get CF7 forms.
+	 *
+	 * @since  3.0.0
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function get_cf7_forms() {
+		if ( ! function_exists( 'wpcf7_contact_form' ) ) {
+			return new \WP_Error(
+				'cf7_not_installed',
+				__( 'Contact Form 7 is not installed.', 'cf7-styler-for-divi' ),
+				array( 'status' => 404 )
+			);
+		}
 
-        return rest_ensure_response($form_list);
-    }
+		$forms = get_posts(
+			array(
+				'post_type'      => 'wpcf7_contact_form',
+				'posts_per_page' => 100,
+				'post_status'    => 'publish',
+				'orderby'        => 'title',
+				'order'          => 'ASC',
+			)
+		);
 
-    /**
-     * Get onboarding status.
-     *
-     * @since 3.0.0
-     * @param \WP_REST_Request $request Request object.
-     * @return \WP_REST_Response|\WP_Error
-     */
-    public function get_onboarding_status($request)
-    {
-        $is_completed = get_option('cf7m_onboarding_completed', false) === '1';
-        $is_skipped = get_option('cf7m_onboarding_skipped', false) === '1';
-        $should_show = !$is_completed && $is_skipped;
+		$form_list = array(
+			array(
+				'value' => '0',
+				'label' => __( 'Select a form', 'cf7-styler-for-divi' ),
+			),
+		);
 
-        return rest_ensure_response([
-            'is_completed' => $is_completed,
-            'is_skipped' => $is_skipped,
-            'should_show_notice' => $should_show,
-        ]);
-    }
+		foreach ( $forms as $form ) {
+			$form_list[] = array(
+				'value' => (string) $form->ID,
+				'label' => $form->post_title ? esc_html( $form->post_title ) : sprintf(
+					/* translators: %d: form ID */
+					__( 'Form #%d', 'cf7-styler-for-divi' ),
+					$form->ID
+				),
+			);
+		}
 
-    /**
-     * Complete onboarding.
-     *
-     * @since 3.0.0
-     * @param \WP_REST_Request $request Request object.
-     * @return \WP_REST_Response|\WP_Error
-     */
-    public function complete_onboarding($request)
-    {
-        // Reset onboarding to show it again
-        delete_option('cf7m_onboarding_skipped');
-        delete_option('cf7m_onboarding_completed');
-        update_option('cf7m_onboarding_step', 1);
+		return rest_ensure_response( $form_list );
+	}
 
-        return rest_ensure_response([
-            'success' => true,
-            'message' => __('Onboarding reset successfully.', 'cf7-styler-for-divi'),
-        ]);
-    }
+	/**
+	 * Get onboarding status.
+	 *
+	 * @since  3.0.0
+	 * @return \WP_REST_Response
+	 */
+	public function get_onboarding_status() {
+		$is_completed = '1' === get_option( 'cf7m_onboarding_completed', '' );
+		$is_skipped   = '1' === get_option( 'cf7m_onboarding_skipped', '' );
+		$should_show  = ! $is_completed && $is_skipped;
+
+		return rest_ensure_response(
+			array(
+				'is_completed'       => $is_completed,
+				'is_skipped'         => $is_skipped,
+				'should_show_notice' => $should_show,
+			)
+		);
+	}
+
+	/**
+	 * Complete onboarding.
+	 *
+	 * @since  3.0.0
+	 * @return \WP_REST_Response
+	 */
+	public function complete_onboarding() {
+		delete_option( 'cf7m_onboarding_skipped' );
+		delete_option( 'cf7m_onboarding_completed' );
+		update_option( 'cf7m_onboarding_step', 1, false );
+
+		return rest_ensure_response(
+			array(
+				'success' => true,
+				'message' => __( 'Onboarding reset successfully.', 'cf7-styler-for-divi' ),
+			)
+		);
+	}
 }
 
 Rest_API::instance();

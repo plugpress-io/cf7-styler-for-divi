@@ -52,6 +52,7 @@
       "selector": "{{selector}} .dcs-cf7-styler",
       "default": {
         "advanced": {
+          "designPreset": { "desktop": { "value": "" } },
           "formId": { "desktop": { "value": "0" } },
           "useFormHeader": { "desktop": { "value": "off" } },
           "formHeaderTitle": { "desktop": { "value": "" } },
@@ -130,6 +131,39 @@
       },
       "settings": {
         "advanced": {
+          "designPreset": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "common",
+              "attrName": "cf7.advanced.designPreset",
+              "priority": 5,
+              "render": true,
+              "label": "Design Preset",
+              "description": "Apply a pre-made form style. You can still override individual options below.",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": { "label": "None" },
+                    "classic": { "label": "Classic" },
+                    "box": { "label": "Box" },
+                    "typeform": { "label": "Typeform" },
+                    "minimal": { "label": "Minimal" },
+                    "rounded": { "label": "Rounded" },
+                    "dark": { "label": "Dark" },
+                    "modern": { "label": "Modern" }
+                  }
+                }
+              }
+            }
+          },
           "formId": {
             "groupType": "group-item",
             "item": {

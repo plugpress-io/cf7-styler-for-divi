@@ -118,6 +118,36 @@ const FEATURES = [
 		isPro: true,
 		icon: 'icon',
 	},
+	{
+		id: 'calculator',
+		name: __('Calculator / Price Estimator', 'cf7-styler-for-divi'),
+		description: __(
+			'Add live calculations for quotes, pricing, and order totals.',
+			'cf7-styler-for-divi'
+		),
+		isPro: true,
+		icon: 'calculator',
+	},
+	{
+		id: 'conditional',
+		name: __('Conditional Logic', 'cf7-styler-for-divi'),
+		description: __(
+			'Show/hide fields based on user selections.',
+			'cf7-styler-for-divi'
+		),
+		isPro: true,
+		icon: 'conditional',
+	},
+	{
+		id: 'ai_form_generator',
+		name: __('AI Form Generator', 'cf7-styler-for-divi'),
+		description: __(
+			'Generate CF7 forms using AI with natural language prompts.',
+			'cf7-styler-for-divi'
+		),
+		isPro: true,
+		icon: 'ai',
+	},
 ];
 
 // Feature icons – simple line icons
@@ -240,6 +270,36 @@ const FeatureIconIcon = () => (
 		<path d="M12 8v4l2 2" />
 	</svg>
 );
+const FeatureIconAI = () => (
+	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+		<path d="M12 2L2 7l10 5 10-5-10-5z" />
+		<path d="M2 17l10 5 10-5" />
+		<path d="M2 12l10 5 10-5" />
+	</svg>
+);
+const FeatureIconCalculator = () => (
+	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+		<rect x="4" y="2" width="16" height="20" rx="2" />
+		<line x1="8" y1="6" x2="16" y2="6" />
+		<line x1="8" y1="10" x2="8" y2="10.01" />
+		<line x1="12" y1="10" x2="12" y2="10.01" />
+		<line x1="16" y1="10" x2="16" y2="10.01" />
+		<line x1="8" y1="14" x2="8" y2="14.01" />
+		<line x1="12" y1="14" x2="12" y2="14.01" />
+		<line x1="16" y1="14" x2="16" y2="14.01" />
+		<line x1="8" y1="18" x2="16" y2="18" />
+	</svg>
+);
+const FeatureIconConditional = () => (
+	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+		<path d="M16 3h5v5" />
+		<path d="M8 3H3v5" />
+		<path d="M12 22v-8.5a4 4 0 0 0-4-4H3" />
+		<path d="M12 22v-8.5a4 4 0 0 1 4-4h5" />
+		<line x1="21" y1="3" x2="16" y2="8" />
+		<line x1="3" y1="3" x2="8" y2="8" />
+	</svg>
+);
 
 const FEATURE_ICONS = {
 	module: FeatureIconModule,
@@ -253,6 +313,9 @@ const FEATURE_ICONS = {
 	heading: FeatureIconHeading,
 	image: FeatureIconImage,
 	icon: FeatureIconIcon,
+	calculator: FeatureIconCalculator,
+	conditional: FeatureIconConditional,
+	ai: FeatureIconAI,
 };
 
 // Docs icon (book)
@@ -614,7 +677,7 @@ const Toggle = ({ checked, onChange, disabled }) => (
 	</button>
 );
 
-// Feature Card Component – minimal: icon + name + toggle
+// Feature Card Component – icon + name + description + toggle
 const FeatureCard = ({ feature, enabled, isPro, onToggle, saving }) => {
 	const isProLocked = feature.isPro && !isPro;
 	const pricingUrl =
@@ -634,20 +697,19 @@ const FeatureCard = ({ feature, enabled, isPro, onToggle, saving }) => {
 			<div className="dcs-feature__icon" aria-hidden="true">
 				<IconComponent />
 			</div>
-			<div
-				className="dcs-feature__name-wrap"
-				title={feature.description}
-			>
-				<span className="dcs-feature__name">{feature.name}</span>
-					{feature.isPro && (
-					<span
-						className="dcs-feature__badge"
-						title={feature.description}
-						aria-label={__('Pro', 'cf7-styler-for-divi')}
-					>
-						<CrownIcon />
+			<div className="dcs-feature__name-wrap">
+				<span className="dcs-feature__name">
+					{feature.name}
+					{feature.isPro && !isPro && (
+						<span
+							className="dcs-feature__badge"
+							aria-label={__('Pro', 'cf7-styler-for-divi')}
+						>
+							<CrownIcon />
 						</span>
 					)}
+				</span>
+				<p className="dcs-feature__desc">{feature.description}</p>
 			</div>
 			<div className="dcs-feature__toggle">
 				{isProLocked ? (
@@ -895,6 +957,25 @@ const DashboardView = ({
 							<span className="dcs-quick-action__desc">
 								{__(
 									'Enable or disable modules',
+									'cf7-styler-for-divi'
+								)}
+							</span>
+						</div>
+					</a>
+					<a
+						href="admin.php?page=cf7-mate-ai-provider"
+						className="dcs-quick-action"
+					>
+						<span className="dcs-quick-action__icon">
+							<FeatureIconAI />
+						</span>
+						<div className="dcs-quick-action__text">
+							<span className="dcs-quick-action__title">
+								{__('AI Provider', 'cf7-styler-for-divi')}
+							</span>
+							<span className="dcs-quick-action__desc">
+								{__(
+									'Configure AI form generator',
 									'cf7-styler-for-divi'
 								)}
 							</span>

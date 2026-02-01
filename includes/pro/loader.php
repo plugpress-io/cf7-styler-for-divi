@@ -17,7 +17,7 @@ class Premium_Loader
     private static $instance = null;
 
     private static $defaults = [
-        'multi_column'     => true,
+        'multi_column'      => true,
         'multi_step'        => true,
         'star_rating'       => true,
         'database_entries'  => true,
@@ -26,6 +26,9 @@ class Premium_Loader
         'heading'           => true,
         'image'             => true,
         'icon'              => true,
+        'calculator'        => true,
+        'conditional'       => true,
+        'ai_form_generator' => true,
     ];
 
     private static $features = [
@@ -65,6 +68,18 @@ class Premium_Loader
             'file'  => 'icon/module.php',
             'class' => 'CF7_Mate\Features\Icon\Icon',
         ],
+        'calculator'      => [
+            'file'  => 'calculator/module.php',
+            'class' => 'CF7_Mate\Features\Calculator\Calculator',
+        ],
+        'conditional'     => [
+            'file'  => 'conditional/module.php',
+            'class' => 'CF7_Mate\Features\Conditional\Conditional',
+        ],
+        'ai_form_generator' => [
+            'file'  => 'ai-form-generator/module.php',
+            'class' => 'CF7_Mate\Features\AI_Form_Generator\AI_Form_Generator',
+        ],
     ];
 
     public static function instance()
@@ -77,12 +92,41 @@ class Premium_Loader
 
     private function __construct()
     {
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
+        // Allow dev mode bypass for testing (define CF7M_DEV_MODE in wp-config.php).
+        $dev_mode = defined( 'CF7M_DEV_MODE' ) && \CF7M_DEV_MODE;
+
+        if ( ! $dev_mode && ( ! function_exists( 'cf7m_can_use_premium' ) || ! cf7m_can_use_premium() ) ) {
             return;
         }
 
         $this->load_bootstrap();
         $this->load_features();
+
+        // Enqueue tag generator scripts for CF7 admin.
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
+    }
+
+    /**
+     * Enqueue admin scripts for CF7 tag generators.
+     *
+     * @param string $hook Current admin page hook.
+     */
+    public function enqueue_admin_scripts( $hook )
+    {
+        // Only load on CF7 edit pages.
+        if ( 'toplevel_page_wpcf7' !== $hook && 'contact_page_wpcf7-new' !== $hook ) {
+            return;
+        }
+
+        $version = defined( 'CF7M_VERSION' ) ? CF7M_VERSION : '3.0.0';
+
+        wp_enqueue_script(
+            'cf7m-tag-generators',
+            CF7M_PLUGIN_URL . 'assets/pro/js/cf7m-tag-generators.js',
+            [],
+            $version,
+            true
+        );
     }
 
     private function load_bootstrap()
@@ -135,7 +179,10 @@ class Premium_Loader
 
     public static function is_feature_enabled($feature)
     {
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
+        // Allow dev mode bypass for testing.
+        $dev_mode = defined( 'CF7M_DEV_MODE' ) && \CF7M_DEV_MODE;
+
+        if ( ! $dev_mode && ( ! function_exists( 'cf7m_can_use_premium' ) || ! cf7m_can_use_premium() ) ) {
             return false;
         }
 

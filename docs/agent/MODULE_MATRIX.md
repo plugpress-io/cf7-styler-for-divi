@@ -78,6 +78,7 @@ All modules are standalone (no parent/child relationships).
 | `settings-content.js` | ✅ | Content tab settings |
 | `settings-design.js` | ✅ | Design tab settings |
 | `conversion-outline.js` | ✅ | D4 → D5 attribute mapping |
+| `design-presets.json` | ✅ | Design presets (Classic, Box, Typeform, etc.); used by styles + PHP |
 | `callbacks/index.js` | ✅ | Visibility callbacks |
 | `callbacks/is-visible-fields/index.js` | ✅ | Field visibility logic |
 

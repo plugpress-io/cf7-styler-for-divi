@@ -1,6 +1,10 @@
 import React from 'react';
 import { StyleContainer } from '@divi/module';
 
+import designPresetsData from './design-presets.json';
+
+const presets = designPresetsData?.presets ?? [];
+
 const getAttrValue = (attrs, path, breakpoint = 'desktop') => {
   const parts = path.split('.');
   let node = attrs;
@@ -70,8 +74,17 @@ const ModuleStyles = ({
   let customCss = '';
   const baseSelector = orderClass;
 
-  const formBg = getAttrValue(attrs, 'cf7.advanced.formBg');
-  const formPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.formPadding'));
+  const designPresetSlug = getAttrValue(attrs, 'cf7.advanced.designPreset');
+  const preset = designPresetSlug ? (presets.find((p) => p.slug === designPresetSlug) ?? null) : null;
+  const getEffective = (attrKey) => {
+    const fromAttr = getAttrValue(attrs, 'cf7.advanced.' + attrKey);
+    if (fromAttr !== '' && fromAttr !== undefined) return fromAttr;
+    return preset?.styles?.[attrKey] ?? '';
+  };
+
+  const formBg = getEffective('formBg');
+  const formPaddingVal = getEffective('formPadding') || getAttrValue(attrs, 'cf7.advanced.formPadding');
+  const formPadding = paddingToCss(formPaddingVal);
   
   if (formBg) {
     customCss += `${baseSelector} .dcs-cf7-styler,${baseSelector} .dipe-cf7-styler{background-color:${formBg};}`;
@@ -80,11 +93,12 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .dcs-cf7-styler,${baseSelector} .dipe-cf7-styler{padding:${formPadding};}`;
   }
 
-  const formHeaderBg = getAttrValue(attrs, 'cf7.advanced.formHeaderBg');
-  const formHeaderPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.formHeaderPadding'));
-  const formHeaderBottom = getAttrValue(attrs, 'cf7.advanced.formHeaderBottom');
-  const formHeaderImgBg = getAttrValue(attrs, 'cf7.advanced.formHeaderImgBg');
-  const formHeaderIconColor = getAttrValue(attrs, 'cf7.advanced.formHeaderIconColor');
+  const formHeaderBg = getEffective('formHeaderBg');
+  const formHeaderPaddingVal = getEffective('formHeaderPadding') || getAttrValue(attrs, 'cf7.advanced.formHeaderPadding');
+  const formHeaderPadding = paddingToCss(formHeaderPaddingVal);
+  const formHeaderBottom = getEffective('formHeaderBottom');
+  const formHeaderImgBg = getEffective('formHeaderImgBg');
+  const formHeaderIconColor = getEffective('formHeaderIconColor');
   
   if (formHeaderBg) {
     customCss += `${baseSelector} .dcs-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .dcs-cf7-header{background-color:${formHeaderBg};}`;
@@ -102,15 +116,16 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .dcs-form-header-icon span,${baseSelector} .dipe-form-header-icon span{color:${formHeaderIconColor};}`;
   }
 
-  const fieldBg = getAttrValue(attrs, 'cf7.advanced.formBackgroundColor');
-  const fieldPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.formFieldPadding'));
-  const fieldHeight = getAttrValue(attrs, 'cf7.advanced.formFieldHeight');
-  const fieldSpacing = getAttrValue(attrs, 'cf7.advanced.formFieldSpacing');
-  const fieldActiveColor = getAttrValue(attrs, 'cf7.advanced.formFieldActiveColor');
-  const fieldBorderColor = getAttrValue(attrs, 'cf7.advanced.formFieldBorderColor');
-  const fieldBorderWidth = getAttrValue(attrs, 'cf7.advanced.formFieldBorderWidth');
-  const fieldBorderRadius = getAttrValue(attrs, 'cf7.advanced.formFieldBorderRadius');
-  const fieldTextColor = getAttrValue(attrs, 'cf7.advanced.formFieldTextColor');
+  const fieldBg = getEffective('formBackgroundColor');
+  const fieldPaddingVal = getEffective('formFieldPadding') || getAttrValue(attrs, 'cf7.advanced.formFieldPadding');
+  const fieldPadding = paddingToCss(fieldPaddingVal);
+  const fieldHeight = getEffective('formFieldHeight');
+  const fieldSpacing = getEffective('formFieldSpacing');
+  const fieldActiveColor = getEffective('formFieldActiveColor');
+  const fieldBorderColor = getEffective('formFieldBorderColor');
+  const fieldBorderWidth = getEffective('formFieldBorderWidth');
+  const fieldBorderRadius = getEffective('formFieldBorderRadius');
+  const fieldTextColor = getEffective('formFieldTextColor');
   const fieldSelectors = `${baseSelector} .dcs-cf7-styler input:not([type=submit]),${baseSelector} .dcs-cf7-styler select,${baseSelector} .dcs-cf7-styler textarea,${baseSelector} .dipe-cf7 input:not([type=submit]),${baseSelector} .dipe-cf7 select,${baseSelector} .dipe-cf7 textarea,${baseSelector} .dcs-cf7-form-preview input,${baseSelector} .dcs-cf7-form-preview textarea`;
   
   if (fieldBg) {
@@ -141,8 +156,8 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .dipe-cf7 .wpcf7 form>p,${baseSelector} .dipe-cf7 .wpcf7 form>div,${baseSelector} .dipe-cf7 .wpcf7 form>label,${baseSelector} .dcs-cf7-form-preview__field{margin-bottom:${fieldSpacing} !important;}`;
   }
 
-  const labelSpacing = getAttrValue(attrs, 'cf7.advanced.formLabelSpacing');
-  const labelColor = getAttrValue(attrs, 'cf7.advanced.formLabelColor');
+  const labelSpacing = getEffective('formLabelSpacing');
+  const labelColor = getEffective('formLabelColor');
   
   if (labelSpacing && labelSpacing !== '0px' && labelSpacing !== '0') {
     customCss += `${baseSelector} .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit),${baseSelector} .dcs-cf7-form-preview input,${baseSelector} .dcs-cf7-form-preview textarea{margin-top:${labelSpacing} !important;}`;
@@ -151,12 +166,13 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .dipe-cf7 label,${baseSelector} .dcs-cf7-styler label,${baseSelector} .dcs-cf7-form-preview label{color:${labelColor} !important;}`;
   }
 
-  const buttonBg = getAttrValue(attrs, 'cf7.advanced.buttonBg');
-  const buttonColor = getAttrValue(attrs, 'cf7.advanced.buttonColor');
-  const buttonPadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.buttonPadding'));
-  const buttonBorderColor = getAttrValue(attrs, 'cf7.advanced.buttonBorderColor');
-  const buttonBorderWidth = getAttrValue(attrs, 'cf7.advanced.buttonBorderWidth');
-  const buttonBorderRadius = getAttrValue(attrs, 'cf7.advanced.buttonBorderRadius');
+  const buttonBg = getEffective('buttonBg');
+  const buttonColor = getEffective('buttonColor');
+  const buttonPaddingVal = getEffective('buttonPadding') || getAttrValue(attrs, 'cf7.advanced.buttonPadding');
+  const buttonPadding = paddingToCss(buttonPaddingVal);
+  const buttonBorderColor = getEffective('buttonBorderColor');
+  const buttonBorderWidth = getEffective('buttonBorderWidth');
+  const buttonBorderRadius = getEffective('buttonBorderRadius');
   const buttonAlignment = getAttrValue(attrs, 'cf7.advanced.buttonAlignment');
   const buttonFullwidth = getAttrValue(attrs, 'cf7.advanced.useFormButtonFullwidth');
   
@@ -188,15 +204,15 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .dcs-cf7-form-preview__fields,${baseSelector} .dipe-cf7 p:has(input[type=submit]){display:flex;flex-direction:column;align-items:${flexAlign};}`;
   }
 
-  const crCustomStyles = getAttrValue(attrs, 'cf7.advanced.crCustomStyles');
+  const crCustomStyles = getEffective('crCustomStyles') || getAttrValue(attrs, 'cf7.advanced.crCustomStyles');
   
   if (crCustomStyles === 'on') {
-    const crSize = getAttrValue(attrs, 'cf7.advanced.crSize');
-    const crBorderSize = getAttrValue(attrs, 'cf7.advanced.crBorderSize');
-    const crBg = getAttrValue(attrs, 'cf7.advanced.crBackgroundColor');
-    const crSelected = getAttrValue(attrs, 'cf7.advanced.crSelectedColor');
-    const crBorder = getAttrValue(attrs, 'cf7.advanced.crBorderColor');
-    const crLabel = getAttrValue(attrs, 'cf7.advanced.crLabelColor');
+    const crSize = getEffective('crSize') || getAttrValue(attrs, 'cf7.advanced.crSize');
+    const crBorderSize = getEffective('crBorderSize') || getAttrValue(attrs, 'cf7.advanced.crBorderSize');
+    const crBg = getEffective('crBackgroundColor');
+    const crSelected = getEffective('crSelectedColor');
+    const crBorder = getEffective('crBorderColor');
+    const crLabel = getEffective('crLabelColor');
     
     const crSelector = `${baseSelector} .dipe-cf7.dipe-cf7-cr .wpcf7-checkbox input[type="checkbox"] + span:before,${baseSelector} .dipe-cf7.dipe-cf7-cr .wpcf7-acceptance input[type="checkbox"] + span:before,${baseSelector} .dipe-cf7.dipe-cf7-cr .wpcf7-radio input[type="radio"] + span:before`;
     
@@ -221,18 +237,18 @@ const ModuleStyles = ({
     }
   }
 
-  const msgPadding = getAttrValue(attrs, 'cf7.advanced.cf7MessagePadding');
-  const msgMarginTop = getAttrValue(attrs, 'cf7.advanced.cf7MessageMarginTop');
+  const msgPadding = getEffective('cf7MessagePadding');
+  const msgMarginTop = getEffective('cf7MessageMarginTop');
   const msgAlign = getAttrValue(attrs, 'cf7.advanced.cf7MessageAlignment');
-  const msgColor = getAttrValue(attrs, 'cf7.advanced.cf7MessageColor');
-  const msgBg = getAttrValue(attrs, 'cf7.advanced.cf7MessageBgColor');
-  const msgBorderHl = getAttrValue(attrs, 'cf7.advanced.cf7BorderHighlightColor');
-  const successColor = getAttrValue(attrs, 'cf7.advanced.cf7SuccessMessageColor');
-  const successBg = getAttrValue(attrs, 'cf7.advanced.cf7SuccessMessageBgColor');
-  const successBorder = getAttrValue(attrs, 'cf7.advanced.cf7SuccessBorderColor');
-  const errorColor = getAttrValue(attrs, 'cf7.advanced.cf7ErrorMessageColor');
-  const errorBg = getAttrValue(attrs, 'cf7.advanced.cf7ErrorMessageBgColor');
-  const errorBorder = getAttrValue(attrs, 'cf7.advanced.cf7ErrorBorderColor');
+  const msgColor = getEffective('cf7MessageColor');
+  const msgBg = getEffective('cf7MessageBgColor');
+  const msgBorderHl = getEffective('cf7BorderHighlightColor');
+  const successColor = getEffective('cf7SuccessMessageColor');
+  const successBg = getEffective('cf7SuccessMessageBgColor');
+  const successBorder = getEffective('cf7SuccessBorderColor');
+  const errorColor = getEffective('cf7ErrorMessageColor');
+  const errorBg = getEffective('cf7ErrorMessageBgColor');
+  const errorBorder = getEffective('cf7ErrorBorderColor');
   
   if (msgAlign) {
     customCss += `${baseSelector} .wpcf7 form .wpcf7-response-output,${baseSelector} .wpcf7 form span.wpcf7-not-valid-tip{text-align:${msgAlign};}`;
@@ -320,15 +336,16 @@ const ModuleStyles = ({
   const proRangeMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proRangeMargin'));
   
   if (proRangeTrackColor || proRangeThumbColor || proRangeHeight || (proRangeMargin && proRangeMargin !== '0px 0px 0px 0px')) {
-    const rangeSelector = `${baseSelector} .cf7m-range-input`;
-    if (proRangeTrackColor) customCss += `${rangeSelector}{background:${proRangeTrackColor} !important;}`;
-    if (proRangeHeight) customCss += `${rangeSelector}{height:${proRangeHeight} !important;}`;
+    const rangeInput = `${baseSelector} .cf7m-range-input`;
+    if (proRangeTrackColor) customCss += `${rangeInput}{background:${proRangeTrackColor} !important;--cf7m-range-track:${proRangeTrackColor};}`;
+    if (proRangeHeight) customCss += `${rangeInput}{height:${proRangeHeight} !important;}`;
     if (proRangeThumbColor) {
-      customCss += `${rangeSelector}::-webkit-slider-thumb{background:${proRangeThumbColor} !important;}`;
-      customCss += `${rangeSelector}::-moz-range-thumb{background:${proRangeThumbColor} !important;}`;
+      customCss += `${rangeInput}::-webkit-slider-thumb{background:${proRangeThumbColor} !important;}`;
+      customCss += `${rangeInput}::-moz-range-thumb{background:${proRangeThumbColor} !important;}`;
+      customCss += `${baseSelector} .cf7m-range-slider, ${baseSelector} .dcs-range-slider{--cf7m-range-thumb:${proRangeThumbColor};}`;
     }
     if (proRangeMargin && proRangeMargin !== '0px 0px 0px 0px') {
-      customCss += `${baseSelector} .dcs-range-slider{margin:${proRangeMargin} !important;}`;
+      customCss += `${baseSelector} .cf7m-range-slider, ${baseSelector} .dcs-range-slider{margin:${proRangeMargin} !important;}`;
     }
   }
 

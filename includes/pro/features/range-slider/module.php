@@ -1,6 +1,7 @@
 <?php
 /**
- * Range Slider Field Module.
+ * Range Slider Module.
+ * Processes [cf7m-range] shortcodes in form markup (same pattern as multi-steps).
  *
  * @package CF7_Mate\Features\Range_Slider
  * @since 3.0.0
@@ -8,59 +9,104 @@
 
 namespace CF7_Mate\Features\Range_Slider;
 
-use CF7_Mate\Pro\CF7_Form_Tag_Feature;
+use CF7_Mate\Pro\Pro_Feature_Base;
+use CF7_Mate\Pro\Traits\Shortcode_Atts_Trait;
 use CF7_Mate\Pro\Traits\Singleton;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class Range_Slider extends CF7_Form_Tag_Feature
+class Range_Slider extends Pro_Feature_Base
 {
+    use Shortcode_Atts_Trait;
     use Singleton;
 
-    /** @inheritdoc */
     protected function __construct()
     {
         parent::__construct();
     }
 
-    /** @inheritdoc */
-    protected function get_form_tag_names(): array
+    protected function init()
     {
-        return ['cf7m-range', 'cf7m-range*'];
+        add_filter('wpcf7_form_elements', [$this, 'process_shortcodes'], 20, 1);
+        add_action('wpcf7_admin_init', [$this, 'add_tag_generators'], 25);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
     }
 
-    /** @inheritdoc */
-    protected function get_tag_generator_id(): string
+    /**
+     * Process [cf7m-range name min:0 max:100 step:1 default:50] shortcodes.
+     *
+     * @param string $form
+     * @return string
+     */
+    public function process_shortcodes($form)
     {
-        return 'cf7m-range';
-    }
-
-    /** @inheritdoc */
-    protected function get_tag_generator_title(): string
-    {
-        return __('range slider', 'cf7-styler-for-divi');
-    }
-
-    /** @inheritdoc */
-    public function render_form_tag($tag): string
-    {
-        if (empty($tag->name)) {
-            return '';
+        if (strpos($form, '[cf7m-range') === false) {
+            return $form;
         }
 
-        $min          = (int) ($tag->get_option('min', 'int', true) ?? 0);
-        $max          = (int) ($tag->get_option('max', 'int', true) ?? 100);
-        $step         = (int) ($tag->get_option('step', 'int', true) ?: 1);
-        $default      = (int) ($tag->get_option('default', 'int', true) ?? $min);
-        $prefix       = (string) ($tag->get_option('prefix', '', true) ?: '');
-        $suffix       = (string) ($tag->get_option('suffix', '', true) ?: '');
-        $track_color  = self::opt_string($tag->get_option('track_color', '', true));
-        $thumb_color  = self::opt_string($tag->get_option('thumb_color', '', true));
-        $track_color  = self::sanitize_color($track_color);
-        $thumb_color  = self::sanitize_color($thumb_color);
+        // Match: [cf7m-range name min:0 max:100] or [cf7m-range* name ...]
+        $form = preg_replace_callback(
+            '/\[cf7m-range\*?\s+([^\]]+)\]/',
+            [$this, 'render_range_slider'],
+            $form
+        );
 
+        return $form;
+    }
+
+    /**
+     * Render a single range slider field.
+     *
+     * @param array $matches Regex matches
+     * @return string HTML output
+     */
+    public function render_range_slider($matches)
+    {
+        $raw_atts = trim($matches[1]);
+        $is_required = strpos($matches[0], '[cf7m-range*') === 0;
+
+        // Parse attributes: first word is name, rest are key:value pairs
+        $parts = preg_split('/\s+/', $raw_atts);
+        $name = !empty($parts[0]) ? sanitize_key($parts[0]) : 'amount';
+
+        $min = 0;
+        $max = 100;
+        $step = 1;
+        $default = 50;
+        $prefix = '';
+        $suffix = '';
+        $track_color = '';
+        $thumb_color = '';
+
+        for ($i = 1; $i < count($parts); $i++) {
+            $part = $parts[$i];
+            if (strpos($part, 'min:') === 0) {
+                $min = (int) substr($part, 4);
+            } elseif (strpos($part, 'max:') === 0) {
+                $max = (int) substr($part, 4);
+            } elseif (strpos($part, 'step:') === 0) {
+                $step = (int) substr($part, 5);
+            } elseif (strpos($part, 'default:') === 0) {
+                $default = (int) substr($part, 8);
+            } elseif (strpos($part, 'prefix:') === 0) {
+                $prefix = substr($part, 7);
+            } elseif (strpos($part, 'suffix:') === 0) {
+                $suffix = substr($part, 7);
+            } elseif (strpos($part, 'track:') === 0) {
+                $track_color = substr($part, 6);
+            } elseif (strpos($part, 'thumb:') === 0) {
+                $thumb_color = substr($part, 6);
+            }
+        }
+
+        $step = max(1, $step);
+        $default = max($min, min($default, $max));
+        $track_color = $this->sanitize_color($track_color);
+        $thumb_color = $this->sanitize_color($thumb_color);
+
+        // Build style attribute
         $style_parts = [];
         if ($track_color !== '') {
             $style_parts[] = '--cf7m-range-track:' . esc_attr($track_color);
@@ -68,107 +114,132 @@ class Range_Slider extends CF7_Form_Tag_Feature
         if ($thumb_color !== '') {
             $style_parts[] = '--cf7m-range-thumb:' . esc_attr($thumb_color);
         }
-        $style_attr = !empty($style_parts) ? ' style="' . implode(';', $style_parts) . '"' : '';
+        $style = !empty($style_parts) ? ' style="' . implode(';', $style_parts) . '"' : '';
 
+        $required_attr = $is_required ? ' data-required="true"' : '';
+
+        // Build HTML
         $html = sprintf(
-            '<span class="wpcf7-form-control-wrap %1$s" data-name="%2$s">',
-            sanitize_html_class($tag->name),
-            esc_attr($tag->name)
+            '<span class="wpcf7-form-control-wrap wpcf7-form-control-wrap-%1$s" data-name="%1$s">',
+            esc_attr($name)
         );
         $html .= sprintf(
-            '<span class="dcs-range-slider" data-prefix="%1$s" data-suffix="%2$s"%3$s>',
+            '<span class="cf7m-range-slider" data-prefix="%s" data-suffix="%s" data-name="%s"%s%s>',
             esc_attr($prefix),
             esc_attr($suffix),
-            $style_attr
+            esc_attr($name),
+            $required_attr,
+            $style
         );
         $html .= sprintf(
-            '<input type="range" name="%1$s" min="%2$s" max="%3$s" step="%4$s" value="%5$s" class="cf7m-range-input" />',
-            esc_attr($tag->name),
+            '<input type="range" name="%s" min="%d" max="%d" step="%d" value="%d" class="cf7m-range-input">',
+            esc_attr($name),
             $min,
             $max,
             $step,
             $default
         );
-        $html .= sprintf('<span class="dcs-range-value">%s</span>', esc_html($prefix . $default . $suffix));
+        $html .= sprintf(
+            '<span class="cf7m-range-value">%s</span>',
+            esc_html($prefix . $default . $suffix)
+        );
         $html .= '</span></span>';
 
         return $html;
     }
 
     /**
-     * Get single string from tag option (may be array).
+     * Sanitize color value.
      *
-     * @param mixed $opt Option value.
+     * @param string $value
      * @return string
      */
-    private static function opt_string($opt)
+    private function sanitize_color($value)
     {
-        return is_array($opt) ? (string) reset($opt) : (string) $opt;
-    }
-
-    /**
-     * Sanitize a value for use as CSS color.
-     *
-     * @param string $value Raw value.
-     * @return string Empty if invalid.
-     */
-    private static function sanitize_color($value)
-    {
-        $value = trim($value);
+        $value = trim((string) $value);
         if (preg_match('/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/', $value)) {
             return $value;
-        }
-        if (preg_match('/^rgb\(|^rgba\(/', $value)) {
-            return wp_strip_all_tags($value);
         }
         return '';
     }
 
-    /** @inheritdoc */
-    public function validate_field($result, $tag)
+    /**
+     * Register CF7 tag generator for [cf7m-range].
+     */
+    public function add_tag_generators()
     {
-        $value = isset($_POST[$tag->name]) ? sanitize_text_field(wp_unslash($_POST[$tag->name])) : '';
-        if ($tag->is_required() && '' === $value) {
-            $result->invalidate($tag, \wpcf7_get_message('invalid_required'));
+        if (class_exists('WPCF7_TagGenerator')) {
+            \WPCF7_TagGenerator::get_instance()->add(
+                'cf7m-range',
+                __('range slider', 'cf7-styler-for-divi'),
+                [$this, 'tag_generator_callback']
+            );
         }
-        return $result;
     }
 
-    /** @inheritdoc */
-    public function tag_generator_callback($contact_form, $options = ''): void
+    /**
+     * Tag generator callback for [cf7m-range].
+     *
+     * @param \WPCF7_ContactForm $contact_form
+     * @param string $options
+     */
+    public function tag_generator_callback($contact_form, $options = '')
     {
-        $default_tag = '[cf7m-range amount min:0 max:100 step:1 default:50]';
         ?>
-        <div class="cf7m-tag-panel">
         <div class="control-box">
             <fieldset>
                 <legend><?php esc_html_e('Range Slider', 'cf7-styler-for-divi'); ?></legend>
                 <table class="form-table"><tbody>
-                    <tr><th><?php esc_html_e('Field type', 'cf7-styler-for-divi'); ?></th><td><label><input type="checkbox" name="required" /> <?php esc_html_e('Required', 'cf7-styler-for-divi'); ?></label></td></tr>
-                    <tr><th><label><?php esc_html_e('Name', 'cf7-styler-for-divi'); ?></label></th><td><input type="text" name="name" class="tg-name oneline" placeholder="amount" /></td></tr>
-                    <tr><th><label><?php esc_html_e('Min', 'cf7-styler-for-divi'); ?></label></th><td><input type="number" name="min" class="oneline option" value="0" /></td></tr>
-                    <tr><th><label><?php esc_html_e('Max', 'cf7-styler-for-divi'); ?></label></th><td><input type="number" name="max" class="oneline option" value="100" /></td></tr>
-                    <tr><th><label><?php esc_html_e('Step', 'cf7-styler-for-divi'); ?></label></th><td><input type="number" name="step" class="oneline option" value="1" /></td></tr>
-                    <tr><th><label><?php esc_html_e('Default', 'cf7-styler-for-divi'); ?></label></th><td><input type="number" name="default" class="oneline option" value="50" /></td></tr>
-                    <tr><th><label><?php esc_html_e('Prefix', 'cf7-styler-for-divi'); ?></label></th><td><input type="text" name="prefix" class="oneline option" placeholder="$" /></td></tr>
-                    <tr><th><label><?php esc_html_e('Suffix', 'cf7-styler-for-divi'); ?></label></th><td><input type="text" name="suffix" class="oneline option" placeholder="%" /></td></tr>
-                    <tr><th><label for="cf7m-range-track"><?php esc_html_e('Track color', 'cf7-styler-for-divi'); ?></label></th><td><input type="text" id="cf7m-range-track" name="track_color" class="oneline option cf7m-color-input" placeholder="#e5e7eb" /></td></tr>
-                    <tr><th><label for="cf7m-range-thumb"><?php esc_html_e('Thumb color', 'cf7-styler-for-divi'); ?></label></th><td><input type="text" id="cf7m-range-thumb" name="thumb_color" class="oneline option cf7m-color-input" placeholder="#5733ff" /></td></tr>
+                    <tr>
+                        <th><?php esc_html_e('Field type', 'cf7-styler-for-divi'); ?></th>
+                        <td><label><input type="checkbox" name="required" id="cf7m-range-required"> <?php esc_html_e('Required', 'cf7-styler-for-divi'); ?></label></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-name"><?php esc_html_e('Name', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="text" name="name" id="cf7m-range-name" class="tg-name oneline" placeholder="amount"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-min"><?php esc_html_e('Min', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="number" name="min" id="cf7m-range-min" class="oneline" value="0"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-max"><?php esc_html_e('Max', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="number" name="max" id="cf7m-range-max" class="oneline" value="100"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-step"><?php esc_html_e('Step', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="number" name="step" id="cf7m-range-step" class="oneline" value="1" min="1"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-default"><?php esc_html_e('Default Value', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="number" name="default" id="cf7m-range-default" class="oneline" value="50"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-prefix"><?php esc_html_e('Prefix', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="text" name="prefix" id="cf7m-range-prefix" class="oneline" placeholder="$"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="cf7m-range-suffix"><?php esc_html_e('Suffix', 'cf7-styler-for-divi'); ?></label></th>
+                        <td><input type="text" name="suffix" id="cf7m-range-suffix" class="oneline" placeholder="%"></td>
+                    </tr>
                 </tbody></table>
             </fieldset>
         </div>
         <div class="insert-box">
-            <input type="text" name="cf7m-range" class="tag code" readonly="readonly" onfocus="this.select()" value="<?php echo esc_attr($default_tag); ?>" />
-            <div class="submitbox"><input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>" /></div>
-        </div>
+            <input type="text" name="cf7m-range" class="tag code" readonly="readonly" onfocus="this.select()" value="[cf7m-range amount min:0 max:100 step:1 default:50]">
+            <div class="submitbox">
+                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>">
+            </div>
         </div>
         <?php
     }
 
-    /** @inheritdoc */
-    public function enqueue_assets(): void
+    /**
+     * Enqueue range slider front-end assets.
+     */
+    public function enqueue_assets()
     {
-        if (!$this->has_cf7_form_on_page()) {
+        if (!Pro_Feature_Base::page_has_cf7_form()) {
             return;
         }
 

@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-01-30 22:17+0000\n"
+"POT-Creation-Date: 2026-02-01 08:18+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,23 +15,31 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/rest-api.php:154
+#: includes/rest-api.php:171
 msgid "Invalid features data."
 msgstr ""
 
-#: includes/rest-api.php:295
+#: includes/rest-api.php:274
+msgid "Form ID is required."
+msgstr ""
+
+#: includes/rest-api.php:283
+msgid "Invalid form ID."
+msgstr ""
+
+#: includes/rest-api.php:347
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:311
+#: includes/rest-api.php:363
 msgid "Select a form"
 msgstr ""
 
-#: includes/rest-api.php:318
+#: includes/rest-api.php:370
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:361
+#: includes/rest-api.php:413
 msgid "Onboarding reset successfully."
 msgstr ""
 
@@ -55,16 +63,56 @@ msgstr ""
 msgid "Leave a Review"
 msgstr ""
 
-#: includes/utils/grid.php:142
+#: includes/pro/cf7-editor-styles-panel.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:17
+msgid "CF7 Styler"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:54
+msgid "Default styles for Pro form tags (star rating, range slider, heading). Leave blank to use theme defaults."
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:58, includes/pro/features/star-rating/module.php:116
+msgid "Star rating"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:62
+msgid "Star color"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:72
+msgid "Range slider"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:76
+msgid "Track color"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:82
+msgid "Thumb color"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:92, includes/pro/features/heading/module.php:203
+msgid "Heading"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:96
+msgid "Font size"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:102
+msgid "Font family"
+msgstr ""
+
+#: includes/pro/cf7-editor-styles-panel.php:108
+msgid "Text color"
+msgstr ""
+
+#: includes/utils/grid.php:142, includes/pro/features/ai-form-generator/module.php:119
 msgid "Insert"
 msgstr ""
 
-#: includes/modules/CF7Styler/CF7Styler.php:234
+#: includes/modules/CF7Styler/CF7Styler.php:184
 msgid "Please select a Contact Form 7 form."
-msgstr ""
-
-#: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
-msgid "CF7 Styler"
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:23
@@ -83,7 +131,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: includes/modules/divi-4/CF7Styler/CF7Styler.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:661, includes/pro/features/heading/module.php:104
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:661, includes/pro/features/heading/module.php:206
 msgid "Text"
 msgstr ""
 
@@ -547,6 +595,86 @@ msgstr ""
 msgid "Please select a Gravity Form."
 msgstr ""
 
+#: includes/pro/features/ai-form-generator/class-ai-api-handler.php:68
+msgid "Connection successful!"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/class-ai-api-handler.php:81
+msgid "OpenAI API key not configured."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/class-ai-api-handler.php:113
+msgid "Anthropic API key not configured."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/class-ai-api-handler.php:145
+msgid "Kimi API key not configured."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/class-ai-settings.php:45, includes/pro/features/ai-form-generator/class-ai-settings.php:46
+msgid "AI Settings"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:56, includes/pro/features/ai-form-generator/module.php:116
+msgid "AI Form Generator"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:117
+msgid "Describe the form you want to create"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:118
+msgid "Generate Form"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:120
+msgid "Copy"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:121
+msgid "Close"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:122
+msgid "Generating..."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:123
+msgid "Error generating form."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:124
+msgid "Copied!"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:125
+msgid "Configure AI"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:126
+msgid "Please configure your AI provider in settings."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:129
+msgid "Contact form with name, email, phone, and message"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:130
+msgid "Multi-step job application with personal info, experience, and resume upload"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:131
+msgid "Feedback form with star ratings for service, quality, and value"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:132
+msgid "Quote request with budget range slider and project details"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:159
+msgid "Please describe the form."
+msgstr ""
+
 #: includes/pro/features/entries/api.php:146, includes/pro/features/entries/api.php:155, includes/pro/features/entries/api.php:166
 msgid "Entry not found."
 msgstr ""
@@ -627,186 +755,218 @@ msgstr ""
 msgid "%1$s — %2$s"
 msgstr ""
 
-#: includes/pro/features/heading/module.php:80
+#: includes/pro/features/heading/module.php:193
 msgid "heading"
 msgstr ""
 
-#: includes/pro/features/heading/module.php:90
-msgid "Heading"
+#: includes/pro/features/heading/module.php:210
+msgid "Tag"
 msgstr ""
 
-#: includes/pro/features/heading/module.php:94
-msgid "Level"
+#: includes/pro/features/heading/module.php:220, includes/pro/features/separator/module.php:148
+msgid "Color"
 msgstr ""
 
-#: includes/pro/features/heading/module.php:105
-msgid "Your heading text"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:85
+#: includes/pro/features/icon/module.php:127
 msgid "icon"
 msgstr ""
 
-#: includes/pro/features/icon/module.php:95
+#: includes/pro/features/icon/module.php:138
 msgid "Icon"
 msgstr ""
 
-#: includes/pro/features/icon/module.php:98
-msgid "Dashicon name"
+#: includes/pro/features/icon/module.php:141
+msgid "Icon type"
 msgstr ""
 
-#: includes/pro/features/icon/module.php:101
-msgid "Use Dashicons class (e.g. dashicons-email, dashicons-phone)"
+#: includes/pro/features/icon/module.php:143
+msgid "Dashicon (browse below)"
 msgstr ""
 
-#: includes/pro/features/icon/module.php:105
-msgid "Size (px)"
+#: includes/pro/features/icon/module.php:145
+msgid "Custom image (upload)"
 msgstr ""
 
-#: includes/pro/features/image/module.php:96
-msgid "image"
+#: includes/pro/features/icon/module.php:149
+msgid "Icon browser"
 msgstr ""
 
-#: includes/pro/features/image/module.php:106
-msgid "Image"
+#: includes/pro/features/icon/module.php:151
+msgid "Choose an icon"
 msgstr ""
 
-#: includes/pro/features/image/module.php:109
+#: includes/pro/features/icon/module.php:156
+msgid "Click an icon to select it."
+msgstr ""
+
+#: includes/pro/features/icon/module.php:161, includes/pro/features/image/module.php:129
 msgid "Image URL"
 msgstr ""
 
-#: includes/pro/features/image/module.php:113
+#: includes/pro/features/icon/module.php:164, includes/pro/features/image/module.php:132
+msgid "Select Image"
+msgstr ""
+
+#: includes/pro/features/icon/module.php:168
+msgid "Size (px)"
+msgstr ""
+
+#: includes/pro/features/image/module.php:115
+msgid "image"
+msgstr ""
+
+#: includes/pro/features/image/module.php:125
+msgid "Image"
+msgstr ""
+
+#: includes/pro/features/image/module.php:133
+msgid "Enter a URL or use \"Select Image\" to choose from the media library."
+msgstr ""
+
+#: includes/pro/features/image/module.php:138
 msgid "Alt text"
 msgstr ""
 
-#: includes/pro/features/image/module.php:117, includes/pro/features/multi-column/module.php:171
+#: includes/pro/features/image/module.php:139
+msgid "Describe the image"
+msgstr ""
+
+#: includes/pro/features/image/module.php:142, includes/pro/features/multi-column/module.php:190
 msgid "Width"
 msgstr ""
 
-#: includes/pro/features/image/module.php:121
+#: includes/pro/features/image/module.php:146
 msgid "Height"
 msgstr ""
 
-#: includes/pro/features/multi-column/module.php:126
+#: includes/pro/features/multi-column/module.php:152
 msgid "row"
 msgstr ""
 
-#: includes/pro/features/multi-column/module.php:127
+#: includes/pro/features/multi-column/module.php:153
 msgid "column"
 msgstr ""
 
-#: includes/pro/features/multi-column/module.php:141
+#: includes/pro/features/multi-column/module.php:161
 msgid "Multi-Column Row"
 msgstr ""
 
-#: includes/pro/features/multi-column/module.php:144
+#: includes/pro/features/multi-column/module.php:164
 msgid "Gap (px)"
 msgstr ""
 
 #: includes/pro/features/multi-column/module.php:168
-msgid "Multi-Column Column"
+msgid "Place [cf7m-col] tags inside this row."
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:187
+msgid "Column"
+msgstr ""
+
+#: includes/pro/features/multi-column/module.php:203
+msgid "Place your fields inside this column."
 msgstr ""
 
 #: includes/pro/features/multi-steps/module.php:55
 msgid "Step %d"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:78
+#: includes/pro/features/multi-steps/module.php:82
 msgid "Previous"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:79
+#: includes/pro/features/multi-steps/module.php:83
 msgid "Next"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:102
+#: includes/pro/features/multi-steps/module.php:106
 msgid "step"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:119
+#: includes/pro/features/multi-steps/module.php:123
 msgid "Multi-Step"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:121
+#: includes/pro/features/multi-steps/module.php:125
 msgid "Step Title"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:43
+#: includes/pro/features/range-slider/module.php:174
 msgid "range slider"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:100
+#: includes/pro/features/range-slider/module.php:191
 msgid "Range Slider"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:102, includes/pro/features/star-rating/module.php:106
+#: includes/pro/features/range-slider/module.php:194, includes/pro/features/star-rating/module.php:183
 msgid "Field type"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:102, includes/pro/features/star-rating/module.php:106
+#: includes/pro/features/range-slider/module.php:195, includes/pro/features/star-rating/module.php:184
 msgid "Required"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:103, includes/pro/features/star-rating/module.php:107
+#: includes/pro/features/range-slider/module.php:198, includes/pro/features/star-rating/module.php:187
 msgid "Name"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:104
+#: includes/pro/features/range-slider/module.php:202
 msgid "Min"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:105
+#: includes/pro/features/range-slider/module.php:206
 msgid "Max"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:106
+#: includes/pro/features/range-slider/module.php:210
 msgid "Step"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:107, includes/pro/features/star-rating/module.php:109
-msgid "Default"
+#: includes/pro/features/range-slider/module.php:214, includes/pro/features/star-rating/module.php:195
+msgid "Default Value"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:108
+#: includes/pro/features/range-slider/module.php:218
 msgid "Prefix"
 msgstr ""
 
-#: includes/pro/features/range-slider/module.php:109
+#: includes/pro/features/range-slider/module.php:222
 msgid "Suffix"
 msgstr ""
 
-#: includes/pro/features/separator/module.php:79
+#: includes/pro/features/separator/module.php:123
 msgid "separator"
 msgstr ""
 
-#: includes/pro/features/separator/module.php:89
+#: includes/pro/features/separator/module.php:133
 msgid "Separator"
 msgstr ""
 
-#: includes/pro/features/separator/module.php:92
+#: includes/pro/features/separator/module.php:136
 msgid "Style"
 msgstr ""
 
-#: includes/pro/features/separator/module.php:95
-msgid "Line"
-msgstr ""
-
-#: includes/pro/features/separator/module.php:96
-msgid "Space only"
-msgstr ""
-
-#: includes/pro/features/separator/module.php:101
+#: includes/pro/features/separator/module.php:152
 msgid "Margin (px)"
 msgstr ""
 
-#: includes/pro/features/star-rating/module.php:43
+#: includes/pro/features/star-rating/module.php:130
+msgid "Rate %d star"
+msgstr ""
+
+#: includes/pro/features/star-rating/module.php:163
 msgid "star rating"
 msgstr ""
 
-#: includes/pro/features/star-rating/module.php:104
+#: includes/pro/features/star-rating/module.php:180
 msgid "Star Rating"
 msgstr ""
 
-#: includes/pro/features/star-rating/module.php:108
+#: includes/pro/features/star-rating/module.php:191
 msgid "Max Stars"
+msgstr ""
+
+#: includes/pro/features/star-rating/module.php:199
+msgid "Star Color"
 msgstr ""

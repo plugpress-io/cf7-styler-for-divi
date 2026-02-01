@@ -1,0 +1,201 @@
+/**
+ * CF7 Mate AI Provider Settings
+ * Uses same dashboard wrapper/header styles
+ *
+ * @package CF7_Mate
+ * @since 3.0.0
+ */
+
+/* Page header */
+.cf7m-ai__page-header {
+  margin-bottom: 24px;
+}
+
+.cf7m-ai__page-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dcs-heading, #24223a);
+  margin: 0 0 6px;
+}
+
+.cf7m-ai__page-header p {
+  font-size: 14px;
+  color: var(--dcs-text-muted, #5c5a6e);
+  margin: 0;
+}
+
+/* Grid layout */
+.cf7m-ai__grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .cf7m-ai__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form styles */
+.cf7m-ai__form {
+  padding: 20px;
+}
+
+.cf7m-ai__field {
+  margin-bottom: 20px;
+}
+
+.cf7m-ai__field:last-of-type {
+  margin-bottom: 24px;
+}
+
+.cf7m-ai__field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dcs-heading, #24223a);
+  margin-bottom: 8px;
+}
+
+.cf7m-ai__field select,
+.cf7m-ai__field input[type="text"],
+.cf7m-ai__field input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid var(--dcs-border, #e8e7ec);
+  border-radius: 6px;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+
+.cf7m-ai__field select:focus,
+.cf7m-ai__field input:focus {
+  outline: none;
+  border-color: var(--dcs-primary, #5733ff);
+  box-shadow: 0 0 0 2px rgba(87, 51, 255, 0.1);
+}
+
+/* Badge */
+.cf7m-ai__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #059669;
+  background: #d1fae5;
+  border-radius: 10px;
+}
+
+.cf7m-ai__badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Key row */
+.cf7m-ai__key-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cf7m-ai__key-row input {
+  flex: 1;
+}
+
+.cf7m-ai__key-row code {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: ui-monospace, monospace;
+  background: var(--dcs-bg, #f6f5f9);
+  border: 1px solid var(--dcs-border, #e8e7ec);
+  border-radius: 6px;
+  color: var(--dcs-text-muted, #5c5a6e);
+}
+
+.cf7m-ai__key-row .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.cf7m-ai__btn--danger {
+  color: #dc2626 !important;
+  border-color: #fecaca !important;
+}
+
+.cf7m-ai__btn--danger:hover {
+  background: #fef2f2 !important;
+  border-color: #f87171 !important;
+}
+
+/* Actions */
+.cf7m-ai__actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+/* Info Card */
+.cf7m-ai__info-card {
+  padding: 24px;
+}
+
+.cf7m-ai__info-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.cf7m-ai__info-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.cf7m-ai__info-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dcs-heading, #24223a);
+  margin: 0 0 2px;
+}
+
+.cf7m-ai__info-company {
+  font-size: 12px;
+  color: var(--dcs-text-muted, #5c5a6e);
+}
+
+.cf7m-ai__info-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dcs-text-muted, #5c5a6e);
+  margin: 0 0 16px;
+}
+
+.cf7m-ai__info-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dcs-primary, #5733ff);
+  text-decoration: none;
+}
+
+.cf7m-ai__info-link:hover {
+  text-decoration: underline;
+}
