@@ -49,10 +49,6 @@ class Entries extends Pro_Feature_Base
         }
     }
 
-    /**
-     * Add Entries submenu under Contact Form 7 (Pro + database_entries only).
-     * Renders the Entries UI on admin.php?page=cf7-mate-entries for better navigation.
-     */
     public function add_entries_menu()
     {
         if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {

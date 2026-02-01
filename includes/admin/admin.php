@@ -139,6 +139,8 @@ class Admin
             $localize['cf7_admin_url'] = admin_url('admin.php?page=wpcf7');
         }
 
+        $localize = apply_filters('cf7m_admin_app_localize', $localize, $options);
+
         wp_localize_script('dcs-admin', 'dcsCF7Styler', $localize);
 
         echo '<div id="cf7-styler-for-divi-root"></div>';

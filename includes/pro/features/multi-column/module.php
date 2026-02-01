@@ -85,7 +85,7 @@ class Multi_Column extends Pro_Feature_Base
     }
 
     /**
-     * Parse [cf7m-row gap:20] or [cf7m-row gap="20"]
+     * Parse [cf7m-row gap:20 align:stretch] or [cf7m-row gap="20"]
      *
      * @param array $matches
      * @return string
@@ -95,23 +95,40 @@ class Multi_Column extends Pro_Feature_Base
         $raw = isset($matches[1]) ? trim($matches[1]) : '';
         $content = isset($matches[2]) ? $matches[2] : '';
 
-        // Default gap
+        // Default values
         $gap = 16;
+        $align = 'flex-start'; // flex-start, center, flex-end, stretch
+        $classes = ['cf7m-pro-row'];
 
         // Parse gap:20 or gap="20" or gap=20
         if (preg_match('/gap[=:]"?(\d+)"?/', $raw, $m)) {
             $gap = (int) $m[1];
         }
 
+        // Parse align:center or align="stretch"
+        if (preg_match('/align[=:]"?(start|center|end|stretch)"?/i', $raw, $m)) {
+            $val = strtolower($m[1]);
+            $align_map = [
+                'start'   => 'flex-start',
+                'center'  => 'center',
+                'end'     => 'flex-end',
+                'stretch' => 'stretch',
+            ];
+            $align = $align_map[$val] ?? 'flex-start';
+        }
+
+        $style = sprintf('--cf7m-row-gap:%dpx;align-items:%s;', $gap, $align);
+
         return sprintf(
-            '<div class="cf7m-pro-row" style="--cf7m-row-gap:%dpx;">%s</div>',
-            $gap,
+            '<div class="%s" style="%s">%s</div>',
+            esc_attr(implode(' ', $classes)),
+            esc_attr($style),
             $content
         );
     }
 
     /**
-     * Parse [cf7m-col width:50] or [cf7m-col width="50%"]
+     * Parse [cf7m-col width:50 valign:center] or [cf7m-col width="50%"]
      *
      * @param array $matches
      * @return string
@@ -121,8 +138,10 @@ class Multi_Column extends Pro_Feature_Base
         $raw = isset($matches[1]) ? trim($matches[1]) : '';
         $content = isset($matches[2]) ? $matches[2] : '';
 
-        // Default width
+        // Default values
         $width = '50%';
+        $justify = ''; // flex-start, center, flex-end, space-between
+        $classes = ['cf7m-pro-col'];
 
         // Parse width:50 or width:50% or width="50%" or width="50"
         if (preg_match('/width[=:]"?(\d+(?:\.\d+)?%?)"?/', $raw, $m)) {
@@ -133,9 +152,27 @@ class Multi_Column extends Pro_Feature_Base
             }
         }
 
+        // Parse valign:center or valign="end" (vertical align inside column)
+        if (preg_match('/valign[=:]"?(start|center|end|between)"?/i', $raw, $m)) {
+            $val = strtolower($m[1]);
+            $justify_map = [
+                'start'   => 'flex-start',
+                'center'  => 'center',
+                'end'     => 'flex-end',
+                'between' => 'space-between',
+            ];
+            $justify = $justify_map[$val] ?? '';
+        }
+
+        $style = '--cf7m-col-width:' . esc_attr($width) . ';';
+        if ($justify) {
+            $style .= 'justify-content:' . $justify . ';';
+        }
+
         return sprintf(
-            '<div class="cf7m-pro-col" style="--cf7m-col-width:%s;">%s</div>',
-            esc_attr($width),
+            '<div class="%s" style="%s">%s</div>',
+            esc_attr(implode(' ', $classes)),
+            esc_attr($style),
             $content
         );
     }
@@ -164,8 +201,19 @@ class Multi_Column extends Pro_Feature_Base
                         <th><label for="cf7m-row-gap"><?php esc_html_e('Gap (px)', 'cf7-styler-for-divi'); ?></label></th>
                         <td><input type="number" id="cf7m-row-gap" name="gap" class="oneline" value="20" min="0"></td>
                     </tr>
+                    <tr>
+                        <th><label for="cf7m-row-align"><?php esc_html_e('Vertical Align', 'cf7-styler-for-divi'); ?></label></th>
+                        <td>
+                            <select id="cf7m-row-align" name="align" class="oneline">
+                                <option value="start" selected><?php esc_html_e('Top', 'cf7-styler-for-divi'); ?></option>
+                                <option value="center"><?php esc_html_e('Center', 'cf7-styler-for-divi'); ?></option>
+                                <option value="end"><?php esc_html_e('Bottom', 'cf7-styler-for-divi'); ?></option>
+                                <option value="stretch"><?php esc_html_e('Stretch', 'cf7-styler-for-divi'); ?></option>
+                            </select>
+                        </td>
+                    </tr>
                 </tbody></table>
-                <p class="description"><?php esc_html_e('Place [cf7m-col] tags inside this row.', 'cf7-styler-for-divi'); ?></p>
+                <p class="description"><?php esc_html_e('Place [cf7m-col] tags inside this row. Columns stack on mobile.', 'cf7-styler-for-divi'); ?></p>
             </fieldset>
         </div>
         <div class="insert-box">
@@ -199,8 +247,19 @@ class Multi_Column extends Pro_Feature_Base
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <th><label for="cf7m-col-valign"><?php esc_html_e('Content Align', 'cf7-styler-for-divi'); ?></label></th>
+                        <td>
+                            <select id="cf7m-col-valign" name="valign" class="oneline">
+                                <option value="" selected><?php esc_html_e('Default (Top)', 'cf7-styler-for-divi'); ?></option>
+                                <option value="center"><?php esc_html_e('Center', 'cf7-styler-for-divi'); ?></option>
+                                <option value="end"><?php esc_html_e('Bottom', 'cf7-styler-for-divi'); ?></option>
+                                <option value="between"><?php esc_html_e('Space Between', 'cf7-styler-for-divi'); ?></option>
+                            </select>
+                        </td>
+                    </tr>
                 </tbody></table>
-                <p class="description"><?php esc_html_e('Place your fields inside this column.', 'cf7-styler-for-divi'); ?></p>
+                <p class="description"><?php esc_html_e('All elements inside columns are full width and stack vertically.', 'cf7-styler-for-divi'); ?></p>
             </fieldset>
         </div>
         <div class="insert-box">

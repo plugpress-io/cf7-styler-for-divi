@@ -1,10 +1,3 @@
-/**
- * CF7 Mate Onboarding - Main Component
- * Rebrand is not part of onboarding; it is shown as a subtle dashboard banner only.
- *
- * @since 3.0.0
- */
-
 import { useState, useEffect, render } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 import OnboardingModal from './components/OnboardingModal';

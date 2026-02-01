@@ -562,6 +562,7 @@ const Header = ({ isPro, showEntries, currentView }) => {
 	const isDashboard = currentView === 'dashboard';
 	const isModules = currentView === 'features';
 	const isEntries = currentView === 'entries';
+	const isAiSettings = currentView === 'ai-settings';
 
 	return (
 		<header className="dcs-admin__header">
@@ -616,6 +617,17 @@ const Header = ({ isPro, showEntries, currentView }) => {
 									{__('Modules', 'cf7-styler-for-divi')}
 								</span>
 							</a>
+							{isPro && !entriesOnlyPage && (
+								<a
+									href={dashboardUrl + '#/ai-settings'}
+									className={`dcs-admin__nav-link ${isAiSettings ? 'dcs-admin__nav-link--active' : ''}`}
+									aria-label={__('AI Settings', 'cf7-styler-for-divi')}
+								>
+									<span className="dcs-admin__nav-text">
+										{__('AI Settings', 'cf7-styler-for-divi')}
+									</span>
+								</a>
+							)}
 							{showEntries && !entriesOnlyPage && (
 								<a
 									href={entriesUrl}
@@ -659,6 +671,278 @@ const Header = ({ isPro, showEntries, currentView }) => {
 			</div>
 	</header>
 );
+};
+
+// AI Provider Settings view (Pro) – uses same REST API as legacy ai-settings page.
+const AI_PLATFORM_INFO = {
+	openai: { company: 'OpenAI', desc: __('Best for general-purpose form generation. Fast, accurate, and cost-effective.', 'cf7-styler-for-divi'), color: '#10a37f' },
+	anthropic: { company: 'Anthropic', desc: __('Excellent at structured output and following templates precisely.', 'cf7-styler-for-divi'), color: '#d97706' },
+	grok: { company: 'xAI', desc: __('Real-time knowledge AI by xAI. Good balance of speed and quality.', 'cf7-styler-for-divi'), color: '#000000' },
+	kimi: { company: 'Moonshot AI', desc: __('Great for multilingual forms. Popular choice for Chinese users.', 'cf7-styler-for-divi'), color: '#6366f1' },
+};
+
+const AICheckIcon = () => (
+	<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+		<polyline points="20 6 9 17 4 12" />
+	</svg>
+);
+const AITrashIcon = () => (
+	<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+		<path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14" />
+	</svg>
+);
+const AILinkIcon = () => (
+	<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+		<path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+	</svg>
+);
+
+const AISettingsView = () => {
+	const providers = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.aiProviders) || {};
+	const [loading, setLoading] = useState(true);
+	const [saving, setSaving] = useState(false);
+	const [testing, setTesting] = useState(false);
+	const [notice, setNotice] = useState(null);
+	const [settings, setSettings] = useState({
+		provider: 'openai',
+		openai_key: '',
+		openai_model: 'gpt-4o-mini',
+		anthropic_key: '',
+		anthropic_model: 'claude-sonnet-4-20250514',
+		grok_key: '',
+		grok_model: 'grok-3-mini',
+		kimi_key: '',
+		kimi_model: 'moonshot-v1-32k',
+	});
+
+	useEffect(() => {
+		const load = async () => {
+			try {
+				const data = await apiFetch({ path: '/cf7-styler/v1/ai-settings' });
+				setSettings((prev) => ({ ...prev, ...data }));
+			} catch (err) {
+				setNotice({ type: 'error', message: err.message || __('Failed to load settings.', 'cf7-styler-for-divi') });
+			} finally {
+				setLoading(false);
+			}
+		};
+		load();
+	}, []);
+
+	const showNotice = (type, message) => {
+		setNotice({ type, message });
+		if (type === 'success') setTimeout(() => setNotice(null), 3000);
+	};
+
+	const saveSettings = async () => {
+		setSaving(true);
+		setNotice(null);
+		try {
+			await apiFetch({ path: '/cf7-styler/v1/ai-settings', method: 'POST', data: settings });
+			showNotice('success', __('Settings saved!', 'cf7-styler-for-divi'));
+			const data = await apiFetch({ path: '/cf7-styler/v1/ai-settings' });
+			setSettings((prev) => ({ ...prev, ...data }));
+		} catch (err) {
+			showNotice('error', err.message || __('Save failed.', 'cf7-styler-for-divi'));
+		} finally {
+			setSaving(false);
+		}
+	};
+
+	const testConnection = async () => {
+		setTesting(true);
+		setNotice(null);
+		try {
+			const result = await apiFetch({
+				path: '/cf7-styler/v1/ai-settings/test',
+				method: 'POST',
+				data: { provider: settings.provider },
+			});
+			showNotice(result.success ? 'success' : 'error', result.message || (result.success ? __('Connection OK.', 'cf7-styler-for-divi') : __('Test failed.', 'cf7-styler-for-divi')));
+		} catch (err) {
+			showNotice('error', err.message || __('Test failed.', 'cf7-styler-for-divi'));
+		} finally {
+			setTesting(false);
+		}
+	};
+
+	const deleteKey = async () => {
+		const keyField = `${settings.provider}_key`;
+		setSaving(true);
+		try {
+			await apiFetch({
+				path: '/cf7-styler/v1/ai-settings',
+				method: 'POST',
+				data: { ...settings, [keyField]: '' },
+			});
+			showNotice('success', __('API key removed.', 'cf7-styler-for-divi'));
+			const data = await apiFetch({ path: '/cf7-styler/v1/ai-settings' });
+			setSettings((prev) => ({ ...prev, ...data }));
+		} catch (err) {
+			showNotice('error', err.message || __('Failed to remove key.', 'cf7-styler-for-divi'));
+		} finally {
+			setSaving(false);
+		}
+	};
+
+	const update = (key, value) => setSettings((prev) => ({ ...prev, [key]: value }));
+
+	if (Object.keys(providers).length === 0) {
+		return (
+			<div className="dcs-card">
+				<div className="dcs-card__header">
+					<p className="dcs-card__desc">
+						{__('Enable the AI Form Generator module in Modules to configure AI providers.', 'cf7-styler-for-divi')}
+					</p>
+				</div>
+			</div>
+		);
+	}
+
+	const provider = providers[settings.provider] || {};
+	const info = AI_PLATFORM_INFO[settings.provider] || {};
+	const keyField = `${settings.provider}_key`;
+	const modelField = `${settings.provider}_model`;
+	const isKeySet = settings[`${keyField}_set`];
+
+	if (loading) {
+		return (
+			<div className="dcs-admin__content">
+				<div className="dcs-loading">{__('Loading...', 'cf7-styler-for-divi')}</div>
+			</div>
+		);
+	}
+
+	return (
+		<>
+			<div className="cf7m-ai__page-header">
+				<h2 className="dcs-admin__content-title">{__('AI Provider Settings', 'cf7-styler-for-divi')}</h2>
+				<p className="dcs-card__desc">{__('Configure AI for form generation in the Contact Form 7 editor.', 'cf7-styler-for-divi')}</p>
+			</div>
+			{notice && (
+				<div className={`dcs-toast dcs-toast--${notice.type}`}>
+					<span>{notice.message}</span>
+				</div>
+			)}
+			<div className="cf7m-ai__grid">
+				<div className="dcs-card">
+					<div className="dcs-card__header">
+						<h2 className="dcs-card__title">{__('Configuration', 'cf7-styler-for-divi')}</h2>
+					</div>
+					<div className="cf7m-ai__form">
+						<div className="cf7m-ai__field">
+							<label>{__('AI Provider', 'cf7-styler-for-divi')}</label>
+							<select
+								value={settings.provider}
+								onChange={(e) => update('provider', e.target.value)}
+							>
+								{Object.entries(providers).map(([key, cfg]) => (
+									<option key={key} value={key}>{cfg.name}</option>
+								))}
+							</select>
+						</div>
+						<div className="cf7m-ai__field">
+							<label>{__('Model', 'cf7-styler-for-divi')}</label>
+							<select
+								value={settings[modelField] || ''}
+								onChange={(e) => update(modelField, e.target.value)}
+							>
+								{Object.entries(provider.models || {}).map(([value, label]) => (
+									<option key={value} value={value}>{label}</option>
+								))}
+							</select>
+						</div>
+						<div className="cf7m-ai__field">
+							<label>
+								{__('API Key', 'cf7-styler-for-divi')}
+								{isKeySet && (
+									<span className="cf7m-ai__badge">
+										<AICheckIcon /> {__('Configured', 'cf7-styler-for-divi')}
+									</span>
+								)}
+							</label>
+							{isKeySet ? (
+								<div className="cf7m-ai__key-row">
+									<code>{settings[`${keyField}_masked`] || '••••••••'}</code>
+									<button
+										type="button"
+										className="button cf7m-ai__btn--danger"
+										onClick={deleteKey}
+										disabled={saving}
+									>
+										<AITrashIcon /> {__('Remove', 'cf7-styler-for-divi')}
+									</button>
+								</div>
+							) : (
+								<div className="cf7m-ai__key-row">
+									<input
+										type="password"
+										value={settings[keyField] || ''}
+										onChange={(e) => update(keyField, e.target.value)}
+										placeholder={provider.key_placeholder || 'sk-...'}
+									/>
+									{provider.key_url && (
+										<a
+											href={provider.key_url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="button"
+										>
+											<AILinkIcon /> {__('Get Key', 'cf7-styler-for-divi')}
+										</a>
+									)}
+								</div>
+							)}
+						</div>
+						<div className="cf7m-ai__actions">
+							<button
+								type="button"
+								className="button button-primary"
+								onClick={saveSettings}
+								disabled={saving || (isKeySet && !settings[keyField])}
+							>
+								{saving ? __('Saving...', 'cf7-styler-for-divi') : __('Save Settings', 'cf7-styler-for-divi')}
+							</button>
+							{isKeySet && (
+								<button
+									type="button"
+									className="button"
+									onClick={testConnection}
+									disabled={testing}
+								>
+									{testing ? __('Testing...', 'cf7-styler-for-divi') : __('Test Connection', 'cf7-styler-for-divi')}
+								</button>
+							)}
+						</div>
+					</div>
+				</div>
+				<div className="dcs-card cf7m-ai__info-card">
+					<div className="cf7m-ai__info-header">
+						<div className="cf7m-ai__info-icon" style={{ background: info.color || '#5733ff' }}>
+							{(provider.name || 'A').charAt(0)}
+						</div>
+						<div>
+							<h3>{provider.name || 'Provider'}</h3>
+							<span className="cf7m-ai__info-company">
+								{__('by', 'cf7-styler-for-divi')} {info.company || 'Unknown'}
+							</span>
+						</div>
+					</div>
+					<p className="cf7m-ai__info-desc">{info.desc || ''}</p>
+					{provider.key_url && (
+						<a
+							href={provider.key_url}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="cf7m-ai__info-link"
+						>
+							{__('Get API Key', 'cf7-styler-for-divi')} →
+						</a>
+					)}
+				</div>
+			</div>
+		</>
+	);
 };
 
 // Toggle Switch Component
@@ -963,7 +1247,7 @@ const DashboardView = ({
 						</div>
 					</a>
 					<a
-						href="admin.php?page=cf7-mate-ai-provider"
+						href={dashboardUrl + '#/ai-settings'}
 						className="dcs-quick-action"
 					>
 						<span className="dcs-quick-action__icon">
@@ -1779,7 +2063,7 @@ const Toast = ({ message, type, onClose }) => {
 	);
 };
 
-// Hash routing: #/ -> dashboard, #/features -> features, #/entries -> entries.
+// Hash routing: #/ -> dashboard, #/features -> features, #/entries -> entries, #/ai-settings -> ai-settings.
 // When opened from Contact → Entries (entriesOnlyPage), default to entries view.
 const getViewFromHash = () => {
 	const entriesOnly =
@@ -1788,6 +2072,7 @@ const getViewFromHash = () => {
 	const hash = (window.location.hash || '').replace(/^#\/?/, '');
 	if (hash === 'entries') return 'entries';
 	if (hash === 'features') return 'features';
+	if (hash === 'ai-settings') return 'ai-settings';
 	return 'dashboard';
 };
 
@@ -1809,6 +2094,9 @@ const App = () => {
 	const getInitialView = () => {
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'features') {
 			return 'features';
+		}
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') {
+			return 'ai-settings';
 		}
 		return getViewFromHash();
 	};
@@ -1971,6 +2259,8 @@ const App = () => {
 					/>
 							<HowToSection />
 						</>
+					) : currentView === 'ai-settings' ? (
+						<AISettingsView />
 					) : (
 						<>
 							{showV3Banner && rebrandDismissed && <V3Banner />}

@@ -29,6 +29,7 @@ class Premium_Loader
         'calculator'        => true,
         'conditional'       => true,
         'ai_form_generator' => true,
+        'presets'           => true,
     ];
 
     private static $features = [
@@ -79,6 +80,10 @@ class Premium_Loader
         'ai_form_generator' => [
             'file'  => 'ai-form-generator/module.php',
             'class' => 'CF7_Mate\Features\AI_Form_Generator\AI_Form_Generator',
+        ],
+        'presets'           => [
+            'file'  => 'presets/module.php',
+            'class' => 'CF7_Mate\Features\Presets\Presets',
         ],
     ];
 

@@ -1,0 +1,419 @@
+/**
+ * CF7 Mate – Form Design Presets
+ * [cf7m-presets style="sky"]...[/cf7m-presets] → .cf7-mate-preset.cf7-mate-preset--{style}
+ *
+ * @package CF7_Mate
+ * @since 3.0.0
+ */
+
+/* Base wrapper – no visual change */
+.cf7-mate-preset {
+  box-sizing: border-box;
+}
+
+.cf7-mate-preset *,
+.cf7-mate-preset *::before,
+.cf7-mate-preset *::after {
+  box-sizing: border-box;
+}
+
+/* Common: ensure inputs/textarea/select are full width inside preset */
+.cf7-mate-preset input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset select,
+.cf7-mate-preset textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ─── Preset: Sky ─────────────────────────────────────────────────────── */
+.cf7-mate-preset--sky input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--sky select,
+.cf7-mate-preset--sky textarea {
+  background: #f0f9ff;
+  border: 1px solid #7dd3fc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #0c4a6e;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cf7-mate-preset--sky input:focus,
+.cf7-mate-preset--sky select:focus,
+.cf7-mate-preset--sky textarea:focus {
+  border-color: #0ea5e9;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.cf7-mate-preset--sky label {
+  color: #0369a1;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.cf7-mate-preset--sky h1, .cf7-mate-preset--sky h2, .cf7-mate-preset--sky h3,
+.cf7-mate-preset--sky h4, .cf7-mate-preset--sky h5, .cf7-mate-preset--sky h6 {
+  color: #0c4a6e;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.cf7-mate-preset--sky p {
+  color: #0369a1;
+  margin-bottom: 12px;
+}
+
+.cf7-mate-preset--sky input[type="submit"],
+.cf7-mate-preset--sky button[type="submit"] {
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.cf7-mate-preset--sky input[type="submit"]:hover,
+.cf7-mate-preset--sky button[type="submit"]:hover {
+  background: #0284c7;
+}
+
+/* ─── Preset: Classic ──────────────────────────────────────────────────── */
+.cf7-mate-preset--classic input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--classic select,
+.cf7-mate-preset--classic textarea {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 10px 12px;
+  color: #111827;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--classic input:focus,
+.cf7-mate-preset--classic select:focus,
+.cf7-mate-preset--classic textarea:focus {
+  border-color: #6b7280;
+  outline: none;
+}
+
+.cf7-mate-preset--classic label {
+  color: #374151;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.cf7-mate-preset--classic h1, .cf7-mate-preset--classic h2, .cf7-mate-preset--classic h3,
+.cf7-mate-preset--classic h4, .cf7-mate-preset--classic h5, .cf7-mate-preset--classic h6 {
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.cf7-mate-preset--classic p {
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+.cf7-mate-preset--classic input[type="submit"],
+.cf7-mate-preset--classic button[type="submit"] {
+  background: #374151;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--classic input[type="submit"]:hover,
+.cf7-mate-preset--classic button[type="submit"]:hover {
+  background: #1f2937;
+}
+
+/* ─── Preset: Box ──────────────────────────────────────────────────────── */
+.cf7-mate-preset--box {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.cf7-mate-preset--box input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--box select,
+.cf7-mate-preset--box textarea {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #111827;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--box input:focus,
+.cf7-mate-preset--box select:focus,
+.cf7-mate-preset--box textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.cf7-mate-preset--box label {
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--box h1, .cf7-mate-preset--box h2, .cf7-mate-preset--box h3,
+.cf7-mate-preset--box h4, .cf7-mate-preset--box h5, .cf7-mate-preset--box h6 {
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.cf7-mate-preset--box p {
+  color: #6b7280;
+  margin-bottom: 14px;
+}
+
+.cf7-mate-preset--box input[type="submit"],
+.cf7-mate-preset--box button[type="submit"] {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--box input[type="submit"]:hover,
+.cf7-mate-preset--box button[type="submit"]:hover {
+  background: #2563eb;
+}
+
+/* ─── Preset: Minimal ──────────────────────────────────────────────────── */
+.cf7-mate-preset--minimal input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--minimal select,
+.cf7-mate-preset--minimal textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #e5e7eb;
+  border-radius: 0;
+  padding: 12px 0;
+  color: #111827;
+  font-size: 16px;
+}
+
+.cf7-mate-preset--minimal input:focus,
+.cf7-mate-preset--minimal select:focus,
+.cf7-mate-preset--minimal textarea:focus {
+  border-bottom-color: #111827;
+  outline: none;
+  box-shadow: none;
+}
+
+.cf7-mate-preset--minimal label {
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cf7-mate-preset--minimal h1, .cf7-mate-preset--minimal h2, .cf7-mate-preset--minimal h3,
+.cf7-mate-preset--minimal h4, .cf7-mate-preset--minimal h5, .cf7-mate-preset--minimal h6 {
+  color: #111827;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.cf7-mate-preset--minimal p {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.cf7-mate-preset--minimal input[type="submit"],
+.cf7-mate-preset--minimal button[type="submit"] {
+  background: #111827;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--minimal input[type="submit"]:hover,
+.cf7-mate-preset--minimal button[type="submit"]:hover {
+  background: #000;
+}
+
+/* ─── Preset: Dark ─────────────────────────────────────────────────────── */
+.cf7-mate-preset--dark {
+  background: #1e1e2e;
+  padding: 24px 28px;
+  border-radius: 12px;
+}
+
+.cf7-mate-preset--dark input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--dark select,
+.cf7-mate-preset--dark textarea {
+  background: #2d2d3d;
+  border: 1px solid #3d3d4d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #e4e4e7;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--dark input:focus,
+.cf7-mate-preset--dark select:focus,
+.cf7-mate-preset--dark textarea:focus {
+  border-color: #818cf8;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+.cf7-mate-preset--dark label {
+  color: #a1a1aa;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--dark h1, .cf7-mate-preset--dark h2, .cf7-mate-preset--dark h3,
+.cf7-mate-preset--dark h4, .cf7-mate-preset--dark h5, .cf7-mate-preset--dark h6 {
+  color: #f4f4f5;
+  margin-bottom: 14px;
+}
+
+.cf7-mate-preset--dark p,
+.cf7-mate-preset--dark span,
+.cf7-mate-preset--dark li {
+  color: #a1a1aa;
+}
+
+.cf7-mate-preset--dark input[type="submit"],
+.cf7-mate-preset--dark button[type="submit"] {
+  background: #818cf8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--dark input[type="submit"]:hover,
+.cf7-mate-preset--dark button[type="submit"]:hover {
+  background: #6366f1;
+}
+
+/* ─── Preset: Modern ───────────────────────────────────────────────────── */
+.cf7-mate-preset--modern input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--modern select,
+.cf7-mate-preset--modern textarea {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--modern input:focus,
+.cf7-mate-preset--modern select:focus,
+.cf7-mate-preset--modern textarea:focus {
+  border-color: #0ea5e9;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.cf7-mate-preset--modern label {
+  color: #475569;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--modern h1, .cf7-mate-preset--modern h2, .cf7-mate-preset--modern h3,
+.cf7-mate-preset--modern h4, .cf7-mate-preset--modern h5, .cf7-mate-preset--modern h6 {
+  color: #0f172a;
+  margin-bottom: 14px;
+}
+
+.cf7-mate-preset--modern p {
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.cf7-mate-preset--modern input[type="submit"],
+.cf7-mate-preset--modern button[type="submit"] {
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--modern input[type="submit"]:hover,
+.cf7-mate-preset--modern button[type="submit"]:hover {
+  background: #0284c7;
+}
+
+/* ─── Preset: Rounded ──────────────────────────────────────────────────── */
+.cf7-mate-preset--rounded input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.cf7-mate-preset--rounded select,
+.cf7-mate-preset--rounded textarea {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  padding: 14px 18px;
+  color: #333;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--rounded input:focus,
+.cf7-mate-preset--rounded select:focus,
+.cf7-mate-preset--rounded textarea:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.cf7-mate-preset--rounded label {
+  color: #555;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.cf7-mate-preset--rounded h1, .cf7-mate-preset--rounded h2, .cf7-mate-preset--rounded h3,
+.cf7-mate-preset--rounded h4, .cf7-mate-preset--rounded h5, .cf7-mate-preset--rounded h6 {
+  color: #333;
+  margin-bottom: 14px;
+}
+
+.cf7-mate-preset--rounded p {
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.cf7-mate-preset--rounded input[type="submit"],
+.cf7-mate-preset--rounded button[type="submit"] {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cf7-mate-preset--rounded input[type="submit"]:hover,
+.cf7-mate-preset--rounded button[type="submit"]:hover {
+  background: #4f46e5;
+}

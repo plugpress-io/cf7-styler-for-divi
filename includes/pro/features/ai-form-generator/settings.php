@@ -28,6 +28,7 @@ class AI_Settings
 		add_action('admin_menu', array($this, 'add_menu_page'), 99);
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
 		add_action('rest_api_init', array($this, 'register_routes'));
+		add_filter('cf7m_admin_app_localize', array($this, 'filter_admin_localize'), 10, 2);
 	}
 
 	public function add_menu_page()
@@ -48,8 +49,23 @@ class AI_Settings
 		if (! current_user_can('manage_options')) {
 			wp_die(esc_html__('Unauthorized access.', 'cf7-styler-for-divi'));
 		}
-		// Use same root as main dashboard for consistent styling.
-		echo '<div id="cf7-styler-for-divi-root" class="cf7m-ai-page"></div>';
+		// Use main admin app root so AI Settings is a view inside the same React app.
+		\CF7_Mate\Admin::get_instance()->render_app_root(array('current_page' => 'ai-settings'));
+	}
+
+	/**
+	 * Inject AI provider config when main admin app is rendered for AI Settings page.
+	 *
+	 * @param array $localize Existing localize data.
+	 * @param array $options  Options passed to render_app_root (e.g. current_page).
+	 * @return array
+	 */
+	public function filter_admin_localize($localize, $options)
+	{
+		if (isset($options['current_page']) && $options['current_page'] === 'ai-settings') {
+			$localize['aiProviders'] = self::get_providers();
+		}
+		return $localize;
 	}
 
 	public function enqueue_assets($hook)
@@ -62,54 +78,19 @@ class AI_Settings
 			return;
 		}
 
-		$asset_file = CF7M_PLUGIN_PATH . 'assets/pro/js/ai-settings/index.asset.php';
-		$asset      = file_exists($asset_file) ? require $asset_file : array(
-			'dependencies' => array('wp-element', 'wp-components', 'wp-api-fetch', 'wp-i18n'),
-			'version'      => CF7M_VERSION,
-		);
-
-		// Load main dashboard CSS for consistent header/styling.
+		// Main app script is enqueued by render_app_root in the page callback.
+		// Enqueue main admin CSS here so it's in the head; then AI-specific CSS.
 		wp_enqueue_style(
-			'cf7m-admin',
+			'dcs-admin',
 			CF7M_PLUGIN_URL . 'dist/css/admin.css',
 			array(),
 			CF7M_VERSION
 		);
-
-		// Load AI settings specific CSS.
 		wp_enqueue_style(
 			'cf7m-ai-settings',
 			CF7M_PLUGIN_URL . 'assets/pro/css/cf7m-ai-settings.css',
-			array('cf7m-admin'),
+			array('dcs-admin'),
 			CF7M_VERSION
-		);
-
-		wp_enqueue_script(
-			'cf7m-ai-settings',
-			CF7M_PLUGIN_URL . 'assets/pro/js/ai-settings/index.js',
-			$asset['dependencies'],
-			$asset['version'],
-			true
-		);
-
-		// Check if Pro is active.
-		$is_pro   = function_exists('cf7m_can_use_premium') && cf7m_can_use_premium();
-		$dev_mode = defined('CF7M_DEV_MODE') && \CF7M_DEV_MODE;
-
-		wp_localize_script(
-			'cf7m-ai-settings',
-			'cf7mAISettings',
-			array(
-				'restUrl'      => esc_url_raw(rest_url('cf7-styler/v1/ai-settings')),
-				'nonce'        => wp_create_nonce('wp_rest'),
-				'providers'    => self::get_providers(),
-				'dashboardUrl' => esc_url(admin_url('admin.php?page=cf7-mate-dashboard')),
-				'modulesUrl'   => esc_url(admin_url('admin.php?page=cf7-mate-dashboard#/features')),
-				'docsUrl'      => 'https://divipeople.com/docs/cf7-mate/',
-				'pricingUrl'   => esc_url(admin_url('admin.php?page=cf7-mate-pricing')),
-				'version'      => CF7M_VERSION,
-				'isPro'        => $is_pro || $dev_mode,
-			)
 		);
 	}
 
