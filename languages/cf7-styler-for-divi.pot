@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-02-01 14:19+0000\n"
+"POT-Creation-Date: 2026-02-01 14:46+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Text color"
 msgstr ""
 
-#: includes/utils/grid.php:142, includes/pro/features/ai-form-generator/module.php:164
+#: includes/utils/grid.php:142, includes/pro/features/ai-form-generator/module.php:170
 msgid "Insert"
 msgstr ""
 
@@ -629,55 +629,55 @@ msgstr ""
 msgid "Invalid API response."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:70
+#: includes/pro/features/ai-form-generator/module.php:75
 msgid "AI Generate"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:160
+#: includes/pro/features/ai-form-generator/module.php:166
 msgid "AI Form Generator"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:161
+#: includes/pro/features/ai-form-generator/module.php:167
 msgid "Quick Presets"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:162
+#: includes/pro/features/ai-form-generator/module.php:168
 msgid "Custom Prompt"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:163
+#: includes/pro/features/ai-form-generator/module.php:169
 msgid "Generate"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:165
+#: includes/pro/features/ai-form-generator/module.php:171
 msgid "Copy"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:166
+#: includes/pro/features/ai-form-generator/module.php:172
 msgid "Generating..."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:167
+#: includes/pro/features/ai-form-generator/module.php:173
 msgid "Error generating form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:168
+#: includes/pro/features/ai-form-generator/module.php:174
 msgid "Copied!"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:169
+#: includes/pro/features/ai-form-generator/module.php:175
 msgid "Configure"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:170
+#: includes/pro/features/ai-form-generator/module.php:176
 msgid "Configure AI provider first."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:171
+#: includes/pro/features/ai-form-generator/module.php:177
 msgid "or describe your form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:210
+#: includes/pro/features/ai-form-generator/module.php:212
 msgid "Please describe the form."
 msgstr ""
 

@@ -1,12 +1,4 @@
-/**
- * CF7 Mate – Tag generator and editor panel styles.
- * Clear, readable layout for icon browser, image upload, and CF7 Styler panel.
- *
- * @package CF7_Mate
- * @since 3.0.0
- */
 
-/* Tag generator buttons in CF7 form editor */
 .wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="cf7m-"],
 .wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="dipe_"] {
 	border-left: 3px solid #5733ff;

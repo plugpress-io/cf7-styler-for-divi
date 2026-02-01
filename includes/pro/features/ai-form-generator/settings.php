@@ -54,7 +54,8 @@ class AI_Settings
 	}
 
 	/**
-	 * Inject AI provider config when main admin app is rendered for AI Settings page.
+	 * Inject AI provider config so the admin app can show AI Settings view when user navigates via hash (#/ai-settings).
+	 * Always add when admin app loads (dashboard, modules, entries, or AI Provider page).
 	 *
 	 * @param array $localize Existing localize data.
 	 * @param array $options  Options passed to render_app_root (e.g. current_page).
@@ -62,9 +63,7 @@ class AI_Settings
 	 */
 	public function filter_admin_localize($localize, $options)
 	{
-		if (isset($options['current_page']) && $options['current_page'] === 'ai-settings') {
-			$localize['aiProviders'] = self::get_providers();
-		}
+		$localize['aiProviders'] = self::get_providers();
 		return $localize;
 	}
 
@@ -78,8 +77,6 @@ class AI_Settings
 			return;
 		}
 
-		// Main app script is enqueued by render_app_root in the page callback.
-		// Enqueue main admin CSS here so it's in the head; then AI-specific CSS.
 		wp_enqueue_style(
 			'dcs-admin',
 			CF7M_PLUGIN_URL . 'dist/css/admin.css',

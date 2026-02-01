@@ -1,0 +1,910 @@
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}/*
+! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-feature-settings: normal; /* 2 */
+  font-variation-settings: normal; /* 3 */
+  font-size: 1em; /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+
+input:where([type='text']),input:where(:not([type])),input:where([type='email']),input:where([type='url']),input:where([type='password']),input:where([type='number']),input:where([type='date']),input:where([type='datetime-local']),input:where([type='month']),input:where([type='search']),input:where([type='tel']),input:where([type='time']),input:where([type='week']),select:where([multiple]),textarea,select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fff;
+  border-color: #6b7280;
+  border-width: 1px;
+  border-radius: 0px;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-shadow: 0 0 #0000;
+}
+
+input:where([type='text']):focus, input:where(:not([type])):focus, input:where([type='email']):focus, input:where([type='url']):focus, input:where([type='password']):focus, input:where([type='number']):focus, input:where([type='date']):focus, input:where([type='datetime-local']):focus, input:where([type='month']):focus, input:where([type='search']):focus, input:where([type='tel']):focus, input:where([type='time']):focus, input:where([type='week']):focus, select:where([multiple]):focus, textarea:focus, select:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: #2563eb;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  border-color: #2563eb;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+input::placeholder,textarea::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+::-webkit-date-and-time-value {
+  min-height: 1.5em;
+  text-align: inherit;
+}
+
+::-webkit-datetime-edit {
+  display: inline-flex;
+}
+
+::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+}
+
+select:where([multiple]),select:where([size]:not([size="1"])) {
+  background-image: initial;
+  background-position: initial;
+  background-repeat: unset;
+  background-size: initial;
+  padding-right: 0.75rem;
+  -webkit-print-color-adjust: unset;
+          print-color-adjust: unset;
+}
+
+input:where([type='checkbox']),input:where([type='radio']) {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+  display: inline-block;
+  vertical-align: middle;
+  background-origin: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  flex-shrink: 0;
+  height: 1rem;
+  width: 1rem;
+  color: #2563eb;
+  background-color: #fff;
+  border-color: #6b7280;
+  border-width: 1px;
+  --tw-shadow: 0 0 #0000;
+}
+
+input:where([type='checkbox']) {
+  border-radius: 0px;
+}
+
+input:where([type='radio']) {
+  border-radius: 100%;
+}
+
+input:where([type='checkbox']):focus,input:where([type='radio']):focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+  --tw-ring-offset-width: 2px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: #2563eb;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+
+input:where([type='checkbox']):checked,input:where([type='radio']):checked {
+  border-color: transparent;
+  background-color: currentColor;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input:where([type='checkbox']):checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27white%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e");
+}
+
+@media (forced-colors: active)  {
+
+  input:where([type='checkbox']):checked {
+    -webkit-appearance: auto;
+       -moz-appearance: auto;
+            appearance: auto;
+  }
+}
+
+input:where([type='radio']):checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27white%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e");
+}
+
+@media (forced-colors: active)  {
+
+  input:where([type='radio']):checked {
+    -webkit-appearance: auto;
+       -moz-appearance: auto;
+            appearance: auto;
+  }
+}
+
+input:where([type='checkbox']):checked:hover,input:where([type='checkbox']):checked:focus,input:where([type='radio']):checked:hover,input:where([type='radio']):checked:focus {
+  border-color: transparent;
+  background-color: currentColor;
+}
+
+input:where([type='checkbox']):indeterminate {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 16 16%27%3e%3cpath stroke=%27white%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M4 8h8%27/%3e%3c/svg%3e");
+  border-color: transparent;
+  background-color: currentColor;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (forced-colors: active)  {
+
+  input:where([type='checkbox']):indeterminate {
+    -webkit-appearance: auto;
+       -moz-appearance: auto;
+            appearance: auto;
+  }
+}
+
+input:where([type='checkbox']):indeterminate:hover,input:where([type='checkbox']):indeterminate:focus {
+  border-color: transparent;
+  background-color: currentColor;
+}
+
+input:where([type='file']) {
+  background: unset;
+  border-color: inherit;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: unset;
+  line-height: inherit;
+}
+
+input:where([type='file']):focus {
+  outline: 1px solid ButtonText;
+  outline: 1px auto -webkit-focus-ring-color;
+}.collapse {
+  visibility: collapse;
+}.fixed {
+  position: fixed;
+}.mb-2 {
+  margin-bottom: 0.5rem;
+}.mb-4 {
+  margin-bottom: 1rem;
+}.mb-6 {
+  margin-bottom: 1.5rem;
+}.mt-1 {
+  margin-top: 0.25rem;
+}.block {
+  display: block;
+}.flex {
+  display: flex;
+}.inline-flex {
+  display: inline-flex;
+}.table {
+  display: table;
+}.grid {
+  display: grid;
+}.h-3 {
+  height: 0.75rem;
+}.h-3\.5 {
+  height: 0.875rem;
+}.w-3 {
+  width: 0.75rem;
+}.w-3\.5 {
+  width: 0.875rem;
+}.w-full {
+  width: 100%;
+}.min-w-0 {
+  min-width: 0px;
+}.max-w-2xl {
+  max-width: 42rem;
+}.flex-1 {
+  flex: 1 1 0%;
+}.shrink-0 {
+  flex-shrink: 0;
+}.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}.flex-wrap {
+  flex-wrap: wrap;
+}.items-center {
+  align-items: center;
+}.justify-center {
+  justify-content: center;
+}.gap-1 {
+  gap: 0.25rem;
+}.gap-1\.5 {
+  gap: 0.375rem;
+}.gap-2 {
+  gap: 0.5rem;
+}.gap-3 {
+  gap: 0.75rem;
+}.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}.rounded-full {
+  border-radius: 9999px;
+}.rounded-lg {
+  border-radius: 0.5rem;
+}.rounded-md {
+  border-radius: 0.375rem;
+}.border {
+  border-width: 1px;
+}.border-b {
+  border-bottom-width: 1px;
+}.border-t {
+  border-top-width: 1px;
+}.border-emerald-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(167 243 208 / var(--tw-border-opacity, 1));
+}.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}.border-red-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
+}.bg-emerald-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));
+}.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}.bg-indigo-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity, 1));
+}.bg-red-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}.p-5 {
+  padding: 1.25rem;
+}.p-6 {
+  padding: 1.5rem;
+}.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}.pt-4 {
+  padding-top: 1rem;
+}.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}.font-medium {
+  font-weight: 500;
+}.font-semibold {
+  font-weight: 600;
+}.text-emerald-700 {
+  --tw-text-opacity: 1;
+  color: rgb(4 120 87 / var(--tw-text-opacity, 1));
+}.text-emerald-800 {
+  --tw-text-opacity: 1;
+  color: rgb(6 95 70 / var(--tw-text-opacity, 1));
+}.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity, 1));
+}.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+}.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}:root{--dcs-primary: #5733ff;--dcs-primary-dark: #4520e6;--dcs-secondary: #24223a;--dcs-heading: #000000;--dcs-body: #24223a;--dcs-text: var(--dcs-body);--dcs-text-muted: #5c5a6e;--dcs-border: #e8e7ec;--dcs-bg: #f6f5f9;--dcs-success: #10b981;--dcs-danger: #ef4444;--dcs-pro: #9a8b2e;--dcs-pro-bg: #faf8f2;--dcs-pro-border: rgba(154, 139, 46, 0.2)}#cf7-styler-for-divi-root{min-height:100vh;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--dcs-bg);margin-left:-20px;padding:0;box-sizing:border-box}#cf7-styler-for-divi-root *,#cf7-styler-for-divi-root *::before,#cf7-styler-for-divi-root *::after{box-sizing:border-box}.dcs-admin-wrapper{min-height:100vh;display:flex;flex-direction:column;background:var(--dcs-bg)}.dcs-admin{flex:1;display:flex;justify-content:center;padding:32px 24px}@media(max-width: 640px){.dcs-admin{padding:20px 16px}}.dcs-admin__content{width:100%;max-width:940px;display:flex;flex-direction:column;gap:28px}.dcs-v3-banner{background:#fff;border:1px solid var(--dcs-border);border-radius:10px}.dcs-v3-banner__inner{display:flex;align-items:flex-start;gap:14px;padding:14px 18px}.dcs-v3-banner__icon{flex-shrink:0;width:40px;height:40px;background:rgba(87,51,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--dcs-primary)}.dcs-v3-banner__icon svg{width:20px;height:20px}.dcs-v3-banner__content{flex:1;min-width:0}.dcs-v3-banner__title{margin:0 0 4px;font-size:15px;font-weight:600;color:var(--dcs-heading);line-height:1.3}.dcs-v3-banner__ver{font-weight:500;color:var(--dcs-text-muted);font-size:13px}.dcs-v3-banner__text{margin:0;font-size:13px;color:var(--dcs-body);line-height:1.45;opacity:.9}.dcs-v3-banner__dismiss{flex-shrink:0;padding:6px 14px;font-size:13px;font-weight:500;color:var(--dcs-primary);background:rgba(0,0,0,0);border:1px solid var(--dcs-border);border-radius:6px;cursor:pointer;transition:background .2s,border-color .2s;font-family:inherit}.dcs-v3-banner__dismiss:hover:not(:disabled){background:rgba(87,51,255,.06);border-color:var(--dcs-primary)}.dcs-v3-banner__dismiss:disabled{opacity:.7;cursor:default}@media(max-width: 640px){.dcs-v3-banner__inner{flex-wrap:wrap;padding:12px 14px}.dcs-v3-banner__dismiss{width:100%;margin-top:4px}}.dcs-admin__header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 32px;background:#fff;border-bottom:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-admin__header{padding:14px 16px}}.dcs-admin__header-left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.dcs-admin__logo{display:flex;align-items:center;gap:12px}.dcs-admin__logo svg{width:28px;height:28px;color:var(--dcs-primary)}.dcs-admin__title{font-size:15px;font-weight:600;margin:0;color:var(--dcs-heading)}.dcs-admin__header-right{display:flex;align-items:center;gap:8px}.dcs-admin__version-right{font-size:12px;font-weight:500;color:var(--dcs-text-muted)}.dcs-admin__nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}.dcs-nav-icon{width:20px;height:20px;flex-shrink:0}.dcs-nav-icon--docs{color:var(--dcs-text-muted)}.dcs-nav-icon--crown{color:var(--dcs-pro);transition:color .2s,transform .2s}.dcs-admin__nav-link{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dcs-text-muted);text-decoration:none;transition:color .15s;padding:6px 10px;border-radius:8px}.dcs-admin__nav-link:hover{color:var(--dcs-primary)}.dcs-admin__nav-link:hover .dcs-nav-icon--docs{color:var(--dcs-primary)}.dcs-admin__nav-link--active{color:var(--dcs-primary);font-weight:600}.dcs-admin__nav-link--pro{padding:8px 10px;color:var(--dcs-pro)}.dcs-admin__nav-link--pro:hover{color:var(--dcs-primary);background:rgba(87,51,255,.06)}.dcs-admin__nav-link--pro:hover .dcs-nav-icon--crown{color:var(--dcs-primary);transform:scale(1.05)}.dcs-card{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-card__header{padding:18px 20px 14px;border-bottom:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-card__header{padding:14px 16px 12px}}.dcs-card__title{font-size:16px;font-weight:600;margin:0 0 4px;color:var(--dcs-heading)}.dcs-card__desc{font-size:13px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-card__subheader{padding:16px 20px 12px;margin-top:8px;border-top:1px solid var(--dcs-border);background:var(--dcs-bg)}.dcs-card>.dcs-card__subheader:first-child{margin-top:0;border-top:none}.dcs-card__subtitle{font-size:13px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading);text-transform:uppercase;letter-spacing:.5px}.dcs-card__subdesc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-modules-page{max-width:940px}.dcs-modules-card__header{padding:14px 16px 10px;border-bottom:1px solid var(--dcs-border)}.dcs-modules-card__title{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-modules-card__desc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-features-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:16px;padding:20px}@media(max-width: 680px){.dcs-features-grid{grid-template-columns:1fr;gap:12px;padding:16px}}.dcs-feature{display:flex;align-items:flex-start;gap:12px;padding:16px;background:#fff;border:1px solid var(--dcs-border);border-radius:10px;transition:all .15s}.dcs-feature:hover{border-color:#d0cee0;box-shadow:0 2px 8px rgba(0,0,0,.04)}.dcs-feature--pro{background:linear-gradient(135deg, #fafafa 0%, #f5f3ff 100%);border-color:rgba(87,51,255,.15)}.dcs-feature--locked{opacity:.85}.dcs-feature--locked .dcs-feature__name{color:var(--dcs-heading)}.dcs-feature__icon{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(87,51,255,.08);border-radius:8px;color:var(--dcs-primary)}.dcs-feature__icon svg{width:18px;height:18px}.dcs-feature--pro .dcs-feature__icon{background:rgba(87,51,255,.12)}.dcs-feature__name-wrap{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;cursor:default}.dcs-feature__name{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin:0;color:var(--dcs-body);line-height:1.3}.dcs-feature__desc{font-size:12px;line-height:1.4;color:var(--dcs-text-muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.dcs-feature__badge{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);border-radius:50%;color:#fff;transition:transform .15s}.dcs-feature__badge .dcs-icon-crown{width:9px;height:9px;color:#fff}.dcs-feature__badge:hover{transform:scale(1.1)}.dcs-feature__toggle{flex-shrink:0;margin-top:2px}.dcs-feature__upgrade{padding:5px 12px;font-size:11px;font-weight:600;color:#fff;background:var(--dcs-pro);border:none;border-radius:5px;cursor:pointer;transition:all .15s;margin-top:2px}.dcs-feature__upgrade:hover{opacity:.9;color:#fff}.dcs-dashboard-stats{display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;margin-bottom:24px}@media(max-width: 900px){.dcs-dashboard-stats{grid-template-columns:repeat(2, 1fr)}}@media(max-width: 480px){.dcs-dashboard-stats{grid-template-columns:1fr}}.dcs-stat-card{display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid var(--dcs-border);border-radius:12px}.dcs-stat-card__icon{flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--dcs-primary)}.dcs-stat-card__icon svg{width:22px;height:22px}.dcs-stat-card__icon--entries{background:rgba(87,51,255,.1)}.dcs-stat-card__icon--today{background:rgba(16,185,129,.12);color:var(--dcs-success)}.dcs-stat-card__icon--forms{background:rgba(87,51,255,.1)}.dcs-stat-card__icon--features{background:rgba(87,51,255,.08)}.dcs-stat-card__content{display:flex;flex-direction:column;gap:2px;min-width:0}.dcs-stat-card__label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--dcs-text-muted)}.dcs-stat-card__value{font-size:18px;font-weight:600;color:var(--dcs-heading)}.dcs-quick-actions .dcs-card__header{border-bottom:1px solid var(--dcs-border)}.dcs-quick-actions__grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;padding:16px 20px}@media(max-width: 640px){.dcs-quick-actions__grid{grid-template-columns:1fr;padding:14px 16px}}.dcs-quick-action{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border:1px solid var(--dcs-border);border-radius:10px;text-decoration:none;color:var(--dcs-body);transition:border-color .15s,background .15s}.dcs-quick-action:hover{background:var(--dcs-bg);border-color:var(--dcs-primary);color:var(--dcs-body)}.dcs-quick-action__icon{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(87,51,255,.08);border-radius:8px;color:var(--dcs-primary)}.dcs-quick-action__icon svg{width:20px;height:20px}.dcs-quick-action__text{display:flex;flex-direction:column;gap:2px;min-width:0}.dcs-quick-action__title{font-size:14px;font-weight:600;color:var(--dcs-heading)}.dcs-quick-action__desc{font-size:12px;color:var(--dcs-text-muted)}.dcs-plugins{margin-bottom:24px}.dcs-plugins__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.dcs-plugins__title{font-size:16px;font-weight:600;margin:0;color:var(--dcs-heading)}.dcs-plugins__grid{display:grid;gap:16px;grid-template-columns:repeat(3, 1fr)}@media(max-width: 900px){.dcs-plugins__grid{grid-template-columns:repeat(2, 1fr)}}@media(max-width: 640px){.dcs-plugins__grid{grid-template-columns:1fr}}.dcs-plugin-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;border-radius:12px;border:1px solid var(--dcs-border);padding:20px;transition:border-color .2s}.dcs-plugin-card:hover{border-color:#ccc}.dcs-plugin-card:hover .dcs-plugin-card__btn{background:var(--dcs-bg)}.dcs-plugin-card__name{font-size:14px;font-weight:600;margin:0 0 8px;color:var(--dcs-heading)}.dcs-plugin-card__desc{font-size:13px;margin:0 0 16px;line-height:1.5;color:var(--dcs-text-muted);flex:1}.dcs-plugin-card__btn{display:inline-block;font-size:13px;font-weight:500;padding:8px 16px;color:var(--dcs-text);background:#fff;border:1px solid var(--dcs-border);border-radius:6px;transition:background-color .2s;align-self:flex-start}.dcs-toggle{position:relative;display:inline-flex;align-items:center;padding:0;background:none;border:none;cursor:pointer;outline:none}.dcs-toggle__track{position:relative;width:36px;height:20px;background:#d1d5db;border-radius:10px;transition:background .2s}.dcs-toggle__thumb{position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:transform .2s}.dcs-toggle--active .dcs-toggle__track{background:var(--dcs-primary)}.dcs-toggle--active .dcs-toggle__thumb{transform:translateX(16px)}.dcs-toggle--disabled{opacity:.5;cursor:not-allowed}.dcs-toggle:focus-visible .dcs-toggle__track{box-shadow:0 0 0 2px rgba(87,51,255,.3)}.dcs-quickstart{margin:0;padding:14px 20px 16px 40px;list-style:decimal}@media(max-width: 640px){.dcs-quickstart{padding:12px 16px 14px 36px}}.dcs-quickstart li{font-size:13px;color:var(--dcs-text-muted);padding:4px 0;line-height:1.45}.dcs-quickstart li::marker{color:var(--dcs-primary);font-weight:600}.dcs-compare-card{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-compare-card__header{padding:14px 18px 10px;border-bottom:1px solid var(--dcs-border)}.dcs-compare-card__title{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-compare-card__desc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-compare-table-wrap{overflow-x:auto}.dcs-compare-table{width:100%;border-collapse:collapse;font-size:13px}.dcs-compare-table th,.dcs-compare-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--dcs-border)}.dcs-compare-table th{font-weight:600;color:var(--dcs-heading);background:var(--dcs-bg)}.dcs-compare-table td{color:var(--dcs-body)}.dcs-compare-table tr:last-child td{border-bottom:none}.dcs-compare-table__feature{min-width:180px}.dcs-compare-table__plan{width:72px;text-align:center}.dcs-compare-table__plan--pro{background:rgba(87,51,255,.04);font-weight:600;color:var(--dcs-primary)}.dcs-compare-table__yes{display:inline-block;color:var(--dcs-success);font-weight:600}.dcs-compare-table__no{color:var(--dcs-text-muted)}.dcs-compare-card__footer{padding:14px 18px;border-top:1px solid var(--dcs-border);background:var(--dcs-bg)}.dcs-compare-card__cta{display:inline-block;padding:8px 16px;font-size:13px;font-weight:600;color:#fff;background:var(--dcs-primary);border-radius:8px;text-decoration:none;transition:opacity .15s}.dcs-compare-card__cta:hover{opacity:.92;color:#fff}.dcs-support{display:flex;align-items:center;gap:16px;background:#fff;border-radius:12px;padding:18px 20px;border:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-support{flex-direction:column;text-align:center;padding:18px 16px}}.dcs-support__icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:rgba(87,51,255,.08);border-radius:10px;color:var(--dcs-primary)}.dcs-support__icon svg{width:22px;height:22px}.dcs-support__content{flex:1;min-width:0}.dcs-support__title{font-size:14px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-support__desc{font-size:13px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-support__btn{flex-shrink:0;display:inline-flex;align-items:center;padding:8px 16px;font-size:13px;font-weight:500;color:var(--dcs-primary);background:rgba(87,51,255,.06);border:1px solid rgba(87,51,255,.2);border-radius:8px;text-decoration:none;transition:background .15s,border-color .15s}.dcs-support__btn:hover{background:rgba(87,51,255,.1);border-color:var(--dcs-primary);color:var(--dcs-primary)}@media(max-width: 640px){.dcs-support__btn{width:100%;justify-content:center}}.dcs-howto{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);padding:24px}.dcs-howto__header{margin-bottom:20px}.dcs-howto__title{font-size:16px;font-weight:700;margin:0 0 4px;color:var(--dcs-heading)}.dcs-howto__desc{font-size:13px;margin:0;color:var(--dcs-text-muted)}.dcs-howto__grid{display:grid;gap:16px;grid-template-columns:repeat(3, 1fr)}@media(max-width: 900px){.dcs-howto__grid{grid-template-columns:repeat(2, 1fr)}}@media(max-width: 640px){.dcs-howto__grid{grid-template-columns:1fr}}.dcs-howto__card{display:flex;align-items:center;gap:14px;padding:16px;background:var(--dcs-bg);border-radius:10px;border:1px solid rgba(0,0,0,0);text-decoration:none;color:inherit;transition:border-color .2s,background .2s,transform .15s}.dcs-howto__card:hover{background:#fff;border-color:var(--dcs-border);transform:translateY(-1px)}.dcs-howto__card:hover .dcs-howto__arrow{transform:translateX(3px);color:var(--dcs-primary)}.dcs-howto__icon{flex-shrink:0;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center}.dcs-howto__icon svg{width:22px;height:22px}.dcs-howto__icon--docs{background:rgba(87,51,255,.1);color:var(--dcs-primary)}.dcs-howto__icon--video{background:rgba(239,68,68,.1);color:#ef4444}.dcs-howto__icon--support{background:rgba(16,185,129,.1);color:var(--dcs-success)}.dcs-howto__content{flex:1;min-width:0}.dcs-howto__card-title{font-size:14px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-howto__card-desc{font-size:12px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-howto__arrow{flex-shrink:0;font-size:16px;color:var(--dcs-text-muted);transition:transform .2s,color .2s}.dcs-loading{display:flex;align-items:center;justify-content:center;min-height:200px;font-size:14px;color:var(--dcs-text-muted)}.dcs-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:12px 20px;font-size:14px;font-weight:500;color:#fff;background:#1a1a1a;border-radius:8px;z-index:9999;animation:toastIn .2s ease-out}.dcs-toast--success{background:var(--dcs-success)}.dcs-toast--error{background:var(--dcs-danger)}@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}.dcs-rebrand-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:24px;z-index:100000}.dcs-rebrand-modal{position:relative;width:100%;max-width:420px;background:#fff;border-radius:16px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-rebrand-modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;border:none;border-radius:8px;background:var(--dcs-bg);color:var(--dcs-body);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s,color .15s}.dcs-rebrand-modal__close:hover{background:var(--dcs-border);color:var(--dcs-heading)}.dcs-rebrand-modal__header{padding:32px 24px 20px;text-align:center;background:linear-gradient(180deg, rgba(87, 51, 255, 0.06) 0%, transparent 100%)}.dcs-rebrand-modal__logo{color:var(--dcs-primary)}.dcs-rebrand-modal__body{padding:0 24px 28px}.dcs-rebrand-modal__eyebrow{display:block;font-size:12px;font-weight:500;color:var(--dcs-text-muted);margin-bottom:4px;text-align:center}.dcs-rebrand-modal__title{font-size:24px;font-weight:700;margin:0 0 6px;text-align:center;color:var(--dcs-primary);letter-spacing:-0.02em}.dcs-rebrand-modal__tagline{font-size:13px;color:var(--dcs-body);margin:0 0 20px;text-align:center;opacity:.85;line-height:1.45}.dcs-rebrand-modal__divider{display:flex;align-items:center;gap:12px;margin-bottom:14px}.dcs-rebrand-modal__divider span{font-size:11px;font-weight:600;color:var(--dcs-text-muted);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}.dcs-rebrand-modal__divider::before,.dcs-rebrand-modal__divider::after{content:"";flex:1;height:1px;background:var(--dcs-border)}.dcs-rebrand-modal__list{list-style:none;margin:0 0 20px;padding:0;font-size:13px;color:var(--dcs-body);line-height:1.5}.dcs-rebrand-modal__list li{position:relative;padding-left:20px;margin-bottom:8px}.dcs-rebrand-modal__list li:last-child{margin-bottom:0}.dcs-rebrand-modal__list li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--dcs-primary)}.dcs-rebrand-modal__cta{display:block;width:100%;padding:12px 20px;background:var(--dcs-primary);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;font-family:inherit}.dcs-rebrand-modal__cta:hover:not(:disabled){opacity:.92}.dcs-rebrand-modal__cta:disabled{opacity:.7;cursor:not-allowed}.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}.hover\:bg-indigo-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(67 56 202 / var(--tw-bg-opacity, 1));
+}.hover\:bg-red-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}.focus\:border-indigo-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(99 102 241 / var(--tw-border-opacity, 1));
+}.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}.focus\:ring-1:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}.focus\:ring-indigo-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
+}.disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
