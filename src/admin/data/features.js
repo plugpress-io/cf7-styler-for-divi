@@ -14,6 +14,7 @@ export const FEATURES = [
 	{ id: 'database_entries', name: __('Form Entries (Database Entries)', 'cf7-styler-for-divi'), description: __('Save form submissions to database and export to CSV.', 'cf7-styler-for-divi'), isPro: true, icon: 'database' },
 	{ id: 'star_rating', name: __('Star Rating Field', 'cf7-styler-for-divi'), description: __('Add star rating fields to collect feedback from customers.', 'cf7-styler-for-divi'), isPro: true, icon: 'star' },
 	{ id: 'range_slider', name: __('Range Slider Field', 'cf7-styler-for-divi'), description: __('Add range slider fields for precise value selection.', 'cf7-styler-for-divi'), isPro: true, icon: 'slider' },
+	{ id: 'phone_number', name: __('Phone Number Field', 'cf7-styler-for-divi'), description: __('Phone input with country prefix, searchable country selector and flags.', 'cf7-styler-for-divi'), isPro: true, icon: 'phone' },
 	{ id: 'separator', name: __('Separator Field', 'cf7-styler-for-divi'), description: __('Add horizontal divider lines between form sections.', 'cf7-styler-for-divi'), isPro: true, icon: 'separator' },
 	{ id: 'heading', name: __('Heading Field', 'cf7-styler-for-divi'), description: __('Add headings (H1–H6) to structure your form content.', 'cf7-styler-for-divi'), isPro: true, icon: 'heading' },
 	{ id: 'image', name: __('Image Field', 'cf7-styler-for-divi'), description: __('Insert images into your contact forms.', 'cf7-styler-for-divi'), isPro: true, icon: 'image' },

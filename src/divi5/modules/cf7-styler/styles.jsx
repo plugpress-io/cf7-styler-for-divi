@@ -176,7 +176,7 @@ const ModuleStyles = ({
   const buttonAlignment = getAttrValue(attrs, 'cf7.advanced.buttonAlignment');
   const buttonFullwidth = getAttrValue(attrs, 'cf7.advanced.useFormButtonFullwidth');
   
-  const buttonSelectors = `${baseSelector} .dipe-cf7 input[type=submit],${baseSelector} .dcs-cf7-styler input[type=submit],${baseSelector} .dcs-cf7-form-preview__submit,${baseSelector} .dcs-cf7-form-preview button`;
+  const buttonSelectors = `${baseSelector} .dipe-cf7 input[type=submit],${baseSelector} .dcs-cf7-styler input[type=submit],${baseSelector} .dipe-cf7 .cf7m-button,${baseSelector} .dcs-cf7-styler .cf7m-button,${baseSelector} .dcs-cf7-form-preview__submit,${baseSelector} .dcs-cf7-form-preview button`;
   
   if (buttonBg) {
     customCss += `${buttonSelectors}{background-color:${buttonBg} !important;}`;

@@ -13,15 +13,16 @@
 | 2 | Multi-Step | `[cf7m-step]` | `includes/pro/features/multi-steps/` |
 | 3 | Star Rating | `[cf7m-star]` | `includes/pro/features/star-rating/` |
 | 4 | Range Slider | `[cf7m-range]` | `includes/pro/features/range-slider/` |
-| 5 | Calculator | `[cf7m-number]` `[cf7m-calc]` `[cf7m-total]` | `includes/pro/features/calculator/` |
-| 6 | Conditional | `[cf7m-if]` | `includes/pro/features/conditional/` |
-| 7 | Separator | `[cf7m-separator]` | `includes/pro/features/separator/` |
-| 8 | Heading | `[cf7m-heading]` | `includes/pro/features/heading/` |
-| 9 | Image | `[cf7m-image]` | `includes/pro/features/image/` |
-| 10 | Icon | `[cf7m-icon]` | `includes/pro/features/icon/` |
-| 11 | Database Entries | (no shortcode – dashboard/API) | `includes/pro/features/entries/` |
-| 12 | AI Form Generator | (admin modal) | `includes/pro/features/ai-form-generator/` |
-| 13 | Form Presets | `[cf7m-presets style="..."]` | `includes/pro/features/presets/` |
+| 5 | Phone Number | `[cf7m-phone]` | `includes/pro/features/phone-number/` |
+| 6 | Calculator | `[cf7m-number]` `[cf7m-calc]` `[cf7m-total]` | `includes/pro/features/calculator/` |
+| 7 | Conditional | `[cf7m-if]` | `includes/pro/features/conditional/` |
+| 8 | Separator | `[cf7m-separator]` | `includes/pro/features/separator/` |
+| 9 | Heading | `[cf7m-heading]` | `includes/pro/features/heading/` |
+| 10 | Image | `[cf7m-image]` | `includes/pro/features/image/` |
+| 11 | Icon | `[cf7m-icon]` | `includes/pro/features/icon/` |
+| 12 | Database Entries | (no shortcode – dashboard/API) | `includes/pro/features/entries/` |
+| 13 | AI Form Generator | (admin modal) | `includes/pro/features/ai-form-generator/` |
+| 14 | Form Presets | `[cf7m-presets style="..."]` | `includes/pro/features/presets/` |
 
 ---
 
@@ -83,118 +84,138 @@
 
 ---
 
-## 5. Calculator `[cf7m-number]` `[cf7m-calc]` `[cf7m-total]`
+## 5. Phone Number `[cf7m-phone]`
 
 | # | Test | Pass |
 |---|------|------|
-| 5.1 | Tag generators for number, calc, total are available | ☐ |
-| 5.2 | Insert number field with prefix/suffix (e.g. $), save | ☐ |
-| 5.3 | Frontend: number input shows prefix/suffix, accepts numbers only | ☐ |
-| 5.4 | Insert [cf7m-calc] with formula (e.g. field1 * field2) | ☐ |
-| 5.5 | Insert [cf7m-total] to display calc result | ☐ |
-| 5.6 | Frontend: changing inputs updates total in real time | ☐ |
-| 5.7 | Currency/percent formatting (prefix, suffix, decimals) works | ☐ |
-| 5.8 | Summary block (cf7m-calc-summary) renders correctly | ☐ |
-| 5.9 | Calculator fields inside [cf7m-presets] / styled form: no double borders | ☐ |
+| 5.1 | Tag generator "phone number" is available | ☐ |
+| 5.2 | Insert phone field with name, default country (e.g. default:US or default:BD), save form | ☐ |
+| 5.3 | Frontend: country trigger shows correct default (e.g. BD → 🇧🇩 +880, not US) | ☐ |
+| 5.4 | Caret/chevron icon visible on trigger; opens searchable country dropdown on click; trigger has aria-expanded for accessibility | ☐ |
+| 5.5 | Country list in dropdown is A–Z by country name; search filters by name/dial/code | ☐ |
+| 5.6 | Selecting country updates trigger (flag + dial); submitted value is full number with prefix | ☐ |
+| 5.7 | Label and description: shortcode label:"..." description:"..." render above field; required shows * | ☐ |
+| 5.8 | Focus: wrap border highlights (e.g. blue); no double border on inner input | ☐ |
+| 5.9 | Works inside [cf7m-presets] / Divi-styled form | ☐ |
+
+Example UI: see `docs/agent/phone-number-example.png`. JS/CSS built from `src/pro/phone-number/` to `dist/`.
 
 ---
 
-## 6. Conditional `[cf7m-if]`
+## 6. Calculator `[cf7m-number]` `[cf7m-calc]` `[cf7m-total]`
 
 | # | Test | Pass |
 |---|------|------|
-| 6.1 | Tag generator for conditional is available | ☐ |
-| 6.2 | Insert [cf7m-if field:"x" is:"y"]...[/cf7m-if], save | ☐ |
-| 6.3 | Frontend: block hidden when condition not met | ☐ |
-| 6.4 | Frontend: block visible when condition met (select/radio/checkbox) | ☐ |
-| 6.5 | Operators: is, not, gt, lt, contains, empty, checked work as expected | ☐ |
-| 6.6 | Nested or multiple [cf7m-if] blocks work | ☐ |
+| 6.1 | Tag generators for number, calc, total are available | ☐ |
+| 6.2 | Insert number field with prefix/suffix (e.g. $), save | ☐ |
+| 6.3 | Frontend: number input shows prefix/suffix, accepts numbers only | ☐ |
+| 6.4 | Insert [cf7m-calc] with formula (e.g. field1 * field2) | ☐ |
+| 6.5 | Insert [cf7m-total] to display calc result | ☐ |
+| 6.6 | Frontend: changing inputs updates total in real time | ☐ |
+| 6.7 | Currency/percent formatting (prefix, suffix, decimals) works | ☐ |
+| 6.8 | Summary block (cf7m-calc-summary) renders correctly | ☐ |
+| 6.9 | Calculator fields inside [cf7m-presets] / styled form: no double borders | ☐ |
 
 ---
 
-## 7. Separator `[cf7m-separator]`
+## 7. Conditional `[cf7m-if]`
 
 | # | Test | Pass |
 |---|------|------|
-| 7.1 | Tag generator "separator" is available | ☐ |
-| 7.2 | Insert [cf7m-separator], save form | ☐ |
-| 7.3 | Frontend: horizontal line/divider renders | ☐ |
-| 7.4 | Optional attributes (if any) apply correctly | ☐ |
+| 7.1 | Tag generator for conditional is available | ☐ |
+| 7.2 | Insert [cf7m-if field:"x" is:"y"]...[/cf7m-if], save | ☐ |
+| 7.3 | Frontend: block hidden when condition not met | ☐ |
+| 7.4 | Frontend: block visible when condition met (select/radio/checkbox) | ☐ |
+| 7.5 | Operators: is, not, gt, lt, contains, empty, checked work as expected | ☐ |
+| 7.6 | Nested or multiple [cf7m-if] blocks work | ☐ |
 
 ---
 
-## 8. Heading `[cf7m-heading]`
+## 8. Separator `[cf7m-separator]`
 
 | # | Test | Pass |
 |---|------|------|
-| 8.1 | Tag generator "heading" is available | ☐ |
-| 8.2 | Insert heading with text and tag (h2, h3, etc.), save | ☐ |
-| 8.3 | Frontend: correct tag and text render | ☐ |
-| 8.4 | Styling from Divi/CF7 Styler applies (if applicable) | ☐ |
+| 8.1 | Tag generator "separator" is available | ☐ |
+| 8.2 | Insert [cf7m-separator], save form | ☐ |
+| 8.3 | Frontend: horizontal line/divider renders | ☐ |
+| 8.4 | Optional attributes (if any) apply correctly | ☐ |
 
 ---
 
-## 9. Image `[cf7m-image]`
+## 9. Heading `[cf7m-heading]`
 
 | # | Test | Pass |
 |---|------|------|
-| 9.1 | Tag generator "image" is available | ☐ |
-| 9.2 | Insert image with URL or upload, save | ☐ |
-| 9.3 | Frontend: image displays with correct src | ☐ |
-| 9.4 | Alt/attributes apply when supported | ☐ |
+| 9.1 | Tag generator "heading" is available | ☐ |
+| 9.2 | Insert heading with text and tag (h2, h3, etc.), save | ☐ |
+| 9.3 | Frontend: correct tag and text render | ☐ |
+| 9.4 | Styling from Divi/CF7 Styler applies (if applicable) | ☐ |
 
 ---
 
-## 10. Icon `[cf7m-icon]`
+## 10. Image `[cf7m-image]`
 
 | # | Test | Pass |
 |---|------|------|
-| 10.1 | Tag generator "icon" is available | ☐ |
-| 10.2 | Insert icon (e.g. Divi icon picker), save | ☐ |
-| 10.3 | Frontend: icon renders in form | ☐ |
+| 10.1 | Tag generator "image" is available | ☐ |
+| 10.2 | Insert image with URL or upload, save | ☐ |
+| 10.3 | Frontend: image displays with correct src | ☐ |
+| 10.4 | Alt/attributes apply when supported | ☐ |
 
 ---
 
-## 11. Database Entries
+## 11. Icon `[cf7m-icon]`
 
 | # | Test | Pass |
 |---|------|------|
-| 11.1 | Entries menu/screen available when feature enabled | ☐ |
-| 11.2 | Submissions are saved to custom post type (or DB) | ☐ |
-| 11.3 | List view shows form, date, key fields | ☐ |
-| 11.4 | Single entry view shows full submission data | ☐ |
-| 11.5 | Export or delete entries works (if implemented) | ☐ |
-| 11.6 | REST API for entries (if any) returns correct data | ☐ |
+| 11.1 | Tag generator "icon" is available | ☐ |
+| 11.2 | Insert icon (e.g. Divi icon picker), save | ☐ |
+| 11.3 | Frontend: icon renders in form | ☐ |
 
 ---
 
-## 12. AI Form Generator
+## 12. Database Entries
 
 | # | Test | Pass |
 |---|------|------|
-| 12.1 | "AI Generate" button appears on CF7 form editor screen | ☐ |
-| 12.2 | Click opens modal with prompt box and presets list | ☐ |
-| 12.3 | Selecting a preset fills prompt; Generate sends request | ☐ |
-| 12.4 | Custom prompt + Generate returns valid CF7 form code | ☐ |
-| 12.5 | Generated code inserts into form template correctly | ☐ |
-| 12.6 | Copy / Insert buttons work | ☐ |
-| 12.7 | Without API key, configure message/link shown | ☐ |
-| 12.8 | Generated forms do not add steps/columns unless requested | ☐ |
-| 12.9 | When user asks for "preset" or "style", output uses [cf7m-presets style="..."] | ☐ |
+| 12.1 | Entries menu/screen available when feature enabled | ☐ |
+| 12.2 | Submissions are saved to custom post type (or DB) | ☐ |
+| 12.3 | List view shows form, date, key fields | ☐ |
+| 12.4 | Single entry view shows full submission data | ☐ |
+| 12.5 | Export or delete entries works (if implemented) | ☐ |
+| 12.6 | REST API for entries (if any) returns correct data | ☐ |
 
 ---
 
-## 13. Form Presets `[cf7m-presets style="..."]`
+## 13. AI Form Generator
 
 | # | Test | Pass |
 |---|------|------|
-| 13.1 | Tag generator "Form Preset" is available | ☐ |
-| 13.2 | Insert [cf7m-presets style="sky"]...[/cf7m-presets], save | ☐ |
-| 13.3 | Frontend: wrapper has class `cf7-mate-preset cf7-mate-preset--sky` | ☐ |
-| 13.4 | Preset CSS loads; inputs/labels/buttons match Sky style | ☐ |
-| 13.5 | All 7 styles work: sky, classic, box, minimal, dark, modern, rounded | ☐ |
-| 13.6 | Invalid style falls back to classic (or no wrapper) | ☐ |
-| 13.7 | Form inside preset submits normally | ☐ |
+| 13.1 | "AI Generate" button (sparkles icon) appears on CF7 form editor screen | ☐ |
+| 13.2 | Click opens modal with prompt box, image upload, and presets list | ☐ |
+| 13.3 | Selecting a preset fills prompt; Generate sends request; output uses [cf7m-presets] where appropriate | ☐ |
+| 13.4 | Custom prompt + Generate returns valid CF7 form code; labels are HTML &lt;label&gt;, not literal [label]; phone fields use [cf7m-phone] when appropriate | ☐ |
+| 13.5 | Image upload: "Upload form image" + file select; Generate with image (with or without text prompt) returns form code; image-only uses default prompt; OpenAI/Anthropic only | ☐ |
+| 13.6 | Calculator request: generated form includes [cf7m-number], [cf7m-calc], [cf7m-total] with label for summary where applicable | ☐ |
+| 13.7 | Generated code inserts into form template correctly; Copy / Insert work | ☐ |
+| 13.8 | Without API key, configure message/link shown | ☐ |
+| 13.9 | Contact/Newsletter/Feedback presets wrap output in [cf7m-presets style="modern"] or style="minimal"/"sky" | ☐ |
+| 13.10 | No stray [label ...] in inserted form; clean_response converts [label for="..."]...[/label] to HTML &lt;label&gt; and strips stray &lt;h1&gt;-&lt;h6&gt;/&lt;title&gt; | ☐ |
+
+---
+
+## 14. Form Presets `[cf7m-presets style="..."]`
+
+| # | Test | Pass |
+|---|------|------|
+| 14.1 | Tag generator "style presets" is available; dropdown includes all 7: Sky, Classic, Box, Minimal, Dark, Modern, Rounded | ☐ |
+| 14.2 | Insert [cf7m-presets style="sky"]...[/cf7m-presets] (or any style); tag generator insert box defaults to style="sky"—edit in template if needed; save | ☐ |
+| 14.3 | Frontend: wrapper has class `cf7-mate-preset cf7-mate-preset--{style}` | ☐ |
+| 14.4 | Normalize base: CSS vars (--cf7m-line-height, --cf7m-field-margin, --cf7m-label-size, etc.) and field margin, label line-height/font-size, input padding, placeholder color consistent | ☐ |
+| 14.5 | Each preset looks distinct: Sky (blue), Classic (gray), Box (card), Minimal (underline), Dark (dark bg), Modern (slate/cyan), Rounded (large radius) | ☐ |
+| 14.6 | Placeholder color and focus border match preset; no double borders | ☐ |
+| 14.7 | [cf7m-phone] inside preset: no double borders; wrap focus works | ☐ |
+| 14.8 | Invalid style falls back to classic; form inside preset submits normally | ☐ |
 
 ---
 
@@ -202,7 +223,7 @@
 
 | # | Test | Pass |
 |---|------|------|
-| C.1 | Pro CSS (cf7m-pro-forms.css, cf7m-presets.css) loads only when CF7 form on page | ☐ |
+| C.1 | Pro CSS (cf7m-pro-forms.css, cf7m-presets.css, cf7m-phone-number.css from dist) loads only when CF7 form on page | ☐ |
 | C.2 | All tag generators appear in CF7 editor when Pro is active | ☐ |
 | C.3 | Shortcodes process in correct order (e.g. presets wrap, then row/col inside) | ☐ |
 | C.4 | No PHP errors/warnings with all Pro features enabled | ☐ |
@@ -222,9 +243,10 @@
 | Form Presets | `[cf7m-presets style="sky"]` | `[/cf7m-presets]` |
 | Star Rating | `[cf7m-star rating max:5]` | (self-closing) |
 | Range | `[cf7m-range slider min:0 max:100]` | (self-closing) |
+| Phone Number | `[cf7m-phone phone default:US label:"Phone" description:"Optional."]` | (self-closing) |
 | Number | `[cf7m-number name value:0 min:0 max:100]` | (self-closing) |
 | Calc | `[cf7m-calc id:x formula:"a*b"]` | (self-closing) |
-| Total | `[cf7m-total id:x format:currency]` | (self-closing) |
+| Total | `[cf7m-total id:x format:currency label:"Total"]` | (self-closing) |
 | Separator | `[cf7m-separator]` | (self-closing) |
 | Heading | `[cf7m-heading text:"Title" tag:h2]` | (self-closing) |
 | Image | `[cf7m-image url:...]` | (self-closing) |

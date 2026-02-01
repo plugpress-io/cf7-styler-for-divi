@@ -271,7 +271,8 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-cf7 .wpcf7 form>p,#{$scope_id} .dipe-cf7 .wpcf7 form>div,#{$scope_id} .dipe-cf7 .wpcf7 form>label,#{$scope_id} .dipe-cf7 .wpcf7 form .dp-col>p,#{$scope_id} .dipe-cf7 .wpcf7 form .dp-col>div,#{$scope_id} .dipe-cf7 .wpcf7 form .dp-col>label{margin-bottom:{$field_spacing} !important;}";
         }
         if ($label_spacing !== '') {
-            $css .= "#{$scope_id} .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit){margin-top:{$label_spacing} !important;}";
+            // Field container (wrap) gets margin-top so label and input block are spaced.
+            $css .= "#{$scope_id} .dipe-cf7-container .wpcf7-form-control-wrap{margin-top:{$label_spacing} !important;}";
         }
 
         if ($cr_custom_styles === 'on') {
@@ -359,7 +360,8 @@ class CF7Styler implements DependencyInterface
         if ($field_border_color !== '') {
             $css .= "{$field_selector}{border-color:{$field_border_color} !important;}";
         }
-        if ($field_border_width !== '' && $field_border_width !== '0') {
+        // Only output border-width when non-zero; presets use "0px" for borderless fields – skip so we don't override.
+        if ($field_border_width !== '' && $field_border_width !== '0' && $field_border_width !== '0px') {
             $css .= "{$field_selector}{border-width:{$field_border_width} !important;border-style:solid;}";
         }
         if ($field_border_radius !== '' && $field_border_radius !== '0') {
@@ -381,7 +383,7 @@ class CF7Styler implements DependencyInterface
         $button_border_width = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderWidth'], 'buttonBorderWidth'));
         $button_border_radius= self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderRadius'], 'buttonBorderRadius'));
 
-        $button_selector = "#{$scope_id} .dipe-cf7 input[type=submit],#{$scope_id} .dcs-cf7-styler input[type=submit]";
+        $button_selector = "#{$scope_id} .dipe-cf7 input[type=submit],#{$scope_id} .dcs-cf7-styler input[type=submit],#{$scope_id} .dipe-cf7 .cf7m-button,#{$scope_id} .dcs-cf7-styler .cf7m-button";
 
         if ($button_bg !== '') {
             $css .= "{$button_selector}{background-color:{$button_bg} !important;}";
@@ -395,7 +397,7 @@ class CF7Styler implements DependencyInterface
         if ($button_border_color !== '') {
             $css .= "{$button_selector}{border-color:{$button_border_color} !important;}";
         }
-        if ($button_border_width !== '' && $button_border_width !== '0') {
+        if ($button_border_width !== '' && $button_border_width !== '0' && $button_border_width !== '0px') {
             $css .= "{$button_selector}{border-width:{$button_border_width} !important;border-style:solid;}";
         }
         if ($button_border_radius !== '' && $button_border_radius !== '0') {

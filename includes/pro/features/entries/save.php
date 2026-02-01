@@ -44,7 +44,7 @@ class Entries_Save
             $data['_wpcf7_container_post']
         );
 
-        $status = $this->is_spam($submission) ? 'spam' : 'new';
+        $status = 'new';
 
         $title = sprintf(
             /* translators: 1: form title, 2: date */
@@ -70,17 +70,6 @@ class Entries_Save
         update_post_meta($entry_id, '_cf7m_created', current_time('mysql'));
         update_post_meta($entry_id, '_cf7m_ip', $this->get_client_ip());
         update_post_meta($entry_id, '_cf7m_ua', $this->get_user_agent());
-    }
-
-    private function is_spam($submission)
-    {
-        if (method_exists($submission, 'get_status') && $submission->get_status() === 'spam') {
-            return true;
-        }
-        if (method_exists($submission, 'is_spam') && $submission->is_spam()) {
-            return true;
-        }
-        return false;
     }
 
     private function get_client_ip()

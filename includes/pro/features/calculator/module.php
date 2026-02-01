@@ -95,7 +95,41 @@ class Calculator extends Pro_Feature_Base {
 			);
 		}
 
+		// Process [cf7m-button] – non-submitting button (e.g. "Calculate" for calculator-only forms).
+		if ( false !== strpos( $form, '[cf7m-button' ) ) {
+			$form = preg_replace_callback(
+				'/\[cf7m-button\s*(?:"([^"]*)"|([^\]]*))\]/',
+				array( $this, 'render_button' ),
+				$form
+			);
+		}
+
 		return $form;
+	}
+
+	/**
+	 * Render [cf7m-button] – button with type="button" (does not submit form).
+	 * Use for calculator "Calculate" or other actions; style matches submit button.
+	 *
+	 * Syntax: [cf7m-button "Calculate"] or [cf7m-button label:"Calculate"]
+	 *
+	 * @since  3.0.0
+	 * @param  array $matches Regex matches.
+	 * @return string Button HTML.
+	 */
+	public function render_button( $matches ) {
+		$label = isset( $matches[1] ) && '' !== $matches[1] ? $matches[1] : '';
+		if ( '' === $label && isset( $matches[2] ) && '' !== trim( $matches[2] ) ) {
+			$atts = $this->parse_atts( $matches[2] );
+			$label = $atts['label'] ?? __( 'Calculate', 'cf7-styler-for-divi' );
+		}
+		if ( '' === $label ) {
+			$label = __( 'Calculate', 'cf7-styler-for-divi' );
+		}
+		return sprintf(
+			'<button type="button" class="wpcf7-form-control cf7m-button cf7m-calc-trigger" data-cf7m-action="calculate">%s</button>',
+			esc_html( $label )
+		);
 	}
 
 	/**
@@ -323,6 +357,12 @@ class Calculator extends Pro_Feature_Base {
 			__( 'total display', 'cf7-styler-for-divi' ),
 			array( $this, 'total_generator_callback' )
 		);
+
+		$generator->add(
+			'cf7m-button',
+			__( 'button (no submit)', 'cf7-styler-for-divi' ),
+			array( $this, 'button_generator_callback' )
+		);
 	}
 
 	/**
@@ -475,6 +515,37 @@ class Calculator extends Pro_Feature_Base {
 		</div>
 		<div class="insert-box">
 			<input type="text" name="cf7m-total" class="tag code" readonly onfocus="this.select()" value='[cf7m-total id:total format:currency prefix:$ decimals:2]'>
+			<div class="submitbox">
+				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Button (no submit) tag generator – for calculator "Calculate" or other non-submit actions.
+	 *
+	 * @since  3.0.0
+	 * @param  \WPCF7_ContactForm $contact_form Contact form.
+	 * @param  string             $options      Options.
+	 * @return void
+	 */
+	public function button_generator_callback( $contact_form, $options = '' ) {
+		?>
+		<div class="control-box cf7m-tag-panel">
+			<fieldset>
+				<legend><?php esc_html_e( 'Button (does not submit form)', 'cf7-styler-for-divi' ); ?></legend>
+				<table class="form-table"><tbody>
+					<tr>
+						<th><label for="cf7m-button-label"><?php esc_html_e( 'Button text', 'cf7-styler-for-divi' ); ?></label></th>
+						<td><input type="text" name="label" id="cf7m-button-label" class="oneline" placeholder="<?php esc_attr_e( 'Calculate', 'cf7-styler-for-divi' ); ?>"></td>
+					</tr>
+				</tbody></table>
+				<p class="description"><?php esc_html_e( 'Use for calculator-only forms so the button recalculates without sending the form. Styled like the submit button.', 'cf7-styler-for-divi' ); ?></p>
+			</fieldset>
+		</div>
+		<div class="insert-box">
+			<input type="text" name="cf7m-button" class="tag code" readonly onfocus="this.select()" value='[cf7m-button "<?php esc_attr_e( 'Calculate', 'cf7-styler-for-divi' ); ?>"]'>
 			<div class="submitbox">
 				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
 			</div>

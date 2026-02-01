@@ -62,7 +62,7 @@ class Entries_CPT
         ]);
         register_post_meta($object_type, '_cf7m_status', [
             'type'              => 'string',
-            'description'       => __('Entry status (new, read, spam)', 'cf7-styler-for-divi'),
+            'description'       => __('Entry status (new, read, trash)', 'cf7-styler-for-divi'),
             'single'            => true,
             'sanitize_callback' => [$this, 'sanitize_status'],
         ]);
@@ -94,7 +94,7 @@ class Entries_CPT
 
     public function sanitize_status($value)
     {
-        $allowed = ['new', 'read', 'spam'];
+        $allowed = ['new', 'read', 'trash'];
         return in_array($value, $allowed, true) ? $value : 'new';
     }
 

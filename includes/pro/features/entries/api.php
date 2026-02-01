@@ -45,7 +45,7 @@ class Entries_API
                 'permission_callback' => [$this, 'check_permission'],
                 'args'                => [
                     'id'     => ['validate_callback' => function ($v) { return is_numeric($v); }],
-                    'status' => ['type' => 'string', 'enum' => ['new', 'read', 'spam'], 'sanitize_callback' => 'sanitize_text_field'],
+                    'status' => ['type' => 'string', 'enum' => ['new', 'read', 'trash'], 'sanitize_callback' => 'sanitize_text_field'],
                 ],
             ],
             [
@@ -95,7 +95,7 @@ class Entries_API
         return [
             'per_page' => ['type' => 'integer', 'default' => 20, 'minimum' => 1, 'maximum' => 100],
             'page'     => ['type' => 'integer', 'default' => 1, 'minimum' => 1],
-            'status'   => ['type' => 'string', 'enum' => ['new', 'read', 'spam']],
+            'status'   => ['type' => 'string', 'enum' => ['new', 'read', 'trash']],
             'form_id'  => ['type' => 'integer'],
             'search'   => ['type' => 'string', 'sanitize_callback' => 'sanitize_text_field'],
         ];
@@ -113,8 +113,14 @@ class Entries_API
             'meta_query'     => [], // phpcs:ignore
         ];
 
-        if ($request->get_param('status')) {
-            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => $request->get_param('status'), 'compare' => '='];
+        $status_param = $request->get_param('status');
+        if ($status_param === 'trash') {
+            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => ['trash', 'spam'], 'compare' => 'IN'];
+        } elseif ($status_param && $status_param !== 'all') {
+            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => $status_param, 'compare' => '='];
+        } else {
+            // Default / "all": exclude trash so main list shows only new + read
+            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => ['trash', 'spam'], 'compare' => 'NOT IN'];
         }
         if ($request->get_param('form_id')) {
             $args['meta_query'][] = ['key' => '_cf7m_form_id', 'value' => (int) $request->get_param('form_id'), 'compare' => '='];
@@ -230,8 +236,13 @@ class Entries_API
             'order'          => 'DESC',
             'meta_query'     => [],
         ];
-        if ($request->get_param('status')) {
-            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => $request->get_param('status')];
+        $status_param = $request->get_param('status');
+        if ($status_param === 'trash') {
+            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => ['trash', 'spam'], 'compare' => 'IN'];
+        } elseif ($status_param && $status_param !== 'all') {
+            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => $status_param, 'compare' => '='];
+        } else {
+            $args['meta_query'][] = ['key' => '_cf7m_status', 'value' => ['trash', 'spam'], 'compare' => 'NOT IN'];
         }
         if ($request->get_param('form_id')) {
             $args['meta_query'][] = ['key' => '_cf7m_form_id', 'value' => (int) $request->get_param('form_id')];
@@ -283,6 +294,10 @@ class Entries_API
         $data = is_string($data_raw) ? json_decode($data_raw, true) : [];
         if (!is_array($data)) {
             $data = [];
+        }
+        // Backward compat: treat legacy 'spam' as 'trash'.
+        if ($status === 'spam') {
+            $status = 'trash';
         }
 
         return [

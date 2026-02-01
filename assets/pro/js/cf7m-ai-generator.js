@@ -27,7 +27,7 @@
       for (var key in presets) {
         if (presets.hasOwnProperty(key)) {
           var preset = presets[key];
-          presetsListHtml += '<button type="button" class="cf7m-preset-item" data-preset="' + esc(key) + '" data-prompt="' + esc(preset.prompt) + '">';
+          presetsListHtml += '<button type="button" class="cf7m-preset-item" data-preset="' + esc(key) + '" data-prompt="' + escAttr(preset.prompt) + '">';
           presetsListHtml += esc(preset.name);
           presetsListHtml += '</button>';
         }
@@ -57,6 +57,14 @@
             noKey,
             '<div class="cf7m-chat-input-area">',
               '<textarea class="cf7m-prompt-input" id="cf7m-prompt" placeholder="Describe the form you want to create, or pick a preset below..."></textarea>',
+              '<div class="cf7m-image-upload-row">',
+                '<label class="cf7m-image-label">',
+                  '<input type="file" class="cf7m-image-input" id="cf7m-image" accept="image/jpeg,image/png,image/gif,image/webp" aria-label="' + (strings.uploadImage || 'Upload image') + '">',
+                  '<span class="cf7m-image-btn">' + (strings.uploadImage || 'Upload form image') + '</span>',
+                '</label>',
+                '<span class="cf7m-image-preview" id="cf7m-image-preview"></span>',
+                '<button type="button" class="cf7m-image-clear" id="cf7m-image-clear" style="display:none" aria-label="' + (strings.removeImage || 'Remove image') + '">&times;</button>',
+              '</div>',
               '<div class="cf7m-generate-row">',
                 '<button type="button" class="cf7m-generate-btn" id="cf7m-generate">',
                   '<span class="btn-text">' + (strings.generate || 'Generate') + '</span>',
@@ -118,6 +126,30 @@
     // Copy and insert buttons.
     $('#cf7m-copy').on('click', copy);
     $('#cf7m-insert').on('click', insert);
+
+    // Image upload: preview and clear.
+    $('#cf7m-image').on('change', function() {
+      var input = this;
+      var preview = $('#cf7m-image-preview');
+      var clearBtn = $('#cf7m-image-clear');
+      if (input.files && input.files[0]) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          preview.html('<img src="' + e.target.result + '" alt="" class="cf7m-image-thumb">').addClass('has-image');
+          clearBtn.show();
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.empty().removeClass('has-image');
+        clearBtn.hide();
+      }
+    });
+    $('#cf7m-image-clear').on('click', function() {
+      $('#cf7m-image').val('');
+      $('#cf7m-image-preview').empty().removeClass('has-image');
+      $(this).hide();
+    });
   }
 
   /**
@@ -137,50 +169,66 @@
   }
 
   /**
-   * Generate form.
+   * Generate form (optionally with image: read image and convert to form code).
    */
   function generate() {
     var prompt = $('#cf7m-prompt').val().trim();
-    if (!prompt) {
-      showError('Please describe the form or select a preset.');
+    var imageInput = document.getElementById('cf7m-image');
+    var hasImage = imageInput && imageInput.files && imageInput.files[0];
+
+    if (!prompt && !hasImage) {
+      showError('Please describe the form, select a preset, or upload an image.');
       return;
     }
 
     var btn = $('#cf7m-generate');
     var txt = btn.html();
     btn.prop('disabled', true).html('<span class="spinner"></span> ' + (strings.generating || 'Generating...'));
-    
     modal.find('.cf7m-preset-item').prop('disabled', true);
-    
     hideError();
     $('#cf7m-result').removeClass('show');
 
-    $.ajax({
-      url: config.generateUrl,
-      method: 'POST',
-      headers: { 'X-WP-Nonce': config.nonce },
-      contentType: 'application/json',
-      data: JSON.stringify({ prompt: prompt }),
-      success: function(r) {
-        if (r.success && r.form) {
-          $('#cf7m-code').text(r.form);
-          $('#cf7m-result').addClass('show');
-          // Scroll to result.
-          modal.find('.cf7m-modal-body').animate({
-            scrollTop: modal.find('.cf7m-result').position().top
-          }, 300);
-        } else {
-          showError(r.message || strings.error);
+    function doRequest(payload) {
+      $.ajax({
+        url: config.generateUrl,
+        method: 'POST',
+        headers: { 'X-WP-Nonce': config.nonce },
+        contentType: 'application/json',
+        data: JSON.stringify(payload),
+        success: function(r) {
+          if (r.success && r.form) {
+            $('#cf7m-code').text(r.form);
+            $('#cf7m-result').addClass('show');
+            modal.find('.cf7m-modal-body').animate({
+              scrollTop: modal.find('.cf7m-result').position().top
+            }, 300);
+          } else {
+            showError(r.message || strings.error);
+          }
+        },
+        error: function(xhr) {
+          showError(xhr.responseJSON?.message || strings.error);
+        },
+        complete: function() {
+          btn.prop('disabled', false).html(txt);
+          modal.find('.cf7m-preset-item').prop('disabled', false);
         }
-      },
-      error: function(xhr) {
-        showError(xhr.responseJSON?.message || strings.error);
-      },
-      complete: function() {
-        btn.prop('disabled', false).html(txt);
-        modal.find('.cf7m-preset-item').prop('disabled', false);
-      }
-    });
+      });
+    }
+
+    if (hasImage) {
+      var file = imageInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function() {
+        var base64 = reader.result.split(',')[1];
+        var mediaType = file.type || 'image/jpeg';
+        var textPrompt = prompt || 'Convert this form design or screenshot into valid Contact Form 7 form code. Output only the form code.';
+        doRequest({ prompt: textPrompt, image: base64, image_type: mediaType });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      doRequest({ prompt: prompt });
+    }
   }
 
   /**
@@ -226,12 +274,19 @@
   }
 
   /**
-   * Escape HTML.
+   * Escape HTML (for text content).
    */
   function esc(s) {
     var d = document.createElement('div');
     d.textContent = s || '';
     return d.innerHTML;
+  }
+
+  /**
+   * Escape for HTML attribute (so double quotes in prompt don't break data-prompt="...").
+   */
+  function escAttr(s) {
+    return esc(s).replace(/"/g, '&quot;');
   }
 
   // Initialize.

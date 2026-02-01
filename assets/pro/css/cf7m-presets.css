@@ -2,13 +2,26 @@
  * CF7 Mate – Form Design Presets
  * [cf7m-presets style="sky"]...[/cf7m-presets] → .cf7-mate-preset.cf7-mate-preset--{style}
  *
+ * Normalize base: line-height, font-size, placeholder, border, margin, padding.
+ * Each preset overrides for a beautiful form.
+ *
  * @package CF7_Mate
  * @since 3.0.0
  */
 
-/* Base wrapper – no visual change */
+/* ─── Normalize base (CF7 form markup) ─────────────────────────────────── */
 .cf7-mate-preset {
   box-sizing: border-box;
+  --cf7m-line-height: 1.5;
+  --cf7m-label-size: 0.9375rem;
+  --cf7m-label-weight: 600;
+  --cf7m-input-size: 1rem;
+  --cf7m-input-padding-y: 10px;
+  --cf7m-input-padding-x: 14px;
+  --cf7m-field-margin: 1rem;
+  --cf7m-placeholder: #a0a0a0;
+  --cf7m-border-width: 1px;
+  --cf7m-radius: 6px;
 }
 
 .cf7-mate-preset *,
@@ -17,25 +30,113 @@
   box-sizing: border-box;
 }
 
-/* Common: ensure inputs/textarea/select are full width inside preset */
+/* Field wrap: consistent margin between fields */
+.cf7-mate-preset .wpcf7-form-control-wrap,
+.cf7-mate-preset p {
+  margin-bottom: var(--cf7m-field-margin);
+  display: block;
+}
+
+.cf7-mate-preset .wpcf7-form-control-wrap:last-child,
+.cf7-mate-preset p:last-child {
+  margin-bottom: 0;
+}
+
+/* Labels: block, line-height, font-size */
+.cf7-mate-preset label {
+  display: block;
+  line-height: var(--cf7m-line-height);
+  font-size: var(--cf7m-label-size);
+  font-weight: var(--cf7m-label-weight);
+  margin-bottom: 0.375rem;
+}
+
+/* Inputs full width, padding, line-height, placeholder */
 .cf7-mate-preset input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .cf7-mate-preset select,
 .cf7-mate-preset textarea {
   width: 100%;
   max-width: 100%;
+  padding: var(--cf7m-input-padding-y) var(--cf7m-input-padding-x);
+  font-size: var(--cf7m-input-size);
+  line-height: var(--cf7m-line-height);
+}
+
+.cf7-mate-preset input::placeholder,
+.cf7-mate-preset textarea::placeholder {
+  color: var(--cf7m-placeholder);
+  opacity: 1;
+}
+
+.cf7-mate-preset select {
+  cursor: pointer;
+}
+
+/* Checkbox/radio spacing */
+.cf7-mate-preset input[type="checkbox"],
+.cf7-mate-preset input[type="radio"] {
+  margin-right: 0.5rem;
+  width: auto;
+  max-width: none;
+}
+
+.cf7-mate-preset .wpcf7-list-item {
+  margin-bottom: 0.5rem;
+}
+
+/* Non-submit button (e.g. [cf7m-button] for calculators) – base so presets can style */
+.cf7-mate-preset .cf7m-button {
+  display: inline-block;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 0.5rem;
+}
+
+/* File upload – consistent with text inputs */
+.cf7-mate-preset input[type="file"] {
+  width: 100%;
+  max-width: 100%;
+  padding: var(--cf7m-input-padding-y) var(--cf7m-input-padding-x);
+  font-size: var(--cf7m-input-size);
+  border: var(--cf7m-border-width) solid #e5e7eb;
+  border-radius: var(--cf7m-radius);
+  background: #f9fafb;
+  color: #374151;
+}
+
+/* Focus visible for accessibility (keyboard focus) */
+.cf7-mate-preset input:focus-visible,
+.cf7-mate-preset select:focus-visible,
+.cf7-mate-preset textarea:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 /* ─── Preset: Sky ─────────────────────────────────────────────────────── */
+.cf7-mate-preset--sky {
+  --cf7m-field-margin: 1.125rem;
+  --cf7m-input-padding-y: 11px;
+  --cf7m-input-padding-x: 14px;
+  --cf7m-radius: 8px;
+}
+
 .cf7-mate-preset--sky input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .cf7-mate-preset--sky select,
 .cf7-mate-preset--sky textarea {
   background: #f0f9ff;
   border: 1px solid #7dd3fc;
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   color: #0c4a6e;
   font-size: 15px;
+  line-height: 1.5;
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cf7-mate-preset--sky input::placeholder,
+.cf7-mate-preset--sky textarea::placeholder {
+  color: #0ea5e9;
+  opacity: 0.7;
 }
 
 .cf7-mate-preset--sky input:focus,
@@ -50,7 +151,8 @@
   color: #0369a1;
   font-weight: 600;
   font-size: 14px;
-  margin-bottom: 4px;
+  margin-bottom: 0.375rem;
+  line-height: 1.5;
 }
 
 .cf7-mate-preset--sky h1, .cf7-mate-preset--sky h2, .cf7-mate-preset--sky h3,
@@ -66,7 +168,8 @@
 }
 
 .cf7-mate-preset--sky input[type="submit"],
-.cf7-mate-preset--sky button[type="submit"] {
+.cf7-mate-preset--sky button[type="submit"],
+.cf7-mate-preset--sky .cf7m-button {
   background: #0ea5e9;
   color: #fff;
   border: none;
@@ -78,11 +181,18 @@
 }
 
 .cf7-mate-preset--sky input[type="submit"]:hover,
-.cf7-mate-preset--sky button[type="submit"]:hover {
+.cf7-mate-preset--sky button[type="submit"]:hover,
+.cf7-mate-preset--sky .cf7m-button:hover {
   background: #0284c7;
 }
 
 /* ─── Preset: Classic ──────────────────────────────────────────────────── */
+.cf7-mate-preset--classic {
+  --cf7m-field-margin: 1rem;
+  --cf7m-placeholder: #9ca3af;
+  --cf7m-radius: 4px;
+}
+
 .cf7-mate-preset--classic input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .cf7-mate-preset--classic select,
 .cf7-mate-preset--classic textarea {
@@ -92,6 +202,13 @@
   padding: 10px 12px;
   color: #111827;
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.cf7-mate-preset--classic input::placeholder,
+.cf7-mate-preset--classic textarea::placeholder {
+  color: #9ca3af;
+  opacity: 1;
 }
 
 .cf7-mate-preset--classic input:focus,
@@ -99,12 +216,15 @@
 .cf7-mate-preset--classic textarea:focus {
   border-color: #6b7280;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.15);
 }
 
 .cf7-mate-preset--classic label {
   color: #374151;
   font-weight: 500;
   font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
 }
 
 .cf7-mate-preset--classic h1, .cf7-mate-preset--classic h2, .cf7-mate-preset--classic h3,
@@ -119,7 +239,8 @@
 }
 
 .cf7-mate-preset--classic input[type="submit"],
-.cf7-mate-preset--classic button[type="submit"] {
+.cf7-mate-preset--classic button[type="submit"],
+.cf7-mate-preset--classic .cf7m-button {
   background: #374151;
   color: #fff;
   border: none;
@@ -130,12 +251,15 @@
 }
 
 .cf7-mate-preset--classic input[type="submit"]:hover,
-.cf7-mate-preset--classic button[type="submit"]:hover {
+.cf7-mate-preset--classic button[type="submit"]:hover,
+.cf7-mate-preset--classic .cf7m-button:hover {
   background: #1f2937;
 }
 
 /* ─── Preset: Box ──────────────────────────────────────────────────────── */
 .cf7-mate-preset--box {
+  --cf7m-field-margin: 1.25rem;
+  --cf7m-placeholder: #6b7280;
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -152,6 +276,13 @@
   padding: 12px 16px;
   color: #111827;
   font-size: 15px;
+  line-height: 1.5;
+}
+
+.cf7-mate-preset--box input::placeholder,
+.cf7-mate-preset--box textarea::placeholder {
+  color: #6b7280;
+  opacity: 0.9;
 }
 
 .cf7-mate-preset--box input:focus,
@@ -166,6 +297,8 @@
   color: #374151;
   font-weight: 600;
   font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
 }
 
 .cf7-mate-preset--box h1, .cf7-mate-preset--box h2, .cf7-mate-preset--box h3,
@@ -180,7 +313,8 @@
 }
 
 .cf7-mate-preset--box input[type="submit"],
-.cf7-mate-preset--box button[type="submit"] {
+.cf7-mate-preset--box button[type="submit"],
+.cf7-mate-preset--box .cf7m-button {
   background: #3b82f6;
   color: #fff;
   border: none;
@@ -191,11 +325,19 @@
 }
 
 .cf7-mate-preset--box input[type="submit"]:hover,
-.cf7-mate-preset--box button[type="submit"]:hover {
+.cf7-mate-preset--box button[type="submit"]:hover,
+.cf7-mate-preset--box .cf7m-button:hover {
   background: #2563eb;
 }
 
 /* ─── Preset: Minimal ──────────────────────────────────────────────────── */
+.cf7-mate-preset--minimal {
+  --cf7m-field-margin: 1.25rem;
+  --cf7m-placeholder: #9ca3af;
+  --cf7m-input-padding-y: 12px;
+  --cf7m-input-padding-x: 0;
+}
+
 .cf7-mate-preset--minimal input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .cf7-mate-preset--minimal select,
 .cf7-mate-preset--minimal textarea {
@@ -206,6 +348,13 @@
   padding: 12px 0;
   color: #111827;
   font-size: 16px;
+  line-height: 1.5;
+}
+
+.cf7-mate-preset--minimal input::placeholder,
+.cf7-mate-preset--minimal textarea::placeholder {
+  color: #9ca3af;
+  opacity: 0.9;
 }
 
 .cf7-mate-preset--minimal input:focus,
@@ -222,6 +371,8 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
 }
 
 .cf7-mate-preset--minimal h1, .cf7-mate-preset--minimal h2, .cf7-mate-preset--minimal h3,
@@ -237,7 +388,8 @@
 }
 
 .cf7-mate-preset--minimal input[type="submit"],
-.cf7-mate-preset--minimal button[type="submit"] {
+.cf7-mate-preset--minimal button[type="submit"],
+.cf7-mate-preset--minimal .cf7m-button {
   background: #111827;
   color: #fff;
   border: none;
@@ -248,12 +400,15 @@
 }
 
 .cf7-mate-preset--minimal input[type="submit"]:hover,
-.cf7-mate-preset--minimal button[type="submit"]:hover {
+.cf7-mate-preset--minimal button[type="submit"]:hover,
+.cf7-mate-preset--minimal .cf7m-button:hover {
   background: #000;
 }
 
 /* ─── Preset: Dark ─────────────────────────────────────────────────────── */
 .cf7-mate-preset--dark {
+  --cf7m-field-margin: 1.25rem;
+  --cf7m-placeholder: #71717a;
   background: #1e1e2e;
   padding: 24px 28px;
   border-radius: 12px;
@@ -266,8 +421,52 @@
   border: 1px solid #3d3d4d;
   border-radius: 8px;
   padding: 12px 16px;
-  color: #e4e4e7;
+  color: #e4e4e7 !important;
   font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Calculator [cf7m-number] in dark preset – dark bg and light text (pro-forms uses white by default) */
+.cf7-mate-preset--dark .cf7m-number-field {
+  background: #2d2d3d !important;
+  border-color: #3d3d4d;
+}
+
+.cf7-mate-preset--dark .cf7m-number-field .cf7m-calc-input {
+  background: transparent !important;
+  color: #e4e4e7 !important;
+}
+
+.cf7-mate-preset--dark .cf7m-number-prefix,
+.cf7-mate-preset--dark .cf7m-number-suffix {
+  background: #252535;
+  border-color: #3d3d4d;
+  color: #a1a1aa;
+}
+
+.cf7-mate-preset--dark .cf7m-number-field:focus-within {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+/* Total display [cf7m-total] in dark preset */
+.cf7-mate-preset--dark .cf7m-total,
+.cf7-mate-preset--dark .cf7m-total-prefix,
+.cf7-mate-preset--dark .cf7m-total-suffix,
+.cf7-mate-preset--dark .cf7m-total-value {
+  background: #2d2d3d;
+  border-color: #3d3d4d;
+  color: #e4e4e7;
+}
+
+.cf7-mate-preset--dark .cf7m-total-label {
+  color: #a1a1aa;
+}
+
+.cf7-mate-preset--dark input::placeholder,
+.cf7-mate-preset--dark textarea::placeholder {
+  color: #71717a;
+  opacity: 0.9;
 }
 
 .cf7-mate-preset--dark input:focus,
@@ -282,6 +481,8 @@
   color: #a1a1aa;
   font-weight: 500;
   font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
 }
 
 .cf7-mate-preset--dark h1, .cf7-mate-preset--dark h2, .cf7-mate-preset--dark h3,
@@ -297,7 +498,8 @@
 }
 
 .cf7-mate-preset--dark input[type="submit"],
-.cf7-mate-preset--dark button[type="submit"] {
+.cf7-mate-preset--dark button[type="submit"],
+.cf7-mate-preset--dark .cf7m-button {
   background: #818cf8;
   color: #fff;
   border: none;
@@ -308,11 +510,18 @@
 }
 
 .cf7-mate-preset--dark input[type="submit"]:hover,
-.cf7-mate-preset--dark button[type="submit"]:hover {
+.cf7-mate-preset--dark button[type="submit"]:hover,
+.cf7-mate-preset--dark .cf7m-button:hover {
   background: #6366f1;
 }
 
 /* ─── Preset: Modern ───────────────────────────────────────────────────── */
+.cf7-mate-preset--modern {
+  --cf7m-field-margin: 1.125rem;
+  --cf7m-placeholder: #94a3b8;
+  --cf7m-radius: 8px;
+}
+
 .cf7-mate-preset--modern input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .cf7-mate-preset--modern select,
 .cf7-mate-preset--modern textarea {
@@ -322,6 +531,13 @@
   padding: 12px 16px;
   color: #1e293b;
   font-size: 15px;
+  line-height: 1.5;
+}
+
+.cf7-mate-preset--modern input::placeholder,
+.cf7-mate-preset--modern textarea::placeholder {
+  color: #94a3b8;
+  opacity: 0.9;
 }
 
 .cf7-mate-preset--modern input:focus,
@@ -336,6 +552,8 @@
   color: #475569;
   font-weight: 500;
   font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
 }
 
 .cf7-mate-preset--modern h1, .cf7-mate-preset--modern h2, .cf7-mate-preset--modern h3,
@@ -350,7 +568,8 @@
 }
 
 .cf7-mate-preset--modern input[type="submit"],
-.cf7-mate-preset--modern button[type="submit"] {
+.cf7-mate-preset--modern button[type="submit"],
+.cf7-mate-preset--modern .cf7m-button {
   background: #0ea5e9;
   color: #fff;
   border: none;
@@ -361,11 +580,20 @@
 }
 
 .cf7-mate-preset--modern input[type="submit"]:hover,
-.cf7-mate-preset--modern button[type="submit"]:hover {
+.cf7-mate-preset--modern button[type="submit"]:hover,
+.cf7-mate-preset--modern .cf7m-button:hover {
   background: #0284c7;
 }
 
 /* ─── Preset: Rounded ──────────────────────────────────────────────────── */
+.cf7-mate-preset--rounded {
+  --cf7m-field-margin: 1.25rem;
+  --cf7m-placeholder: #a1a1aa;
+  --cf7m-radius: 16px;
+  --cf7m-input-padding-y: 14px;
+  --cf7m-input-padding-x: 18px;
+}
+
 .cf7-mate-preset--rounded input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .cf7-mate-preset--rounded select,
 .cf7-mate-preset--rounded textarea {
@@ -375,6 +603,13 @@
   padding: 14px 18px;
   color: #333;
   font-size: 15px;
+  line-height: 1.5;
+}
+
+.cf7-mate-preset--rounded input::placeholder,
+.cf7-mate-preset--rounded textarea::placeholder {
+  color: #a1a1aa;
+  opacity: 0.9;
 }
 
 .cf7-mate-preset--rounded input:focus,
@@ -389,6 +624,8 @@
   color: #555;
   font-weight: 500;
   font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
 }
 
 .cf7-mate-preset--rounded h1, .cf7-mate-preset--rounded h2, .cf7-mate-preset--rounded h3,
@@ -403,7 +640,8 @@
 }
 
 .cf7-mate-preset--rounded input[type="submit"],
-.cf7-mate-preset--rounded button[type="submit"] {
+.cf7-mate-preset--rounded button[type="submit"],
+.cf7-mate-preset--rounded .cf7m-button {
   background: #6366f1;
   color: #fff;
   border: none;
@@ -414,6 +652,7 @@
 }
 
 .cf7-mate-preset--rounded input[type="submit"]:hover,
-.cf7-mate-preset--rounded button[type="submit"]:hover {
+.cf7-mate-preset--rounded button[type="submit"]:hover,
+.cf7-mate-preset--rounded .cf7m-button:hover {
   background: #4f46e5;
 }

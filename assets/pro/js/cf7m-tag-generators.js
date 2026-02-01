@@ -17,10 +17,12 @@
 		initNumberGenerator();
 		initCalcGenerator();
 		initTotalGenerator();
+		initButtonGenerator();
 		initSeparatorGenerator();
 		initHeadingGenerator();
 		initRangeGenerator();
 		initStarRatingGenerator();
+		initPhoneGenerator();
 		initColumnGenerator();
 		initConditionalGenerator();
 	}
@@ -142,6 +144,30 @@
 			tag += ' decimals:' + ((fields.decimals && fields.decimals.value) || '2');
 			tag += ']';
 
+			if (fields.tag) {
+				fields.tag.value = tag;
+			}
+		}
+
+		bindEvents(fields, updateTag);
+	}
+
+	/**
+	 * Button (no submit) tag generator.
+	 */
+	function initButtonGenerator() {
+		var pane = document.querySelector('.wpcf7-tg-pane-cf7m-button');
+		if (!pane || pane.dataset.cf7mInit) return;
+		pane.dataset.cf7mInit = '1';
+
+		var fields = {
+			label: pane.querySelector('#cf7m-button-label'),
+			tag: pane.querySelector('input.tag')
+		};
+
+		function updateTag() {
+			var label = (fields.label && fields.label.value) ? fields.label.value : 'Calculate';
+			var tag = '[cf7m-button label:"' + String(label).replace(/"/g, '\\"') + '"]';
 			if (fields.tag) {
 				fields.tag.value = tag;
 			}
@@ -303,6 +329,49 @@
 	}
 
 	/**
+	 * Phone number tag generator.
+	 */
+	function initPhoneGenerator() {
+		var pane = document.querySelector('.wpcf7-tg-pane-cf7m-phone');
+		if (!pane || pane.dataset.cf7mInit) return;
+		pane.dataset.cf7mInit = '1';
+
+		var nameInput = pane.querySelector('#cf7m-phone-name');
+		var defaultInput = pane.querySelector('#cf7m-phone-default');
+		var labelInput = pane.querySelector('#cf7m-phone-label');
+		var descriptionInput = pane.querySelector('#cf7m-phone-description');
+		var placeholderInput = pane.querySelector('#cf7m-phone-placeholder');
+		var requiredInput = pane.querySelector('#cf7m-phone-required');
+		var tagOutput = pane.querySelector('input.tag');
+
+		function updateTag() {
+			var isRequired = requiredInput && requiredInput.checked;
+			var name = (nameInput && nameInput.value) || 'phone';
+			var defaultCountry = (defaultInput && defaultInput.value) || 'US';
+			var label = labelInput && labelInput.value;
+			var description = descriptionInput && descriptionInput.value;
+			var placeholder = placeholderInput && placeholderInput.value;
+
+			var tag = isRequired ? '[cf7m-phone* ' : '[cf7m-phone ';
+			tag += name;
+			tag += ' default:' + defaultCountry;
+			if (label) tag += ' label:"' + label.replace(/"/g, '') + '"';
+			if (description) tag += ' description:"' + description.replace(/"/g, '') + '"';
+			if (placeholder) tag += ' placeholder:"' + placeholder.replace(/"/g, '') + '"';
+			tag += ']';
+
+			if (tagOutput) tagOutput.value = tag;
+		}
+
+		[nameInput, defaultInput, labelInput, descriptionInput, placeholderInput, requiredInput].forEach(function (el) {
+			if (el) {
+				el.addEventListener('input', updateTag);
+				el.addEventListener('change', updateTag);
+			}
+		});
+	}
+
+	/**
 	 * Column tag generator.
 	 */
 	function initColumnGenerator() {
@@ -381,10 +450,12 @@
 							'.wpcf7-tg-pane-cf7m-number',
 							'.wpcf7-tg-pane-cf7m-calc',
 							'.wpcf7-tg-pane-cf7m-total',
+							'.wpcf7-tg-pane-cf7m-button',
 							'.wpcf7-tg-pane-cf7m-separator',
 							'.wpcf7-tg-pane-cf7m-heading',
 							'.wpcf7-tg-pane-cf7m-range',
 							'.wpcf7-tg-pane-cf7m-star',
+							'.wpcf7-tg-pane-cf7m-phone',
 							'.wpcf7-tg-pane-cf7m-col',
 							'.wpcf7-tg-pane-cf7m-if'
 						];

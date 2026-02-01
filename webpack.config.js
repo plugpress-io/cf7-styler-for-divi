@@ -13,6 +13,7 @@ module.exports = {
 		'admin-notice': ['./src/admin/admin-notice.js'],
 		onboarding: ['./src/onboarding/index.jsx'],
 		admin: ['./src/admin/index.js'],
+		'cf7m-phone-number': ['./src/pro/phone-number/index.js'],
 	},
 	watch: !isProduction,
 	performance: {

@@ -32,18 +32,20 @@ export function App() {
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [toast, setToast] = useState(null);
-	const getInitialView = () => {
-		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'features') return 'features';
-		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') return 'ai-settings';
+	const getInitialRoute = () => {
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'features') return { view: 'features', entryId: null };
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') return { view: 'ai-settings', entryId: null };
 		return getViewFromHash();
 	};
-	const [currentView, setCurrentView] = useState(getInitialView);
+	const [route, setRoute] = useState(getInitialRoute);
+	const currentView = route.view;
+	const entriesEntryId = route.entryId;
 	const [dashboardStats, setDashboardStats] = useState({ total_entries: 0, new_today: 0, total_forms: 0, enabled_features: 0 });
 	const [dashboardStatsLoading, setDashboardStatsLoading] = useState(true);
 	const [rebrandDismissed, setRebrandDismissed] = useState(false);
 
 	useEffect(() => {
-		const onHashChange = () => setCurrentView(getViewFromHash());
+		const onHashChange = () => setRoute(getViewFromHash());
 		window.addEventListener('hashchange', onHashChange);
 		return () => window.removeEventListener('hashchange', onHashChange);
 	}, []);
@@ -53,14 +55,14 @@ export function App() {
 	}, []);
 
 	useEffect(() => {
-		if (currentView === 'dashboard') {
+		if (route.view === 'dashboard') {
 			setDashboardStatsLoading(true);
 			apiFetch({ path: '/cf7-styler/v1/dashboard-stats' })
 				.then((data) => setDashboardStats(data))
 				.catch(() => setDashboardStats({ total_entries: 0, new_today: 0, total_forms: 0, enabled_features: 0 }))
 				.finally(() => setDashboardStatsLoading(false));
 		}
-	}, [currentView]);
+	}, [route.view]);
 
 	const loadFeatures = async () => {
 		try {
@@ -100,7 +102,6 @@ export function App() {
 	const handleNavigate = (view) => {
 		if (view === 'entries') window.location.hash = '#/entries';
 		else window.location.hash = '#/';
-		setCurrentView(view);
 	};
 
 	if (loading) {
@@ -119,11 +120,14 @@ export function App() {
 	return (
 		<div className="dcs-admin-wrapper">
 			<Header isPro={isPro} showEntries={showEntries} currentView={currentView} />
-			<div className="dcs-admin">
+			<div className={`dcs-admin ${currentView === 'entries' ? 'dcs-admin--entries-full' : ''}`}>
 				<div className="dcs-admin__content">
 					{currentView === 'entries' ? (
 						showEntries ? (
-							<EntriesPage onBack={entriesOnlyPage ? () => { window.location.href = cf7AdminUrl; } : () => handleNavigate('dashboard')} />
+							<EntriesPage
+								entryId={entriesEntryId}
+								onBack={entriesOnlyPage ? () => { window.location.href = cf7AdminUrl; } : () => handleNavigate('dashboard')}
+							/>
 						) : (
 							<div className="dcs-card">
 								<p className="dcs-card__desc">{__('Enable Database Entries in Features to view form submissions.', 'cf7-styler-for-divi')}</p>

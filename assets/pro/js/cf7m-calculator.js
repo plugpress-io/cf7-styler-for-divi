@@ -108,6 +108,14 @@
         }
       });
 
+      // [cf7m-button] with data-cf7m-action="calculate" – click recalculates, does not submit.
+      this.form.querySelectorAll('.cf7m-calc-trigger[data-cf7m-action="calculate"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.calculate();
+        });
+      });
+
       // Initial calculation.
       this.calculate();
     }
@@ -164,8 +172,8 @@
     evaluate(formula) {
       let expression = formula;
 
-      // Find all word tokens (field names).
-      const tokens = formula.match(/[a-zA-Z_][a-zA-Z0-9_]*/g) || [];
+      // Find all word tokens (field names; allow hyphens e.g. interest-rate).
+      const tokens = formula.match(/[a-zA-Z_][a-zA-Z0-9_-]*/g) || [];
       const uniqueTokens = [...new Set(tokens)];
 
       uniqueTokens.forEach(token => {
@@ -175,11 +183,15 @@
         }
 
         const value = this.getFieldValue(token);
-        const regex = new RegExp('\\b' + token + '\\b', 'g');
+        const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp('\\b' + escaped + '\\b', 'g');
         expression = expression.replace(regex, value);
       });
 
-      // Replace ** with Math.pow for exponentiation.
+      // Support ^ for exponentiation (e.g. mortgage formula).
+      expression = expression.replace(/\^/g, '**');
+
+      // Replace ** with Math.pow for exponentiation (numeric cases).
       expression = expression.replace(/(\d+(?:\.\d+)?)\s*\*\*\s*(\d+(?:\.\d+)?)/g, 'Math.pow($1,$2)');
       expression = expression.replace(/\(([^)]+)\)\s*\*\*\s*(\d+(?:\.\d+)?)/g, 'Math.pow($1,$2)');
 

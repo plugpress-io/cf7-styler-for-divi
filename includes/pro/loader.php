@@ -22,6 +22,7 @@ class Premium_Loader
         'star_rating'       => true,
         'database_entries'  => true,
         'range_slider'      => true,
+        'phone_number'      => true,
         'separator'         => true,
         'heading'           => true,
         'image'             => true,
@@ -52,6 +53,10 @@ class Premium_Loader
         'range_slider'    => [
             'file'  => 'range-slider/module.php',
             'class' => 'CF7_Mate\Features\Range_Slider\Range_Slider',
+        ],
+        'phone_number'   => [
+            'file'  => 'phone-number/module.php',
+            'class' => 'CF7_Mate\Features\Phone_Number\Phone_Number',
         ],
         'separator'       => [
             'file'  => 'separator/module.php',
@@ -143,7 +148,6 @@ class Premium_Loader
             'Traits/shortcode-atts.php',
             'feature-base.php',
             'form-tag-feature.php',
-            'cf7-editor-styles-panel.php',
         ];
 
         foreach ($files as $file) {
@@ -151,10 +155,6 @@ class Premium_Loader
             if (file_exists($path)) {
                 require_once $path;
             }
-        }
-
-        if (class_exists(\CF7_Mate\Pro\CF7_Editor_Styles_Panel::class)) {
-            \CF7_Mate\Pro\CF7_Editor_Styles_Panel::register();
         }
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Form Design Presets – shortcode wrapper.
  * [cf7m-presets style="sky"]...form fields...[/cf7m-presets]
@@ -57,12 +58,7 @@ class Presets extends Pro_Feature_Base
         return $form;
     }
 
-    /**
-     * Build wrapper and return HTML.
-     *
-     * @param array $matches [ full, attrs, content ].
-     * @return string
-     */
+
     public function render_preset_wrapper($matches)
     {
         $raw_attrs = isset($matches[1]) ? trim($matches[1]) : '';
@@ -121,7 +117,7 @@ class Presets extends Pro_Feature_Base
             return;
         }
         $tg = \WPCF7_TagGenerator::get_instance();
-        $tg->add('cf7m-presets', __('Form Preset', 'cf7-styler-for-divi'), [$this, 'tag_generator_presets']);
+        $tg->add('cf7m-presets', __('style presets', 'cf7-styler-for-divi'), [$this, 'tag_generator_presets']);
     }
 
     /**
@@ -130,7 +126,6 @@ class Presets extends Pro_Feature_Base
     public function tag_generator_presets($contact_form, $options = '')
     {
         $presets = [
-            'sky'     => __('Sky', 'cf7-styler-for-divi'),
             'classic' => __('Classic', 'cf7-styler-for-divi'),
             'box'     => __('Box', 'cf7-styler-for-divi'),
             'minimal' => __('Minimal', 'cf7-styler-for-divi'),
@@ -138,22 +133,24 @@ class Presets extends Pro_Feature_Base
             'modern'  => __('Modern', 'cf7-styler-for-divi'),
             'rounded' => __('Rounded', 'cf7-styler-for-divi'),
         ];
-        ?>
+?>
         <div class="control-box">
             <fieldset>
                 <legend><?php esc_html_e('Form Design Preset', 'cf7-styler-for-divi'); ?></legend>
-                <table class="form-table"><tbody>
-                    <tr>
-                        <th><label for="cf7m-preset-style"><?php esc_html_e('Style', 'cf7-styler-for-divi'); ?></label></th>
-                        <td>
-                            <select id="cf7m-preset-style" name="style" class="oneline">
-                                <?php foreach ($presets as $slug => $label) : ?>
-                                    <option value="<?php echo esc_attr($slug); ?>"><?php echo esc_html($label); ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody></table>
+                <table class="form-table">
+                    <tbody>
+                        <tr>
+                            <th><label for="cf7m-preset-style"><?php esc_html_e('Style', 'cf7-styler-for-divi'); ?></label></th>
+                            <td>
+                                <select id="cf7m-preset-style" name="style" class="oneline">
+                                    <?php foreach ($presets as $slug => $label) : ?>
+                                        <option value="<?php echo esc_attr($slug); ?>"><?php echo esc_html($label); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <p class="description"><?php esc_html_e('Wrap your form fields in this shortcode to apply a preset style. Put all fields inside the opening and closing tags.', 'cf7-styler-for-divi'); ?></p>
             </fieldset>
         </div>
@@ -165,6 +162,6 @@ class Presets extends Pro_Feature_Base
                 <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>">
             </div>
         </div>
-        <?php
+<?php
     }
 }

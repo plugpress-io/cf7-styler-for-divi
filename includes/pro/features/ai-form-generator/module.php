@@ -76,40 +76,25 @@ class AI_Form_Generator extends Pro_Feature_Base
 ?>
 		<script>
 			(function() {
-				// Prefer next to page title (Edit Contact Form) for visibility.
-				var targets = [
-					'.wrap.contact-form-editor h1',
-					'#wpcf7-contact-form-editor .wrap h1',
-					'.wrap h1.wp-heading-inline',
-					'#wpcf7-form-editor-tabs',
-					'#tag-generator-list',
-					'.wpcf7-tag-generator-wrap'
-				];
-				var container = null;
-				var insertAfter = false;
-				for (var i = 0; i < targets.length; i++) {
-					container = document.querySelector(targets[i]);
-					if (container) {
-						insertAfter = container.tagName === 'H1';
-						break;
-					}
-				}
-				if (!container) {
-					container = document.querySelector('#wpcf7-form');
-					if (!container) return;
-				}
+				// Only show button when form editor is on the page (edit mode), so Insert works.
+				var formEditor = document.querySelector('#wpcf7-form');
+				if (!formEditor) return;
 				if (document.getElementById('cf7m-ai-btn')) return;
+
+				// Insert after "Add Contact Form" / "Add New" link (same row as title), same size as that button.
+				var wrap = document.querySelector('.wrap.contact-form-editor, #wpcf7-contact-form-editor .wrap, .wrap');
+				var addNewLink = wrap ? wrap.querySelector('a.page-title-action') : null;
+				var insertAfterEl = addNewLink || (wrap ? wrap.querySelector('h1') : null);
+				if (!insertAfterEl || !insertAfterEl.parentNode) {
+					insertAfterEl = formEditor;
+				}
 
 				var b = document.createElement('button');
 				b.type = 'button';
 				b.id = 'cf7m-ai-btn';
-				b.className = 'cf7m-ai-btn cf7m-ai-btn-premium button';
-				b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> <?php echo $text; ?>';
-				if (insertAfter && container.parentNode) {
-					container.parentNode.insertBefore(b, container.nextSibling);
-				} else {
-					container.parentNode.insertBefore(b, container);
-				}
+				b.className = 'cf7m-ai-btn page-title-action';
+				b.innerHTML = '<span class="cf7m-ai-btn__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><span class="cf7m-ai-btn__text"><?php echo $text; ?></span>';
+				insertAfterEl.parentNode.insertBefore(b, insertAfterEl.nextSibling);
 			})();
 		</script>
 <?php
@@ -175,6 +160,8 @@ class AI_Form_Generator extends Pro_Feature_Base
 					'configure'   => __('Configure', 'cf7-styler-for-divi'),
 					'noKey'       => __('Configure AI provider first.', 'cf7-styler-for-divi'),
 					'or'          => __('or describe your form', 'cf7-styler-for-divi'),
+					'uploadImage' => __('Upload form image', 'cf7-styler-for-divi'),
+					'removeImage' => __('Remove image', 'cf7-styler-for-divi'),
 				),
 			)
 		);
@@ -205,17 +192,31 @@ class AI_Form_Generator extends Pro_Feature_Base
 	public function handle_generate(\WP_REST_Request $request)
 	{
 		$prompt = sanitize_textarea_field($request->get_param('prompt'));
+		$image  = $request->get_param('image');
+		$image_type = sanitize_text_field($request->get_param('image_type') ?: 'image/jpeg');
 
-		if (empty($prompt)) {
+		if (empty($prompt) && empty($image)) {
 			return new \WP_Error(
 				'empty_prompt',
-				__('Please describe the form.', 'cf7-styler-for-divi'),
+				__('Please describe the form or upload an image.', 'cf7-styler-for-divi'),
 				array('status' => 400)
 			);
 		}
 
+		if (!empty($image) && !preg_match('/^[A-Za-z0-9+\/=]+$/', $image)) {
+			return new \WP_Error(
+				'invalid_image',
+				__('Invalid image data.', 'cf7-styler-for-divi'),
+				array('status' => 400)
+			);
+		}
+
+		if (empty($prompt) && !empty($image)) {
+			$prompt = __('Convert this form design or screenshot into valid Contact Form 7 form code. Output only the form code.', 'cf7-styler-for-divi');
+		}
+
 		$handler = new AI_API_Handler();
-		$result  = $handler->generate($prompt);
+		$result  = $handler->generate($prompt, !empty($image) ? $image : null, $image_type);
 
 		if (is_wp_error($result)) {
 			return $result;
@@ -233,6 +234,7 @@ class AI_Form_Generator extends Pro_Feature_Base
 
 	/**
 	 * Clean AI response to extract form code.
+	 * Strips markdown, stray headings; fixes [label] so shortcodes render.
 	 *
 	 * @since  3.0.0
 	 * @param  string $response Raw AI response.
@@ -243,6 +245,20 @@ class AI_Form_Generator extends Pro_Feature_Base
 		// Remove markdown code blocks.
 		$response = preg_replace('/^```[a-z]*\n?/m', '', $response);
 		$response = preg_replace('/\n?```$/m', '', $response);
+
+		// Strip stray headings/title markup (uncanny titles) so form starts with label or shortcode.
+		$response = preg_replace('/^\s*<h[1-6][^>]*>.*?<\/h[1-6]>\s*/is', '', $response);
+		$response = preg_replace('/^\s*<title[^>]*>.*?<\/title>\s*/is', '', $response);
+		$response = preg_replace('/^\s*<p[^>]*class="[^"]*title[^"]*"[^>]*>.*?<\/p>\s*/is', '', $response);
+
+		// Fix [label for="..."]...[/label] → <label for="...">...</label> so it renders (AI sometimes outputs square brackets).
+		$response = preg_replace_callback(
+			'/\[label\s+for=["\']([^"\']+)["\'][^\]]*\]\s*(.*?)\s*\[\/label\]/is',
+			function ($m) {
+				return '<label for="' . esc_attr($m[1]) . '">' . esc_html(trim($m[2])) . '</label>';
+			},
+			$response
+		);
 
 		return trim($response);
 	}

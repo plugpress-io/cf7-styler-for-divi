@@ -34,20 +34,6 @@
 
 ---
 
-### CF7 Editor Panel: Pro Styling Metabox
-
-**Decision:** Add a "CF7 Styler" tab to the Contact Form 7 form editor with custom fields for Pro styling defaults (star color, range track/thumb color, heading font size/family/text color). Store as post meta; apply on frontend via `wpcf7_form_elements` and `wpcf7_form_class_attr`.
-
-**Implementation (2026-01-31):**
-- **File:** `includes/pro/cf7-editor-styles-panel.php` – `CF7_Editor_Styles_Panel` class
-- **Hooks:** `wpcf7_editor_panels` (add panel), `wpcf7_save_contact_form` + `save_post_wpcf7_contact_form` (save meta), `wpcf7_form_class_attr` (add class), `wpcf7_form_elements` (inject `<style>`)
-- **Meta key:** `cf7m_pro_styles` (array of field values)
-- Per-tag overrides: star rating, range slider, and heading tag generators have optional style fields (star_color, track_color, thumb_color, font_size, font_family, text_color) that override form-level defaults when set in the shortcode.
-
-**Status:** Implemented
-
----
-
 ### PHP namespace: CF7_Mate
 
 **Decision:** All plugin PHP code uses namespace `CF7_Mate` (and sub-namespaces: `CF7_Mate\Pro`, `CF7_Mate\Features\*`, `CF7_Mate\Modules\*`, `CF7_Mate\API`).
@@ -181,6 +167,19 @@ $container_classes = sprintf(
 - Entries: extends `Pro_Feature_Base`, use `Singleton`; post type, save on submit, admin page, REST.
 
 **Adding a new Pro feature:** add entry to `Premium_Loader::$features`, create `features/<slug>/module.php` extending the appropriate base and using traits.
+
+---
+
+### AI Form Generator: prompts and form design
+
+**Decision:** System prompt and preset prompts enforce proper form markup and design; presets CSS covers `.cf7m-button`, file inputs, and `:focus-visible`.
+
+**Implementation:**
+- **System prompt** (`includes/pro/features/ai-form-generator/prompt.php`): FORM MARKUP PATTERN (one label + one form tag; `for` matches tag name); FORM DESIGN – always wrap styled forms in `[cf7m-presets style="X"]`; no headings or extra wrappers; calculators use `[cf7m-button "Calculate"]` to trigger.
+- **Preset prompts:** Each preset explicitly asks for "Wrap the entire form in [cf7m-presets style=\"...\"]", "Use HTML <label for=\"field-name\"> only", "sentence case". Calculators mention `[cf7m-button]` and optional preset wrap.
+- **Preset CSS** (`assets/pro/css/cf7m-presets.css`): Base styles for `.cf7m-button`, `input[type="file"]`, and `:focus-visible`; each preset extends submit button rules to `.cf7m-button` so calculator/action buttons match the preset look.
+
+**Rationale:** Consistent, well-structured form code and polished appearance without custom CSS; accessibility via focus-visible.
 
 ---
 

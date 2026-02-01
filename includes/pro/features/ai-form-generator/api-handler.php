@@ -51,16 +51,25 @@ class AI_API_Handler {
 	 * Generate form.
 	 *
 	 * @since  3.0.0
-	 * @param  string $prompt User prompt.
+	 * @param  string      $prompt          User prompt.
+	 * @param  string|null $image_base64    Optional base64-encoded image (for vision: read image, convert to form).
+	 * @param  string      $image_media_type Optional MIME type, e.g. image/jpeg.
 	 * @return string|\WP_Error
 	 */
-	public function generate( $prompt ) {
+	public function generate( $prompt, $image_base64 = null, $image_media_type = 'image/jpeg' ) {
 		$provider      = $this->settings['provider'];
 		$system_prompt = cf7m_get_ai_system_prompt();
 
+		if ( $image_base64 && ! in_array( $provider, array( 'openai', 'anthropic' ), true ) ) {
+			return new \WP_Error(
+				'image_unsupported',
+				__( 'Image upload is supported only with OpenAI or Anthropic. Please switch provider or use a text prompt.', 'cf7-styler-for-divi' )
+			);
+		}
+
 		switch ( $provider ) {
 			case 'anthropic':
-				return $this->call_anthropic( $system_prompt, $prompt );
+				return $this->call_anthropic( $system_prompt, $prompt, $image_base64, $image_media_type );
 
 			case 'grok':
 				return $this->call_grok( $system_prompt, $prompt );
@@ -69,7 +78,7 @@ class AI_API_Handler {
 				return $this->call_kimi( $system_prompt, $prompt );
 
 			default:
-				return $this->call_openai( $system_prompt, $prompt );
+				return $this->call_openai( $system_prompt, $prompt, $image_base64, $image_media_type );
 		}
 	}
 
@@ -122,18 +131,36 @@ class AI_API_Handler {
 	}
 
 	/**
-	 * Call OpenAI API.
+	 * Call OpenAI API (text and optional image/vision).
 	 *
 	 * @since  3.0.0
-	 * @param  string $system System prompt.
-	 * @param  string $user   User prompt.
+	 * @param  string      $system System prompt.
+	 * @param  string      $user   User prompt.
+	 * @param  string|null $image_base64 Optional base64 image.
+	 * @param  string      $image_media_type MIME type for image.
 	 * @return string|\WP_Error
 	 */
-	private function call_openai( $system, $user ) {
+	private function call_openai( $system, $user, $image_base64 = null, $image_media_type = 'image/jpeg' ) {
 		$key = $this->settings['openai_key'];
 
 		if ( empty( $key ) ) {
 			return new \WP_Error( 'no_key', __( 'OpenAI key not configured.', 'cf7-styler-for-divi' ) );
+		}
+
+		$user_content = $user;
+		if ( ! empty( $image_base64 ) ) {
+			$user_content = array(
+				array(
+					'type'  => 'text',
+					'text'  => $user,
+				),
+				array(
+					'type' => 'image_url',
+					'image_url' => array(
+						'url' => 'data:' . $image_media_type . ';base64,' . $image_base64,
+					),
+				),
+			);
 		}
 
 		$response = wp_remote_post(
@@ -155,7 +182,7 @@ class AI_API_Handler {
 							),
 							array(
 								'role'    => 'user',
-								'content' => $user,
+								'content' => $user_content,
 							),
 						),
 						'temperature' => 0.7,
@@ -170,18 +197,32 @@ class AI_API_Handler {
 	}
 
 	/**
-	 * Call Anthropic API.
+	 * Call Anthropic API (text and optional image/vision).
 	 *
 	 * @since  3.0.0
-	 * @param  string $system System prompt.
-	 * @param  string $user   User prompt.
+	 * @param  string      $system System prompt.
+	 * @param  string      $user   User prompt.
+	 * @param  string|null $image_base64 Optional base64 image.
+	 * @param  string      $image_media_type MIME type for image.
 	 * @return string|\WP_Error
 	 */
-	private function call_anthropic( $system, $user ) {
+	private function call_anthropic( $system, $user, $image_base64 = null, $image_media_type = 'image/jpeg' ) {
 		$key = $this->settings['anthropic_key'];
 
 		if ( empty( $key ) ) {
 			return new \WP_Error( 'no_key', __( 'Anthropic key not configured.', 'cf7-styler-for-divi' ) );
+		}
+
+		$user_content = array( array( 'type' => 'text', 'text' => $user ) );
+		if ( ! empty( $image_base64 ) ) {
+			$user_content[] = array(
+				'type'   => 'image',
+				'source' => array(
+					'type'       => 'base64',
+					'media_type' => $image_media_type,
+					'data'       => $image_base64,
+				),
+			);
 		}
 
 		$response = wp_remote_post(
@@ -202,7 +243,7 @@ class AI_API_Handler {
 						'messages'   => array(
 							array(
 								'role'    => 'user',
-								'content' => $user,
+								'content' => $user_content,
 							),
 						),
 					),

@@ -65,12 +65,6 @@ export function Header({ isPro, showEntries, currentView }) {
 							</clipPath>
 						</defs>
 					</svg>
-					<h1
-						className="dcs-admin__title"
-						style={{ fontWeight: 700 }}
-					>
-						{__('CF7 Mate', 'cf7-styler-for-divi')}
-					</h1>
 				</div>
 				<nav className="dcs-admin__nav">
 					{entriesOnlyPage && isEntries ? (

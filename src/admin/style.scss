@@ -23,6 +23,28 @@
 	--dcs-pro: #9a8b2e;
 	--dcs-pro-bg: #faf8f2;
 	--dcs-pro-border: rgba(154, 139, 46, 0.2);
+
+	// shadcn/ui design tokens (Tailwind theme uses these)
+	--radius: 0.5rem;
+	--background: #ffffff;
+	--foreground: #0a0a0a;
+	--card: #ffffff;
+	--card-foreground: #0a0a0a;
+	--popover: #ffffff;
+	--popover-foreground: #0a0a0a;
+	--primary: var(--dcs-primary);
+	--primary-foreground: #ffffff;
+	--secondary: #f5f5f5;
+	--secondary-foreground: #171717;
+	--muted: #f5f5f5;
+	--muted-foreground: #737373;
+	--accent: #f5f5f5;
+	--accent-foreground: #171717;
+	--destructive: #ef4444;
+	--destructive-foreground: #ffffff;
+	--border: #e5e5e5;
+	--input: #e5e5e5;
+	--ring: var(--dcs-primary);
 }
 
 // ===========================================
@@ -67,6 +89,10 @@
 		flex-direction: column;
 		gap: 28px;
 	}
+
+	&--entries-full &__content {
+		max-width: none;
+	}
 }
 
 // ===========================================
@@ -89,12 +115,12 @@
 	flex-shrink: 0;
 	width: 40px;
 	height: 40px;
-	background: rgba(87, 51, 255, 0.08);
+	background: var(--dcs-bg);
 	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: var(--dcs-primary);
+	color: var(--dcs-text-muted);
 
 	svg {
 		width: 20px;
@@ -134,17 +160,18 @@
 	padding: 6px 14px;
 	font-size: 13px;
 	font-weight: 500;
-	color: var(--dcs-primary);
+	color: var(--dcs-body);
 	background: transparent;
 	border: 1px solid var(--dcs-border);
 	border-radius: 6px;
 	cursor: pointer;
-	transition: background 0.2s, border-color 0.2s;
+	transition: background 0.2s, border-color 0.2s, color 0.2s;
 	font-family: inherit;
 
 	&:hover:not(:disabled) {
-		background: rgba(87, 51, 255, 0.06);
-		border-color: var(--dcs-primary);
+		background: var(--dcs-bg);
+		border-color: #d0cee0;
+		color: var(--dcs-heading);
 	}
 
 	&:disabled {
@@ -196,6 +223,10 @@
 	svg {
 		width: 28px;
 		height: 28px;
+		color: var(--dcs-body);
+		transition: color 0.15s;
+	}
+	&:hover svg {
 		color: var(--dcs-primary);
 	}
 }
@@ -247,21 +278,22 @@
 	font-size: 14px;
 	color: var(--dcs-text-muted);
 	text-decoration: none;
-	transition: color 0.15s;
+	transition: color 0.15s, background 0.15s;
 	padding: 6px 10px;
 	border-radius: 8px;
 
 	&:hover {
-		color: var(--dcs-primary);
+		color: var(--dcs-body);
 
 		.dcs-nav-icon--docs {
-			color: var(--dcs-primary);
+			color: var(--dcs-body);
 		}
 	}
 
 	&--active {
-		color: var(--dcs-primary);
+		color: var(--dcs-heading);
 		font-weight: 600;
+		background: var(--dcs-bg);
 	}
 
 	&--pro {
@@ -269,11 +301,10 @@
 		color: var(--dcs-pro);
 
 		&:hover {
-			color: var(--dcs-primary);
-			background: rgba(87, 51, 255, 0.06);
+			color: var(--dcs-body);
+			background: var(--dcs-bg);
 
 			.dcs-nav-icon--crown {
-				color: var(--dcs-primary);
 				transform: scale(1.05);
 			}
 		}
@@ -314,44 +345,14 @@
 }
 
 // ===========================================
-// Card subheader (for Pro features section)
-// ===========================================
-.dcs-card__subheader {
-	padding: 16px 20px 12px;
-	margin-top: 8px;
-	border-top: 1px solid var(--dcs-border);
-	background: var(--dcs-bg);
-
-	.dcs-card > &:first-child {
-		margin-top: 0;
-		border-top: none;
-	}
-}
-
-.dcs-card__subtitle {
-	font-size: 13px;
-	font-weight: 600;
-	margin: 0 0 2px;
-	color: var(--dcs-heading);
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-}
-
-.dcs-card__subdesc {
-	font-size: 12px;
-	margin: 0;
-	color: var(--dcs-text-muted);
-}
-
-// ===========================================
-// Modules page – one container, simple small cards
+// Modules page – grouped list, compact
 // ===========================================
 .dcs-modules-page {
 	max-width: 940px;
 }
 
 .dcs-modules-card__header {
-	padding: 14px 16px 10px;
+	padding: 14px 18px 10px;
 	border-bottom: 1px solid var(--dcs-border);
 }
 
@@ -368,44 +369,80 @@
 	color: var(--dcs-text-muted);
 }
 
-.dcs-features-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 16px;
-	padding: 20px;
+.dcs-modules-card__body {
+	padding: 12px 18px 16px;
+}
 
-	@media (max-width: 680px) {
-		grid-template-columns: 1fr;
-		gap: 12px;
-		padding: 16px;
+.dcs-modules-card__footer {
+	border-top: 1px solid var(--dcs-border);
+	padding: 0 18px;
+}
+
+.dcs-features-group {
+	margin-bottom: 20px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&--pro {
+		padding-top: 16px;
+		border-top: 1px solid var(--dcs-border);
+	}
+}
+
+.dcs-features-group__title {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--dcs-text-muted);
+	margin: 0 0 10px;
+	padding: 0 2px;
+}
+
+.dcs-features-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+
+	> li {
+		margin: 0;
 	}
 }
 
 // ===========================================
-// Feature card – with description and better styling
+// Feature row – compact list item (Modules page)
 // ===========================================
 .dcs-feature {
 	display: flex;
-	align-items: flex-start;
-	gap: 12px;
-	padding: 16px;
-	background: #fff;
-	border: 1px solid var(--dcs-border);
-	border-radius: 10px;
-	transition: all 0.15s;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	background: var(--dcs-bg);
+	border: 1px solid transparent;
+	border-radius: 8px;
+	transition: border-color 0.15s, background 0.15s;
 
 	&:hover {
-		border-color: #d0cee0;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		background: #fff;
+		border-color: var(--dcs-border);
 	}
 
 	&--pro {
-		background: linear-gradient(135deg, #fafafa 0%, #f5f3ff 100%);
-		border-color: rgba(87, 51, 255, 0.15);
+		background: var(--dcs-pro-bg);
+	}
+
+	&--pro:hover {
+		background: #f5f3ef;
+		border-color: var(--dcs-pro-border);
 	}
 
 	&--locked {
-		opacity: 0.85;
+		opacity: 0.9;
 	}
 
 	&--locked .dcs-feature__name {
@@ -414,23 +451,24 @@
 
 	&__icon {
 		flex-shrink: 0;
-		width: 36px;
-		height: 36px;
+		width: 32px;
+		height: 32px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(87, 51, 255, 0.08);
-		border-radius: 8px;
-		color: var(--dcs-primary);
+		background: var(--dcs-bg);
+		border-radius: 6px;
+		color: var(--dcs-text-muted);
 
 		svg {
-			width: 18px;
-			height: 18px;
+			width: 16px;
+			height: 16px;
 		}
 	}
 
 	&--pro &__icon {
-		background: rgba(87, 51, 255, 0.12);
+		background: var(--dcs-pro-bg);
+		color: var(--dcs-pro);
 	}
 
 	&__name-wrap {
@@ -438,7 +476,7 @@
 		min-width: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
+		gap: 2px;
 		cursor: default;
 	}
 
@@ -454,12 +492,12 @@
 	}
 
 	&__desc {
-		font-size: 12px;
-		line-height: 1.4;
+		font-size: 11px;
+		line-height: 1.35;
 		color: var(--dcs-text-muted);
 		margin: 0;
 		display: -webkit-box;
-		-webkit-line-clamp: 2;
+		-webkit-line-clamp: 1;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
@@ -469,16 +507,16 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 16px;
-		height: 16px;
+		width: 14px;
+		height: 14px;
 		background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
 		border-radius: 50%;
 		color: #fff;
 		transition: transform 0.15s;
 
 		.dcs-icon-crown {
-			width: 9px;
-			height: 9px;
+			width: 8px;
+			height: 8px;
 			color: #fff;
 		}
 
@@ -489,11 +527,10 @@
 
 	&__toggle {
 		flex-shrink: 0;
-		margin-top: 2px;
 	}
 
 	&__upgrade {
-		padding: 5px 12px;
+		padding: 4px 10px;
 		font-size: 11px;
 		font-weight: 600;
 		color: #fff;
@@ -501,8 +538,7 @@
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
-		transition: all 0.15s;
-		margin-top: 2px;
+		transition: opacity 0.15s;
 
 		&:hover {
 			opacity: 0.9;
@@ -512,236 +548,88 @@
 }
 
 // ===========================================
-// Dashboard – stats + quick actions (like lean-forms)
+// Dashboard – one card: compact stats + quick links
 // ===========================================
-.dcs-dashboard-stats {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 16px;
-	margin-bottom: 24px;
-
-	@media (max-width: 900px) {
-		grid-template-columns: repeat(2, 1fr);
+.dcs-dashboard-card {
+	.dcs-dashboard-card__body {
+		padding: 18px 20px;
 	}
-
-	@media (max-width: 480px) {
-		grid-template-columns: 1fr;
-	}
-}
-
-.dcs-stat-card {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 16px 18px;
-	background: #fff;
-	border: 1px solid var(--dcs-border);
-	border-radius: 12px;
-
-	&__icon {
-		flex-shrink: 0;
-		width: 44px;
-		height: 44px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 10px;
-		color: var(--dcs-primary);
-
-		svg {
-			width: 22px;
-			height: 22px;
-		}
-
-		&--entries {
-			background: rgba(87, 51, 255, 0.1);
-		}
-		&--today {
-			background: rgba(16, 185, 129, 0.12);
-			color: var(--dcs-success);
-		}
-		&--forms {
-			background: rgba(87, 51, 255, 0.1);
-		}
-		&--features {
-			background: rgba(87, 51, 255, 0.08);
-		}
-	}
-
-	&__content {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		min-width: 0;
-	}
-
-	&__label {
-		font-size: 11px;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.04em;
-		color: var(--dcs-text-muted);
-	}
-
-	&__value {
-		font-size: 18px;
-		font-weight: 600;
-		color: var(--dcs-heading);
-	}
-}
-
-.dcs-quick-actions {
-	.dcs-card__header {
-		border-bottom: 1px solid var(--dcs-border);
-	}
-}
-
-.dcs-quick-actions__grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 12px;
-	padding: 16px 20px;
-
-	@media (max-width: 640px) {
-		grid-template-columns: 1fr;
-		padding: 14px 16px;
-	}
-}
-
-.dcs-quick-action {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 14px 16px;
-	background: #fff;
-	border: 1px solid var(--dcs-border);
-	border-radius: 10px;
-	text-decoration: none;
-	color: var(--dcs-body);
-	transition: border-color 0.15s, background 0.15s;
-
-	&:hover {
-		background: var(--dcs-bg);
-		border-color: var(--dcs-primary);
-		color: var(--dcs-body);
-	}
-
-	&__icon {
-		flex-shrink: 0;
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: rgba(87, 51, 255, 0.08);
-		border-radius: 8px;
-		color: var(--dcs-primary);
-
-		svg {
-			width: 20px;
-			height: 20px;
-		}
-	}
-
-	&__text {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		min-width: 0;
-	}
-
-	&__title {
-		font-size: 14px;
-		font-weight: 600;
-		color: var(--dcs-heading);
-	}
-
-	&__desc {
-		font-size: 12px;
-		color: var(--dcs-text-muted);
-	}
-}
-
-// ===========================================
-// Plugins you might like – grid of cards (like divi-google-reviews)
-// ===========================================
-.dcs-plugins {
-	margin-bottom: 24px;
-
-	&__header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-bottom: 16px;
-	}
-
-	&__title {
-		font-size: 16px;
-		font-weight: 600;
+	.dcs-dashboard-card__muted {
 		margin: 0;
-		color: var(--dcs-heading);
-	}
-
-	&__grid {
-		display: grid;
-		gap: 16px;
-		grid-template-columns: repeat(3, 1fr);
-
-		@media (max-width: 900px) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@media (max-width: 640px) {
-			grid-template-columns: 1fr;
-		}
+		font-size: 13px;
+		color: var(--dcs-text-muted);
 	}
 }
 
-.dcs-plugin-card {
+.dcs-dashboard-stats {
 	display: flex;
-	flex-direction: column;
-	text-decoration: none;
-	color: inherit;
-	background: #fff;
-	border-radius: 12px;
-	border: 1px solid var(--dcs-border);
-	padding: 20px;
-	transition: border-color 0.2s;
+	flex-wrap: wrap;
+	gap: 20px 24px;
+	margin-bottom: 16px;
+}
 
-	&:hover {
-		border-color: #ccc;
+.dcs-stat {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 
-		.dcs-plugin-card__btn {
+	&__icon {
+		flex-shrink: 0;
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		color: var(--dcs-text-muted);
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+		&--muted {
 			background: var(--dcs-bg);
 		}
 	}
-
-	&__name {
-		font-size: 14px;
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		min-width: 0;
+	}
+	&__value {
+		font-size: 15px;
 		font-weight: 600;
-		margin: 0 0 8px;
 		color: var(--dcs-heading);
+		line-height: 1.2;
 	}
-
-	&__desc {
-		font-size: 13px;
-		margin: 0 0 16px;
-		line-height: 1.5;
+	&__label {
+		font-size: 11px;
 		color: var(--dcs-text-muted);
-		flex: 1;
+		text-transform: none;
 	}
+}
 
-	&__btn {
-		display: inline-block;
-		font-size: 13px;
-		font-weight: 500;
-		padding: 8px 16px;
-		color: var(--dcs-text);
-		background: #fff;
-		border: 1px solid var(--dcs-border);
-		border-radius: 6px;
-		transition: background-color 0.2s;
-		align-self: flex-start;
+.dcs-dashboard-quick {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+	font-size: 13px;
+
+	&__sep {
+		user-select: none;
+		color: var(--dcs-border);
+		opacity: 0.8;
+	}
+	&__link {
+		color: var(--dcs-body);
+		text-decoration: none;
+		transition: color 0.15s;
+
+		&:hover {
+			color: var(--dcs-primary);
+		}
 	}
 }
 
@@ -796,31 +684,6 @@
 
 	&:focus-visible .dcs-toggle__track {
 		box-shadow: 0 0 0 2px rgba(87, 51, 255, 0.3);
-	}
-}
-
-// ===========================================
-// Quick Start
-// ===========================================
-.dcs-quickstart {
-	margin: 0;
-	padding: 14px 20px 16px 40px;
-	list-style: decimal;
-
-	@media (max-width: 640px) {
-		padding: 12px 16px 14px 36px;
-	}
-
-	li {
-		font-size: 13px;
-		color: var(--dcs-text-muted);
-		padding: 4px 0;
-		line-height: 1.45;
-
-		&::marker {
-			color: var(--dcs-primary);
-			font-weight: 600;
-		}
 	}
 }
 
@@ -890,9 +753,9 @@
 		text-align: center;
 
 		&--pro {
-			background: rgba(87, 51, 255, 0.04);
+			background: var(--dcs-pro-bg);
 			font-weight: 600;
-			color: var(--dcs-primary);
+			color: var(--dcs-pro);
 		}
 	}
 
@@ -931,205 +794,44 @@
 }
 
 // ===========================================
-// Support Section – same card look
+// How To – compact resources row (Modules card footer)
 // ===========================================
-.dcs-support {
+.dcs-howto {
 	display: flex;
 	align-items: center;
-	gap: 16px;
-	background: #fff;
-	border-radius: 12px;
-	padding: 18px 20px;
-	border: 1px solid var(--dcs-border);
+	gap: 10px;
+	flex-wrap: wrap;
+	padding: 10px 0;
+	font-size: 13px;
+	color: var(--dcs-text-muted);
+}
 
-	@media (max-width: 640px) {
-		flex-direction: column;
-		text-align: center;
-		padding: 18px 16px;
-	}
+.dcs-howto__label {
+	font-weight: 600;
+	color: var(--dcs-heading);
+}
 
-	&__icon {
-		flex-shrink: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 44px;
-		height: 44px;
-		background: rgba(87, 51, 255, 0.08);
-		border-radius: 10px;
+.dcs-howto__links {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.dcs-howto__link {
+	color: var(--dcs-body);
+	text-decoration: none;
+	transition: color 0.15s;
+
+	&:hover {
 		color: var(--dcs-primary);
-
-		svg {
-			width: 22px;
-			height: 22px;
-		}
-	}
-
-	&__content {
-		flex: 1;
-		min-width: 0;
-	}
-
-	&__title {
-		font-size: 14px;
-		font-weight: 600;
-		margin: 0 0 2px;
-		color: var(--dcs-heading);
-	}
-
-	&__desc {
-		font-size: 13px;
-		margin: 0;
-		color: var(--dcs-text-muted);
-		line-height: 1.4;
-	}
-
-	&__btn {
-		flex-shrink: 0;
-		display: inline-flex;
-		align-items: center;
-		padding: 8px 16px;
-		font-size: 13px;
-		font-weight: 500;
-		color: var(--dcs-primary);
-		background: rgba(87, 51, 255, 0.06);
-		border: 1px solid rgba(87, 51, 255, 0.2);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: background 0.15s, border-color 0.15s;
-
-		&:hover {
-			background: rgba(87, 51, 255, 0.1);
-			border-color: var(--dcs-primary);
-			color: var(--dcs-primary);
-		}
-
-		@media (max-width: 640px) {
-			width: 100%;
-			justify-content: center;
-		}
+		text-decoration: underline;
 	}
 }
 
-// ===========================================
-// How To Section – Resources grid (docs, video, support)
-// ===========================================
-.dcs-howto {
-	background: #fff;
-	border-radius: 12px;
-	border: 1px solid var(--dcs-border);
-	padding: 24px;
-
-	&__header {
-		margin-bottom: 20px;
-	}
-
-	&__title {
-		font-size: 16px;
-		font-weight: 700;
-		margin: 0 0 4px;
-		color: var(--dcs-heading);
-	}
-
-	&__desc {
-		font-size: 13px;
-		margin: 0;
-		color: var(--dcs-text-muted);
-	}
-
-	&__grid {
-		display: grid;
-		gap: 16px;
-		grid-template-columns: repeat(3, 1fr);
-
-		@media (max-width: 900px) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@media (max-width: 640px) {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	&__card {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-		padding: 16px;
-		background: var(--dcs-bg);
-		border-radius: 10px;
-		border: 1px solid transparent;
-		text-decoration: none;
-		color: inherit;
-		transition: border-color 0.2s, background 0.2s, transform 0.15s;
-
-		&:hover {
-			background: #fff;
-			border-color: var(--dcs-border);
-			transform: translateY(-1px);
-
-			.dcs-howto__arrow {
-				transform: translateX(3px);
-				color: var(--dcs-primary);
-			}
-		}
-	}
-
-	&__icon {
-		flex-shrink: 0;
-		width: 44px;
-		height: 44px;
-		border-radius: 10px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		svg {
-			width: 22px;
-			height: 22px;
-		}
-
-		&--docs {
-			background: rgba(87, 51, 255, 0.1);
-			color: var(--dcs-primary);
-		}
-
-		&--video {
-			background: rgba(239, 68, 68, 0.1);
-			color: #ef4444;
-		}
-
-		&--support {
-			background: rgba(16, 185, 129, 0.1);
-			color: var(--dcs-success);
-		}
-	}
-
-	&__content {
-		flex: 1;
-		min-width: 0;
-	}
-
-	&__card-title {
-		font-size: 14px;
-		font-weight: 600;
-		margin: 0 0 2px;
-		color: var(--dcs-heading);
-	}
-
-	&__card-desc {
-		font-size: 12px;
-		margin: 0;
-		color: var(--dcs-text-muted);
-		line-height: 1.4;
-	}
-
-	&__arrow {
-		flex-shrink: 0;
-		font-size: 16px;
-		color: var(--dcs-text-muted);
-		transition: transform 0.2s, color 0.2s;
-	}
+.dcs-howto__sep {
+	user-select: none;
+	opacity: 0.5;
 }
 
 // ===========================================
@@ -1349,4 +1051,459 @@
 		opacity: 0.7;
 		cursor: not-allowed;
 	}
+}
+
+// ===========================================
+// Entries – full-width, component-based list + single view
+// ===========================================
+.dcs-entries-page {
+	width: 100%;
+}
+
+.dcs-entries-breadcrumb {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 16px;
+	font-size: 13px;
+	color: var(--dcs-text-muted);
+
+	&__link {
+		color: var(--dcs-primary);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	&__sep {
+		opacity: 0.6;
+	}
+	&__current {
+		color: var(--dcs-heading);
+		font-weight: 500;
+	}
+}
+
+.dcs-entries-card {
+	background: #fff;
+	border: 1px solid var(--dcs-border);
+	border-radius: 12px;
+	overflow: hidden;
+	margin-bottom: 20px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.dcs-entry-card {
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 14px 18px;
+		border-bottom: 1px solid var(--dcs-border);
+	}
+	&__title {
+		font-size: 15px;
+		font-weight: 600;
+		margin: 0;
+		color: var(--dcs-heading);
+	}
+	&__action {
+		font-size: 12px;
+		padding: 6px 12px;
+		border-radius: 6px;
+		border: 1px solid var(--dcs-border);
+		background: #fff;
+		color: var(--dcs-text-muted);
+		cursor: pointer;
+
+		&:hover:not(:disabled) {
+			background: var(--dcs-bg);
+			color: var(--dcs-body);
+		}
+	}
+	&__body {
+		padding: 16px 18px;
+	}
+}
+
+.dcs-entry-data-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--dcs-bg);
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	&__label {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--dcs-text-muted);
+		flex-shrink: 0;
+		min-width: 120px;
+	}
+	&__value {
+		font-size: 13px;
+		color: var(--dcs-body);
+		text-align: right;
+		word-break: break-word;
+
+		.dcs-entry-status-badge {
+			margin-right: 8px;
+		}
+		.dcs-entries-link {
+			margin-left: 8px;
+			font-size: 12px;
+			color: var(--dcs-primary);
+			background: none;
+			border: none;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+}
+
+.dcs-entries-empty,
+.dcs-entries-muted {
+	margin: 0;
+	font-size: 13px;
+	color: var(--dcs-text-muted);
+}
+
+.dcs-entries-muted {
+	font-size: 12px;
+}
+
+// Single view layout
+.dcs-entries-single__grid {
+	display: grid;
+	grid-template-columns: 1fr 320px;
+	gap: 24px;
+	align-items: start;
+
+	@media (max-width: 900px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.dcs-entries-single__main {
+	min-width: 0;
+}
+
+.dcs-entries-single__sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.dcs-entries-single__actions {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+// List view
+.dcs-entries-list-card {
+	padding: 0;
+}
+
+.dcs-entries-list-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	flex-wrap: wrap;
+	padding: 20px 24px;
+	border-bottom: 1px solid var(--dcs-border);
+}
+
+.dcs-entries-list-card__title {
+	font-size: 18px;
+	font-weight: 600;
+	margin: 0;
+	color: var(--dcs-heading);
+	flex-shrink: 0;
+}
+
+.dcs-entries-list-card__filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	flex: 1;
+	min-width: 0;
+	justify-content: flex-end;
+}
+
+.dcs-entries-filter__select {
+	padding: 8px 12px;
+	padding-right: 32px;
+	border-radius: 8px;
+	border: 1px solid var(--dcs-border);
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235c5a6e' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+	background-size: 12px;
+	font-size: 13px;
+	color: var(--dcs-body);
+	min-width: 110px;
+	max-width: 160px;
+	appearance: none;
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+		border-color: var(--dcs-primary);
+	}
+}
+
+.dcs-entries-filter__search-wrap {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	min-width: 180px;
+	max-width: 220px;
+}
+
+.dcs-entries-filter__search-icon {
+	position: absolute;
+	left: 10px;
+	pointer-events: none;
+	color: var(--dcs-text-muted);
+	flex-shrink: 0;
+}
+
+.dcs-entries-filter__search {
+	width: 100%;
+	padding: 8px 12px 8px 34px;
+	border-radius: 8px;
+	border: 1px solid var(--dcs-border);
+	background: #fff;
+	font-size: 13px;
+	color: var(--dcs-body);
+
+	&::placeholder {
+		color: var(--dcs-text-muted);
+	}
+
+	&:focus {
+		outline: none;
+		border-color: var(--dcs-primary);
+	}
+}
+
+.dcs-entries-filter__btn {
+	flex-shrink: 0;
+}
+
+.dcs-entries-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border-radius: 8px;
+	font-size: 13px;
+	font-weight: 500;
+	border: 1px solid var(--dcs-border);
+	background: #fff;
+	color: var(--dcs-body);
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.15s, border-color 0.15s;
+
+	&:hover {
+		background: var(--dcs-bg);
+		border-color: #d0cee0;
+	}
+
+	&--secondary {
+		background: var(--dcs-bg);
+	}
+
+	&--danger {
+		border-color: rgba(239, 68, 68, 0.3);
+		color: var(--dcs-danger);
+		background: rgba(239, 68, 68, 0.06);
+
+		&:hover {
+			background: rgba(239, 68, 68, 0.12);
+			border-color: var(--dcs-danger);
+		}
+	}
+}
+
+.dcs-entries-icon-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: none;
+	border-radius: 6px;
+	background: transparent;
+	color: var(--dcs-text-muted);
+	cursor: pointer;
+	transition: background 0.15s, color 0.15s;
+
+	&:hover {
+		background: var(--dcs-bg);
+		color: var(--dcs-body);
+	}
+
+	&--danger:hover {
+		background: rgba(239, 68, 68, 0.1);
+		color: var(--dcs-danger);
+	}
+
+	&--muted:hover {
+		color: var(--dcs-body);
+	}
+}
+
+.dcs-entry-status-badge {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 500;
+
+	&--new {
+		background: rgba(87, 51, 255, 0.12);
+		color: var(--dcs-primary);
+	}
+	&--read {
+		background: var(--dcs-bg);
+		color: var(--dcs-text-muted);
+	}
+	&--trash {
+		background: rgba(100, 116, 139, 0.12);
+		color: var(--dcs-text-muted);
+	}
+}
+
+.dcs-entries-table-wrap {
+	overflow-x: auto;
+	padding: 0 24px 16px;
+}
+
+.dcs-entries-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+
+	.dcs-entries-table__th,
+	.dcs-entries-table__td {
+		text-align: left;
+		padding: 12px 14px;
+		border-bottom: 1px solid var(--dcs-border);
+	}
+
+	.dcs-entries-table__th {
+		font-weight: 600;
+		color: var(--dcs-text-muted);
+		background: var(--dcs-bg);
+	}
+
+	.dcs-entries-table__td--muted {
+		color: var(--dcs-text-muted);
+	}
+
+	.dcs-entries-table__td--check {
+		width: 44px;
+		padding-right: 8px;
+	}
+
+	.dcs-entries-table__td--actions,
+	.dcs-entries-table__th--actions {
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	.dcs-entries-table__link {
+		color: var(--dcs-primary);
+		text-decoration: none;
+		font-weight: 500;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.dcs-entries-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding: 12px 24px 20px;
+	border-top: 1px solid var(--dcs-border);
+	background: var(--dcs-bg);
+	font-size: 13px;
+	color: var(--dcs-text-muted);
+}
+
+.dcs-entries-pagination__info {
+	margin-right: 8px;
+}
+
+.dcs-entries-pagination__per {
+	padding: 6px 10px;
+	border-radius: 6px;
+	border: 1px solid var(--dcs-border);
+	background: #fff;
+	font-size: 12px;
+	margin-right: 16px;
+}
+
+.dcs-entries-pagination__nav {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.dcs-entries-pagination__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 32px;
+	height: 32px;
+	padding: 0 8px;
+	border: 1px solid var(--dcs-border);
+	border-radius: 6px;
+	background: #fff;
+	color: var(--dcs-body);
+	cursor: pointer;
+	font-size: 14px;
+
+	&:hover:not(:disabled) {
+		background: var(--dcs-bg);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.dcs-entries-pagination__current {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 32px;
+	height: 32px;
+	padding: 0 8px;
+	background: var(--dcs-primary);
+	color: #fff;
+	border-radius: 6px;
+	font-weight: 600;
+	font-size: 13px;
 }

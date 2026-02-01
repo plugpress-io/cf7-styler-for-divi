@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-02-01 14:46+0000\n"
+"POT-Creation-Date: 2026-02-01 21:50+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:61, includes/admin/admin.php:62
+#: includes/admin/admin.php:61, includes/admin/admin.php:62, includes/notices/review.php:129
 msgid "CF7 Mate"
 msgstr ""
 
@@ -52,68 +52,33 @@ msgstr ""
 msgid "Features"
 msgstr ""
 
-#: includes/notices/review.php:97
-msgid "Love CF7 Mate for Divi?"
+#: includes/notices/review.php:122
+msgid "🎉 You're creating amazing forms!"
 msgstr ""
 
-#: includes/notices/review.php:99
-msgid "If you're enjoying our plugin, we'd be incredibly grateful if you could take a moment to leave us a 5-star review on WordPress.org. Your feedback helps us improve and helps other users discover our plugin."
+#. translators: %s: plugin name
+#: includes/notices/review.php:128
+msgid "It looks like you've been using %s for a while now. That's awesome! If you're enjoying it, would you mind sharing the love with a quick 5-star review? It takes just 30 seconds and helps us grow! 💜"
 msgstr ""
 
-#: includes/notices/review.php:104
-msgid "Leave a Review"
+#: includes/notices/review.php:138
+msgid "Sure! I'll leave a review"
 msgstr ""
 
-#: includes/pro/cf7-editor-styles-panel.php:40, includes/modules/divi-4/CF7Styler/CF7Styler.php:17
-msgid "CF7 Styler"
+#: includes/notices/review.php:141
+msgid "Maybe later"
 msgstr ""
 
-#: includes/pro/cf7-editor-styles-panel.php:54
-msgid "Default styles for Pro form tags (star rating, range slider, heading). Leave blank to use theme defaults."
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:58, includes/pro/features/star-rating/module.php:116
-msgid "Star rating"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:62
-msgid "Star color"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:72
-msgid "Range slider"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:76
-msgid "Track color"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:82
-msgid "Thumb color"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:92, includes/pro/features/heading/module.php:203
-msgid "Heading"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:96
-msgid "Font size"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:102
-msgid "Font family"
-msgstr ""
-
-#: includes/pro/cf7-editor-styles-panel.php:108
-msgid "Text color"
-msgstr ""
-
-#: includes/utils/grid.php:142, includes/pro/features/ai-form-generator/module.php:170
+#: includes/utils/grid.php:142, includes/pro/features/ai-form-generator/module.php:155
 msgid "Insert"
 msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:213
 msgid "Please select a Contact Form 7 form."
+msgstr ""
+
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
+msgid "CF7 Styler"
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:23
@@ -144,11 +109,11 @@ msgstr ""
 msgid "Field"
 msgstr ""
 
-#: includes/modules/divi-4/CF7Styler/CF7Styler.php:52, includes/modules/divi-4/CF7Styler/CF7Styler.php:622, includes/modules/divi-4/FluentForms/FluentForms.php:38, includes/modules/divi-4/FluentForms/FluentForms.php:287, includes/modules/divi-4/GravityForms/GravityForms.php:37, includes/modules/divi-4/GravityForms/GravityForms.php:291, includes/pro/features/calculator/module.php:351, includes/pro/features/calculator/module.php:449
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:52, includes/modules/divi-4/CF7Styler/CF7Styler.php:622, includes/modules/divi-4/FluentForms/FluentForms.php:38, includes/modules/divi-4/FluentForms/FluentForms.php:287, includes/modules/divi-4/GravityForms/GravityForms.php:37, includes/modules/divi-4/GravityForms/GravityForms.php:291, includes/pro/features/calculator/module.php:391, includes/pro/features/calculator/module.php:489, includes/pro/features/phone-number/module.php:232
 msgid "Label"
 msgstr ""
 
-#: includes/modules/divi-4/CF7Styler/CF7Styler.php:56, includes/modules/divi-4/CF7Styler/CF7Styler.php:632
+#: includes/modules/divi-4/CF7Styler/CF7Styler.php:56, includes/modules/divi-4/CF7Styler/CF7Styler.php:632, includes/pro/features/phone-number/module.php:240
 msgid "Placeholder"
 msgstr ""
 
@@ -596,36 +561,40 @@ msgstr ""
 msgid "Please select a Gravity Form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:114
+#: includes/pro/features/ai-form-generator/api-handler.php:66
+msgid "Image upload is supported only with OpenAI or Anthropic. Please switch provider or use a text prompt."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/api-handler.php:123
 msgid "Connected!"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:136
+#: includes/pro/features/ai-form-generator/api-handler.php:147
 msgid "OpenAI key not configured."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:184
+#: includes/pro/features/ai-form-generator/api-handler.php:213
 msgid "Anthropic key not configured."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:229
+#: includes/pro/features/ai-form-generator/api-handler.php:270
 msgid "Kimi key not configured."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:277
+#: includes/pro/features/ai-form-generator/api-handler.php:318
 msgid "Grok API key not configured."
 msgstr ""
 
 #. translators: %s: error message
-#: includes/pro/features/ai-form-generator/api-handler.php:326, includes/pro/features/ai-form-generator/api-handler.php:361
+#: includes/pro/features/ai-form-generator/api-handler.php:367, includes/pro/features/ai-form-generator/api-handler.php:402
 msgid "Request failed: %s"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:337, includes/pro/features/ai-form-generator/api-handler.php:372
+#: includes/pro/features/ai-form-generator/api-handler.php:378, includes/pro/features/ai-form-generator/api-handler.php:413
 msgid "API request failed."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:345, includes/pro/features/ai-form-generator/api-handler.php:380
+#: includes/pro/features/ai-form-generator/api-handler.php:386, includes/pro/features/ai-form-generator/api-handler.php:421
 msgid "Invalid API response."
 msgstr ""
 
@@ -633,211 +602,227 @@ msgstr ""
 msgid "AI Generate"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:166
+#: includes/pro/features/ai-form-generator/module.php:151
 msgid "AI Form Generator"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:167
+#: includes/pro/features/ai-form-generator/module.php:152
 msgid "Quick Presets"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:168
+#: includes/pro/features/ai-form-generator/module.php:153
 msgid "Custom Prompt"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:169
+#: includes/pro/features/ai-form-generator/module.php:154
 msgid "Generate"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:171
+#: includes/pro/features/ai-form-generator/module.php:156
 msgid "Copy"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:172
+#: includes/pro/features/ai-form-generator/module.php:157
 msgid "Generating..."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:173
+#: includes/pro/features/ai-form-generator/module.php:158
 msgid "Error generating form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:174
+#: includes/pro/features/ai-form-generator/module.php:159
 msgid "Copied!"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:175
+#: includes/pro/features/ai-form-generator/module.php:160
 msgid "Configure"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:176
+#: includes/pro/features/ai-form-generator/module.php:161
 msgid "Configure AI provider first."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:177
+#: includes/pro/features/ai-form-generator/module.php:162
 msgid "or describe your form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/module.php:212
-msgid "Please describe the form."
+#: includes/pro/features/ai-form-generator/module.php:163
+msgid "Upload form image"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:185
+#: includes/pro/features/ai-form-generator/module.php:164
+msgid "Remove image"
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:201
+msgid "Please describe the form or upload an image."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:209
+msgid "Invalid image data."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/module.php:215
+msgid "Convert this form design or screenshot into valid Contact Form 7 form code. Output only the form code."
+msgstr ""
+
+#: includes/pro/features/ai-form-generator/prompt.php:251
 msgid "Contact Form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:186
+#: includes/pro/features/ai-form-generator/prompt.php:252
 msgid "Simple contact form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:190
+#: includes/pro/features/ai-form-generator/prompt.php:256
 msgid "Newsletter"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:191
+#: includes/pro/features/ai-form-generator/prompt.php:257
 msgid "Email subscription."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:195
+#: includes/pro/features/ai-form-generator/prompt.php:261
 msgid "Feedback"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:196
+#: includes/pro/features/ai-form-generator/prompt.php:262
 msgid "Customer feedback."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:200
+#: includes/pro/features/ai-form-generator/prompt.php:266
 msgid "Support Ticket"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:201
+#: includes/pro/features/ai-form-generator/prompt.php:267
 msgid "Support request."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:207
+#: includes/pro/features/ai-form-generator/prompt.php:273
 msgid "Appointment"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:208
+#: includes/pro/features/ai-form-generator/prompt.php:274
 msgid "Booking form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:212
+#: includes/pro/features/ai-form-generator/prompt.php:278
 msgid "Reservation"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:213
+#: includes/pro/features/ai-form-generator/prompt.php:279
 msgid "Restaurant booking."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:217
+#: includes/pro/features/ai-form-generator/prompt.php:283
 msgid "Event RSVP"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:218
+#: includes/pro/features/ai-form-generator/prompt.php:284
 msgid "Event registration."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:224
+#: includes/pro/features/ai-form-generator/prompt.php:290
 msgid "Quote Request"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:225
+#: includes/pro/features/ai-form-generator/prompt.php:291
 msgid "Get a quote."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:229
+#: includes/pro/features/ai-form-generator/prompt.php:295
 msgid "Job Application"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:230
+#: includes/pro/features/ai-form-generator/prompt.php:296
 msgid "Employment form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:234
+#: includes/pro/features/ai-form-generator/prompt.php:300
 msgid "Lead Form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:235
+#: includes/pro/features/ai-form-generator/prompt.php:301
 msgid "Lead generation."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:241
+#: includes/pro/features/ai-form-generator/prompt.php:307
 msgid "Registration"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:242
+#: includes/pro/features/ai-form-generator/prompt.php:308
 msgid "Account signup."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:248
+#: includes/pro/features/ai-form-generator/prompt.php:314
 msgid "Survey"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:249
+#: includes/pro/features/ai-form-generator/prompt.php:315
 msgid "Customer survey."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:253
+#: includes/pro/features/ai-form-generator/prompt.php:319
 msgid "Review"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:254
+#: includes/pro/features/ai-form-generator/prompt.php:320
 msgid "Product review."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:260
+#: includes/pro/features/ai-form-generator/prompt.php:326
 msgid "Mortgage Calc"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:261
+#: includes/pro/features/ai-form-generator/prompt.php:327
 msgid "Mortgage calculator."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:265
+#: includes/pro/features/ai-form-generator/prompt.php:331
 msgid "Loan Calc"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:266
+#: includes/pro/features/ai-form-generator/prompt.php:332
 msgid "Loan calculator."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:270
+#: includes/pro/features/ai-form-generator/prompt.php:336
 msgid "Price Quote"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:271
+#: includes/pro/features/ai-form-generator/prompt.php:337
 msgid "Service pricing."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:275
+#: includes/pro/features/ai-form-generator/prompt.php:341
 msgid "Tip Calc"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:276
+#: includes/pro/features/ai-form-generator/prompt.php:342
 msgid "Tip calculator."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:282
+#: includes/pro/features/ai-form-generator/prompt.php:348
 msgid "Order Form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:283
+#: includes/pro/features/ai-form-generator/prompt.php:349
 msgid "Product order."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:287
+#: includes/pro/features/ai-form-generator/prompt.php:353
 msgid "Volunteer"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:288
+#: includes/pro/features/ai-form-generator/prompt.php:354
 msgid "Volunteer signup."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:292
+#: includes/pro/features/ai-form-generator/prompt.php:358
 msgid "Complaint"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:293
+#: includes/pro/features/ai-form-generator/prompt.php:359
 msgid "Complaint form."
 msgstr ""
 
@@ -849,96 +834,116 @@ msgstr ""
 msgid "Unauthorized access."
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:311
+#: includes/pro/features/calculator/module.php:124, includes/pro/features/calculator/module.php:127, includes/pro/features/calculator/module.php:541, includes/pro/features/calculator/module.php:548
+msgid "Calculate"
+msgstr ""
+
+#: includes/pro/features/calculator/module.php:345
 msgid "number (calc)"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:317
+#: includes/pro/features/calculator/module.php:351
 msgid "calculator"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:323
+#: includes/pro/features/calculator/module.php:357
 msgid "total display"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:340
+#: includes/pro/features/calculator/module.php:363
+msgid "button (no submit)"
+msgstr ""
+
+#: includes/pro/features/calculator/module.php:380
 msgid "Number Field (Calculator)"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:343, includes/pro/features/range-slider/module.php:194, includes/pro/features/star-rating/module.php:183
+#: includes/pro/features/calculator/module.php:383, includes/pro/features/phone-number/module.php:220, includes/pro/features/range-slider/module.php:194, includes/pro/features/star-rating/module.php:183
 msgid "Field type"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:344, includes/pro/features/range-slider/module.php:195, includes/pro/features/star-rating/module.php:184
+#: includes/pro/features/calculator/module.php:384, includes/pro/features/phone-number/module.php:221, includes/pro/features/range-slider/module.php:195, includes/pro/features/star-rating/module.php:184
 msgid "Required"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:347, includes/pro/features/range-slider/module.php:198, includes/pro/features/star-rating/module.php:187
+#: includes/pro/features/calculator/module.php:387, includes/pro/features/phone-number/module.php:224, includes/pro/features/range-slider/module.php:198, includes/pro/features/star-rating/module.php:187
 msgid "Name"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:355, includes/pro/features/range-slider/module.php:214, includes/pro/features/star-rating/module.php:195
+#: includes/pro/features/calculator/module.php:395, includes/pro/features/range-slider/module.php:214, includes/pro/features/star-rating/module.php:195
 msgid "Default Value"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:359, includes/pro/features/range-slider/module.php:202
+#: includes/pro/features/calculator/module.php:399, includes/pro/features/range-slider/module.php:202
 msgid "Min"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:363, includes/pro/features/range-slider/module.php:206
+#: includes/pro/features/calculator/module.php:403, includes/pro/features/range-slider/module.php:206
 msgid "Max"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:367, includes/pro/features/range-slider/module.php:210
+#: includes/pro/features/calculator/module.php:407, includes/pro/features/range-slider/module.php:210
 msgid "Step"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:371, includes/pro/features/calculator/module.php:462, includes/pro/features/range-slider/module.php:218
+#: includes/pro/features/calculator/module.php:411, includes/pro/features/calculator/module.php:502, includes/pro/features/range-slider/module.php:218
 msgid "Prefix"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:375, includes/pro/features/calculator/module.php:466, includes/pro/features/range-slider/module.php:222
+#: includes/pro/features/calculator/module.php:415, includes/pro/features/calculator/module.php:506, includes/pro/features/range-slider/module.php:222
 msgid "Suffix"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:402
+#: includes/pro/features/calculator/module.php:442
 msgid "Calculator Formula"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:405, includes/pro/features/calculator/module.php:442
+#: includes/pro/features/calculator/module.php:445, includes/pro/features/calculator/module.php:482
 msgid "Calculation ID"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:409
+#: includes/pro/features/calculator/module.php:449
 msgid "Formula"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:412
+#: includes/pro/features/calculator/module.php:452
 msgid "Use field names and operators: + - * / ( )"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:439
+#: includes/pro/features/calculator/module.php:479
 msgid "Total Display"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:445
+#: includes/pro/features/calculator/module.php:485
 msgid "Must match [cf7m-calc] ID"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:453
+#: includes/pro/features/calculator/module.php:493
 msgid "Format"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:456
+#: includes/pro/features/calculator/module.php:496
 msgid "Number"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:457
+#: includes/pro/features/calculator/module.php:497
 msgid "Currency"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:470
+#: includes/pro/features/calculator/module.php:510
 msgid "Decimals"
+msgstr ""
+
+#: includes/pro/features/calculator/module.php:537
+msgid "Button (does not submit form)"
+msgstr ""
+
+#: includes/pro/features/calculator/module.php:540
+msgid "Button text"
+msgstr ""
+
+#: includes/pro/features/calculator/module.php:544
+msgid "Use for calculator-only forms so the button recalculates without sending the form. Styled like the submit button."
 msgstr ""
 
 #: includes/pro/features/conditional/module.php:214
@@ -1009,30 +1014,30 @@ msgstr ""
 msgid "For \"any\": comma-separated values. For \"empty/checked\": true or false."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:146, includes/pro/features/entries/api.php:155, includes/pro/features/entries/api.php:166
+#: includes/pro/features/entries/api.php:152, includes/pro/features/entries/api.php:161, includes/pro/features/entries/api.php:172
 msgid "Entry not found."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:158
+#: includes/pro/features/entries/api.php:164
 msgid "Entry updated."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:169
+#: includes/pro/features/entries/api.php:175
 msgid "Delete failed."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:171
+#: includes/pro/features/entries/api.php:177
 msgid "Entry deleted."
 msgstr ""
 
 #. translators: %d: number
-#: includes/pro/features/entries/api.php:189, includes/pro/features/entries/api.php:217
+#: includes/pro/features/entries/api.php:195, includes/pro/features/entries/api.php:223
 msgid "%d entry deleted."
 msgid_plural "%d entries deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/pro/features/entries/api.php:244
+#: includes/pro/features/entries/api.php:255
 msgid "No entries to export."
 msgstr ""
 
@@ -1061,7 +1066,7 @@ msgid "Form title at submission"
 msgstr ""
 
 #: includes/pro/features/entries/cpt.php:65
-msgid "Entry status (new, read, spam)"
+msgid "Entry status (new, read, trash)"
 msgstr ""
 
 #: includes/pro/features/entries/cpt.php:71
@@ -1091,6 +1096,10 @@ msgstr ""
 
 #: includes/pro/features/heading/module.php:193
 msgid "heading"
+msgstr ""
+
+#: includes/pro/features/heading/module.php:203
+msgid "Heading"
 msgstr ""
 
 #: includes/pro/features/heading/module.php:210
@@ -1253,47 +1262,71 @@ msgstr ""
 msgid "Step Title"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:124
-msgid "Form Preset"
+#: includes/pro/features/phone-number/module.php:146
+msgid "Select country"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:133
-msgid "Sky"
+#: includes/pro/features/phone-number/module.php:155
+msgid "Phone number"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:134
+#: includes/pro/features/phone-number/module.php:200
+msgid "phone number"
+msgstr ""
+
+#: includes/pro/features/phone-number/module.php:217, includes/pro/features/phone-number/module.php:233
+msgid "Phone Number"
+msgstr ""
+
+#: includes/pro/features/phone-number/module.php:228
+msgid "Default country"
+msgstr ""
+
+#: includes/pro/features/phone-number/module.php:236
+msgid "Description"
+msgstr ""
+
+#: includes/pro/features/phone-number/module.php:237
+msgid "Enter your phone number."
+msgstr ""
+
+#: includes/pro/features/presets/module.php:120
+msgid "style presets"
+msgstr ""
+
+#: includes/pro/features/presets/module.php:129
 msgid "Classic"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:135
+#: includes/pro/features/presets/module.php:130
 msgid "Box"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:136
+#: includes/pro/features/presets/module.php:131
 msgid "Minimal"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:137
+#: includes/pro/features/presets/module.php:132
 msgid "Dark"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:138
+#: includes/pro/features/presets/module.php:133
 msgid "Modern"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:139
+#: includes/pro/features/presets/module.php:134
 msgid "Rounded"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:144
+#: includes/pro/features/presets/module.php:139
 msgid "Form Design Preset"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:147, includes/pro/features/separator/module.php:136
+#: includes/pro/features/presets/module.php:143, includes/pro/features/separator/module.php:136
 msgid "Style"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:157
+#: includes/pro/features/presets/module.php:154
 msgid "Wrap your form fields in this shortcode to apply a preset style. Put all fields inside the opening and closing tags."
 msgstr ""
 
@@ -1315,6 +1348,10 @@ msgstr ""
 
 #: includes/pro/features/separator/module.php:152
 msgid "Margin (px)"
+msgstr ""
+
+#: includes/pro/features/star-rating/module.php:116
+msgid "Star rating"
 msgstr ""
 
 #: includes/pro/features/star-rating/module.php:130

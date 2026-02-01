@@ -696,20 +696,32 @@ input:where([type='file']) {
 input:where([type='file']):focus {
   outline: 1px solid ButtonText;
   outline: 1px auto -webkit-focus-ring-color;
-}.collapse {
-  visibility: collapse;
-}.fixed {
-  position: fixed;
+}.pointer-events-none {
+  pointer-events: none;
+}.absolute {
+  position: absolute;
+}.relative {
+  position: relative;
+}.left-3 {
+  left: 0.75rem;
+}.top-1\/2 {
+  top: 50%;
 }.mb-2 {
   margin-bottom: 0.5rem;
 }.mb-4 {
   margin-bottom: 1rem;
 }.mb-6 {
   margin-bottom: 1.5rem;
+}.ml-2 {
+  margin-left: 0.5rem;
 }.mt-1 {
   margin-top: 0.25rem;
+}.mt-3 {
+  margin-top: 0.75rem;
 }.block {
   display: block;
+}.inline-block {
+  display: inline-block;
 }.flex {
   display: flex;
 }.inline-flex {
@@ -718,32 +730,88 @@ input:where([type='file']):focus {
   display: table;
 }.grid {
   display: grid;
+}.h-10 {
+  height: 2.5rem;
+}.h-11 {
+  height: 2.75rem;
+}.h-12 {
+  height: 3rem;
 }.h-3 {
   height: 0.75rem;
 }.h-3\.5 {
   height: 0.875rem;
+}.h-4 {
+  height: 1rem;
+}.h-5 {
+  height: 1.25rem;
+}.h-8 {
+  height: 2rem;
+}.h-9 {
+  height: 2.25rem;
+}.w-12 {
+  width: 3rem;
 }.w-3 {
   width: 0.75rem;
 }.w-3\.5 {
   width: 0.875rem;
+}.w-4 {
+  width: 1rem;
+}.w-5 {
+  width: 1.25rem;
+}.w-8 {
+  width: 2rem;
+}.w-9 {
+  width: 2.25rem;
 }.w-full {
   width: 100%;
 }.min-w-0 {
   min-width: 0px;
+}.min-w-\[110px\] {
+  min-width: 110px;
+}.min-w-\[120px\] {
+  min-width: 120px;
+}.min-w-\[180px\] {
+  min-width: 180px;
+}.min-w-\[2rem\] {
+  min-width: 2rem;
 }.max-w-2xl {
   max-width: 42rem;
+}.max-w-\[180px\] {
+  max-width: 180px;
+}.max-w-\[200px\] {
+  max-width: 200px;
+}.max-w-\[220px\] {
+  max-width: 220px;
 }.flex-1 {
   flex: 1 1 0%;
 }.shrink-0 {
   flex-shrink: 0;
+}.caption-bottom {
+  caption-side: bottom;
+}.-translate-y-1\/2 {
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }.transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}.animate-spin {
+  animation: spin 1s linear infinite;
+}.flex-col {
+  flex-direction: column;
 }.flex-wrap {
   flex-wrap: wrap;
 }.items-center {
   align-items: center;
 }.justify-center {
   justify-content: center;
+}.justify-between {
+  justify-content: space-between;
+}.gap-0\.5 {
+  gap: 0.125rem;
 }.gap-1 {
   gap: 0.25rem;
 }.gap-1\.5 {
@@ -752,49 +820,112 @@ input:where([type='file']):focus {
   gap: 0.5rem;
 }.gap-3 {
   gap: 0.75rem;
+}.gap-4 {
+  gap: 1rem;
+}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
 }.space-y-5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}.overflow-auto {
+  overflow: auto;
+}.overflow-hidden {
+  overflow: hidden;
+}.overflow-x-auto {
+  overflow-x: auto;
+}.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}.whitespace-nowrap {
+  white-space: nowrap;
+}.rounded {
+  border-radius: 0.25rem;
 }.rounded-full {
   border-radius: 9999px;
 }.rounded-lg {
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
 }.rounded-md {
-  border-radius: 0.375rem;
+  border-radius: calc(var(--radius) - 2px);
 }.border {
   border-width: 1px;
+}.border-2 {
+  border-width: 2px;
 }.border-b {
   border-bottom-width: 1px;
 }.border-t {
   border-top-width: 1px;
+}.border-border {
+  border-color: var(--border);
 }.border-emerald-200 {
   --tw-border-opacity: 1;
   border-color: rgb(167 243 208 / var(--tw-border-opacity, 1));
+}.border-gray-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-border-opacity, 1));
 }.border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
 }.border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}.border-input {
+  border-color: var(--input);
 }.border-red-200 {
   --tw-border-opacity: 1;
   border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
+}.border-transparent {
+  border-color: transparent;
+}.border-t-violet-500 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(139 92 246 / var(--tw-border-opacity, 1));
+}.bg-background {
+  background-color: var(--background);
+}.bg-card {
+  background-color: var(--card);
+}.bg-destructive {
+  background-color: var(--destructive);
 }.bg-emerald-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));
+}.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }.bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}.bg-gray-50\/50 {
+  background-color: rgb(249 250 251 / 0.5);
+}.bg-gray-50\/80 {
+  background-color: rgb(249 250 251 / 0.8);
 }.bg-indigo-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity, 1));
+}.bg-muted {
+  background-color: var(--muted);
+}.bg-primary {
+  background-color: var(--primary);
 }.bg-red-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}.bg-secondary {
+  background-color: var(--secondary);
+}.bg-transparent {
+  background-color: transparent;
+}.bg-violet-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 233 254 / var(--tw-bg-opacity, 1));
+}.bg-violet-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(124 58 237 / var(--tw-bg-opacity, 1));
 }.bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}.p-4 {
+  padding: 1rem;
 }.p-5 {
   padding: 1.25rem;
 }.p-6 {
@@ -802,6 +933,9 @@ input:where([type='file']):focus {
 }.px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
 }.px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -811,12 +945,24 @@ input:where([type='file']):focus {
 }.px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }.py-0\.5 {
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
+}.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }.py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
+}.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }.py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -826,13 +972,30 @@ input:where([type='file']):focus {
 }.py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}.pl-9 {
+  padding-left: 2.25rem;
+}.pr-3 {
+  padding-right: 0.75rem;
+}.pt-0 {
+  padding-top: 0px;
 }.pt-4 {
   padding-top: 1rem;
+}.text-left {
+  text-align: left;
+}.text-center {
+  text-align: center;
+}.text-right {
+  text-align: right;
+}.align-middle {
+  vertical-align: middle;
 }.font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }.text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }.text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -846,12 +1009,28 @@ input:where([type='file']):focus {
   font-weight: 500;
 }.font-semibold {
   font-weight: 600;
+}.leading-none {
+  line-height: 1;
+}.tracking-tight {
+  letter-spacing: -0.025em;
+}.text-card-foreground {
+  color: var(--card-foreground);
+}.text-destructive-foreground {
+  color: var(--destructive-foreground);
 }.text-emerald-700 {
   --tw-text-opacity: 1;
   color: rgb(4 120 87 / var(--tw-text-opacity, 1));
 }.text-emerald-800 {
   --tw-text-opacity: 1;
   color: rgb(6 95 70 / var(--tw-text-opacity, 1));
+}.text-foreground {
+  color: var(--foreground);
+}.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+}.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }.text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
@@ -864,37 +1043,107 @@ input:where([type='file']):focus {
 }.text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}.text-muted-foreground {
+  color: var(--muted-foreground);
+}.text-primary {
+  color: var(--primary);
+}.text-primary-foreground {
+  color: var(--primary-foreground);
 }.text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity, 1));
 }.text-red-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+}.text-secondary-foreground {
+  color: var(--secondary-foreground);
+}.text-violet-600 {
+  --tw-text-opacity: 1;
+  color: rgb(124 58 237 / var(--tw-text-opacity, 1));
+}.text-violet-700 {
+  --tw-text-opacity: 1;
+  color: rgb(109 40 217 / var(--tw-text-opacity, 1));
 }.text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}.underline-offset-4 {
+  text-underline-offset: 4px;
+}.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }.shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}.outline {
+  outline-style: solid;
 }.filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }.transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}:root{--dcs-primary: #5733ff;--dcs-primary-dark: #4520e6;--dcs-secondary: #24223a;--dcs-heading: #000000;--dcs-body: #24223a;--dcs-text: var(--dcs-body);--dcs-text-muted: #5c5a6e;--dcs-border: #e8e7ec;--dcs-bg: #f6f5f9;--dcs-success: #10b981;--dcs-danger: #ef4444;--dcs-pro: #9a8b2e;--dcs-pro-bg: #faf8f2;--dcs-pro-border: rgba(154, 139, 46, 0.2)}#cf7-styler-for-divi-root{min-height:100vh;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--dcs-bg);margin-left:-20px;padding:0;box-sizing:border-box}#cf7-styler-for-divi-root *,#cf7-styler-for-divi-root *::before,#cf7-styler-for-divi-root *::after{box-sizing:border-box}.dcs-admin-wrapper{min-height:100vh;display:flex;flex-direction:column;background:var(--dcs-bg)}.dcs-admin{flex:1;display:flex;justify-content:center;padding:32px 24px}@media(max-width: 640px){.dcs-admin{padding:20px 16px}}.dcs-admin__content{width:100%;max-width:940px;display:flex;flex-direction:column;gap:28px}.dcs-v3-banner{background:#fff;border:1px solid var(--dcs-border);border-radius:10px}.dcs-v3-banner__inner{display:flex;align-items:flex-start;gap:14px;padding:14px 18px}.dcs-v3-banner__icon{flex-shrink:0;width:40px;height:40px;background:rgba(87,51,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--dcs-primary)}.dcs-v3-banner__icon svg{width:20px;height:20px}.dcs-v3-banner__content{flex:1;min-width:0}.dcs-v3-banner__title{margin:0 0 4px;font-size:15px;font-weight:600;color:var(--dcs-heading);line-height:1.3}.dcs-v3-banner__ver{font-weight:500;color:var(--dcs-text-muted);font-size:13px}.dcs-v3-banner__text{margin:0;font-size:13px;color:var(--dcs-body);line-height:1.45;opacity:.9}.dcs-v3-banner__dismiss{flex-shrink:0;padding:6px 14px;font-size:13px;font-weight:500;color:var(--dcs-primary);background:rgba(0,0,0,0);border:1px solid var(--dcs-border);border-radius:6px;cursor:pointer;transition:background .2s,border-color .2s;font-family:inherit}.dcs-v3-banner__dismiss:hover:not(:disabled){background:rgba(87,51,255,.06);border-color:var(--dcs-primary)}.dcs-v3-banner__dismiss:disabled{opacity:.7;cursor:default}@media(max-width: 640px){.dcs-v3-banner__inner{flex-wrap:wrap;padding:12px 14px}.dcs-v3-banner__dismiss{width:100%;margin-top:4px}}.dcs-admin__header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 32px;background:#fff;border-bottom:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-admin__header{padding:14px 16px}}.dcs-admin__header-left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.dcs-admin__logo{display:flex;align-items:center;gap:12px}.dcs-admin__logo svg{width:28px;height:28px;color:var(--dcs-primary)}.dcs-admin__title{font-size:15px;font-weight:600;margin:0;color:var(--dcs-heading)}.dcs-admin__header-right{display:flex;align-items:center;gap:8px}.dcs-admin__version-right{font-size:12px;font-weight:500;color:var(--dcs-text-muted)}.dcs-admin__nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}.dcs-nav-icon{width:20px;height:20px;flex-shrink:0}.dcs-nav-icon--docs{color:var(--dcs-text-muted)}.dcs-nav-icon--crown{color:var(--dcs-pro);transition:color .2s,transform .2s}.dcs-admin__nav-link{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dcs-text-muted);text-decoration:none;transition:color .15s;padding:6px 10px;border-radius:8px}.dcs-admin__nav-link:hover{color:var(--dcs-primary)}.dcs-admin__nav-link:hover .dcs-nav-icon--docs{color:var(--dcs-primary)}.dcs-admin__nav-link--active{color:var(--dcs-primary);font-weight:600}.dcs-admin__nav-link--pro{padding:8px 10px;color:var(--dcs-pro)}.dcs-admin__nav-link--pro:hover{color:var(--dcs-primary);background:rgba(87,51,255,.06)}.dcs-admin__nav-link--pro:hover .dcs-nav-icon--crown{color:var(--dcs-primary);transform:scale(1.05)}.dcs-card{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-card__header{padding:18px 20px 14px;border-bottom:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-card__header{padding:14px 16px 12px}}.dcs-card__title{font-size:16px;font-weight:600;margin:0 0 4px;color:var(--dcs-heading)}.dcs-card__desc{font-size:13px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-card__subheader{padding:16px 20px 12px;margin-top:8px;border-top:1px solid var(--dcs-border);background:var(--dcs-bg)}.dcs-card>.dcs-card__subheader:first-child{margin-top:0;border-top:none}.dcs-card__subtitle{font-size:13px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading);text-transform:uppercase;letter-spacing:.5px}.dcs-card__subdesc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-modules-page{max-width:940px}.dcs-modules-card__header{padding:14px 16px 10px;border-bottom:1px solid var(--dcs-border)}.dcs-modules-card__title{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-modules-card__desc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-features-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:16px;padding:20px}@media(max-width: 680px){.dcs-features-grid{grid-template-columns:1fr;gap:12px;padding:16px}}.dcs-feature{display:flex;align-items:flex-start;gap:12px;padding:16px;background:#fff;border:1px solid var(--dcs-border);border-radius:10px;transition:all .15s}.dcs-feature:hover{border-color:#d0cee0;box-shadow:0 2px 8px rgba(0,0,0,.04)}.dcs-feature--pro{background:linear-gradient(135deg, #fafafa 0%, #f5f3ff 100%);border-color:rgba(87,51,255,.15)}.dcs-feature--locked{opacity:.85}.dcs-feature--locked .dcs-feature__name{color:var(--dcs-heading)}.dcs-feature__icon{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(87,51,255,.08);border-radius:8px;color:var(--dcs-primary)}.dcs-feature__icon svg{width:18px;height:18px}.dcs-feature--pro .dcs-feature__icon{background:rgba(87,51,255,.12)}.dcs-feature__name-wrap{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;cursor:default}.dcs-feature__name{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin:0;color:var(--dcs-body);line-height:1.3}.dcs-feature__desc{font-size:12px;line-height:1.4;color:var(--dcs-text-muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.dcs-feature__badge{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);border-radius:50%;color:#fff;transition:transform .15s}.dcs-feature__badge .dcs-icon-crown{width:9px;height:9px;color:#fff}.dcs-feature__badge:hover{transform:scale(1.1)}.dcs-feature__toggle{flex-shrink:0;margin-top:2px}.dcs-feature__upgrade{padding:5px 12px;font-size:11px;font-weight:600;color:#fff;background:var(--dcs-pro);border:none;border-radius:5px;cursor:pointer;transition:all .15s;margin-top:2px}.dcs-feature__upgrade:hover{opacity:.9;color:#fff}.dcs-dashboard-stats{display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;margin-bottom:24px}@media(max-width: 900px){.dcs-dashboard-stats{grid-template-columns:repeat(2, 1fr)}}@media(max-width: 480px){.dcs-dashboard-stats{grid-template-columns:1fr}}.dcs-stat-card{display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid var(--dcs-border);border-radius:12px}.dcs-stat-card__icon{flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--dcs-primary)}.dcs-stat-card__icon svg{width:22px;height:22px}.dcs-stat-card__icon--entries{background:rgba(87,51,255,.1)}.dcs-stat-card__icon--today{background:rgba(16,185,129,.12);color:var(--dcs-success)}.dcs-stat-card__icon--forms{background:rgba(87,51,255,.1)}.dcs-stat-card__icon--features{background:rgba(87,51,255,.08)}.dcs-stat-card__content{display:flex;flex-direction:column;gap:2px;min-width:0}.dcs-stat-card__label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--dcs-text-muted)}.dcs-stat-card__value{font-size:18px;font-weight:600;color:var(--dcs-heading)}.dcs-quick-actions .dcs-card__header{border-bottom:1px solid var(--dcs-border)}.dcs-quick-actions__grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;padding:16px 20px}@media(max-width: 640px){.dcs-quick-actions__grid{grid-template-columns:1fr;padding:14px 16px}}.dcs-quick-action{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border:1px solid var(--dcs-border);border-radius:10px;text-decoration:none;color:var(--dcs-body);transition:border-color .15s,background .15s}.dcs-quick-action:hover{background:var(--dcs-bg);border-color:var(--dcs-primary);color:var(--dcs-body)}.dcs-quick-action__icon{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(87,51,255,.08);border-radius:8px;color:var(--dcs-primary)}.dcs-quick-action__icon svg{width:20px;height:20px}.dcs-quick-action__text{display:flex;flex-direction:column;gap:2px;min-width:0}.dcs-quick-action__title{font-size:14px;font-weight:600;color:var(--dcs-heading)}.dcs-quick-action__desc{font-size:12px;color:var(--dcs-text-muted)}.dcs-plugins{margin-bottom:24px}.dcs-plugins__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.dcs-plugins__title{font-size:16px;font-weight:600;margin:0;color:var(--dcs-heading)}.dcs-plugins__grid{display:grid;gap:16px;grid-template-columns:repeat(3, 1fr)}@media(max-width: 900px){.dcs-plugins__grid{grid-template-columns:repeat(2, 1fr)}}@media(max-width: 640px){.dcs-plugins__grid{grid-template-columns:1fr}}.dcs-plugin-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;border-radius:12px;border:1px solid var(--dcs-border);padding:20px;transition:border-color .2s}.dcs-plugin-card:hover{border-color:#ccc}.dcs-plugin-card:hover .dcs-plugin-card__btn{background:var(--dcs-bg)}.dcs-plugin-card__name{font-size:14px;font-weight:600;margin:0 0 8px;color:var(--dcs-heading)}.dcs-plugin-card__desc{font-size:13px;margin:0 0 16px;line-height:1.5;color:var(--dcs-text-muted);flex:1}.dcs-plugin-card__btn{display:inline-block;font-size:13px;font-weight:500;padding:8px 16px;color:var(--dcs-text);background:#fff;border:1px solid var(--dcs-border);border-radius:6px;transition:background-color .2s;align-self:flex-start}.dcs-toggle{position:relative;display:inline-flex;align-items:center;padding:0;background:none;border:none;cursor:pointer;outline:none}.dcs-toggle__track{position:relative;width:36px;height:20px;background:#d1d5db;border-radius:10px;transition:background .2s}.dcs-toggle__thumb{position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:transform .2s}.dcs-toggle--active .dcs-toggle__track{background:var(--dcs-primary)}.dcs-toggle--active .dcs-toggle__thumb{transform:translateX(16px)}.dcs-toggle--disabled{opacity:.5;cursor:not-allowed}.dcs-toggle:focus-visible .dcs-toggle__track{box-shadow:0 0 0 2px rgba(87,51,255,.3)}.dcs-quickstart{margin:0;padding:14px 20px 16px 40px;list-style:decimal}@media(max-width: 640px){.dcs-quickstart{padding:12px 16px 14px 36px}}.dcs-quickstart li{font-size:13px;color:var(--dcs-text-muted);padding:4px 0;line-height:1.45}.dcs-quickstart li::marker{color:var(--dcs-primary);font-weight:600}.dcs-compare-card{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-compare-card__header{padding:14px 18px 10px;border-bottom:1px solid var(--dcs-border)}.dcs-compare-card__title{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-compare-card__desc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-compare-table-wrap{overflow-x:auto}.dcs-compare-table{width:100%;border-collapse:collapse;font-size:13px}.dcs-compare-table th,.dcs-compare-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--dcs-border)}.dcs-compare-table th{font-weight:600;color:var(--dcs-heading);background:var(--dcs-bg)}.dcs-compare-table td{color:var(--dcs-body)}.dcs-compare-table tr:last-child td{border-bottom:none}.dcs-compare-table__feature{min-width:180px}.dcs-compare-table__plan{width:72px;text-align:center}.dcs-compare-table__plan--pro{background:rgba(87,51,255,.04);font-weight:600;color:var(--dcs-primary)}.dcs-compare-table__yes{display:inline-block;color:var(--dcs-success);font-weight:600}.dcs-compare-table__no{color:var(--dcs-text-muted)}.dcs-compare-card__footer{padding:14px 18px;border-top:1px solid var(--dcs-border);background:var(--dcs-bg)}.dcs-compare-card__cta{display:inline-block;padding:8px 16px;font-size:13px;font-weight:600;color:#fff;background:var(--dcs-primary);border-radius:8px;text-decoration:none;transition:opacity .15s}.dcs-compare-card__cta:hover{opacity:.92;color:#fff}.dcs-support{display:flex;align-items:center;gap:16px;background:#fff;border-radius:12px;padding:18px 20px;border:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-support{flex-direction:column;text-align:center;padding:18px 16px}}.dcs-support__icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:rgba(87,51,255,.08);border-radius:10px;color:var(--dcs-primary)}.dcs-support__icon svg{width:22px;height:22px}.dcs-support__content{flex:1;min-width:0}.dcs-support__title{font-size:14px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-support__desc{font-size:13px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-support__btn{flex-shrink:0;display:inline-flex;align-items:center;padding:8px 16px;font-size:13px;font-weight:500;color:var(--dcs-primary);background:rgba(87,51,255,.06);border:1px solid rgba(87,51,255,.2);border-radius:8px;text-decoration:none;transition:background .15s,border-color .15s}.dcs-support__btn:hover{background:rgba(87,51,255,.1);border-color:var(--dcs-primary);color:var(--dcs-primary)}@media(max-width: 640px){.dcs-support__btn{width:100%;justify-content:center}}.dcs-howto{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);padding:24px}.dcs-howto__header{margin-bottom:20px}.dcs-howto__title{font-size:16px;font-weight:700;margin:0 0 4px;color:var(--dcs-heading)}.dcs-howto__desc{font-size:13px;margin:0;color:var(--dcs-text-muted)}.dcs-howto__grid{display:grid;gap:16px;grid-template-columns:repeat(3, 1fr)}@media(max-width: 900px){.dcs-howto__grid{grid-template-columns:repeat(2, 1fr)}}@media(max-width: 640px){.dcs-howto__grid{grid-template-columns:1fr}}.dcs-howto__card{display:flex;align-items:center;gap:14px;padding:16px;background:var(--dcs-bg);border-radius:10px;border:1px solid rgba(0,0,0,0);text-decoration:none;color:inherit;transition:border-color .2s,background .2s,transform .15s}.dcs-howto__card:hover{background:#fff;border-color:var(--dcs-border);transform:translateY(-1px)}.dcs-howto__card:hover .dcs-howto__arrow{transform:translateX(3px);color:var(--dcs-primary)}.dcs-howto__icon{flex-shrink:0;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center}.dcs-howto__icon svg{width:22px;height:22px}.dcs-howto__icon--docs{background:rgba(87,51,255,.1);color:var(--dcs-primary)}.dcs-howto__icon--video{background:rgba(239,68,68,.1);color:#ef4444}.dcs-howto__icon--support{background:rgba(16,185,129,.1);color:var(--dcs-success)}.dcs-howto__content{flex:1;min-width:0}.dcs-howto__card-title{font-size:14px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-howto__card-desc{font-size:12px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-howto__arrow{flex-shrink:0;font-size:16px;color:var(--dcs-text-muted);transition:transform .2s,color .2s}.dcs-loading{display:flex;align-items:center;justify-content:center;min-height:200px;font-size:14px;color:var(--dcs-text-muted)}.dcs-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:12px 20px;font-size:14px;font-weight:500;color:#fff;background:#1a1a1a;border-radius:8px;z-index:9999;animation:toastIn .2s ease-out}.dcs-toast--success{background:var(--dcs-success)}.dcs-toast--error{background:var(--dcs-danger)}@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}.dcs-rebrand-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:24px;z-index:100000}.dcs-rebrand-modal{position:relative;width:100%;max-width:420px;background:#fff;border-radius:16px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-rebrand-modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;border:none;border-radius:8px;background:var(--dcs-bg);color:var(--dcs-body);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s,color .15s}.dcs-rebrand-modal__close:hover{background:var(--dcs-border);color:var(--dcs-heading)}.dcs-rebrand-modal__header{padding:32px 24px 20px;text-align:center;background:linear-gradient(180deg, rgba(87, 51, 255, 0.06) 0%, transparent 100%)}.dcs-rebrand-modal__logo{color:var(--dcs-primary)}.dcs-rebrand-modal__body{padding:0 24px 28px}.dcs-rebrand-modal__eyebrow{display:block;font-size:12px;font-weight:500;color:var(--dcs-text-muted);margin-bottom:4px;text-align:center}.dcs-rebrand-modal__title{font-size:24px;font-weight:700;margin:0 0 6px;text-align:center;color:var(--dcs-primary);letter-spacing:-0.02em}.dcs-rebrand-modal__tagline{font-size:13px;color:var(--dcs-body);margin:0 0 20px;text-align:center;opacity:.85;line-height:1.45}.dcs-rebrand-modal__divider{display:flex;align-items:center;gap:12px;margin-bottom:14px}.dcs-rebrand-modal__divider span{font-size:11px;font-weight:600;color:var(--dcs-text-muted);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}.dcs-rebrand-modal__divider::before,.dcs-rebrand-modal__divider::after{content:"";flex:1;height:1px;background:var(--dcs-border)}.dcs-rebrand-modal__list{list-style:none;margin:0 0 20px;padding:0;font-size:13px;color:var(--dcs-body);line-height:1.5}.dcs-rebrand-modal__list li{position:relative;padding-left:20px;margin-bottom:8px}.dcs-rebrand-modal__list li:last-child{margin-bottom:0}.dcs-rebrand-modal__list li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--dcs-primary)}.dcs-rebrand-modal__cta{display:block;width:100%;padding:12px 20px;background:var(--dcs-primary);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;font-family:inherit}.dcs-rebrand-modal__cta:hover:not(:disabled){opacity:.92}.dcs-rebrand-modal__cta:disabled{opacity:.7;cursor:not-allowed}.hover\:bg-gray-50:hover {
+}.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}:root{--dcs-primary: #5733ff;--dcs-primary-dark: #4520e6;--dcs-secondary: #24223a;--dcs-heading: #000000;--dcs-body: #24223a;--dcs-text: var(--dcs-body);--dcs-text-muted: #5c5a6e;--dcs-border: #e8e7ec;--dcs-bg: #f6f5f9;--dcs-success: #10b981;--dcs-danger: #ef4444;--dcs-pro: #9a8b2e;--dcs-pro-bg: #faf8f2;--dcs-pro-border: rgba(154, 139, 46, 0.2);--radius: 0.5rem;--background: #ffffff;--foreground: #0a0a0a;--card: #ffffff;--card-foreground: #0a0a0a;--popover: #ffffff;--popover-foreground: #0a0a0a;--primary: var(--dcs-primary);--primary-foreground: #ffffff;--secondary: #f5f5f5;--secondary-foreground: #171717;--muted: #f5f5f5;--muted-foreground: #737373;--accent: #f5f5f5;--accent-foreground: #171717;--destructive: #ef4444;--destructive-foreground: #ffffff;--border: #e5e5e5;--input: #e5e5e5;--ring: var(--dcs-primary)}#cf7-styler-for-divi-root{min-height:100vh;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--dcs-bg);margin-left:-20px;padding:0;box-sizing:border-box}#cf7-styler-for-divi-root *,#cf7-styler-for-divi-root *::before,#cf7-styler-for-divi-root *::after{box-sizing:border-box}.dcs-admin-wrapper{min-height:100vh;display:flex;flex-direction:column;background:var(--dcs-bg)}.dcs-admin{flex:1;display:flex;justify-content:center;padding:32px 24px}@media(max-width: 640px){.dcs-admin{padding:20px 16px}}.dcs-admin__content{width:100%;max-width:940px;display:flex;flex-direction:column;gap:28px}.dcs-admin--entries-full .dcs-admin__content{max-width:none}.dcs-v3-banner{background:#fff;border:1px solid var(--dcs-border);border-radius:10px}.dcs-v3-banner__inner{display:flex;align-items:flex-start;gap:14px;padding:14px 18px}.dcs-v3-banner__icon{flex-shrink:0;width:40px;height:40px;background:var(--dcs-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--dcs-text-muted)}.dcs-v3-banner__icon svg{width:20px;height:20px}.dcs-v3-banner__content{flex:1;min-width:0}.dcs-v3-banner__title{margin:0 0 4px;font-size:15px;font-weight:600;color:var(--dcs-heading);line-height:1.3}.dcs-v3-banner__ver{font-weight:500;color:var(--dcs-text-muted);font-size:13px}.dcs-v3-banner__text{margin:0;font-size:13px;color:var(--dcs-body);line-height:1.45;opacity:.9}.dcs-v3-banner__dismiss{flex-shrink:0;padding:6px 14px;font-size:13px;font-weight:500;color:var(--dcs-body);background:rgba(0,0,0,0);border:1px solid var(--dcs-border);border-radius:6px;cursor:pointer;transition:background .2s,border-color .2s,color .2s;font-family:inherit}.dcs-v3-banner__dismiss:hover:not(:disabled){background:var(--dcs-bg);border-color:#d0cee0;color:var(--dcs-heading)}.dcs-v3-banner__dismiss:disabled{opacity:.7;cursor:default}@media(max-width: 640px){.dcs-v3-banner__inner{flex-wrap:wrap;padding:12px 14px}.dcs-v3-banner__dismiss{width:100%;margin-top:4px}}.dcs-admin__header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 32px;background:#fff;border-bottom:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-admin__header{padding:14px 16px}}.dcs-admin__header-left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.dcs-admin__logo{display:flex;align-items:center;gap:12px}.dcs-admin__logo svg{width:28px;height:28px;color:var(--dcs-body);transition:color .15s}.dcs-admin__logo:hover svg{color:var(--dcs-primary)}.dcs-admin__title{font-size:15px;font-weight:600;margin:0;color:var(--dcs-heading)}.dcs-admin__header-right{display:flex;align-items:center;gap:8px}.dcs-admin__version-right{font-size:12px;font-weight:500;color:var(--dcs-text-muted)}.dcs-admin__nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}.dcs-nav-icon{width:20px;height:20px;flex-shrink:0}.dcs-nav-icon--docs{color:var(--dcs-text-muted)}.dcs-nav-icon--crown{color:var(--dcs-pro);transition:color .2s,transform .2s}.dcs-admin__nav-link{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dcs-text-muted);text-decoration:none;transition:color .15s,background .15s;padding:6px 10px;border-radius:8px}.dcs-admin__nav-link:hover{color:var(--dcs-body)}.dcs-admin__nav-link:hover .dcs-nav-icon--docs{color:var(--dcs-body)}.dcs-admin__nav-link--active{color:var(--dcs-heading);font-weight:600;background:var(--dcs-bg)}.dcs-admin__nav-link--pro{padding:8px 10px;color:var(--dcs-pro)}.dcs-admin__nav-link--pro:hover{color:var(--dcs-body);background:var(--dcs-bg)}.dcs-admin__nav-link--pro:hover .dcs-nav-icon--crown{transform:scale(1.05)}.dcs-card{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-card__header{padding:18px 20px 14px;border-bottom:1px solid var(--dcs-border)}@media(max-width: 640px){.dcs-card__header{padding:14px 16px 12px}}.dcs-card__title{font-size:16px;font-weight:600;margin:0 0 4px;color:var(--dcs-heading)}.dcs-card__desc{font-size:13px;margin:0;color:var(--dcs-text-muted);line-height:1.4}.dcs-modules-page{max-width:940px}.dcs-modules-card__header{padding:14px 18px 10px;border-bottom:1px solid var(--dcs-border)}.dcs-modules-card__title{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-modules-card__desc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-modules-card__body{padding:12px 18px 16px}.dcs-modules-card__footer{border-top:1px solid var(--dcs-border);padding:0 18px}.dcs-features-group{margin-bottom:20px}.dcs-features-group:last-child{margin-bottom:0}.dcs-features-group--pro{padding-top:16px;border-top:1px solid var(--dcs-border)}.dcs-features-group__title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--dcs-text-muted);margin:0 0 10px;padding:0 2px}.dcs-features-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}.dcs-features-list>li{margin:0}.dcs-feature{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--dcs-bg);border:1px solid rgba(0,0,0,0);border-radius:8px;transition:border-color .15s,background .15s}.dcs-feature:hover{background:#fff;border-color:var(--dcs-border)}.dcs-feature--pro{background:var(--dcs-pro-bg)}.dcs-feature--pro:hover{background:#f5f3ef;border-color:var(--dcs-pro-border)}.dcs-feature--locked{opacity:.9}.dcs-feature--locked .dcs-feature__name{color:var(--dcs-heading)}.dcs-feature__icon{flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--dcs-bg);border-radius:6px;color:var(--dcs-text-muted)}.dcs-feature__icon svg{width:16px;height:16px}.dcs-feature--pro .dcs-feature__icon{background:var(--dcs-pro-bg);color:var(--dcs-pro)}.dcs-feature__name-wrap{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;cursor:default}.dcs-feature__name{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin:0;color:var(--dcs-body);line-height:1.3}.dcs-feature__desc{font-size:11px;line-height:1.35;color:var(--dcs-text-muted);margin:0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}.dcs-feature__badge{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);border-radius:50%;color:#fff;transition:transform .15s}.dcs-feature__badge .dcs-icon-crown{width:8px;height:8px;color:#fff}.dcs-feature__badge:hover{transform:scale(1.1)}.dcs-feature__toggle{flex-shrink:0}.dcs-feature__upgrade{padding:4px 10px;font-size:11px;font-weight:600;color:#fff;background:var(--dcs-pro);border:none;border-radius:5px;cursor:pointer;transition:opacity .15s}.dcs-feature__upgrade:hover{opacity:.9;color:#fff}.dcs-dashboard-card .dcs-dashboard-card__body{padding:18px 20px}.dcs-dashboard-card .dcs-dashboard-card__muted{margin:0;font-size:13px;color:var(--dcs-text-muted)}.dcs-dashboard-stats{display:flex;flex-wrap:wrap;gap:20px 24px;margin-bottom:16px}.dcs-stat{display:flex;align-items:center;gap:10px}.dcs-stat__icon{flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;color:var(--dcs-text-muted)}.dcs-stat__icon svg{width:16px;height:16px}.dcs-stat__icon--muted{background:var(--dcs-bg)}.dcs-stat__content{display:flex;flex-direction:column;gap:0;min-width:0}.dcs-stat__value{font-size:15px;font-weight:600;color:var(--dcs-heading);line-height:1.2}.dcs-stat__label{font-size:11px;color:var(--dcs-text-muted);text-transform:none}.dcs-dashboard-quick{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px}.dcs-dashboard-quick__sep{-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--dcs-border);opacity:.8}.dcs-dashboard-quick__link{color:var(--dcs-body);text-decoration:none;transition:color .15s}.dcs-dashboard-quick__link:hover{color:var(--dcs-primary)}.dcs-toggle{position:relative;display:inline-flex;align-items:center;padding:0;background:none;border:none;cursor:pointer;outline:none}.dcs-toggle__track{position:relative;width:36px;height:20px;background:#d1d5db;border-radius:10px;transition:background .2s}.dcs-toggle__thumb{position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:transform .2s}.dcs-toggle--active .dcs-toggle__track{background:var(--dcs-primary)}.dcs-toggle--active .dcs-toggle__thumb{transform:translateX(16px)}.dcs-toggle--disabled{opacity:.5;cursor:not-allowed}.dcs-toggle:focus-visible .dcs-toggle__track{box-shadow:0 0 0 2px rgba(87,51,255,.3)}.dcs-compare-card{background:#fff;border-radius:12px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-compare-card__header{padding:14px 18px 10px;border-bottom:1px solid var(--dcs-border)}.dcs-compare-card__title{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--dcs-heading)}.dcs-compare-card__desc{font-size:12px;margin:0;color:var(--dcs-text-muted)}.dcs-compare-table-wrap{overflow-x:auto}.dcs-compare-table{width:100%;border-collapse:collapse;font-size:13px}.dcs-compare-table th,.dcs-compare-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--dcs-border)}.dcs-compare-table th{font-weight:600;color:var(--dcs-heading);background:var(--dcs-bg)}.dcs-compare-table td{color:var(--dcs-body)}.dcs-compare-table tr:last-child td{border-bottom:none}.dcs-compare-table__feature{min-width:180px}.dcs-compare-table__plan{width:72px;text-align:center}.dcs-compare-table__plan--pro{background:var(--dcs-pro-bg);font-weight:600;color:var(--dcs-pro)}.dcs-compare-table__yes{display:inline-block;color:var(--dcs-success);font-weight:600}.dcs-compare-table__no{color:var(--dcs-text-muted)}.dcs-compare-card__footer{padding:14px 18px;border-top:1px solid var(--dcs-border);background:var(--dcs-bg)}.dcs-compare-card__cta{display:inline-block;padding:8px 16px;font-size:13px;font-weight:600;color:#fff;background:var(--dcs-primary);border-radius:8px;text-decoration:none;transition:opacity .15s}.dcs-compare-card__cta:hover{opacity:.92;color:#fff}.dcs-howto{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;font-size:13px;color:var(--dcs-text-muted)}.dcs-howto__label{font-weight:600;color:var(--dcs-heading)}.dcs-howto__links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.dcs-howto__link{color:var(--dcs-body);text-decoration:none;transition:color .15s}.dcs-howto__link:hover{color:var(--dcs-primary);text-decoration:underline}.dcs-howto__sep{-webkit-user-select:none;-moz-user-select:none;user-select:none;opacity:.5}.dcs-loading{display:flex;align-items:center;justify-content:center;min-height:200px;font-size:14px;color:var(--dcs-text-muted)}.dcs-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:12px 20px;font-size:14px;font-weight:500;color:#fff;background:#1a1a1a;border-radius:8px;z-index:9999;animation:toastIn .2s ease-out}.dcs-toast--success{background:var(--dcs-success)}.dcs-toast--error{background:var(--dcs-danger)}@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}.dcs-rebrand-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:24px;z-index:100000}.dcs-rebrand-modal{position:relative;width:100%;max-width:420px;background:#fff;border-radius:16px;border:1px solid var(--dcs-border);overflow:hidden}.dcs-rebrand-modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;border:none;border-radius:8px;background:var(--dcs-bg);color:var(--dcs-body);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s,color .15s}.dcs-rebrand-modal__close:hover{background:var(--dcs-border);color:var(--dcs-heading)}.dcs-rebrand-modal__header{padding:32px 24px 20px;text-align:center;background:linear-gradient(180deg, rgba(87, 51, 255, 0.06) 0%, transparent 100%)}.dcs-rebrand-modal__logo{color:var(--dcs-primary)}.dcs-rebrand-modal__body{padding:0 24px 28px}.dcs-rebrand-modal__eyebrow{display:block;font-size:12px;font-weight:500;color:var(--dcs-text-muted);margin-bottom:4px;text-align:center}.dcs-rebrand-modal__title{font-size:24px;font-weight:700;margin:0 0 6px;text-align:center;color:var(--dcs-primary);letter-spacing:-0.02em}.dcs-rebrand-modal__tagline{font-size:13px;color:var(--dcs-body);margin:0 0 20px;text-align:center;opacity:.85;line-height:1.45}.dcs-rebrand-modal__divider{display:flex;align-items:center;gap:12px;margin-bottom:14px}.dcs-rebrand-modal__divider span{font-size:11px;font-weight:600;color:var(--dcs-text-muted);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}.dcs-rebrand-modal__divider::before,.dcs-rebrand-modal__divider::after{content:"";flex:1;height:1px;background:var(--dcs-border)}.dcs-rebrand-modal__list{list-style:none;margin:0 0 20px;padding:0;font-size:13px;color:var(--dcs-body);line-height:1.5}.dcs-rebrand-modal__list li{position:relative;padding-left:20px;margin-bottom:8px}.dcs-rebrand-modal__list li:last-child{margin-bottom:0}.dcs-rebrand-modal__list li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--dcs-primary)}.dcs-rebrand-modal__cta{display:block;width:100%;padding:12px 20px;background:var(--dcs-primary);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;font-family:inherit}.dcs-rebrand-modal__cta:hover:not(:disabled){opacity:.92}.dcs-rebrand-modal__cta:disabled{opacity:.7;cursor:not-allowed}.dcs-entries-page{width:100%}.dcs-entries-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:16px;font-size:13px;color:var(--dcs-text-muted)}.dcs-entries-breadcrumb__link{color:var(--dcs-primary);text-decoration:none}.dcs-entries-breadcrumb__link:hover{text-decoration:underline}.dcs-entries-breadcrumb__sep{opacity:.6}.dcs-entries-breadcrumb__current{color:var(--dcs-heading);font-weight:500}.dcs-entries-card{background:#fff;border:1px solid var(--dcs-border);border-radius:12px;overflow:hidden;margin-bottom:20px}.dcs-entries-card:last-child{margin-bottom:0}.dcs-entry-card__header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--dcs-border)}.dcs-entry-card__title{font-size:15px;font-weight:600;margin:0;color:var(--dcs-heading)}.dcs-entry-card__action{font-size:12px;padding:6px 12px;border-radius:6px;border:1px solid var(--dcs-border);background:#fff;color:var(--dcs-text-muted);cursor:pointer}.dcs-entry-card__action:hover:not(:disabled){background:var(--dcs-bg);color:var(--dcs-body)}.dcs-entry-card__body{padding:16px 18px}.dcs-entry-data-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:10px 0;border-bottom:1px solid var(--dcs-bg)}.dcs-entry-data-row:last-child{border-bottom:none}.dcs-entry-data-row__label{font-size:13px;font-weight:600;color:var(--dcs-text-muted);flex-shrink:0;min-width:120px}.dcs-entry-data-row__value{font-size:13px;color:var(--dcs-body);text-align:right;word-break:break-word}.dcs-entry-data-row__value .dcs-entry-status-badge{margin-right:8px}.dcs-entry-data-row__value .dcs-entries-link{margin-left:8px;font-size:12px;color:var(--dcs-primary);background:none;border:none;cursor:pointer;text-decoration:underline}.dcs-entries-empty,.dcs-entries-muted{margin:0;font-size:13px;color:var(--dcs-text-muted)}.dcs-entries-muted{font-size:12px}.dcs-entries-single__grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}@media(max-width: 900px){.dcs-entries-single__grid{grid-template-columns:1fr}}.dcs-entries-single__main{min-width:0}.dcs-entries-single__sidebar{display:flex;flex-direction:column;gap:16px}.dcs-entries-single__actions{display:flex;flex-direction:column;gap:8px}.dcs-entries-list-card{padding:0}.dcs-entries-list-card__header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 24px;border-bottom:1px solid var(--dcs-border)}.dcs-entries-list-card__title{font-size:18px;font-weight:600;margin:0;color:var(--dcs-heading);flex-shrink:0}.dcs-entries-list-card__filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px;flex:1;min-width:0;justify-content:flex-end}.dcs-entries-filter__select{padding:8px 12px;padding-right:32px;border-radius:8px;border:1px solid var(--dcs-border);background:#fff url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%235c5a6e%27 stroke-width=%272%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") no-repeat right 10px center;background-size:12px;font-size:13px;color:var(--dcs-body);min-width:110px;max-width:160px;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer}.dcs-entries-filter__select:focus{outline:none;border-color:var(--dcs-primary)}.dcs-entries-filter__search-wrap{position:relative;display:inline-flex;align-items:center;min-width:180px;max-width:220px}.dcs-entries-filter__search-icon{position:absolute;left:10px;pointer-events:none;color:var(--dcs-text-muted);flex-shrink:0}.dcs-entries-filter__search{width:100%;padding:8px 12px 8px 34px;border-radius:8px;border:1px solid var(--dcs-border);background:#fff;font-size:13px;color:var(--dcs-body)}.dcs-entries-filter__search::-moz-placeholder{color:var(--dcs-text-muted)}.dcs-entries-filter__search::placeholder{color:var(--dcs-text-muted)}.dcs-entries-filter__search:focus{outline:none;border-color:var(--dcs-primary)}.dcs-entries-filter__btn{flex-shrink:0}.dcs-entries-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid var(--dcs-border);background:#fff;color:var(--dcs-body);text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s}.dcs-entries-btn:hover{background:var(--dcs-bg);border-color:#d0cee0}.dcs-entries-btn--secondary{background:var(--dcs-bg)}.dcs-entries-btn--danger{border-color:rgba(239,68,68,.3);color:var(--dcs-danger);background:rgba(239,68,68,.06)}.dcs-entries-btn--danger:hover{background:rgba(239,68,68,.12);border-color:var(--dcs-danger)}.dcs-entries-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:none;border-radius:6px;background:rgba(0,0,0,0);color:var(--dcs-text-muted);cursor:pointer;transition:background .15s,color .15s}.dcs-entries-icon-btn:hover{background:var(--dcs-bg);color:var(--dcs-body)}.dcs-entries-icon-btn--danger:hover{background:rgba(239,68,68,.1);color:var(--dcs-danger)}.dcs-entries-icon-btn--muted:hover{color:var(--dcs-body)}.dcs-entry-status-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:500}.dcs-entry-status-badge--new{background:rgba(87,51,255,.12);color:var(--dcs-primary)}.dcs-entry-status-badge--read{background:var(--dcs-bg);color:var(--dcs-text-muted)}.dcs-entry-status-badge--trash{background:rgba(100,116,139,.12);color:var(--dcs-text-muted)}.dcs-entries-table-wrap{overflow-x:auto;padding:0 24px 16px}.dcs-entries-table{width:100%;border-collapse:collapse;font-size:13px}.dcs-entries-table .dcs-entries-table__th,.dcs-entries-table .dcs-entries-table__td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--dcs-border)}.dcs-entries-table .dcs-entries-table__th{font-weight:600;color:var(--dcs-text-muted);background:var(--dcs-bg)}.dcs-entries-table .dcs-entries-table__td--muted{color:var(--dcs-text-muted)}.dcs-entries-table .dcs-entries-table__td--check{width:44px;padding-right:8px}.dcs-entries-table .dcs-entries-table__td--actions,.dcs-entries-table .dcs-entries-table__th--actions{text-align:right;white-space:nowrap}.dcs-entries-table .dcs-entries-table__link{color:var(--dcs-primary);text-decoration:none;font-weight:500}.dcs-entries-table .dcs-entries-table__link:hover{text-decoration:underline}.dcs-entries-pagination{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:12px 24px 20px;border-top:1px solid var(--dcs-border);background:var(--dcs-bg);font-size:13px;color:var(--dcs-text-muted)}.dcs-entries-pagination__info{margin-right:8px}.dcs-entries-pagination__per{padding:6px 10px;border-radius:6px;border:1px solid var(--dcs-border);background:#fff;font-size:12px;margin-right:16px}.dcs-entries-pagination__nav{display:flex;align-items:center;gap:4px}.dcs-entries-pagination__btn{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border:1px solid var(--dcs-border);border-radius:6px;background:#fff;color:var(--dcs-body);cursor:pointer;font-size:14px}.dcs-entries-pagination__btn:hover:not(:disabled){background:var(--dcs-bg)}.dcs-entries-pagination__btn:disabled{opacity:.5;cursor:not-allowed}.dcs-entries-pagination__current{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;background:var(--dcs-primary);color:#fff;border-radius:6px;font-weight:600;font-size:13px}.file\:border-0::file-selector-button {
+  border-width: 0px;
+}.file\:bg-transparent::file-selector-button {
+  background-color: transparent;
+}.file\:text-sm::file-selector-button {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}.file\:font-medium::file-selector-button {
+  font-weight: 500;
+}.placeholder\:text-gray-400::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}.placeholder\:text-gray-400::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}.placeholder\:text-muted-foreground::-moz-placeholder {
+  color: var(--muted-foreground);
+}.placeholder\:text-muted-foreground::placeholder {
+  color: var(--muted-foreground);
+}.last\:border-0:last-child {
+  border-width: 0px;
+}.hover\:bg-accent:hover {
+  background-color: var(--accent);
+}.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+}.hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}.hover\:bg-gray-50\/50:hover {
+  background-color: rgb(249 250 251 / 0.5);
 }.hover\:bg-indigo-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(67 56 202 / var(--tw-bg-opacity, 1));
+}.hover\:bg-red-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
 }.hover\:bg-red-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}.hover\:text-accent-foreground:hover {
+  color: var(--accent-foreground);
+}.hover\:text-gray-900:hover {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}.hover\:text-red-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}.hover\:underline:hover {
+  text-decoration-line: underline;
 }.focus\:border-indigo-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(99 102 241 / var(--tw-border-opacity, 1));
+}.focus\:border-violet-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(139 92 246 / var(--tw-border-opacity, 1));
 }.focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -902,9 +1151,41 @@ input:where([type='file']):focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }.focus\:ring-indigo-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
+}.focus\:ring-ring:focus {
+  --tw-ring-color: var(--ring);
+}.focus\:ring-violet-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(139 92 246 / var(--tw-ring-opacity, 1));
+}.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}.focus-visible\:outline-none:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}.focus-visible\:ring-1:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}.focus-visible\:ring-ring:focus-visible {
+  --tw-ring-color: var(--ring);
+}.disabled\:pointer-events-none:disabled {
+  pointer-events: none;
+}.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
 }.disabled\:opacity-50:disabled {
   opacity: 0.5;
+}.data-\[state\=selected\]\:bg-muted[data-state="selected"] {
+  background-color: var(--muted);
+}.\[\&\:has\(\[role\=checkbox\]\)\]\:pr-0:has([role=checkbox]) {
+  padding-right: 0px;
+}.\[\&_tr\:last-child\]\:border-0 tr:last-child {
+  border-width: 0px;
+}.\[\&_tr\]\:border-b tr {
+  border-bottom-width: 1px;
 }
