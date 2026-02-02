@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-02-01 21:50+0000\n"
+"POT-Creation-Date: 2026-02-01 23:14+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -44,11 +44,11 @@ msgstr ""
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:61, includes/admin/admin.php:62, includes/notices/review.php:129
+#: includes/admin/admin.php:69, includes/admin/admin.php:70, includes/admin/admin.php:60, includes/admin/admin.php:61, includes/notices/review.php:129
 msgid "CF7 Mate"
 msgstr ""
 
-#: includes/admin/admin.php:72, includes/admin/admin.php:73
+#: includes/admin/admin.php:82, includes/admin/admin.php:83
 msgid "Features"
 msgstr ""
 

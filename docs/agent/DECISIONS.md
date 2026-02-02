@@ -139,13 +139,17 @@ $container_classes = sprintf(
 **Decision:** Pro package uses folder `cf7-mate-pro` and main file `cf7-mate-pro.php` (not `cf7-styler.php`).
 
 **Structure:**
-- Free: `cf7-styler-for-divi/cf7-styler.php`
-- Pro: `cf7-mate-pro/cf7-mate-pro.php` (same codebase; Pro zip excludes `cf7-styler.php`)
+- Free: `cf7-styler-for-divi/cf7-styler.php` (version from `package.json` → `version`)
+- Pro: `cf7-mate-pro/cf7-mate-pro.php` (version from `package.json` → `proVersion`, starts at 1.0.0; same codebase; Pro zip excludes `cf7-styler.php`)
 
 **How:**
-- Repo contains both `cf7-styler.php` (free entry) and `cf7-mate-pro.php` (Pro entry). Both bootstrap the same plugin; Pro file defines `CF7M_PRO_VERSION`.
+- Repo contains both `cf7-styler.php` (free entry) and generated `cf7-mate-pro.php` (Pro entry). Both bootstrap the same plugin.
+- Pro version is independent: `package.json` has `proVersion` (e.g. `"1.0.0"`). Grunt `write_pro_main` and `compress:pro` use it; zip is `cf7-mate-pro-1.0.0.zip`. Bump `proVersion` manually for Pro releases.
 - `.distignore` excludes `cf7-mate-pro.php` so the WordPress.org free zip only has the free entry.
-- Build Pro zip: `grunt package:pro` → produces `cf7-mate-pro-{version}.zip` with `cf7-mate-pro/cf7-mate-pro.php` and no `cf7-styler.php`.
+- Build free zip for WordPress.org repo: `npm run package:wp` or `grunt package:wp` → produces `cf7-styler-for-divi-{version}.zip` with no Freemius SDK (no `vendor/freemius/`, no `freemius.php`). Use for SVN deploy.
+- Build + free zip: `npm run build:wp` (builds assets then package:wp).
+- Build Pro zip (for Freemius): `npm run package:pro` or `grunt package:pro` → produces `cf7-mate-pro-{version}.zip` with `cf7-mate-pro/cf7-mate-pro.php` and no `cf7-styler.php`. Run `npm run build` first if you changed JS/CSS so the zip includes latest dist/ and assets.
+- Full build + Pro zip: `npm run build:pro` (builds assets then runs package:pro).
 - Bump version: `grunt bump-version --ver=patch` (or minor/major) updates version in both main files.
 
 ---

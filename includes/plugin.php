@@ -19,10 +19,7 @@ class Plugin
 
     private function __construct()
     {
-        // Try to load Divi 5 modules immediately if Divi is already loaded
         $this->maybe_load_divi5_modules();
-
-        // Also try on plugins_loaded with high priority as fallback
         add_action('plugins_loaded', [$this, 'maybe_load_divi5_modules'], 99);
 
         $this->init();
@@ -37,11 +34,10 @@ class Plugin
 
     private function include_files()
     {
-        // Core files that are always loaded
         $core_files = [
             'functions.php',
             'assets.php',
-            'rest-api.php', // Load early so feature check is available
+            'rest-api.php',
             'notices/review.php',
             'admin/admin.php',
             'admin/onboarding.php',
@@ -66,11 +62,6 @@ class Plugin
         add_action('plugins_loaded', [$this, 'load_premium_loader'], 5);
     }
 
-    /**
-     * Load premium features loader after free plugin and options are ready.
-     *
-     * @since 3.0.0
-     */
     public function load_premium_loader()
     {
         $premium_loader = CF7M_PLUGIN_PATH . 'includes/pro/loader.php';
@@ -84,13 +75,6 @@ class Plugin
         require_once $premium_loader;
     }
 
-    /**
-     * Check if a feature is enabled.
-     *
-     * @since 3.0.0
-     * @param string $feature Feature key.
-     * @return bool
-     */
     private function is_feature_enabled($feature)
     {
         $defaults = [
@@ -121,11 +105,6 @@ class Plugin
         add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_scripts'], 20);
     }
 
-    /**
-     * Enqueue CSS on CF7 admin so our tag generator buttons look distinct (CF7 Mate color).
-     *
-     * @since 3.0.0
-     */
     public function enqueue_cf7_tag_admin_styles($hook)
     {
         if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
@@ -147,11 +126,6 @@ class Plugin
         );
     }
 
-    /**
-     * Enqueue JS on CF7 admin so cf7m-star and cf7m-range tag code stays in sync with panel fields.
-     *
-     * @since 3.0.0
-     */
     public function enqueue_cf7_tag_admin_scripts($hook)
     {
         if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
@@ -215,13 +189,6 @@ class Plugin
         }
     }
 
-    /**
-     * Check if deprecated modules should be loaded.
-     * Only load for existing users (install date before version 3.0.0 release).
-     *
-     * @since 3.0.0
-     * @return bool
-     */
     private function should_load_deprecated_modules()
     {
         $install_date = get_option('divi_cf7_styler_install_date');
@@ -231,8 +198,6 @@ class Plugin
             return false;
         }
 
-        // Version 3.0.0 release date: January 2026 (approximate timestamp)
-        // Load deprecated modules only if installed before this date
         $version_3_release_date = strtotime('2026-01-01');
 
         return $install_date < $version_3_release_date;
@@ -256,12 +221,6 @@ class Plugin
         }
     }
 
-    /**
-     * Load Divi 5 modules if available.
-     * Tries immediately and also on plugins_loaded hook with priority 5.
-     *
-     * @since 3.0.0
-     */
     public function maybe_load_divi5_modules()
     {
         // Prevent loading multiple times

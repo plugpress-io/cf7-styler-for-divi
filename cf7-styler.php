@@ -5,7 +5,7 @@ Plugin URI: https://divipeople.com/cf7-mate
 Description: Built for CF7 power users—your all-in-one toolkit for Contact Form 7.
 Version: 3.0.0
 Author: PlugPress
-Author URI:  https://divipeople.com
+Author URI:  https://plugpress.io
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cf7-styler-for-divi

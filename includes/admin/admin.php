@@ -44,7 +44,7 @@ class Admin
     }
 
     /**
-     * Add "CF7 Mate" under Divi. Our own menu = our own capability (manage_options).
+     * Add "CF7 Mate" under Divi when Divi theme/Builder is present; if no Divi found, add as toplevel menu so dashboard is always accessible.
      */
     public function add_menu()
     {
@@ -52,21 +52,31 @@ class Admin
             return;
         }
 
-        if (!defined('ET_BUILDER_VERSION') && !defined('ET_CORE_VERSION')) {
-            return;
+        $divi_found = defined('ET_BUILDER_VERSION') || defined('ET_CORE_VERSION');
+
+        if ($divi_found) {
+            add_submenu_page(
+                'et_divi_options',
+                __('CF7 Mate', 'cf7-styler-for-divi'),
+                __('CF7 Mate', 'cf7-styler-for-divi'),
+                'manage_options',
+                self::PAGE_SLUG,
+                [$this, 'render_page']
+            );
+        } else {
+            // No Divi theme/Builder found: show CF7 Mate as toplevel menu (e.g. Pro-only install, or Divi not active).
+            add_menu_page(
+                __('CF7 Mate', 'cf7-styler-for-divi'),
+                __('CF7 Mate', 'cf7-styler-for-divi'),
+                'manage_options',
+                self::PAGE_SLUG,
+                [$this, 'render_page'],
+                'dashicons-email-alt',
+                59
+            );
         }
 
-        add_submenu_page(
-            'et_divi_options',
-            __('CF7 Mate', 'cf7-styler-for-divi'),
-            __('CF7 Mate', 'cf7-styler-for-divi'),
-            'manage_options',
-            self::PAGE_SLUG,
-            [$this, 'render_page']
-        );
-
         // Register Features page as submenu of dashboard so admin.php?page=cf7-mate-features works.
-        // Not added under Divi directly – only one item "CF7 Mate" under Divi.
         add_submenu_page(
             self::PAGE_SLUG,
             __('Features', 'cf7-styler-for-divi'),

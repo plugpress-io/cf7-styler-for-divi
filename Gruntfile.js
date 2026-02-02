@@ -1,11 +1,8 @@
 module.exports = function (grunt) {
 	'use strict';
 
-	// Configuration
-	const platform = grunt.option('platform') || 'et';
 	const pkg = grunt.file.readJSON('package.json');
 
-	// Common exclude patterns (for all builds)
 	const commonExcludes = [
 		'!node_modules/**',
 		'!build/**',
@@ -44,24 +41,14 @@ module.exports = function (grunt) {
 		'!docs/**',
 	];
 
-	// Source files config
-	// ET (Elegant Themes): Without Freemius SDK
-	const et_src = [
-		'**',
-		...commonExcludes,
-		'!vendor/freemius/**',
-		'!freemius.php',
-	];
-
-	const fs_src = ['**', ...commonExcludes];
+	const wp_src = ['**', ...commonExcludes];
 	const pro_src = ['**', ...commonExcludes, '!cf7-styler.php'];
 
 	grunt.initConfig({
-		// Copy task
 		copy: {
-			main: {
+			wp: {
 				options: { mode: true },
-				src: platform === 'fs' ? fs_src : et_src,
+				src: wp_src,
 				dest: 'package/cf7-styler-for-divi/',
 			},
 			pro: {
@@ -71,25 +58,16 @@ module.exports = function (grunt) {
 			},
 		},
 
-		// Version bump task
 		bumpup: {
-			options: {
-				updateProps: { pkg: 'package.json' },
-			},
+			options: { updateProps: { pkg: 'package.json' } },
 			file: 'package.json',
 		},
 
-		// Text replacement tasks (free main file only; Pro main is generated in package)
 		replace: {
 			plugin_const: {
 				src: ['cf7-styler.php'],
 				overwrite: true,
-				replacements: [
-					{
-						from: /CF7M_VERSION', '.*?'/g,
-						to: "CF7M_VERSION', '<%= pkg.version %>'",
-					},
-				],
+				replacements: [{ from: /CF7M_VERSION', '.*?'/g, to: "CF7M_VERSION', '<%= pkg.version %>'" }],
 			},
 			plugin_main: {
 				src: ['cf7-styler.php'],
@@ -103,99 +81,58 @@ module.exports = function (grunt) {
 			},
 		},
 
-		// Compression task
 		compress: {
-			main: {
-				options: {
-					archive: `cf7-styler-for-divi-${pkg.version}.zip`,
-					mode: 'zip',
-					level: 5,
-				},
-				files: [
-					{
-						expand: true,
-						cwd: 'package/',
-						src: ['cf7-styler-for-divi/**'],
-						dest: '/',
-					},
-				],
+			wp: {
+				options: { archive: `cf7-styler-for-divi-${pkg.version}.zip`, mode: 'zip', level: 5 },
+				files: [{ expand: true, cwd: 'package/', src: ['cf7-styler-for-divi/**'], dest: '/' }],
 			},
 			pro: {
-				options: {
-					archive: `cf7-mate-pro-${pkg.version}.zip`,
-					mode: 'zip',
-					level: 5,
-				},
-				files: [
-					{
-						expand: true,
-						cwd: 'package/',
-						src: ['cf7-mate-pro/**'],
-						dest: '/',
-					},
-				],
+				options: { archive: `cf7-mate-pro-${pkg.proVersion || pkg.version}.zip`, mode: 'zip', level: 5 },
+				files: [{ expand: true, cwd: 'package/', src: ['cf7-mate-pro/**'], dest: '/' }],
 			},
 		},
 
-		// Cleanup tasks
 		clean: {
 			main: ['package'],
 			zip: ['*.zip'],
 		},
 	});
 
-	// Load NPM tasks
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-bumpup');
 	grunt.loadNpmTasks('grunt-text-replace');
 
-	// Version Bump Task
 	grunt.registerTask('bump-version', function () {
-		const newVersion = grunt.option('ver');
-		if (newVersion) {
-			grunt.task.run([
-				`bumpup:${newVersion || 'patch'}`,
-				'replace:plugin_const',
-				'replace:plugin_main',
-			]);
+		const ver = grunt.option('ver');
+		if (ver) {
+			grunt.task.run(['bumpup:' + (ver || 'patch'), 'replace:plugin_const', 'replace:plugin_main']);
 		}
 	});
 
-	// Main Tasks
-	grunt.registerTask('package', [
-		'clean:zip',
-		'copy:main',
-		'compress:main',
-		'clean:main',
-	]);
-
-	// Generate Pro main file in package (same bootstrap as free, Pro headers).
-	// Pro zip must have one main file: cf7-mate-pro.php (free main cf7-styler.php excluded).
 	grunt.registerTask('write_pro_main', function () {
 		const pkg = grunt.config('pkg') || grunt.file.readJSON('package.json');
-		const version = pkg.version || '3.0.0';
+		const v = pkg.proVersion || pkg.version || '1.0.0';
 		const content = `<?php
 /*
 Plugin Name: CF7 Mate Pro
 Plugin URI: https://divipeople.com/cf7-mate
 Description: Pro features for CF7 Mate for Divi.
-Version: ${version}
+Version: ${v}
 Author: PlugPress
-Author URI: https://divipeople.com
+Author URI: https://plugpress.io
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cf7-styler-for-divi
 Domain Path: /languages
+
+@fs_premium_only /includes/pro/, /assets/pro/
 */
 
-// Exit if accessed directly.
-if (!defined('ABSPATH')) {
-    exit;
-}
+if (!defined('ABSPATH')) exit;
 
-define('CF7M_VERSION', '${version}');
+define('CF7M_VERSION', '${v}');
 define('CF7M_BASENAME', plugin_basename(__FILE__));
 define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
 define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));
@@ -203,30 +140,18 @@ define('CF7M_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CF7M_MODULES_JSON_PATH', CF7M_PLUGIN_PATH . 'modules-json/');
 define('CF7M_SELF_HOSTED_ACTIVE', 'true');
 
-// Freemius
 if ('true' === CF7M_SELF_HOSTED_ACTIVE) {
     require_once CF7M_PLUGIN_PATH . 'freemius.php';
 }
-
 require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 `;
 		grunt.file.write('package/cf7-mate-pro/cf7-mate-pro.php', content);
-		grunt.log.writeln(
-			'Written package/cf7-mate-pro/cf7-mate-pro.php (Version: ' +
-				version +
-				')'
-		);
+		grunt.log.writeln('Written package/cf7-mate-pro/cf7-mate-pro.php (v' + v + ')');
 	});
 
-	// Pro package: cf7-mate-pro.zip with cf7-mate-pro/cf7-mate-pro.php (no cf7-styler.php)
-	grunt.registerTask('package:pro', [
-		'clean:zip',
-		'copy:pro',
-		'write_pro_main',
-		'compress:pro',
-		'clean:main',
-	]);
+	// WP repo zip (free, with Freemius)
+	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'compress:wp', 'clean:main']);
 
-	grunt.registerTask('action-package', ['clean:main', 'copy:main']);
-	grunt.registerTask('action-package:pro', ['clean:main', 'copy:pro']);
+	// Pro zip (cf7-mate-pro.php, for Freemius deploy)
+	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'write_pro_main', 'compress:pro', 'clean:main']);
 };
