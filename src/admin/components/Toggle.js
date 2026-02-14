@@ -12,10 +12,10 @@ export function Toggle({ checked, onChange, disabled }) {
 			aria-checked={checked}
 			disabled={disabled}
 			onClick={() => !disabled && onChange(!checked)}
-			className={`dcs-toggle ${checked ? 'dcs-toggle--active' : ''} ${disabled ? 'dcs-toggle--disabled' : ''}`}
+			className={`cf7m-toggle ${checked ? 'cf7m-toggle--active' : ''} ${disabled ? 'cf7m-toggle--disabled' : ''}`}
 		>
-			<span className="dcs-toggle__track">
-				<span className="dcs-toggle__thumb" />
+			<span className="cf7m-toggle__track">
+				<span className="cf7m-toggle__thumb" />
 			</span>
 		</button>
 	);

@@ -19,14 +19,9 @@ class Premium_Loader
     private static $defaults = [
         'multi_column'      => true,
         'multi_step'        => true,
-        'star_rating'       => true,
         'database_entries'  => true,
-        'range_slider'      => true,
         'phone_number'      => true,
-        'separator'         => true,
         'heading'           => true,
-        'image'             => true,
-        'icon'              => true,
         'calculator'        => true,
         'conditional'       => true,
         'ai_form_generator' => true,
@@ -42,37 +37,17 @@ class Premium_Loader
             'file'  => 'multi-steps/module.php',
             'class' => 'CF7_Mate\Features\Multi_Steps\Multi_Steps',
         ],
-        'star_rating'     => [
-            'file'  => 'star-rating/module.php',
-            'class' => 'CF7_Mate\Features\Star_Rating\Star_Rating',
-        ],
         'database_entries' => [
             'file'  => 'entries/module.php',
             'class' => 'CF7_Mate\Features\Entries\Entries',
-        ],
-        'range_slider'    => [
-            'file'  => 'range-slider/module.php',
-            'class' => 'CF7_Mate\Features\Range_Slider\Range_Slider',
         ],
         'phone_number'   => [
             'file'  => 'phone-number/module.php',
             'class' => 'CF7_Mate\Features\Phone_Number\Phone_Number',
         ],
-        'separator'       => [
-            'file'  => 'separator/module.php',
-            'class' => 'CF7_Mate\Features\Separator\Separator',
-        ],
         'heading'         => [
             'file'  => 'heading/module.php',
             'class' => 'CF7_Mate\Features\Heading\Heading',
-        ],
-        'image'           => [
-            'file'  => 'image/module.php',
-            'class' => 'CF7_Mate\Features\Image\Image',
-        ],
-        'icon'            => [
-            'file'  => 'icon/module.php',
-            'class' => 'CF7_Mate\Features\Icon\Icon',
         ],
         'calculator'      => [
             'file'  => 'calculator/module.php',

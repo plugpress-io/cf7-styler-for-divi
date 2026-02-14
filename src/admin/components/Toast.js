@@ -13,7 +13,7 @@ export function Toast({ message, type, onClose }) {
 	}, [onClose]);
 
 	return (
-		<div className={`dcs-toast dcs-toast--${type}`}>
+		<div className={`cf7m-toast cf7m-toast--${type}`}>
 			<span>{message}</span>
 		</div>
 	);

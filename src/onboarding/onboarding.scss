@@ -5,13 +5,10 @@
  */
 
 // Brand Colors
-$primary-color: #5733ff;
+$primary-color: #3044D7;
 $secondary-color: #24223a;
 $heading-color: #000000;
 $body-color: #24223a;
-
-// Gold only for crown icon and upgrade button (not everywhere)
-$gold: #9a8b2e;
 
 // UI – gray + muted (toggle, step, bg, border)
 $gray-100: #f3f4f6;
@@ -32,7 +29,7 @@ $radius-md: 10px;
 $radius-lg: 16px;
 
 // Full Screen Overlay – premium subtle gradient
-.dcs-onboarding-overlay {
+.cf7m-onboarding-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -46,7 +43,7 @@ $radius-lg: 16px;
 }
 
 // Header – logo left, progress center, Exit right (SureFORMS style)
-.dcs-onboarding-header {
+.cf7m-onboarding-header {
   width: 100%;
   flex-shrink: 0;
   padding: 16px 24px;
@@ -54,8 +51,7 @@ $radius-lg: 16px;
   background: $white;
 }
 
-.dcs-onboarding-header-inner {
-  max-width: 720px;
+.cf7m-onboarding-header-inner {
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -64,7 +60,7 @@ $radius-lg: 16px;
   min-width: 0;
 }
 
-.dcs-onboarding-logo {
+.cf7m-onboarding-logo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -79,13 +75,13 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-onboarding-logo-text {
+.cf7m-onboarding-logo-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.dcs-onboarding-progress-wrap {
+.cf7m-onboarding-progress-wrap {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -93,19 +89,19 @@ $radius-lg: 16px;
   padding: 0 12px;
 }
 
-.dcs-progress-bar {
+.cf7m-progress-bar {
   display: flex;
   align-items: center;
   flex-shrink: 0;
   gap: 0;
 }
 
-.dcs-progress-step {
+.cf7m-progress-step {
   display: flex;
   align-items: center;
 }
 
-.dcs-progress-dot {
+.cf7m-progress-dot {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -134,11 +130,11 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-progress-num {
+.cf7m-progress-num {
   line-height: 1;
 }
 
-.dcs-progress-line {
+.cf7m-progress-line {
   width: 32px;
   height: 2px;
   background: $gray-200;
@@ -150,7 +146,7 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-exit-setup {
+.cf7m-exit-setup {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -179,7 +175,7 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-exit-setup-text {
+.cf7m-exit-setup-text {
   white-space: nowrap;
   @media (max-width: 640px) {
     display: none;
@@ -187,7 +183,7 @@ $radius-lg: 16px;
 }
 
 // Content – centered card, pro look (SureFORMS style)
-.dcs-onboarding-content-wrap {
+.cf7m-onboarding-content-wrap {
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
@@ -200,29 +196,35 @@ $radius-lg: 16px;
   overflow-y: auto;
 }
 
-.dcs-onboarding-card {
+.cf7m-onboarding-card {
   width: 100%;
   max-width: 560px;
+  max-height: calc(100vh - 180px);
+  display: flex;
+  flex-direction: column;
   background: $white;
   border-radius: 12px;
   border: 1px solid $gray-200;
   overflow: hidden;
 }
 
-.dcs-onboarding-content {
+.cf7m-onboarding-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   padding: 28px 32px 24px;
 }
 
 // Step common – compact
-.dcs-onboarding-step {
+.cf7m-onboarding-step {
   width: 100%;
 }
 
-.dcs-step-header {
+.cf7m-step-header {
   margin-bottom: 20px;
 }
 
-.dcs-step-label {
+.cf7m-step-label {
   display: inline-block;
   font-size: 11px;
   color: $text-muted;
@@ -231,7 +233,7 @@ $radius-lg: 16px;
   letter-spacing: 0.4px;
 }
 
-.dcs-onboarding-title {
+.cf7m-onboarding-title {
   font-size: 20px;
   font-weight: 700;
   color: $heading-color;
@@ -240,31 +242,33 @@ $radius-lg: 16px;
   letter-spacing: -0.02em;
 }
 
-.dcs-onboarding-description {
+.cf7m-onboarding-description {
   font-size: 14px;
   color: $text-muted;
   margin: 0;
   line-height: 1.55;
 }
 
-// Footer – clear spacing
-.dcs-onboarding-footer {
+// Footer – always visible at bottom of card (Next/Back never hidden by long content)
+.cf7m-onboarding-footer {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 32px 28px;
   border-top: 1px solid $gray-200;
   gap: 16px;
+  background: $white;
 }
 
-.dcs-onboarding-footer-right {
+.cf7m-onboarding-footer-right {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-left: auto;
 }
 
-.dcs-onboarding-skip {
+.cf7m-onboarding-skip {
   padding: 0;
   border: none;
   background: none;
@@ -281,7 +285,7 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-onboarding-btn {
+.cf7m-onboarding-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -290,17 +294,19 @@ $radius-lg: 16px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
   border: none;
   font-family: inherit;
 
   &-primary {
-    background: $primary-color;
-    color: $white;
+    background: rgba($primary-color, 0.1);
+    color: $primary-color;
+    border: 1px solid rgba($primary-color, 0.25);
     margin-left: auto;
 
     &:hover {
-      background: #4a2bd9;
+      background: rgba($primary-color, 0.15);
+      border-color: rgba($primary-color, 0.35);
     }
 
     svg {
@@ -323,8 +329,8 @@ $radius-lg: 16px;
 // Step 1: Welcome – minimal list
 // ==========================================
 
-.dcs-step-welcome {
-  .dcs-welcome-list {
+.cf7m-step-welcome {
+  .cf7m-welcome-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -344,7 +350,7 @@ $radius-lg: 16px;
     }
   }
 
-  .dcs-check-icon {
+  .cf7m-check-icon {
     flex-shrink: 0;
     width: 16px;
     height: 16px;
@@ -359,24 +365,62 @@ $radius-lg: 16px;
       height: 10px;
       stroke: $white;
     }
+
+    &--pro {
+      background: rgba($primary-color, 0.12);
+      svg { stroke: $primary-color; }
+    }
+  }
+
+  .cf7m-welcome-pro-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $primary-color;
+    margin: 14px 0 6px;
+    padding: 0;
+  }
+
+  .cf7m-welcome-list--pro {
+    li {
+      color: $text-muted;
+      font-size: 12px;
+    }
   }
 }
 
 // ==========================================
-// Step 2: Features – compact + upsell
+// Step 2: Features – compact + clean
 // ==========================================
 
-.dcs-step-features {
-  .dcs-features-list {
-    margin-top: 12px;
+.cf7m-step-features {
+  .cf7m-step-features__header {
+    margin-bottom: 12px;
   }
 
-  .dcs-feature-item {
+  .cf7m-step-features__header .cf7m-onboarding-title {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .cf7m-step-features__sub {
+    font-size: 12px;
+    color: $text-muted;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .cf7m-features-list {
+    margin-top: 0;
+  }
+
+  .cf7m-feature-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 8px 0;
+    padding: 5px 0;
     border-bottom: 1px solid $gray-200;
 
     &:first-child {
@@ -387,23 +431,23 @@ $radius-lg: 16px;
       border-bottom: none;
     }
 
-    &.dcs-feature-locked {
-      .dcs-feature-title,
-      .dcs-feature-short {
+    &.cf7m-feature-locked {
+      .cf7m-feature-title,
+      .cf7m-feature-short {
         opacity: 0.7;
       }
     }
   }
 
-  .dcs-feature-info {
+  .cf7m-feature-info {
     flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 0;
   }
 
-  .dcs-feature-title {
+  .cf7m-feature-title {
     font-size: 13px;
     font-weight: 500;
     color: $heading-color;
@@ -413,17 +457,18 @@ $radius-lg: 16px;
     gap: 6px;
   }
 
-  .dcs-feature-short {
-    font-size: 12px;
+  .cf7m-feature-short {
+    font-size: 11px;
     color: $body-color;
     opacity: 0.75;
+    margin-top: 1px;
   }
 
-  .dcs-pro-badge {
+  .cf7m-pro-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1px 5px;
+    padding: 1px 4px;
     background: rgba($primary-color, 0.12);
     font-size: 9px;
     font-weight: 600;
@@ -432,43 +477,43 @@ $radius-lg: 16px;
     color: $primary-color;
   }
 
-  .dcs-feature-toggle,
-  .dcs-feature-locked-icon {
+  .cf7m-feature-toggle,
+  .cf7m-feature-locked-icon {
     flex-shrink: 0;
   }
 
-  .dcs-feature-locked-icon {
+  .cf7m-feature-locked-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 20px;
+    width: 28px;
+    height: 18px;
     color: $text-muted;
   }
 
-  .dcs-toggle {
+  .cf7m-toggle {
     position: relative;
     display: inline-block;
-    width: 32px;
-    height: 18px;
+    width: 28px;
+    height: 16px;
 
     input {
       opacity: 0;
       width: 0;
       height: 0;
 
-      &:checked + .dcs-toggle-slider {
+      &:checked + .cf7m-toggle-slider {
         background: $primary-color;
         border-color: rgba($primary-color, 0.3);
 
         &:before {
-          transform: translateX(14px);
+          transform: translateX(12px);
         }
       }
     }
   }
 
-  .dcs-toggle-slider {
+  .cf7m-toggle-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -477,14 +522,14 @@ $radius-lg: 16px;
     bottom: 0;
     background: $gray-300;
     border: 1px solid $gray-200;
-    border-radius: 18px;
+    border-radius: 16px;
     transition: all 0.2s;
 
     &:before {
       content: '';
       position: absolute;
-      height: 14px;
-      width: 14px;
+      height: 12px;
+      width: 12px;
       left: 2px;
       bottom: 2px;
       background: $white;
@@ -494,11 +539,12 @@ $radius-lg: 16px;
     }
   }
 
-  .dcs-features-divider {
+  .cf7m-features-divider {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 0 6px;
+    gap: 8px;
+    padding: 6px 0 4px;
+    margin-top: 2px;
 
     span {
       font-size: 10px;
@@ -516,39 +562,43 @@ $radius-lg: 16px;
     }
   }
 
-  // Upsell – one compact block (upgrade button = gold only)
-  .dcs-pro-upsell {
-    margin-top: 16px;
-    padding: 12px 14px;
+  .cf7m-pro-upsell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding: 8px 10px;
     background: rgba($primary-color, 0.04);
-    border: 1px solid rgba($primary-color, 0.12);
+    border: 1px solid rgba($primary-color, 0.1);
     border-radius: $radius-sm;
   }
 
-  .dcs-pro-upsell-text {
-    font-size: 12px;
+  .cf7m-pro-upsell-text {
+    font-size: 11px;
     color: $body-color;
-    margin: 0 0 8px;
-    line-height: 1.4;
+    margin: 0;
+    line-height: 1.35;
 
-    .dcs-pro-upsell-desc {
-      opacity: 0.8;
+    .cf7m-pro-upsell-desc {
+      opacity: 0.85;
     }
   }
 
-  .dcs-pro-upsell-actions {
+  .cf7m-pro-upsell-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
   }
 
-  .dcs-discount-tag {
-    padding: 4px 10px;
+  .cf7m-discount-tag {
+    padding: 3px 8px;
     background: $white;
     border: 1px dashed $primary-color;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: $primary-color;
     cursor: pointer;
@@ -559,28 +609,29 @@ $radius-lg: 16px;
       background: rgba($primary-color, 0.06);
     }
 
-    .dcs-copied {
+    .cf7m-copied {
       margin-left: 4px;
-      font-size: 11px;
+      font-size: 10px;
       color: $primary-color;
       font-weight: 500;
     }
   }
 
-  .dcs-upsell-btn {
+  .cf7m-upsell-btn {
     display: inline-block;
-    padding: 6px 12px;
-    background: $gold;
-    color: $white;
+    padding: 4px 10px;
+    background: rgba($primary-color, 0.1);
+    color: $primary-color;
+    border: 1px solid rgba($primary-color, 0.2);
     border-radius: $radius-sm;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: background 0.2s, border-color 0.2s;
 
     &:hover {
-      opacity: 0.9;
-      color: $white;
+      background: rgba($primary-color, 0.15);
+      border-color: rgba($primary-color, 0.3);
     }
   }
 }
@@ -589,8 +640,8 @@ $radius-lg: 16px;
 // Step 3: Help – compact list
 // ==========================================
 
-.dcs-step-help {
-  .dcs-help-list {
+.cf7m-step-help {
+  .cf7m-help-list {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -600,7 +651,7 @@ $radius-lg: 16px;
     padding: 0;
   }
 
-  .dcs-help-item {
+  .cf7m-help-item {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -616,14 +667,14 @@ $radius-lg: 16px;
       border-color: $primary-color;
       background: rgba($primary-color, 0.04);
 
-      .dcs-help-arrow {
+      .cf7m-help-arrow {
         transform: translateX(2px);
         color: $primary-color;
       }
     }
   }
 
-  .dcs-help-item-text {
+  .cf7m-help-item-text {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -631,19 +682,19 @@ $radius-lg: 16px;
     gap: 0;
   }
 
-  .dcs-help-item-title {
+  .cf7m-help-item-title {
     font-size: 13px;
     font-weight: 500;
     color: $heading-color;
   }
 
-  .dcs-help-item-desc {
+  .cf7m-help-item-desc {
     font-size: 12px;
     color: $text-muted;
     margin-top: 1px;
   }
 
-  .dcs-help-arrow {
+  .cf7m-help-arrow {
     flex-shrink: 0;
     color: $text-muted;
     transition: all 0.2s;
@@ -659,16 +710,16 @@ $radius-lg: 16px;
 // Step 4: Finish
 // ==========================================
 
-.dcs-step-finish {
+.cf7m-step-finish {
   text-align: center;
 
-  .dcs-step-header {
+  .cf7m-step-header {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .dcs-finish-icon {
+  .cf7m-finish-icon {
     width: 44px;
     height: 44px;
     background: rgba($primary-color, 0.1);
@@ -685,7 +736,7 @@ $radius-lg: 16px;
     }
   }
 
-  .dcs-finish-actions {
+  .cf7m-finish-actions {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -693,7 +744,7 @@ $radius-lg: 16px;
     margin-top: 14px;
   }
 
-  .dcs-finish-btn {
+  .cf7m-finish-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -707,11 +758,13 @@ $radius-lg: 16px;
     font-family: inherit;
 
     &-primary {
-      background: $primary-color;
-      color: $white;
+      background: rgba($primary-color, 0.1);
+      color: $primary-color;
+      border: 1px solid rgba($primary-color, 0.25);
 
       &:hover {
-        opacity: 0.9;
+        background: rgba($primary-color, 0.15);
+        border-color: rgba($primary-color, 0.35);
       }
     }
 
@@ -726,30 +779,83 @@ $radius-lg: 16px;
     }
   }
 
-  .dcs-finish-quickwin {
-    margin: 12px 0 4px;
-    font-size: 11px;
-    font-weight: 600;
-    color: $text-muted;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
+  .cf7m-finish-what-now {
+    margin-top: 16px;
+    text-align: left;
   }
 
-  .dcs-finish-steps {
+  .cf7m-finish-what-now-title {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: $body-color;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .cf7m-finish-what-now-list {
     margin: 0;
     padding: 0 0 0 20px;
-    text-align: left;
-    font-size: 12px;
+    font-size: 13px;
     color: $body-color;
-    line-height: 1.5;
-    opacity: 0.9;
+    line-height: 1.55;
+    opacity: 0.95;
 
     li {
-      padding: 2px 0;
+      margin-bottom: 4px;
     }
   }
 
-  .dcs-finish-upsell {
+  .cf7m-finish-pro-teaser {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid $gray-200;
+    text-align: left;
+  }
+
+  .cf7m-finish-pro-teaser-title {
+    margin: 0 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: $body-color;
+  }
+
+  .cf7m-finish-pro-teaser-text {
+    margin: 0;
+    font-size: 12px;
+    color: $text-muted;
+    line-height: 1.5;
+
+    a {
+      color: $primary-color;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .cf7m-finish-close-guide {
+    display: block;
+    margin: 14px auto 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 12px;
+    color: $text-muted;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: underline;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $body-color;
+    }
+  }
+
+  .cf7m-finish-upsell {
     margin: 14px 0 0;
     padding-top: 12px;
     border-top: 1px solid $gray-200;
@@ -773,21 +879,21 @@ $radius-lg: 16px;
 // ==========================================
 
 @media (max-width: 640px) {
-  .dcs-onboarding-header {
+  .cf7m-onboarding-header {
     padding: 12px 16px;
   }
 
-  .dcs-onboarding-header-inner {
+  .cf7m-onboarding-header-inner {
     gap: 12px;
     max-width: 100%;
   }
 
-  .dcs-exit-setup {
+  .cf7m-exit-setup {
     width: 34px;
     height: 34px;
   }
 
-  .dcs-onboarding-logo {
+  .cf7m-onboarding-logo {
     font-size: 13px;
 
     svg {
@@ -796,64 +902,64 @@ $radius-lg: 16px;
     }
   }
 
-  .dcs-onboarding-version {
+  .cf7m-onboarding-version {
     font-size: 11px;
   }
 
-  .dcs-onboarding-progress-wrap {
+  .cf7m-onboarding-progress-wrap {
     padding: 0 8px;
   }
 
-  .dcs-progress-dot {
+  .cf7m-progress-dot {
     width: 24px;
     height: 24px;
     font-size: 11px;
   }
 
-  .dcs-progress-line {
+  .cf7m-progress-line {
     width: 20px;
   }
 
-  .dcs-onboarding-content-wrap {
+  .cf7m-onboarding-content-wrap {
     padding: 16px 12px 28px;
     max-width: 100%;
   }
 
-  .dcs-onboarding-card {
+  .cf7m-onboarding-card {
     max-width: 100%;
   }
 
-  .dcs-progress-line {
+  .cf7m-progress-line {
     width: 20px;
   }
 
-  .dcs-progress-dot {
+  .cf7m-progress-dot {
     width: 8px;
     height: 8px;
   }
 
-  .dcs-onboarding-content {
+  .cf7m-onboarding-content {
     padding: 20px 18px;
   }
 
-  .dcs-onboarding-footer {
+  .cf7m-onboarding-footer {
     padding: 12px 18px;
     flex-direction: column;
     gap: 8px;
   }
 
-  .dcs-onboarding-footer-right {
+  .cf7m-onboarding-footer-right {
     flex-direction: column;
     margin-left: 0;
     width: 100%;
     gap: 6px;
   }
 
-  .dcs-onboarding-skip {
+  .cf7m-onboarding-skip {
     order: 1;
   }
 
-  .dcs-onboarding-btn {
+  .cf7m-onboarding-btn {
     width: 100%;
     justify-content: center;
 
@@ -863,24 +969,24 @@ $radius-lg: 16px;
     }
   }
 
-  .dcs-onboarding-title {
+  .cf7m-onboarding-title {
     font-size: 17px;
   }
 
-  .dcs-step-features {
-    .dcs-pro-upsell-banner {
+  .cf7m-step-features {
+    .cf7m-pro-upsell-banner {
       flex-direction: column;
       text-align: center;
       gap: 8px;
     }
   }
 
-  .dcs-step-finish {
-    .dcs-finish-actions {
+  .cf7m-step-finish {
+    .cf7m-finish-actions {
       flex-direction: column;
     }
 
-    .dcs-finish-btn {
+    .cf7m-finish-btn {
       width: 100%;
       justify-content: center;
     }
@@ -891,7 +997,7 @@ $radius-lg: 16px;
 // Rebrand Announcement Screen
 // ==========================================
 
-.dcs-rebrand-screen {
+.cf7m-rebrand-screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -905,7 +1011,7 @@ $radius-lg: 16px;
   z-index: 999999;
 }
 
-.dcs-rebrand-card {
+.cf7m-rebrand-card {
   position: relative;
   width: 100%;
   max-width: 420px;
@@ -918,7 +1024,7 @@ $radius-lg: 16px;
   overflow: visible;
 }
 
-.dcs-rebrand-close {
+.cf7m-rebrand-close {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -942,14 +1048,14 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-rebrand-header {
+.cf7m-rebrand-header {
   position: relative;
   padding: 40px 32px 24px;
   text-align: center;
   background: linear-gradient(180deg, rgba($primary-color, 0.04) 0%, transparent 100%);
 }
 
-.dcs-rebrand-glow {
+.cf7m-rebrand-glow {
   position: absolute;
   top: -60px;
   left: 50%;
@@ -960,7 +1066,7 @@ $radius-lg: 16px;
   pointer-events: none;
 }
 
-.dcs-rebrand-logo {
+.cf7m-rebrand-logo {
   position: relative;
   display: inline-flex;
   
@@ -969,16 +1075,16 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-rebrand-body {
+.cf7m-rebrand-body {
   padding: 0 32px 32px;
 }
 
-.dcs-rebrand-intro {
+.cf7m-rebrand-intro {
   text-align: center;
   margin-bottom: 24px;
 }
 
-.dcs-rebrand-eyebrow {
+.cf7m-rebrand-eyebrow {
   display: block;
   font-size: 13px;
   font-weight: 500;
@@ -987,19 +1093,19 @@ $radius-lg: 16px;
   letter-spacing: 0.02em;
 }
 
-.dcs-rebrand-title {
+.cf7m-rebrand-title {
   font-size: 32px;
   line-height: 1;
   font-weight: 700;
   margin: 0 0 8px;
-  background: linear-gradient(135deg, $primary-color 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, $primary-color 0%, #4f5fd9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.02em;
 }
 
-.dcs-rebrand-tagline {
+.cf7m-rebrand-tagline {
   font-size: 14px;
   color: $body-color;
   margin: 0;
@@ -1007,7 +1113,7 @@ $radius-lg: 16px;
   line-height: 1.5;
 }
 
-.dcs-rebrand-divider {
+.cf7m-rebrand-divider {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1031,14 +1137,14 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-rebrand-changes {
+.cf7m-rebrand-changes {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 24px;
 }
 
-.dcs-rebrand-change {
+.cf7m-rebrand-change {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -1052,7 +1158,7 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-rebrand-change-icon {
+.cf7m-rebrand-change-icon {
   flex-shrink: 0;
   width: 28px;
   height: 28px;
@@ -1069,7 +1175,7 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-rebrand-change-text {
+.cf7m-rebrand-change-text {
   flex: 1;
   min-width: 0;
 
@@ -1090,7 +1196,7 @@ $radius-lg: 16px;
   }
 }
 
-.dcs-rebrand-cta {
+.cf7m-rebrand-cta {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1125,7 +1231,7 @@ $radius-lg: 16px;
 }
 
 // Close button for rebrand modal
-.dcs-onboarding-close {
+.cf7m-onboarding-close {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -1148,31 +1254,31 @@ $radius-lg: 16px;
 }
 
 @media (max-width: 480px) {
-  .dcs-rebrand-screen {
+  .cf7m-rebrand-screen {
     padding: 16px;
   }
 
-  .dcs-rebrand-card {
+  .cf7m-rebrand-card {
     border-radius: 16px;
   }
 
-  .dcs-rebrand-header {
+  .cf7m-rebrand-header {
     padding: 32px 24px 20px;
   }
 
-  .dcs-rebrand-body {
+  .cf7m-rebrand-body {
     padding: 0 24px 24px;
   }
 
-  .dcs-rebrand-title {
+  .cf7m-rebrand-title {
     font-size: 28px;
   }
 
-  .dcs-rebrand-change {
+  .cf7m-rebrand-change {
     padding: 10px 12px;
   }
 
-  .dcs-rebrand-change-icon {
+  .cf7m-rebrand-change-icon {
     width: 24px;
     height: 24px;
 

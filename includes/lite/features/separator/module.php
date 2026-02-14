@@ -3,21 +3,21 @@
  * Separator Module – horizontal divider in CF7 forms.
  * Supports: [cf7m-separator] or [cf7m-separator style:dashed color:#ccc]
  *
- * @package CF7_Mate\Features\Separator
+ * @package CF7_Mate\Lite\Features\Separator
  * @since 3.0.0
  */
 
-namespace CF7_Mate\Features\Separator;
+namespace CF7_Mate\Lite\Features\Separator;
 
-use CF7_Mate\Pro\Pro_Feature_Base;
-use CF7_Mate\Pro\Traits\Shortcode_Atts_Trait;
-use CF7_Mate\Pro\Traits\Singleton;
+use CF7_Mate\Lite\Feature_Base;
+use CF7_Mate\Lite\Traits\Shortcode_Atts_Trait;
+use CF7_Mate\Lite\Traits\Singleton;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class Separator extends Pro_Feature_Base
+class Separator extends Feature_Base
 {
     use Shortcode_Atts_Trait;
     use Singleton;

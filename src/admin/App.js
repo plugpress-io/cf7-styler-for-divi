@@ -17,6 +17,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { ModulesPage } from './pages/ModulesPage';
 import { AISettingsPage } from './pages/AISettingsPage';
 import { EntriesPage } from './pages/EntriesPage';
+import { FreeVsProPage } from './pages/FreeVsProPage';
 
 export function App() {
 	const [features, setFeatures] = useState({
@@ -35,6 +36,7 @@ export function App() {
 	const getInitialRoute = () => {
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'features') return { view: 'features', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') return { view: 'ai-settings', entryId: null };
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'free-vs-pro') return { view: 'free-vs-pro', entryId: null };
 		return getViewFromHash();
 	};
 	const [route, setRoute] = useState(getInitialRoute);
@@ -98,6 +100,9 @@ export function App() {
 	const cf7AdminUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.cf7_admin_url ? dcsCF7Styler.cf7_admin_url : 'admin.php?page=wpcf7';
 	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate-dashboard';
 	const modulesUrl = `${dashboardUrl}#/features`;
+	const pricingUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url ? dcsCF7Styler.pricing_url : '';
+	const promoCode = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.promo_code ? dcsCF7Styler.promo_code : '';
+	const promoText = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.promo_text ? dcsCF7Styler.promo_text : '';
 
 	const handleNavigate = (view) => {
 		if (view === 'entries') window.location.hash = '#/entries';
@@ -106,11 +111,11 @@ export function App() {
 
 	if (loading) {
 		return (
-			<div className="dcs-admin-wrapper">
+			<div className="cf7m-admin-wrapper">
 				<Header isPro={false} />
-				<div className="dcs-admin">
-					<div className="dcs-admin__content">
-						<div className="dcs-loading">{__('Loading...', 'cf7-styler-for-divi')}</div>
+				<div className="cf7m-admin">
+					<div className="cf7m-admin__content">
+						<div className="cf7m-loading">{__('Loading...', 'cf7-styler-for-divi')}</div>
 					</div>
 				</div>
 			</div>
@@ -118,10 +123,10 @@ export function App() {
 	}
 
 	return (
-		<div className="dcs-admin-wrapper">
+		<div className="cf7m-admin-wrapper">
 			<Header isPro={isPro} showEntries={showEntries} currentView={currentView} />
-			<div className={`dcs-admin ${currentView === 'entries' ? 'dcs-admin--entries-full' : ''}`}>
-				<div className="dcs-admin__content">
+			<div className={`cf7m-admin ${currentView === 'entries' ? 'cf7m-admin--entries-full' : ''}`}>
+				<div className="cf7m-admin__content">
 					{currentView === 'entries' ? (
 						showEntries ? (
 							<EntriesPage
@@ -129,16 +134,18 @@ export function App() {
 								onBack={entriesOnlyPage ? () => { window.location.href = cf7AdminUrl; } : () => handleNavigate('dashboard')}
 							/>
 						) : (
-							<div className="dcs-card">
-								<p className="dcs-card__desc">{__('Enable Database Entries in Features to view form submissions.', 'cf7-styler-for-divi')}</p>
+							<div className="cf7m-card">
+								<p className="cf7m-card__desc">{__('Enable Database Entries in Features to view form submissions.', 'cf7-styler-for-divi')}</p>
 							</div>
 						)
 					) : currentView === 'features' ? (
 						<ModulesPage features={features} isPro={isPro} onToggle={handleToggle} saving={saving} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} />
 					) : currentView === 'ai-settings' ? (
 						<AISettingsPage />
+					) : currentView === 'free-vs-pro' ? (
+						<FreeVsProPage />
 					) : (
-						<DashboardPage stats={dashboardStats} loading={dashboardStatsLoading} showEntries={showEntries} modulesUrl={modulesUrl} dashboardUrl={dashboardUrl} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} isPro={isPro} />
+						<DashboardPage stats={dashboardStats} loading={dashboardStatsLoading} showEntries={showEntries} modulesUrl={modulesUrl} dashboardUrl={dashboardUrl} pricingUrl={pricingUrl} promoCode={promoCode} promoText={promoText} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} isPro={isPro} />
 					)}
 				</div>
 			</div>

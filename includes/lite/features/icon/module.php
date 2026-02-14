@@ -1,15 +1,22 @@
 <?php
-namespace CF7_Mate\Features\Icon;
+/**
+ * Icon Module – insert icons into CF7 forms.
+ *
+ * @package CF7_Mate\Lite\Features\Icon
+ * @since 3.0.0
+ */
 
-use CF7_Mate\Pro\Pro_Feature_Base;
-use CF7_Mate\Pro\Traits\Shortcode_Atts_Trait;
-use CF7_Mate\Pro\Traits\Singleton;
+namespace CF7_Mate\Lite\Features\Icon;
+
+use CF7_Mate\Lite\Feature_Base;
+use CF7_Mate\Lite\Traits\Shortcode_Atts_Trait;
+use CF7_Mate\Lite\Traits\Singleton;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class Icon extends Pro_Feature_Base
+class Icon extends Feature_Base
 {
     use Shortcode_Atts_Trait;
     use Singleton;

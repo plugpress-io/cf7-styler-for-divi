@@ -6,7 +6,14 @@
  */
 
 export { Button } from './Button';
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
+export {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardContent,
+	CardFooter,
+} from './Card';
 export {
 	Table,
 	TableInner,
@@ -18,3 +25,5 @@ export {
 } from './Table';
 export { Input } from './Input';
 export { Badge } from './Badge';
+export { Tooltip } from './Tooltip';
+export { Tooltip } from './Tooltip';

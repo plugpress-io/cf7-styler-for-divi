@@ -3,21 +3,21 @@
  * Star Rating Module.
  * Processes [cf7m-star] shortcodes in form markup (same pattern as multi-steps).
  *
- * @package CF7_Mate\Features\Star_Rating
+ * @package CF7_Mate\Lite\Features\Star_Rating
  * @since 3.0.0
  */
 
-namespace CF7_Mate\Features\Star_Rating;
+namespace CF7_Mate\Lite\Features\Star_Rating;
 
-use CF7_Mate\Pro\Pro_Feature_Base;
-use CF7_Mate\Pro\Traits\Shortcode_Atts_Trait;
-use CF7_Mate\Pro\Traits\Singleton;
+use CF7_Mate\Lite\Feature_Base;
+use CF7_Mate\Lite\Traits\Shortcode_Atts_Trait;
+use CF7_Mate\Lite\Traits\Singleton;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class Star_Rating extends Pro_Feature_Base
+class Star_Rating extends Feature_Base
 {
     use Shortcode_Atts_Trait;
     use Singleton;
@@ -216,20 +216,20 @@ class Star_Rating extends Pro_Feature_Base
      */
     public function enqueue_assets()
     {
-        if (!Pro_Feature_Base::page_has_cf7_form()) {
+        if (!Feature_Base::page_has_cf7_form()) {
             return;
         }
 
         $version = defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0';
         wp_enqueue_style(
-            'cf7m-pro-forms',
-            CF7M_PLUGIN_URL . 'assets/pro/css/cf7m-pro-forms.css',
+            'cf7m-lite-forms',
+            CF7M_PLUGIN_URL . 'assets/lite/css/cf7m-lite-forms.css',
             [],
             $version
         );
         wp_enqueue_script(
             'cf7m-star-rating',
-            CF7M_PLUGIN_URL . 'assets/pro/js/cf7m-star-rating.js',
+            CF7M_PLUGIN_URL . 'assets/lite/js/cf7m-star-rating.js',
             [],
             $version,
             true

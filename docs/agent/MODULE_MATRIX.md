@@ -110,6 +110,15 @@ includes/modules/CF7Styler/CF7Styler.php
 | `divi_module_library_modules_dependency_tree` | `includes/modules/Modules.php` | D5 module registration |
 | `divi_visual_builder_assets_before_enqueue_scripts` | `includes/assets.php` | D5 VB assets |
 
+## Free vs Pro Features (CF7 Mate)
+
+| Feature | Tier | Loader / Path |
+|---------|------|----------------|
+| Star Rating, Range Slider, Separator, Image, Icon | **Free** | `includes/lite/loader.php`, `includes/lite/features/` |
+| Multi Column, Multi Step, Entries, Phone Number, Heading, Calculator, Conditional, AI Form Generator, Presets | **Pro** | `includes/pro/loader.php`, `includes/pro/features/` |
+
+Assets for free (lite) features: `assets/lite/js/`, `assets/lite/css/cf7m-lite-forms.css`.
+
 ## Notes
 
 - All 3 modules are **standalone** (no parent/child relationships)

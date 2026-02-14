@@ -65,7 +65,7 @@
    - [x] Submenu “Entries” under Divi → `admin.php?page=cf7-mate-dashboard#/entries` (Pro + database_entries only).  
    - [x] Admin app: hash routing; when `#/entries`, render Entries page.  
    - [x] Entries page: table, filters (status, form), search, view entry (modal), mark read/spam, delete, bulk delete, export CSV.  
-   - [x] Reuse existing dashboard styles (dcs-admin, dcs-card).
+   - [x] Reuse existing dashboard styles (cf7m-admin, cf7m-card).
 
 5. **Optional**  
    - [ ] Central submission handler class (like lean-forms) and `do_action('cf7m_submission_captured', $payload, $cf7, $submission)`.  

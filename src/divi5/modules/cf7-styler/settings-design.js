@@ -1,5 +1,5 @@
 /**
- * CF7 Styler Module - Design Settings.
+ * CF7 Styler for Divi - Design Settings.
  *
  * Renders design groups (Common, Form Header, Form Text, Fields,
  * Radio & Checkbox, Button, Message) and attaches visibility
@@ -16,36 +16,37 @@ import { isVisibleFields } from './callbacks';
 const { ModuleGroups } = window?.divi?.module ?? {};
 
 const DESIGN_GROUPS = [
-  'common',
-  'form_header',
-  'form_text',
-  'form_field',
-  'radio_checkbox',
-  'submit_button',
-  'suc_err_msg',
+	'common',
+	'form_header',
+	'form_text',
+	'form_field',
+	'radio_checkbox',
+	'submit_button',
+	'suc_err_msg',
 ];
 
 export const SettingsDesign = (props) => {
-  const groupConfiguration = props?.groupConfiguration ?? props?.groups ?? {};
+	const groupConfiguration = props?.groupConfiguration ?? props?.groups ?? {};
 
-  if (!ModuleGroups) {
-    return null;
-  }
+	if (!ModuleGroups) {
+		return null;
+	}
 
-  try {
-    DESIGN_GROUPS.forEach((groupSlug) => {
-      const fields = groupConfiguration?.[groupSlug]?.component?.props?.fields;
-      if (fields && typeof fields === 'object') {
-        Object.keys(fields).forEach((fieldName) => {
-          set(fields, [fieldName, 'visible'], isVisibleFields);
-        });
-      }
-    });
-  } catch (err) {
-    if (typeof console !== 'undefined' && console.error) {
-      console.error('CF7 Styler SettingsDesign error:', err);
-    }
-  }
+	try {
+		DESIGN_GROUPS.forEach((groupSlug) => {
+			const fields =
+				groupConfiguration?.[groupSlug]?.component?.props?.fields;
+			if (fields && typeof fields === 'object') {
+				Object.keys(fields).forEach((fieldName) => {
+					set(fields, [fieldName, 'visible'], isVisibleFields);
+				});
+			}
+		});
+	} catch (err) {
+		if (typeof console !== 'undefined' && console.error) {
+			console.error('CF7 Styler SettingsDesign error:', err);
+		}
+	}
 
-  return <ModuleGroups groups={groupConfiguration} />;
+	return <ModuleGroups groups={groupConfiguration} />;
 };

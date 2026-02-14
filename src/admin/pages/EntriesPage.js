@@ -159,84 +159,84 @@ export function EntriesPage({ entryId, onBack }) {
 	// Single entry view
 	if (entryId) {
 		return (
-			<div className="dcs-entries-page dcs-entries-single">
-				<nav className="dcs-entries-breadcrumb" aria-label={__('Breadcrumb', 'cf7-styler-for-divi')}>
-					<a href="#/entries" className="dcs-entries-breadcrumb__link">{__('Entries', 'cf7-styler-for-divi')}</a>
-					<span className="dcs-entries-breadcrumb__sep" aria-hidden="true">/</span>
-					<span className="dcs-entries-breadcrumb__current">{__('Entry', 'cf7-styler-for-divi')} #{entryId}</span>
+			<div className="cf7m-entries-page cf7m-entries-single">
+				<nav className="cf7m-entries-breadcrumb" aria-label={__('Breadcrumb', 'cf7-styler-for-divi')}>
+					<a href="#/entries" className="cf7m-entries-breadcrumb__link">{__('Entries', 'cf7-styler-for-divi')}</a>
+					<span className="cf7m-entries-breadcrumb__sep" aria-hidden="true">/</span>
+					<span className="cf7m-entries-breadcrumb__current">{__('Entry', 'cf7-styler-for-divi')} #{entryId}</span>
 				</nav>
 				{singleLoading ? (
-					<div className="dcs-entries-card"><p className="dcs-entries-empty">{__('Loading…', 'cf7-styler-for-divi')}</p></div>
+					<div className="cf7m-entries-card"><p className="cf7m-entries-empty">{__('Loading…', 'cf7-styler-for-divi')}</p></div>
 				) : !singleEntry ? (
-					<div className="dcs-entries-card"><p className="dcs-entries-empty">{__('Entry not found.', 'cf7-styler-for-divi')}</p></div>
+					<div className="cf7m-entries-card"><p className="cf7m-entries-empty">{__('Entry not found.', 'cf7-styler-for-divi')}</p></div>
 				) : (
-					<div className="dcs-entries-single__grid">
-						<div className="dcs-entries-single__main">
-							<div className="dcs-entries-card dcs-entry-card">
-								<div className="dcs-entry-card__header">
-									<h2 className="dcs-entry-card__title">{__('Entry Data', 'cf7-styler-for-divi')}</h2>
+					<div className="cf7m-entries-single__grid">
+						<div className="cf7m-entries-single__main">
+							<div className="cf7m-entries-card cf7m-entry-card">
+								<div className="cf7m-entry-card__header">
+									<h2 className="cf7m-entry-card__title">{__('Entry Data', 'cf7-styler-for-divi')}</h2>
 								</div>
-								<div className="dcs-entry-card__body">
+								<div className="cf7m-entry-card__body">
 									{Object.entries(singleEntry.data || {}).map(([key, value]) => (
-										<div key={key} className="dcs-entry-data-row">
-											<span className="dcs-entry-data-row__label">{key}</span>
-											<span className="dcs-entry-data-row__value">{typeof value === 'object' ? JSON.stringify(value) : String(value)}</span>
+										<div key={key} className="cf7m-entry-data-row">
+											<span className="cf7m-entry-data-row__label">{key}</span>
+											<span className="cf7m-entry-data-row__value">{typeof value === 'object' ? JSON.stringify(value) : String(value)}</span>
 										</div>
 									))}
 									{(!singleEntry.data || Object.keys(singleEntry.data).length === 0) && (
-										<p className="dcs-entries-empty">{__('No field data.', 'cf7-styler-for-divi')}</p>
+										<p className="cf7m-entries-empty">{__('No field data.', 'cf7-styler-for-divi')}</p>
 									)}
 								</div>
 							</div>
-							<div className="dcs-entries-card dcs-entry-card">
-								<div className="dcs-entry-card__header">
-									<h2 className="dcs-entry-card__title">{__('Submission Info', 'cf7-styler-for-divi')}</h2>
+							<div className="cf7m-entries-card cf7m-entry-card">
+								<div className="cf7m-entry-card__header">
+									<h2 className="cf7m-entry-card__title">{__('Submission Info', 'cf7-styler-for-divi')}</h2>
 								</div>
-								<div className="dcs-entry-card__body">
+								<div className="cf7m-entry-card__body">
 									{(() => {
 										const { browser, device } = parseUserAgent(singleEntry.user_agent);
 										return (
 											<>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('Entry', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">#{singleEntry.id}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('Entry', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">#{singleEntry.id}</span>
 												</div>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('Form Name', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">{singleEntry.form_title || '—'}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('Form Name', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">{singleEntry.form_title || '—'}</span>
 												</div>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('User IP', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">{singleEntry.ip || '—'}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('User IP', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">{singleEntry.ip || '—'}</span>
 												</div>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('Browser', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">{browser}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('Browser', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">{browser}</span>
 												</div>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('Device', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">{device}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('Device', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">{device}</span>
 												</div>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('Date', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">{singleEntry.created || '—'}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('Date', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">{singleEntry.created || '—'}</span>
 												</div>
-												<div className="dcs-entry-data-row">
-													<span className="dcs-entry-data-row__label">{__('Status', 'cf7-styler-for-divi')}</span>
-													<span className="dcs-entry-data-row__value">
-														<span className={`dcs-entry-status-badge dcs-entry-status-badge--${singleEntry.status}`}>{singleEntry.status === 'trash' ? __('Trash', 'cf7-styler-for-divi') : singleEntry.status}</span>
+												<div className="cf7m-entry-data-row">
+													<span className="cf7m-entry-data-row__label">{__('Status', 'cf7-styler-for-divi')}</span>
+													<span className="cf7m-entry-data-row__value">
+														<span className={`cf7m-entry-status-badge cf7m-entry-status-badge--${singleEntry.status}`}>{singleEntry.status === 'trash' ? __('Trash', 'cf7-styler-for-divi') : singleEntry.status}</span>
 														{singleEntry.status === 'read' && (
-															<button type="button" className="dcs-entries-link" onClick={() => updateStatus(singleEntry.id, 'new')}>
+															<button type="button" className="cf7m-entries-link" onClick={() => updateStatus(singleEntry.id, 'new')}>
 																{__('Mark as unread', 'cf7-styler-for-divi')}
 															</button>
 														)}
 														{singleEntry.status === 'new' && (
-															<button type="button" className="dcs-entries-link" onClick={() => updateStatus(singleEntry.id, 'read')}>
+															<button type="button" className="cf7m-entries-link" onClick={() => updateStatus(singleEntry.id, 'read')}>
 																{__('Mark as read', 'cf7-styler-for-divi')}
 															</button>
 														)}
 														{singleEntry.status === 'trash' && (
-															<button type="button" className="dcs-entries-link" onClick={() => updateStatus(singleEntry.id, 'read')}>
+															<button type="button" className="cf7m-entries-link" onClick={() => updateStatus(singleEntry.id, 'read')}>
 																{__('Restore', 'cf7-styler-for-divi')}
 															</button>
 														)}
@@ -248,25 +248,25 @@ export function EntriesPage({ entryId, onBack }) {
 								</div>
 							</div>
 						</div>
-						<aside className="dcs-entries-single__sidebar">
-							<div className="dcs-entries-card dcs-entry-card">
-								<div className="dcs-entry-card__header">
-									<h2 className="dcs-entry-card__title">{__('Notes', 'cf7-styler-for-divi')}</h2>
-									<button type="button" className="dcs-entry-card__action" disabled aria-hidden="true">+ {__('Add Note', 'cf7-styler-for-divi')}</button>
+						<aside className="cf7m-entries-single__sidebar">
+							<div className="cf7m-entries-card cf7m-entry-card">
+								<div className="cf7m-entry-card__header">
+									<h2 className="cf7m-entry-card__title">{__('Notes', 'cf7-styler-for-divi')}</h2>
+									<button type="button" className="cf7m-entry-card__action" disabled aria-hidden="true">+ {__('Add Note', 'cf7-styler-for-divi')}</button>
 								</div>
-								<div className="dcs-entry-card__body">
-									<p className="dcs-entries-muted">{__('Internal notes for this entry (coming soon).', 'cf7-styler-for-divi')}</p>
+								<div className="cf7m-entry-card__body">
+									<p className="cf7m-entries-muted">{__('Internal notes for this entry (coming soon).', 'cf7-styler-for-divi')}</p>
 								</div>
 							</div>
-							<div className="dcs-entries-single__actions">
-								<a href="#/entries" className="dcs-entries-btn dcs-entries-btn--secondary">{__('← Back to list', 'cf7-styler-for-divi')}</a>
+							<div className="cf7m-entries-single__actions">
+								<a href="#/entries" className="cf7m-entries-btn cf7m-entries-btn--secondary">{__('← Back to list', 'cf7-styler-for-divi')}</a>
 								{singleEntry.status === 'trash' ? (
 									<>
-										<button type="button" className="dcs-entries-btn dcs-entries-btn--secondary" onClick={() => updateStatus(singleEntry.id, 'read')}>{__('Restore', 'cf7-styler-for-divi')}</button>
-										<button type="button" className="dcs-entries-btn dcs-entries-btn--danger" onClick={() => deletePermanently(singleEntry.id)}>{__('Delete permanently', 'cf7-styler-for-divi')}</button>
+										<button type="button" className="cf7m-entries-btn cf7m-entries-btn--secondary" onClick={() => updateStatus(singleEntry.id, 'read')}>{__('Restore', 'cf7-styler-for-divi')}</button>
+										<button type="button" className="cf7m-entries-btn cf7m-entries-btn--danger" onClick={() => deletePermanently(singleEntry.id)}>{__('Delete permanently', 'cf7-styler-for-divi')}</button>
 									</>
 								) : (
-									<button type="button" className="dcs-entries-btn dcs-entries-btn--secondary" onClick={() => moveToTrash(singleEntry.id)}>{__('Move to trash', 'cf7-styler-for-divi')}</button>
+									<button type="button" className="cf7m-entries-btn cf7m-entries-btn--secondary" onClick={() => moveToTrash(singleEntry.id)}>{__('Move to trash', 'cf7-styler-for-divi')}</button>
 								)}
 							</div>
 						</aside>

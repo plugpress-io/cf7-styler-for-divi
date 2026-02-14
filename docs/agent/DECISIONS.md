@@ -56,21 +56,21 @@
 
 ### CSS Class Naming: Dual Prefix Strategy
 
-**Decision:** Support both legacy `dipe-cf7*` and new `dcs-cf7*` prefixes
+**Decision:** Support both legacy `dipe-cf7*` and new `cf7m-cf7*` prefixes (branding)
 
-**Context:** Migration from older `dipe-` prefix to cleaner `dcs-` prefix while maintaining backwards compatibility.
+**Context:** Migration from older `dipe-` prefix to cleaner `cf7m-` prefix while maintaining backwards compatibility.
 
 **Implementation:** (from `includes/modules/CF7Styler/CF7Styler.php`)
 ```php
 $container_classes = sprintf(
-    'dipe-cf7-container dipe-cf7-button-%1$s dcs-cf7-container dcs-cf7-button-%1$s',
+    'dipe-cf7-container dipe-cf7-button-%1$s cf7m-cf7-container cf7m-cf7-button-%1$s',
     esc_attr($button_class)
 );
 ```
 
 **Rationale:**
 - Existing users have custom CSS targeting `dipe-` classes
-- New prefix `dcs-` is cleaner (Divi CF7 Styler)
+- New prefix `cf7m-` is cleaner (CF7 Mate branding)
 - Dual classes allow gradual migration
 
 **Trade-offs:**

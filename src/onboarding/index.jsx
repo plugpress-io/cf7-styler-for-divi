@@ -141,7 +141,7 @@ const Onboarding = () => {
 };
 
 domReady(() => {
-	const container = document.getElementById('dcs-onboarding-root');
+	const container = document.getElementById('cf7m-onboarding-root');
 	if (container) {
 		render(<Onboarding />, container);
 	}

@@ -78,7 +78,7 @@ class AI_Settings
 		}
 
 		wp_enqueue_style(
-			'dcs-admin',
+			'cf7m-admin',
 			CF7M_PLUGIN_URL . 'dist/css/admin.css',
 			array(),
 			CF7M_VERSION
@@ -86,7 +86,7 @@ class AI_Settings
 		wp_enqueue_style(
 			'cf7m-ai-settings',
 			CF7M_PLUGIN_URL . 'assets/pro/css/cf7m-ai-settings.css',
-			array('dcs-admin'),
+			array('cf7m-admin'),
 			CF7M_VERSION
 		);
 	}

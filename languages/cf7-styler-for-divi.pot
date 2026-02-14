@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: DiviPeople <support@divipeople.com>\n"
-"POT-Creation-Date: 2026-02-01 23:14+0000\n"
+"POT-Creation-Date: 2026-02-03 23:46+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -27,29 +27,25 @@ msgstr ""
 msgid "Form not found."
 msgstr ""
 
-#: includes/rest-api.php:381
+#: includes/rest-api.php:382
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:399
+#: includes/rest-api.php:400
 msgid "Select a form"
 msgstr ""
 
 #. translators: %d: form ID
-#: includes/rest-api.php:408
+#: includes/rest-api.php:409
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:451
+#: includes/rest-api.php:452
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:69, includes/admin/admin.php:70, includes/admin/admin.php:60, includes/admin/admin.php:61, includes/notices/review.php:129
+#: includes/admin/admin.php:69, includes/admin/admin.php:70, includes/notices/review.php:129
 msgid "CF7 Mate"
-msgstr ""
-
-#: includes/admin/admin.php:82, includes/admin/admin.php:83
-msgid "Features"
 msgstr ""
 
 #: includes/notices/review.php:122
@@ -75,6 +71,166 @@ msgstr ""
 
 #: includes/modules/CF7Styler/CF7Styler.php:213
 msgid "Please select a Contact Form 7 form."
+msgstr ""
+
+#: includes/lite/features/icon/module.php:134
+msgid "icon"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:145
+msgid "Icon"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:148
+msgid "Icon type"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:150
+msgid "Dashicon (browse below)"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:152
+msgid "Custom image (upload)"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:156
+msgid "Icon browser"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:158
+msgid "Choose an icon"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:163
+msgid "Click an icon to select it."
+msgstr ""
+
+#: includes/lite/features/icon/module.php:168, includes/lite/features/image/module.php:128
+msgid "Image URL"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:171, includes/lite/features/image/module.php:131
+msgid "Select Image"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:175
+msgid "Size (px)"
+msgstr ""
+
+#: includes/lite/features/image/module.php:114
+msgid "image"
+msgstr ""
+
+#: includes/lite/features/image/module.php:124
+msgid "Image"
+msgstr ""
+
+#: includes/lite/features/image/module.php:132
+msgid "Enter a URL or use \"Select Image\" to choose from the media library."
+msgstr ""
+
+#: includes/lite/features/image/module.php:137
+msgid "Alt text"
+msgstr ""
+
+#: includes/lite/features/image/module.php:138
+msgid "Describe the image"
+msgstr ""
+
+#: includes/lite/features/image/module.php:141, includes/pro/features/multi-column/module.php:238
+msgid "Width"
+msgstr ""
+
+#: includes/lite/features/image/module.php:145
+msgid "Height"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:174
+msgid "range slider"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:191
+msgid "Range Slider"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:194, includes/lite/features/star-rating/module.php:183, includes/pro/features/calculator/module.php:383, includes/pro/features/phone-number/module.php:220
+msgid "Field type"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:195, includes/lite/features/star-rating/module.php:184, includes/pro/features/calculator/module.php:384, includes/pro/features/phone-number/module.php:221
+msgid "Required"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:198, includes/lite/features/star-rating/module.php:187, includes/pro/features/calculator/module.php:387, includes/pro/features/phone-number/module.php:224
+msgid "Name"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:202, includes/pro/features/calculator/module.php:399
+msgid "Min"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:206, includes/pro/features/calculator/module.php:403
+msgid "Max"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:210, includes/pro/features/calculator/module.php:407
+msgid "Step"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:214, includes/lite/features/star-rating/module.php:195, includes/pro/features/calculator/module.php:395
+msgid "Default Value"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:218, includes/pro/features/calculator/module.php:411, includes/pro/features/calculator/module.php:502
+msgid "Prefix"
+msgstr ""
+
+#: includes/lite/features/range-slider/module.php:222, includes/pro/features/calculator/module.php:415, includes/pro/features/calculator/module.php:506
+msgid "Suffix"
+msgstr ""
+
+#: includes/lite/features/separator/module.php:123
+msgid "separator"
+msgstr ""
+
+#: includes/lite/features/separator/module.php:133
+msgid "Separator"
+msgstr ""
+
+#: includes/lite/features/separator/module.php:136, includes/pro/features/presets/module.php:143
+msgid "Style"
+msgstr ""
+
+#: includes/lite/features/separator/module.php:148, includes/pro/features/heading/module.php:220
+msgid "Color"
+msgstr ""
+
+#: includes/lite/features/separator/module.php:152
+msgid "Margin (px)"
+msgstr ""
+
+#: includes/lite/features/star-rating/module.php:116
+msgid "Star rating"
+msgstr ""
+
+#: includes/lite/features/star-rating/module.php:130
+msgid "Rate %d star"
+msgstr ""
+
+#: includes/lite/features/star-rating/module.php:163
+msgid "star rating"
+msgstr ""
+
+#: includes/lite/features/star-rating/module.php:180
+msgid "Star Rating"
+msgstr ""
+
+#: includes/lite/features/star-rating/module.php:191
+msgid "Max Stars"
+msgstr ""
+
+#: includes/lite/features/star-rating/module.php:199
+msgid "Star Color"
 msgstr ""
 
 #: includes/modules/divi-4/CF7Styler/CF7Styler.php:17
@@ -858,42 +1014,6 @@ msgstr ""
 msgid "Number Field (Calculator)"
 msgstr ""
 
-#: includes/pro/features/calculator/module.php:383, includes/pro/features/phone-number/module.php:220, includes/pro/features/range-slider/module.php:194, includes/pro/features/star-rating/module.php:183
-msgid "Field type"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:384, includes/pro/features/phone-number/module.php:221, includes/pro/features/range-slider/module.php:195, includes/pro/features/star-rating/module.php:184
-msgid "Required"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:387, includes/pro/features/phone-number/module.php:224, includes/pro/features/range-slider/module.php:198, includes/pro/features/star-rating/module.php:187
-msgid "Name"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:395, includes/pro/features/range-slider/module.php:214, includes/pro/features/star-rating/module.php:195
-msgid "Default Value"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:399, includes/pro/features/range-slider/module.php:202
-msgid "Min"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:403, includes/pro/features/range-slider/module.php:206
-msgid "Max"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:407, includes/pro/features/range-slider/module.php:210
-msgid "Step"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:411, includes/pro/features/calculator/module.php:502, includes/pro/features/range-slider/module.php:218
-msgid "Prefix"
-msgstr ""
-
-#: includes/pro/features/calculator/module.php:415, includes/pro/features/calculator/module.php:506, includes/pro/features/range-slider/module.php:222
-msgid "Suffix"
-msgstr ""
-
 #: includes/pro/features/calculator/module.php:442
 msgid "Calculator Formula"
 msgstr ""
@@ -1041,7 +1161,7 @@ msgstr[1] ""
 msgid "No entries to export."
 msgstr ""
 
-#: includes/pro/features/entries/cpt.php:28, includes/pro/features/entries/cpt.php:30, includes/pro/features/entries/module.php:66
+#: includes/pro/features/entries/cpt.php:28, includes/pro/features/entries/cpt.php:30
 msgid "Form Entries"
 msgstr ""
 
@@ -1085,10 +1205,6 @@ msgstr ""
 msgid "Submitter user agent"
 msgstr ""
 
-#: includes/pro/features/entries/module.php:67
-msgid "Entries"
-msgstr ""
-
 #. translators: 1: form title, 2: date
 #: includes/pro/features/entries/save.php:51
 msgid "%1$s — %2$s"
@@ -1104,82 +1220,6 @@ msgstr ""
 
 #: includes/pro/features/heading/module.php:210
 msgid "Tag"
-msgstr ""
-
-#: includes/pro/features/heading/module.php:220, includes/pro/features/separator/module.php:148
-msgid "Color"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:127
-msgid "icon"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:138
-msgid "Icon"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:141
-msgid "Icon type"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:143
-msgid "Dashicon (browse below)"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:145
-msgid "Custom image (upload)"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:149
-msgid "Icon browser"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:151
-msgid "Choose an icon"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:156
-msgid "Click an icon to select it."
-msgstr ""
-
-#: includes/pro/features/icon/module.php:161, includes/pro/features/image/module.php:129
-msgid "Image URL"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:164, includes/pro/features/image/module.php:132
-msgid "Select Image"
-msgstr ""
-
-#: includes/pro/features/icon/module.php:168
-msgid "Size (px)"
-msgstr ""
-
-#: includes/pro/features/image/module.php:115
-msgid "image"
-msgstr ""
-
-#: includes/pro/features/image/module.php:125
-msgid "Image"
-msgstr ""
-
-#: includes/pro/features/image/module.php:133
-msgid "Enter a URL or use \"Select Image\" to choose from the media library."
-msgstr ""
-
-#: includes/pro/features/image/module.php:138
-msgid "Alt text"
-msgstr ""
-
-#: includes/pro/features/image/module.php:139
-msgid "Describe the image"
-msgstr ""
-
-#: includes/pro/features/image/module.php:142, includes/pro/features/multi-column/module.php:238
-msgid "Width"
-msgstr ""
-
-#: includes/pro/features/image/module.php:146
-msgid "Height"
 msgstr ""
 
 #: includes/pro/features/multi-column/module.php:189
@@ -1322,54 +1362,6 @@ msgstr ""
 msgid "Form Design Preset"
 msgstr ""
 
-#: includes/pro/features/presets/module.php:143, includes/pro/features/separator/module.php:136
-msgid "Style"
-msgstr ""
-
 #: includes/pro/features/presets/module.php:154
 msgid "Wrap your form fields in this shortcode to apply a preset style. Put all fields inside the opening and closing tags."
-msgstr ""
-
-#: includes/pro/features/range-slider/module.php:174
-msgid "range slider"
-msgstr ""
-
-#: includes/pro/features/range-slider/module.php:191
-msgid "Range Slider"
-msgstr ""
-
-#: includes/pro/features/separator/module.php:123
-msgid "separator"
-msgstr ""
-
-#: includes/pro/features/separator/module.php:133
-msgid "Separator"
-msgstr ""
-
-#: includes/pro/features/separator/module.php:152
-msgid "Margin (px)"
-msgstr ""
-
-#: includes/pro/features/star-rating/module.php:116
-msgid "Star rating"
-msgstr ""
-
-#: includes/pro/features/star-rating/module.php:130
-msgid "Rate %d star"
-msgstr ""
-
-#: includes/pro/features/star-rating/module.php:163
-msgid "star rating"
-msgstr ""
-
-#: includes/pro/features/star-rating/module.php:180
-msgid "Star Rating"
-msgstr ""
-
-#: includes/pro/features/star-rating/module.php:191
-msgid "Max Stars"
-msgstr ""
-
-#: includes/pro/features/star-rating/module.php:199
-msgid "Star Color"
 msgstr ""

@@ -42,6 +42,30 @@
   margin-bottom: 0;
 }
 
+/* Multi-column inside preset: clean spacing so rows/columns separate clearly */
+.cf7-mate-preset .cf7m-pro-row {
+  margin-bottom: var(--cf7m-field-margin);
+}
+
+.cf7-mate-preset .cf7m-pro-row:last-child {
+  margin-bottom: 0;
+}
+
+.cf7-mate-preset .cf7m-pro-col {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.cf7-mate-preset .cf7m-pro-col .wpcf7-form-control-wrap,
+.cf7-mate-preset .cf7m-pro-col > p {
+  margin-bottom: var(--cf7m-field-margin);
+}
+
+.cf7-mate-preset .cf7m-pro-col .wpcf7-form-control-wrap:last-child,
+.cf7-mate-preset .cf7m-pro-col > p:last-child {
+  margin-bottom: 0;
+}
+
 /* Labels: block, line-height, font-size */
 .cf7-mate-preset label {
   display: block;

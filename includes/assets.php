@@ -6,7 +6,7 @@ namespace CF7_Mate;
  * Frontend and builder asset enqueue.
  *
  * Free bundle (builder4.css, frontend4.css) is enqueued only when the page has
- * a CF7 form (shortcode or Divi CF7 Styler module). Pro-only assets (tag-admin
+ * a CF7 form (shortcode or Divi CF7 Styler for Divi). Pro-only assets (tag-admin
  * CSS, multi-column, multi-steps, star-rating, range-slider, icon dashicons) are
  * enqueued only when Pro is active and, where applicable, only on pages with a CF7 form.
  */

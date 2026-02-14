@@ -44,14 +44,14 @@ class Admin_Review_Notice
         }
 
         wp_enqueue_script(
-            'dcs-admin-notice',
+            'cf7m-admin-notice',
             CF7M_PLUGIN_URL . 'dist/js/admin-notice.js',
             ['jquery'],
             CF7M_VERSION,
             true
         );
 
-        wp_localize_script('dcs-admin-notice', 'dcs_admin_notice', [
+        wp_localize_script('cf7m-admin-notice', 'dcs_admin_notice', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('dcs_dismiss_notice'),
             'notice_id' => self::NOTICE_ID
@@ -109,19 +109,19 @@ class Admin_Review_Notice
     private function render_notice()
     {
 ?>
-        <div id="<?php echo esc_attr(self::NOTICE_ID); ?>" class="dcs-admin-notice dcs-review-notice notice is-dismissible">
-            <div class="dcs-notice-inner">
-                <div class="dcs-notice-icon">
+        <div id="<?php echo esc_attr(self::NOTICE_ID); ?>" class="cf7m-admin-notice cf7m-review-notice notice is-dismissible">
+            <div class="cf7m-notice-inner">
+                <div class="cf7m-notice-icon">
                     <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="24" fill="#5733FF" fill-opacity="0.1"/>
-                        <path d="M24 16l2.472 7.61h8.004l-6.476 4.708 2.472 7.61L24 31.22l-6.472 4.708 2.472-7.61-6.476-4.708h8.004L24 16z" fill="#5733FF"/>
+                        <circle cx="24" cy="24" r="24" fill="#3044D7" fill-opacity="0.1"/>
+                        <path d="M24 16l2.472 7.61h8.004l-6.476 4.708 2.472 7.61L24 31.22l-6.472 4.708 2.472-7.61-6.476-4.708h8.004L24 16z" fill="#3044D7"/>
                     </svg>
                 </div>
-                <div class="dcs-notice-content">
-                    <h3 class="dcs-notice-title">
+                <div class="cf7m-notice-content">
+                    <h3 class="cf7m-notice-title">
                         <?php esc_html_e('🎉 You\'re creating amazing forms!', 'cf7-styler-for-divi'); ?>
                     </h3>
-                    <p class="dcs-notice-description">
+                    <p class="cf7m-notice-description">
                         <?php 
                         printf(
                             /* translators: %s: plugin name */
@@ -130,14 +130,14 @@ class Admin_Review_Notice
                         );
                         ?>
                     </p>
-                    <div class="dcs-notice-actions">
-                        <a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post" target="_blank" class="dcs-review-button dcs-review-button--primary" data-action="review">
+                    <div class="cf7m-notice-actions">
+                        <a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post" target="_blank" class="cf7m-review-button cf7m-review-button--primary" data-action="review">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
                             </svg>
                             <?php esc_html_e('Sure! I\'ll leave a review', 'cf7-styler-for-divi'); ?>
                         </a>
-                        <button type="button" class="dcs-review-button dcs-review-button--secondary" data-action="dismiss">
+                        <button type="button" class="cf7m-review-button cf7m-review-button--secondary" data-action="dismiss">
                             <?php esc_html_e('Maybe later', 'cf7-styler-for-divi'); ?>
                         </button>
                     </div>
@@ -146,7 +146,7 @@ class Admin_Review_Notice
         </div>
 
         <style>
-            .dcs-review-notice {
+            .cf7m-review-notice {
                 position: relative !important;
                 padding: 0 !important;
                 border: none !important;
@@ -155,10 +155,10 @@ class Admin_Review_Notice
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
                 margin: 16px 20px 16px 0 !important;
                 overflow: hidden !important;
-                border-left: 4px solid #5733FF !important;
+                border-left: 4px solid #3044D7 !important;
             }
 
-            .dcs-review-notice::before {
+            .cf7m-review-notice::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -169,7 +169,7 @@ class Admin_Review_Notice
                 pointer-events: none;
             }
 
-            .dcs-review-notice .notice-dismiss {
+            .cf7m-review-notice .notice-dismiss {
                 top: 16px !important;
                 right: 16px !important;
                 width: 28px !important;
@@ -180,18 +180,18 @@ class Admin_Review_Notice
                 z-index: 10 !important;
             }
 
-            .dcs-review-notice .notice-dismiss:hover {
+            .cf7m-review-notice .notice-dismiss:hover {
                 background: rgba(87, 51, 255, 0.1) !important;
-                color: #5733FF !important;
+                color: #3044D7 !important;
             }
 
-            .dcs-review-notice .notice-dismiss::before {
+            .cf7m-review-notice .notice-dismiss::before {
                 width: 28px !important;
                 height: 28px !important;
                 font-size: 18px !important;
             }
 
-            .dcs-notice-inner {
+            .cf7m-notice-inner {
                 display: flex;
                 gap: 20px;
                 padding: 24px 60px 24px 24px;
@@ -199,27 +199,27 @@ class Admin_Review_Notice
                 z-index: 2;
             }
 
-            .dcs-notice-icon {
+            .cf7m-notice-icon {
                 flex-shrink: 0;
                 width: 48px;
                 height: 48px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                animation: dcs-notice-pulse 2s ease-in-out infinite;
+                animation: cf7m-notice-pulse 2s ease-in-out infinite;
             }
 
-            @keyframes dcs-notice-pulse {
+            @keyframes cf7m-notice-pulse {
                 0%, 100% { transform: scale(1); }
                 50% { transform: scale(1.05); }
             }
 
-            .dcs-notice-content {
+            .cf7m-notice-content {
                 flex: 1;
                 min-width: 0;
             }
 
-            .dcs-notice-title {
+            .cf7m-notice-title {
                 margin: 0 0 8px 0 !important;
                 font-size: 18px !important;
                 font-weight: 600 !important;
@@ -228,7 +228,7 @@ class Admin_Review_Notice
                 letter-spacing: -0.02em !important;
             }
 
-            .dcs-notice-description {
+            .cf7m-notice-description {
                 margin: 0 0 16px 0 !important;
                 font-size: 14px !important;
                 color: #4b5563 !important;
@@ -236,18 +236,18 @@ class Admin_Review_Notice
                 font-weight: 400 !important;
             }
 
-            .dcs-notice-description strong {
-                color: #5733FF;
+            .cf7m-notice-description strong {
+                color: #3044D7;
                 font-weight: 600;
             }
 
-            .dcs-notice-actions {
+            .cf7m-notice-actions {
                 display: flex;
                 gap: 12px;
                 flex-wrap: wrap;
             }
 
-            .dcs-review-button {
+            .cf7m-review-button {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
@@ -264,63 +264,63 @@ class Admin_Review_Notice
                 line-height: 1.4 !important;
             }
 
-            .dcs-review-button--primary {
-                background: linear-gradient(135deg, #5733FF 0%, #4520e6 100%) !important;
+            .cf7m-review-button--primary {
+                background: linear-gradient(135deg, #3044D7 0%, #2535b0 100%) !important;
                 color: #ffffff !important;
-                box-shadow: 0 2px 8px rgba(87, 51, 255, 0.25) !important;
+                box-shadow: 0 2px 8px rgba(48, 68, 215, 0.25) !important;
             }
 
-            .dcs-review-button--primary:hover {
-                background: linear-gradient(135deg, #4520e6 0%, #3a1bc9 100%) !important;
+            .cf7m-review-button--primary:hover {
+                background: linear-gradient(135deg, #2535b0 0%, #1e2990 100%) !important;
                 color: #ffffff !important;
                 transform: translateY(-2px) !important;
-                box-shadow: 0 4px 12px rgba(87, 51, 255, 0.35) !important;
+                box-shadow: 0 4px 12px rgba(48, 68, 215, 0.35) !important;
             }
 
-            .dcs-review-button--primary:active {
+            .cf7m-review-button--primary:active {
                 transform: translateY(0) !important;
-                box-shadow: 0 2px 6px rgba(87, 51, 255, 0.3) !important;
+                box-shadow: 0 2px 6px rgba(48, 68, 215, 0.3) !important;
             }
 
-            .dcs-review-button--secondary {
+            .cf7m-review-button--secondary {
                 background: transparent !important;
                 color: #6b7280 !important;
                 border: 1px solid #d1d5db !important;
             }
 
-            .dcs-review-button--secondary:hover {
+            .cf7m-review-button--secondary:hover {
                 background: #f3f4f6 !important;
                 color: #374151 !important;
                 border-color: #9ca3af !important;
             }
 
             @media (max-width: 768px) {
-                .dcs-notice-inner {
+                .cf7m-notice-inner {
                     flex-direction: column;
                     gap: 16px;
                     padding: 20px 50px 20px 20px;
                 }
 
-                .dcs-notice-icon {
+                .cf7m-notice-icon {
                     width: 40px;
                     height: 40px;
                 }
 
-                .dcs-notice-icon svg {
+                .cf7m-notice-icon svg {
                     width: 32px;
                     height: 32px;
                 }
 
-                .dcs-notice-actions {
+                .cf7m-notice-actions {
                     flex-direction: column;
                 }
 
-                .dcs-review-button {
+                .cf7m-review-button {
                     width: 100%;
                     justify-content: center;
                 }
 
-                .dcs-review-notice .notice-dismiss {
+                .cf7m-review-notice .notice-dismiss {
                     top: 12px !important;
                     right: 12px !important;
                 }
@@ -330,7 +330,7 @@ class Admin_Review_Notice
         <script type="text/javascript">
             jQuery(document).ready(function($) {
                 // Handle review button click
-                $('.dcs-review-button[data-action="review"]').on('click', function(e) {
+                $('.cf7m-review-button[data-action="review"]').on('click', function(e) {
                     // Dismiss the notice when user clicks review
                     $.ajax({
                         url: dcs_admin_notice.ajax_url,
@@ -343,7 +343,7 @@ class Admin_Review_Notice
                 });
 
                 // Handle "Maybe later" button
-                $('.dcs-review-button[data-action="dismiss"]').on('click', function(e) {
+                $('.cf7m-review-button[data-action="dismiss"]').on('click', function(e) {
                     e.preventDefault();
                     $('#<?php echo esc_js(self::NOTICE_ID); ?>').fadeOut(300, function() {
                         $(this).remove();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Entries Module – load CPT, save, API; add Pro dashboard Entries submenu.
+ * Entries Module – load CPT, save, API. Entries UI is only under CF7 Mate dashboard (#/entries).
  *
  * @package CF7_Mate\Features\Entries
  * @since 3.0.0
@@ -29,7 +29,6 @@ class Entries extends Pro_Feature_Base
     protected function init()
     {
         $this->load_components();
-        add_action('admin_menu', [$this, 'add_entries_menu'], 21);
     }
 
     private function load_components()
@@ -49,33 +48,11 @@ class Entries extends Pro_Feature_Base
         }
     }
 
+    /**
+     * Entries are only shown under CF7 Mate dashboard (#/entries). No submenu under Contact (wpcf7).
+     */
     public function add_entries_menu()
     {
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
-            return;
-        }
-        if (!class_exists(Premium_Loader::class) || !Premium_Loader::is_feature_enabled('database_entries')) {
-            return;
-        }
-        if (!current_user_can('manage_options')) {
-            return;
-        }
-
-        add_submenu_page(
-            'wpcf7',
-            __('Form Entries', 'cf7-styler-for-divi'),
-            __('Entries', 'cf7-styler-for-divi'),
-            'manage_options',
-            'cf7-mate-entries',
-            [$this, 'render_entries_page']
-        );
-    }
-
-    /**
-     * Render the Entries view on this page (same app, entries-only mode).
-     */
-    public function render_entries_page()
-    {
-        \CF7_Mate\Admin::get_instance()->render_app_root(['entries_only' => true]);
+        // Intentionally empty: do not add "Entries" under Contact Form 7 menu.
     }
 }

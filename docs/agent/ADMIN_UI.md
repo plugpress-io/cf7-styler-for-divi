@@ -28,6 +28,7 @@ Location: `src/admin/components/ui/`
 | Table | `Table.js` | Table, TableInner, TableHeader, TableBody, TableRow, TableHead, TableCell |
 | Input | `Input.js` | Text inputs with border/ring from design tokens |
 | Badge | `Badge.js` | variant: default, secondary, destructive, outline, muted |
+| Tooltip | `Tooltip.js` | Hover to reveal; props: content, side (top/bottom/left/right) |
 
 Import from `components/ui` or `components/ui/Button` etc. Use `cn()` for conditional or overridable classes.
 

@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: CF7 Mate for Divi
-Plugin URI: https://divipeople.com/cf7-mate
+Plugin Name: CF7 Mate
+Plugin URI: https://cf7mate.com/pro
 Description: Built for CF7 power users—your all-in-one toolkit for Contact Form 7.
 Version: 3.0.0
 Author: PlugPress

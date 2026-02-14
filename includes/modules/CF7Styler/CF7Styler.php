@@ -136,7 +136,7 @@ class CF7Styler implements DependencyInterface
     public static function render_callback($attrs)
     {
         $attrs = is_array($attrs) ? $attrs : [];
-        $scope_id = function_exists('wp_unique_id') ? wp_unique_id('dcs-cf7-styler-') : ('dcs-cf7-styler-' . uniqid());
+        $scope_id = function_exists('wp_unique_id') ? wp_unique_id('cf7m-cf7-styler-') : ('cf7m-cf7-styler-' . uniqid());
 
         $design_preset_slug = self::get_attr_value($attrs, ['cf7', 'advanced', 'designPreset'], 'desktop');
         $design_preset = function_exists('cf7m_get_design_preset_by_slug') && $design_preset_slug !== ''
@@ -159,7 +159,7 @@ class CF7Styler implements DependencyInterface
         $cr_custom_styles = self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crCustomStyles'], 'crCustomStyles') ?: 'off';
 
         $button_class = 'on' !== $use_form_button_fullwide ? $button_alignment : 'fullwidth';
-        $cr_custom_class = 'on' === $cr_custom_styles ? 'dipe-cf7-cr dcs-cf7-cr' : '';
+        $cr_custom_class = 'on' === $cr_custom_styles ? 'dipe-cf7-cr cf7m-cf7-cr' : '';
 
         $form_header = '';
         if ($use_form_header && (! empty($header_title) || ! empty($header_text))) {
@@ -174,33 +174,33 @@ class CF7Styler implements DependencyInterface
                 }
 
                 $media_html = sprintf(
-                    '<div class="dipe-form-header-icon dcs-form-header-icon"><span class="et-pb-icon">%1$s</span></div>',
+                    '<div class="dipe-form-header-icon cf7m-form-header-icon"><span class="et-pb-icon">%1$s</span></div>',
                     $icon_processed
                 );
             } elseif (!$use_icon && $header_image !== '') {
                 $media_html = sprintf(
-                    '<div class="dipe-form-header-image dcs-form-header-image"><img src="%1$s" alt="" /></div>',
+                    '<div class="dipe-form-header-image cf7m-form-header-image"><img src="%1$s" alt="" /></div>',
                     esc_url($header_image)
                 );
             }
 
             $title_html = !empty($header_title) ? sprintf(
-                '<h2 class="dipe-form-header-title dcs-form-header-title">%1$s</h2>',
+                '<h2 class="dipe-form-header-title cf7m-form-header-title">%1$s</h2>',
                 esc_html($header_title)
             ) : '';
             $text_html = !empty($header_text) ? sprintf(
-                '<div class="dipe-form-header-text dcs-form-header-text">%1$s</div>',
+                '<div class="dipe-form-header-text cf7m-form-header-text">%1$s</div>',
                 esc_html($header_text)
             ) : '';
             $info_html = ($title_html || $text_html) ? sprintf(
-                '<div class="dipe-form-header-info dcs-form-header-info">%1$s%2$s</div>',
+                '<div class="dipe-form-header-info cf7m-form-header-info">%1$s%2$s</div>',
                 $title_html,
                 $text_html
             ) : '';
 
             $form_header = sprintf(
-                '<div class="dipe-form-header-container dcs-form-header-container">
-                    <div class="dipe-form-header dcs-form-header">
+                '<div class="dipe-form-header-container cf7m-form-header-container">
+                    <div class="dipe-form-header cf7m-form-header">
                         %1$s%2$s
                     </div>
                 </div>',
@@ -210,7 +210,7 @@ class CF7Styler implements DependencyInterface
         }
 
         if ($form_id === '0' || empty($form_id)) {
-            $form_html = '<p class="dcs-cf7-styler__placeholder">' . esc_html__('Please select a Contact Form 7 form.', 'cf7-styler-for-divi') . '</p>';
+            $form_html = '<p class="cf7m-cf7-styler__placeholder">' . esc_html__('Please select a Contact Form 7 form.', 'cf7-styler-for-divi') . '</p>';
         } else {
             $form_html = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', esc_attr($form_id)));
         }
@@ -373,7 +373,7 @@ class CF7Styler implements DependencyInterface
 
         $label_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formLabelColor'], 'formLabelColor'));
         if ($label_color !== '') {
-            $css .= "#{$scope_id} .dipe-cf7 label,#{$scope_id} .dcs-cf7-styler label{color:{$label_color} !important;}";
+            $css .= "#{$scope_id} .dipe-cf7 label,#{$scope_id} .cf7m-cf7-styler label{color:{$label_color} !important;}";
         }
 
         $button_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBg'], 'buttonBg'));
@@ -383,7 +383,7 @@ class CF7Styler implements DependencyInterface
         $button_border_width = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderWidth'], 'buttonBorderWidth'));
         $button_border_radius= self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderRadius'], 'buttonBorderRadius'));
 
-        $button_selector = "#{$scope_id} .dipe-cf7 input[type=submit],#{$scope_id} .dcs-cf7-styler input[type=submit],#{$scope_id} .dipe-cf7 .cf7m-button,#{$scope_id} .dcs-cf7-styler .cf7m-button";
+        $button_selector = "#{$scope_id} .dipe-cf7 input[type=submit],#{$scope_id} .cf7m-cf7-styler input[type=submit],#{$scope_id} .dipe-cf7 .cf7m-button,#{$scope_id} .cf7m-cf7-styler .cf7m-button";
 
         if ($button_bg !== '') {
             $css .= "{$button_selector}{background-color:{$button_bg} !important;}";
@@ -408,12 +408,12 @@ class CF7Styler implements DependencyInterface
         }
 
         $container_classes = sprintf(
-            'dipe-cf7-container dipe-cf7-button-%1$s dcs-cf7-container dcs-cf7-button-%1$s',
+            'dipe-cf7-container dipe-cf7-button-%1$s cf7m-cf7-container cf7m-cf7-button-%1$s',
             esc_attr($button_class)
         );
 
         $wrapper_classes = sprintf(
-            'dipe-cf7 dipe-cf7-styler dcs-cf7 dcs-cf7-styler %s',
+            'dipe-cf7 dipe-cf7-styler cf7m-cf7 cf7m-cf7-styler %s',
             esc_attr($cr_custom_class)
         );
 

@@ -1,5 +1,5 @@
 /**
- * Admin app entry – mount React app on #cf7-styler-for-divi-root.
+ * Admin app entry – mount React app on #cf7-mate-app-root.
  *
  * @package CF7_Mate
  */
@@ -11,7 +11,7 @@ import './style.scss';
 import { App } from './App';
 
 domReady(() => {
-	const rootElement = document.getElementById('cf7-styler-for-divi-root');
+	const rootElement = document.getElementById('cf7-mate-app-root');
 	if (!rootElement) return;
 	render(<App />, rootElement);
 });

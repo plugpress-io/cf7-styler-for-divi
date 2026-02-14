@@ -3,21 +3,21 @@
  * Range Slider Module.
  * Processes [cf7m-range] shortcodes in form markup (same pattern as multi-steps).
  *
- * @package CF7_Mate\Features\Range_Slider
+ * @package CF7_Mate\Lite\Features\Range_Slider
  * @since 3.0.0
  */
 
-namespace CF7_Mate\Features\Range_Slider;
+namespace CF7_Mate\Lite\Features\Range_Slider;
 
-use CF7_Mate\Pro\Pro_Feature_Base;
-use CF7_Mate\Pro\Traits\Shortcode_Atts_Trait;
-use CF7_Mate\Pro\Traits\Singleton;
+use CF7_Mate\Lite\Feature_Base;
+use CF7_Mate\Lite\Traits\Shortcode_Atts_Trait;
+use CF7_Mate\Lite\Traits\Singleton;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class Range_Slider extends Pro_Feature_Base
+class Range_Slider extends Feature_Base
 {
     use Shortcode_Atts_Trait;
     use Singleton;
@@ -239,20 +239,20 @@ class Range_Slider extends Pro_Feature_Base
      */
     public function enqueue_assets()
     {
-        if (!Pro_Feature_Base::page_has_cf7_form()) {
+        if (!Feature_Base::page_has_cf7_form()) {
             return;
         }
 
         $version = defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0';
         wp_enqueue_style(
-            'cf7m-pro-forms',
-            CF7M_PLUGIN_URL . 'assets/pro/css/cf7m-pro-forms.css',
+            'cf7m-lite-forms',
+            CF7M_PLUGIN_URL . 'assets/lite/css/cf7m-lite-forms.css',
             [],
             $version
         );
         wp_enqueue_script(
             'cf7m-range-slider',
-            CF7M_PLUGIN_URL . 'assets/pro/js/cf7m-range-slider.js',
+            CF7M_PLUGIN_URL . 'assets/lite/js/cf7m-range-slider.js',
             [],
             $version,
             true

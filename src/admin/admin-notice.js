@@ -1,10 +1,10 @@
 jQuery(document).ready(function ($) {
 	'use strict';
 
-	$(document).on('click', '.dcs-admin-notice .notice-dismiss', function (e) {
+	$(document).on('click', '.cf7m-admin-notice .notice-dismiss', function (e) {
 		e.preventDefault();
 
-		const $notice = $(this).closest('.dcs-admin-notice');
+		const $notice = $(this).closest('.cf7m-admin-notice');
 		const noticeId = $notice.attr('id');
 
 		let action = 'dcs_dismiss_pro_notice';
@@ -35,7 +35,7 @@ jQuery(document).ready(function ($) {
 		});
 	});
 
-	$('.dcs-admin-notice').each(function () {
+	$('.cf7m-admin-notice').each(function () {
 		const $notice = $(this);
 		$notice
 			.css({ opacity: '0', transform: 'translateY(-20px)' })
@@ -43,7 +43,7 @@ jQuery(document).ready(function ($) {
 			.css({ transform: 'translateY(0)', transition: 'transform 0.5s ease' });
 	});
 
-	$('.dcs-upgrade-button').hover(
+	$('.cf7m-upgrade-button').hover(
 		function () {
 			$(this).addClass('hover');
 		},

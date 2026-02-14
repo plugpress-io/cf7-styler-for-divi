@@ -336,19 +336,20 @@ class Rest_API {
 	 */
 	public static function get_default_features() {
 		return array(
-			'cf7_module'       => true,
-			'grid_layout'      => true,
-			'multi_column'     => true,
-			'multi_step'       => true,
-			'star_rating'      => true,
-			'database_entries' => true,
-			'range_slider'     => true,
-			'separator'        => true,
-			'heading'          => true,
-			'image'            => true,
-			'icon'             => true,
-			'calculator'       => true,
-			'conditional'      => true,
+			'cf7_module'        => true,
+			'grid_layout'       => true,
+			'multi_column'      => true,
+			'multi_step'        => true,
+			'star_rating'       => true,
+			'database_entries'  => true,
+			'range_slider'      => true,
+			'phone_number'      => true,
+			'separator'         => true,
+			'heading'           => true,
+			'image'             => true,
+			'icon'              => true,
+			'calculator'        => true,
+			'conditional'       => true,
 			'ai_form_generator' => true,
 		);
 	}

@@ -1,21 +1,21 @@
 /**
- * CF7 Styler Module - Styles
+ * CF7 Styler for Divi - Styles
  *
  * Shared with frontend so Visual Builder and frontend render identically.
- * Form base styles (dipe-cf7) are shared; wrapper also uses dcs-cf7.
+ * Form base styles (dipe-cf7) are shared; wrapper also uses cf7m-cf7.
  *
  * @since 3.0.0
  */
 
-// Base form styles – same on frontend and VB (PHP outputs both dipe-cf7 and dcs-cf7 classes).
+// Base form styles – same on frontend and VB (PHP outputs both dipe-cf7 and cf7m-cf7 classes).
 @use '../../../divi4/cf7/style.scss';
 
-.dcs-cf7-styler {
+.cf7m-cf7-styler {
   position: relative;
 }
 
 // Placeholder styles
-.dcs-cf7-placeholder {
+.cf7m-cf7-placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,7 @@
 }
 
 // Form header styles
-.dcs-cf7-header {
+.cf7m-cf7-header {
   margin-bottom: 24px;
 
   &__title {
@@ -73,7 +73,7 @@
 }
 
 // Form preview styles (for Visual Builder)
-.dcs-cf7-form-preview {
+.cf7m-cf7-form-preview {
   &__fields {
     display: flex;
     flex-direction: column;
@@ -139,7 +139,7 @@
 }
 
 // Placeholder text
-.dcs-cf7-styler__placeholder {
+.cf7m-cf7-styler__placeholder {
   padding: 24px;
   text-align: center;
   color: #6b7280;
@@ -182,7 +182,7 @@
   font-weight: 600;
 
   &.active {
-    background: #5733ff;
+    background: #3044D7;
     color: #fff;
   }
 
@@ -221,16 +221,16 @@
 }
 
 .cf7m-next-step {
-  background: #5733ff;
+  background: #3044D7;
   color: #fff;
 }
 
-.dcs-star-rating {
+.cf7m-star-rating {
   display: inline-flex;
   gap: 4px;
 }
 
-.dcs-star {
+.cf7m-star {
   cursor: pointer;
   color: #ddd;
   transition: color 0.15s;
@@ -246,7 +246,7 @@
   }
 }
 
-.dcs-range-slider {
+.cf7m-range-slider {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -264,12 +264,12 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #5733ff;
+    background: #3044D7;
     cursor: pointer;
   }
 }
 
-.dcs-range-value {
+.cf7m-range-value {
   min-width: 50px;
   padding: 6px 12px;
   background: #f3f4f6;

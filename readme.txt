@@ -1,6 +1,6 @@
-=== CF7 Mate for Divi ===
+=== CF7 Mate ===
 
-Contributors: divipeople, badhonrocks, plugpressco
+Contributors: badhonrocks, plugpressco
 Tags: divi, divi contact form, contact form 7, divi builder, divi cf7
 Requires at least: 5.0
 Tested up to: 6.9
@@ -14,7 +14,7 @@ Built for CF7 power users—your all-in-one toolkit for Contact Form 7.
 
 **Your Complete Contact Form 7 Companion for Divi**
 
-CF7 Mate for Divi (formerly CF7 Styler) is more than just a form styler - it's your complete CF7 toolkit. Style forms with Divi's visual builder, save form entries to your database, add star ratings, range sliders, multi-step forms, and more.
+CF7 Mate (formerly CF7 Styler for Divi) is more than just a form styler - it's your complete CF7 toolkit. Style forms with Divi's visual builder, save form entries to your database, add star ratings, range sliders, multi-step forms, and more.
 
 **Free Features:**
 

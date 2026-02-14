@@ -31,6 +31,7 @@ class Onboarding
 
     private function init()
     {
+        add_action('admin_init', [$this, 'maybe_restart_guided_setup'], 5);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('admin_footer', [$this, 'render_onboarding_root']);
         add_action('wp_ajax_cf7m_check_onboarding_status', [$this, 'check_onboarding_status']);
@@ -38,6 +39,23 @@ class Onboarding
         add_action('wp_ajax_cf7m_skip_onboarding', [$this, 'skip_onboarding']);
         add_action('wp_ajax_cf7m_next_onboarding_step', [$this, 'next_step']);
         add_action('wp_ajax_cf7m_dismiss_rebrand', [$this, 'dismiss_rebrand']);
+    }
+
+    /**
+     * If user clicks "Guided Setup" from Quick Access (skipped state), reset onboarding and redirect so modal shows.
+     */
+    public function maybe_restart_guided_setup()
+    {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        $param = isset($_GET['cf7m_guided_setup']) ? sanitize_text_field(wp_unslash($_GET['cf7m_guided_setup'])) : '';
+        if ($param !== '1') {
+            return;
+        }
+        self::reset_onboarding();
+        wp_safe_redirect(admin_url('admin.php?page=cf7-mate-dashboard'));
+        exit;
     }
 
     public function enqueue_scripts($hook)
@@ -63,7 +81,7 @@ class Onboarding
 
         $onboarding_js = CF7M_PLUGIN_PATH . 'dist/js/onboarding.js';
         wp_enqueue_script(
-            'dcs-onboarding',
+            'cf7m-onboarding',
             CF7M_PLUGIN_URL . 'dist/js/onboarding.js',
             ['react', 'wp-element', 'wp-i18n', 'wp-dom-ready'],
             CF7M_VERSION . (file_exists($onboarding_js) ? '.' . filemtime($onboarding_js) : ''),
@@ -73,19 +91,20 @@ class Onboarding
         $onboarding_css = CF7M_PLUGIN_PATH . 'dist/css/onboarding.css';
         if (file_exists($onboarding_css)) {
             wp_enqueue_style(
-                'dcs-onboarding',
+                'cf7m-onboarding',
                 CF7M_PLUGIN_URL . 'dist/css/onboarding.css',
                 [],
                 CF7M_VERSION . '.' . filemtime($onboarding_css)
             );
         }
 
-        wp_localize_script('dcs-onboarding', 'dcsOnboarding', [
+        wp_localize_script('cf7m-onboarding', 'dcsOnboarding', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('cf7m_onboarding_nonce'),
             'current_step' => $this->get_current_step(),
             'create_page_url' => admin_url('post-new.php?post_type=page'),
             'cf7_admin_url' => admin_url('admin.php?page=wpcf7'),
+            'dashboard_url' => admin_url('admin.php?page=cf7-mate-dashboard'),
             'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing&coupon=NEW2026'),
             'is_pro' => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
             'rebrand_seen' => $this->is_rebrand_seen(),
@@ -115,7 +134,7 @@ class Onboarding
             return;
         }
 
-        echo '<div id="dcs-onboarding-root"></div>';
+        echo '<div id="cf7m-onboarding-root"></div>';
     }
 
     public function check_onboarding_status()
@@ -199,6 +218,9 @@ class Onboarding
                     'star_rating' => true,
                     'database_entries' => true,
                     'range_slider' => true,
+                    'separator' => true,
+                    'image' => true,
+                    'icon' => true,
                 ];
 
                 $sanitized = [];

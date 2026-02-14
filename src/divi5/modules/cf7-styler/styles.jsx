@@ -87,10 +87,10 @@ const ModuleStyles = ({
   const formPadding = paddingToCss(formPaddingVal);
   
   if (formBg) {
-    customCss += `${baseSelector} .dcs-cf7-styler,${baseSelector} .dipe-cf7-styler{background-color:${formBg};}`;
+    customCss += `${baseSelector} .cf7m-cf7-styler,${baseSelector} .dipe-cf7-styler{background-color:${formBg};}`;
   }
   if (formPadding && formPadding !== '0 0 0 0' && formPadding !== '0px 0px 0px 0px') {
-    customCss += `${baseSelector} .dcs-cf7-styler,${baseSelector} .dipe-cf7-styler{padding:${formPadding};}`;
+    customCss += `${baseSelector} .cf7m-cf7-styler,${baseSelector} .dipe-cf7-styler{padding:${formPadding};}`;
   }
 
   const formHeaderBg = getEffective('formHeaderBg');
@@ -101,19 +101,19 @@ const ModuleStyles = ({
   const formHeaderIconColor = getEffective('formHeaderIconColor');
   
   if (formHeaderBg) {
-    customCss += `${baseSelector} .dcs-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .dcs-cf7-header{background-color:${formHeaderBg};}`;
+    customCss += `${baseSelector} .cf7m-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .cf7m-cf7-header{background-color:${formHeaderBg};}`;
   }
   if (formHeaderPadding && formHeaderPadding !== '0 0 0 0' && formHeaderPadding !== '0px 0px 0px 0px') {
-    customCss += `${baseSelector} .dcs-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .dcs-cf7-header{padding:${formHeaderPadding};}`;
+    customCss += `${baseSelector} .cf7m-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .cf7m-cf7-header{padding:${formHeaderPadding};}`;
   }
   if (formHeaderBottom && formHeaderBottom !== '0px' && formHeaderBottom !== '0') {
-    customCss += `${baseSelector} .dcs-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .dcs-cf7-header{margin-bottom:${formHeaderBottom};}`;
+    customCss += `${baseSelector} .cf7m-form-header-container,${baseSelector} .dipe-form-header-container,${baseSelector} .cf7m-cf7-header{margin-bottom:${formHeaderBottom};}`;
   }
   if (formHeaderImgBg) {
-    customCss += `${baseSelector} .dcs-form-header-icon,${baseSelector} .dipe-form-header-icon,${baseSelector} .dcs-form-header-image,${baseSelector} .dipe-form-header-image{background-color:${formHeaderImgBg};}`;
+    customCss += `${baseSelector} .cf7m-form-header-icon,${baseSelector} .dipe-form-header-icon,${baseSelector} .cf7m-form-header-image,${baseSelector} .dipe-form-header-image{background-color:${formHeaderImgBg};}`;
   }
   if (formHeaderIconColor) {
-    customCss += `${baseSelector} .dcs-form-header-icon span,${baseSelector} .dipe-form-header-icon span{color:${formHeaderIconColor};}`;
+    customCss += `${baseSelector} .cf7m-form-header-icon span,${baseSelector} .dipe-form-header-icon span{color:${formHeaderIconColor};}`;
   }
 
   const fieldBg = getEffective('formBackgroundColor');
@@ -126,7 +126,7 @@ const ModuleStyles = ({
   const fieldBorderWidth = getEffective('formFieldBorderWidth');
   const fieldBorderRadius = getEffective('formFieldBorderRadius');
   const fieldTextColor = getEffective('formFieldTextColor');
-  const fieldSelectors = `${baseSelector} .dcs-cf7-styler input:not([type=submit]),${baseSelector} .dcs-cf7-styler select,${baseSelector} .dcs-cf7-styler textarea,${baseSelector} .dipe-cf7 input:not([type=submit]),${baseSelector} .dipe-cf7 select,${baseSelector} .dipe-cf7 textarea,${baseSelector} .dcs-cf7-form-preview input,${baseSelector} .dcs-cf7-form-preview textarea`;
+  const fieldSelectors = `${baseSelector} .cf7m-cf7-styler input:not([type=submit]),${baseSelector} .cf7m-cf7-styler select,${baseSelector} .cf7m-cf7-styler textarea,${baseSelector} .dipe-cf7 input:not([type=submit]),${baseSelector} .dipe-cf7 select,${baseSelector} .dipe-cf7 textarea,${baseSelector} .cf7m-cf7-form-preview input,${baseSelector} .cf7m-cf7-form-preview textarea`;
   
   if (fieldBg) {
     customCss += `${fieldSelectors}{background-color:${fieldBg} !important;}`;
@@ -150,20 +150,20 @@ const ModuleStyles = ({
     customCss += `${fieldSelectors}{color:${fieldTextColor} !important;}`;
   }
   if (fieldActiveColor) {
-    customCss += `${baseSelector} .dipe-cf7 input:not([type=submit]):focus,${baseSelector} .dipe-cf7 select:focus,${baseSelector} .dipe-cf7 textarea:focus,${baseSelector} .dcs-cf7-form-preview input:focus,${baseSelector} .dcs-cf7-form-preview textarea:focus{border-color:${fieldActiveColor} !important;}`;
+    customCss += `${baseSelector} .dipe-cf7 input:not([type=submit]):focus,${baseSelector} .dipe-cf7 select:focus,${baseSelector} .dipe-cf7 textarea:focus,${baseSelector} .cf7m-cf7-form-preview input:focus,${baseSelector} .cf7m-cf7-form-preview textarea:focus{border-color:${fieldActiveColor} !important;}`;
   }
   if (fieldSpacing && fieldSpacing !== '0px' && fieldSpacing !== '0') {
-    customCss += `${baseSelector} .dipe-cf7 .wpcf7 form>p,${baseSelector} .dipe-cf7 .wpcf7 form>div,${baseSelector} .dipe-cf7 .wpcf7 form>label,${baseSelector} .dcs-cf7-form-preview__field{margin-bottom:${fieldSpacing} !important;}`;
+    customCss += `${baseSelector} .dipe-cf7 .wpcf7 form>p,${baseSelector} .dipe-cf7 .wpcf7 form>div,${baseSelector} .dipe-cf7 .wpcf7 form>label,${baseSelector} .cf7m-cf7-form-preview__field{margin-bottom:${fieldSpacing} !important;}`;
   }
 
   const labelSpacing = getEffective('formLabelSpacing');
   const labelColor = getEffective('formLabelColor');
   
   if (labelSpacing && labelSpacing !== '0px' && labelSpacing !== '0') {
-    customCss += `${baseSelector} .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit),${baseSelector} .dcs-cf7-form-preview input,${baseSelector} .dcs-cf7-form-preview textarea{margin-top:${labelSpacing} !important;}`;
+    customCss += `${baseSelector} .dipe-cf7-container .wpcf7-form-control:not(.wpcf7-submit),${baseSelector} .cf7m-cf7-form-preview input,${baseSelector} .cf7m-cf7-form-preview textarea{margin-top:${labelSpacing} !important;}`;
   }
   if (labelColor) {
-    customCss += `${baseSelector} .dipe-cf7 label,${baseSelector} .dcs-cf7-styler label,${baseSelector} .dcs-cf7-form-preview label{color:${labelColor} !important;}`;
+    customCss += `${baseSelector} .dipe-cf7 label,${baseSelector} .cf7m-cf7-styler label,${baseSelector} .cf7m-cf7-form-preview label{color:${labelColor} !important;}`;
   }
 
   const buttonBg = getEffective('buttonBg');
@@ -176,7 +176,7 @@ const ModuleStyles = ({
   const buttonAlignment = getAttrValue(attrs, 'cf7.advanced.buttonAlignment');
   const buttonFullwidth = getAttrValue(attrs, 'cf7.advanced.useFormButtonFullwidth');
   
-  const buttonSelectors = `${baseSelector} .dipe-cf7 input[type=submit],${baseSelector} .dcs-cf7-styler input[type=submit],${baseSelector} .dipe-cf7 .cf7m-button,${baseSelector} .dcs-cf7-styler .cf7m-button,${baseSelector} .dcs-cf7-form-preview__submit,${baseSelector} .dcs-cf7-form-preview button`;
+  const buttonSelectors = `${baseSelector} .dipe-cf7 input[type=submit],${baseSelector} .cf7m-cf7-styler input[type=submit],${baseSelector} .dipe-cf7 .cf7m-button,${baseSelector} .cf7m-cf7-styler .cf7m-button,${baseSelector} .cf7m-cf7-form-preview__submit,${baseSelector} .cf7m-cf7-form-preview button`;
   
   if (buttonBg) {
     customCss += `${buttonSelectors}{background-color:${buttonBg} !important;}`;
@@ -201,7 +201,7 @@ const ModuleStyles = ({
   }
   if (buttonAlignment && buttonAlignment !== 'left') {
     const flexAlign = buttonAlignment === 'center' ? 'center' : 'flex-end';
-    customCss += `${baseSelector} .dcs-cf7-form-preview__fields,${baseSelector} .dipe-cf7 p:has(input[type=submit]){display:flex;flex-direction:column;align-items:${flexAlign};}`;
+    customCss += `${baseSelector} .cf7m-cf7-form-preview__fields,${baseSelector} .dipe-cf7 p:has(input[type=submit]){display:flex;flex-direction:column;align-items:${flexAlign};}`;
   }
 
   const crCustomStyles = getEffective('crCustomStyles') || getAttrValue(attrs, 'cf7.advanced.crCustomStyles');
@@ -342,10 +342,10 @@ const ModuleStyles = ({
     if (proRangeThumbColor) {
       customCss += `${rangeInput}::-webkit-slider-thumb{background:${proRangeThumbColor} !important;}`;
       customCss += `${rangeInput}::-moz-range-thumb{background:${proRangeThumbColor} !important;}`;
-      customCss += `${baseSelector} .cf7m-range-slider, ${baseSelector} .dcs-range-slider{--cf7m-range-thumb:${proRangeThumbColor};}`;
+      customCss += `${baseSelector} .cf7m-range-slider, ${baseSelector} .cf7m-range-slider{--cf7m-range-thumb:${proRangeThumbColor};}`;
     }
     if (proRangeMargin && proRangeMargin !== '0px 0px 0px 0px') {
-      customCss += `${baseSelector} .cf7m-range-slider, ${baseSelector} .dcs-range-slider{margin:${proRangeMargin} !important;}`;
+      customCss += `${baseSelector} .cf7m-range-slider, ${baseSelector} .cf7m-range-slider{margin:${proRangeMargin} !important;}`;
     }
   }
 
@@ -355,13 +355,13 @@ const ModuleStyles = ({
   const proStarMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proStarMargin'));
   
   if (proStarColor || proStarActiveColor || proStarSize || (proStarMargin && proStarMargin !== '0px 0px 0px 0px')) {
-    const starSel = `${baseSelector} .cf7m-star-rating .cf7m-star, ${baseSelector} .dcs-star-rating .dcs-star`;
-    const activeSel = `${baseSelector} .cf7m-star-rating .cf7m-star.cf7m-star--on, ${baseSelector} .dcs-star-rating .dcs-star.filled, ${baseSelector} .dcs-star-rating .dcs-star.hover`;
+    const starSel = `${baseSelector} .cf7m-star-rating .cf7m-star, ${baseSelector} .cf7m-star-rating .cf7m-star`;
+    const activeSel = `${baseSelector} .cf7m-star-rating .cf7m-star.cf7m-star--on, ${baseSelector} .cf7m-star-rating .cf7m-star.filled, ${baseSelector} .cf7m-star-rating .cf7m-star.hover`;
     if (proStarColor) customCss += `${starSel}{color:${proStarColor} !important;}`;
     if (proStarActiveColor) customCss += `${activeSel}{color:${proStarActiveColor} !important;}`;
     if (proStarSize) customCss += `${starSel}{font-size:${proStarSize} !important;} ${baseSelector} .cf7m-star-rating .cf7m-star-svg{width:1em;height:1em;} ${baseSelector} .cf7m-star-rating{--cf7m-star-size:1em;}`;
     if (proStarMargin && proStarMargin !== '0px 0px 0px 0px') {
-      customCss += `${baseSelector} .cf7m-star-rating, ${baseSelector} .dcs-star-rating{margin:${proStarMargin} !important;}`;
+      customCss += `${baseSelector} .cf7m-star-rating, ${baseSelector} .cf7m-star-rating{margin:${proStarMargin} !important;}`;
     }
   }
 

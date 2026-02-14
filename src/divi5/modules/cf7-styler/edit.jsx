@@ -125,8 +125,8 @@ const CF7StylerEdit = (props) => {
   }
 
   const buttonClass = buttonFullwidth ? 'fullwidth' : buttonAlignment;
-  const containerClasses = `dipe-cf7-container dipe-cf7-button-${buttonClass} dcs-cf7-container dcs-cf7-button-${buttonClass}`;
-  const wrapperClasses = `dipe-cf7 dipe-cf7-styler dcs-cf7 dcs-cf7-styler${crCustomStyles ? ' dipe-cf7-cr dcs-cf7-cr' : ''}`;
+  const containerClasses = `dipe-cf7-container dipe-cf7-button-${buttonClass} cf7m-cf7-container cf7m-cf7-button-${buttonClass}`;
+  const wrapperClasses = `dipe-cf7 dipe-cf7-styler cf7m-cf7 cf7m-cf7-styler${crCustomStyles ? ' dipe-cf7-cr cf7m-cf7-cr' : ''}`;
 
   const noForm = formId === '0' || !formId;
 
@@ -141,10 +141,10 @@ const CF7StylerEdit = (props) => {
     >
       <div className={containerClasses}>
         {useFormHeader && (formHeaderTitle || formHeaderText || hasHeaderIcon || headerImage) && (
-          <div className="dipe-form-header-container dcs-form-header-container dcs-cf7-header">
-            <div className="dipe-form-header dcs-form-header">
+          <div className="dipe-form-header-container cf7m-form-header-container cf7m-cf7-header">
+            <div className="dipe-form-header cf7m-form-header">
               {useIcon && hasHeaderIcon && (
-                <div className="dipe-form-header-icon dcs-form-header-icon">
+                <div className="dipe-form-header-icon cf7m-form-header-icon">
                   {headerIconResolved != null ? (
                     typeof headerIconResolved === 'string' ? (
                       <span className="et-pb-icon">{headerIconResolved}</span>
@@ -157,19 +157,19 @@ const CF7StylerEdit = (props) => {
                 </div>
               )}
               {!useIcon && headerImage && (
-                <div className="dipe-form-header-image dcs-form-header-image">
+                <div className="dipe-form-header-image cf7m-form-header-image">
                   <img src={headerImage} alt="" />
                 </div>
               )}
               {(formHeaderTitle || formHeaderText) && (
-                <div className="dipe-form-header-info dcs-form-header-info">
+                <div className="dipe-form-header-info cf7m-form-header-info">
                   {formHeaderTitle && (
-                    <h2 className="dipe-form-header-title dcs-form-header-title dcs-cf7-header__title">
+                    <h2 className="dipe-form-header-title cf7m-form-header-title cf7m-cf7-header__title">
                       {formHeaderTitle}
                     </h2>
                   )}
                   {formHeaderText && (
-                    <div className="dipe-form-header-text dcs-form-header-text dcs-cf7-header__text">
+                    <div className="dipe-form-header-text cf7m-form-header-text cf7m-cf7-header__text">
                       {formHeaderText}
                     </div>
                   )}
@@ -181,8 +181,8 @@ const CF7StylerEdit = (props) => {
 
         <div className={wrapperClasses}>
           {noForm ? (
-            <div className="dcs-cf7-placeholder">
-              <div className="dcs-cf7-placeholder__icon">
+            <div className="cf7m-cf7-placeholder">
+              <div className="cf7m-cf7-placeholder__icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="2"/>
                   <line x1="7" y1="8" x2="17" y2="8" stroke="currentColor" strokeWidth="2"/>
@@ -190,29 +190,29 @@ const CF7StylerEdit = (props) => {
                   <line x1="7" y1="16" x2="12" y2="16" stroke="currentColor" strokeWidth="2"/>
                 </svg>
               </div>
-              <h3 className="dcs-cf7-placeholder__title">
+              <h3 className="cf7m-cf7-placeholder__title">
                 {__('CF7 Styler', 'cf7-styler-for-divi')}
               </h3>
-              <p className="dcs-cf7-placeholder__text">
+              <p className="cf7m-cf7-placeholder__text">
                 {__('Select a Contact Form 7 form to display.', 'cf7-styler-for-divi')}
               </p>
             </div>
           ) : formLoading ? (
-            <div className="dcs-cf7-form-preview dcs-cf7-form-preview--loading">
-              <p className="dcs-cf7-styler__placeholder">{__('Loading form…', 'cf7-styler-for-divi')}</p>
+            <div className="cf7m-cf7-form-preview cf7m-cf7-form-preview--loading">
+              <p className="cf7m-cf7-styler__placeholder">{__('Loading form…', 'cf7-styler-for-divi')}</p>
             </div>
           ) : formError ? (
-            <div className="dcs-cf7-form-preview dcs-cf7-form-preview--error">
-              <p className="dcs-cf7-styler__placeholder">{__('Could not load form preview.', 'cf7-styler-for-divi')}</p>
+            <div className="cf7m-cf7-form-preview cf7m-cf7-form-preview--error">
+              <p className="cf7m-cf7-styler__placeholder">{__('Could not load form preview.', 'cf7-styler-for-divi')}</p>
             </div>
           ) : formHtml ? (
             <div
-              className="dcs-cf7-form-preview wpcf7 dcs-cf7-form-preview--live"
+              className="cf7m-cf7-form-preview wpcf7 cf7m-cf7-form-preview--live"
               dangerouslySetInnerHTML={{ __html: formHtml }}
             />
           ) : (
-            <div className="dcs-cf7-form-preview">
-              <p className="dcs-cf7-styler__placeholder">{__('No form content.', 'cf7-styler-for-divi')}</p>
+            <div className="cf7m-cf7-form-preview">
+              <p className="cf7m-cf7-styler__placeholder">{__('No form content.', 'cf7-styler-for-divi')}</p>
             </div>
           )}
         </div>

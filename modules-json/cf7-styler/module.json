@@ -49,7 +49,7 @@
     },
     "cf7": {
       "type": "object",
-      "selector": "{{selector}} .dcs-cf7-styler",
+      "selector": "{{selector}} .cf7m-cf7-styler",
       "default": {
         "advanced": {
           "designPreset": { "desktop": { "value": "" } },
@@ -1141,7 +1141,7 @@
   "customCssFields": {
     "formContainer": {
       "subName": "formContainer",
-      "selectorSuffix": " .dcs-cf7-styler"
+      "selectorSuffix": " .cf7m-cf7-styler"
     },
     "formFields": {
       "subName": "formFields",
@@ -1250,7 +1250,7 @@
         "groupName": "pro_icon",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Pro: Icon" }
+          "props": { "groupLabel": "Icon" }
         }
       },
       "pro_image": {
@@ -1259,7 +1259,7 @@
         "groupName": "pro_image",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Pro: Image" }
+          "props": { "groupLabel": "Image" }
         }
       },
       "pro_range": {

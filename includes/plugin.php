@@ -50,6 +50,12 @@ class Plugin
             }
         }
 
+        // Load lite features (star rating, range slider, separator, image, icon) – free build.
+        $lite_loader = CF7M_PLUGIN_PATH . 'includes/lite/loader.php';
+        if (file_exists($lite_loader)) {
+            require_once $lite_loader;
+        }
+
         // Load Grid Layout only if feature is enabled
         if ($this->is_feature_enabled('grid_layout')) {
             $grid_path = CF7M_PLUGIN_PATH . 'includes/utils/grid.php';
@@ -107,9 +113,6 @@ class Plugin
 
     public function enqueue_cf7_tag_admin_styles($hook)
     {
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
-            return;
-        }
         $screen = get_current_screen();
         if (!$screen || strpos($screen->id, 'wpcf7') === false) {
             return;
@@ -128,9 +131,6 @@ class Plugin
 
     public function enqueue_cf7_tag_admin_scripts($hook)
     {
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
-            return;
-        }
         $screen = get_current_screen();
         if (!$screen || strpos($screen->id, 'wpcf7') === false) {
             return;
@@ -177,7 +177,7 @@ class Plugin
             return;
         }
 
-        // Only load CF7 Styler module if feature is enabled
+        // Only load CF7 Styler for Divi if feature is enabled
         if ($this->is_feature_enabled('cf7_module')) {
             require_once CF7M_PLUGIN_PATH . 'includes/modules/divi-4/CF7Styler/CF7Styler.php';
         }

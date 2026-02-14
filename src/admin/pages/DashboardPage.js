@@ -6,14 +6,19 @@
 
 import { V3Banner } from '../components/V3Banner';
 import { DashboardView } from '../components/DashboardView';
-import { FreeVsProTable } from '../components/FreeVsProTable';
 
-export function DashboardPage({ stats, loading, showEntries, modulesUrl, dashboardUrl, showV3Banner, rebrandDismissed, isPro }) {
+export function DashboardPage({ stats, loading, showEntries, modulesUrl, dashboardUrl, pricingUrl, promoCode, promoText, showV3Banner, rebrandDismissed, isPro }) {
 	return (
 		<>
 			{showV3Banner && rebrandDismissed && <V3Banner />}
-			<DashboardView stats={stats} loading={loading} showEntries={showEntries} modulesUrl={modulesUrl} dashboardUrl={dashboardUrl} />
-			{!isPro && <FreeVsProTable />}
+			<DashboardView
+				stats={stats}
+				loading={loading}
+				showEntries={showEntries}
+				isPro={isPro}
+				modulesUrl={modulesUrl}
+				dashboardUrl={dashboardUrl}
+			/>
 		</>
 	);
 }

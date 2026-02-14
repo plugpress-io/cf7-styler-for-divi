@@ -9,28 +9,46 @@
 import { __ } from '@wordpress/i18n';
 
 const StepWelcome = () => {
-	// Show product value early; keep it simple and focused (Fogg: Motivation + Ability)
 	const highlights = [
-		__('Style Contact Form 7 in Divi — no code, just point and click', 'cf7-styler-for-divi'),
+		__('Style Contact Form 7 forms — no code, just point and click', 'cf7-styler-for-divi'),
 		__('Get to your first styled form in under a minute', 'cf7-styler-for-divi'),
 		__('Works with your existing forms; change settings anytime', 'cf7-styler-for-divi'),
 	];
 
+	const proHighlights = [
+		__('Form entries — save and manage submissions', 'cf7-styler-for-divi'),
+		__('Multi-step forms, star rating, range slider', 'cf7-styler-for-divi'),
+		__('AI form generator, conditional logic & more', 'cf7-styler-for-divi'),
+	];
+
 	return (
-		<div className="dcs-onboarding-step dcs-step-welcome">
-			<div className="dcs-step-header">
-				<span className="dcs-step-label">{__('Step 1 of 4', 'cf7-styler-for-divi')}</span>
-				<h2 className="dcs-onboarding-title">
+		<div className="cf7m-onboarding-step cf7m-step-welcome">
+			<div className="cf7m-step-header">
+				<span className="cf7m-step-label">{__('Step 1 of 4', 'cf7-styler-for-divi')}</span>
+				<h2 className="cf7m-onboarding-title">
 					{__('Welcome to CF7 Mate', 'cf7-styler-for-divi')}
 				</h2>
-				<p className="dcs-onboarding-description">
-					{__('A short setup to get you to your first win. Four steps, about a minute.', 'cf7-styler-for-divi')}
+				<p className="cf7m-onboarding-description">
+					{__('Four short steps to get you started. Style your forms, choose features, get help when you need it — about a minute.', 'cf7-styler-for-divi')}
 				</p>
 			</div>
-			<ul className="dcs-welcome-list">
+			<ul className="cf7m-welcome-list">
 				{highlights.map((text, i) => (
 					<li key={i}>
-						<span className="dcs-check-icon" aria-hidden="true">
+						<span className="cf7m-check-icon" aria-hidden="true">
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+								<polyline points="20 6 9 17 4 12" />
+							</svg>
+						</span>
+						{text}
+					</li>
+				))}
+			</ul>
+			<p className="cf7m-welcome-pro-label">{__('Best of Pro', 'cf7-styler-for-divi')}</p>
+			<ul className="cf7m-welcome-list cf7m-welcome-list--pro">
+				{proHighlights.map((text, i) => (
+					<li key={`pro-${i}`}>
+						<span className="cf7m-check-icon cf7m-check-icon--pro" aria-hidden="true">
 							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
 								<polyline points="20 6 9 17 4 12" />
 							</svg>

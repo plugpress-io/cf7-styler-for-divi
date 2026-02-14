@@ -1,5 +1,5 @@
 /**
- * Step Finish – quick win + clear next action (SaaS: aha moment, need to do more)
+ * Step Finish – You're all set. What you can do now, Pro benefits, and clear next actions.
  * @since 3.0.0
  */
 
@@ -9,55 +9,69 @@ const StepFinish = ({ onComplete }) => {
 	const cf7Url = typeof dcsOnboarding !== 'undefined' && dcsOnboarding.cf7_admin_url
 		? dcsOnboarding.cf7_admin_url
 		: '/wp-admin/admin.php?page=wpcf7';
-	const createUrl = typeof dcsOnboarding !== 'undefined' && dcsOnboarding.create_page_url
-		? dcsOnboarding.create_page_url
-		: '/wp-admin/post-new.php?post_type=page';
 	const pricingUrl = typeof dcsOnboarding !== 'undefined' && dcsOnboarding.pricing_url
 		? dcsOnboarding.pricing_url
 		: '/wp-admin/admin.php?page=cf7-mate-pricing';
 
-	const go = (url) => {
+	const goToCf7 = () => {
 		if (onComplete) onComplete();
-		window.location.href = url;
+		window.location.href = cf7Url;
+	};
+
+	const goToDashboard = () => {
+		if (onComplete) onComplete();
+	};
+
+	const closeGuide = () => {
+		if (onComplete) onComplete();
 	};
 
 	return (
-		<div className="dcs-onboarding-step dcs-step-finish">
-			<div className="dcs-step-header">
-				<span className="dcs-step-label">{__('Step 4 of 4', 'cf7-styler-for-divi')}</span>
-				<div className="dcs-finish-icon" aria-hidden="true">
+		<div className="cf7m-onboarding-step cf7m-step-finish">
+			<div className="cf7m-step-header">
+				<span className="cf7m-step-label">{__('Step 4 of 4', 'cf7-styler-for-divi')}</span>
+				<div className="cf7m-finish-icon" aria-hidden="true">
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 						<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
 						<polyline points="22 4 12 14.01 9 11.01" />
 					</svg>
 				</div>
-				<h2 className="dcs-onboarding-title">
-					{__("You're all set", 'cf7-styler-for-divi')}
+				<h2 className="cf7m-onboarding-title">
+					{__("You're all set with CF7 Mate", 'cf7-styler-for-divi')}
 				</h2>
-				<p className="dcs-onboarding-description">
-					{__('Your next step: add the CF7 Styler module in Divi and pick your form. You can come back to the dashboard anytime to change settings.', 'cf7-styler-for-divi')}
+				<p className="cf7m-onboarding-description">
+					{__('Style your Contact Form 7 forms, manage features from the dashboard, and get help from docs and the community whenever you need it.', 'cf7-styler-for-divi')}
 				</p>
 			</div>
-			<div className="dcs-finish-actions">
-				<button type="button" className="dcs-finish-btn dcs-finish-btn-primary" onClick={() => go(cf7Url)}>
+
+			<div className="cf7m-finish-what-now">
+				<p className="cf7m-finish-what-now-title">{__('What you can do now', 'cf7-styler-for-divi')}</p>
+				<ul className="cf7m-finish-what-now-list">
+					<li>{__('Add the CF7 Mate module (Divi or any page) and pick your form to style', 'cf7-styler-for-divi')}</li>
+					<li>{__('Turn features on or off from the CF7 Mate dashboard', 'cf7-styler-for-divi')}</li>
+					<li>{__('Create and edit forms in Contact Form 7, then style them with CF7 Mate', 'cf7-styler-for-divi')}</li>
+				</ul>
+			</div>
+
+			<div className="cf7m-finish-pro-teaser">
+				<p className="cf7m-finish-pro-teaser-title">{__('With Pro you get', 'cf7-styler-for-divi')}</p>
+				<p className="cf7m-finish-pro-teaser-text">
+					{__('Form entries, multi-step forms, AI form generator, conditional logic, and 14 powerful modules.', 'cf7-styler-for-divi')}{' '}
+					<a href={pricingUrl} target="_blank" rel="noopener noreferrer">{__('Unlock Pro', 'cf7-styler-for-divi')}</a>
+				</p>
+			</div>
+
+			<div className="cf7m-finish-actions">
+				<button type="button" className="cf7m-finish-btn cf7m-finish-btn-primary" onClick={goToDashboard}>
+					{__('Go to CF7 Mate dashboard', 'cf7-styler-for-divi')}
+				</button>
+				<button type="button" className="cf7m-finish-btn cf7m-finish-btn-secondary" onClick={goToCf7}>
 					{__('Go to Contact Form 7', 'cf7-styler-for-divi')}
 				</button>
-				<button type="button" className="dcs-finish-btn dcs-finish-btn-secondary" onClick={() => go(createUrl)}>
-					{__('Create a page', 'cf7-styler-for-divi')}
-				</button>
 			</div>
-			<p className="dcs-finish-quickwin">
-				{__('Quick win:', 'cf7-styler-for-divi')}
-			</p>
-			<ol className="dcs-finish-steps">
-				<li>{__('Add CF7 Styler module in Divi', 'cf7-styler-for-divi')}</li>
-				<li>{__('Pick your form and style it', 'cf7-styler-for-divi')}</li>
-			</ol>
-			<p className="dcs-finish-upsell">
-				{__('Want more?', 'cf7-styler-for-divi')}{' '}
-				<a href={pricingUrl}>{__('Unlock Pro', 'cf7-styler-for-divi')}</a>
-				{__(' for entries, multi-step & more.', 'cf7-styler-for-divi')}
-			</p>
+			<button type="button" className="cf7m-finish-close-guide" onClick={closeGuide}>
+				{__('Close guide', 'cf7-styler-for-divi')}
+			</button>
 		</div>
 	);
 };

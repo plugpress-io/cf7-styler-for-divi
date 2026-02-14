@@ -1,5 +1,5 @@
 /**
- * CF7 Styler Module - Callbacks.
+ * CF7 Styler for Divi - Callbacks.
  *
  * @since 3.0.0
  */

@@ -18,25 +18,28 @@ export function FeatureCard({ feature, enabled, isPro, onToggle, saving }) {
 		window.location.href = pricingUrl;
 	};
 
+	// Only show pro/golden styling when user does not have pro (locked pro feature).
+	const showProStyle = feature.isPro && !isPro;
+
 	return (
-		<div className={`dcs-feature ${feature.isPro ? 'dcs-feature--pro' : ''} ${isProLocked ? 'dcs-feature--locked' : ''}`}>
-			<div className="dcs-feature__icon" aria-hidden="true">
+		<div className={`cf7m-feature ${showProStyle ? 'cf7m-feature--pro' : ''} ${isProLocked ? 'cf7m-feature--locked' : ''}`}>
+			<div className="cf7m-feature__icon" aria-hidden="true">
 				<IconComponent />
 			</div>
-			<div className="dcs-feature__name-wrap">
-				<span className="dcs-feature__name">
+			<div className="cf7m-feature__name-wrap">
+				<span className="cf7m-feature__name">
 					{feature.name}
 					{feature.isPro && !isPro && (
-						<span className="dcs-feature__badge" aria-label={__('Pro', 'cf7-styler-for-divi')}>
+						<span className="cf7m-feature__badge" aria-label={__('Pro', 'cf7-styler-for-divi')}>
 							<CrownIcon />
 						</span>
 					)}
 				</span>
-				<p className="dcs-feature__desc">{feature.description}</p>
+				<p className="cf7m-feature__desc">{feature.description}</p>
 			</div>
-			<div className="dcs-feature__toggle">
+			<div className="cf7m-feature__toggle">
 				{isProLocked ? (
-					<button type="button" onClick={handleUpgrade} className="dcs-feature__upgrade">
+					<button type="button" onClick={handleUpgrade} className="cf7m-feature__upgrade">
 						{__('Upgrade', 'cf7-styler-for-divi')}
 					</button>
 				) : (
