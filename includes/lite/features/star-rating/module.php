@@ -161,7 +161,8 @@ class Star_Rating extends Feature_Base
             \WPCF7_TagGenerator::get_instance()->add(
                 'cf7m-star',
                 __('star rating', 'cf7-styler-for-divi'),
-                [$this, 'tag_generator_callback']
+                [$this, 'tag_generator_callback'],
+                ['version' => '2']
             );
         }
     }

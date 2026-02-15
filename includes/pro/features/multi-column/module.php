@@ -186,8 +186,8 @@ class Multi_Column extends Pro_Feature_Base
             return;
         }
         $tg = \WPCF7_TagGenerator::get_instance();
-        $tg->add('cf7m-row', __('row', 'cf7-styler-for-divi'), [$this, 'tag_generator_row']);
-        $tg->add('cf7m-col', __('column', 'cf7-styler-for-divi'), [$this, 'tag_generator_col']);
+        $tg->add('cf7m-row', __('row', 'cf7-styler-for-divi'), [$this, 'tag_generator_row'], ['version' => '2']);
+        $tg->add('cf7m-col', __('column', 'cf7-styler-for-divi'), [$this, 'tag_generator_col'], ['version' => '2']);
     }
 
     public function tag_generator_row($contact_form, $options = '')

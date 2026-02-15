@@ -117,7 +117,7 @@ class Presets extends Pro_Feature_Base
             return;
         }
         $tg = \WPCF7_TagGenerator::get_instance();
-        $tg->add('cf7m-presets', __('style presets', 'cf7-styler-for-divi'), [$this, 'tag_generator_presets']);
+        $tg->add('cf7m-presets', __('style presets', 'cf7-styler-for-divi'), [$this, 'tag_generator_presets'], ['version' => '2']);
     }
 
     /**

@@ -3,7 +3,7 @@
         'name' => 'plugpress/cf7-styler-for-divi',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '40ce6c9c33979d5b0a671411924bff9efbddd8fc',
+        'reference' => '32510adf78d20a07cb1280cffaa880fc0c7934ca',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'plugpress/cf7-styler-for-divi' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '40ce6c9c33979d5b0a671411924bff9efbddd8fc',
+            'reference' => '32510adf78d20a07cb1280cffaa880fc0c7934ca',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

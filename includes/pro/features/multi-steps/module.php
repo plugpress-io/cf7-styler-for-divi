@@ -104,7 +104,8 @@ class Multi_Steps extends Pro_Feature_Base
             \WPCF7_TagGenerator::get_instance()->add(
                 'cf7m-step',
                 __('step', 'cf7-styler-for-divi'),
-                [$this, 'tag_generator_step']
+                [$this, 'tag_generator_step'],
+                ['version' => '2']
             );
         }
     }

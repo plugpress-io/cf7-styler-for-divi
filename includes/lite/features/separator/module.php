@@ -121,7 +121,8 @@ class Separator extends Feature_Base
         \WPCF7_TagGenerator::get_instance()->add(
             'cf7m-separator',
             __('separator', 'cf7-styler-for-divi'),
-            [$this, 'tag_generator']
+            [$this, 'tag_generator'],
+            ['version' => '2']
         );
     }
 

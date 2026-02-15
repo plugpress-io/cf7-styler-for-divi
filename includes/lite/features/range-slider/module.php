@@ -172,7 +172,8 @@ class Range_Slider extends Feature_Base
             \WPCF7_TagGenerator::get_instance()->add(
                 'cf7m-range',
                 __('range slider', 'cf7-styler-for-divi'),
-                [$this, 'tag_generator_callback']
+                [$this, 'tag_generator_callback'],
+                ['version' => '2']
             );
         }
     }

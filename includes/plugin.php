@@ -66,6 +66,24 @@ class Plugin
 
         // Load Premium Features early so form-tag registration (wpcf7_init) is hooked before CF7 runs.
         add_action('plugins_loaded', [$this, 'load_premium_loader'], 5);
+
+        // Load builder integrations (Elementor, Bricks) when respective builder is available.
+        $this->load_builder_integrations();
+    }
+
+    /**
+     * Load Elementor widget and Bricks element (CF7 Styler for each builder).
+     */
+    private function load_builder_integrations()
+    {
+        $elementor_register = CF7M_PLUGIN_PATH . 'includes/modules/elementor/register.php';
+        if (file_exists($elementor_register)) {
+            require_once $elementor_register;
+        }
+        $bricks_register = CF7M_PLUGIN_PATH . 'includes/modules/bricks/register.php';
+        if (file_exists($bricks_register)) {
+            require_once $bricks_register;
+        }
     }
 
     public function load_premium_loader()

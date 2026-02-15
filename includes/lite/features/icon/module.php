@@ -131,7 +131,7 @@ class Icon extends Feature_Base
             return;
         }
         $tg = \WPCF7_TagGenerator::get_instance();
-        $tg->add('cf7m-icon', __('icon', 'cf7-styler-for-divi'), [$this, 'tag_generator']);
+        $tg->add('cf7m-icon', __('icon', 'cf7-styler-for-divi'), [$this, 'tag_generator'], ['version' => '2']);
     }
 
     /** @param \WPCF7_ContactForm $contact_form */

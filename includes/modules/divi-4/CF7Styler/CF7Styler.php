@@ -279,7 +279,7 @@ class DCS_CF7Styler extends ET_Builder_Module
 				'label'            => esc_html__('Select Form', 'cf7-styler-for-divi'),
 				'type'             => 'select',
 				'option_category'  => 'layout',
-				'options'          => self::get_contact_form7(),
+				'options'          => cf7m_get_contact_forms(),
 				'description'      => esc_html__('Choose a contact form to display.', 'cf7-styler-for-divi'),
 				'computed_affects' => array(
 					'__cf7form',
@@ -1551,27 +1551,10 @@ class DCS_CF7Styler extends ET_Builder_Module
 		}
 	}
 
+	/** @deprecated Use cf7m_get_contact_forms() instead. */
 	public static function get_contact_form7()
 	{
-		$options = array();
-
-		if (function_exists('wpcf7')) {
-			$args = array(
-				'post_type'      => 'wpcf7_contact_form',
-				'posts_per_page' => -1,
-			);
-
-			$contact_forms = get_posts($args);
-
-			if (!empty($contact_forms) && !is_wp_error($contact_forms)) {
-				$options[0] = esc_html__('Select a Contact form', 'cf7-styler-for-divi');
-				foreach ($contact_forms as $post) {
-					$options[$post->ID] = $post->post_title;
-				}
-			}
-		}
-
-		return $options;
+		return cf7m_get_contact_forms();
 	}
 }
 

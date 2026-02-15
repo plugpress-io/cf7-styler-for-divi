@@ -212,7 +212,8 @@ class Conditional extends Pro_Feature_Base {
 		\WPCF7_TagGenerator::get_instance()->add(
 			'cf7m-if',
 			__( 'conditional', 'cf7-styler-for-divi' ),
-			array( $this, 'tag_generator_callback' )
+			array( $this, 'tag_generator_callback' ),
+			array( 'version' => '2' )
 		);
 	}
 

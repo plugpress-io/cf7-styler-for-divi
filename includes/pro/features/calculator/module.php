@@ -343,25 +343,29 @@ class Calculator extends Pro_Feature_Base {
 		$generator->add(
 			'cf7m-number',
 			__( 'number (calc)', 'cf7-styler-for-divi' ),
-			array( $this, 'number_generator_callback' )
+			array( $this, 'number_generator_callback' ),
+			array( 'version' => '2' )
 		);
 
 		$generator->add(
 			'cf7m-calc',
 			__( 'calculator', 'cf7-styler-for-divi' ),
-			array( $this, 'calc_generator_callback' )
+			array( $this, 'calc_generator_callback' ),
+			array( 'version' => '2' )
 		);
 
 		$generator->add(
 			'cf7m-total',
 			__( 'total display', 'cf7-styler-for-divi' ),
-			array( $this, 'total_generator_callback' )
+			array( $this, 'total_generator_callback' ),
+			array( 'version' => '2' )
 		);
 
 		$generator->add(
 			'cf7m-button',
 			__( 'button (no submit)', 'cf7-styler-for-divi' ),
-			array( $this, 'button_generator_callback' )
+			array( $this, 'button_generator_callback' ),
+			array( 'version' => '2' )
 		);
 	}
 

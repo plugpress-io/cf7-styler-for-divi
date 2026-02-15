@@ -2,7 +2,7 @@
 /*
 Plugin Name: CF7 Mate
 Plugin URI: https://cf7mate.com/pro
-Description: Built for CF7 power users—your all-in-one toolkit for Contact Form 7.
+Description: CF7 Mate upgrades Contact Form 7 with AI form generation, visual styling, saved entries, and advanced fields in one clean workflow.
 Version: 3.0.0
 Author: PlugPress
 Author URI:  https://plugpress.io

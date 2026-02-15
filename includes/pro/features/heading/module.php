@@ -191,7 +191,8 @@ class Heading extends Pro_Feature_Base
         \WPCF7_TagGenerator::get_instance()->add(
             'cf7m-heading',
             __('heading', 'cf7-styler-for-divi'),
-            [$this, 'tag_generator']
+            [$this, 'tag_generator'],
+            ['version' => '2']
         );
     }
 
