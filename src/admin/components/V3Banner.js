@@ -45,7 +45,7 @@ export function V3Banner({ onDismiss }) {
 						{__('Welcome to CF7 Mate', 'cf7-styler-for-divi')} <span className="cf7m-v3-banner__ver">v3.0.0</span>
 					</p>
 					<p className="cf7m-v3-banner__text">
-						{__('Same plugin, new name. We\'ve rebranded from "CF7 Styler for Divi" to CF7 Mate — everything works the same.', 'cf7-styler-for-divi')}
+						{__('Same plugin, new name. We\'ve rebranded from "CF7 Styler for Divi" to CF7 Mate — now with support for Divi, Elementor, Bricks, and more.', 'cf7-styler-for-divi')}
 					</p>
 				</div>
 				<button type="button" className="cf7m-v3-banner__dismiss" onClick={handleDismiss} disabled={dismissing} aria-label={__('Dismiss', 'cf7-styler-for-divi')}>

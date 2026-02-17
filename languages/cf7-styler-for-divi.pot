@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-16 21:03+0000\n"
+"POT-Creation-Date: 2026-02-17 15:23+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: includes/admin/admin.php:112, includes/admin/admin.php:113
+#: includes/admin/admin.php:113, includes/admin/admin.php:114
 msgid "Entries"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgstr ""
 msgid "AI Settings"
 msgstr ""
 
-#: includes/admin/admin.php:132, includes/admin/admin.php:133
+#: includes/admin/admin.php:131, includes/admin/admin.php:132
 msgid "Webhook"
 msgstr ""
 

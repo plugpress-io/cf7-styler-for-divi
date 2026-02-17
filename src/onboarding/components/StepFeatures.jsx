@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
 const DISCOUNT_CODE = 'NEW2026';
 
 const FREE_FEATURES = [
-	{ id: 'cf7_module', name: __('CF7 Styler for Divi', 'cf7-styler-for-divi'), short: __('Style forms in Divi', 'cf7-styler-for-divi') },
+	{ id: 'cf7_module', name: __('CF7 Form Styler', 'cf7-styler-for-divi'), short: __('Style forms in any page builder', 'cf7-styler-for-divi') },
 	{ id: 'grid_layout', name: __('Grid Layout', 'cf7-styler-for-divi'), short: __('Responsive form grid', 'cf7-styler-for-divi') },
 ];
 

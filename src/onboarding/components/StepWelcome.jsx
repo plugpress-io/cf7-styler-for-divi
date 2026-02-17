@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
 const StepWelcome = () => {
 	const highlights = [
 		__('Style Contact Form 7 forms — no code, just point and click', 'cf7-styler-for-divi'),
-		__('Get to your first styled form in under a minute', 'cf7-styler-for-divi'),
+		__('Works with Divi, Elementor, Bricks, and more', 'cf7-styler-for-divi'),
 		__('Works with your existing forms; change settings anytime', 'cf7-styler-for-divi'),
 	];
 

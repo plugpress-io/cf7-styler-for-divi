@@ -43,10 +43,11 @@ export function RebrandModal({ onDismiss }) {
 				<div className="cf7m-rebrand-modal__body">
 					<span className="cf7m-rebrand-modal__eyebrow">{__('Introducing', 'cf7-styler-for-divi')}</span>
 					<h1 className="cf7m-rebrand-modal__title">CF7 Mate</h1>
-					<p className="cf7m-rebrand-modal__tagline">{__('Your complete Contact Form 7 companion for Divi', 'cf7-styler-for-divi')}</p>
+					<p className="cf7m-rebrand-modal__tagline">{__('Your complete Contact Form 7 companion', 'cf7-styler-for-divi')}</p>
 					<div className="cf7m-rebrand-modal__divider"><span>{__("What's new", 'cf7-styler-for-divi')}</span></div>
 					<ul className="cf7m-rebrand-modal__list">
 						<li>{__('Same plugin, new name — CF7 Styler is now CF7 Mate', 'cf7-styler-for-divi')}</li>
+						<li>{__('Now works with Divi, Elementor, Bricks, and more', 'cf7-styler-for-divi')}</li>
 						<li>{__('All settings preserved — your forms work exactly the same', 'cf7-styler-for-divi')}</li>
 						<li>{__('More features in pro — entries, ratings, multi-step & more', 'cf7-styler-for-divi')}</li>
 					</ul>

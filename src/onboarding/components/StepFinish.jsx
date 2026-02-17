@@ -47,7 +47,7 @@ const StepFinish = ({ onComplete }) => {
 			<div className="cf7m-finish-what-now">
 				<p className="cf7m-finish-what-now-title">{__('What you can do now', 'cf7-styler-for-divi')}</p>
 				<ul className="cf7m-finish-what-now-list">
-					<li>{__('Add the CF7 Mate module (Divi or any page) and pick your form to style', 'cf7-styler-for-divi')}</li>
+					<li>{__('Add the CF7 Mate module in your page builder and pick a form to style', 'cf7-styler-for-divi')}</li>
 					<li>{__('Turn features on or off from the CF7 Mate dashboard', 'cf7-styler-for-divi')}</li>
 					<li>{__('Create and edit forms in Contact Form 7, then style them with CF7 Mate', 'cf7-styler-for-divi')}</li>
 				</ul>

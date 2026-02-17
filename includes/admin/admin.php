@@ -106,35 +106,35 @@ class Admin
             [$this, 'render_features_page']
         );
 
-        // Subpage: Entries
-        add_submenu_page(
-            self::TOP_LEVEL_SLUG,
-            __('Entries', 'cf7-styler-for-divi'),
-            __('Entries', 'cf7-styler-for-divi'),
-            'manage_options',
-            self::ENTRIES_PAGE_SLUG,
-            [$this, 'render_entries_page']
-        );
+        // Pro-only subpages: Entries, AI Settings, Webhook
+        if (function_exists('cf7m_can_use_premium') && cf7m_can_use_premium()) {
+            add_submenu_page(
+                self::TOP_LEVEL_SLUG,
+                __('Entries', 'cf7-styler-for-divi'),
+                __('Entries', 'cf7-styler-for-divi'),
+                'manage_options',
+                self::ENTRIES_PAGE_SLUG,
+                [$this, 'render_entries_page']
+            );
 
-        // Subpage: AI Settings
-        add_submenu_page(
-            self::TOP_LEVEL_SLUG,
-            __('AI Settings', 'cf7-styler-for-divi'),
-            __('AI Settings', 'cf7-styler-for-divi'),
-            'manage_options',
-            self::AI_SETTINGS_PAGE_SLUG,
-            [$this, 'render_ai_settings_page']
-        );
+            add_submenu_page(
+                self::TOP_LEVEL_SLUG,
+                __('AI Settings', 'cf7-styler-for-divi'),
+                __('AI Settings', 'cf7-styler-for-divi'),
+                'manage_options',
+                self::AI_SETTINGS_PAGE_SLUG,
+                [$this, 'render_ai_settings_page']
+            );
 
-        // Subpage: Webhook (Pro)
-        add_submenu_page(
-            self::TOP_LEVEL_SLUG,
-            __('Webhook', 'cf7-styler-for-divi'),
-            __('Webhook', 'cf7-styler-for-divi'),
-            'manage_options',
-            self::WEBHOOK_PAGE_SLUG,
-            [$this, 'render_webhook_page']
-        );
+            add_submenu_page(
+                self::TOP_LEVEL_SLUG,
+                __('Webhook', 'cf7-styler-for-divi'),
+                __('Webhook', 'cf7-styler-for-divi'),
+                'manage_options',
+                self::WEBHOOK_PAGE_SLUG,
+                [$this, 'render_webhook_page']
+            );
+        }
 
         // Subpage: Free vs Pro (only when not Pro – hide for licensed/self-hosted Pro)
         if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
