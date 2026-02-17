@@ -1,0 +1,13 @@
+Design Presets (Pro)
+====================
+
+What it is
+  Ready-made form styles (e.g. minimal, bold, dark) that you apply with one click. The preset sets colors, spacing, and field look so you don’t style from scratch.
+
+How to use
+  1. Enable "Presets" (or the design presets feature) in CF7 Mate → Modules (Pro).
+  2. Add the CF7 Styler module to a page and select your form.
+  3. In the module’s design or content settings, find the Preset option. Choose a preset (e.g. Minimal, Rounded, Dark).
+  4. Save. The form updates to that style. You can then tweak individual options if you want.
+
+Use it to get a consistent, professional look quickly or to try different styles before customizing.

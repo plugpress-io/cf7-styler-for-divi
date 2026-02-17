@@ -1,0 +1,13 @@
+Webhook (Pro)
+=============
+
+What it is
+  Sends each form submission to one or more URLs you choose. The payload is JSON (form id, title, submitted time, all field data, IP, user agent). No extra plugin needed for Zapier, CRMs, or your own API.
+
+How to use
+  1. Enable "Webhook" in CF7 Mate → Modules (Pro).
+  2. Go to CF7 Mate → Webhook. Add the URL(s) that should receive the data (e.g. from Zapier, Make, or your server). Click Save URLs.
+  3. When someone submits any CF7 form on your site, a POST request is sent to each URL with the submission data in the body. Requests are sent in the background so the user isn’t delayed.
+  4. To test: use a service like webhook.site, add its URL in Webhook settings, submit a form, then check the request on webhook.site.
+
+Your endpoint should accept POST and JSON. You can filter by form_id in the payload if you only want to handle certain forms.

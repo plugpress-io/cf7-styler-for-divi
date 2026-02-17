@@ -1,0 +1,13 @@
+Conditional Logic (Pro)
+========================
+
+What it is
+  Shows or hides form fields based on what the user chose in another field (e.g. show "Company name" only if "Are you a business?" is Yes).
+
+How to use
+  1. Enable "Conditional Logic" in CF7 Mate → Modules (Pro).
+  2. In your Contact Form 7 form, add the fields that will control visibility (e.g. dropdown or radio) and the fields that should show only in certain cases.
+  3. Use the conditional logic tag or shortcode to define rules: "Show field X when field Y equals Z." (Exact syntax depends on the tag generator or docs.)
+  4. Save the form and add it with the CF7 Styler module. Conditional fields appear or disappear as the user changes the controlling field.
+
+Reduces clutter and makes long forms feel shorter by showing only relevant questions.

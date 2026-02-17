@@ -115,11 +115,16 @@ module.exports = {
       filename: 'css/[name].css',
     }),
 
-    // Copy module.json files from src to modules-json folder in plugin root.
+    // Copy module.json and conversion-outline.json from src to modules-json folder in plugin root.
     new CopyWebpackPlugin({
       patterns: [
         {
           from: '**/module.json',
+          context: 'src/divi5/modules',
+          to: path.resolve(__dirname, 'modules-json'),
+        },
+        {
+          from: '**/conversion-outline.json',
           context: 'src/divi5/modules',
           to: path.resolve(__dirname, 'modules-json'),
         },

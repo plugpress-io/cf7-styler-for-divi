@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 import { DocsIcon, CrownIconNav } from './icons/NavIcons';
 import CF7MateLogo from '../../components/CF7MateLogo';
 
-export function Header({ isPro, showEntries, currentView }) {
+export function Header({ isPro, showEntries, showWebhook, currentView }) {
 	const entriesOnlyPage =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
 	const cf7AdminUrl =
@@ -19,6 +19,10 @@ export function Header({ isPro, showEntries, currentView }) {
 		typeof dcsCF7Styler !== 'undefined'
 			? dcsCF7Styler.pricing_url
 			: '/wp-admin/admin.php?page=cf7-mate-pricing';
+	const accountUrl =
+		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.fs_account_url
+			? dcsCF7Styler.fs_account_url
+			: '';
 	const version =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.version
 			? dcsCF7Styler.version
@@ -29,11 +33,13 @@ export function Header({ isPro, showEntries, currentView }) {
 			: 'admin.php?page=cf7-mate-dashboard';
 	const modulesUrl = `${dashboardUrl}#/features`;
 	const entriesUrl = `${dashboardUrl}#/entries`;
+	const webhookUrl = `${dashboardUrl}#/webhook`;
 
 	const isDashboard = currentView === 'dashboard';
 	const isModules = currentView === 'features';
 	const isEntries = currentView === 'entries';
 	const isAiSettings = currentView === 'ai-settings';
+	const isWebhook = currentView === 'webhook';
 	const isFreeVsPro = currentView === 'free-vs-pro';
 	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
 
@@ -125,6 +131,17 @@ export function Header({ isPro, showEntries, currentView }) {
 									</span>
 								</a>
 							)}
+							{showWebhook && !entriesOnlyPage && (
+								<a
+									href={webhookUrl}
+									className={`cf7m-admin__nav-link ${isWebhook ? 'cf7m-admin__nav-link--active' : ''}`}
+									aria-label={__('Webhook', 'cf7-styler-for-divi')}
+								>
+									<span className="cf7m-admin__nav-text">
+										{__('Webhook', 'cf7-styler-for-divi')}
+									</span>
+								</a>
+							)}
 						</>
 					)}
 				</nav>
@@ -134,7 +151,7 @@ export function Header({ isPro, showEntries, currentView }) {
 					v{version}
 				</span>
 				<a
-					href="https://divipeople.com/docs/cf7-mate/"
+					href="https://cf7mate.com/docs"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="cf7m-admin__nav-link cf7m-admin__nav-link--docs"
@@ -142,7 +159,19 @@ export function Header({ isPro, showEntries, currentView }) {
 				>
 					<DocsIcon />
 				</a>
-				{!isPro && (
+				{isPro ? (
+					accountUrl ? (
+						<a
+							href={accountUrl}
+							className="cf7m-admin__nav-link cf7m-admin__nav-link--account"
+							aria-label={__('Account', 'cf7-styler-for-divi')}
+						>
+							<span className="cf7m-admin__nav-text">
+								{__('Account', 'cf7-styler-for-divi')}
+							</span>
+						</a>
+					) : null
+				) : (
 					<a
 						href={pricingUrl}
 						className="cf7m-admin__nav-link cf7m-admin__nav-link--pro"

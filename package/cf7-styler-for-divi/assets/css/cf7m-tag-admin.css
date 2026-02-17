@@ -1,0 +1,162 @@
+
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="cf7m-"],
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="dipe_"] {
+	border-left: 3px solid #3044D7;
+	background: rgba(87, 51, 255, 0.06);
+	padding-left: 10px;
+}
+
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="cf7m-"]:hover,
+.wpcf7-tg-pane [data-taggen="open-dialog"][data-target*="dipe_"]:hover {
+	background: rgba(87, 51, 255, 0.1);
+}
+
+/* Tag panels: consistent spacing and alignment */
+.cf7m-tag-panel .control-box {
+	margin-bottom: 12px;
+}
+
+.cf7m-tag-panel .control-box legend {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 600;
+}
+
+.cf7m-tag-panel .control-box legend::after {
+	content: " (CF7 Mate)";
+	font-size: 11px;
+	color: #3044D7;
+	font-weight: normal;
+	margin-left: 4px;
+}
+
+.cf7m-tag-panel .form-table th {
+	width: 140px;
+	padding: 10px 10px 10px 0;
+	vertical-align: top;
+}
+
+.cf7m-tag-panel .form-table td {
+	padding: 10px 0;
+}
+
+.cf7m-tag-panel .insert-box {
+	padding-top: 12px;
+	border-top: 1px solid #c3c4c7;
+	margin-top: 12px;
+}
+
+.cf7m-tag-panel .insert-box .tag {
+	display: block;
+	width: 100%;
+	margin-bottom: 8px;
+	box-sizing: border-box;
+}
+
+/* Color inputs: consistent width */
+.cf7m-color-input {
+	max-width: 120px;
+}
+
+/* ----- Icon tag panel: clean browser and layout ----- */
+.cf7m-icon-tag-panel .control-box fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.cf7m-icon-tag-panel .cf7m-icon-row-dashicon th,
+.cf7m-icon-tag-panel .cf7m-icon-row-dashicon td {
+	vertical-align: top;
+}
+
+.cf7m-icon-browser {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+	gap: 8px;
+	max-height: 200px;
+	overflow-y: auto;
+	padding: 12px;
+	background: #f0f0f1;
+	border: 1px solid #c3c4c7;
+	border-radius: 6px;
+	margin-bottom: 8px;
+	align-content: start;
+}
+
+.cf7m-icon-picker-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	min-width: 36px;
+	min-height: 36px;
+	font-size: 22px;
+	color: #1d2327;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	transition: border-color 0.15s, background 0.15s, color 0.15s;
+	box-sizing: border-box;
+}
+
+.cf7m-icon-picker-item:hover {
+	background: #fff;
+	border-color: #3044D7;
+	color: #3044D7;
+}
+
+.cf7m-icon-picker-item.selected {
+	background: rgba(87, 51, 255, 0.12);
+	border-color: #3044D7;
+	color: #3044D7;
+}
+
+.cf7m-icon-tag-panel .description {
+	margin: 6px 0 0 0;
+	font-size: 12px;
+	color: #646970;
+}
+
+.cf7m-icon-tag-panel input.cf7m-icon-name-input {
+	margin-top: 8px;
+	max-width: 280px;
+	display: block;
+}
+
+.cf7m-icon-tag-panel .cf7m-icon-row-image input[type="url"] {
+	max-width: 280px;
+	margin-right: 8px;
+}
+
+/* ----- Image tag panel: clear upload area ----- */
+.cf7m-image-tag-panel .control-box fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.cf7m-image-tag-panel .cf7m-image-upload-row td {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.cf7m-image-tag-panel input.cf7m-image-src-input {
+	flex: 1;
+	min-width: 200px;
+	max-width: 320px;
+}
+
+.cf7m-image-tag-panel .cf7m-image-preview {
+	display: block;
+	margin-top: 8px;
+	max-width: 120px;
+	max-height: 120px;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	object-fit: contain;
+}
+

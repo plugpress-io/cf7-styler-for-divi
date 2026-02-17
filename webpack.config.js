@@ -13,7 +13,6 @@ module.exports = {
 		'admin-notice': ['./src/admin/admin-notice.js'],
 		onboarding: ['./src/onboarding/index.jsx'],
 		admin: ['./src/admin/index.js'],
-		'cf7m-phone-number': ['./src/pro/phone-number/index.js'],
 	},
 	watch: !isProduction,
 	performance: {
@@ -155,6 +154,6 @@ if (isProduction) {
 		domain: 'cf7-styler-for-divi',
 		destFile: 'languages/cf7-styler-for-divi.pot',
 		relativeTo: './',
-		team: 'DiviPeople <support@divipeople.com>',
+		team: 'PlugPress <support@cf7mate.com>',
 	});
 }

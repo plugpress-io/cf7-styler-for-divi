@@ -1,0 +1,14 @@
+Elementor Styler Widget
+=======================
+
+What it is
+  An Elementor widget that lets you place and style Contact Form 7 forms inside Elementor.
+
+How to use
+  1. Edit a page with Elementor.
+  2. Search for "CF7 Mate" or "CF7 Styler" in the widget panel and drag it onto your page.
+  3. In the widget settings, choose your Contact Form 7 form from the dropdown.
+  4. Use the Content and Style tabs to customize fields, labels, buttons, spacing, colors, and typography.
+  5. Save and preview the page. The styled form appears where you placed the widget.
+
+You need Contact Form 7 and Elementor installed and active.

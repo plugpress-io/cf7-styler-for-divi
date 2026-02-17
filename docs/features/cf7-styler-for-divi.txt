@@ -1,0 +1,14 @@
+Divi Styler Module
+==================
+
+What it is
+  The main module that lets you place and style Contact Form 7 forms inside the Divi Builder.
+
+How to use
+  1. Edit a page with Divi Builder.
+  2. Add the "CF7 Styler" (or "CF7 Mate") module from the Divi module list.
+  3. In the module settings, choose your Contact Form 7 form from the dropdown.
+  4. Use the Design and Content tabs to change layout, spacing, colors, and field styles.
+  5. Save and view the page. The form appears where you placed the module.
+
+You need Contact Form 7 and Divi Theme installed and active.

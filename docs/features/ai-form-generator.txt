@@ -1,0 +1,14 @@
+AI Form Generator (Pro)
+=======================
+
+What it is
+  Creates a Contact Form 7 form from a short description (e.g. "contact form with name, email, subject, message"). You get a draft form and fields; you can edit in CF7 as usual.
+
+How to use
+  1. Enable "AI Form Generator" in CF7 Mate → Modules (Pro).
+  2. Go to CF7 Mate → AI Settings. Add your API key for the provider you want (e.g. OpenAI, Anthropic). Save.
+  3. Open the form generator: from the dashboard or when adding/editing a form, use the AI generate option. Enter a prompt like "Contact form with name, email, phone, and message."
+  4. Review the generated form and fields. Edit in Contact Form 7 if needed, then save.
+  5. Add the form to a page with the CF7 Styler module and style as usual.
+
+Best for quickly starting new forms; you still control the final form and styling.

@@ -11,9 +11,29 @@ export const FEATURES = [
 	/* Free */
 	{
 		id: 'cf7_module',
-		name: __('CF7 Styler for Divi', 'cf7-styler-for-divi'),
+		name: __('Divi Styler Module', 'cf7-styler-for-divi'),
 		description: __(
 			'Style Contact Form 7 forms with Divi Builder.',
+			'cf7-styler-for-divi'
+		),
+		isPro: false,
+		icon: 'module',
+	},
+	{
+		id: 'bricks_module',
+		name: __('Bricks Styler Element', 'cf7-styler-for-divi'),
+		description: __(
+			'Style Contact Form 7 forms with Bricks Builder.',
+			'cf7-styler-for-divi'
+		),
+		isPro: false,
+		icon: 'module',
+	},
+	{
+		id: 'elementor_module',
+		name: __('Elementor Styler Widget', 'cf7-styler-for-divi'),
+		description: __(
+			'Style Contact Form 7 forms with Elementor.',
 			'cf7-styler-for-divi'
 		),
 		isPro: false,
@@ -159,5 +179,25 @@ export const FEATURES = [
 		),
 		isPro: true,
 		icon: 'ai',
+	},
+	{
+		id: 'presets',
+		name: __('Presets', 'cf7-styler-for-divi'),
+		description: __(
+			'Save and apply pre-built styling presets to your forms.',
+			'cf7-styler-for-divi'
+		),
+		isPro: true,
+		icon: 'presets',
+	},
+	{
+		id: 'webhook',
+		name: __('Webhook', 'cf7-styler-for-divi'),
+		description: __(
+			'Send form submission data instantly to external services using webhooks, enabling automation, API integrations, and real-time data processing without relying on additional plugins.',
+			'cf7-styler-for-divi'
+		),
+		isPro: true,
+		icon: 'webhook',
 	},
 ];

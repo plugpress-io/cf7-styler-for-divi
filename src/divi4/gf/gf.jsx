@@ -232,8 +232,6 @@ class GFStyler extends Component {
 
         const props = this.props;
 
-        console.log(props.__gravity_forms);
-
         return (
             <div
                 className={`tfs-gf-styler`}

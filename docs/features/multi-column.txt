@@ -1,0 +1,13 @@
+Multi Column (Pro)
+==================
+
+What it is
+  Advanced control over form columns and breakpoints so you can build multi-column layouts that change at different screen sizes (e.g. 3 columns on desktop, 2 on tablet, 1 on mobile).
+
+How to use
+  1. Enable "Multi Column" in CF7 Mate → Modules (Pro).
+  2. Add the CF7 Styler module to a page in Divi and select your form.
+  3. In the module’s layout/design settings, use the column and breakpoint options to set how many columns show at each width.
+  4. Save. The form will follow your column rules on different devices.
+
+Use when you need precise control beyond the basic grid (e.g. different column counts per breakpoint).

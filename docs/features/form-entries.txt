@@ -1,0 +1,13 @@
+Form Entries / Database Entries (Pro)
+=====================================
+
+What it is
+  Saves every form submission to your WordPress database so you can view, search, filter, mark as read, and export entries to CSV. No need for a separate forms-entries plugin.
+
+How to use
+  1. Enable "Form Entries (Database Entries)" in CF7 Mate → Modules (Pro).
+  2. Submissions are saved automatically. Go to CF7 Mate → Entries to see them.
+  3. In Entries you can: filter by form, date, or status; open a submission to view all fields; mark as read or spam; delete single or bulk; export to CSV.
+  4. Optional: in Contact Form 7 you can add an "Entries" link under the form; CF7 Mate can show Entries in the menu for quick access.
+
+Entries are stored as a custom post type; only admins (or users you allow) can see the Entries screen.

@@ -1,0 +1,13 @@
+Phone Number Field (Pro)
+========================
+
+What it is
+  A phone input with country selector (and often flags). Users pick country code and type their number; the value is sent in a consistent format.
+
+How to use
+  1. Enable "Phone Number Field" in CF7 Mate → Modules (Pro).
+  2. Edit a Contact Form 7 form (Contact → Contact Forms). Use the CF7 Mate Phone Number tag generator: set the field name and any default country. Insert the tag.
+  3. Save the form.
+  4. Add the form with the CF7 Styler module. Style the phone field in the module’s design options if needed.
+
+Use it anywhere you collect phone numbers so you get country code + number without extra plugins.

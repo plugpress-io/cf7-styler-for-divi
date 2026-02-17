@@ -60,7 +60,7 @@
 
 **Context:** Migration from older `dipe-` prefix to cleaner `cf7m-` prefix while maintaining backwards compatibility.
 
-**Implementation:** (from `includes/modules/CF7Styler/CF7Styler.php`)
+**Implementation:** (from `includes/lite/builders/divi5/CF7Styler/CF7Styler.php`)
 ```php
 $container_classes = sprintf(
     'dipe-cf7-container dipe-cf7-button-%1$s cf7m-cf7-container cf7m-cf7-button-%1$s',

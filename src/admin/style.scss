@@ -2430,3 +2430,82 @@
 	font-weight: 600;
 	font-size: 13px;
 }
+
+// Webhook settings page
+.cf7m-webhook-page {
+	padding: 20px 24px;
+	max-width: 640px;
+
+	.cf7m-card__title { margin-bottom: 8px; }
+	.cf7m-card__desc { margin-bottom: 16px; }
+}
+
+.cf7m-webhook-notice {
+	padding: 10px 14px;
+	border-radius: 8px;
+	font-size: 13px;
+	margin-bottom: 16px;
+
+	&--success { background: rgba(34, 197, 94, 0.1); color: #15803d; }
+	&--error { background: rgba(239, 68, 68, 0.1); color: #b91c1c; }
+}
+
+.cf7m-webhook-add {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 16px;
+
+	.cf7m-webhook-input {
+		flex: 1;
+		padding: 10px 14px;
+		font-size: 14px;
+		border: 1px solid var(--cf7m-border);
+		border-radius: 8px;
+		&:focus {
+			outline: none;
+			border-color: var(--cf7m-primary);
+			box-shadow: 0 0 0 2px rgba(58, 87, 252, 0.15);
+		}
+	}
+}
+
+.cf7m-webhook-list {
+	list-style: none;
+	margin: 0 0 16px;
+	padding: 0;
+	border: 1px solid var(--cf7m-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.cf7m-webhook-list-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 12px 14px;
+	border-bottom: 1px solid var(--cf7m-border);
+	&:last-child { border-bottom: none; }
+}
+
+.cf7m-webhook-list-url {
+	font-size: 13px;
+	color: var(--cf7m-text-muted);
+	word-break: break-all;
+}
+
+.cf7m-webhook-remove {
+	padding: 6px 12px;
+	font-size: 12px;
+	color: var(--cf7m-text-muted);
+	background: transparent;
+	border: 1px solid var(--cf7m-border);
+	border-radius: 6px;
+	cursor: pointer;
+	flex-shrink: 0;
+	&:hover { background: rgba(0,0,0,0.04); color: var(--cf7m-heading); }
+}
+
+.cf7m-webhook-empty { margin-bottom: 16px; }
+
+.cf7m-webhook-actions { margin-top: 8px; }

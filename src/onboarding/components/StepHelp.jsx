@@ -10,25 +10,19 @@ const RESOURCES = [
 		id: 'docs',
 		title: __('Documentation', 'cf7-styler-for-divi'),
 		desc: __('Guides and how-tos', 'cf7-styler-for-divi'),
-		url: 'https://divipeople.com/cf7-mate/',
+		url: 'https://cf7mate.com/docs',
 	},
 	{
 		id: 'support',
 		title: __('Support', 'cf7-styler-for-divi'),
 		desc: __('Get help when you need it', 'cf7-styler-for-divi'),
-		url: 'https://divipeople.com/support/',
+		url: 'https://cf7mate.com/docs',
 	},
 	{
-		id: 'youtube',
-		title: __('YouTube Channel', 'cf7-styler-for-divi'),
-		desc: __('Video tutorials and tips', 'cf7-styler-for-divi'),
-		url: 'https://www.youtube.com/@divipeople',
-	},
-	{
-		id: 'facebook',
-		title: __('Facebook Community', 'cf7-styler-for-divi'),
-		desc: __('Join the community', 'cf7-styler-for-divi'),
-		url: 'https://www.facebook.com/groups/divipeople',
+		id: 'pricing',
+		title: __('Pro & Pricing', 'cf7-styler-for-divi'),
+		desc: __('Upgrade and compare plans', 'cf7-styler-for-divi'),
+		url: 'https://cf7mate.com/pricing',
 	},
 ];
 

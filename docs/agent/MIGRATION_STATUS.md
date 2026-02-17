@@ -30,7 +30,7 @@
 | Aspect | Details |
 |--------|---------|
 | **Why** | Closest to CF7 Styler; same form-styling concept |
-| **D4 PHP** | `includes/modules/divi-4/FluentForms/FluentForms.php` (~600 lines) |
+| **D4 PHP** | `includes/lite/builders/divi4/FluentForms/FluentForms.php` (~600 lines) |
 | **D4 VB JSX** | `src/divi4/ff/ff.jsx` |
 | **Reference** | Mirror `src/divi5/modules/cf7-styler/` structure |
 | **Effort** | Medium - ~70% code can be adapted from CF7 Styler |
@@ -41,7 +41,7 @@
 | Aspect | Details |
 |--------|---------|
 | **Why** | Same pattern as Fluent Forms |
-| **D4 PHP** | `includes/modules/divi-4/GravityForms/GravityForms.php` (~710 lines) |
+| **D4 PHP** | `includes/lite/builders/divi4/GravityForms/GravityForms.php` (~710 lines) |
 | **D4 VB JSX** | `src/divi4/gf/gf.jsx` |
 | **Reference** | Mirror CF7 Styler + Fluent Forms patterns |
 | **Effort** | Medium - reuse FF patterns |
@@ -71,7 +71,7 @@
 
 **Key Files:**
 - D5 module.json: `src/divi5/modules/cf7-styler/module.json`
-- D5 PHP: `includes/modules/CF7Styler/CF7Styler.php`
+- D5 PHP: `includes/lite/builders/divi5/CF7Styler/CF7Styler.php`
 
 **Notes (2026-01-28):**
 - D5 `render_callback()` now renders **header icon/image markup** (parity with D4).
@@ -90,7 +90,7 @@
 | Blocker | Needs full D5 implementation |
 
 **Key Files:**
-- D4 PHP: `includes/modules/divi-4/FluentForms/FluentForms.php`
+- D4 PHP: `includes/lite/builders/divi4/FluentForms/FluentForms.php`
 - D4 VB: `src/divi4/ff/ff.jsx`
 
 ### Gravity Forms Styler ❌ D4-ONLY
@@ -104,7 +104,7 @@
 | Blocker | Needs full D5 implementation |
 
 **Key Files:**
-- D4 PHP: `includes/modules/divi-4/GravityForms/GravityForms.php`
+- D4 PHP: `includes/lite/builders/divi4/GravityForms/GravityForms.php`
 - D4 VB: `src/divi4/gf/gf.jsx`
 
 ## Migration Notes
@@ -143,7 +143,7 @@ All form styler modules share:
 - [ ] Verify CF7 Styler D4→D5 conversion with saved layouts
 - [ ] Create D5 module structure for Fluent Forms
 - [ ] Create D5 module structure for Gravity Forms
-- [ ] Update `includes/modules/Modules.php` to load FF/GF D5 modules
+- [ ] Update `includes/lite/builders/divi5/loader.php` to load FF/GF D5 modules
 - [ ] Consider shared form styling components for DRY code
 
 ---

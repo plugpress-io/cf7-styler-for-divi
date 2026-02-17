@@ -5,6 +5,7 @@
 /.wordpress-org
 /.git
 /.github
+/.claude
 /src
 /docs
 /node_modules
@@ -19,6 +20,9 @@
 .gitattributes
 .gitignore
 .babelrc.json
+.prettierignore
+.prettierrc.json
+.cursorrules
 package-lock.json
 package.json
 composer.json
@@ -30,9 +34,7 @@ webpack.config.js
 webpack.divi5.config.js
 wp-textdomain.js
 tailwind.config.js
-.prettierignore
-.prettierrc.json
-.cursorrules
+*.LICENSE.txt
 
 # Pro bootstrap (free build uses cf7-styler.php only)
 cf7-mate-pro.php

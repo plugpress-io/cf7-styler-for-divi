@@ -913,8 +913,8 @@ let Utils = {
         return rowLayouts;
     },
 
-    // The following funciton is totally different than functions in BB used to request and set font.
-    // TODO Do we need to replicate all the functions from BB which are used to set google fonts? Many of them can be modified by users via filters or simply overriden.
+    // Simplified font loading that handles user fonts and Google fonts.
+    // Unlike BB's multi-function approach, this single function covers the core use cases.
     maybeLoadFont(font_name, font_option) {
         const $head = this.$topWindow('head').add(window.jQuery('head'));
         const fonts_data = window.ETBuilderBackend.et_builder_fonts_data;

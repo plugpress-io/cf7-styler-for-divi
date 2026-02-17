@@ -39,6 +39,8 @@ module.exports = function (grunt) {
 		'!webpack.divi5.config.js',
 		'!.cursorrules',
 		'!docs/**',
+		'!.claude/**',
+		'!**/*.LICENSE.txt',
 	];
 
 	const wp_src = ['**', ...commonExcludes];
@@ -117,7 +119,7 @@ module.exports = function (grunt) {
 		const content = `<?php
 /*
 Plugin Name: CF7 Mate Pro
-Plugin URI: https://divipeople.com/cf7-mate
+Plugin URI: https://cf7mate.com
 Description: Pro features for CF7 Mate for Divi.
 Version: ${v}
 Author: PlugPress
@@ -138,11 +140,7 @@ define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
 define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('CF7M_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CF7M_MODULES_JSON_PATH', CF7M_PLUGIN_PATH . 'modules-json/');
-define('CF7M_SELF_HOSTED_ACTIVE', 'true');
-
-if ('true' === CF7M_SELF_HOSTED_ACTIVE) {
-    require_once CF7M_PLUGIN_PATH . 'freemius.php';
-}
+require_once CF7M_PLUGIN_PATH . 'freemius.php';
 require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 `;
 		grunt.file.write('package/cf7-mate-pro/cf7-mate-pro.php', content);

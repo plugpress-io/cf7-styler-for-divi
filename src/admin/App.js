@@ -18,6 +18,7 @@ import { ModulesPage } from './pages/ModulesPage';
 import { AISettingsPage } from './pages/AISettingsPage';
 import { EntriesPage } from './pages/EntriesPage';
 import { FreeVsProPage } from './pages/FreeVsProPage';
+import { WebhookPage } from './pages/WebhookPage';
 
 export function App() {
 	const [features, setFeatures] = useState({
@@ -29,13 +30,17 @@ export function App() {
 		database_entries: true,
 		range_slider: true,
 	});
-	const [isPro, setIsPro] = useState(false);
+	const [isPro, setIsPro] = useState(
+		typeof dcsCF7Styler !== 'undefined' && !!dcsCF7Styler.is_pro
+	);
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [toast, setToast] = useState(null);
 	const getInitialRoute = () => {
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'features') return { view: 'features', entryId: null };
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'entries') return { view: 'entries', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') return { view: 'ai-settings', entryId: null };
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'webhook') return { view: 'webhook', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'free-vs-pro') return { view: 'free-vs-pro', entryId: null };
 		return getViewFromHash();
 	};
@@ -96,6 +101,7 @@ export function App() {
 
 	const showV3Banner = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.show_v3_banner;
 	const showEntries = isPro && !!features.database_entries;
+	const showWebhook = isPro && !!features.webhook;
 	const entriesOnlyPage = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
 	const cf7AdminUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.cf7_admin_url ? dcsCF7Styler.cf7_admin_url : 'admin.php?page=wpcf7';
 	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate-dashboard';
@@ -124,7 +130,7 @@ export function App() {
 
 	return (
 		<div className="cf7m-admin-wrapper">
-			<Header isPro={isPro} showEntries={showEntries} currentView={currentView} />
+			<Header isPro={isPro} showEntries={showEntries} showWebhook={showWebhook} currentView={currentView} />
 			<div className={`cf7m-admin ${currentView === 'entries' ? 'cf7m-admin--entries-full' : ''}`}>
 				<div className="cf7m-admin__content">
 					{currentView === 'entries' ? (
@@ -142,6 +148,8 @@ export function App() {
 						<ModulesPage features={features} isPro={isPro} onToggle={handleToggle} saving={saving} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} />
 					) : currentView === 'ai-settings' ? (
 						<AISettingsPage />
+					) : currentView === 'webhook' ? (
+						<WebhookPage />
 					) : currentView === 'free-vs-pro' ? (
 						<FreeVsProPage />
 					) : (

@@ -98,7 +98,7 @@
 | 5.8 | Focus: wrap border highlights (e.g. blue); no double border on inner input | ☐ |
 | 5.9 | Works inside [cf7m-presets] / Divi-styled form | ☐ |
 
-Example UI: see `docs/agent/phone-number-example.png`. JS/CSS built from `src/pro/phone-number/` to `dist/`.
+Example UI: see `docs/agent/phone-number-example.png`. JS/CSS located at `assets/pro/js/cf7m-phone-number.js` and `assets/pro/css/cf7m-phone-number.css`.
 
 ---
 

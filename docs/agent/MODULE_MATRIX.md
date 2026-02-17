@@ -29,10 +29,10 @@ All modules are standalone (no parent/child relationships).
 
 | Component | Path |
 |-----------|------|
-| **Divi 4 PHP** | `includes/modules/divi-4/CF7Styler/CF7Styler.php` |
+| **Divi 4 PHP** | `includes/lite/builders/divi4/CF7Styler/CF7Styler.php` |
 | **Divi 4 VB JSX** | `src/divi4/cf7/cf7.jsx` |
 | **Divi 4 Styles** | `src/divi4/cf7/style.scss` |
-| **Divi 5 PHP** | `includes/modules/CF7Styler/CF7Styler.php` |
+| **Divi 5 PHP** | `includes/lite/builders/divi5/CF7Styler/CF7Styler.php` |
 | **Divi 5 module.json** | `src/divi5/modules/cf7-styler/module.json` |
 | **Divi 5 Built JSON** | `modules-json/cf7-styler/module.json` |
 | **Divi 5 VB JSX** | `src/divi5/modules/cf7-styler/edit.jsx` |
@@ -44,7 +44,7 @@ All modules are standalone (no parent/child relationships).
 
 | Component | Path |
 |-----------|------|
-| **Divi 4 PHP** | `includes/modules/divi-4/FluentForms/FluentForms.php` |
+| **Divi 4 PHP** | `includes/lite/builders/divi4/FluentForms/FluentForms.php` |
 | **Divi 4 VB JSX** | `src/divi4/ff/ff.jsx` |
 | **Divi 4 Styles** | `src/divi4/ff/style.scss` |
 | **Divi 5 PHP** | — |
@@ -55,7 +55,7 @@ All modules are standalone (no parent/child relationships).
 
 | Component | Path |
 |-----------|------|
-| **Divi 4 PHP** | `includes/modules/divi-4/GravityForms/GravityForms.php` |
+| **Divi 4 PHP** | `includes/lite/builders/divi4/GravityForms/GravityForms.php` |
 | **Divi 4 VB JSX** | `src/divi4/gf/gf.jsx` |
 | **Divi 4 Styles** | `src/divi4/gf/style.scss` |
 | **Divi 5 PHP** | — |
@@ -87,7 +87,7 @@ All modules are standalone (no parent/child relationships).
 The D5 PHP implementation uses a **simplified pattern** (single class with `render_callback`) rather than the trait-based pattern from `references/*`. This is functional but differs from canonical ET examples. It also outputs **scoped per-module CSS** inside `render_callback()` to mirror D4 dynamic styling for migrated controls while avoiding cross-module style bleed.
 
 ```
-includes/modules/CF7Styler/CF7Styler.php
+includes/lite/builders/divi5/CF7Styler/CF7Styler.php
 ├── implements DependencyInterface
 ├── load() - Registers module with ModuleRegistration
 └── render_callback() - Returns HTML output
@@ -107,7 +107,7 @@ includes/modules/CF7Styler/CF7Styler.php
 |------|------|---------|
 | `wp_enqueue_scripts` | `includes/assets.php` | D4 frontend styles |
 | `et_builder_api_ready` | `src/divi4/index.js` | D4 VB module registration |
-| `divi_module_library_modules_dependency_tree` | `includes/modules/Modules.php` | D5 module registration |
+| `divi_module_library_modules_dependency_tree` | `includes/lite/builders/divi5/loader.php` | D5 module registration |
 | `divi_visual_builder_assets_before_enqueue_scripts` | `includes/assets.php` | D5 VB assets |
 
 ## Free vs Pro Features (CF7 Mate)
@@ -125,7 +125,7 @@ Assets for free (lite) features: `assets/lite/js/`, `assets/lite/css/cf7m-lite-f
 - CF7 Styler has **full D5 implementation** with conversion outline
 - Fluent Forms and Gravity Forms share similar structure - can reuse CF7 patterns
 - D4 modules share common dependencies in `src/divi4/dependencies/`
-- Base class at `includes/modules/divi-4/Base/Base.php` provides shared D4 functionality
+- Base class at `includes/lite/builders/divi4/Base/Base.php` provides shared D4 functionality
 
 ---
 

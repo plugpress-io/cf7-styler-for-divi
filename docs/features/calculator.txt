@@ -1,0 +1,13 @@
+Calculator / Price Estimator (Pro)
+===================================
+
+What it is
+  Live calculation on the form: user fills in numbers (e.g. quantity, options) and sees a total or estimate update as they type. The result can be sent with the submission or shown only on screen.
+
+How to use
+  1. Enable "Calculator / Price Estimator" in CF7 Mate → Modules (Pro).
+  2. Edit your Contact Form 7 form. Add the calculator/price tag via the CF7 Mate tag generator: define which fields are inputs and how to compute the result (formula or rules).
+  3. Insert the tag and save the form.
+  4. Add the form with the CF7 Styler module. The calculated value updates in real time; style the output in the module if needed.
+
+Use it for quotes, order totals, or any form where you want an instant total from user inputs.
