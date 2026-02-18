@@ -63,17 +63,12 @@ class Assets
         wp_enqueue_script(
             'cf7-styler-for-divi-builder',
             CF7M_PLUGIN_URL . 'dist/js/builder4.js',
-            ['react-dom', 'react'],
+            ['react-dom', 'react', 'lodash'],
             CF7M_VERSION,
             true
         );
     }
 
-    /**
-     * Enqueue Divi 5 Visual Builder assets using PackageBuildManager.
-     *
-     * @since 3.0.0
-     */
     public function enqueue_d5_vb_assets()
     {
         $plugin_dir_url = CF7M_PLUGIN_URL;
