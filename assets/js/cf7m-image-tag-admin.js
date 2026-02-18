@@ -25,10 +25,40 @@
       button: { text: (wp.i18n && wp.i18n.__) ? wp.i18n.__('Use Image', 'cf7-styler-for-divi') : 'Use Image' }
     });
 
-    // Raise the media modal above the CF7 tag generator dialog.
+    /**
+     * CF7 6.x renders tag generator panels inside an HTML <dialog> element
+     * opened via showModal(), which places it (and its ::backdrop) in the
+     * browser's "top layer". Nothing — not even z-index: 999999 — can paint
+     * above the top layer.
+     *
+     * Fix: completely close the CF7 <dialog> when the media picker opens, then
+     * reopen it with showModal() once the picker closes. The form values inside
+     * the dialog are preserved because the element stays in the DOM.
+     *
+     * For older CF7 / jQuery UI dialogs fall back to z-index manipulation.
+     */
+    var cfDialog   = panel.closest ? panel.closest('dialog') : null;
+    var cfUiDialog = cfDialog ? null : $(panel).closest('.ui-dialog, .wp-dialog')[0];
+
     frame.on('open', function () {
-      $('.media-modal').css('z-index', '999999');
-      $('.media-modal-backdrop').css('z-index', '999998');
+      if (cfDialog && typeof cfDialog.close === 'function') {
+        cfDialog.close();
+      } else if (cfUiDialog) {
+        $(cfUiDialog).hide();
+        $('.media-modal').css('z-index', '999999');
+        $('.media-modal-backdrop').css('z-index', '999998');
+      } else {
+        $('.media-modal').css('z-index', '999999');
+        $('.media-modal-backdrop').css('z-index', '999998');
+      }
+    });
+
+    frame.on('close', function () {
+      if (cfDialog && typeof cfDialog.showModal === 'function') {
+        try { cfDialog.showModal(); } catch (e) { /* already open or detached */ }
+      } else if (cfUiDialog) {
+        $(cfUiDialog).show();
+      }
     });
 
     frame.on('select', function () {

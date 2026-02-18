@@ -58,9 +58,9 @@ if (!function_exists('cf7m_fs')) {
     cf7m_fs()->add_filter('deactivate_on_activation', '__return_false');
     // Disable redirect on activation
     cf7m_fs()->add_filter('redirect_on_activation', '__return_false');
-    // Custom pricing JS with CF7 Mate brand colors baked in
-    cf7m_fs()->add_filter('freemius_pricing_js_path', function () {
-        return CF7M_PLUGIN_PATH . 'ui/freemius-pricing/freemius-pricing.js';
+    // Custom pricing page branding
+    cf7m_fs()->add_filter('pricing/css_path', function () {
+        return CF7M_PLUGIN_PATH . 'assets/css/cf7m-pricing.css';
     });
 
     do_action('cf7m_fs_loaded');
