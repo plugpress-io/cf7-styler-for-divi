@@ -7,6 +7,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ConversionOutlineJsonPlugin = require('./webpack/config/plugins/conversion-outline-json-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -110,6 +111,9 @@ module.exports = {
   },
 
   plugins: [
+    // Generate conversion-outline.json from conversion-outline.js (runs before compile).
+    new ConversionOutlineJsonPlugin(),
+
     // Extract CSS into dist/css (same layout as divi4 build).
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
