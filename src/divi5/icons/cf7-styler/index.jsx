@@ -2,7 +2,7 @@ import React from 'react';
 
 // Icon data - CF7 Styler icon.
 // 16x16 boxed layout, optimized for small/mobile views.
-export const name = 'cf7-styler-for-divi/icon';
+export const name = 'cf7-mate/icon';
 export const viewBox = '0 0 16 16';
 export const component = () => (
   <>

@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import $ from 'jquery';
+import React, {Component} from 'react';
 import { generateStyles } from '@Dependencies/styles';
 import { renderDiviFont } from '@Dependencies/et-render-font';
 
@@ -9,7 +10,11 @@ class CF7Styler extends Component {
         let additionalCss = [];
         let address = props.address;
 
-        let iconFont = renderDiviFont(props, 'header_icon', '%%order_class%% .dipe-form-header-icon .et-pb-icon');
+        let iconFont = renderDiviFont(
+            props, 
+            'header_icon', 
+            '%%order_class%% .dipe-form-header-icon .et-pb-icon'
+        );
 
         additionalCss.push(
             generateStyles({

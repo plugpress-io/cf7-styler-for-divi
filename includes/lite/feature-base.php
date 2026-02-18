@@ -1,10 +1,4 @@
 <?php
-/**
- * Base class for lite features (free). Subclasses use Singleton and call parent::__construct().
- *
- * @package CF7_Mate\Lite
- * @since 3.0.0
- */
 
 namespace CF7_Mate\Lite;
 
@@ -34,9 +28,6 @@ abstract class Feature_Base
             return true;
         }
         if (strpos($post->post_content, 'dvppl_cf7_styler') !== false) {
-            return true;
-        }
-        if (strpos($post->post_content, 'cf7-styler-for-divi/cf7-styler') !== false) {
             return true;
         }
         return false;

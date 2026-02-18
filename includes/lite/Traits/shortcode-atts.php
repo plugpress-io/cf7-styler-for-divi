@@ -1,10 +1,4 @@
 <?php
-/**
- * Parse shortcode-style attributes (e.g. title:"Step 1" gap:16).
- *
- * @package CF7_Mate\Lite\Traits
- * @since 3.0.0
- */
 
 namespace CF7_Mate\Lite\Traits;
 

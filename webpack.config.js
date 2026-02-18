@@ -7,13 +7,13 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
 	entry: {
-		builder4: ['./src/divi4/index.js'],
-		utils: ['./src/utils/index.js'],
-		frontend4: ['./src/frontend/index.js'],
-		'admin-notice': ['./src/admin/admin-notice.js'],
-		onboarding: ['./src/onboarding/index.jsx'],
-		admin: ['./src/admin/index.js'],
-		gutenberg: ['./src/gutenberg/index.js'],
+		'bundle-4': './src/divi4/index.js',
+		lagecy: './src/divi4/lagecy.js',
+		'admin-notice': './src/admin/admin-notice.js',
+		onboarding: './src/onboarding/index.jsx',
+		admin: './src/admin/index.js',
+		gutenberg: './src/gutenberg/index.js',
+		utils: './src/utils/index.js',
 	},
 	watch: !isProduction,
 	performance: {
@@ -120,7 +120,7 @@ module.exports = {
 	externals: {
 		$: 'jQuery',
 		jquery: 'jQuery',
-		lodash: 'lodash',
+		lodash: '(window.lodash || window._)',
 		'@wordpress/element': ['wp', 'element'],
 		'@wordpress/i18n': ['wp', 'i18n'],
 		'@wordpress/components': ['wp', 'components'],
@@ -130,8 +130,8 @@ module.exports = {
 		'@wordpress/blocks': ['wp', 'blocks'],
 		'@wordpress/block-editor': ['wp', 'blockEditor'],
 		'@wordpress/server-side-render': ['wp', 'serverSideRender'],
-		react: ['wp', 'element'],
-		'react-dom': ['wp', 'element'],
+		react: 'React',
+		'react-dom': 'ReactDOM',
 	},
 
 	output: {
@@ -154,7 +154,7 @@ if (isProduction) {
 		fs.mkdirSync(langDir, { recursive: true });
 	}
 	wpPot({
-		package: 'CF7 Styler for Divi',
+		package: 'CF7 Mate',
 		domain: 'cf7-styler-for-divi',
 		destFile: 'languages/cf7-styler-for-divi.pot',
 		relativeTo: './',

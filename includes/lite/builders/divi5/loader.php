@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Divi 5 builder: register CF7 Styler module with the dependency tree.
  *
@@ -26,3 +27,13 @@ add_action(
     },
     5
 );
+
+add_filter('divi.moduleLibrary.conversion.moduleConversionOutlineFile', function ($file_path, $module_name) {
+
+    if ('cf7-mate/cf7-styler' === $module_name) {
+        return '/path/to/your/custom/conversion-outline.json';
+    }
+
+    // Return default for other modules
+    return $file_path;
+}, 10, 2);

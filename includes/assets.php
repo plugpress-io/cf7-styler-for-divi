@@ -17,10 +17,10 @@ class Assets
 
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_builder_scripts'));
-        add_action('divi_visual_builder_assets_before_enqueue_scripts', array($this, 'enqueue_d5_vb_assets'));
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_d5_frontend_assets'));
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_builder_scripts']);
+        add_action('divi_visual_builder_assets_before_enqueue_scripts', [$this, 'enqueue_d5_vb_assets']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_d5_frontend_assets']);
     }
 
     public function enqueue_scripts()
@@ -32,15 +32,14 @@ class Assets
                 return;
             }
             $has_cf7 = has_shortcode($post->post_content, 'contact-form-7')
-                || (strpos($post->post_content, 'dvppl_cf7_styler') !== false)
-                || (strpos($post->post_content, 'cf7-styler-for-divi/cf7-styler') !== false);
+                || (strpos($post->post_content, 'dvppl_cf7_styler') !== false);
             if (!$has_cf7) {
                 return;
             }
         }
         wp_enqueue_style(
             'cf7-styler-for-divi',
-            CF7M_PLUGIN_URL . 'dist/css/builder4.css',
+            CF7M_PLUGIN_URL . 'dist/css/bundle-4.css',
             [],
             CF7M_VERSION
         );
@@ -48,73 +47,80 @@ class Assets
 
     public function enqueue_builder_scripts()
     {
-
         if (function_exists('et_core_is_fb_enabled') && !et_core_is_fb_enabled()) {
+            return;
+        }
+
+        // D5 VB uses bundle.js via PackageBuildManager — skip D4 scripts entirely.
+        if (function_exists('et_builder_d5_enabled') && et_builder_d5_enabled()) {
             return;
         }
 
         wp_enqueue_style(
             'cf7-styler-for-divi-builder',
-            CF7M_PLUGIN_URL . 'dist/css/builder4.css',
+            CF7M_PLUGIN_URL . 'dist/css/bundle-4.css',
             [],
             CF7M_VERSION
         );
 
-        // WordPress's lodash uses noConflict() – exposed as window.lodash, not window._.
-        // builder4.js was bundled with webpack externals {lodash:'_'}, so alias _ = lodash.
-        wp_add_inline_script('cf7-styler-for-divi-builder', 'window._ = window.lodash;', 'before');
-
         wp_enqueue_script(
             'cf7-styler-for-divi-builder',
-            CF7M_PLUGIN_URL . 'dist/js/builder4.js',
-            ['react-dom', 'react', 'lodash'],
+            CF7M_PLUGIN_URL . 'dist/js/bundle-4.js',
+            ['jquery', 'lodash', 'react', 'react-dom'],
             CF7M_VERSION,
             true
         );
-    }
 
-    public function enqueue_d5_vb_assets()
-    {
-        $plugin_dir_url = CF7M_PLUGIN_URL;
-
-        // Register the module bundle
-        if (class_exists('\ET\Builder\VisualBuilder\Assets\PackageBuildManager')) {
-            \ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
-                array(
-                    'name'    => 'cf7-styler-for-divi-builder-bundle-script',
-                    'version' => CF7M_VERSION,
-                    'script'  => array(
-                        'src'                => "{$plugin_dir_url}dist/js/bundle.js",
-                        'deps'               => array(
-                            'divi-module-library',
-                            'divi-vendor-wp-hooks',
-                        ),
-                        'enqueue_top_window' => false,
-                        'enqueue_app_window' => true,
-                    ),
-                )
+        // Legacy FF/GF modules — only for installs before v3.0.0 (2026-01-01).
+        $install_date = get_option('cf7m_install_date') ?: get_option('divi_cf7_styler_install_date');
+        if ($install_date && $install_date < strtotime('2026-01-01')) {
+            wp_enqueue_style(
+                'cf7-styler-for-divi-lagecy',
+                CF7M_PLUGIN_URL . 'dist/css/lagecy.css',
+                [],
+                CF7M_VERSION
             );
-
-            \ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
-                array(
-                    'name'    => 'cf7-styler-for-divi-builder-bundle-style',
-                    'version' => CF7M_VERSION,
-                    'style'   => array(
-                        'src'                => "{$plugin_dir_url}dist/css/bundle.css",
-                        'deps'               => array(),
-                        'enqueue_top_window' => false,
-                        'enqueue_app_window' => true,
-                    ),
-                )
+            wp_enqueue_script(
+                'cf7-styler-for-divi-lagecy',
+                CF7M_PLUGIN_URL . 'dist/js/lagecy.js',
+                ['jquery', 'cf7-styler-for-divi-builder'],
+                CF7M_VERSION,
+                true
             );
         }
     }
 
-    /**
-     * Enqueue Divi 5 frontend assets for published pages.
-     *
-     * @since 3.0.0
-     */
+    public function enqueue_d5_vb_assets()
+    {
+        if (!class_exists('\ET\Builder\VisualBuilder\Assets\PackageBuildManager')) {
+            return;
+        }
+
+        $url = CF7M_PLUGIN_URL;
+
+        \ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build([
+            'name'    => 'cf7-styler-for-divi-builder-bundle-script',
+            'version' => CF7M_VERSION,
+            'script'  => [
+                'src'                => "{$url}dist/js/bundle.js",
+                'deps'               => ['divi-module-library', 'divi-vendor-wp-hooks'],
+                'enqueue_top_window' => false,
+                'enqueue_app_window' => true,
+            ],
+        ]);
+
+        \ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build([
+            'name'    => 'cf7-styler-for-divi-builder-bundle-style',
+            'version' => CF7M_VERSION,
+            'style'   => [
+                'src'                => "{$url}dist/css/bundle.css",
+                'deps'               => [],
+                'enqueue_top_window' => false,
+                'enqueue_app_window' => true,
+            ],
+        ]);
+    }
+
     public function enqueue_d5_frontend_assets()
     {
         if (!function_exists('et_builder_d5_enabled') || !et_builder_d5_enabled()) {
@@ -123,22 +129,22 @@ class Assets
         if (function_exists('et_core_is_fb_enabled') && et_core_is_fb_enabled()) {
             return;
         }
+
         global $post;
         if (!$post || !is_singular()) {
             return;
         }
+
         $has_cf7 = has_shortcode($post->post_content, 'contact-form-7')
-            || (strpos($post->post_content, 'dvppl_cf7_styler') !== false)
-            || (strpos($post->post_content, 'cf7-styler-for-divi/cf7-styler') !== false);
+            || (strpos($post->post_content, 'dvppl_cf7_styler') !== false);
         if (!$has_cf7) {
             return;
         }
 
-        // Enqueue Divi 5 frontend CSS only when page has CF7 form
         wp_enqueue_style(
             'cf7-styler-for-divi-d5-frontend-style',
             esc_url(CF7M_PLUGIN_URL . 'dist/css/bundle.css'),
-            array(),
+            [],
             CF7M_VERSION
         );
     }

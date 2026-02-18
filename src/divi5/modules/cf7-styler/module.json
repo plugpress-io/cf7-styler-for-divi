@@ -1,9 +1,9 @@
 {
-  "name": "cf7-styler-for-divi/cf7-styler",
+  "name": "cf7-mate/cf7-styler",
   "d4Shortcode": "dvppl_cf7_styler",
   "title": "CF7 Styler",
   "titles": "CF7 Styler",
-  "moduleIcon": "cf7-styler-for-divi/icon",
+  "moduleIcon": "cf7-mate/icon",
   "moduleClassName": "dvppl_cf7_styler",
   "moduleOrderClassName": "dvppl_cf7_styler",
   "category": "module",
@@ -52,81 +52,381 @@
       "selector": "{{selector}} .cf7m-cf7-styler",
       "default": {
         "advanced": {
-          "designPreset": { "desktop": { "value": "" } },
-          "formId": { "desktop": { "value": "0" } },
-          "useFormHeader": { "desktop": { "value": "off" } },
-          "formHeaderTitle": { "desktop": { "value": "" } },
-          "formHeaderText": { "desktop": { "value": "" } },
-          "useIcon": { "desktop": { "value": "off" } },
-          "headerImage": { "desktop": { "value": "" } },
-          "headerIcon": { "desktop": { "value": "" } },
-          "useFormButtonFullwidth": { "desktop": { "value": "off" } },
-          "buttonAlignment": { "desktop": { "value": "left" } },
-          "crCustomStyles": { "desktop": { "value": "off" } },
-          "formHeaderBg": { "desktop": { "value": "" } },
-          "formHeaderPadding": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "formHeaderBottom": { "desktop": { "value": "0px" } },
-          "formHeaderImgBg": { "desktop": { "value": "" } },
-          "formHeaderIconColor": { "desktop": { "value": "" } },
-          "formBg": { "desktop": { "value": "" } },
-          "formPadding": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "formFieldHeight": { "desktop": { "value": "" } },
-          "formFieldPadding": { "desktop": { "value": "10px|15px|10px|15px" } },
-          "formBackgroundColor": { "desktop": { "value": "#f5f5f5" } },
-          "formFieldActiveColor": { "desktop": { "value": "" } },
-          "formFieldSpacing": { "desktop": { "value": "20px" } },
-          "formLabelSpacing": { "desktop": { "value": "7px" } },
-          "crSize": { "desktop": { "value": "20px" } },
-          "crBackgroundColor": { "desktop": { "value": "" } },
-          "crSelectedColor": { "desktop": { "value": "#222222" } },
-          "crBorderColor": { "desktop": { "value": "#222222" } },
-          "crBorderSize": { "desktop": { "value": "1px" } },
-          "crLabelColor": { "desktop": { "value": "" } },
-          "cf7MessagePadding": { "desktop": { "value": "0px" } },
-          "cf7MessageMarginTop": { "desktop": { "value": "0px" } },
-          "cf7MessageAlignment": { "desktop": { "value": "left" } },
-          "cf7MessageColor": { "desktop": { "value": "" } },
-          "cf7MessageBgColor": { "desktop": { "value": "" } },
-          "cf7BorderHighlightColor": { "desktop": { "value": "" } },
-          "cf7SuccessMessageColor": { "desktop": { "value": "" } },
-          "cf7SuccessMessageBgColor": { "desktop": { "value": "" } },
-          "cf7SuccessBorderColor": { "desktop": { "value": "" } },
-          "cf7ErrorMessageColor": { "desktop": { "value": "" } },
-          "cf7ErrorMessageBgColor": { "desktop": { "value": "" } },
-          "cf7ErrorBorderColor": { "desktop": { "value": "" } },
-          "buttonBg": { "desktop": { "value": "" } },
-          "buttonColor": { "desktop": { "value": "" } },
-          "buttonPadding": { "desktop": { "value": "10px|20px|10px|20px" } },
-          "buttonBorderColor": { "desktop": { "value": "" } },
-          "buttonBorderWidth": { "desktop": { "value": "0px" } },
-          "buttonBorderRadius": { "desktop": { "value": "0px" } },
-          "formFieldBorderColor": { "desktop": { "value": "" } },
-          "formFieldBorderWidth": { "desktop": { "value": "1px" } },
-          "formFieldBorderRadius": { "desktop": { "value": "0px" } },
-          "formFieldTextColor": { "desktop": { "value": "" } },
-          "formLabelColor": { "desktop": { "value": "" } },
-          "proHeadingFontSize": { "desktop": { "value": "" } },
-          "proHeadingFontWeight": { "desktop": { "value": "" } },
-          "proHeadingTextColor": { "desktop": { "value": "" } },
-          "proHeadingMargin": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "proIconSize": { "desktop": { "value": "" } },
-          "proIconColor": { "desktop": { "value": "" } },
-          "proIconMargin": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "proImageWidth": { "desktop": { "value": "" } },
-          "proImageHeight": { "desktop": { "value": "" } },
-          "proImageBorderColor": { "desktop": { "value": "" } },
-          "proImageBorderWidth": { "desktop": { "value": "0px" } },
-          "proImageBorderRadius": { "desktop": { "value": "0px" } },
-          "proImagePadding": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "proImageMargin": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "proRangeTrackColor": { "desktop": { "value": "" } },
-          "proRangeThumbColor": { "desktop": { "value": "" } },
-          "proRangeHeight": { "desktop": { "value": "" } },
-          "proRangeMargin": { "desktop": { "value": "0px|0px|0px|0px" } },
-          "proStarColor": { "desktop": { "value": "" } },
-          "proStarActiveColor": { "desktop": { "value": "" } },
-          "proStarSize": { "desktop": { "value": "" } },
-          "proStarMargin": { "desktop": { "value": "0px|0px|0px|0px" } }
+          "designPreset": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formId": {
+            "desktop": {
+              "value": "0"
+            }
+          },
+          "useFormHeader": {
+            "desktop": {
+              "value": "off"
+            }
+          },
+          "formHeaderTitle": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formHeaderText": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "useIcon": {
+            "desktop": {
+              "value": "off"
+            }
+          },
+          "headerImage": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerIcon": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "useFormButtonFullwidth": {
+            "desktop": {
+              "value": "off"
+            }
+          },
+          "buttonAlignment": {
+            "desktop": {
+              "value": "left"
+            }
+          },
+          "crCustomStyles": {
+            "desktop": {
+              "value": "off"
+            }
+          },
+          "formHeaderBg": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formHeaderPadding": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "formHeaderBottom": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "formHeaderImgBg": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formHeaderIconColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formBg": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formPadding": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "formFieldHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formFieldPadding": {
+            "desktop": {
+              "value": "10px|15px|10px|15px"
+            }
+          },
+          "formBackgroundColor": {
+            "desktop": {
+              "value": "#f5f5f5"
+            }
+          },
+          "formFieldActiveColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formFieldSpacing": {
+            "desktop": {
+              "value": "20px"
+            }
+          },
+          "formLabelSpacing": {
+            "desktop": {
+              "value": "7px"
+            }
+          },
+          "crSize": {
+            "desktop": {
+              "value": "20px"
+            }
+          },
+          "crBackgroundColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "crSelectedColor": {
+            "desktop": {
+              "value": "#222222"
+            }
+          },
+          "crBorderColor": {
+            "desktop": {
+              "value": "#222222"
+            }
+          },
+          "crBorderSize": {
+            "desktop": {
+              "value": "1px"
+            }
+          },
+          "crLabelColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7MessagePadding": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "cf7MessageMarginTop": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "cf7MessageAlignment": {
+            "desktop": {
+              "value": "left"
+            }
+          },
+          "cf7MessageColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7MessageBgColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7BorderHighlightColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7SuccessMessageColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7SuccessMessageBgColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7SuccessBorderColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7ErrorMessageColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7ErrorMessageBgColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "cf7ErrorBorderColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonBg": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonPadding": {
+            "desktop": {
+              "value": "10px|20px|10px|20px"
+            }
+          },
+          "buttonBorderColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonBorderWidth": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "buttonBorderRadius": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "formFieldBorderColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formFieldBorderWidth": {
+            "desktop": {
+              "value": "1px"
+            }
+          },
+          "formFieldBorderRadius": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "formFieldTextColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "formLabelColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proHeadingFontSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proHeadingFontWeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proHeadingTextColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proHeadingMargin": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "proIconSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proIconColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proIconMargin": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "proImageWidth": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proImageHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proImageBorderColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proImageBorderWidth": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "proImageBorderRadius": {
+            "desktop": {
+              "value": "0px"
+            }
+          },
+          "proImagePadding": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "proImageMargin": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "proRangeTrackColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proRangeThumbColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proRangeHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proRangeMargin": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          },
+          "proStarColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proStarActiveColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proStarSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "proStarMargin": {
+            "desktop": {
+              "value": "0px|0px|0px|0px"
+            }
+          }
         }
       },
       "settings": {
@@ -151,14 +451,30 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": { "label": "None" },
-                    "classic": { "label": "Classic" },
-                    "box": { "label": "Box" },
-                    "typeform": { "label": "Typeform" },
-                    "minimal": { "label": "Minimal" },
-                    "rounded": { "label": "Rounded" },
-                    "dark": { "label": "Dark" },
-                    "modern": { "label": "Modern" }
+                    "": {
+                      "label": "None"
+                    },
+                    "classic": {
+                      "label": "Classic"
+                    },
+                    "box": {
+                      "label": "Box"
+                    },
+                    "typeform": {
+                      "label": "Typeform"
+                    },
+                    "minimal": {
+                      "label": "Minimal"
+                    },
+                    "rounded": {
+                      "label": "Rounded"
+                    },
+                    "dark": {
+                      "label": "Dark"
+                    },
+                    "modern": {
+                      "label": "Modern"
+                    }
                   }
                 }
               }
@@ -184,7 +500,9 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "0": { "label": "Select a form..." }
+                    "0": {
+                      "label": "Select a form..."
+                    }
                   }
                 }
               }
@@ -345,8 +663,16 @@
               "priority": 10,
               "render": true,
               "label": "Form Header Background",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formHeaderPadding": {
@@ -357,8 +683,19 @@
               "priority": 20,
               "render": true,
               "label": "Header Padding",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "padding": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "padding": true
+                }
+              }
             }
           },
           "formHeaderBottom": {
@@ -369,8 +706,22 @@
               "priority": 30,
               "render": true,
               "label": "Bottom Spacing",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "formHeaderImgBg": {
@@ -381,8 +732,16 @@
               "priority": 40,
               "render": true,
               "label": "Header Image/Icon Background",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formHeaderIconColor": {
@@ -393,8 +752,16 @@
               "priority": 50,
               "render": true,
               "label": "Header Icon Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formBg": {
@@ -405,8 +772,16 @@
               "priority": 10,
               "render": true,
               "label": "Form Background",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formPadding": {
@@ -417,8 +792,19 @@
               "priority": 20,
               "render": true,
               "label": "Form Padding",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "padding": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "padding": true
+                }
+              }
             }
           },
           "useFormButtonFullwidth": {
@@ -429,8 +815,16 @@
               "priority": 30,
               "render": true,
               "label": "Fullwidth Button",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/toggle" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/toggle"
+              }
             }
           },
           "buttonAlignment": {
@@ -441,8 +835,29 @@
               "priority": 40,
               "render": true,
               "label": "Button Alignment",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/select", "props": { "options": { "left": { "label": "Left" }, "center": { "label": "Center" }, "right": { "label": "Right" } } } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "left": {
+                      "label": "Left"
+                    },
+                    "center": {
+                      "label": "Center"
+                    },
+                    "right": {
+                      "label": "Right"
+                    }
+                  }
+                }
+              }
             }
           },
           "formFieldHeight": {
@@ -454,8 +869,22 @@
               "render": true,
               "label": "Common Text Fields Height",
               "description": "Define static height for the common text fields.",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "formFieldPadding": {
@@ -467,8 +896,19 @@
               "render": true,
               "label": "Form Field Padding",
               "description": "Define custom padding for each field.",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "padding": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "padding": true
+                }
+              }
             }
           },
           "formBackgroundColor": {
@@ -479,8 +919,16 @@
               "priority": 30,
               "render": true,
               "label": "Form Field Background Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formFieldActiveColor": {
@@ -491,8 +939,16 @@
               "priority": 40,
               "render": true,
               "label": "Form Field Active Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formFieldSpacing": {
@@ -504,8 +960,22 @@
               "render": true,
               "label": "Form Field Spacing Bottom",
               "description": "Space the form field will take at the bottom.",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 200, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 200,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "formLabelSpacing": {
@@ -517,8 +987,22 @@
               "render": true,
               "label": "Form Label Spacing Bottom",
               "description": "Space the form label will take at the bottom.",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 200, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 200,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "crSize": {
@@ -529,8 +1013,22 @@
               "priority": 20,
               "render": true,
               "label": "Size",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 50, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 50,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "crBackgroundColor": {
@@ -541,8 +1039,16 @@
               "priority": 30,
               "render": true,
               "label": "Background Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "crSelectedColor": {
@@ -553,8 +1059,16 @@
               "priority": 40,
               "render": true,
               "label": "Selected Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "crBorderColor": {
@@ -565,8 +1079,16 @@
               "priority": 50,
               "render": true,
               "label": "Border Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "crBorderSize": {
@@ -577,8 +1099,22 @@
               "priority": 60,
               "render": true,
               "label": "Border Size",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 5, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 5,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "crLabelColor": {
@@ -589,8 +1125,16 @@
               "priority": 70,
               "render": true,
               "label": "Label Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7MessagePadding": {
@@ -601,8 +1145,22 @@
               "priority": 10,
               "render": true,
               "label": "Message Padding",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 50, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 50,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "cf7MessageMarginTop": {
@@ -613,8 +1171,22 @@
               "priority": 20,
               "render": true,
               "label": "Message Margin Top",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 50, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 50,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "cf7MessageAlignment": {
@@ -626,8 +1198,29 @@
               "render": true,
               "label": "Message Text Alignment",
               "description": "Align message text left, right or center.",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/select", "props": { "options": { "left": { "label": "Left" }, "center": { "label": "Center" }, "right": { "label": "Right" } } } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "left": {
+                      "label": "Left"
+                    },
+                    "center": {
+                      "label": "Center"
+                    },
+                    "right": {
+                      "label": "Right"
+                    }
+                  }
+                }
+              }
             }
           },
           "cf7MessageColor": {
@@ -638,8 +1231,16 @@
               "priority": 40,
               "render": true,
               "label": "Message Text Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7MessageBgColor": {
@@ -650,8 +1251,16 @@
               "priority": 50,
               "render": true,
               "label": "Message Background Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7BorderHighlightColor": {
@@ -662,8 +1271,16 @@
               "priority": 60,
               "render": true,
               "label": "Border Highlight Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7SuccessMessageColor": {
@@ -674,8 +1291,16 @@
               "priority": 70,
               "render": true,
               "label": "Success Message Text Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7SuccessMessageBgColor": {
@@ -686,8 +1311,16 @@
               "priority": 80,
               "render": true,
               "label": "Success Message Background Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7SuccessBorderColor": {
@@ -698,8 +1331,16 @@
               "priority": 90,
               "render": true,
               "label": "Success Border Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7ErrorMessageColor": {
@@ -710,8 +1351,16 @@
               "priority": 100,
               "render": true,
               "label": "Error Message Text Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7ErrorMessageBgColor": {
@@ -722,8 +1371,16 @@
               "priority": 110,
               "render": true,
               "label": "Error Message Background Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "cf7ErrorBorderColor": {
@@ -734,8 +1391,16 @@
               "priority": 120,
               "render": true,
               "label": "Error Border Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "buttonBg": {
@@ -746,8 +1411,16 @@
               "priority": 10,
               "render": true,
               "label": "Button Background",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "buttonColor": {
@@ -758,8 +1431,16 @@
               "priority": 20,
               "render": true,
               "label": "Button Text Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "buttonPadding": {
@@ -770,8 +1451,19 @@
               "priority": 30,
               "render": true,
               "label": "Button Padding",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "padding": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "padding": true
+                }
+              }
             }
           },
           "buttonBorderColor": {
@@ -782,8 +1474,16 @@
               "priority": 40,
               "render": true,
               "label": "Button Border Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "buttonBorderWidth": {
@@ -794,8 +1494,22 @@
               "priority": 50,
               "render": true,
               "label": "Button Border Width",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 10, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 10,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "buttonBorderRadius": {
@@ -806,8 +1520,22 @@
               "priority": 60,
               "render": true,
               "label": "Button Border Radius",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "formFieldBorderColor": {
@@ -818,8 +1546,16 @@
               "priority": 60,
               "render": true,
               "label": "Field Border Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formFieldBorderWidth": {
@@ -830,8 +1566,22 @@
               "priority": 70,
               "render": true,
               "label": "Field Border Width",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 10, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 10,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "formFieldBorderRadius": {
@@ -842,8 +1592,22 @@
               "priority": 80,
               "render": true,
               "label": "Field Border Radius",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "formFieldTextColor": {
@@ -854,8 +1618,16 @@
               "priority": 90,
               "render": true,
               "label": "Field Text Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "formLabelColor": {
@@ -866,8 +1638,16 @@
               "priority": 20,
               "render": true,
               "label": "Label Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proHeadingFontSize": {
@@ -878,8 +1658,22 @@
               "priority": 10,
               "render": true,
               "label": "Font Size",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 10, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proHeadingFontWeight": {
@@ -890,8 +1684,41 @@
               "priority": 20,
               "render": true,
               "label": "Font Weight",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/select", "props": { "options": { "": { "label": "Default" }, "300": { "label": "Light" }, "400": { "label": "Normal" }, "500": { "label": "Medium" }, "600": { "label": "Semi Bold" }, "700": { "label": "Bold" }, "800": { "label": "Extra Bold" } } } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "300": {
+                      "label": "Light"
+                    },
+                    "400": {
+                      "label": "Normal"
+                    },
+                    "500": {
+                      "label": "Medium"
+                    },
+                    "600": {
+                      "label": "Semi Bold"
+                    },
+                    "700": {
+                      "label": "Bold"
+                    },
+                    "800": {
+                      "label": "Extra Bold"
+                    }
+                  }
+                }
+              }
             }
           },
           "proHeadingTextColor": {
@@ -902,8 +1729,16 @@
               "priority": 30,
               "render": true,
               "label": "Text Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proHeadingMargin": {
@@ -914,8 +1749,19 @@
               "priority": 40,
               "render": true,
               "label": "Margin",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "margin": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "margin": true
+                }
+              }
             }
           },
           "proIconSize": {
@@ -926,8 +1772,22 @@
               "priority": 10,
               "render": true,
               "label": "Icon Size",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 10, "max": 200, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 200,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proIconColor": {
@@ -938,8 +1798,16 @@
               "priority": 20,
               "render": true,
               "label": "Icon Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proIconMargin": {
@@ -950,8 +1818,19 @@
               "priority": 30,
               "render": true,
               "label": "Margin",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "margin": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "margin": true
+                }
+              }
             }
           },
           "proImageWidth": {
@@ -962,8 +1841,22 @@
               "priority": 10,
               "render": true,
               "label": "Image Width",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 10, "max": 500, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 500,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proImageHeight": {
@@ -974,8 +1867,22 @@
               "priority": 20,
               "render": true,
               "label": "Image Height",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 10, "max": 500, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 500,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proImageBorderColor": {
@@ -986,8 +1893,16 @@
               "priority": 30,
               "render": true,
               "label": "Border Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proImageBorderWidth": {
@@ -998,8 +1913,22 @@
               "priority": 40,
               "render": true,
               "label": "Border Width",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 10, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 10,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proImageBorderRadius": {
@@ -1010,8 +1939,22 @@
               "priority": 50,
               "render": true,
               "label": "Border Radius",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 0, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proImagePadding": {
@@ -1022,8 +1965,19 @@
               "priority": 60,
               "render": true,
               "label": "Padding",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "padding": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "padding": true
+                }
+              }
             }
           },
           "proImageMargin": {
@@ -1034,8 +1988,19 @@
               "priority": 70,
               "render": true,
               "label": "Margin",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "margin": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "margin": true
+                }
+              }
             }
           },
           "proRangeTrackColor": {
@@ -1046,8 +2011,16 @@
               "priority": 10,
               "render": true,
               "label": "Track Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proRangeThumbColor": {
@@ -1058,8 +2031,16 @@
               "priority": 20,
               "render": true,
               "label": "Thumb Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proRangeHeight": {
@@ -1070,8 +2051,22 @@
               "priority": 30,
               "render": true,
               "label": "Track Height",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 2, "max": 20, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 2,
+                  "max": 20,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proRangeMargin": {
@@ -1082,8 +2077,19 @@
               "priority": 40,
               "render": true,
               "label": "Margin",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "margin": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "margin": true
+                }
+              }
             }
           },
           "proStarColor": {
@@ -1094,8 +2100,16 @@
               "priority": 10,
               "render": true,
               "label": "Star Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proStarActiveColor": {
@@ -1106,8 +2120,16 @@
               "priority": 20,
               "render": true,
               "label": "Active Star Color",
-              "features": { "sticky": false, "responsive": false, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/color-picker" }
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
             }
           },
           "proStarSize": {
@@ -1118,8 +2140,22 @@
               "priority": 30,
               "render": true,
               "label": "Star Size",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/range", "props": { "min": 10, "max": 100, "step": 1, "defaultUnit": "px" } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
             }
           },
           "proStarMargin": {
@@ -1130,8 +2166,19 @@
               "priority": 40,
               "render": true,
               "label": "Margin",
-              "features": { "sticky": false, "responsive": true, "hover": false, "dynamicContent": false },
-              "component": { "type": "field", "name": "divi/spacing", "props": { "margin": true } }
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/spacing",
+                "props": {
+                  "margin": true
+                }
+              }
             }
           }
         }
@@ -1169,7 +2216,9 @@
         "groupName": "general",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Form Settings" }
+          "props": {
+            "groupLabel": "Form Settings"
+          }
         }
       },
       "common": {
@@ -1178,7 +2227,9 @@
         "groupName": "common",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Form Container" }
+          "props": {
+            "groupLabel": "Form Container"
+          }
         }
       },
       "form_header": {
@@ -1187,7 +2238,9 @@
         "groupName": "form_header",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Form Header" }
+          "props": {
+            "groupLabel": "Form Header"
+          }
         }
       },
       "form_text": {
@@ -1196,7 +2249,9 @@
         "groupName": "form_text",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Labels" }
+          "props": {
+            "groupLabel": "Labels"
+          }
         }
       },
       "form_field": {
@@ -1205,7 +2260,9 @@
         "groupName": "form_field",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Input Fields" }
+          "props": {
+            "groupLabel": "Input Fields"
+          }
         }
       },
       "radio_checkbox": {
@@ -1214,7 +2271,9 @@
         "groupName": "radio_checkbox",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Radio & Checkbox" }
+          "props": {
+            "groupLabel": "Radio & Checkbox"
+          }
         }
       },
       "submit_button": {
@@ -1223,7 +2282,9 @@
         "groupName": "submit_button",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Button" }
+          "props": {
+            "groupLabel": "Button"
+          }
         }
       },
       "suc_err_msg": {
@@ -1232,7 +2293,9 @@
         "groupName": "suc_err_msg",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Messages" }
+          "props": {
+            "groupLabel": "Messages"
+          }
         }
       },
       "pro_heading": {
@@ -1241,7 +2304,9 @@
         "groupName": "pro_heading",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Pro: Heading" }
+          "props": {
+            "groupLabel": "Pro: Heading"
+          }
         }
       },
       "pro_icon": {
@@ -1250,7 +2315,9 @@
         "groupName": "pro_icon",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Icon" }
+          "props": {
+            "groupLabel": "Icon"
+          }
         }
       },
       "pro_image": {
@@ -1259,7 +2326,9 @@
         "groupName": "pro_image",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Image" }
+          "props": {
+            "groupLabel": "Image"
+          }
         }
       },
       "pro_range": {
@@ -1268,7 +2337,9 @@
         "groupName": "pro_range",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Pro: Range" }
+          "props": {
+            "groupLabel": "Pro: Range"
+          }
         }
       },
       "pro_star": {
@@ -1277,7 +2348,9 @@
         "groupName": "pro_star",
         "component": {
           "name": "divi/composite",
-          "props": { "groupLabel": "Pro: Star Rating" }
+          "props": {
+            "groupLabel": "Pro: Star Rating"
+          }
         }
       }
     }
