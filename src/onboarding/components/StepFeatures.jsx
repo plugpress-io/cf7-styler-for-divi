@@ -128,7 +128,7 @@ const StepFeatures = ({ onFeaturesChange }) => {
 							{DISCOUNT_CODE} {__('(50% off)', 'cf7-styler-for-divi')}
 							{copied && <span className="cf7m-copied">{__('Copied!', 'cf7-styler-for-divi')}</span>}
 						</button>
-						<a href={pricingUrl} className="cf7m-upsell-btn">{__('Upgrade', 'cf7-styler-for-divi')}</a>
+						<a href={pricingUrl} className="cf7m-upsell-btn" target="_blank" rel="noopener noreferrer">{__('Upgrade', 'cf7-styler-for-divi')}</a>
 					</div>
 				</div>
 			)}

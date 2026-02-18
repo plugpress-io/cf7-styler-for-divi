@@ -61,8 +61,10 @@ class Onboarding
     public function enqueue_scripts($hook)
     {
         // Gate on ?page= directly — more reliable than hook name which Freemius can alter.
+        // Match any CF7 Mate admin page (cf7-mate, cf7-mate-dashboard, cf7-mate-account, etc.)
+        // so onboarding shows regardless of which page Freemius redirects to after opt-in.
         $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-        if (!in_array($page, ['cf7-mate', 'cf7-mate-dashboard'], true)) {
+        if (strpos($page, 'cf7-mate') !== 0) {
             return;
         }
 
@@ -124,9 +126,9 @@ class Onboarding
             return;
         }
 
-        // Only on CF7 Mate pages (use ?page= directly for Freemius compatibility).
+        // Only on CF7 Mate pages — same broad match as enqueue_scripts.
         $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-        if (!in_array($page, ['cf7-mate', 'cf7-mate-dashboard'], true)) {
+        if (strpos($page, 'cf7-mate') !== 0) {
             return;
         }
 
