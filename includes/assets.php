@@ -60,6 +60,10 @@ class Assets
             CF7M_VERSION
         );
 
+        // WordPress's lodash uses noConflict() – exposed as window.lodash, not window._.
+        // builder4.js was bundled with webpack externals {lodash:'_'}, so alias _ = lodash.
+        wp_add_inline_script('cf7-styler-for-divi-builder', 'window._ = window.lodash;', 'before');
+
         wp_enqueue_script(
             'cf7-styler-for-divi-builder',
             CF7M_PLUGIN_URL . 'dist/js/builder4.js',

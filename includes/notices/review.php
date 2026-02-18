@@ -9,7 +9,7 @@ class Admin_Review_Notice
     const NOTICE_ID = 'dcs_review_notice';
     const DISMISSED_OPTION = 'dcs_review_notice_dismissed';
     const INSTALL_DATE_OPTION = 'cf7m_install_date';
-    const REVIEW_DELAY = 7 * 24 * 60 * 60; // 7 days in seconds
+    const REVIEW_DELAY = 7 * 24 * 60 * 60;
 
     public static function instance()
     {
@@ -113,8 +113,8 @@ class Admin_Review_Notice
             <div class="cf7m-notice-inner">
                 <div class="cf7m-notice-icon">
                     <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="24" fill="#3044D7" fill-opacity="0.1"/>
-                        <path d="M24 16l2.472 7.61h8.004l-6.476 4.708 2.472 7.61L24 31.22l-6.472 4.708 2.472-7.61-6.476-4.708h8.004L24 16z" fill="#3044D7"/>
+                        <circle cx="24" cy="24" r="24" fill="#3044D7" fill-opacity="0.1" />
+                        <path d="M24 16l2.472 7.61h8.004l-6.476 4.708 2.472 7.61L24 31.22l-6.472 4.708 2.472-7.61-6.476-4.708h8.004L24 16z" fill="#3044D7" />
                     </svg>
                 </div>
                 <div class="cf7m-notice-content">
@@ -122,7 +122,7 @@ class Admin_Review_Notice
                         <?php esc_html_e('🎉 You\'re creating amazing forms!', 'cf7-styler-for-divi'); ?>
                     </h3>
                     <p class="cf7m-notice-description">
-                        <?php 
+                        <?php
                         printf(
                             /* translators: %s: plugin name */
                             esc_html__('It looks like you\'ve been using %s for a while now. That\'s awesome! If you\'re enjoying it, would you mind sharing the love with a quick 5-star review? It takes just 30 seconds and helps us grow! 💜', 'cf7-styler-for-divi'),
@@ -133,7 +133,7 @@ class Admin_Review_Notice
                     <div class="cf7m-notice-actions">
                         <a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post" target="_blank" class="cf7m-review-button cf7m-review-button--primary" data-action="review">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" />
                             </svg>
                             <?php esc_html_e('Sure! I\'ll leave a review', 'cf7-styler-for-divi'); ?>
                         </a>
@@ -210,8 +210,15 @@ class Admin_Review_Notice
             }
 
             @keyframes cf7m-notice-pulse {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.05); }
+
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.05);
+                }
             }
 
             .cf7m-notice-content {
@@ -348,7 +355,7 @@ class Admin_Review_Notice
                     $('#<?php echo esc_js(self::NOTICE_ID); ?>').fadeOut(300, function() {
                         $(this).remove();
                     });
-                    
+
                     $.ajax({
                         url: dcs_admin_notice.ajax_url,
                         type: 'POST',

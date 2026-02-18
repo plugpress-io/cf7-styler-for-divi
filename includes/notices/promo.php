@@ -51,6 +51,17 @@ class Admin_Promo_Notice
             return;
         }
 
+        // Only show to new installs (v3.0.0+, installed on or after 2026-01-01).
+        $install_date = (int) get_option('cf7m_install_date', 0);
+        if (!$install_date || $install_date < strtotime('2026-01-01')) {
+            return;
+        }
+
+        // Show only after 4 days from install date.
+        if ((time() - $install_date) < 4 * DAY_IN_SECONDS) {
+            return;
+        }
+
         // Don't show on CF7 Mate's own pages (promo info is already shown there).
         $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
         $cf7m_pages = ['cf7-mate', 'cf7-mate-dashboard', 'cf7-mate-features', 'cf7-mate-pricing', 'cf7-mate-free-vs-pro'];
