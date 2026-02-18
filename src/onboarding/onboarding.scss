@@ -1,16 +1,17 @@
 /**
- * Onboarding Styles - Minimal & Subtle Design
+ * Onboarding Styles
  *
  * @since 3.0.0
  */
 
 // Brand Colors
 $primary-color: #3044D7;
+$primary-dark:  #2538b8;
 $secondary-color: #24223a;
-$heading-color: #000000;
-$body-color: #24223a;
+$heading-color: #111827;
+$body-color: #374151;
 
-// UI – gray + muted (toggle, step, bg, border)
+// UI
 $gray-100: #f3f4f6;
 $gray-200: #e5e7eb;
 $gray-300: #d1d5db;
@@ -19,36 +20,41 @@ $danger-color: #ef4444;
 $border-color: #e5e7eb;
 $background-light: #f9fafb;
 $white: #ffffff;
-$text-muted: #9ca3af;
+$text-muted: #6b7280;
 
 // Shadows & Radius
 $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+$shadow-lg: 0 8px 40px rgba(48, 68, 215, 0.10), 0 2px 8px rgba(0, 0, 0, 0.07);
 $radius-sm: 6px;
 $radius-md: 10px;
 $radius-lg: 16px;
 
-// Full Screen Overlay – premium subtle gradient
+// Full-screen overlay
 .cf7m-onboarding-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(165deg, #f8f7fc 0%, #f0eef9 50%, #f5f3fa 100%);
+  background: linear-gradient(160deg, #f0f2fd 0%, #edf0fb 45%, #f5f5fb 100%);
   z-index: 999999;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
 
-// Header – logo left, progress center, Exit right (SureFORMS style)
+// ==========================================
+// Header
+// ==========================================
+
 .cf7m-onboarding-header {
   width: 100%;
   flex-shrink: 0;
-  padding: 16px 24px;
+  padding: 14px 24px;
   border-bottom: 1px solid $gray-200;
   background: $white;
+  box-shadow: $shadow-sm;
 }
 
 .cf7m-onboarding-header-inner {
@@ -65,14 +71,12 @@ $radius-lg: 16px;
   align-items: center;
   gap: 10px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   color: $heading-color;
   min-width: 0;
   flex-shrink: 0;
 
-  svg {
-    flex-shrink: 0;
-  }
+  svg { flex-shrink: 0; }
 }
 
 .cf7m-onboarding-logo-text {
@@ -81,6 +85,7 @@ $radius-lg: 16px;
   text-overflow: ellipsis;
 }
 
+// Progress
 .cf7m-onboarding-progress-wrap {
   flex: 1;
   display: flex;
@@ -114,19 +119,19 @@ $radius-lg: 16px;
   font-size: 12px;
   font-weight: 600;
   color: $text-muted;
+  border: 2px solid transparent;
 
   &.active {
     background: $primary-color;
     color: $white;
+    border-color: rgba($primary-color, 0.25);
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
   }
 
   &.completed {
     background: $primary-color;
     color: $white;
-
-    svg {
-      stroke: $white;
-    }
+    svg { stroke: $white; }
   }
 }
 
@@ -135,26 +140,25 @@ $radius-lg: 16px;
 }
 
 .cf7m-progress-line {
-  width: 32px;
+  width: 36px;
   height: 2px;
   background: $gray-200;
   transition: background 0.25s;
   flex-shrink: 0;
 
-  &.completed {
-    background: $primary-color;
-  }
+  &.completed { background: $primary-color; }
 }
 
+// Exit setup button
 .cf7m-exit-setup {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 7px 14px;
   background: transparent;
-  color: $body-color;
-  border: 1px solid $gray-200;
-  border-radius: 8px;
+  color: $text-muted;
+  border: 1px solid $gray-300;
+  border-radius: $radius-sm;
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
@@ -164,25 +168,26 @@ $radius-lg: 16px;
 
   &:hover {
     background: $gray-100;
-    border-color: $gray-300;
-    color: $primary-color;
+    border-color: $gray-400;
+    color: $body-color;
   }
 
   svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     flex-shrink: 0;
   }
 }
 
 .cf7m-exit-setup-text {
   white-space: nowrap;
-  @media (max-width: 640px) {
-    display: none;
-  }
+  @media (max-width: 640px) { display: none; }
 }
 
-// Content – centered card, pro look (SureFORMS style)
+// ==========================================
+// Content area
+// ==========================================
+
 .cf7m-onboarding-content-wrap {
   width: 100%;
   max-width: 720px;
@@ -199,45 +204,51 @@ $radius-lg: 16px;
 .cf7m-onboarding-card {
   width: 100%;
   max-width: 560px;
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - 160px);
   display: flex;
   flex-direction: column;
   background: $white;
-  border-radius: 12px;
-  border: 1px solid $gray-200;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   overflow: hidden;
+  box-shadow: $shadow-lg;
 }
 
 .cf7m-onboarding-content {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 28px 32px 24px;
+  padding: 28px 32px 20px;
 }
 
-// Step common – compact
+// ==========================================
+// Step common
+// ==========================================
+
 .cf7m-onboarding-step {
   width: 100%;
 }
 
 .cf7m-step-header {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .cf7m-step-label {
   display: inline-block;
   font-size: 11px;
-  color: $text-muted;
+  font-weight: 600;
+  color: $primary-color;
   margin-bottom: 6px;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
 }
 
 .cf7m-onboarding-title {
   font-size: 20px;
   font-weight: 700;
   color: $heading-color;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   line-height: 1.3;
   letter-spacing: -0.02em;
 }
@@ -246,18 +257,21 @@ $radius-lg: 16px;
   font-size: 14px;
   color: $text-muted;
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-// Footer – always visible at bottom of card (Next/Back never hidden by long content)
+// ==========================================
+// Footer
+// ==========================================
+
 .cf7m-onboarding-footer {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 32px 28px;
+  padding: 16px 32px 24px;
   border-top: 1px solid $gray-200;
-  gap: 16px;
+  gap: 12px;
   background: $white;
 }
 
@@ -289,44 +303,45 @@ $radius-lg: 16px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
+  padding: 9px 18px;
   border-radius: $radius-sm;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
-  border: none;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
   font-family: inherit;
+  line-height: 1;
 
   &-primary {
-    background: rgba($primary-color, 0.1);
-    color: $primary-color;
-    border: 1px solid rgba($primary-color, 0.25);
-    margin-left: auto;
+    background: $primary-color;
+    color: $white;
+    border-color: $primary-color;
 
     &:hover {
-      background: rgba($primary-color, 0.15);
-      border-color: rgba($primary-color, 0.35);
+      background: $primary-dark;
+      border-color: $primary-dark;
+      box-shadow: 0 2px 8px rgba($primary-color, 0.3);
     }
 
-    svg {
-      order: 1;
-    }
+    svg { order: 1; }
   }
 
   &-back {
     background: transparent;
-    color: $body-color;
-    padding: 8px 10px;
+    color: $text-muted;
+    border-color: transparent;
+    padding: 9px 10px;
 
     &:hover {
-      background: rgba($secondary-color, 0.05);
+      background: $gray-100;
+      color: $body-color;
     }
   }
 }
 
 // ==========================================
-// Step 1: Welcome – minimal list
+// Step 1: Welcome
 // ==========================================
 
 .cf7m-step-welcome {
@@ -337,23 +352,22 @@ $radius-lg: 16px;
 
     li {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 0;
-      font-size: 13px;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 13.5px;
       color: $body-color;
-      line-height: 1.4;
+      line-height: 1.45;
 
-      &:first-child {
-        padding-top: 0;
-      }
+      &:first-child { padding-top: 0; }
     }
   }
 
   .cf7m-check-icon {
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
+    margin-top: 1px;
+    width: 17px;
+    height: 17px;
     background: $primary-color;
     border-radius: 50%;
     display: flex;
@@ -367,40 +381,41 @@ $radius-lg: 16px;
     }
 
     &--pro {
-      background: rgba($primary-color, 0.12);
+      background: rgba($primary-color, 0.10);
       svg { stroke: $primary-color; }
     }
   }
 
   .cf7m-welcome-pro-label {
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: $primary-color;
-    margin: 14px 0 6px;
+    margin: 16px 0 6px;
     padding: 0;
+    opacity: 0.75;
   }
 
   .cf7m-welcome-list--pro {
     li {
       color: $text-muted;
-      font-size: 12px;
+      font-size: 13px;
     }
   }
 }
 
 // ==========================================
-// Step 2: Features – compact + clean
+// Step 2: Features
 // ==========================================
 
 .cf7m-step-features {
   .cf7m-step-features__header {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .cf7m-step-features__header .cf7m-onboarding-title {
-    font-size: 18px;
+    font-size: 17px;
     margin-bottom: 2px;
   }
 
@@ -421,20 +436,15 @@ $radius-lg: 16px;
     justify-content: space-between;
     gap: 10px;
     padding: 5px 0;
-    border-bottom: 1px solid $gray-200;
+    border-bottom: 1px solid $gray-100;
 
-    &:first-child {
-      padding-top: 0;
-    }
-
-    &:last-child {
-      border-bottom: none;
-    }
+    &:first-child { padding-top: 0; }
+    &:last-child { border-bottom: none; }
 
     &.cf7m-feature-locked {
       .cf7m-feature-title,
       .cf7m-feature-short {
-        opacity: 0.7;
+        opacity: 0.6;
       }
     }
   }
@@ -443,38 +453,42 @@ $radius-lg: 16px;
     flex: 1;
     min-width: 0;
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
   }
 
   .cf7m-feature-title {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 500;
     color: $heading-color;
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    flex-shrink: 0;
   }
 
   .cf7m-feature-short {
     font-size: 11px;
-    color: $body-color;
-    opacity: 0.75;
-    margin-top: 1px;
+    color: $text-muted;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .cf7m-pro-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1px 4px;
-    background: rgba($primary-color, 0.12);
+    padding: 1px 5px;
+    background: rgba($primary-color, 0.1);
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 3px;
     text-transform: uppercase;
     color: $primary-color;
+    letter-spacing: 0.04em;
   }
 
   .cf7m-feature-toggle,
@@ -488,14 +502,16 @@ $radius-lg: 16px;
     justify-content: center;
     width: 28px;
     height: 18px;
-    color: $text-muted;
+    color: $gray-400;
   }
 
+  // Toggle switch
   .cf7m-toggle {
     position: relative;
     display: inline-block;
-    width: 28px;
-    height: 16px;
+    width: 32px;
+    height: 18px;
+    cursor: pointer;
 
     input {
       opacity: 0;
@@ -504,10 +520,11 @@ $radius-lg: 16px;
 
       &:checked + .cf7m-toggle-slider {
         background: $primary-color;
-        border-color: rgba($primary-color, 0.3);
+        border-color: $primary-color;
 
         &:before {
-          transform: translateX(12px);
+          transform: translateX(14px);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
       }
     }
@@ -521,17 +538,18 @@ $radius-lg: 16px;
     right: 0;
     bottom: 0;
     background: $gray-300;
-    border: 1px solid $gray-200;
-    border-radius: 16px;
+    border: 1.5px solid $gray-300;
+    border-radius: 18px;
     transition: all 0.2s;
 
     &:before {
       content: '';
       position: absolute;
-      height: 12px;
-      width: 12px;
+      height: 13px;
+      width: 13px;
       left: 2px;
-      bottom: 2px;
+      bottom: 50%;
+      transform: translateY(50%);
       background: $white;
       border-radius: 50%;
       transition: transform 0.2s;
@@ -543,15 +561,15 @@ $radius-lg: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 0 4px;
-    margin-top: 2px;
+    padding: 5px 0 3px;
+    margin-top: 0;
 
     span {
       font-size: 10px;
-      font-weight: 600;
+      font-weight: 700;
       color: $text-muted;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.06em;
     }
 
     &:after {
@@ -568,22 +586,20 @@ $radius-lg: 16px;
     justify-content: space-between;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 10px;
-    padding: 8px 10px;
+    margin-top: 8px;
+    padding: 8px 12px;
     background: rgba($primary-color, 0.04);
-    border: 1px solid rgba($primary-color, 0.1);
+    border: 1px solid rgba($primary-color, 0.12);
     border-radius: $radius-sm;
   }
 
   .cf7m-pro-upsell-text {
-    font-size: 11px;
+    font-size: 12px;
     color: $body-color;
     margin: 0;
-    line-height: 1.35;
+    line-height: 1.4;
 
-    .cf7m-pro-upsell-desc {
-      opacity: 0.85;
-    }
+    .cf7m-pro-upsell-desc { opacity: 0.8; }
   }
 
   .cf7m-pro-upsell-actions {
@@ -594,58 +610,59 @@ $radius-lg: 16px;
   }
 
   .cf7m-discount-tag {
-    padding: 3px 8px;
+    padding: 4px 9px;
     background: $white;
-    border: 1px dashed $primary-color;
+    border: 1.5px dashed rgba($primary-color, 0.5);
     border-radius: 4px;
     font-size: 11px;
     font-weight: 600;
     color: $primary-color;
     cursor: pointer;
     font-family: inherit;
-    transition: background 0.2s;
+    transition: background 0.2s, border-color 0.2s;
 
     &:hover {
-      background: rgba($primary-color, 0.06);
+      background: rgba($primary-color, 0.05);
+      border-color: $primary-color;
     }
 
     .cf7m-copied {
       margin-left: 4px;
       font-size: 10px;
-      color: $primary-color;
+      color: $primary-dark;
       font-weight: 500;
     }
   }
 
   .cf7m-upsell-btn {
     display: inline-block;
-    padding: 4px 10px;
-    background: rgba($primary-color, 0.1);
-    color: $primary-color;
-    border: 1px solid rgba($primary-color, 0.2);
+    padding: 5px 12px;
+    background: $primary-color;
+    color: $white;
+    border: 1px solid $primary-color;
     border-radius: $radius-sm;
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 11.5px;
+    font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s, box-shadow 0.2s;
 
     &:hover {
-      background: rgba($primary-color, 0.15);
-      border-color: rgba($primary-color, 0.3);
+      background: $primary-dark;
+      box-shadow: 0 2px 6px rgba($primary-color, 0.25);
     }
   }
 }
 
 // ==========================================
-// Step 3: Help – compact list
+// Step 3: Help
 // ==========================================
 
 .cf7m-step-help {
   .cf7m-help-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 8px;
+    margin-top: 14px;
     list-style: none;
     margin-left: 0;
     padding: 0;
@@ -654,23 +671,41 @@ $radius-lg: 16px;
   .cf7m-help-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
+    gap: 12px;
+    padding: 12px 14px;
     background: $background-light;
     border: 1px solid $border-color;
-    border-radius: $radius-sm;
+    border-radius: $radius-md;
     text-decoration: none;
     color: inherit;
     transition: all 0.2s;
 
     &:hover {
       border-color: $primary-color;
-      background: rgba($primary-color, 0.04);
+      background: rgba($primary-color, 0.03);
+      box-shadow: 0 2px 8px rgba($primary-color, 0.08);
 
       .cf7m-help-arrow {
-        transform: translateX(2px);
+        transform: translateX(3px);
         color: $primary-color;
       }
+    }
+  }
+
+  .cf7m-help-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: rgba($primary-color, 0.08);
+    border-radius: 8px;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -679,12 +714,12 @@ $radius-lg: 16px;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 1px;
   }
 
   .cf7m-help-item-title {
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 13.5px;
+    font-weight: 600;
     color: $heading-color;
   }
 
@@ -696,7 +731,7 @@ $radius-lg: 16px;
 
   .cf7m-help-arrow {
     flex-shrink: 0;
-    color: $text-muted;
+    color: $gray-400;
     transition: all 0.2s;
 
     svg {
@@ -720,19 +755,20 @@ $radius-lg: 16px;
   }
 
   .cf7m-finish-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba($primary-color, 0.1);
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, rgba($primary-color, 0.12) 0%, rgba($primary-color, 0.06) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     color: $primary-color;
+    border: 2px solid rgba($primary-color, 0.15);
 
     svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
   }
 
@@ -741,99 +777,104 @@ $radius-lg: 16px;
     justify-content: center;
     gap: 8px;
     flex-wrap: wrap;
-    margin-top: 14px;
+    margin-top: 18px;
   }
 
   .cf7m-finish-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 16px;
+    padding: 9px 18px;
     border-radius: $radius-sm;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    border: none;
+    border: 1px solid transparent;
     font-family: inherit;
 
     &-primary {
-      background: rgba($primary-color, 0.1);
-      color: $primary-color;
-      border: 1px solid rgba($primary-color, 0.25);
+      background: $primary-color;
+      color: $white;
+      border-color: $primary-color;
 
       &:hover {
-        background: rgba($primary-color, 0.15);
-        border-color: rgba($primary-color, 0.35);
+        background: $primary-dark;
+        border-color: $primary-dark;
+        box-shadow: 0 2px 8px rgba($primary-color, 0.3);
       }
     }
 
     &-secondary {
       background: $white;
       color: $body-color;
-      border: 1px solid $border-color;
+      border-color: $gray-300;
 
       &:hover {
-        background: $background-light;
+        background: $gray-100;
+        border-color: $gray-400;
       }
     }
   }
 
   .cf7m-finish-what-now {
-    margin-top: 16px;
+    margin-top: 18px;
     text-align: left;
+    padding: 14px 16px;
+    background: $background-light;
+    border: 1px solid $gray-200;
+    border-radius: $radius-md;
   }
 
   .cf7m-finish-what-now-title {
     margin: 0 0 8px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     color: $body-color;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
   }
 
   .cf7m-finish-what-now-list {
     margin: 0;
-    padding: 0 0 0 20px;
-    font-size: 13px;
+    padding: 0 0 0 18px;
+    font-size: 12.5px;
     color: $body-color;
-    line-height: 1.55;
-    opacity: 0.95;
+    line-height: 1.6;
 
-    li {
-      margin-bottom: 4px;
-    }
+    li { margin-bottom: 3px; }
   }
 
   .cf7m-finish-pro-teaser {
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid $gray-200;
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: rgba($primary-color, 0.04);
+    border: 1px solid rgba($primary-color, 0.12);
+    border-radius: $radius-md;
     text-align: left;
   }
 
   .cf7m-finish-pro-teaser-title {
     margin: 0 0 4px;
-    font-size: 12px;
-    font-weight: 600;
-    color: $body-color;
+    font-size: 11px;
+    font-weight: 700;
+    color: $primary-color;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .cf7m-finish-pro-teaser-text {
     margin: 0;
-    font-size: 12px;
-    color: $text-muted;
+    font-size: 12.5px;
+    color: $body-color;
     line-height: 1.5;
 
     a {
       color: $primary-color;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
 
-      &:hover {
-        text-decoration: underline;
-      }
+      &:hover { text-decoration: underline; }
     }
   }
 
@@ -850,9 +891,7 @@ $radius-lg: 16px;
     text-decoration: underline;
     transition: color 0.2s;
 
-    &:hover {
-      color: $body-color;
-    }
+    &:hover { color: $body-color; }
   }
 
   .cf7m-finish-upsell {
@@ -866,10 +905,7 @@ $radius-lg: 16px;
       color: $primary-color;
       font-weight: 500;
       text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      &:hover { text-decoration: underline; }
     }
   }
 }
@@ -884,40 +920,33 @@ $radius-lg: 16px;
   }
 
   .cf7m-onboarding-header-inner {
-    gap: 12px;
+    gap: 10px;
     max-width: 100%;
   }
 
   .cf7m-exit-setup {
-    width: 34px;
-    height: 34px;
+    padding: 7px;
+    min-width: 32px;
+    justify-content: center;
   }
 
   .cf7m-onboarding-logo {
     font-size: 13px;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  .cf7m-onboarding-version {
-    font-size: 11px;
+    svg { width: 24px; height: 24px; }
   }
 
   .cf7m-onboarding-progress-wrap {
-    padding: 0 8px;
+    padding: 0 6px;
   }
 
   .cf7m-progress-dot {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     font-size: 11px;
   }
 
   .cf7m-progress-line {
-    width: 20px;
+    width: 18px;
   }
 
   .cf7m-onboarding-content-wrap {
@@ -927,23 +956,15 @@ $radius-lg: 16px;
 
   .cf7m-onboarding-card {
     max-width: 100%;
-  }
-
-  .cf7m-progress-line {
-    width: 20px;
-  }
-
-  .cf7m-progress-dot {
-    width: 8px;
-    height: 8px;
+    border-radius: 10px;
   }
 
   .cf7m-onboarding-content {
-    padding: 20px 18px;
+    padding: 20px 18px 16px;
   }
 
   .cf7m-onboarding-footer {
-    padding: 12px 18px;
+    padding: 12px 18px 18px;
     flex-direction: column;
     gap: 8px;
   }
@@ -955,41 +976,19 @@ $radius-lg: 16px;
     gap: 6px;
   }
 
-  .cf7m-onboarding-skip {
-    order: 1;
-  }
+  .cf7m-onboarding-skip { order: 1; }
 
   .cf7m-onboarding-btn {
     width: 100%;
     justify-content: center;
-
-    &-primary {
-      margin-left: 0;
-      order: 0;
-    }
+    &-primary { margin-left: 0; order: 0; }
   }
 
-  .cf7m-onboarding-title {
-    font-size: 17px;
-  }
-
-  .cf7m-step-features {
-    .cf7m-pro-upsell-banner {
-      flex-direction: column;
-      text-align: center;
-      gap: 8px;
-    }
-  }
+  .cf7m-onboarding-title { font-size: 18px; }
 
   .cf7m-step-finish {
-    .cf7m-finish-actions {
-      flex-direction: column;
-    }
-
-    .cf7m-finish-btn {
-      width: 100%;
-      justify-content: center;
-    }
+    .cf7m-finish-actions { flex-direction: column; }
+    .cf7m-finish-btn { width: 100%; justify-content: center; }
   }
 }
 
@@ -1003,7 +1002,7 @@ $radius-lg: 16px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #f8f7ff 0%, $white 100%);
+  background: linear-gradient(180deg, #f0f2fd 0%, $white 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1018,9 +1017,9 @@ $radius-lg: 16px;
   background: $white;
   border-radius: 20px;
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.03),
-    0 2px 4px rgba(0, 0, 0, 0.02),
-    0 12px 24px rgba(0, 0, 0, 0.06);
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    0 12px 32px rgba(0, 0, 0, 0.08);
   overflow: visible;
 }
 
@@ -1043,7 +1042,7 @@ $radius-lg: 16px;
   transition: background 0.15s, color 0.15s;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.09);
     color: $heading-color;
   }
 }
@@ -1052,7 +1051,7 @@ $radius-lg: 16px;
   position: relative;
   padding: 40px 32px 24px;
   text-align: center;
-  background: linear-gradient(180deg, rgba($primary-color, 0.04) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba($primary-color, 0.05) 0%, transparent 100%);
 }
 
 .cf7m-rebrand-glow {
@@ -1069,10 +1068,8 @@ $radius-lg: 16px;
 .cf7m-rebrand-logo {
   position: relative;
   display: inline-flex;
-  
-  svg {
-    filter: drop-shadow(0 4px 12px rgba($primary-color, 0.3));
-  }
+
+  svg { filter: drop-shadow(0 4px 12px rgba($primary-color, 0.3)); }
 }
 
 .cf7m-rebrand-body {
@@ -1153,9 +1150,7 @@ $radius-lg: 16px;
   border-radius: 10px;
   transition: background 0.2s;
 
-  &:hover {
-    background: rgba($primary-color, 0.04);
-  }
+  &:hover { background: rgba($primary-color, 0.04); }
 }
 
 .cf7m-rebrand-change-icon {
@@ -1168,11 +1163,6 @@ $radius-lg: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &--star {
-    background: rgba($primary-color, 0.1);
-    color: $primary-color;
-  }
 }
 
 .cf7m-rebrand-change-text {
@@ -1213,24 +1203,17 @@ $radius-lg: 16px;
   transition: all 0.2s;
   font-family: inherit;
 
-  svg {
-    transition: transform 0.2s;
-  }
+  svg { transition: transform 0.2s; }
 
   &:hover {
-    background: #4a2bd9;
-    
-    svg {
-      transform: translateX(3px);
-    }
+    background: $primary-dark;
+    box-shadow: 0 4px 14px rgba($primary-color, 0.3);
+    svg { transform: translateX(3px); }
   }
 
-  &:active {
-    transform: scale(0.98);
-  }
+  &:active { transform: scale(0.98); }
 }
 
-// Close button for rebrand modal
 .cf7m-onboarding-close {
   position: absolute;
   top: 16px;
@@ -1248,43 +1231,21 @@ $radius-lg: 16px;
   z-index: 10;
 
   &:hover {
-    background: rgba($secondary-color, 0.1);
+    background: rgba($secondary-color, 0.10);
     color: $body-color;
   }
 }
 
 @media (max-width: 480px) {
-  .cf7m-rebrand-screen {
-    padding: 16px;
-  }
-
-  .cf7m-rebrand-card {
-    border-radius: 16px;
-  }
-
-  .cf7m-rebrand-header {
-    padding: 32px 24px 20px;
-  }
-
-  .cf7m-rebrand-body {
-    padding: 0 24px 24px;
-  }
-
-  .cf7m-rebrand-title {
-    font-size: 28px;
-  }
-
-  .cf7m-rebrand-change {
-    padding: 10px 12px;
-  }
-
+  .cf7m-rebrand-screen { padding: 16px; }
+  .cf7m-rebrand-card { border-radius: 16px; }
+  .cf7m-rebrand-header { padding: 32px 24px 20px; }
+  .cf7m-rebrand-body { padding: 0 24px 24px; }
+  .cf7m-rebrand-title { font-size: 28px; }
+  .cf7m-rebrand-change { padding: 10px 12px; }
   .cf7m-rebrand-change-icon {
     width: 24px;
     height: 24px;
-
-    svg {
-      width: 14px;
-      height: 14px;
-    }
+    svg { width: 14px; height: 14px; }
   }
 }

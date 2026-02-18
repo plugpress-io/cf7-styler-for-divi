@@ -10,13 +10,8 @@ class Admin
 {
     private static $instance;
 
-    /** Top-level admin menu slug (handled by redirect or Freemius). */
     const TOP_LEVEL_SLUG = 'cf7-mate';
-
-    /** Dashboard / main app page slug. */
     const PAGE_SLUG = 'cf7-mate-dashboard';
-
-    /** Subpage slugs – same app, different initial view. */
     const FEATURES_PAGE_SLUG = 'cf7-mate-features';
     const ENTRIES_PAGE_SLUG = 'cf7-mate-entries';
     const AI_SETTINGS_PAGE_SLUG = 'cf7-mate-ai-settings';
@@ -34,22 +29,18 @@ class Admin
     public function __construct()
     {
         add_action('admin_menu', [$this, 'add_menu'], 20);
-        // Run after Freemius (999999999) so Dashboard submenu is never overwritten when Pro/Freemius is active.
-        add_action('admin_menu', [$this, 'ensure_dashboard_submenu'], 1000000000);
+        add_action('admin_menu', [$this, 'ensure_dashboard_submenu'], 999999999);
         add_action('admin_init', [$this, 'redirect_cf7_mate_to_settings'], 5);
+        add_action('admin_init', [$this, 'redirect_pricing_if_freemius_inactive'], 5);
     }
 
-    /**
-     * Redirect page=cf7-mate (top level) to dashboard (cf7-mate-dashboard).
-     * Do not redirect when Freemius needs to show opt-in/activation so the user can complete it.
-     */
     public function redirect_cf7_mate_to_settings()
     {
         $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
         if ($page !== self::TOP_LEVEL_SLUG || !current_user_can('manage_options')) {
             return;
         }
-        // Let Freemius show its opt-in/activation page when user hasn't completed it.
+
         if (function_exists('cf7m_fs')) {
             $fs = cf7m_fs();
             if (!$fs->is_registered() && !$fs->is_anonymous()) {
@@ -60,10 +51,35 @@ class Admin
         exit;
     }
 
-    /**
-     * Add "CF7 Mate" as top-level menu (slug cf7-mate) and "Dashboard" as subpage (cf7-mate-dashboard).
-     * Top-level handles redirect to dashboard (or Freemius opt-in); Dashboard subpage renders the app.
-     */
+    public function redirect_pricing_if_freemius_inactive()
+    {
+        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+        if ($page !== 'cf7-mate-pricing') {
+            return;
+        }
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        // If Freemius is activated (user registered or opted out anonymously), it has already
+        // registered the pricing page in admin_menu — let WordPress/Freemius handle it.
+        if (function_exists('cf7m_fs')) {
+            $fs = cf7m_fs();
+            if ($fs->is_registered() || $fs->is_anonymous()) {
+                return;
+            }
+        }
+
+        // Freemius not yet activated — the pricing page doesn't exist. Send to external URL.
+        $coupon = isset($_GET['coupon']) ? sanitize_text_field(wp_unslash($_GET['coupon'])) : '';
+        $url    = function_exists('cf7m_get_pricing_url')
+            ? cf7m_get_pricing_url($coupon)
+            : CF7M_URL_PRICING;
+
+        wp_safe_redirect($url);
+        exit;
+    }
+
     public function add_menu()
     {
         if (!current_user_can('manage_options')) {
@@ -75,7 +91,6 @@ class Admin
             ? 'data:image/svg+xml;base64,' . base64_encode((string) file_get_contents($menu_icon_path))
             : 'dashicons-email-alt';
 
-        // Top-level: cf7-mate (redirects to dashboard or shows Freemius opt-in)
         add_menu_page(
             __('CF7 Mate', 'cf7-styler-for-divi'),
             __('CF7 Mate', 'cf7-styler-for-divi'),
@@ -86,7 +101,6 @@ class Admin
             59
         );
 
-        // Subpage: Dashboard (main app)
         add_submenu_page(
             self::TOP_LEVEL_SLUG,
             __('Dashboard', 'cf7-styler-for-divi'),
@@ -96,7 +110,6 @@ class Admin
             [$this, 'render_page']
         );
 
-        // Subpage: Modules (features)
         add_submenu_page(
             self::TOP_LEVEL_SLUG,
             __('Modules', 'cf7-styler-for-divi'),
@@ -106,7 +119,6 @@ class Admin
             [$this, 'render_features_page']
         );
 
-        // Pro-only subpages: Entries, AI Settings, Webhook
         if (function_exists('cf7m_can_use_premium') && cf7m_can_use_premium()) {
             add_submenu_page(
                 self::TOP_LEVEL_SLUG,
@@ -136,7 +148,6 @@ class Admin
             );
         }
 
-        // Subpage: Free vs Pro (only when not Pro – hide for licensed/self-hosted Pro)
         if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
             add_submenu_page(
                 self::TOP_LEVEL_SLUG,
@@ -148,14 +159,9 @@ class Admin
             );
         }
 
-        // Remove the duplicate first submenu item WordPress adds (same title as parent)
         remove_submenu_page(self::TOP_LEVEL_SLUG, self::TOP_LEVEL_SLUG);
     }
 
-    /**
-     * Ensure the Dashboard submenu and its handler exist after Freemius runs.
-     * Freemius runs at 999999999 and can replace/alter the menu; re-add Dashboard so ?page=cf7-mate-dashboard always works.
-     */
     public function ensure_dashboard_submenu()
     {
         global $submenu;
@@ -182,9 +188,6 @@ class Admin
         }
     }
 
-    /**
-     * Redirect top-level cf7-mate to dashboard. Lets Freemius show opt-in when needed (no redirect in that case).
-     */
     public function redirect_cf7_mate_page_to_dashboard()
     {
         wp_safe_redirect(admin_url('admin.php?page=' . self::PAGE_SLUG));
@@ -230,7 +233,7 @@ class Admin
         wp_enqueue_script(
             'cf7m-admin',
             CF7M_PLUGIN_URL . 'dist/js/admin.js',
-            ['react', 'wp-api', 'wp-i18n', 'wp-element', 'wp-api-fetch', 'wp-dom-ready'],
+            ['wp-i18n', 'wp-element', 'wp-api-fetch', 'wp-dom-ready'],
             CF7M_VERSION,
             true
         );
@@ -253,9 +256,9 @@ class Admin
             'ajax_url' => admin_url('admin-ajax.php'),
             'fs_account_url' => function_exists('cf7m_fs') ? cf7m_fs()->get_account_url() : '',
             'is_pro' => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
-            'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing&coupon=NEW2026'),
-            'promo_code' => 'NEW2026', // Shown as "Use code NEW2026". Empty = hide. Change via filter cf7m_admin_app_localize.
-            'promo_text' => '', // Optional extra line (no percentage). Set via filter cf7m_admin_app_localize. Empty = hidden.
+            'pricing_url' => function_exists('cf7m_get_pricing_url') ? cf7m_get_pricing_url('NEW2026') : admin_url('admin.php?page=cf7-mate-pricing'),
+            'promo_code' => 'NEW2026',
+            'promo_text' => '',
             'nonce' => wp_create_nonce('wp_rest'),
             'pluginUrl' => CF7M_PLUGIN_URL,
             'show_v3_banner' => !$rebrand_seen && $onboarding_done,

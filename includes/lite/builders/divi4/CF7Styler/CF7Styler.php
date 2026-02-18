@@ -745,6 +745,9 @@ class DCS_CF7Styler extends ET_Builder_Module
 			$cf7_shortcode = 'Please select a Contact Form 7.';
 		} else {
 			$cf7_shortcode = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', $cf7_id));
+			if (strpos($cf7_shortcode, '[cf7m-presets') !== false || strpos($cf7_shortcode, '[/cf7m-presets]') !== false) {
+				$cf7_shortcode = preg_replace('/\[cf7m-presets[^\]]*\]|\[\/cf7m-presets\]/i', '', $cf7_shortcode);
+			}
 		}
 		return $cf7_shortcode;
 	}

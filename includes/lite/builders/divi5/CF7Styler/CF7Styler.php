@@ -41,14 +41,6 @@ class CF7Styler implements DependencyInterface
         return '';
     }
 
-    /**
-     * Get effective value: attr value if set, otherwise preset style.
-     *
-     * @param array<string, mixed> $attrs Module attributes.
-     * @param array{styles?: array<string, string>}|null $preset Design preset or null.
-     * @param array<int, string> $path Attribute path (e.g. ['cf7', 'advanced', 'formBg']).
-     * @param string $preset_key Key in preset['styles'] (e.g. 'formBg').
-     */
     private static function get_effective_value(array $attrs, $preset, array $path, string $preset_key, string $breakpoint = 'desktop'): string
     {
         $value = self::get_attr_value($attrs, $path, $breakpoint);
@@ -214,6 +206,11 @@ class CF7Styler implements DependencyInterface
             $form_html = '<p class="cf7m-cf7-styler__placeholder">' . esc_html__('Please select a Contact Form 7 form.', 'cf7-styler-for-divi') . '</p>';
         } else {
             $form_html = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', esc_attr($form_id)));
+            // Strip any unprocessed [cf7m-presets] wrapper tags (a pro-only shortcode).
+            // When the pro module is inactive these tags pass through CF7 as literal text.
+            if (strpos($form_html, '[cf7m-presets') !== false || strpos($form_html, '[/cf7m-presets]') !== false) {
+                $form_html = preg_replace('/\[cf7m-presets[^\]]*\]|\[\/cf7m-presets\]/i', '', $form_html);
+            }
         }
 
         $css = '';
@@ -361,7 +358,6 @@ class CF7Styler implements DependencyInterface
         if ($field_border_color !== '') {
             $css .= "{$field_selector}{border-color:{$field_border_color} !important;}";
         }
-        // Only output border-width when non-zero; presets use "0px" for borderless fields – skip so we don't override.
         if ($field_border_width !== '' && $field_border_width !== '0' && $field_border_width !== '0px') {
             $css .= "{$field_selector}{border-width:{$field_border_width} !important;border-style:solid;}";
         }

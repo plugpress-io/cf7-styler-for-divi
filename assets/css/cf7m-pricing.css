@@ -1,0 +1,308 @@
+/**
+ * CF7 Mate – Freemius Pricing Page Brand Overrides
+ *
+ * Loaded via the `pricing/css_path` Freemius filter.
+ * Uses the plugin's own :root brand variables (--cf7m-*) defined in admin CSS.
+ * Scoped to #fs_pricing / #fs_pricing_wrapper so no bleed into other pages.
+ */
+
+/* =========================================================
+   1. CSS CUSTOM PROPERTY OVERRIDES  →  mapped to --cf7m-*
+   ========================================================= */
+
+#fs_pricing,
+#fs_pricing_wrapper {
+  /* Primary accent */
+  --fs-ds-theme-primary-accent-color:       var(--cf7m-primary);
+  --fs-ds-theme-primary-accent-color-hover: var(--cf7m-primary-dark);
+
+  /* Primary button */
+  --fs-ds-theme-button-primary-background-color:       var(--cf7m-primary);
+  --fs-ds-theme-button-primary-background-hover-color: var(--cf7m-primary-dark);
+  --fs-ds-theme-button-primary-border-color:           var(--cf7m-primary);
+  --fs-ds-theme-button-primary-border-hover-color:     var(--cf7m-primary-dark);
+  --fs-ds-theme-button-primary-border-focus-color:     var(--cf7m-primary-dark);
+  --fs-ds-theme-button-primary-text-color:             #ffffff;
+
+  /* Secondary / outline button */
+  --fs-ds-theme-button-background-color:          #ffffff;
+  --fs-ds-theme-button-background-hover-color:    #eef0ff;
+  --fs-ds-theme-button-border-color:              #c4ccf8;
+  --fs-ds-theme-button-border-hover-color:        var(--cf7m-primary);
+  --fs-ds-theme-button-border-focus-color:        var(--cf7m-primary);
+  --fs-ds-theme-button-text-color:                var(--cf7m-primary);
+  --fs-ds-theme-button-disabled-background-color: #f0f2ff;
+  --fs-ds-theme-button-disabled-border-color:     #c4ccf8;
+  --fs-ds-theme-button-disabled-text-color:       #8fa0fb;
+
+  /* Backgrounds */
+  --fs-ds-theme-background-color:    #ffffff;
+  --fs-ds-theme-background-dark:     #f4f6ff;
+  --fs-ds-theme-background-darkest:  #e8ecff;
+  --fs-ds-theme-background-accented: #eef0ff;
+  --fs-ds-theme-background-shade:    #f8f9ff;
+  --fs-ds-theme-background-hover:    #eef0ff;
+  --fs-ds-theme-background-overlay:  rgba(58, 87, 252, 0.08);
+
+  /* Text */
+  --fs-ds-theme-text-color:                       var(--cf7m-body);
+  --fs-ds-theme-heading-text-color:               var(--cf7m-heading);
+  --fs-ds-theme-muted-text-color:                 var(--cf7m-text-muted);
+  --fs-ds-theme-dark-background-text-color:       #ffffff;
+  --fs-ds-theme-dark-background-muted-text-color: rgba(255,255,255,0.75);
+
+  /* Borders */
+  --fs-ds-theme-border-color:  var(--cf7m-border);
+  --fs-ds-theme-divider-color: var(--cf7m-border);
+
+  /* Notices */
+  --fs-ds-theme-notice-info-background: #eef0ff;
+  --fs-ds-theme-notice-info-border:     var(--cf7m-primary);
+  --fs-ds-theme-notice-info-color:      var(--cf7m-heading);
+  --fs-ds-theme-notice-warn-background: #fff8ec;
+  --fs-ds-theme-notice-warn-border:     var(--cf7m-pro);
+  --fs-ds-theme-notice-warn-color:      #7a4800;
+
+  /* Semantic */
+  --fs-ds-theme-success-color:       var(--cf7m-success);
+  --fs-ds-theme-error-color:         var(--cf7m-danger);
+  --fs-ds-theme-warn-color:          var(--cf7m-pro);
+  --fs-ds-theme-primary-green-color: var(--cf7m-success);
+  --fs-ds-theme-primary-red-color:   var(--cf7m-danger);
+  --fs-ds-theme-primary-yellow-color: var(--cf7m-pro);
+
+  /* Special */
+  --fs-ds-theme-package-popular-background: var(--cf7m-primary);
+  --fs-ds-theme-testimonial-star-color:     #f5a623;
+}
+
+/* =========================================================
+   2. LAYOUT — full-width header + banner, compact spacing
+   =========================================================
+   WordPress admin adds 20px padding on both sides via
+   #wpbody-content. Negative margins + calc width break the
+   header and banner out to true edge-to-edge width.
+   ========================================================= */
+
+#fs_pricing {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin-left:  0 !important;
+  margin-right: 0 !important;
+  padding:      0 !important;
+  max-width:    none !important;
+}
+
+#fs_pricing .fs-app-header {
+  margin-left:  -20px !important;
+  margin-right: -20px !important;
+  width:        calc(100% + 40px) !important;
+  padding:      12px 24px !important;
+  min-height:   0 !important;
+  box-sizing:   border-box !important;
+}
+
+#fs_pricing .fs-plugin-title-and-logo {
+  gap:         8px !important;
+  align-items: center !important;
+}
+
+#fs_pricing .fs-plugin-logo {
+  width:  36px !important;
+  height: 36px !important;
+}
+
+/* =========================================================
+   3. DISCOUNT PROMO BANNER — full width, flush to edges
+   (JS injects this via ::before — CSS here as fallback)
+   ========================================================= */
+
+#fs_pricing_wrapper {
+  position: relative;
+}
+
+#fs_pricing_wrapper::before {
+  content:        "🎉  Limited Offer: Use code NEW2026 at checkout for 50% OFF any Lifetime plan!";
+  display:        block;
+  background:     linear-gradient(135deg, var(--cf7m-primary) 0%, #6c7eff 100%);
+  color:          #ffffff;
+  text-align:     center;
+  padding:        14px 28px;
+  font-size:      14px;
+  font-weight:    600;
+  font-family:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+  border-radius:  0;
+  margin-left:    -20px;
+  margin-right:   -20px;
+  margin-bottom:  24px;
+  box-shadow:     0 4px 20px rgba(58, 87, 252, 0.28);
+  box-sizing:     border-box;
+}
+
+/* =========================================================
+   5. BUTTONS — primary CTA
+   ========================================================= */
+
+#fs_pricing .fs-button--type-primary,
+#fs_pricing .fs-upgrade-button {
+  background:    linear-gradient(135deg, var(--cf7m-primary) 0%, #5b75ff 100%) !important;
+  border-color:  var(--cf7m-primary) !important;
+  color:         #ffffff !important;
+  border-radius: 10px !important;
+  font-weight:   700 !important;
+  font-size:     15px !important;
+  letter-spacing: 0.02em !important;
+  padding:       13px 28px !important;
+  box-shadow:    0 4px 14px rgba(58, 87, 252, 0.30) !important;
+  transition:    background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease !important;
+  text-shadow:   none !important;
+}
+
+#fs_pricing .fs-button--type-primary:hover,
+#fs_pricing .fs-upgrade-button:hover {
+  background:   linear-gradient(135deg, var(--cf7m-primary-dark) 0%, var(--cf7m-primary) 100%) !important;
+  border-color: var(--cf7m-primary-dark) !important;
+  box-shadow:   0 6px 22px rgba(58, 87, 252, 0.42) !important;
+  transform:    translateY(-2px) !important;
+}
+
+#fs_pricing .fs-button--type-primary:active,
+#fs_pricing .fs-upgrade-button:active {
+  transform:  translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(58, 87, 252, 0.25) !important;
+}
+
+#fs_pricing .fs-button--type-primary:focus,
+#fs_pricing .fs-upgrade-button:focus {
+  outline:    none !important;
+  box-shadow: 0 0 0 3px rgba(58, 87, 252, 0.30) !important;
+}
+
+/* --- Outline / secondary button ------------------------- */
+#fs_pricing .fs-button--outline {
+  border-color:  var(--cf7m-primary) !important;
+  color:         var(--cf7m-primary) !important;
+  background:    transparent !important;
+  border-radius: 10px !important;
+  font-weight:   600 !important;
+  padding:       10px 22px !important;
+  transition:    background 0.15s ease, color 0.15s ease !important;
+}
+
+#fs_pricing .fs-button--outline:hover {
+  background: #eef0ff !important;
+}
+
+/* =========================================================
+   6. PLAN CARDS
+   ========================================================= */
+
+#fs_pricing .fs-featured-plan {
+  border:     2px solid var(--cf7m-primary) !important;
+  box-shadow: 0 8px 28px rgba(58, 87, 252, 0.13) !important;
+}
+
+#fs_pricing .fs-most-popular {
+  background:     var(--cf7m-primary) !important;
+  color:          #ffffff !important;
+  border-radius:  20px !important;
+  padding:        3px 14px !important;
+  font-size:      11px !important;
+  font-weight:    700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+#fs_pricing .fs-plan-title {
+  color:       var(--cf7m-heading) !important;
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   7. PRICE DISPLAY
+   ========================================================= */
+
+#fs_pricing .fs-selected-pricing-amount,
+#fs_pricing .fs-selected-pricing-amount-integer {
+  color:       var(--cf7m-primary) !important;
+  font-weight: 800 !important;
+}
+
+#fs_pricing .fs-undiscounted-price {
+  color: var(--cf7m-text-muted) !important;
+}
+
+/* =========================================================
+   8. LICENSE QUANTITY + BILLING CYCLE SELECTORS
+   ========================================================= */
+
+#fs_pricing .fs-license-quantity-selected,
+#fs_pricing .fs-license-quantity.fs-license-quantity-selected {
+  border-color:     var(--cf7m-primary) !important;
+  color:            var(--cf7m-primary) !important;
+  background-color: #eef0ff !important;
+  font-weight:      600 !important;
+}
+
+#fs_pricing .fs-license-quantity:hover {
+  border-color: var(--cf7m-primary) !important;
+  color:        var(--cf7m-primary) !important;
+}
+
+#fs_pricing .fs-billing-cycles .fs-selected-billing-cycle,
+#fs_pricing .fs-billing-cycles [aria-selected="true"] {
+  background-color: var(--cf7m-primary) !important;
+  color:            #ffffff !important;
+  border-radius:    6px !important;
+}
+
+/* =========================================================
+   9. BADGES & MISC
+   ========================================================= */
+
+#fs_pricing .fs-annual-discount {
+  background-color: #eef0ff !important;
+  color:            var(--cf7m-primary) !important;
+  border-radius:    4px !important;
+  padding:          2px 8px !important;
+  font-weight:      600 !important;
+  font-size:        12px !important;
+}
+
+#fs_pricing .fs-package-tab--selected,
+#fs_pricing .fs-packages-tab.fs-package-tab--selected {
+  border-bottom-color: var(--cf7m-primary) !important;
+  color:               var(--cf7m-primary) !important;
+}
+
+#fs_pricing .fs-testimonial-rating svg,
+#fs_pricing .fs-testimonial-rating path {
+  fill: #f5a623 !important;
+}
+
+#fs_pricing .fs-money-back-guarantee-title {
+  color:       var(--cf7m-heading) !important;
+  font-weight: 700 !important;
+}
+
+#fs_pricing .fs-contact-link,
+#fs_pricing .contact-link {
+  color:       var(--cf7m-primary) !important;
+  font-weight: 500 !important;
+}
+
+#fs_pricing .fs-contact-link:hover,
+#fs_pricing .contact-link:hover {
+  color: var(--cf7m-primary-dark) !important;
+}
+
+#fs_pricing .fs-trial-message {
+  background-color: #eef0ff !important;
+  border-left:      3px solid var(--cf7m-primary) !important;
+  color:            var(--cf7m-heading) !important;
+  border-radius:    4px !important;
+}
+
+#fs_pricing .fs-section--badges {
+  margin-top: 24px;
+}

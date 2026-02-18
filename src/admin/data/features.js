@@ -40,6 +40,16 @@ export const FEATURES = [
 		icon: 'module',
 	},
 	{
+		id: 'gutenberg_module',
+		name: __('Gutenberg Styler Block', 'cf7-styler-for-divi'),
+		description: __(
+			'Style Contact Form 7 forms with the WordPress Block Editor (Gutenberg).',
+			'cf7-styler-for-divi'
+		),
+		isPro: false,
+		icon: 'module',
+	},
+	{
 		id: 'grid_layout',
 		name: __('Grid Layout', 'cf7-styler-for-divi'),
 		description: __(

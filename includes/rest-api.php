@@ -382,6 +382,13 @@ class Rest_API {
 
 		$html = do_shortcode( sprintf( '[contact-form-7 id="%d"]', $form_id ) );
 
+		// Strip any unprocessed [cf7m-presets] wrapper tags (pro-only shortcode).
+		// When the pro module is inactive the tags pass through CF7 as literal text,
+		// which would break the editor preview.
+		if ( strpos( $html, '[cf7m-presets' ) !== false || strpos( $html, '[/cf7m-presets]' ) !== false ) {
+			$html = preg_replace( '/\[cf7m-presets[^\]]*\]|\[\/cf7m-presets\]/i', '', $html );
+		}
+
 		return rest_ensure_response(
 			array(
 				'html' => $html,

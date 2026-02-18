@@ -39,6 +39,7 @@ class Plugin
             'assets.php',
             'rest-api.php',
             'notices/review.php',
+            'notices/promo.php',
             'admin/admin.php',
             'admin/onboarding.php',
         ];
@@ -88,6 +89,13 @@ class Plugin
                 require_once $bricks_loader;
             }
         }
+
+        if ($this->is_feature_enabled('gutenberg_module')) {
+            $gutenberg_loader = CF7M_PLUGIN_PATH . 'includes/lite/builders/gutenberg/loader.php';
+            if (file_exists($gutenberg_loader)) {
+                require_once $gutenberg_loader;
+            }
+        }
     }
 
     public function load_premium_loader()
@@ -109,6 +117,7 @@ class Plugin
             'cf7_module' => true,
             'bricks_module' => true,
             'elementor_module' => true,
+            'gutenberg_module' => true,
             'grid_layout' => true,
             'multi_column' => true,
             'multi_step' => true,
@@ -129,7 +138,7 @@ class Plugin
     private function define_hooks()
     {
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
-        add_action('plugins_loaded', [$this, 'load_textdomain']);
+        add_action('init', [$this, 'load_textdomain'], 0);
         add_action('et_builder_ready', [$this, 'load_modules'], 11);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_styles'], 20);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_scripts'], 20);
@@ -180,14 +189,16 @@ class Plugin
 
     private function maybe_set_install_date()
     {
-        if (!get_option('divi_cf7_styler_install_date')) {
-            update_option('divi_cf7_styler_install_date', time());
+        if (!get_option('cf7m_install_date')) {
+            // Migrate from old option key if present, otherwise set fresh timestamp.
+            $legacy = get_option('divi_cf7_styler_install_date');
+            update_option('cf7m_install_date', $legacy ? $legacy : time());
         }
     }
 
     private function update_plugin_version()
     {
-        update_option('divi_cf7_styler_current_version', CF7M_VERSION);
+        update_option('cf7m_current_version', CF7M_VERSION);
     }
 
     public function load_textdomain()
@@ -218,7 +229,7 @@ class Plugin
 
     private function should_load_deprecated_modules()
     {
-        $install_date = get_option('divi_cf7_styler_install_date');
+        $install_date = get_option('cf7m_install_date') ?: get_option('divi_cf7_styler_install_date');
 
         // If no install date, user is new - don't load deprecated modules
         if (!$install_date) {
@@ -235,6 +246,11 @@ class Plugin
         // Initialize review notice (star rating)
         if (class_exists(__NAMESPACE__ . '\Admin_Review_Notice')) {
             Admin_Review_Notice::instance();
+        }
+
+        // Initialize promotional notice (NEW2026 lifetime deal)
+        if (class_exists(__NAMESPACE__ . '\Admin_Promo_Notice')) {
+            Admin_Promo_Notice::instance();
         }
 
         // Initialize onboarding

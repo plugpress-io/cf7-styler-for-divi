@@ -81,6 +81,15 @@ module.exports = function (grunt) {
 					},
 				],
 			},
+			// Patch freemius.php inside the pro package: free source has is_premium=>false,
+			// premium build must have is_premium=>true.
+			freemius_premium: {
+				src: ['package/cf7-mate-pro/freemius.php'],
+				overwrite: true,
+				replacements: [
+					{ from: "'is_premium'          => false,", to: "'is_premium'          => true," },
+				],
+			},
 		},
 
 		compress: {
@@ -151,5 +160,5 @@ require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'compress:wp', 'clean:main']);
 
 	// Pro zip (cf7-mate-pro.php, for Freemius deploy)
-	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'write_pro_main', 'compress:pro', 'clean:main']);
+	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'replace:freemius_premium', 'write_pro_main', 'compress:pro', 'clean:main']);
 };

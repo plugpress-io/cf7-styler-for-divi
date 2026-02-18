@@ -60,16 +60,19 @@ class Onboarding
 
     public function enqueue_scripts($hook)
     {
-        // Only show onboarding on CF7 Mate admin page. Rebrand is separate (shown in admin app).
-        $allowed_hooks = [
-            'toplevel_page_cf7-mate',
-            'toplevel_page_cf7-mate-dashboard',
-            'divi_page_cf7-mate',
-            'divi_page_cf7-mate-dashboard',
-        ];
-
-        if (!in_array($hook, $allowed_hooks, true)) {
+        // Gate on ?page= directly — more reliable than hook name which Freemius can alter.
+        $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+        if (!in_array($page, ['cf7-mate', 'cf7-mate-dashboard'], true)) {
             return;
+        }
+
+        // On the top-level cf7-mate page Freemius shows its own opt-in modal.
+        // Suppress onboarding there while opt-in is still pending to avoid two modals at once.
+        if ($page === 'cf7-mate' && function_exists('cf7m_fs')) {
+            $fs = cf7m_fs();
+            if (!$fs->is_registered() && !$fs->is_anonymous()) {
+                return;
+            }
         }
 
         // Only show full-screen onboarding for new users (not yet completed/skipped).
@@ -105,7 +108,7 @@ class Onboarding
             'create_page_url' => admin_url('post-new.php?post_type=page'),
             'cf7_admin_url' => admin_url('admin.php?page=wpcf7'),
             'dashboard_url' => admin_url('admin.php?page=cf7-mate-dashboard'),
-            'pricing_url' => admin_url('admin.php?page=cf7-mate-pricing&coupon=NEW2026'),
+            'pricing_url' => function_exists('cf7m_get_pricing_url') ? cf7m_get_pricing_url('NEW2026') : CF7M_URL_PRICING,
             'is_pro' => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
             'rebrand_seen' => $this->is_rebrand_seen(),
             'onboarding_completed' => $this->is_onboarding_completed(),
@@ -121,16 +124,9 @@ class Onboarding
             return;
         }
 
-        // Only on CF7 Mate pages.
-        $screen = get_current_screen();
-        $allowed_screens = [
-            'toplevel_page_cf7-mate',
-            'toplevel_page_cf7-mate-dashboard',
-            'divi_page_cf7-mate',
-            'divi_page_cf7-mate-dashboard',
-        ];
-
-        if (!$screen || !in_array($screen->id, $allowed_screens, true)) {
+        // Only on CF7 Mate pages (use ?page= directly for Freemius compatibility).
+        $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+        if (!in_array($page, ['cf7-mate', 'cf7-mate-dashboard'], true)) {
             return;
         }
 
@@ -212,6 +208,9 @@ class Onboarding
             if (is_array($features)) {
                 $defaults = [
                     'cf7_module' => true,
+                    'bricks_module' => true,
+                    'elementor_module' => true,
+                    'gutenberg_module' => true,
                     'grid_layout' => true,
                     'multi_column' => true,
                     'multi_step' => true,

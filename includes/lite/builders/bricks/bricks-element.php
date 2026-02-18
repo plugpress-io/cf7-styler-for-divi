@@ -964,6 +964,9 @@ class CF7M_Bricks_Element extends \Bricks\Element {
         }
 
         $shortcode = do_shortcode(sprintf('[contact-form-7 id="%d"]', $form_id));
+        if (strpos($shortcode, '[cf7m-presets') !== false || strpos($shortcode, '[/cf7m-presets]') !== false) {
+            $shortcode = preg_replace('/\[cf7m-presets[^\]]*\]|\[\/cf7m-presets\]/i', '', $shortcode);
+        }
 
         $root_classes = 'cf7m-bricks-element' . esc_attr($fullwidth_class);
         $this->set_attribute('_root', 'class', $root_classes);

@@ -13,6 +13,7 @@ module.exports = {
 		'admin-notice': ['./src/admin/admin-notice.js'],
 		onboarding: ['./src/onboarding/index.jsx'],
 		admin: ['./src/admin/index.js'],
+		gutenberg: ['./src/gutenberg/index.js'],
 	},
 	watch: !isProduction,
 	performance: {
@@ -126,6 +127,9 @@ module.exports = {
 		'@wordpress/dom-ready': ['wp', 'domReady'],
 		'@wordpress/api-fetch': ['wp', 'apiFetch'],
 		'@wordpress/data': ['wp', 'data'],
+		'@wordpress/blocks': ['wp', 'blocks'],
+		'@wordpress/block-editor': ['wp', 'blockEditor'],
+		'@wordpress/server-side-render': ['wp', 'serverSideRender'],
 		react: ['wp', 'element'],
 		'react-dom': ['wp', 'element'],
 	},

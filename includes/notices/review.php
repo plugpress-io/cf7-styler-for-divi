@@ -8,7 +8,7 @@ class Admin_Review_Notice
 
     const NOTICE_ID = 'dcs_review_notice';
     const DISMISSED_OPTION = 'dcs_review_notice_dismissed';
-    const INSTALL_DATE_OPTION = 'divi_cf7_styler_install_date';
+    const INSTALL_DATE_OPTION = 'cf7m_install_date';
     const REVIEW_DELAY = 7 * 24 * 60 * 60; // 7 days in seconds
 
     public static function instance()

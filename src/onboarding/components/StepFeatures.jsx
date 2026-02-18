@@ -12,8 +12,11 @@ import { __ } from '@wordpress/i18n';
 const DISCOUNT_CODE = 'NEW2026';
 
 const FREE_FEATURES = [
-	{ id: 'cf7_module', name: __('CF7 Form Styler', 'cf7-styler-for-divi'), short: __('Style forms in any page builder', 'cf7-styler-for-divi') },
-	{ id: 'grid_layout', name: __('Grid Layout', 'cf7-styler-for-divi'), short: __('Responsive form grid', 'cf7-styler-for-divi') },
+	{ id: 'cf7_module',       name: __('Divi Styler Module',      'cf7-styler-for-divi'), short: __('Style CF7 forms with Divi Builder',        'cf7-styler-for-divi') },
+	{ id: 'bricks_module',    name: __('Bricks Styler Element',   'cf7-styler-for-divi'), short: __('Style CF7 forms with Bricks Builder',       'cf7-styler-for-divi') },
+	{ id: 'elementor_module', name: __('Elementor Styler Widget', 'cf7-styler-for-divi'), short: __('Style CF7 forms with Elementor',            'cf7-styler-for-divi') },
+	{ id: 'gutenberg_module', name: __('Gutenberg Styler Block',  'cf7-styler-for-divi'), short: __('Style CF7 forms with the Block Editor',     'cf7-styler-for-divi') },
+	{ id: 'grid_layout',      name: __('Grid Layout',             'cf7-styler-for-divi'), short: __('Arrange fields in a responsive grid',       'cf7-styler-for-divi') },
 ];
 
 const PRO_FEATURES = [

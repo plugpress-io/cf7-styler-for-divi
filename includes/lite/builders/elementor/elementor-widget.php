@@ -861,6 +861,9 @@ class CF7M_Elementor_Widget extends \Elementor\Widget_Base {
         }
 
         $shortcode = do_shortcode(sprintf('[contact-form-7 id="%d"]', $form_id));
+        if (strpos($shortcode, '[cf7m-presets') !== false || strpos($shortcode, '[/cf7m-presets]') !== false) {
+            $shortcode = preg_replace('/\[cf7m-presets[^\]]*\]|\[\/cf7m-presets\]/i', '', $shortcode);
+        }
 
         echo '<div class="cf7m-elementor-widget' . esc_attr($fullwidth_class) . '">';
         echo $form_header_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts
