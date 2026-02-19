@@ -166,6 +166,117 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .dipe-cf7 label,${baseSelector} .cf7m-cf7-styler label,${baseSelector} .cf7m-cf7-form-preview label{color:${labelColor} !important;}`;
   }
 
+  // Field Font Styles
+  const fieldFontSize = getAttrValue(attrs, 'cf7.advanced.fieldFontSize');
+  const fieldFontWeight = getAttrValue(attrs, 'cf7.advanced.fieldFontWeight');
+  const fieldLineHeight = getAttrValue(attrs, 'cf7.advanced.fieldLineHeight');
+  const fieldLetterSpacing = getAttrValue(attrs, 'cf7.advanced.fieldLetterSpacing');
+  const fieldTextTransform = getAttrValue(attrs, 'cf7.advanced.fieldTextTransform');
+
+  if (fieldFontSize) {
+    customCss += `${fieldSelectors}{font-size:${fieldFontSize} !important;}`;
+  }
+  if (fieldFontWeight) {
+    customCss += `${fieldSelectors}{font-weight:${fieldFontWeight} !important;}`;
+  }
+  if (fieldLineHeight) {
+    customCss += `${fieldSelectors}{line-height:${fieldLineHeight} !important;}`;
+  }
+  if (fieldLetterSpacing) {
+    customCss += `${fieldSelectors}{letter-spacing:${fieldLetterSpacing} !important;}`;
+  }
+  if (fieldTextTransform && fieldTextTransform !== 'none') {
+    customCss += `${fieldSelectors}{text-transform:${fieldTextTransform} !important;}`;
+  }
+
+  // Label Font Styles
+  const labelSelectors = `${baseSelector} .dipe-cf7 label,${baseSelector} .cf7m-cf7-styler label,${baseSelector} .cf7m-cf7-form-preview label`;
+  const labelFontSize = getAttrValue(attrs, 'cf7.advanced.labelFontSize');
+  const labelFontWeight = getAttrValue(attrs, 'cf7.advanced.labelFontWeight');
+  const labelLineHeight = getAttrValue(attrs, 'cf7.advanced.labelLineHeight');
+  const labelLetterSpacing = getAttrValue(attrs, 'cf7.advanced.labelLetterSpacing');
+  const labelTextTransform = getAttrValue(attrs, 'cf7.advanced.labelTextTransform');
+
+  if (labelFontSize) {
+    customCss += `${labelSelectors}{font-size:${labelFontSize} !important;}`;
+  }
+  if (labelFontWeight) {
+    customCss += `${labelSelectors}{font-weight:${labelFontWeight} !important;}`;
+  }
+  if (labelLineHeight) {
+    customCss += `${labelSelectors}{line-height:${labelLineHeight} !important;}`;
+  }
+  if (labelLetterSpacing) {
+    customCss += `${labelSelectors}{letter-spacing:${labelLetterSpacing} !important;}`;
+  }
+  if (labelTextTransform && labelTextTransform !== 'none') {
+    customCss += `${labelSelectors}{text-transform:${labelTextTransform} !important;}`;
+  }
+
+  // Placeholder Color
+  const placeholderColor = getAttrValue(attrs, 'cf7.advanced.placeholderColor');
+  const placeholderSelectors = `${baseSelector} .cf7m-cf7-styler input::placeholder,${baseSelector} .cf7m-cf7-styler textarea::placeholder,${baseSelector} .dipe-cf7 input::placeholder,${baseSelector} .dipe-cf7 textarea::placeholder,${baseSelector} .cf7m-cf7-form-preview input::placeholder,${baseSelector} .cf7m-cf7-form-preview textarea::placeholder`;
+
+  if (placeholderColor) {
+    customCss += `${placeholderSelectors}{color:${placeholderColor} !important;}`;
+  }
+
+  // Header Title Font Styles
+  const headerTitleSelectors = `${baseSelector} .dipe-form-header-title,${baseSelector} .cf7m-form-header-title`;
+  const headerTitleFontSize = getAttrValue(attrs, 'cf7.advanced.headerTitleFontSize');
+  const headerTitleFontWeight = getAttrValue(attrs, 'cf7.advanced.headerTitleFontWeight');
+  const headerTitleLineHeight = getAttrValue(attrs, 'cf7.advanced.headerTitleLineHeight');
+  const headerTitleLetterSpacing = getAttrValue(attrs, 'cf7.advanced.headerTitleLetterSpacing');
+  const headerTitleTextTransform = getAttrValue(attrs, 'cf7.advanced.headerTitleTextTransform');
+  const headerTitleTextColor = getAttrValue(attrs, 'cf7.advanced.headerTitleTextColor');
+
+  if (headerTitleFontSize) {
+    customCss += `${headerTitleSelectors}{font-size:${headerTitleFontSize} !important;}`;
+  }
+  if (headerTitleFontWeight) {
+    customCss += `${headerTitleSelectors}{font-weight:${headerTitleFontWeight} !important;}`;
+  }
+  if (headerTitleLineHeight) {
+    customCss += `${headerTitleSelectors}{line-height:${headerTitleLineHeight} !important;}`;
+  }
+  if (headerTitleLetterSpacing) {
+    customCss += `${headerTitleSelectors}{letter-spacing:${headerTitleLetterSpacing} !important;}`;
+  }
+  if (headerTitleTextTransform && headerTitleTextTransform !== 'none') {
+    customCss += `${headerTitleSelectors}{text-transform:${headerTitleTextTransform} !important;}`;
+  }
+  if (headerTitleTextColor) {
+    customCss += `${headerTitleSelectors}{color:${headerTitleTextColor} !important;}`;
+  }
+
+  // Header Text Font Styles
+  const headerTextSelectors = `${baseSelector} .dipe-form-header-text,${baseSelector} .cf7m-form-header-text`;
+  const headerTextFontSize = getAttrValue(attrs, 'cf7.advanced.headerTextFontSize');
+  const headerTextFontWeight = getAttrValue(attrs, 'cf7.advanced.headerTextFontWeight');
+  const headerTextLineHeight = getAttrValue(attrs, 'cf7.advanced.headerTextLineHeight');
+  const headerTextLetterSpacing = getAttrValue(attrs, 'cf7.advanced.headerTextLetterSpacing');
+  const headerTextTextTransform = getAttrValue(attrs, 'cf7.advanced.headerTextTextTransform');
+  const headerTextTextColor = getAttrValue(attrs, 'cf7.advanced.headerTextTextColor');
+
+  if (headerTextFontSize) {
+    customCss += `${headerTextSelectors}{font-size:${headerTextFontSize} !important;}`;
+  }
+  if (headerTextFontWeight) {
+    customCss += `${headerTextSelectors}{font-weight:${headerTextFontWeight} !important;}`;
+  }
+  if (headerTextLineHeight) {
+    customCss += `${headerTextSelectors}{line-height:${headerTextLineHeight} !important;}`;
+  }
+  if (headerTextLetterSpacing) {
+    customCss += `${headerTextSelectors}{letter-spacing:${headerTextLetterSpacing} !important;}`;
+  }
+  if (headerTextTextTransform && headerTextTextTransform !== 'none') {
+    customCss += `${headerTextSelectors}{text-transform:${headerTextTextTransform} !important;}`;
+  }
+  if (headerTextTextColor) {
+    customCss += `${headerTextSelectors}{color:${headerTextTextColor} !important;}`;
+  }
+
   const buttonBg = getEffective('buttonBg');
   const buttonColor = getEffective('buttonColor');
   const buttonPaddingVal = getEffective('buttonPadding') || getAttrValue(attrs, 'cf7.advanced.buttonPadding');
@@ -202,6 +313,29 @@ const ModuleStyles = ({
   if (buttonAlignment && buttonAlignment !== 'left') {
     const flexAlign = buttonAlignment === 'center' ? 'center' : 'flex-end';
     customCss += `${baseSelector} .cf7m-cf7-form-preview__fields,${baseSelector} .dipe-cf7 p:has(input[type=submit]){display:flex;flex-direction:column;align-items:${flexAlign};}`;
+  }
+
+  // Button Font Styles
+  const buttonFontSize = getAttrValue(attrs, 'cf7.advanced.buttonFontSize');
+  const buttonFontWeight = getAttrValue(attrs, 'cf7.advanced.buttonFontWeight');
+  const buttonLineHeight = getAttrValue(attrs, 'cf7.advanced.buttonLineHeight');
+  const buttonLetterSpacing = getAttrValue(attrs, 'cf7.advanced.buttonLetterSpacing');
+  const buttonTextTransform = getAttrValue(attrs, 'cf7.advanced.buttonTextTransform');
+
+  if (buttonFontSize) {
+    customCss += `${buttonSelectors}{font-size:${buttonFontSize} !important;}`;
+  }
+  if (buttonFontWeight) {
+    customCss += `${buttonSelectors}{font-weight:${buttonFontWeight} !important;}`;
+  }
+  if (buttonLineHeight) {
+    customCss += `${buttonSelectors}{line-height:${buttonLineHeight} !important;}`;
+  }
+  if (buttonLetterSpacing) {
+    customCss += `${buttonSelectors}{letter-spacing:${buttonLetterSpacing} !important;}`;
+  }
+  if (buttonTextTransform && buttonTextTransform !== 'none') {
+    customCss += `${buttonSelectors}{text-transform:${buttonTextTransform} !important;}`;
   }
 
   const crCustomStyles = getEffective('crCustomStyles') || getAttrValue(attrs, 'cf7.advanced.crCustomStyles');

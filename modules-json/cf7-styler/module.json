@@ -426,6 +426,146 @@
             "desktop": {
               "value": "0px|0px|0px|0px"
             }
+          },
+          "fieldFontSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "fieldFontWeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "fieldLineHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "fieldLetterSpacing": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "fieldTextTransform": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "labelFontSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "labelFontWeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "labelLineHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "labelLetterSpacing": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "labelTextTransform": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "placeholderColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTitleFontSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTitleFontWeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTitleLineHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTitleLetterSpacing": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTitleTextTransform": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTitleTextColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTextFontSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTextFontWeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTextLineHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTextLetterSpacing": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTextTextTransform": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "headerTextTextColor": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonFontSize": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonFontWeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonLineHeight": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonLetterSpacing": {
+            "desktop": {
+              "value": ""
+            }
+          },
+          "buttonTextTransform": {
+            "desktop": {
+              "value": ""
+            }
           }
         }
       },
@@ -752,6 +892,370 @@
               "priority": 50,
               "render": true,
               "label": "Header Icon Color",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
+            }
+          },
+          "headerTitleFontSize": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTitleFontSize",
+              "priority": 60,
+              "render": true,
+              "label": "Title Font Size",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "headerTitleFontWeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTitleFontWeight",
+              "priority": 61,
+              "render": true,
+              "label": "Title Font Weight",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "300": {
+                      "label": "Light"
+                    },
+                    "400": {
+                      "label": "Normal"
+                    },
+                    "500": {
+                      "label": "Medium"
+                    },
+                    "600": {
+                      "label": "Semi Bold"
+                    },
+                    "700": {
+                      "label": "Bold"
+                    },
+                    "800": {
+                      "label": "Extra Bold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "headerTitleLineHeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTitleLineHeight",
+              "priority": 62,
+              "render": true,
+              "label": "Title Line Height",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0.5,
+                  "max": 3,
+                  "step": 0.1,
+                  "defaultUnit": "em"
+                }
+              }
+            }
+          },
+          "headerTitleLetterSpacing": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTitleLetterSpacing",
+              "priority": 63,
+              "render": true,
+              "label": "Title Letter Spacing",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": -5,
+                  "max": 20,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "headerTitleTextTransform": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTitleTextTransform",
+              "priority": 64,
+              "render": true,
+              "label": "Title Text Transform",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "none": {
+                      "label": "None"
+                    },
+                    "uppercase": {
+                      "label": "Uppercase"
+                    },
+                    "lowercase": {
+                      "label": "Lowercase"
+                    },
+                    "capitalize": {
+                      "label": "Capitalize"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "headerTitleTextColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTitleTextColor",
+              "priority": 65,
+              "render": true,
+              "label": "Title Text Color",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
+            }
+          },
+          "headerTextFontSize": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTextFontSize",
+              "priority": 70,
+              "render": true,
+              "label": "Text Font Size",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "headerTextFontWeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTextFontWeight",
+              "priority": 71,
+              "render": true,
+              "label": "Text Font Weight",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "300": {
+                      "label": "Light"
+                    },
+                    "400": {
+                      "label": "Normal"
+                    },
+                    "500": {
+                      "label": "Medium"
+                    },
+                    "600": {
+                      "label": "Semi Bold"
+                    },
+                    "700": {
+                      "label": "Bold"
+                    },
+                    "800": {
+                      "label": "Extra Bold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "headerTextLineHeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTextLineHeight",
+              "priority": 72,
+              "render": true,
+              "label": "Text Line Height",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0.5,
+                  "max": 3,
+                  "step": 0.1,
+                  "defaultUnit": "em"
+                }
+              }
+            }
+          },
+          "headerTextLetterSpacing": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTextLetterSpacing",
+              "priority": 73,
+              "render": true,
+              "label": "Text Letter Spacing",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": -5,
+                  "max": 20,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "headerTextTextTransform": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTextTextTransform",
+              "priority": 74,
+              "render": true,
+              "label": "Text Transform",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "none": {
+                      "label": "None"
+                    },
+                    "uppercase": {
+                      "label": "Uppercase"
+                    },
+                    "lowercase": {
+                      "label": "Lowercase"
+                    },
+                    "capitalize": {
+                      "label": "Capitalize"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "headerTextTextColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_header",
+              "attrName": "cf7.advanced.headerTextTextColor",
+              "priority": 75,
+              "render": true,
+              "label": "Text Color",
               "features": {
                 "sticky": false,
                 "responsive": false,
@@ -1538,6 +2042,168 @@
               }
             }
           },
+          "buttonFontSize": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonFontSize",
+              "priority": 70,
+              "render": true,
+              "label": "Button Font Size",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "buttonFontWeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonFontWeight",
+              "priority": 71,
+              "render": true,
+              "label": "Button Font Weight",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "300": {
+                      "label": "Light"
+                    },
+                    "400": {
+                      "label": "Normal"
+                    },
+                    "500": {
+                      "label": "Medium"
+                    },
+                    "600": {
+                      "label": "Semi Bold"
+                    },
+                    "700": {
+                      "label": "Bold"
+                    },
+                    "800": {
+                      "label": "Extra Bold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "buttonLineHeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonLineHeight",
+              "priority": 72,
+              "render": true,
+              "label": "Button Line Height",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0.5,
+                  "max": 3,
+                  "step": 0.1,
+                  "defaultUnit": "em"
+                }
+              }
+            }
+          },
+          "buttonLetterSpacing": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonLetterSpacing",
+              "priority": 73,
+              "render": true,
+              "label": "Button Letter Spacing",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": -5,
+                  "max": 20,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "buttonTextTransform": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "submit_button",
+              "attrName": "cf7.advanced.buttonTextTransform",
+              "priority": 74,
+              "render": true,
+              "label": "Button Text Transform",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "none": {
+                      "label": "None"
+                    },
+                    "uppercase": {
+                      "label": "Uppercase"
+                    },
+                    "lowercase": {
+                      "label": "Lowercase"
+                    },
+                    "capitalize": {
+                      "label": "Capitalize"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "formFieldBorderColor": {
             "groupType": "group-item",
             "item": {
@@ -1638,6 +2304,350 @@
               "priority": 20,
               "render": true,
               "label": "Label Color",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/color-picker"
+              }
+            }
+          },
+          "fieldFontSize": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.fieldFontSize",
+              "priority": 30,
+              "render": true,
+              "label": "Field Font Size",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "fieldFontWeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.fieldFontWeight",
+              "priority": 31,
+              "render": true,
+              "label": "Field Font Weight",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "300": {
+                      "label": "Light"
+                    },
+                    "400": {
+                      "label": "Normal"
+                    },
+                    "500": {
+                      "label": "Medium"
+                    },
+                    "600": {
+                      "label": "Semi Bold"
+                    },
+                    "700": {
+                      "label": "Bold"
+                    },
+                    "800": {
+                      "label": "Extra Bold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "fieldLineHeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.fieldLineHeight",
+              "priority": 32,
+              "render": true,
+              "label": "Field Line Height",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0.5,
+                  "max": 3,
+                  "step": 0.1,
+                  "defaultUnit": "em"
+                }
+              }
+            }
+          },
+          "fieldLetterSpacing": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.fieldLetterSpacing",
+              "priority": 33,
+              "render": true,
+              "label": "Field Letter Spacing",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": -5,
+                  "max": 20,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "fieldTextTransform": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.fieldTextTransform",
+              "priority": 34,
+              "render": true,
+              "label": "Field Text Transform",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "none": {
+                      "label": "None"
+                    },
+                    "uppercase": {
+                      "label": "Uppercase"
+                    },
+                    "lowercase": {
+                      "label": "Lowercase"
+                    },
+                    "capitalize": {
+                      "label": "Capitalize"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "labelFontSize": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.labelFontSize",
+              "priority": 40,
+              "render": true,
+              "label": "Label Font Size",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 10,
+                  "max": 100,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "labelFontWeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.labelFontWeight",
+              "priority": 41,
+              "render": true,
+              "label": "Label Font Weight",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "300": {
+                      "label": "Light"
+                    },
+                    "400": {
+                      "label": "Normal"
+                    },
+                    "500": {
+                      "label": "Medium"
+                    },
+                    "600": {
+                      "label": "Semi Bold"
+                    },
+                    "700": {
+                      "label": "Bold"
+                    },
+                    "800": {
+                      "label": "Extra Bold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "labelLineHeight": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.labelLineHeight",
+              "priority": 42,
+              "render": true,
+              "label": "Label Line Height",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": 0.5,
+                  "max": 3,
+                  "step": 0.1,
+                  "defaultUnit": "em"
+                }
+              }
+            }
+          },
+          "labelLetterSpacing": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.labelLetterSpacing",
+              "priority": 43,
+              "render": true,
+              "label": "Label Letter Spacing",
+              "features": {
+                "sticky": false,
+                "responsive": true,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/range",
+                "props": {
+                  "min": -5,
+                  "max": 20,
+                  "step": 1,
+                  "defaultUnit": "px"
+                }
+              }
+            }
+          },
+          "labelTextTransform": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.labelTextTransform",
+              "priority": 44,
+              "render": true,
+              "label": "Label Text Transform",
+              "features": {
+                "sticky": false,
+                "responsive": false,
+                "hover": false,
+                "dynamicContent": false
+              },
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "": {
+                      "label": "Default"
+                    },
+                    "none": {
+                      "label": "None"
+                    },
+                    "uppercase": {
+                      "label": "Uppercase"
+                    },
+                    "lowercase": {
+                      "label": "Lowercase"
+                    },
+                    "capitalize": {
+                      "label": "Capitalize"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "placeholderColor": {
+            "groupType": "group-item",
+            "item": {
+              "groupSlug": "form_text",
+              "attrName": "cf7.advanced.placeholderColor",
+              "priority": 50,
+              "render": true,
+              "label": "Placeholder Color",
               "features": {
                 "sticky": false,
                 "responsive": false,

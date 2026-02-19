@@ -90,6 +90,26 @@ class CF7Styler implements DependencyInterface
         return '';
     }
 
+    private static function sanitize_font_weight(string $value): string
+    {
+        $value = trim(wp_strip_all_tags($value));
+        $valid_weights = ['300', '400', '500', '600', '700', '800'];
+        if (in_array($value, $valid_weights, true)) {
+            return $value;
+        }
+        return '';
+    }
+
+    private static function sanitize_text_transform(string $value): string
+    {
+        $value = trim(wp_strip_all_tags($value));
+        $valid_transforms = ['none', 'uppercase', 'lowercase', 'capitalize'];
+        if (in_array($value, $valid_transforms, true)) {
+            return $value;
+        }
+        return '';
+    }
+
     private static function padding_pipe_to_css(string $value): string
     {
         $value = trim((string) $value);
@@ -373,6 +393,115 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-cf7 label,#{$scope_id} .cf7m-cf7-styler label{color:{$label_color} !important;}";
         }
 
+        // Field Font Styles
+        $field_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldFontSize'], 'desktop'));
+        $field_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldFontWeight'], 'desktop'));
+        $field_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldLineHeight'], 'desktop'));
+        $field_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldLetterSpacing'], 'desktop'));
+        $field_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldTextTransform'], 'desktop'));
+
+        if ($field_font_size !== '') {
+            $css .= "{$field_selector}{font-size:{$field_font_size} !important;}";
+        }
+        if ($field_font_weight !== '') {
+            $css .= "{$field_selector}{font-weight:{$field_font_weight} !important;}";
+        }
+        if ($field_line_height !== '') {
+            $css .= "{$field_selector}{line-height:{$field_line_height} !important;}";
+        }
+        if ($field_letter_spacing !== '') {
+            $css .= "{$field_selector}{letter-spacing:{$field_letter_spacing} !important;}";
+        }
+        if ($field_text_transform !== '' && $field_text_transform !== 'none') {
+            $css .= "{$field_selector}{text-transform:{$field_text_transform} !important;}";
+        }
+
+        // Label Font Styles
+        $label_selector = "#{$scope_id} .dipe-cf7 label,#{$scope_id} .cf7m-cf7-styler label";
+        $label_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelFontSize'], 'desktop'));
+        $label_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelFontWeight'], 'desktop'));
+        $label_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelLineHeight'], 'desktop'));
+        $label_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelLetterSpacing'], 'desktop'));
+        $label_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelTextTransform'], 'desktop'));
+
+        if ($label_font_size !== '') {
+            $css .= "{$label_selector}{font-size:{$label_font_size} !important;}";
+        }
+        if ($label_font_weight !== '') {
+            $css .= "{$label_selector}{font-weight:{$label_font_weight} !important;}";
+        }
+        if ($label_line_height !== '') {
+            $css .= "{$label_selector}{line-height:{$label_line_height} !important;}";
+        }
+        if ($label_letter_spacing !== '') {
+            $css .= "{$label_selector}{letter-spacing:{$label_letter_spacing} !important;}";
+        }
+        if ($label_text_transform !== '' && $label_text_transform !== 'none') {
+            $css .= "{$label_selector}{text-transform:{$label_text_transform} !important;}";
+        }
+
+        // Placeholder Color
+        $placeholder_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'placeholderColor'], 'desktop'));
+        if ($placeholder_color !== '') {
+            $css .= "#{$scope_id} .dipe-cf7 input::placeholder,#{$scope_id} .dipe-cf7 textarea::placeholder,#{$scope_id} .cf7m-cf7-styler input::placeholder,#{$scope_id} .cf7m-cf7-styler textarea::placeholder{color:{$placeholder_color} !important;}";
+        }
+
+        // Header Title Font Styles
+        $header_title_selector = "#{$scope_id} .dipe-form-header-title,#{$scope_id} .cf7m-form-header-title";
+        $header_title_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleFontSize'], 'desktop'));
+        $header_title_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleFontWeight'], 'desktop'));
+        $header_title_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleLineHeight'], 'desktop'));
+        $header_title_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleLetterSpacing'], 'desktop'));
+        $header_title_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleTextTransform'], 'desktop'));
+        $header_title_text_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleTextColor'], 'desktop'));
+
+        if ($header_title_font_size !== '') {
+            $css .= "{$header_title_selector}{font-size:{$header_title_font_size} !important;}";
+        }
+        if ($header_title_font_weight !== '') {
+            $css .= "{$header_title_selector}{font-weight:{$header_title_font_weight} !important;}";
+        }
+        if ($header_title_line_height !== '') {
+            $css .= "{$header_title_selector}{line-height:{$header_title_line_height} !important;}";
+        }
+        if ($header_title_letter_spacing !== '') {
+            $css .= "{$header_title_selector}{letter-spacing:{$header_title_letter_spacing} !important;}";
+        }
+        if ($header_title_text_transform !== '' && $header_title_text_transform !== 'none') {
+            $css .= "{$header_title_selector}{text-transform:{$header_title_text_transform} !important;}";
+        }
+        if ($header_title_text_color !== '') {
+            $css .= "{$header_title_selector}{color:{$header_title_text_color} !important;}";
+        }
+
+        // Header Text Font Styles
+        $header_text_selector = "#{$scope_id} .dipe-form-header-text,#{$scope_id} .cf7m-form-header-text";
+        $header_text_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextFontSize'], 'desktop'));
+        $header_text_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextFontWeight'], 'desktop'));
+        $header_text_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextLineHeight'], 'desktop'));
+        $header_text_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextLetterSpacing'], 'desktop'));
+        $header_text_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextTextTransform'], 'desktop'));
+        $header_text_text_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextTextColor'], 'desktop'));
+
+        if ($header_text_font_size !== '') {
+            $css .= "{$header_text_selector}{font-size:{$header_text_font_size} !important;}";
+        }
+        if ($header_text_font_weight !== '') {
+            $css .= "{$header_text_selector}{font-weight:{$header_text_font_weight} !important;}";
+        }
+        if ($header_text_line_height !== '') {
+            $css .= "{$header_text_selector}{line-height:{$header_text_line_height} !important;}";
+        }
+        if ($header_text_letter_spacing !== '') {
+            $css .= "{$header_text_selector}{letter-spacing:{$header_text_letter_spacing} !important;}";
+        }
+        if ($header_text_text_transform !== '' && $header_text_text_transform !== 'none') {
+            $css .= "{$header_text_selector}{text-transform:{$header_text_text_transform} !important;}";
+        }
+        if ($header_text_text_color !== '') {
+            $css .= "{$header_text_selector}{color:{$header_text_text_color} !important;}";
+        }
+
         $button_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBg'], 'buttonBg'));
         $button_color        = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonColor'], 'buttonColor'));
         $button_padding      = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonPadding'], 'buttonPadding'));
@@ -402,6 +531,29 @@ class CF7Styler implements DependencyInterface
         }
         if ($use_form_button_fullwide === 'on') {
             $css .= "{$button_selector}{width:100% !important;}";
+        }
+
+        // Button Font Styles
+        $button_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonFontSize'], 'desktop'));
+        $button_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonFontWeight'], 'desktop'));
+        $button_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonLineHeight'], 'desktop'));
+        $button_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonLetterSpacing'], 'desktop'));
+        $button_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonTextTransform'], 'desktop'));
+
+        if ($button_font_size !== '') {
+            $css .= "{$button_selector}{font-size:{$button_font_size} !important;}";
+        }
+        if ($button_font_weight !== '') {
+            $css .= "{$button_selector}{font-weight:{$button_font_weight} !important;}";
+        }
+        if ($button_line_height !== '') {
+            $css .= "{$button_selector}{line-height:{$button_line_height} !important;}";
+        }
+        if ($button_letter_spacing !== '') {
+            $css .= "{$button_selector}{letter-spacing:{$button_letter_spacing} !important;}";
+        }
+        if ($button_text_transform !== '' && $button_text_transform !== 'none') {
+            $css .= "{$button_selector}{text-transform:{$button_text_transform} !important;}";
         }
 
         $container_classes = sprintf(
