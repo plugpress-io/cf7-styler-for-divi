@@ -1,0 +1,144 @@
+<?php
+
+namespace CF7_Mate\Lite\Features\Grid;
+
+use CF7_Mate\Lite\Feature_Base;
+use CF7_Mate\Lite\Traits\Singleton;
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+class Grid extends Feature_Base
+{
+    use Singleton;
+
+    const ROW_TAG = 'dipe_row';
+
+    const COLUMN_MAP = [
+        'dipe_one'          => 'cf7m-col-12',
+        'dipe_one_half'     => 'cf7m-col-12 cf7m-col-md-6 cf7m-col-lg-6',
+        'dipe_one_third'    => 'cf7m-col-12 cf7m-col-md-4 cf7m-col-lg-4',
+        'dipe_one_fourth'   => 'cf7m-col-12 cf7m-col-md-3 cf7m-col-lg-3',
+        'dipe_two_third'    => 'cf7m-col-12 cf7m-col-md-8 cf7m-col-lg-8',
+        'dipe_three_fourth' => 'cf7m-col-12 cf7m-col-md-9 cf7m-col-lg-9',
+    ];
+
+    const TAG_LABELS = [
+        self::ROW_TAG => [
+            'title'       => 'row',
+            'description' => 'Generate a row shortcode',
+        ],
+        'dipe_one' => [
+            'title'       => '1-col',
+            'description' => 'Generate a full width column',
+        ],
+        'dipe_one_half' => [
+            'title'       => '1/2-col',
+            'description' => 'Generate a half width column',
+        ],
+        'dipe_one_third' => [
+            'title'       => '1/3-col',
+            'description' => 'Generate a one-third width column',
+        ],
+        'dipe_one_fourth' => [
+            'title'       => '1/4-col',
+            'description' => 'Generate a one-fourth width column',
+        ],
+        'dipe_two_third' => [
+            'title'       => '2/3-col',
+            'description' => 'Generate a two-thirds width column',
+        ],
+        'dipe_three_fourth' => [
+            'title'       => '3/4-col',
+            'description' => 'Generate a three-fourths width column',
+        ],
+    ];
+
+    protected function __construct()
+    {
+        parent::__construct();
+    }
+
+    protected function init()
+    {
+        $this->register_shortcodes();
+        add_action('wpcf7_admin_init', [$this, 'register_tag_generators'], 99);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+    }
+
+    private function register_shortcodes()
+    {
+        add_filter('wpcf7_autop_or_not', '__return_false');
+        add_filter('wpcf7_form_elements', 'do_shortcode');
+
+        add_shortcode(self::ROW_TAG, [$this, 'render_row']);
+        foreach (array_keys(self::COLUMN_MAP) as $tag) {
+            add_shortcode($tag, [$this, 'render_column']);
+        }
+    }
+
+    public function enqueue_admin_scripts()
+    {
+        wp_enqueue_script(
+            'dfs-admin-js',
+            CF7M_PLUGIN_URL . 'dist/js/utils.js',
+            ['jquery'],
+            CF7M_VERSION,
+            true
+        );
+    }
+
+    public function register_tag_generators()
+    {
+        if (!class_exists('WPCF7_TagGenerator')) {
+            return;
+        }
+        $tg = \WPCF7_TagGenerator::get_instance();
+
+        foreach (self::TAG_LABELS as $tag => $labels) {
+            $tg->add(
+                $tag,
+                __($labels['title'], 'cf7-styler-for-divi'),
+                [$this, 'tag_generator_panel'],
+                [
+                    'title'       => __($labels['title'], 'cf7-styler-for-divi'),
+                    'description' => __($labels['description'], 'cf7-styler-for-divi'),
+                    'version'     => '2',
+                ]
+            );
+        }
+    }
+
+    public function tag_generator_panel($contact_form, $args = '')
+    {
+        $args = wp_parse_args($args, ['id' => '']);
+        $type = $args['id'];
+        $tag  = '[' . $type . '][/' . $type . ']';
+?>
+        <input type="text" class="tag code" readonly="readonly" onfocus="this.select()" value="<?php echo esc_attr($tag); ?>">
+        <button class="button button-primary" onclick="insertGridShortcode('<?php echo esc_js($type); ?>')"><?php esc_html_e('Insert', 'cf7-styler-for-divi'); ?></button>
+<?php
+    }
+
+    public function render_row($attrs, $content = null)
+    {
+        return $this->render_wrapper('cf7m-row', $attrs, $content);
+    }
+
+    public function render_column($attrs, $content = null, $tag = '')
+    {
+        $classes = isset(self::COLUMN_MAP[$tag]) ? self::COLUMN_MAP[$tag] : 'cf7m-col-12';
+        return $this->render_wrapper('cf7m-col ' . $classes, $attrs, $content);
+    }
+
+    private function render_wrapper($class, $attrs, $content)
+    {
+        $attrs = shortcode_atts([], (array) $attrs);
+        return sprintf(
+            '<div class="%s">%s</div>',
+            esc_attr($class),
+            do_shortcode($content)
+        );
+    }
+}

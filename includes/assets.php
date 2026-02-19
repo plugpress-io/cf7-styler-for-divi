@@ -130,23 +130,18 @@ class Assets
             return;
         }
 
-        global $post;
-        if (!$post || !is_singular()) {
-            return;
-        }
-
-        $has_cf7 = has_shortcode($post->post_content, 'contact-form-7')
-            || (strpos($post->post_content, 'dvppl_cf7_styler') !== false);
-        if (!$has_cf7) {
-            return;
-        }
-
         wp_enqueue_style(
             'cf7-styler-for-divi-d5-frontend-style',
-            esc_url(CF7M_PLUGIN_URL . 'dist/css/bundle.css'),
+            CF7M_PLUGIN_URL . 'dist/css/bundle.css',
             [],
             CF7M_VERSION
         );
+
+        // CF7's own styles may not load because its shortcode isn't in post_content
+        // (it's rendered dynamically via do_shortcode in our render_callback).
+        if (function_exists('wpcf7_enqueue_styles')) {
+            wpcf7_enqueue_styles();
+        }
     }
 }
 

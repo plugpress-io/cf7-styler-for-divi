@@ -227,11 +227,6 @@ class CF7Styler implements DependencyInterface
             $form_html = '<p class="cf7m-cf7-styler__placeholder">' . esc_html__('Please select a Contact Form 7 form.', 'cf7-styler-for-divi') . '</p>';
         } else {
             $form_html = do_shortcode(sprintf('[contact-form-7 id="%1$s"]', esc_attr($form_id)));
-            // Strip any unprocessed [cf7m-presets] wrapper tags (a pro-only shortcode).
-            // When the pro module is inactive these tags pass through CF7 as literal text.
-            if (strpos($form_html, '[cf7m-presets') !== false || strpos($form_html, '[/cf7m-presets]') !== false) {
-                $form_html = preg_replace('/\[cf7m-presets[^\]]*\]|\[\/cf7m-presets\]/i', '', $form_html);
-            }
         }
 
         $css = '';

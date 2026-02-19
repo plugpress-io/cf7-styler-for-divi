@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-19 22:29+0000\n"
+"POT-Creation-Date: 2026-02-19 23:14+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -116,10 +116,6 @@ msgstr ""
 
 #: includes/notices/review.php:141
 msgid "Maybe later"
-msgstr ""
-
-#: includes/utils/grid.php:142, includes/pro/features/ai-form-generator/module.php:155
-msgid "Insert"
 msgstr ""
 
 #: includes/lite/builders/bricks/bricks-element.php:21, includes/lite/builders/elementor/elementor-widget.php:20, includes/lite/builders/gutenberg/loader.php:28, includes/lite/builders/divi4/CF7Styler/CF7Styler.php:17
@@ -460,6 +456,10 @@ msgstr ""
 
 #: includes/lite/builders/gutenberg/loader.php:31
 msgid "Display and style a Contact Form 7 form with full design controls."
+msgstr ""
+
+#: includes/lite/features/grid/module.php:120, includes/pro/features/ai-form-generator/module.php:155
+msgid "Insert"
 msgstr ""
 
 #: includes/lite/features/icon/module.php:134

@@ -51,18 +51,10 @@ class Plugin
             }
         }
 
-        // Load lite features (star rating, range slider, separator, image, icon) – free build.
+        // Load lite features (star rating, range slider, separator, image, icon, grid) – free build.
         $lite_loader = CF7M_PLUGIN_PATH . 'includes/lite/loader.php';
         if (file_exists($lite_loader)) {
             require_once $lite_loader;
-        }
-
-        // Load Grid Layout only if feature is enabled
-        if ($this->is_feature_enabled('grid_layout')) {
-            $grid_path = CF7M_PLUGIN_PATH . 'includes/utils/grid.php';
-            if (file_exists($grid_path)) {
-                require_once $grid_path;
-            }
         }
 
         // Load Premium Features early so form-tag registration (wpcf7_init) is hooked before CF7 runs.

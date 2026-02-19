@@ -1,19 +1,19 @@
 @use './divi4/cf7/style.scss' as *;
 
-.dfs-row {
+.cf7m-row {
 	margin-left: -15px;
 	margin-right: -15px;
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.dfs-col {
+.cf7m-col {
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
 @for $i from 1 through 12 {
-	.dfs-col-#{$i} {
+	.cf7m-col-#{$i} {
 		flex: 0 0 (8.333333% * $i);
 		max-width: (8.333333% * $i);
 	}
@@ -21,7 +21,7 @@
 
 @media (min-width: 768px) {
 	@for $i from 1 through 12 {
-		.dfs-col-md-#{$i} {
+		.cf7m-col-md-#{$i} {
 			flex: 0 0 (8.333333% * $i);
 			max-width: (8.333333% * $i);
 		}
@@ -30,7 +30,7 @@
 
 @media (min-width: 981px) {
 	@for $i from 1 through 12 {
-		.dfs-col-lg-#{$i} {
+		.cf7m-col-lg-#{$i} {
 			flex: 0 0 (8.333333% * $i);
 			max-width: (8.333333% * $i);
 		}

@@ -7,8 +7,9 @@
  * @since 3.0.0
  */
 
-// Base form styles – same on frontend and VB (PHP outputs both dipe-cf7 and cf7m-cf7 classes).
-@use '../../../divi4/cf7/style.scss';
+// Base form styles + grid (row/column) – shared with frontend.
+// Sass @use deduplicates style.scss which is imported by both.
+@use '../../../index.scss' as *;
 
 .cf7m-cf7-styler {
   position: relative;

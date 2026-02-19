@@ -1,6 +1,6 @@
 <?php
 /**
- * Lite features loader (Star Rating, Range Slider, Separator, Image, Icon).
+ * Lite features loader (Star Rating, Range Slider, Separator, Image, Icon, Grid).
  * Ships with free build; runs on every request.
  *
  * @package CF7_Mate
@@ -18,15 +18,16 @@ class Lite_Loader
     private static $instance = null;
 
     private static $defaults = [
-        'star_rating'  => true,
-        'range_slider' => true,
-        'separator'    => true,
-        'image'        => true,
-        'icon'         => true,
+        'star_rating'   => true,
+        'range_slider'  => true,
+        'separator'     => true,
+        'image'         => true,
+        'icon'          => true,
+        'grid_layout'   => true,
     ];
 
     private static $features = [
-        'star_rating'  => [
+        'star_rating'   => [
             'file'  => 'star-rating/module.php',
             'class' => 'CF7_Mate\Lite\Features\Star_Rating\Star_Rating',
         ],
@@ -45,6 +46,10 @@ class Lite_Loader
         'icon'          => [
             'file'  => 'icon/module.php',
             'class' => 'CF7_Mate\Lite\Features\Icon\Icon',
+        ],
+        'grid_layout'   => [
+            'file'  => 'grid/module.php',
+            'class' => 'CF7_Mate\Lite\Features\Grid\Grid',
         ],
     ];
 
