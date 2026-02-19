@@ -81,7 +81,8 @@ class CF7Styler implements DependencyInterface
         if ($value === '' || $value === '0' || $value === '0px') {
             return $value === '' ? '' : '0';
         }
-        if (preg_match('/^[0-9.]+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex)$/', $value)) {
+        // Support negative values (e.g., -5px for letter-spacing) and unitless values (e.g., 1.5 for line-height)
+        if (preg_match('/^-?[0-9.]+(px|em|rem|%|vh|vw|vmin|vmax|ch|ex)?$/', $value)) {
             return $value;
         }
         if (in_array($value, ['initial', 'inherit', 'unset'], true)) {
@@ -272,7 +273,7 @@ class CF7Styler implements DependencyInterface
         $field_spacing  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldSpacing'], 'formFieldSpacing'));
         $label_spacing  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formLabelSpacing'], 'formLabelSpacing'));
 
-        $field_selector = "#{$scope_id} .dipe-cf7 input:not([type=submit]),#{$scope_id} .dipe-cf7 select,#{$scope_id} .dipe-cf7 textarea";
+        $field_selector = "#{$scope_id} .cf7m-cf7-styler input:not([type=submit]),#{$scope_id} .cf7m-cf7-styler select,#{$scope_id} .cf7m-cf7-styler textarea,#{$scope_id} .dipe-cf7 input:not([type=submit]),#{$scope_id} .dipe-cf7 select,#{$scope_id} .dipe-cf7 textarea";
         if ($field_bg !== '') {
             $css .= "{$field_selector}{background-color:{$field_bg} !important;}";
         }
