@@ -19,6 +19,43 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Auto-deactivate lite when the pro plugin is active.
+if (!function_exists('cf7m_lite_maybe_self_deactivate')) {
+    function cf7m_lite_maybe_self_deactivate() {
+        if (!function_exists('is_plugin_active')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        if (is_plugin_active('cf7-mate-pro/cf7-mate-pro.php')) {
+            deactivate_plugins(plugin_basename(__FILE__));
+
+            if (isset($_GET['activate'])) {
+                unset($_GET['activate']);
+            }
+
+            add_action('admin_notices', function () {
+                echo '<div class="notice notice-warning is-dismissible"><p>';
+                echo esc_html__('CF7 Styler (Lite) has been deactivated because CF7 Mate Pro is active.', 'cf7-styler-for-divi');
+                echo '</p></div>';
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // Check on every admin load (covers edge cases like manual DB activation).
+    add_action('admin_init', 'cf7m_lite_maybe_self_deactivate');
+
+    // Immediate check when the pro plugin is activated.
+    add_action('activated_plugin', function ($plugin) {
+        if ($plugin === 'cf7-mate-pro/cf7-mate-pro.php') {
+            cf7m_lite_maybe_self_deactivate();
+        }
+    });
+}
+
 define('CF7M_VERSION', '3.0.0');
 define('CF7M_BASENAME', plugin_basename(__FILE__));
 define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
