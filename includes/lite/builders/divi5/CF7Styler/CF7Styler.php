@@ -149,28 +149,51 @@ class CF7Styler implements DependencyInterface
 
     public static function render_callback($attrs)
     {
+        // Fallback: ensure styles are enqueued even if wp_enqueue_scripts ran too early.
+        if (!wp_style_is('cf7-styler-for-divi-d5-frontend-style', 'enqueued')) {
+            wp_enqueue_style(
+                'cf7-styler-for-divi-d5-frontend-style',
+                CF7M_PLUGIN_URL . 'dist/css/bundle.css',
+                [],
+                CF7M_VERSION
+            );
+        }
+        if (function_exists('wpcf7_enqueue_styles')) {
+            wpcf7_enqueue_styles();
+        }
+
         $attrs = is_array($attrs) ? $attrs : [];
+
+        // Backward compat: merge old cf7.advanced.* into module.advanced.* for
+        // modules converted before the attribute restructuring.
+        if (isset($attrs['cf7']['advanced']) && is_array($attrs['cf7']['advanced'])) {
+            if (!isset($attrs['module']['advanced']) || !is_array($attrs['module']['advanced'])) {
+                $attrs['module']['advanced'] = [];
+            }
+            $attrs['module']['advanced'] += $attrs['cf7']['advanced'];
+        }
+
         $scope_id = function_exists('wp_unique_id') ? wp_unique_id('cf7m-cf7-styler-') : ('cf7m-cf7-styler-' . uniqid());
 
-        $design_preset_slug = self::get_attr_value($attrs, ['cf7', 'advanced', 'designPreset'], 'desktop');
+        $design_preset_slug = self::get_attr_value($attrs, ['module', 'advanced', 'designPreset'], 'desktop');
         $design_preset = function_exists('cf7m_get_design_preset_by_slug') && $design_preset_slug !== ''
             ? cf7m_get_design_preset_by_slug($design_preset_slug)
             : null;
 
-        $form_id = self::get_attr_value($attrs, ['cf7', 'advanced', 'formId'], 'desktop');
+        $form_id = self::get_attr_value($attrs, ['module', 'advanced', 'formId'], 'desktop');
         if ($form_id === '') {
             $form_id = '0';
         }
 
-        $use_form_header = self::get_attr_value($attrs, ['cf7', 'advanced', 'useFormHeader'], 'desktop') === 'on';
-        $header_title = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderTitle'], 'desktop');
-        $header_text = self::get_attr_value($attrs, ['cf7', 'advanced', 'formHeaderText'], 'desktop');
-        $use_icon = self::get_attr_value($attrs, ['cf7', 'advanced', 'useIcon'], 'desktop') === 'on';
-        $header_image = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerImage'], 'desktop');
-        $header_icon = self::get_attr_value($attrs, ['cf7', 'advanced', 'headerIcon'], 'desktop');
-        $button_alignment = self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonAlignment'], 'desktop') ?: 'left';
-        $use_form_button_fullwide = self::get_attr_value($attrs, ['cf7', 'advanced', 'useFormButtonFullwidth'], 'desktop') ?: 'off';
-        $cr_custom_styles = self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crCustomStyles'], 'crCustomStyles') ?: 'off';
+        $use_form_header = self::get_attr_value($attrs, ['module', 'advanced', 'useFormHeader'], 'desktop') === 'on';
+        $header_title = self::get_attr_value($attrs, ['module', 'advanced', 'formHeaderTitle'], 'desktop');
+        $header_text = self::get_attr_value($attrs, ['module', 'advanced', 'formHeaderText'], 'desktop');
+        $use_icon = self::get_attr_value($attrs, ['module', 'advanced', 'useIcon'], 'desktop') === 'on';
+        $header_image = self::get_attr_value($attrs, ['module', 'advanced', 'headerImage'], 'desktop');
+        $header_icon = self::get_attr_value($attrs, ['module', 'advanced', 'headerIcon'], 'desktop');
+        $button_alignment = self::get_attr_value($attrs, ['module', 'advanced', 'buttonAlignment'], 'desktop') ?: 'left';
+        $use_form_button_fullwide = self::get_attr_value($attrs, ['module', 'advanced', 'useFormButtonFullwidth'], 'desktop') ?: 'off';
+        $cr_custom_styles = self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crCustomStyles'], 'crCustomStyles') ?: 'off';
 
         $button_class = 'on' !== $use_form_button_fullwide ? $button_alignment : 'fullwidth';
         $cr_custom_class = 'on' === $cr_custom_styles ? 'dipe-cf7-cr cf7m-cf7-cr' : '';
@@ -230,11 +253,11 @@ class CF7Styler implements DependencyInterface
         }
 
         $css = '';
-        $form_header_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formHeaderBg'], 'formHeaderBg'));
-        $form_header_img_bg     = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formHeaderImgBg'], 'formHeaderImgBg'));
-        $form_header_icon_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formHeaderIconColor'], 'formHeaderIconColor'));
-        $form_header_bottom     = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formHeaderBottom'], 'formHeaderBottom'));
-        $form_header_padding    = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formHeaderPadding'], 'formHeaderPadding'));
+        $form_header_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formHeaderBg'], 'formHeaderBg'));
+        $form_header_img_bg     = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formHeaderImgBg'], 'formHeaderImgBg'));
+        $form_header_icon_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formHeaderIconColor'], 'formHeaderIconColor'));
+        $form_header_bottom     = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formHeaderBottom'], 'formHeaderBottom'));
+        $form_header_padding    = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formHeaderPadding'], 'formHeaderPadding'));
 
         if ($form_header_bg !== '') {
             $css .= "#{$scope_id} .dipe-form-header-container{background-color:{$form_header_bg};}";
@@ -252,8 +275,8 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-form-header-icon span{color:{$form_header_icon_color};}";
         }
 
-        $form_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formBg'], 'formBg'));
-        $form_padding = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formPadding'], 'formPadding'));
+        $form_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formBg'], 'formBg'));
+        $form_padding = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formPadding'], 'formPadding'));
         if ($form_bg !== '') {
             $css .= "#{$scope_id} .dipe-cf7-styler{background-color:{$form_bg};}";
         }
@@ -261,12 +284,12 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} .dipe-cf7-styler{padding:{$form_padding};}";
         }
 
-        $field_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formBackgroundColor'], 'formBackgroundColor'));
-        $field_active   = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldActiveColor'], 'formFieldActiveColor'));
-        $field_height   = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldHeight'], 'formFieldHeight'));
-        $field_padding  = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldPadding'], 'formFieldPadding'));
-        $field_spacing  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldSpacing'], 'formFieldSpacing'));
-        $label_spacing  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formLabelSpacing'], 'formLabelSpacing'));
+        $field_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formBackgroundColor'], 'formBackgroundColor'));
+        $field_active   = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldActiveColor'], 'formFieldActiveColor'));
+        $field_height   = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldHeight'], 'formFieldHeight'));
+        $field_padding  = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldPadding'], 'formFieldPadding'));
+        $field_spacing  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldSpacing'], 'formFieldSpacing'));
+        $label_spacing  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formLabelSpacing'], 'formLabelSpacing'));
 
         $field_selector = "#{$scope_id} .cf7m-cf7-styler input:not([type=submit]),#{$scope_id} .cf7m-cf7-styler select,#{$scope_id} .cf7m-cf7-styler textarea,#{$scope_id} .dipe-cf7 input:not([type=submit]),#{$scope_id} .dipe-cf7 select,#{$scope_id} .dipe-cf7 textarea";
         if ($field_bg !== '') {
@@ -290,12 +313,12 @@ class CF7Styler implements DependencyInterface
         }
 
         if ($cr_custom_styles === 'on') {
-            $cr_size        = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crSize'], 'crSize'));
-            $cr_border_size = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crBorderSize'], 'crBorderSize'));
-            $cr_bg          = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crBackgroundColor'], 'crBackgroundColor'));
-            $cr_selected    = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crSelectedColor'], 'crSelectedColor'));
-            $cr_border      = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crBorderColor'], 'crBorderColor'));
-            $cr_label       = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'crLabelColor'], 'crLabelColor'));
+            $cr_size        = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crSize'], 'crSize'));
+            $cr_border_size = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crBorderSize'], 'crBorderSize'));
+            $cr_bg          = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crBackgroundColor'], 'crBackgroundColor'));
+            $cr_selected    = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crSelectedColor'], 'crSelectedColor'));
+            $cr_border      = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crBorderColor'], 'crBorderColor'));
+            $cr_label       = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'crLabelColor'], 'crLabelColor'));
 
             if ($cr_size !== '' || $cr_border_size !== '') {
                 $w = $cr_size !== '' ? $cr_size : '14px';
@@ -318,18 +341,18 @@ class CF7Styler implements DependencyInterface
             }
         }
 
-        $msg_padding = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7MessagePadding'], 'cf7MessagePadding'));
-        $msg_margin_top    = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7MessageMarginTop'], 'cf7MessageMarginTop'));
-        $msg_align         = self::get_attr_value($attrs, ['cf7', 'advanced', 'cf7MessageAlignment'], 'desktop') ?: 'left';
-        $msg_color         = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7MessageColor'], 'cf7MessageColor'));
-        $msg_bg            = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7MessageBgColor'], 'cf7MessageBgColor'));
-        $msg_border_hl     = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7BorderHighlightColor'], 'cf7BorderHighlightColor'));
-        $success_color     = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7SuccessMessageColor'], 'cf7SuccessMessageColor'));
-        $success_bg        = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7SuccessMessageBgColor'], 'cf7SuccessMessageBgColor'));
-        $success_border    = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7SuccessBorderColor'], 'cf7SuccessBorderColor'));
-        $error_color       = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7ErrorMessageColor'], 'cf7ErrorMessageColor'));
-        $error_bg          = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7ErrorMessageBgColor'], 'cf7ErrorMessageBgColor'));
-        $error_border      = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'cf7ErrorBorderColor'], 'cf7ErrorBorderColor'));
+        $msg_padding = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7MessagePadding'], 'cf7MessagePadding'));
+        $msg_margin_top    = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7MessageMarginTop'], 'cf7MessageMarginTop'));
+        $msg_align         = self::get_attr_value($attrs, ['module', 'advanced', 'cf7MessageAlignment'], 'desktop') ?: 'left';
+        $msg_color         = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7MessageColor'], 'cf7MessageColor'));
+        $msg_bg            = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7MessageBgColor'], 'cf7MessageBgColor'));
+        $msg_border_hl     = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7BorderHighlightColor'], 'cf7BorderHighlightColor'));
+        $success_color     = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7SuccessMessageColor'], 'cf7SuccessMessageColor'));
+        $success_bg        = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7SuccessMessageBgColor'], 'cf7SuccessMessageBgColor'));
+        $success_border    = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7SuccessBorderColor'], 'cf7SuccessBorderColor'));
+        $error_color       = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7ErrorMessageColor'], 'cf7ErrorMessageColor'));
+        $error_bg          = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7ErrorMessageBgColor'], 'cf7ErrorMessageBgColor'));
+        $error_border      = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'cf7ErrorBorderColor'], 'cf7ErrorBorderColor'));
 
         $css .= "#{$scope_id} .wpcf7 form .wpcf7-response-output,#{$scope_id} .wpcf7 form span.wpcf7-not-valid-tip{text-align:" . esc_attr($msg_align) . ";}";
         if ($msg_color !== '') {
@@ -366,10 +389,10 @@ class CF7Styler implements DependencyInterface
             $css .= "#{$scope_id} span.wpcf7-not-valid-tip{margin-top:{$msg_margin_top} !important;}";
         }
 
-        $field_border_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldBorderColor'], 'formFieldBorderColor'));
-        $field_border_width  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldBorderWidth'], 'formFieldBorderWidth'));
-        $field_border_radius = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldBorderRadius'], 'formFieldBorderRadius'));
-        $field_text_color    = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formFieldTextColor'], 'formFieldTextColor'));
+        $field_border_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldBorderColor'], 'formFieldBorderColor'));
+        $field_border_width  = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldBorderWidth'], 'formFieldBorderWidth'));
+        $field_border_radius = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldBorderRadius'], 'formFieldBorderRadius'));
+        $field_text_color    = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formFieldTextColor'], 'formFieldTextColor'));
 
         if ($field_border_color !== '') {
             $css .= "{$field_selector}{border-color:{$field_border_color} !important;}";
@@ -384,17 +407,17 @@ class CF7Styler implements DependencyInterface
             $css .= "{$field_selector}{color:{$field_text_color} !important;}";
         }
 
-        $label_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'formLabelColor'], 'formLabelColor'));
+        $label_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'formLabelColor'], 'formLabelColor'));
         if ($label_color !== '') {
             $css .= "#{$scope_id} .dipe-cf7 label,#{$scope_id} .cf7m-cf7-styler label{color:{$label_color} !important;}";
         }
 
         // Field Font Styles
-        $field_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldFontSize'], 'desktop'));
-        $field_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldFontWeight'], 'desktop'));
-        $field_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldLineHeight'], 'desktop'));
-        $field_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldLetterSpacing'], 'desktop'));
-        $field_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'fieldTextTransform'], 'desktop'));
+        $field_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'fieldFontSize'], 'desktop'));
+        $field_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['module', 'advanced', 'fieldFontWeight'], 'desktop'));
+        $field_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'fieldLineHeight'], 'desktop'));
+        $field_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'fieldLetterSpacing'], 'desktop'));
+        $field_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['module', 'advanced', 'fieldTextTransform'], 'desktop'));
 
         if ($field_font_size !== '') {
             $css .= "{$field_selector}{font-size:{$field_font_size} !important;}";
@@ -414,11 +437,11 @@ class CF7Styler implements DependencyInterface
 
         // Label Font Styles
         $label_selector = "#{$scope_id} .dipe-cf7 label,#{$scope_id} .cf7m-cf7-styler label";
-        $label_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelFontSize'], 'desktop'));
-        $label_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelFontWeight'], 'desktop'));
-        $label_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelLineHeight'], 'desktop'));
-        $label_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelLetterSpacing'], 'desktop'));
-        $label_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'labelTextTransform'], 'desktop'));
+        $label_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'labelFontSize'], 'desktop'));
+        $label_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['module', 'advanced', 'labelFontWeight'], 'desktop'));
+        $label_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'labelLineHeight'], 'desktop'));
+        $label_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'labelLetterSpacing'], 'desktop'));
+        $label_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['module', 'advanced', 'labelTextTransform'], 'desktop'));
 
         if ($label_font_size !== '') {
             $css .= "{$label_selector}{font-size:{$label_font_size} !important;}";
@@ -437,19 +460,19 @@ class CF7Styler implements DependencyInterface
         }
 
         // Placeholder Color
-        $placeholder_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'placeholderColor'], 'desktop'));
+        $placeholder_color = self::sanitize_css_color(self::get_attr_value($attrs, ['module', 'advanced', 'placeholderColor'], 'desktop'));
         if ($placeholder_color !== '') {
             $css .= "#{$scope_id} .dipe-cf7 input::placeholder,#{$scope_id} .dipe-cf7 textarea::placeholder,#{$scope_id} .cf7m-cf7-styler input::placeholder,#{$scope_id} .cf7m-cf7-styler textarea::placeholder{color:{$placeholder_color} !important;}";
         }
 
         // Header Title Font Styles
         $header_title_selector = "#{$scope_id} .dipe-form-header-title,#{$scope_id} .cf7m-form-header-title";
-        $header_title_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleFontSize'], 'desktop'));
-        $header_title_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleFontWeight'], 'desktop'));
-        $header_title_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleLineHeight'], 'desktop'));
-        $header_title_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleLetterSpacing'], 'desktop'));
-        $header_title_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleTextTransform'], 'desktop'));
-        $header_title_text_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTitleTextColor'], 'desktop'));
+        $header_title_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'headerTitleFontSize'], 'desktop'));
+        $header_title_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['module', 'advanced', 'headerTitleFontWeight'], 'desktop'));
+        $header_title_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'headerTitleLineHeight'], 'desktop'));
+        $header_title_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'headerTitleLetterSpacing'], 'desktop'));
+        $header_title_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['module', 'advanced', 'headerTitleTextTransform'], 'desktop'));
+        $header_title_text_color = self::sanitize_css_color(self::get_attr_value($attrs, ['module', 'advanced', 'headerTitleTextColor'], 'desktop'));
 
         if ($header_title_font_size !== '') {
             $css .= "{$header_title_selector}{font-size:{$header_title_font_size} !important;}";
@@ -472,12 +495,12 @@ class CF7Styler implements DependencyInterface
 
         // Header Text Font Styles
         $header_text_selector = "#{$scope_id} .dipe-form-header-text,#{$scope_id} .cf7m-form-header-text";
-        $header_text_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextFontSize'], 'desktop'));
-        $header_text_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextFontWeight'], 'desktop'));
-        $header_text_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextLineHeight'], 'desktop'));
-        $header_text_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextLetterSpacing'], 'desktop'));
-        $header_text_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextTextTransform'], 'desktop'));
-        $header_text_text_color = self::sanitize_css_color(self::get_attr_value($attrs, ['cf7', 'advanced', 'headerTextTextColor'], 'desktop'));
+        $header_text_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'headerTextFontSize'], 'desktop'));
+        $header_text_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['module', 'advanced', 'headerTextFontWeight'], 'desktop'));
+        $header_text_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'headerTextLineHeight'], 'desktop'));
+        $header_text_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'headerTextLetterSpacing'], 'desktop'));
+        $header_text_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['module', 'advanced', 'headerTextTextTransform'], 'desktop'));
+        $header_text_text_color = self::sanitize_css_color(self::get_attr_value($attrs, ['module', 'advanced', 'headerTextTextColor'], 'desktop'));
 
         if ($header_text_font_size !== '') {
             $css .= "{$header_text_selector}{font-size:{$header_text_font_size} !important;}";
@@ -498,12 +521,12 @@ class CF7Styler implements DependencyInterface
             $css .= "{$header_text_selector}{color:{$header_text_text_color} !important;}";
         }
 
-        $button_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBg'], 'buttonBg'));
-        $button_color        = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonColor'], 'buttonColor'));
-        $button_padding      = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonPadding'], 'buttonPadding'));
-        $button_border_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderColor'], 'buttonBorderColor'));
-        $button_border_width = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderWidth'], 'buttonBorderWidth'));
-        $button_border_radius = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['cf7', 'advanced', 'buttonBorderRadius'], 'buttonBorderRadius'));
+        $button_bg = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'buttonBg'], 'buttonBg'));
+        $button_color        = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'buttonColor'], 'buttonColor'));
+        $button_padding      = self::padding_pipe_to_css(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'buttonPadding'], 'buttonPadding'));
+        $button_border_color = self::sanitize_css_color(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'buttonBorderColor'], 'buttonBorderColor'));
+        $button_border_width = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'buttonBorderWidth'], 'buttonBorderWidth'));
+        $button_border_radius = self::sanitize_css_length(self::get_effective_value($attrs, $design_preset, ['module', 'advanced', 'buttonBorderRadius'], 'buttonBorderRadius'));
 
         $button_selector = "#{$scope_id} .dipe-cf7 input[type=submit],#{$scope_id} .cf7m-cf7-styler input[type=submit],#{$scope_id} .dipe-cf7 .cf7m-button,#{$scope_id} .cf7m-cf7-styler .cf7m-button";
 
@@ -530,11 +553,11 @@ class CF7Styler implements DependencyInterface
         }
 
         // Button Font Styles
-        $button_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonFontSize'], 'desktop'));
-        $button_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonFontWeight'], 'desktop'));
-        $button_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonLineHeight'], 'desktop'));
-        $button_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonLetterSpacing'], 'desktop'));
-        $button_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['cf7', 'advanced', 'buttonTextTransform'], 'desktop'));
+        $button_font_size = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'buttonFontSize'], 'desktop'));
+        $button_font_weight = self::sanitize_font_weight(self::get_attr_value($attrs, ['module', 'advanced', 'buttonFontWeight'], 'desktop'));
+        $button_line_height = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'buttonLineHeight'], 'desktop'));
+        $button_letter_spacing = self::sanitize_css_length(self::get_attr_value($attrs, ['module', 'advanced', 'buttonLetterSpacing'], 'desktop'));
+        $button_text_transform = self::sanitize_text_transform(self::get_attr_value($attrs, ['module', 'advanced', 'buttonTextTransform'], 'desktop'));
 
         if ($button_font_size !== '') {
             $css .= "{$button_selector}{font-size:{$button_font_size} !important;}";

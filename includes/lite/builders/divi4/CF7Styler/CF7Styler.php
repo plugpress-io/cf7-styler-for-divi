@@ -275,7 +275,7 @@ class DCS_CF7Styler extends ET_Builder_Module
 				'toggle_slug' => 'common',
 			),
 
-			'cf7'                          => array(
+			'cf7'  => array(
 				'label'            => esc_html__('Select Form', 'cf7-styler-for-divi'),
 				'type'             => 'select',
 				'option_category'  => 'layout',

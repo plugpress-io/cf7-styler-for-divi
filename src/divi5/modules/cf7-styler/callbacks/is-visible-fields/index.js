@@ -1,9 +1,5 @@
 const { getAttrValue } = window?.divi?.moduleUtils ?? {};
 
-/**
- * Visibility callback for CF7 Styler settings.
- * Divi may pass attrName, attributeName, or others – accept all via first arg.
- */
 export const isVisibleFields = (args) => {
 	if (!args || typeof args !== 'object') {
 		return true;
@@ -22,88 +18,82 @@ export const isVisibleFields = (args) => {
 
 	const attrNameWithSubName = subName ? `${attrName}.*.${subName}` : attrName;
 	const ctx = { breakpoint, baseBreakpoint, breakpointNames, state };
+	const adv = attrs?.module?.advanced ?? attrs?.cf7?.advanced;
 
-	// Helper to get useFormHeader value
 	const getUseFormHeader = () =>
-		getAttrValue({
-			attr: attrs?.cf7?.advanced?.useFormHeader,
-			...ctx,
-		});
+		getAttrValue({ attr: adv?.useFormHeader, ...ctx });
 
-	// Helper to get useIcon value
 	const getUseIcon = () =>
-		getAttrValue({ attr: attrs?.cf7?.advanced?.useIcon, ...ctx });
+		getAttrValue({ attr: adv?.useIcon, ...ctx });
 
-	// Helper to get useFormButtonFullwidth value
 	const getUseFormButtonFullwidth = () =>
-		getAttrValue({ attr: attrs?.cf7?.advanced?.useFormButtonFullwidth, ...ctx });
+		getAttrValue({ attr: adv?.useFormButtonFullwidth, ...ctx });
 
-	// Helper to get crCustomStyles value
 	const getCrCustomStyles = () =>
-		getAttrValue({ attr: attrs?.cf7?.advanced?.crCustomStyles, ...ctx });
+		getAttrValue({ attr: adv?.crCustomStyles, ...ctx });
 
 	switch (attrNameWithSubName) {
 		// Form header dependent fields - show when useFormHeader is "on"
-		case 'cf7.advanced.formHeaderTitle':
-		case 'cf7.advanced.formHeaderText':
-		case 'cf7.advanced.useIcon': {
+		case 'module.advanced.formHeaderTitle':
+		case 'module.advanced.formHeaderText':
+		case 'module.advanced.useIcon': {
 			const useFormHeader = getUseFormHeader();
 			return useFormHeader === 'on';
 		}
 
 		// Header icon - show when useFormHeader is "on" AND useIcon is "on"
-		case 'cf7.advanced.headerIcon': {
+		case 'module.advanced.headerIcon': {
 			const useFormHeader = getUseFormHeader();
 			const useIcon = getUseIcon();
 			return useFormHeader === 'on' && useIcon === 'on';
 		}
 
 		// Header image - show when useFormHeader is "on" AND useIcon is "off"
-		case 'cf7.advanced.headerImage': {
+		case 'module.advanced.headerImage': {
 			const useFormHeader = getUseFormHeader();
 			const useIcon = getUseIcon();
 			return useFormHeader === 'on' && useIcon === 'off';
 		}
 
 		// Button alignment - show when useFormButtonFullwidth is "off"
-		case 'cf7.advanced.buttonAlignment': {
+		case 'module.advanced.buttonAlignment': {
 			const useFormButtonFullwidth = getUseFormButtonFullwidth();
 			return useFormButtonFullwidth === 'off';
 		}
 
 		// Radio/Checkbox styling fields - show when crCustomStyles is "on"
-		case 'cf7.advanced.crSize':
-		case 'cf7.advanced.crBackgroundColor':
-		case 'cf7.advanced.crSelectedColor':
-		case 'cf7.advanced.crBorderColor':
-		case 'cf7.advanced.crBorderSize':
-		case 'cf7.advanced.crLabelColor': {
+		case 'module.advanced.crSize':
+		case 'module.advanced.crBackgroundColor':
+		case 'module.advanced.crSelectedColor':
+		case 'module.advanced.crBorderColor':
+		case 'module.advanced.crBorderSize':
+		case 'module.advanced.crLabelColor': {
 			const crCustomStyles = getCrCustomStyles();
 			return crCustomStyles === 'on';
 		}
 
 		// Form header styling - show when useFormHeader is "on"
-		case 'cf7.advanced.formHeaderBg':
-		case 'cf7.advanced.formHeaderPadding':
-		case 'cf7.advanced.formHeaderBottom':
-		case 'cf7.advanced.formHeaderImgBg': {
+		case 'module.advanced.formHeaderBg':
+		case 'module.advanced.formHeaderPadding':
+		case 'module.advanced.formHeaderBottom':
+		case 'module.advanced.formHeaderImgBg': {
 			const useFormHeader = getUseFormHeader();
 			return useFormHeader === 'on';
 		}
 
 		// Header icon color - show when useFormHeader and useIcon are "on"
-		case 'cf7.advanced.formHeaderIconColor': {
+		case 'module.advanced.formHeaderIconColor': {
 			const useFormHeader = getUseFormHeader();
 			const useIcon = getUseIcon();
 			return useFormHeader === 'on' && useIcon === 'on';
 		}
 
 		// Legacy decoration paths (if used elsewhere)
-		case 'cf7.decoration.formHeaderBg':
-		case 'cf7.decoration.formHeaderPadding':
-		case 'cf7.decoration.formHeaderBottom':
-		case 'cf7.decoration.formHeaderImgBg':
-		case 'cf7.decoration.formHeaderIconColor': {
+		case 'module.decoration.formHeaderBg':
+		case 'module.decoration.formHeaderPadding':
+		case 'module.decoration.formHeaderBottom':
+		case 'module.decoration.formHeaderImgBg':
+		case 'module.decoration.formHeaderIconColor': {
 			const useFormHeader = getUseFormHeader();
 			return useFormHeader === 'on';
 		}

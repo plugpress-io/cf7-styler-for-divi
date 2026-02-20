@@ -1,29 +1,8 @@
-/**
- * CF7 Styler for Divi - Content Settings.
- *
- * Loads Contact Form 7 forms via REST/apiFetch and wires up
- * conditional field visibility (show/hide) similar to
- * the Google Reviews Divi 5 module.
- *
- * @since 3.0.0
- */
-
-import React, { useEffect, useState } from 'react';
-import { set } from 'lodash';
-
+import React, { useEffect, useState, useMemo } from 'react';
 import { isVisibleFields } from './callbacks';
-
 const apiFetch = window?.wp?.apiFetch;
+const FORM_ID_ATTR = 'module.advanced.formId';
 
-const FORM_ID_ATTR = 'cf7.advanced.formId';
-
-/**
- * Normalize REST response (array of { value, label }) into
- * the options object shape expected by divi/select:
- * {
- *   [value]: { label }
- * }
- */
 const buildFormOptions = (forms) => {
 	if (forms && !Array.isArray(forms) && typeof forms === 'object') {
 		return forms;
@@ -45,10 +24,6 @@ const buildFormOptions = (forms) => {
 	return options;
 };
 
-/**
- * Find the formId field in a fields object by attrName or key.
- * Divi may key fields as "formId", "cf7AdvancedFormid", etc.
- */
 const findFormIdField = (fields) => {
 	if (!fields || typeof fields !== 'object') return null;
 	for (const [key, field] of Object.entries(fields)) {
@@ -96,7 +71,7 @@ export const SettingsContent = (props) => {
 				setFormOptions(
 					Array.isArray(data)
 						? buildFormOptions(data)
-						: { 0: { label: 'No forms found' } }
+						: { 0: { label: 'No forms found' } },
 				);
 			} catch (err) {
 				if (typeof console !== 'undefined' && console.error) {
@@ -108,33 +83,61 @@ export const SettingsContent = (props) => {
 		fetchForms();
 	}, []);
 
-	try {
-		const fields = groupConfiguration?.general?.component?.props?.fields;
-		if (fields && typeof fields === 'object') {
-			const formIdKey =
-				findFormIdField(fields) ||
-				(fields.formId && 'formId') ||
-				(fields.cf7AdvancedFormId && 'cf7AdvancedFormId') ||
-				(fields.cf7AdvancedFormid && 'cf7AdvancedFormid');
-			if (formIdKey && fields[formIdKey]) {
-				set(
-					fields,
-					[formIdKey, 'component', 'props', 'options'],
-					formOptions
-				);
+	const groups = useMemo(() => {
+		try {
+			const generalGroup = groupConfiguration?.general;
+			const generalProps = generalGroup?.component?.props;
+			const fields = generalProps?.fields;
+
+			if (!fields || typeof fields !== 'object') {
+				return groupConfiguration;
 			}
-			Object.keys(fields).forEach((fieldName) => {
-				set(fields, [fieldName, 'visible'], isVisibleFields);
-			});
+
+			const formIdKey =
+				findFormIdField(fields) || (fields.formId && 'formId');
+
+			const newFields = {};
+			for (const [key, field] of Object.entries(fields)) {
+				if (key === formIdKey && field) {
+					newFields[key] = {
+						...field,
+						visible: isVisibleFields,
+						component: {
+							...field?.component,
+							props: {
+								...field?.component?.props,
+								options: formOptions,
+							},
+						},
+					};
+				} else {
+					newFields[key] = { ...field, visible: isVisibleFields };
+				}
+			}
+
+			return {
+				...groupConfiguration,
+				general: {
+					...generalGroup,
+					component: {
+						...generalGroup?.component,
+						props: {
+							...generalProps,
+							fields: newFields,
+						},
+					},
+				},
+			};
+		} catch (err) {
+			if (typeof console !== 'undefined' && console.error) {
+				console.error('CF7 Styler SettingsContent error:', err);
+			}
+			return groupConfiguration;
 		}
-	} catch (err) {
-		if (typeof console !== 'undefined' && console.error) {
-			console.error('CF7 Styler SettingsContent error:', err);
-		}
-	}
+	}, [groupConfiguration, formOptions]);
 
 	if (!ModuleGroups) {
 		return null;
 	}
-	return <ModuleGroups groups={groupConfiguration} />;
+	return <ModuleGroups groups={groups} />;
 };

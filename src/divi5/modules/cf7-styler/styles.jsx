@@ -71,19 +71,26 @@ const ModuleStyles = ({
   noStyleTag,
   elements,
 }) => {
+  // Backward compat: if module.advanced is empty, fall back to cf7.advanced (pre-migration data).
+  const hasModuleAdv = attrs?.module?.advanced && Object.keys(attrs.module.advanced).length > 0;
+  const effectiveAttrs = hasModuleAdv ? attrs : {
+    ...attrs,
+    module: { ...attrs?.module, advanced: attrs?.cf7?.advanced ?? {} },
+  };
+
   let customCss = '';
   const baseSelector = orderClass;
 
-  const designPresetSlug = getAttrValue(attrs, 'cf7.advanced.designPreset');
+  const designPresetSlug = getAttrValue(effectiveAttrs, 'module.advanced.designPreset');
   const preset = designPresetSlug ? (presets.find((p) => p.slug === designPresetSlug) ?? null) : null;
   const getEffective = (attrKey) => {
-    const fromAttr = getAttrValue(attrs, 'cf7.advanced.' + attrKey);
+    const fromAttr = getAttrValue(effectiveAttrs, 'module.advanced.' + attrKey);
     if (fromAttr !== '' && fromAttr !== undefined) return fromAttr;
     return preset?.styles?.[attrKey] ?? '';
   };
 
   const formBg = getEffective('formBg');
-  const formPaddingVal = getEffective('formPadding') || getAttrValue(attrs, 'cf7.advanced.formPadding');
+  const formPaddingVal = getEffective('formPadding') || getAttrValue(effectiveAttrs, 'module.advanced.formPadding');
   const formPadding = paddingToCss(formPaddingVal);
   
   if (formBg) {
@@ -94,7 +101,7 @@ const ModuleStyles = ({
   }
 
   const formHeaderBg = getEffective('formHeaderBg');
-  const formHeaderPaddingVal = getEffective('formHeaderPadding') || getAttrValue(attrs, 'cf7.advanced.formHeaderPadding');
+  const formHeaderPaddingVal = getEffective('formHeaderPadding') || getAttrValue(effectiveAttrs, 'module.advanced.formHeaderPadding');
   const formHeaderPadding = paddingToCss(formHeaderPaddingVal);
   const formHeaderBottom = getEffective('formHeaderBottom');
   const formHeaderImgBg = getEffective('formHeaderImgBg');
@@ -117,7 +124,7 @@ const ModuleStyles = ({
   }
 
   const fieldBg = getEffective('formBackgroundColor');
-  const fieldPaddingVal = getEffective('formFieldPadding') || getAttrValue(attrs, 'cf7.advanced.formFieldPadding');
+  const fieldPaddingVal = getEffective('formFieldPadding') || getAttrValue(effectiveAttrs, 'module.advanced.formFieldPadding');
   const fieldPadding = paddingToCss(fieldPaddingVal);
   const fieldHeight = getEffective('formFieldHeight');
   const fieldSpacing = getEffective('formFieldSpacing');
@@ -167,11 +174,11 @@ const ModuleStyles = ({
   }
 
   // Field Font Styles
-  const fieldFontSize = getAttrValue(attrs, 'cf7.advanced.fieldFontSize');
-  const fieldFontWeight = getAttrValue(attrs, 'cf7.advanced.fieldFontWeight');
-  const fieldLineHeight = getAttrValue(attrs, 'cf7.advanced.fieldLineHeight');
-  const fieldLetterSpacing = getAttrValue(attrs, 'cf7.advanced.fieldLetterSpacing');
-  const fieldTextTransform = getAttrValue(attrs, 'cf7.advanced.fieldTextTransform');
+  const fieldFontSize = getAttrValue(effectiveAttrs, 'module.advanced.fieldFontSize');
+  const fieldFontWeight = getAttrValue(effectiveAttrs, 'module.advanced.fieldFontWeight');
+  const fieldLineHeight = getAttrValue(effectiveAttrs, 'module.advanced.fieldLineHeight');
+  const fieldLetterSpacing = getAttrValue(effectiveAttrs, 'module.advanced.fieldLetterSpacing');
+  const fieldTextTransform = getAttrValue(effectiveAttrs, 'module.advanced.fieldTextTransform');
 
   if (fieldFontSize) {
     customCss += `${fieldSelectors}{font-size:${fieldFontSize} !important;}`;
@@ -191,11 +198,11 @@ const ModuleStyles = ({
 
   // Label Font Styles
   const labelSelectors = `${baseSelector} .dipe-cf7 label,${baseSelector} .cf7m-cf7-styler label,${baseSelector} .cf7m-cf7-form-preview label`;
-  const labelFontSize = getAttrValue(attrs, 'cf7.advanced.labelFontSize');
-  const labelFontWeight = getAttrValue(attrs, 'cf7.advanced.labelFontWeight');
-  const labelLineHeight = getAttrValue(attrs, 'cf7.advanced.labelLineHeight');
-  const labelLetterSpacing = getAttrValue(attrs, 'cf7.advanced.labelLetterSpacing');
-  const labelTextTransform = getAttrValue(attrs, 'cf7.advanced.labelTextTransform');
+  const labelFontSize = getAttrValue(effectiveAttrs, 'module.advanced.labelFontSize');
+  const labelFontWeight = getAttrValue(effectiveAttrs, 'module.advanced.labelFontWeight');
+  const labelLineHeight = getAttrValue(effectiveAttrs, 'module.advanced.labelLineHeight');
+  const labelLetterSpacing = getAttrValue(effectiveAttrs, 'module.advanced.labelLetterSpacing');
+  const labelTextTransform = getAttrValue(effectiveAttrs, 'module.advanced.labelTextTransform');
 
   if (labelFontSize) {
     customCss += `${labelSelectors}{font-size:${labelFontSize} !important;}`;
@@ -214,7 +221,7 @@ const ModuleStyles = ({
   }
 
   // Placeholder Color
-  const placeholderColor = getAttrValue(attrs, 'cf7.advanced.placeholderColor');
+  const placeholderColor = getAttrValue(effectiveAttrs, 'module.advanced.placeholderColor');
   const placeholderSelectors = `${baseSelector} .cf7m-cf7-styler input::placeholder,${baseSelector} .cf7m-cf7-styler textarea::placeholder,${baseSelector} .dipe-cf7 input::placeholder,${baseSelector} .dipe-cf7 textarea::placeholder,${baseSelector} .cf7m-cf7-form-preview input::placeholder,${baseSelector} .cf7m-cf7-form-preview textarea::placeholder`;
 
   if (placeholderColor) {
@@ -223,12 +230,12 @@ const ModuleStyles = ({
 
   // Header Title Font Styles
   const headerTitleSelectors = `${baseSelector} .dipe-form-header-title,${baseSelector} .cf7m-form-header-title`;
-  const headerTitleFontSize = getAttrValue(attrs, 'cf7.advanced.headerTitleFontSize');
-  const headerTitleFontWeight = getAttrValue(attrs, 'cf7.advanced.headerTitleFontWeight');
-  const headerTitleLineHeight = getAttrValue(attrs, 'cf7.advanced.headerTitleLineHeight');
-  const headerTitleLetterSpacing = getAttrValue(attrs, 'cf7.advanced.headerTitleLetterSpacing');
-  const headerTitleTextTransform = getAttrValue(attrs, 'cf7.advanced.headerTitleTextTransform');
-  const headerTitleTextColor = getAttrValue(attrs, 'cf7.advanced.headerTitleTextColor');
+  const headerTitleFontSize = getAttrValue(effectiveAttrs, 'module.advanced.headerTitleFontSize');
+  const headerTitleFontWeight = getAttrValue(effectiveAttrs, 'module.advanced.headerTitleFontWeight');
+  const headerTitleLineHeight = getAttrValue(effectiveAttrs, 'module.advanced.headerTitleLineHeight');
+  const headerTitleLetterSpacing = getAttrValue(effectiveAttrs, 'module.advanced.headerTitleLetterSpacing');
+  const headerTitleTextTransform = getAttrValue(effectiveAttrs, 'module.advanced.headerTitleTextTransform');
+  const headerTitleTextColor = getAttrValue(effectiveAttrs, 'module.advanced.headerTitleTextColor');
 
   if (headerTitleFontSize) {
     customCss += `${headerTitleSelectors}{font-size:${headerTitleFontSize} !important;}`;
@@ -251,12 +258,12 @@ const ModuleStyles = ({
 
   // Header Text Font Styles
   const headerTextSelectors = `${baseSelector} .dipe-form-header-text,${baseSelector} .cf7m-form-header-text`;
-  const headerTextFontSize = getAttrValue(attrs, 'cf7.advanced.headerTextFontSize');
-  const headerTextFontWeight = getAttrValue(attrs, 'cf7.advanced.headerTextFontWeight');
-  const headerTextLineHeight = getAttrValue(attrs, 'cf7.advanced.headerTextLineHeight');
-  const headerTextLetterSpacing = getAttrValue(attrs, 'cf7.advanced.headerTextLetterSpacing');
-  const headerTextTextTransform = getAttrValue(attrs, 'cf7.advanced.headerTextTextTransform');
-  const headerTextTextColor = getAttrValue(attrs, 'cf7.advanced.headerTextTextColor');
+  const headerTextFontSize = getAttrValue(effectiveAttrs, 'module.advanced.headerTextFontSize');
+  const headerTextFontWeight = getAttrValue(effectiveAttrs, 'module.advanced.headerTextFontWeight');
+  const headerTextLineHeight = getAttrValue(effectiveAttrs, 'module.advanced.headerTextLineHeight');
+  const headerTextLetterSpacing = getAttrValue(effectiveAttrs, 'module.advanced.headerTextLetterSpacing');
+  const headerTextTextTransform = getAttrValue(effectiveAttrs, 'module.advanced.headerTextTextTransform');
+  const headerTextTextColor = getAttrValue(effectiveAttrs, 'module.advanced.headerTextTextColor');
 
   if (headerTextFontSize) {
     customCss += `${headerTextSelectors}{font-size:${headerTextFontSize} !important;}`;
@@ -279,13 +286,13 @@ const ModuleStyles = ({
 
   const buttonBg = getEffective('buttonBg');
   const buttonColor = getEffective('buttonColor');
-  const buttonPaddingVal = getEffective('buttonPadding') || getAttrValue(attrs, 'cf7.advanced.buttonPadding');
+  const buttonPaddingVal = getEffective('buttonPadding') || getAttrValue(effectiveAttrs, 'module.advanced.buttonPadding');
   const buttonPadding = paddingToCss(buttonPaddingVal);
   const buttonBorderColor = getEffective('buttonBorderColor');
   const buttonBorderWidth = getEffective('buttonBorderWidth');
   const buttonBorderRadius = getEffective('buttonBorderRadius');
-  const buttonAlignment = getAttrValue(attrs, 'cf7.advanced.buttonAlignment');
-  const buttonFullwidth = getAttrValue(attrs, 'cf7.advanced.useFormButtonFullwidth');
+  const buttonAlignment = getAttrValue(effectiveAttrs, 'module.advanced.buttonAlignment');
+  const buttonFullwidth = getAttrValue(effectiveAttrs, 'module.advanced.useFormButtonFullwidth');
   
   const buttonSelectors = `${baseSelector} .dipe-cf7 input[type=submit],${baseSelector} .cf7m-cf7-styler input[type=submit],${baseSelector} .dipe-cf7 .cf7m-button,${baseSelector} .cf7m-cf7-styler .cf7m-button,${baseSelector} .cf7m-cf7-form-preview__submit,${baseSelector} .cf7m-cf7-form-preview button`;
   
@@ -316,11 +323,11 @@ const ModuleStyles = ({
   }
 
   // Button Font Styles
-  const buttonFontSize = getAttrValue(attrs, 'cf7.advanced.buttonFontSize');
-  const buttonFontWeight = getAttrValue(attrs, 'cf7.advanced.buttonFontWeight');
-  const buttonLineHeight = getAttrValue(attrs, 'cf7.advanced.buttonLineHeight');
-  const buttonLetterSpacing = getAttrValue(attrs, 'cf7.advanced.buttonLetterSpacing');
-  const buttonTextTransform = getAttrValue(attrs, 'cf7.advanced.buttonTextTransform');
+  const buttonFontSize = getAttrValue(effectiveAttrs, 'module.advanced.buttonFontSize');
+  const buttonFontWeight = getAttrValue(effectiveAttrs, 'module.advanced.buttonFontWeight');
+  const buttonLineHeight = getAttrValue(effectiveAttrs, 'module.advanced.buttonLineHeight');
+  const buttonLetterSpacing = getAttrValue(effectiveAttrs, 'module.advanced.buttonLetterSpacing');
+  const buttonTextTransform = getAttrValue(effectiveAttrs, 'module.advanced.buttonTextTransform');
 
   if (buttonFontSize) {
     customCss += `${buttonSelectors}{font-size:${buttonFontSize} !important;}`;
@@ -338,11 +345,11 @@ const ModuleStyles = ({
     customCss += `${buttonSelectors}{text-transform:${buttonTextTransform} !important;}`;
   }
 
-  const crCustomStyles = getEffective('crCustomStyles') || getAttrValue(attrs, 'cf7.advanced.crCustomStyles');
+  const crCustomStyles = getEffective('crCustomStyles') || getAttrValue(effectiveAttrs, 'module.advanced.crCustomStyles');
   
   if (crCustomStyles === 'on') {
-    const crSize = getEffective('crSize') || getAttrValue(attrs, 'cf7.advanced.crSize');
-    const crBorderSize = getEffective('crBorderSize') || getAttrValue(attrs, 'cf7.advanced.crBorderSize');
+    const crSize = getEffective('crSize') || getAttrValue(effectiveAttrs, 'module.advanced.crSize');
+    const crBorderSize = getEffective('crBorderSize') || getAttrValue(effectiveAttrs, 'module.advanced.crBorderSize');
     const crBg = getEffective('crBackgroundColor');
     const crSelected = getEffective('crSelectedColor');
     const crBorder = getEffective('crBorderColor');
@@ -373,7 +380,7 @@ const ModuleStyles = ({
 
   const msgPadding = getEffective('cf7MessagePadding');
   const msgMarginTop = getEffective('cf7MessageMarginTop');
-  const msgAlign = getAttrValue(attrs, 'cf7.advanced.cf7MessageAlignment');
+  const msgAlign = getAttrValue(effectiveAttrs, 'module.advanced.cf7MessageAlignment');
   const msgColor = getEffective('cf7MessageColor');
   const msgBg = getEffective('cf7MessageBgColor');
   const msgBorderHl = getEffective('cf7BorderHighlightColor');
@@ -421,10 +428,10 @@ const ModuleStyles = ({
     customCss += `${baseSelector} .wpcf7 form .wpcf7-response-output{border-color:${errorBorder} !important;}`;
   }
 
-  const proHeadingFontSize = getAttrValue(attrs, 'cf7.advanced.proHeadingFontSize');
-  const proHeadingFontWeight = getAttrValue(attrs, 'cf7.advanced.proHeadingFontWeight');
-  const proHeadingTextColor = getAttrValue(attrs, 'cf7.advanced.proHeadingTextColor');
-  const proHeadingMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proHeadingMargin'));
+  const proHeadingFontSize = getAttrValue(effectiveAttrs, 'module.advanced.proHeadingFontSize');
+  const proHeadingFontWeight = getAttrValue(effectiveAttrs, 'module.advanced.proHeadingFontWeight');
+  const proHeadingTextColor = getAttrValue(effectiveAttrs, 'module.advanced.proHeadingTextColor');
+  const proHeadingMargin = paddingToCss(getAttrValue(effectiveAttrs, 'module.advanced.proHeadingMargin'));
   
   if (proHeadingFontSize || proHeadingFontWeight || proHeadingTextColor || (proHeadingMargin && proHeadingMargin !== '0px 0px 0px 0px')) {
     const headingSelector = `${baseSelector} .cf7m-heading`;
@@ -434,9 +441,9 @@ const ModuleStyles = ({
     if (proHeadingMargin && proHeadingMargin !== '0px 0px 0px 0px') customCss += `${headingSelector}{margin:${proHeadingMargin} !important;}`;
   }
 
-  const proIconSize = getAttrValue(attrs, 'cf7.advanced.proIconSize');
-  const proIconColor = getAttrValue(attrs, 'cf7.advanced.proIconColor');
-  const proIconMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proIconMargin'));
+  const proIconSize = getAttrValue(effectiveAttrs, 'module.advanced.proIconSize');
+  const proIconColor = getAttrValue(effectiveAttrs, 'module.advanced.proIconColor');
+  const proIconMargin = paddingToCss(getAttrValue(effectiveAttrs, 'module.advanced.proIconMargin'));
   
   if (proIconSize || proIconColor || (proIconMargin && proIconMargin !== '0px 0px 0px 0px')) {
     const iconSelector = `${baseSelector} .cf7m-icon`;
@@ -445,13 +452,13 @@ const ModuleStyles = ({
     if (proIconMargin && proIconMargin !== '0px 0px 0px 0px') customCss += `${iconSelector}{margin:${proIconMargin} !important;}`;
   }
 
-  const proImageWidth = getAttrValue(attrs, 'cf7.advanced.proImageWidth');
-  const proImageHeight = getAttrValue(attrs, 'cf7.advanced.proImageHeight');
-  const proImageBorderColor = getAttrValue(attrs, 'cf7.advanced.proImageBorderColor');
-  const proImageBorderWidth = getAttrValue(attrs, 'cf7.advanced.proImageBorderWidth');
-  const proImageBorderRadius = getAttrValue(attrs, 'cf7.advanced.proImageBorderRadius');
-  const proImagePadding = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proImagePadding'));
-  const proImageMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proImageMargin'));
+  const proImageWidth = getAttrValue(effectiveAttrs, 'module.advanced.proImageWidth');
+  const proImageHeight = getAttrValue(effectiveAttrs, 'module.advanced.proImageHeight');
+  const proImageBorderColor = getAttrValue(effectiveAttrs, 'module.advanced.proImageBorderColor');
+  const proImageBorderWidth = getAttrValue(effectiveAttrs, 'module.advanced.proImageBorderWidth');
+  const proImageBorderRadius = getAttrValue(effectiveAttrs, 'module.advanced.proImageBorderRadius');
+  const proImagePadding = paddingToCss(getAttrValue(effectiveAttrs, 'module.advanced.proImagePadding'));
+  const proImageMargin = paddingToCss(getAttrValue(effectiveAttrs, 'module.advanced.proImageMargin'));
   
   if (proImageWidth || proImageHeight || proImageBorderColor || proImageBorderWidth || proImageBorderRadius || proImagePadding || proImageMargin) {
     const imageSelector = `${baseSelector} .cf7m-image`;
@@ -464,10 +471,10 @@ const ModuleStyles = ({
     if (proImageMargin && proImageMargin !== '0px 0px 0px 0px') customCss += `${imageSelector}{margin:${proImageMargin} !important;}`;
   }
 
-  const proRangeTrackColor = getAttrValue(attrs, 'cf7.advanced.proRangeTrackColor');
-  const proRangeThumbColor = getAttrValue(attrs, 'cf7.advanced.proRangeThumbColor');
-  const proRangeHeight = getAttrValue(attrs, 'cf7.advanced.proRangeHeight');
-  const proRangeMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proRangeMargin'));
+  const proRangeTrackColor = getAttrValue(effectiveAttrs, 'module.advanced.proRangeTrackColor');
+  const proRangeThumbColor = getAttrValue(effectiveAttrs, 'module.advanced.proRangeThumbColor');
+  const proRangeHeight = getAttrValue(effectiveAttrs, 'module.advanced.proRangeHeight');
+  const proRangeMargin = paddingToCss(getAttrValue(effectiveAttrs, 'module.advanced.proRangeMargin'));
   
   if (proRangeTrackColor || proRangeThumbColor || proRangeHeight || (proRangeMargin && proRangeMargin !== '0px 0px 0px 0px')) {
     const rangeInput = `${baseSelector} .cf7m-range-input`;
@@ -483,10 +490,10 @@ const ModuleStyles = ({
     }
   }
 
-  const proStarColor = getAttrValue(attrs, 'cf7.advanced.proStarColor');
-  const proStarActiveColor = getAttrValue(attrs, 'cf7.advanced.proStarActiveColor');
-  const proStarSize = getAttrValue(attrs, 'cf7.advanced.proStarSize');
-  const proStarMargin = paddingToCss(getAttrValue(attrs, 'cf7.advanced.proStarMargin'));
+  const proStarColor = getAttrValue(effectiveAttrs, 'module.advanced.proStarColor');
+  const proStarActiveColor = getAttrValue(effectiveAttrs, 'module.advanced.proStarActiveColor');
+  const proStarSize = getAttrValue(effectiveAttrs, 'module.advanced.proStarSize');
+  const proStarMargin = paddingToCss(getAttrValue(effectiveAttrs, 'module.advanced.proStarMargin'));
   
   if (proStarColor || proStarActiveColor || proStarSize || (proStarMargin && proStarMargin !== '0px 0px 0px 0px')) {
     const starSel = `${baseSelector} .cf7m-star-rating .cf7m-star, ${baseSelector} .cf7m-star-rating .cf7m-star`;
@@ -503,14 +510,6 @@ const ModuleStyles = ({
     <StyleContainer mode={mode} state={state} noStyleTag={noStyleTag}>
       {elements.style({
         attrName: 'module',
-        styleProps: {
-          disabledOn: {
-            disabledModuleVisibility: settings?.disabledModuleVisibility,
-          },
-        },
-      })}
-      {elements.style({
-        attrName: 'cf7',
         styleProps: {
           disabledOn: {
             disabledModuleVisibility: settings?.disabledModuleVisibility,

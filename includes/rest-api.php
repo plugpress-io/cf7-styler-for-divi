@@ -448,7 +448,7 @@ class Rest_API {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function get_cf7_forms() {
-		if ( ! function_exists( 'wpcf7_contact_form' ) ) {
+		if ( ! function_exists( 'wpcf7' ) ) {
 			return new \WP_Error(
 				'cf7_not_installed',
 				__( 'Contact Form 7 is not installed.', 'cf7-styler-for-divi' ),

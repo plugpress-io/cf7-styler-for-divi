@@ -1,7 +1,7 @@
 export const moduleClassnames = ({ classnamesInstance, attrs }) => {
-	// Get settings from new attribute structure
+	const adv = attrs?.module?.advanced ?? attrs?.cf7?.advanced;
 	const useFormHeader =
-		attrs?.cf7?.advanced?.useFormHeader?.desktop?.value === 'on';
+		adv?.useFormHeader?.desktop?.value === 'on';
 
 	// Add form header class if enabled
 	if (useFormHeader) {

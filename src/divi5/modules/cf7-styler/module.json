@@ -18,39 +18,7 @@
               "value": "CF7 Styler"
             }
           }
-        }
-      },
-      "settings": {
-        "meta": {
-          "adminLabel": {}
         },
-        "advanced": {
-          "link": {},
-          "htmlAttributes": {}
-        },
-        "decoration": {
-          "background": {},
-          "sizing": {},
-          "spacing": {},
-          "border": {},
-          "boxShadow": {},
-          "filters": {},
-          "transform": {},
-          "animation": {},
-          "overflow": {},
-          "disabledOn": {},
-          "transition": {},
-          "position": {},
-          "zIndex": {},
-          "scroll": {},
-          "sticky": {}
-        }
-      }
-    },
-    "cf7": {
-      "type": "object",
-      "selector": "{{selector}} .cf7m-cf7-styler",
-      "default": {
         "advanced": {
           "designPreset": {
             "desktop": {
@@ -570,12 +538,17 @@
         }
       },
       "settings": {
+        "meta": {
+          "adminLabel": {}
+        },
         "advanced": {
+          "link": {},
+          "htmlAttributes": {},
           "designPreset": {
             "groupType": "group-item",
             "item": {
               "groupSlug": "common",
-              "attrName": "cf7.advanced.designPreset",
+              "attrName": "module.advanced.designPreset",
               "priority": 5,
               "render": true,
               "label": "Design Preset",
@@ -624,7 +597,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.formId",
+              "attrName": "module.advanced.formId",
               "priority": 10,
               "render": true,
               "label": "Select Form",
@@ -652,7 +625,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.useFormHeader",
+              "attrName": "module.advanced.useFormHeader",
               "priority": 20,
               "render": true,
               "label": "Show Form Header",
@@ -673,7 +646,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.formHeaderTitle",
+              "attrName": "module.advanced.formHeaderTitle",
               "priority": 30,
               "render": true,
               "label": "Header Title",
@@ -694,7 +667,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.formHeaderText",
+              "attrName": "module.advanced.formHeaderText",
               "priority": 40,
               "render": true,
               "label": "Header Text",
@@ -715,7 +688,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.useIcon",
+              "attrName": "module.advanced.useIcon",
               "priority": 50,
               "render": true,
               "label": "Use Icon",
@@ -736,7 +709,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.headerImage",
+              "attrName": "module.advanced.headerImage",
               "priority": 60,
               "render": true,
               "label": "Header Image",
@@ -757,7 +730,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "general",
-              "attrName": "cf7.advanced.headerIcon",
+              "attrName": "module.advanced.headerIcon",
               "priority": 70,
               "render": true,
               "label": "Header Icon",
@@ -778,7 +751,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crCustomStyles",
+              "attrName": "module.advanced.crCustomStyles",
               "priority": 10,
               "render": true,
               "label": "Enable Custom Radio/Checkbox Styles",
@@ -799,7 +772,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.formHeaderBg",
+              "attrName": "module.advanced.formHeaderBg",
               "priority": 10,
               "render": true,
               "label": "Form Header Background",
@@ -819,7 +792,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.formHeaderPadding",
+              "attrName": "module.advanced.formHeaderPadding",
               "priority": 20,
               "render": true,
               "label": "Header Padding",
@@ -842,7 +815,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.formHeaderBottom",
+              "attrName": "module.advanced.formHeaderBottom",
               "priority": 30,
               "render": true,
               "label": "Bottom Spacing",
@@ -868,7 +841,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.formHeaderImgBg",
+              "attrName": "module.advanced.formHeaderImgBg",
               "priority": 40,
               "render": true,
               "label": "Header Image/Icon Background",
@@ -888,7 +861,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.formHeaderIconColor",
+              "attrName": "module.advanced.formHeaderIconColor",
               "priority": 50,
               "render": true,
               "label": "Header Icon Color",
@@ -908,7 +881,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTitleFontSize",
+              "attrName": "module.advanced.headerTitleFontSize",
               "priority": 60,
               "render": true,
               "label": "Title Font Size",
@@ -934,7 +907,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTitleFontWeight",
+              "attrName": "module.advanced.headerTitleFontWeight",
               "priority": 61,
               "render": true,
               "label": "Title Font Weight",
@@ -949,9 +922,6 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": {
-                      "label": "Default"
-                    },
                     "300": {
                       "label": "Light"
                     },
@@ -969,6 +939,9 @@
                     },
                     "800": {
                       "label": "Extra Bold"
+                    },
+                    "": {
+                      "label": "Default"
                     }
                   }
                 }
@@ -979,7 +952,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTitleLineHeight",
+              "attrName": "module.advanced.headerTitleLineHeight",
               "priority": 62,
               "render": true,
               "label": "Title Line Height",
@@ -1005,7 +978,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTitleLetterSpacing",
+              "attrName": "module.advanced.headerTitleLetterSpacing",
               "priority": 63,
               "render": true,
               "label": "Title Letter Spacing",
@@ -1031,7 +1004,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTitleTextTransform",
+              "attrName": "module.advanced.headerTitleTextTransform",
               "priority": 64,
               "render": true,
               "label": "Title Text Transform",
@@ -1070,7 +1043,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTitleTextColor",
+              "attrName": "module.advanced.headerTitleTextColor",
               "priority": 65,
               "render": true,
               "label": "Title Text Color",
@@ -1090,7 +1063,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTextFontSize",
+              "attrName": "module.advanced.headerTextFontSize",
               "priority": 70,
               "render": true,
               "label": "Text Font Size",
@@ -1116,7 +1089,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTextFontWeight",
+              "attrName": "module.advanced.headerTextFontWeight",
               "priority": 71,
               "render": true,
               "label": "Text Font Weight",
@@ -1131,9 +1104,6 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": {
-                      "label": "Default"
-                    },
                     "300": {
                       "label": "Light"
                     },
@@ -1151,6 +1121,9 @@
                     },
                     "800": {
                       "label": "Extra Bold"
+                    },
+                    "": {
+                      "label": "Default"
                     }
                   }
                 }
@@ -1161,7 +1134,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTextLineHeight",
+              "attrName": "module.advanced.headerTextLineHeight",
               "priority": 72,
               "render": true,
               "label": "Text Line Height",
@@ -1187,7 +1160,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTextLetterSpacing",
+              "attrName": "module.advanced.headerTextLetterSpacing",
               "priority": 73,
               "render": true,
               "label": "Text Letter Spacing",
@@ -1213,7 +1186,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTextTextTransform",
+              "attrName": "module.advanced.headerTextTextTransform",
               "priority": 74,
               "render": true,
               "label": "Text Transform",
@@ -1252,7 +1225,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_header",
-              "attrName": "cf7.advanced.headerTextTextColor",
+              "attrName": "module.advanced.headerTextTextColor",
               "priority": 75,
               "render": true,
               "label": "Text Color",
@@ -1272,7 +1245,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "common",
-              "attrName": "cf7.advanced.formBg",
+              "attrName": "module.advanced.formBg",
               "priority": 10,
               "render": true,
               "label": "Form Background",
@@ -1292,7 +1265,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "common",
-              "attrName": "cf7.advanced.formPadding",
+              "attrName": "module.advanced.formPadding",
               "priority": 20,
               "render": true,
               "label": "Form Padding",
@@ -1315,7 +1288,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "common",
-              "attrName": "cf7.advanced.useFormButtonFullwidth",
+              "attrName": "module.advanced.useFormButtonFullwidth",
               "priority": 30,
               "render": true,
               "label": "Fullwidth Button",
@@ -1335,7 +1308,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "common",
-              "attrName": "cf7.advanced.buttonAlignment",
+              "attrName": "module.advanced.buttonAlignment",
               "priority": 40,
               "render": true,
               "label": "Button Alignment",
@@ -1368,7 +1341,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldHeight",
+              "attrName": "module.advanced.formFieldHeight",
               "priority": 10,
               "render": true,
               "label": "Common Text Fields Height",
@@ -1395,7 +1368,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldPadding",
+              "attrName": "module.advanced.formFieldPadding",
               "priority": 20,
               "render": true,
               "label": "Form Field Padding",
@@ -1419,7 +1392,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formBackgroundColor",
+              "attrName": "module.advanced.formBackgroundColor",
               "priority": 30,
               "render": true,
               "label": "Form Field Background Color",
@@ -1439,7 +1412,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldActiveColor",
+              "attrName": "module.advanced.formFieldActiveColor",
               "priority": 40,
               "render": true,
               "label": "Form Field Active Color",
@@ -1459,7 +1432,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldSpacing",
+              "attrName": "module.advanced.formFieldSpacing",
               "priority": 50,
               "render": true,
               "label": "Form Field Spacing Bottom",
@@ -1486,7 +1459,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.formLabelSpacing",
+              "attrName": "module.advanced.formLabelSpacing",
               "priority": 10,
               "render": true,
               "label": "Form Label Spacing Bottom",
@@ -1513,7 +1486,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crSize",
+              "attrName": "module.advanced.crSize",
               "priority": 20,
               "render": true,
               "label": "Size",
@@ -1539,7 +1512,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crBackgroundColor",
+              "attrName": "module.advanced.crBackgroundColor",
               "priority": 30,
               "render": true,
               "label": "Background Color",
@@ -1559,7 +1532,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crSelectedColor",
+              "attrName": "module.advanced.crSelectedColor",
               "priority": 40,
               "render": true,
               "label": "Selected Color",
@@ -1579,7 +1552,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crBorderColor",
+              "attrName": "module.advanced.crBorderColor",
               "priority": 50,
               "render": true,
               "label": "Border Color",
@@ -1599,7 +1572,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crBorderSize",
+              "attrName": "module.advanced.crBorderSize",
               "priority": 60,
               "render": true,
               "label": "Border Size",
@@ -1625,7 +1598,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "radio_checkbox",
-              "attrName": "cf7.advanced.crLabelColor",
+              "attrName": "module.advanced.crLabelColor",
               "priority": 70,
               "render": true,
               "label": "Label Color",
@@ -1645,7 +1618,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7MessagePadding",
+              "attrName": "module.advanced.cf7MessagePadding",
               "priority": 10,
               "render": true,
               "label": "Message Padding",
@@ -1671,7 +1644,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7MessageMarginTop",
+              "attrName": "module.advanced.cf7MessageMarginTop",
               "priority": 20,
               "render": true,
               "label": "Message Margin Top",
@@ -1697,7 +1670,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7MessageAlignment",
+              "attrName": "module.advanced.cf7MessageAlignment",
               "priority": 30,
               "render": true,
               "label": "Message Text Alignment",
@@ -1731,7 +1704,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7MessageColor",
+              "attrName": "module.advanced.cf7MessageColor",
               "priority": 40,
               "render": true,
               "label": "Message Text Color",
@@ -1751,7 +1724,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7MessageBgColor",
+              "attrName": "module.advanced.cf7MessageBgColor",
               "priority": 50,
               "render": true,
               "label": "Message Background Color",
@@ -1771,7 +1744,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7BorderHighlightColor",
+              "attrName": "module.advanced.cf7BorderHighlightColor",
               "priority": 60,
               "render": true,
               "label": "Border Highlight Color",
@@ -1791,7 +1764,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7SuccessMessageColor",
+              "attrName": "module.advanced.cf7SuccessMessageColor",
               "priority": 70,
               "render": true,
               "label": "Success Message Text Color",
@@ -1811,7 +1784,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7SuccessMessageBgColor",
+              "attrName": "module.advanced.cf7SuccessMessageBgColor",
               "priority": 80,
               "render": true,
               "label": "Success Message Background Color",
@@ -1831,7 +1804,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7SuccessBorderColor",
+              "attrName": "module.advanced.cf7SuccessBorderColor",
               "priority": 90,
               "render": true,
               "label": "Success Border Color",
@@ -1851,7 +1824,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7ErrorMessageColor",
+              "attrName": "module.advanced.cf7ErrorMessageColor",
               "priority": 100,
               "render": true,
               "label": "Error Message Text Color",
@@ -1871,7 +1844,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7ErrorMessageBgColor",
+              "attrName": "module.advanced.cf7ErrorMessageBgColor",
               "priority": 110,
               "render": true,
               "label": "Error Message Background Color",
@@ -1891,7 +1864,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "suc_err_msg",
-              "attrName": "cf7.advanced.cf7ErrorBorderColor",
+              "attrName": "module.advanced.cf7ErrorBorderColor",
               "priority": 120,
               "render": true,
               "label": "Error Border Color",
@@ -1911,7 +1884,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonBg",
+              "attrName": "module.advanced.buttonBg",
               "priority": 10,
               "render": true,
               "label": "Button Background",
@@ -1931,7 +1904,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonColor",
+              "attrName": "module.advanced.buttonColor",
               "priority": 20,
               "render": true,
               "label": "Button Text Color",
@@ -1951,7 +1924,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonPadding",
+              "attrName": "module.advanced.buttonPadding",
               "priority": 30,
               "render": true,
               "label": "Button Padding",
@@ -1974,7 +1947,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonBorderColor",
+              "attrName": "module.advanced.buttonBorderColor",
               "priority": 40,
               "render": true,
               "label": "Button Border Color",
@@ -1994,7 +1967,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonBorderWidth",
+              "attrName": "module.advanced.buttonBorderWidth",
               "priority": 50,
               "render": true,
               "label": "Button Border Width",
@@ -2020,7 +1993,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonBorderRadius",
+              "attrName": "module.advanced.buttonBorderRadius",
               "priority": 60,
               "render": true,
               "label": "Button Border Radius",
@@ -2046,7 +2019,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonFontSize",
+              "attrName": "module.advanced.buttonFontSize",
               "priority": 70,
               "render": true,
               "label": "Button Font Size",
@@ -2072,7 +2045,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonFontWeight",
+              "attrName": "module.advanced.buttonFontWeight",
               "priority": 71,
               "render": true,
               "label": "Button Font Weight",
@@ -2087,9 +2060,6 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": {
-                      "label": "Default"
-                    },
                     "300": {
                       "label": "Light"
                     },
@@ -2107,6 +2077,9 @@
                     },
                     "800": {
                       "label": "Extra Bold"
+                    },
+                    "": {
+                      "label": "Default"
                     }
                   }
                 }
@@ -2117,7 +2090,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonLineHeight",
+              "attrName": "module.advanced.buttonLineHeight",
               "priority": 72,
               "render": true,
               "label": "Button Line Height",
@@ -2143,7 +2116,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonLetterSpacing",
+              "attrName": "module.advanced.buttonLetterSpacing",
               "priority": 73,
               "render": true,
               "label": "Button Letter Spacing",
@@ -2169,7 +2142,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "submit_button",
-              "attrName": "cf7.advanced.buttonTextTransform",
+              "attrName": "module.advanced.buttonTextTransform",
               "priority": 74,
               "render": true,
               "label": "Button Text Transform",
@@ -2208,7 +2181,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldBorderColor",
+              "attrName": "module.advanced.formFieldBorderColor",
               "priority": 60,
               "render": true,
               "label": "Field Border Color",
@@ -2228,7 +2201,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldBorderWidth",
+              "attrName": "module.advanced.formFieldBorderWidth",
               "priority": 70,
               "render": true,
               "label": "Field Border Width",
@@ -2254,7 +2227,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldBorderRadius",
+              "attrName": "module.advanced.formFieldBorderRadius",
               "priority": 80,
               "render": true,
               "label": "Field Border Radius",
@@ -2280,7 +2253,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_field",
-              "attrName": "cf7.advanced.formFieldTextColor",
+              "attrName": "module.advanced.formFieldTextColor",
               "priority": 90,
               "render": true,
               "label": "Field Text Color",
@@ -2300,7 +2273,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.formLabelColor",
+              "attrName": "module.advanced.formLabelColor",
               "priority": 20,
               "render": true,
               "label": "Label Color",
@@ -2320,7 +2293,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.fieldFontSize",
+              "attrName": "module.advanced.fieldFontSize",
               "priority": 30,
               "render": true,
               "label": "Field Font Size",
@@ -2346,7 +2319,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.fieldFontWeight",
+              "attrName": "module.advanced.fieldFontWeight",
               "priority": 31,
               "render": true,
               "label": "Field Font Weight",
@@ -2361,9 +2334,6 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": {
-                      "label": "Default"
-                    },
                     "300": {
                       "label": "Light"
                     },
@@ -2381,6 +2351,9 @@
                     },
                     "800": {
                       "label": "Extra Bold"
+                    },
+                    "": {
+                      "label": "Default"
                     }
                   }
                 }
@@ -2391,7 +2364,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.fieldLineHeight",
+              "attrName": "module.advanced.fieldLineHeight",
               "priority": 32,
               "render": true,
               "label": "Field Line Height",
@@ -2417,7 +2390,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.fieldLetterSpacing",
+              "attrName": "module.advanced.fieldLetterSpacing",
               "priority": 33,
               "render": true,
               "label": "Field Letter Spacing",
@@ -2443,7 +2416,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.fieldTextTransform",
+              "attrName": "module.advanced.fieldTextTransform",
               "priority": 34,
               "render": true,
               "label": "Field Text Transform",
@@ -2482,7 +2455,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.labelFontSize",
+              "attrName": "module.advanced.labelFontSize",
               "priority": 40,
               "render": true,
               "label": "Label Font Size",
@@ -2508,7 +2481,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.labelFontWeight",
+              "attrName": "module.advanced.labelFontWeight",
               "priority": 41,
               "render": true,
               "label": "Label Font Weight",
@@ -2523,9 +2496,6 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": {
-                      "label": "Default"
-                    },
                     "300": {
                       "label": "Light"
                     },
@@ -2543,6 +2513,9 @@
                     },
                     "800": {
                       "label": "Extra Bold"
+                    },
+                    "": {
+                      "label": "Default"
                     }
                   }
                 }
@@ -2553,7 +2526,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.labelLineHeight",
+              "attrName": "module.advanced.labelLineHeight",
               "priority": 42,
               "render": true,
               "label": "Label Line Height",
@@ -2579,7 +2552,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.labelLetterSpacing",
+              "attrName": "module.advanced.labelLetterSpacing",
               "priority": 43,
               "render": true,
               "label": "Label Letter Spacing",
@@ -2605,7 +2578,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.labelTextTransform",
+              "attrName": "module.advanced.labelTextTransform",
               "priority": 44,
               "render": true,
               "label": "Label Text Transform",
@@ -2644,7 +2617,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "form_text",
-              "attrName": "cf7.advanced.placeholderColor",
+              "attrName": "module.advanced.placeholderColor",
               "priority": 50,
               "render": true,
               "label": "Placeholder Color",
@@ -2664,7 +2637,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_heading",
-              "attrName": "cf7.advanced.proHeadingFontSize",
+              "attrName": "module.advanced.proHeadingFontSize",
               "priority": 10,
               "render": true,
               "label": "Font Size",
@@ -2690,7 +2663,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_heading",
-              "attrName": "cf7.advanced.proHeadingFontWeight",
+              "attrName": "module.advanced.proHeadingFontWeight",
               "priority": 20,
               "render": true,
               "label": "Font Weight",
@@ -2705,9 +2678,6 @@
                 "name": "divi/select",
                 "props": {
                   "options": {
-                    "": {
-                      "label": "Default"
-                    },
                     "300": {
                       "label": "Light"
                     },
@@ -2725,6 +2695,9 @@
                     },
                     "800": {
                       "label": "Extra Bold"
+                    },
+                    "": {
+                      "label": "Default"
                     }
                   }
                 }
@@ -2735,7 +2708,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_heading",
-              "attrName": "cf7.advanced.proHeadingTextColor",
+              "attrName": "module.advanced.proHeadingTextColor",
               "priority": 30,
               "render": true,
               "label": "Text Color",
@@ -2755,7 +2728,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_heading",
-              "attrName": "cf7.advanced.proHeadingMargin",
+              "attrName": "module.advanced.proHeadingMargin",
               "priority": 40,
               "render": true,
               "label": "Margin",
@@ -2778,7 +2751,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_icon",
-              "attrName": "cf7.advanced.proIconSize",
+              "attrName": "module.advanced.proIconSize",
               "priority": 10,
               "render": true,
               "label": "Icon Size",
@@ -2804,7 +2777,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_icon",
-              "attrName": "cf7.advanced.proIconColor",
+              "attrName": "module.advanced.proIconColor",
               "priority": 20,
               "render": true,
               "label": "Icon Color",
@@ -2824,7 +2797,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_icon",
-              "attrName": "cf7.advanced.proIconMargin",
+              "attrName": "module.advanced.proIconMargin",
               "priority": 30,
               "render": true,
               "label": "Margin",
@@ -2847,7 +2820,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImageWidth",
+              "attrName": "module.advanced.proImageWidth",
               "priority": 10,
               "render": true,
               "label": "Image Width",
@@ -2873,7 +2846,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImageHeight",
+              "attrName": "module.advanced.proImageHeight",
               "priority": 20,
               "render": true,
               "label": "Image Height",
@@ -2899,7 +2872,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImageBorderColor",
+              "attrName": "module.advanced.proImageBorderColor",
               "priority": 30,
               "render": true,
               "label": "Border Color",
@@ -2919,7 +2892,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImageBorderWidth",
+              "attrName": "module.advanced.proImageBorderWidth",
               "priority": 40,
               "render": true,
               "label": "Border Width",
@@ -2945,7 +2918,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImageBorderRadius",
+              "attrName": "module.advanced.proImageBorderRadius",
               "priority": 50,
               "render": true,
               "label": "Border Radius",
@@ -2971,7 +2944,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImagePadding",
+              "attrName": "module.advanced.proImagePadding",
               "priority": 60,
               "render": true,
               "label": "Padding",
@@ -2994,7 +2967,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_image",
-              "attrName": "cf7.advanced.proImageMargin",
+              "attrName": "module.advanced.proImageMargin",
               "priority": 70,
               "render": true,
               "label": "Margin",
@@ -3017,7 +2990,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_range",
-              "attrName": "cf7.advanced.proRangeTrackColor",
+              "attrName": "module.advanced.proRangeTrackColor",
               "priority": 10,
               "render": true,
               "label": "Track Color",
@@ -3037,7 +3010,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_range",
-              "attrName": "cf7.advanced.proRangeThumbColor",
+              "attrName": "module.advanced.proRangeThumbColor",
               "priority": 20,
               "render": true,
               "label": "Thumb Color",
@@ -3057,7 +3030,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_range",
-              "attrName": "cf7.advanced.proRangeHeight",
+              "attrName": "module.advanced.proRangeHeight",
               "priority": 30,
               "render": true,
               "label": "Track Height",
@@ -3083,7 +3056,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_range",
-              "attrName": "cf7.advanced.proRangeMargin",
+              "attrName": "module.advanced.proRangeMargin",
               "priority": 40,
               "render": true,
               "label": "Margin",
@@ -3106,7 +3079,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_star",
-              "attrName": "cf7.advanced.proStarColor",
+              "attrName": "module.advanced.proStarColor",
               "priority": 10,
               "render": true,
               "label": "Star Color",
@@ -3126,7 +3099,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_star",
-              "attrName": "cf7.advanced.proStarActiveColor",
+              "attrName": "module.advanced.proStarActiveColor",
               "priority": 20,
               "render": true,
               "label": "Active Star Color",
@@ -3146,7 +3119,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_star",
-              "attrName": "cf7.advanced.proStarSize",
+              "attrName": "module.advanced.proStarSize",
               "priority": 30,
               "render": true,
               "label": "Star Size",
@@ -3172,7 +3145,7 @@
             "groupType": "group-item",
             "item": {
               "groupSlug": "pro_star",
-              "attrName": "cf7.advanced.proStarMargin",
+              "attrName": "module.advanced.proStarMargin",
               "priority": 40,
               "render": true,
               "label": "Margin",
@@ -3191,6 +3164,23 @@
               }
             }
           }
+        },
+        "decoration": {
+          "background": {},
+          "sizing": {},
+          "spacing": {},
+          "border": {},
+          "boxShadow": {},
+          "filters": {},
+          "transform": {},
+          "animation": {},
+          "overflow": {},
+          "disabledOn": {},
+          "transition": {},
+          "position": {},
+          "zIndex": {},
+          "scroll": {},
+          "sticky": {}
         }
       }
     }

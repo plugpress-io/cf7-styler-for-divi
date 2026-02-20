@@ -52,13 +52,12 @@ const CF7StylerEdit = (props) => {
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState(false);
 
+  // Check module.advanced first, fall back to old cf7.advanced for pre-migration modules.
+  const adv = attrs?.module?.advanced ?? attrs?.cf7?.advanced;
   const formIdRaw =
-    attrs?.cf7?.advanced?.formId?.desktop?.value ??
-    attrs?.cf7?.advanced?.formId?.value ??
-    attrs?.cf7?.advanced?.formId ??
-    attrs?.module?.cf7?.advanced?.formId?.desktop?.value ??
-    attrs?.module?.cf7?.advanced?.formId?.value ??
-    attrs?.module?.cf7?.advanced?.formId;
+    adv?.formId?.desktop?.value ??
+    adv?.formId?.value ??
+    adv?.formId;
   const formId = formIdRaw !== undefined && formIdRaw !== null ? String(formIdRaw) : '0';
   const formIdNum = formId === '0' || formId === '' ? 0 : parseInt(formId, 10);
 
@@ -106,19 +105,19 @@ const CF7StylerEdit = (props) => {
     };
   }, [formIdNum]);
 
-  const useFormHeader = attrs?.cf7?.advanced?.useFormHeader?.desktop?.value === 'on';
-  const formHeaderTitle = attrs?.cf7?.advanced?.formHeaderTitle?.desktop?.value || '';
-  const formHeaderText = attrs?.cf7?.advanced?.formHeaderText?.desktop?.value || '';
-  const useIcon = attrs?.cf7?.advanced?.useIcon?.desktop?.value === 'on';
-  const headerIconRaw = attrs?.cf7?.advanced?.headerIcon?.desktop?.value;
+  const useFormHeader = adv?.useFormHeader?.desktop?.value === 'on';
+  const formHeaderTitle = adv?.formHeaderTitle?.desktop?.value || '';
+  const formHeaderText = adv?.formHeaderText?.desktop?.value || '';
+  const useIcon = adv?.useIcon?.desktop?.value === 'on';
+  const headerIconRaw = adv?.headerIcon?.desktop?.value;
   const headerIconResolved = resolveHeaderIcon(headerIconRaw);
   const hasHeaderIcon =
     headerIconResolved != null ||
     (headerIconRaw && (typeof headerIconRaw === 'string' ? headerIconRaw : headerIconRaw?.unicode));
-  const headerImage = attrs?.cf7?.advanced?.headerImage?.desktop?.value || '';
-  const buttonFullwidth = attrs?.cf7?.advanced?.useFormButtonFullwidth?.desktop?.value === 'on';
-  const buttonAlignment = attrs?.cf7?.advanced?.buttonAlignment?.desktop?.value || 'left';
-  const crCustomStyles = attrs?.cf7?.advanced?.crCustomStyles?.desktop?.value === 'on';
+  const headerImage = adv?.headerImage?.desktop?.value || '';
+  const buttonFullwidth = adv?.useFormButtonFullwidth?.desktop?.value === 'on';
+  const buttonAlignment = adv?.buttonAlignment?.desktop?.value || 'left';
+  const crCustomStyles = adv?.crCustomStyles?.desktop?.value === 'on';
 
   if (!ModuleContainer) {
     return null;
