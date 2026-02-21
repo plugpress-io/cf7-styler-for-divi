@@ -60,6 +60,10 @@ CF7 Mate includes native integrations — not shortcode wrappers — for each bu
 * **Elementor** — Dedicated widget with Elementor-native controls
 * **Bricks** — Custom element for the Bricks Builder
 
+= Developers =
+
+The free version source code is available on [GitHub](https://github.com/plugpress-io/cf7-styler-for-divi). Feel free to fork or build from source.
+
 = Who Is This For? =
 
 * Agencies building branded forms for clients
