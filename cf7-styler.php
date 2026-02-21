@@ -3,7 +3,7 @@
 Plugin Name: Styler Mate for Contact Form 7
 Plugin URI: https://cf7mate.com
 Description: CF7 Mate is a plugin for Contact Form 7 that allows you to style your forms.
-Version: 3.0.0
+Version: 3.0.1
 Author: Fahim Reza
 Author URI:  https://plugpress.io
 License: GPLv2 or later
@@ -57,7 +57,7 @@ if (!function_exists('cf7m_lite_maybe_self_deactivate')) {
     });
 }
 
-define('CF7M_VERSION', '3.0.0');
+define('CF7M_VERSION', '3.0.1');
 define('CF7M_BASENAME', plugin_basename(__FILE__));
 define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
 define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));
