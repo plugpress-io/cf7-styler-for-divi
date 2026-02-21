@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-21 21:25+0000\n"
+"POT-Creation-Date: 2026-02-21 22:21+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -731,163 +731,163 @@ msgstr ""
 msgid "Convert this form design or screenshot into valid Contact Form 7 form code. Output only the form code."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:251
+#: includes/pro/features/ai-form-generator/prompt.php:293
 msgid "Contact Form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:252
+#: includes/pro/features/ai-form-generator/prompt.php:294
 msgid "Simple contact form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:256
+#: includes/pro/features/ai-form-generator/prompt.php:298
 msgid "Newsletter"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:257
+#: includes/pro/features/ai-form-generator/prompt.php:299
 msgid "Email subscription."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:261
+#: includes/pro/features/ai-form-generator/prompt.php:303
 msgid "Feedback"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:262
+#: includes/pro/features/ai-form-generator/prompt.php:304
 msgid "Customer feedback."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:266
+#: includes/pro/features/ai-form-generator/prompt.php:308
 msgid "Support Ticket"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:267
+#: includes/pro/features/ai-form-generator/prompt.php:309
 msgid "Support request."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:273
+#: includes/pro/features/ai-form-generator/prompt.php:315
 msgid "Appointment"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:274
+#: includes/pro/features/ai-form-generator/prompt.php:316
 msgid "Booking form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:278
+#: includes/pro/features/ai-form-generator/prompt.php:320
 msgid "Reservation"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:279
+#: includes/pro/features/ai-form-generator/prompt.php:321
 msgid "Restaurant booking."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:283
+#: includes/pro/features/ai-form-generator/prompt.php:325
 msgid "Event RSVP"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:284
+#: includes/pro/features/ai-form-generator/prompt.php:326
 msgid "Event registration."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:290
+#: includes/pro/features/ai-form-generator/prompt.php:332
 msgid "Quote Request"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:291
+#: includes/pro/features/ai-form-generator/prompt.php:333
 msgid "Get a quote."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:295
+#: includes/pro/features/ai-form-generator/prompt.php:337
 msgid "Job Application"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:296
+#: includes/pro/features/ai-form-generator/prompt.php:338
 msgid "Employment form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:300
+#: includes/pro/features/ai-form-generator/prompt.php:342
 msgid "Lead Form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:301
+#: includes/pro/features/ai-form-generator/prompt.php:343
 msgid "Lead generation."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:307
+#: includes/pro/features/ai-form-generator/prompt.php:349
 msgid "Registration"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:308
+#: includes/pro/features/ai-form-generator/prompt.php:350
 msgid "Account signup."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:314
+#: includes/pro/features/ai-form-generator/prompt.php:356
 msgid "Survey"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:315
+#: includes/pro/features/ai-form-generator/prompt.php:357
 msgid "Customer survey."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:319
+#: includes/pro/features/ai-form-generator/prompt.php:361
 msgid "Review"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:320
+#: includes/pro/features/ai-form-generator/prompt.php:362
 msgid "Product review."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:326
+#: includes/pro/features/ai-form-generator/prompt.php:368
 msgid "Mortgage Calc"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:327
+#: includes/pro/features/ai-form-generator/prompt.php:369
 msgid "Mortgage calculator."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:331
+#: includes/pro/features/ai-form-generator/prompt.php:373
 msgid "Loan Calc"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:332
+#: includes/pro/features/ai-form-generator/prompt.php:374
 msgid "Loan calculator."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:336
+#: includes/pro/features/ai-form-generator/prompt.php:378
 msgid "Price Quote"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:337
+#: includes/pro/features/ai-form-generator/prompt.php:379
 msgid "Service pricing."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:341
+#: includes/pro/features/ai-form-generator/prompt.php:383
 msgid "Tip Calc"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:342
+#: includes/pro/features/ai-form-generator/prompt.php:384
 msgid "Tip calculator."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:348
+#: includes/pro/features/ai-form-generator/prompt.php:390
 msgid "Order Form"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:349
+#: includes/pro/features/ai-form-generator/prompt.php:391
 msgid "Product order."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:353
+#: includes/pro/features/ai-form-generator/prompt.php:395
 msgid "Volunteer"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:354
+#: includes/pro/features/ai-form-generator/prompt.php:396
 msgid "Volunteer signup."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:358
+#: includes/pro/features/ai-form-generator/prompt.php:400
 msgid "Complaint"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/prompt.php:359
+#: includes/pro/features/ai-form-generator/prompt.php:401
 msgid "Complaint form."
 msgstr ""
 

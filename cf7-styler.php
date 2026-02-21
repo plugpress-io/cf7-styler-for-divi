@@ -2,9 +2,9 @@
 /*
 Plugin Name: Styler Mate for Contact Form 7
 Plugin URI: https://cf7mate.com
-Description: CF7 Mate is a plugin for Contact Form 7 that allows you to style your forms with Divi's visual builder.
+Description: CF7 Mate is a plugin for Contact Form 7 that allows you to style your forms.
 Version: 3.0.0
-Author: PlugPress
+Author: Fahim Reza
 Author URI:  https://plugpress.io
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -21,7 +21,8 @@ if (!defined('ABSPATH')) {
 
 // Auto-deactivate lite when the pro plugin is active.
 if (!function_exists('cf7m_lite_maybe_self_deactivate')) {
-    function cf7m_lite_maybe_self_deactivate() {
+    function cf7m_lite_maybe_self_deactivate()
+    {
         if (!function_exists('is_plugin_active')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }

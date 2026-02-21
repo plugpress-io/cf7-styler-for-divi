@@ -415,11 +415,12 @@ class Block
 		// Submit button should not stretch in flex columns.
 		$rules[] = $s . ' .dipe-cf7-styler .wpcf7-form input[type=submit]{width:auto;align-self:flex-start}';
 
-		// Multi-step nav buttons inherit submit button colours.
-		$nav_bg    = $this->has_val($a, 'buttonBgColor') ? $this->sanitize_css_color($a['buttonBgColor']) : '#2ea3f2';
+		// Multi-step nav: Next = primary (submit colour), Prev = outlined secondary.
+		$nav_bg    = $this->has_val($a, 'buttonBgColor') ? $this->sanitize_css_color($a['buttonBgColor']) : '#111827';
 		$nav_color = $this->has_val($a, 'buttonTextColor') ? $this->sanitize_css_color($a['buttonTextColor']) : '#fff';
-		$nav_rad   = $this->has_val($a, 'buttonBorderRadius') ? $this->sanitize_css_length($a['buttonBorderRadius']) : '3px';
-		$rules[]   = $s . ' .cf7m-next-step,' . $s . ' .cf7m-prev-step{background:' . $nav_bg . ';color:' . $nav_color . ';border-radius:' . $nav_rad . '}';
+		$nav_rad   = $this->has_val($a, 'buttonBorderRadius') ? $this->sanitize_css_length($a['buttonBorderRadius']) : '6px';
+		$rules[]   = $s . ' .cf7m-next-step{background:' . $nav_bg . ';color:' . $nav_color . ';border-radius:' . $nav_rad . '}';
+		$rules[]   = $s . ' .cf7m-prev-step{background:transparent;color:#374151;border:2px solid #d1d5db;border-radius:' . $nav_rad . '}';
 
 		// Form header.
 		$header = array();

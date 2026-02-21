@@ -121,8 +121,7 @@
 
 /* Spacing between field groups in columns */
 .cf7m-pro-col > p:not(:last-child),
-.cf7m-pro-col > div:not(:last-child),
-.cf7m-pro-col > label:not(:last-child) {
+.cf7m-pro-col > div:not(:last-child) {
   margin-bottom: 16px;
 }
 
@@ -205,16 +204,25 @@
 .cf7m-prev-step,
 .cf7m-next-step {
   padding: 12px 24px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
 }
 
-.cf7m-prev-step,
 .cf7m-next-step {
-  background: #2ea3f2;
+  background: #111827;
   color: #fff;
+}
+
+.cf7m-prev-step {
+  background: transparent;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+.cf7m-prev-step:hover {
+  border-color: #9ca3af;
 }
 
 /* ── Style: Progress Bar ─────────────────────────────────────────────── */
