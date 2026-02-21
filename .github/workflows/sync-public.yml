@@ -3,6 +3,7 @@ name: Sync Free to Public Repo
 on:
     push:
         branches: [main]
+        tags: ['*']
     workflow_dispatch:
 
 jobs:
@@ -14,12 +15,6 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Remove premium-only files
-              run: |
-                  rm -rf includes/pro
-                  rm -rf assets/pro
-                  rm -f cf7-mate-pro.php
-
             - name: Set up SSH deploy key
               run: |
                   mkdir -p ~/.ssh
@@ -29,15 +24,26 @@ jobs:
               env:
                   GIT_SSH_COMMAND: 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no'
 
+            - name: Remove premium-only files
+              run: |
+                  rm -rf includes/pro
+                  rm -rf assets/pro
+                  rm -f cf7-mate-pro.php
+
             - name: Commit and push to public repo
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git remote add public git@github.com:plugpress-io/cf7-styler-for-divi.git
 
                   git add -A
                   git diff --cached --quiet && echo "No changes to sync" && exit 0
 
                   git commit -m "Sync free version – $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-
-                  git remote add public git@github.com:plugpress-io/cf7-styler-for-divi.git
                   GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key" git push public main --force
+
+            - name: Push tag to public repo
+              if: startsWith(github.ref, 'refs/tags/')
+              run: |
+                  TAG="${GITHUB_REF#refs/tags/}"
+                  GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key" git push public "refs/tags/$TAG" --force
