@@ -225,21 +225,6 @@ export function EntriesPage({ entryId, onBack }) {
 													<span className="cf7m-entry-data-row__label">{__('Status', 'cf7-styler-for-divi')}</span>
 													<span className="cf7m-entry-data-row__value">
 														<span className={`cf7m-entry-status-badge cf7m-entry-status-badge--${singleEntry.status}`}>{singleEntry.status === 'trash' ? __('Trash', 'cf7-styler-for-divi') : singleEntry.status}</span>
-														{singleEntry.status === 'read' && (
-															<button type="button" className="cf7m-entries-link" onClick={() => updateStatus(singleEntry.id, 'new')}>
-																{__('Mark as unread', 'cf7-styler-for-divi')}
-															</button>
-														)}
-														{singleEntry.status === 'new' && (
-															<button type="button" className="cf7m-entries-link" onClick={() => updateStatus(singleEntry.id, 'read')}>
-																{__('Mark as read', 'cf7-styler-for-divi')}
-															</button>
-														)}
-														{singleEntry.status === 'trash' && (
-															<button type="button" className="cf7m-entries-link" onClick={() => updateStatus(singleEntry.id, 'read')}>
-																{__('Restore', 'cf7-styler-for-divi')}
-															</button>
-														)}
 													</span>
 												</div>
 											</>

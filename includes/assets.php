@@ -51,7 +51,6 @@ class Assets
             return;
         }
 
-        // D5 VB uses bundle.js via PackageBuildManager — skip D4 scripts entirely.
         if (function_exists('et_builder_d5_enabled') && et_builder_d5_enabled()) {
             return;
         }
@@ -137,8 +136,6 @@ class Assets
             CF7M_VERSION
         );
 
-        // CF7's own styles may not load because its shortcode isn't in post_content
-        // (it's rendered dynamically via do_shortcode in our render_callback).
         if (function_exists('wpcf7_enqueue_styles')) {
             wpcf7_enqueue_styles();
         }

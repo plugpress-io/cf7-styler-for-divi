@@ -208,7 +208,6 @@ class Plugin
             require_once $divi4_base;
         }
 
-        // Skip D4 CF7Styler when Divi 5 is active — it is handled by the D5 module.
         $is_d5 = function_exists('et_builder_d5_enabled') && et_builder_d5_enabled();
         if ($this->is_feature_enabled('cf7_module') && !$is_d5) {
             require_once CF7M_PLUGIN_PATH . 'includes/lite/builders/divi4/CF7Styler/CF7Styler.php';

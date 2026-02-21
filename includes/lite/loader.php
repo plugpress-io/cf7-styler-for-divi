@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Lite features loader (Star Rating, Range Slider, Separator, Image, Icon, Grid).
  * Ships with free build; runs on every request.
@@ -68,17 +69,9 @@ class Lite_Loader
 
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
 
-        // Fallback: strip any unprocessed [cf7m-presets] wrapper tags from form output.
-        // Runs at priority 15 — after the pro Presets module (priority 5) — so it only
-        // acts when the pro module is not loaded and the tags would otherwise appear as text.
         add_filter('wpcf7_form_elements', [$this, 'strip_unprocessed_preset_tags'], 15);
     }
 
-    /**
-     * Enqueue tag generator script for lite (separator, star, range) on CF7 admin.
-     *
-     * @param string $hook Current admin page hook.
-     */
     public function enqueue_admin_scripts($hook)
     {
         if ('toplevel_page_wpcf7' !== $hook && 'contact_page_wpcf7-new' !== $hook) {
@@ -100,13 +93,6 @@ class Lite_Loader
         );
     }
 
-    /**
-     * Strip [cf7m-presets] opening and closing wrapper tags from the form template,
-     * leaving the form content between them intact.
-     *
-     * @param string $form CF7 form template HTML.
-     * @return string
-     */
     public function strip_unprocessed_preset_tags($form)
     {
         if (strpos($form, '[cf7m-presets') === false) {

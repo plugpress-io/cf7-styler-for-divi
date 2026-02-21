@@ -1,12 +1,20 @@
+/**
+ * CF7 Styler – Gutenberg block entry point.
+ *
+ * Registers the client-side edit/save for the block. All metadata
+ * (name, attributes, supports, title, icon) comes from the server-side
+ * PHP registration via block.json in the gutenberg directory.
+ *
+ * @package CF7_Mate
+ */
+
 import { registerBlockType } from '@wordpress/blocks';
+import metadata from '../../includes/lite/builders/gutenberg/block.json';
 import Edit from './edit';
-import metadata from './block.json';
 import './editor.scss';
 
-// Pass the full metadata object so Gutenberg reads title, category,
-// icon, and keywords from block.json and shows the block in the inserter.
-registerBlockType( metadata, {
+registerBlockType(metadata.name, {
+	...metadata,
 	edit: Edit,
-	// Server-side rendered – no static save output.
 	save: () => null,
-} );
+});

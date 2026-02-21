@@ -24,3 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 *.zip
 .claude
+
+# NOTE: /includes/pro/ and /assets/pro/ are tracked in THIS (private) repo.
+# The sync-public.yml workflow strips them before pushing to the public repo.

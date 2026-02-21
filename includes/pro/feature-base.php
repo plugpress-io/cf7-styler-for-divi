@@ -36,7 +36,7 @@ abstract class Pro_Feature_Base
         if (strpos($post->post_content, 'dvppl_cf7_styler') !== false) {
             return true;
         }
-        if (strpos($post->post_content, 'cf7-styler-for-divi/cf7-styler') !== false) {
+        if (strpos($post->post_content, 'cf7-mate/cf7-styler') !== false) {
             return true;
         }
         return false;

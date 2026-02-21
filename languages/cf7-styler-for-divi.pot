@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-20 21:43+0000\n"
+"POT-Creation-Date: 2026-02-21 15:24+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -47,20 +47,20 @@ msgstr ""
 msgid "Form not found."
 msgstr ""
 
-#: includes/rest-api.php:454
+#: includes/rest-api.php:455
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:472
+#: includes/rest-api.php:473
 msgid "Select a form"
 msgstr ""
 
 #. translators: %d: form ID
-#: includes/rest-api.php:481
+#: includes/rest-api.php:482
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:524
+#: includes/rest-api.php:525
 msgid "Onboarding reset successfully."
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Maybe later"
 msgstr ""
 
-#: includes/lite/builders/bricks/bricks-element.php:21, includes/lite/builders/elementor/elementor-widget.php:20, includes/lite/builders/gutenberg/loader.php:28, includes/lite/builders/divi4/CF7Styler/CF7Styler.php:17
+#: includes/lite/builders/bricks/bricks-element.php:21, includes/lite/builders/elementor/elementor-widget.php:20, includes/lite/builders/divi4/CF7Styler/CF7Styler.php:17
 msgid "CF7 Styler"
 msgstr ""
 
@@ -398,7 +398,7 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: includes/lite/builders/bricks/bricks-element.php:925, includes/lite/builders/elementor/elementor-widget.php:820, includes/lite/builders/divi5/CF7Styler/CF7Styler.php:250
+#: includes/lite/builders/bricks/bricks-element.php:925, includes/lite/builders/elementor/elementor-widget.php:820, includes/lite/builders/gutenberg/class-block.php:209, includes/lite/builders/divi5/CF7Styler/CF7Styler.php:250
 msgid "Please select a Contact Form 7 form."
 msgstr ""
 
@@ -458,8 +458,8 @@ msgstr ""
 msgid "Validation Background Color"
 msgstr ""
 
-#: includes/lite/builders/gutenberg/loader.php:31
-msgid "Display and style a Contact Form 7 form with full design controls."
+#: includes/lite/builders/gutenberg/class-block.php:213
+msgid "The selected Contact Form 7 form no longer exists."
 msgstr ""
 
 #: includes/lite/features/grid/module.php:120, includes/pro/features/ai-form-generator/module.php:155

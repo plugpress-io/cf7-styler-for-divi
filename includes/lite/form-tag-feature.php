@@ -1,10 +1,4 @@
 <?php
-/**
- * Base for CF7 form-tag lite features (optional; star/range/separator/image/icon use Feature_Base + shortcode processing).
- *
- * @package CF7_Mate\Lite
- * @since 3.0.0
- */
 
 namespace CF7_Mate\Lite;
 

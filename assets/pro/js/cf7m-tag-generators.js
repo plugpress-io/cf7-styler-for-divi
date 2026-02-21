@@ -22,6 +22,7 @@
 		initPhoneGenerator();
 		initColumnGenerator();
 		initConditionalGenerator();
+		initStepGenerator();
 	}
 
 	/**
@@ -297,6 +298,28 @@
 	}
 
 	/**
+	 * Step tag generator.
+	 */
+	function initStepGenerator() {
+		var pane = document.querySelector('.wpcf7-tg-pane-cf7m-step');
+		if (!pane || pane.dataset.cf7mInit) return;
+		pane.dataset.cf7mInit = '1';
+
+		var titleInput = pane.querySelector('input[name="title"]');
+		var tagOutput = pane.querySelector('input.tag');
+
+		function updateTag() {
+			var title = (titleInput && titleInput.value) || 'Step 1';
+			if (tagOutput) tagOutput.value = '[cf7m-step title:"' + title.replace(/"/g, '') + '"]\n\n[/cf7m-step]';
+		}
+
+		if (titleInput) {
+			titleInput.addEventListener('input', updateTag);
+			titleInput.addEventListener('change', updateTag);
+		}
+	}
+
+	/**
 	 * Helper to bind events to fields.
 	 */
 	function bindEvents(fields, callback) {
@@ -330,7 +353,8 @@
 							'.wpcf7-tg-pane-cf7m-heading',
 							'.wpcf7-tg-pane-cf7m-phone',
 							'.wpcf7-tg-pane-cf7m-col',
-							'.wpcf7-tg-pane-cf7m-if'
+							'.wpcf7-tg-pane-cf7m-if',
+							'.wpcf7-tg-pane-cf7m-step'
 						];
 						for (var i = 0; i < selectors.length; i++) {
 							if (node.querySelector(selectors[i]) || node.matches && node.matches(selectors[i])) {

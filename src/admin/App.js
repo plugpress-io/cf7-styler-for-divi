@@ -23,6 +23,9 @@ import { WebhookPage } from './pages/WebhookPage';
 export function App() {
 	const [features, setFeatures] = useState({
 		cf7_module: true,
+		bricks_module: true,
+		elementor_module: true,
+		gutenberg_module: true,
 		grid_layout: true,
 		multi_column: true,
 		multi_step: true,

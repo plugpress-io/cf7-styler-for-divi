@@ -1,0 +1,55 @@
+# Sync free version to the public GitHub repository.
+#
+# This workflow runs in the PRIVATE repo. On every push to main it:
+#   1. Checks out the full source (pro + free).
+#   2. Strips premium-only directories (/includes/pro, /assets/pro, cf7-mate-pro.php).
+#   3. Force-pushes the clean tree to the PUBLIC repo.
+#
+# Required secrets (set in the private repo → Settings → Secrets):
+#   PUBLIC_REPO_DEPLOY_KEY – An SSH private key whose public counterpart is
+#                            added as a Deploy Key (with write access) on
+#                            plugpress-io/cf7-styler-for-divi.
+
+name: Sync Free to Public Repo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove premium-only files
+        run: |
+          rm -rf includes/pro
+          rm -rf assets/pro
+          rm -f cf7-mate-pro.php
+
+      - name: Set up SSH deploy key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PUBLIC_REPO_DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          GIT_SSH_COMMAND: "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no"
+
+      - name: Commit and push to public repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          git diff --cached --quiet && echo "No changes to sync" && exit 0
+
+          git commit -m "Sync free version – $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          git remote add public git@github.com:plugpress-io/cf7-styler-for-divi.git
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key" git push public main --force

@@ -12,7 +12,7 @@ module.exports = {
 		'admin-notice': './src/admin/admin-notice.js',
 		onboarding: './src/onboarding/index.jsx',
 		admin: './src/admin/index.js',
-		gutenberg: './src/gutenberg/index.js',
+		blocks: './src/gutenberg/index.js',
 		utils: './src/utils/index.js',
 	},
 	watch: !isProduction,

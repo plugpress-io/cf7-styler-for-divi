@@ -128,7 +128,9 @@ class Multi_Steps extends Pro_Feature_Base
             </fieldset>
         </div>
         <div class="insert-box">
-            <input type="text" name="cf7m-step" class="tag code" readonly="readonly" onfocus="this.select()" />
+            <input type="text" name="cf7m-step" class="tag code" readonly="readonly" onfocus="this.select()" value='[cf7m-step title:"Step 1"]
+
+[/cf7m-step]' />
             <div class="submitbox"><input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>" /></div>
         </div>
         <?php

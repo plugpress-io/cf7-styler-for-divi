@@ -1,0 +1,103 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cf7-mate/cf7-styler",
+	"version": "1.0.0",
+	"title": "CF7 Styler",
+	"category": "widgets",
+	"icon": "email-alt",
+	"description": "Display and style a Contact Form 7 form with full design controls.",
+	"keywords": [ "contact form", "cf7", "form", "styler" ],
+	"textdomain": "cf7-styler-for-divi",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"example": {
+		"attributes": {
+			"formId": 0
+		}
+	},
+	"attributes": {
+		"blockId":             { "type": "string",  "default": "" },
+		"formId":              { "type": "integer", "default": 0 },
+
+		"useFormHeader":       { "type": "boolean", "default": false },
+		"formHeaderTitle":     { "type": "string",  "default": "" },
+		"formHeaderText":      { "type": "string",  "default": "" },
+		"useIcon":             { "type": "boolean", "default": false },
+		"headerIconClass":     { "type": "string",  "default": "" },
+		"headerImageUrl":      { "type": "string",  "default": "" },
+
+		"formHeaderBg":            { "type": "string", "default": "" },
+		"formHeaderPaddingTop":    { "type": "string", "default": "" },
+		"formHeaderPaddingRight":  { "type": "string", "default": "" },
+		"formHeaderPaddingBottom": { "type": "string", "default": "" },
+		"formHeaderPaddingLeft":   { "type": "string", "default": "" },
+		"formHeaderBottomSpacing": { "type": "string", "default": "" },
+		"formHeaderImgBg":         { "type": "string", "default": "" },
+		"formHeaderIconColor":     { "type": "string", "default": "" },
+
+		"formBg":              { "type": "string",  "default": "" },
+		"formPaddingTop":      { "type": "string",  "default": "" },
+		"formPaddingRight":    { "type": "string",  "default": "" },
+		"formPaddingBottom":   { "type": "string",  "default": "" },
+		"formPaddingLeft":     { "type": "string",  "default": "" },
+		"formBorderRadius":    { "type": "string",  "default": "" },
+		"fullwidthButton":     { "type": "boolean", "default": false },
+		"buttonAlignment":     { "type": "string",  "default": "left", "enum": [ "left", "center", "right" ] },
+
+		"fieldHeight":           { "type": "string", "default": "" },
+		"fieldPaddingTop":       { "type": "string", "default": "10px" },
+		"fieldPaddingRight":     { "type": "string", "default": "15px" },
+		"fieldPaddingBottom":    { "type": "string", "default": "10px" },
+		"fieldPaddingLeft":      { "type": "string", "default": "15px" },
+		"fieldBgColor":          { "type": "string", "default": "" },
+		"fieldTextColor":        { "type": "string", "default": "" },
+		"fieldFocusBorderColor": { "type": "string", "default": "" },
+		"fieldBorderWidth":      { "type": "string", "default": "" },
+		"fieldBorderStyle":      { "type": "string", "default": "solid", "enum": [ "solid", "dashed", "dotted", "none" ] },
+		"fieldBorderColor":      { "type": "string", "default": "" },
+		"fieldBorderRadius":     { "type": "string", "default": "" },
+		"fieldSpacing":          { "type": "string", "default": "20px" },
+
+		"labelColor":   { "type": "string", "default": "" },
+		"labelSpacing": { "type": "string", "default": "7px" },
+
+		"placeholderColor": { "type": "string", "default": "" },
+
+		"crCustomStyles":  { "type": "boolean", "default": false },
+		"crSize":          { "type": "string",  "default": "20px" },
+		"crBgColor":       { "type": "string",  "default": "" },
+		"crSelectedColor": { "type": "string",  "default": "#222222" },
+		"crBorderColor":   { "type": "string",  "default": "#222222" },
+		"crBorderSize":    { "type": "string",  "default": "1px" },
+		"crLabelColor":    { "type": "string",  "default": "" },
+
+		"buttonTextColor":        { "type": "string", "default": "" },
+		"buttonBgColor":          { "type": "string", "default": "" },
+		"buttonTextColorHover":   { "type": "string", "default": "" },
+		"buttonBgColorHover":     { "type": "string", "default": "" },
+		"buttonBorderColorHover": { "type": "string", "default": "" },
+		"buttonPaddingTop":       { "type": "string", "default": "" },
+		"buttonPaddingRight":     { "type": "string", "default": "" },
+		"buttonPaddingBottom":    { "type": "string", "default": "" },
+		"buttonPaddingLeft":      { "type": "string", "default": "" },
+		"buttonBorderRadius":     { "type": "string", "default": "" },
+
+		"msgPadding":     { "type": "string", "default": "" },
+		"msgMarginTop":   { "type": "string", "default": "" },
+		"msgAlignment":   { "type": "string", "default": "left", "enum": [ "left", "center", "right" ] },
+		"msgColor":       { "type": "string", "default": "" },
+		"msgBgColor":     { "type": "string", "default": "" },
+		"msgBorderColor": { "type": "string", "default": "" },
+
+		"successMsgColor":    { "type": "string", "default": "" },
+		"successMsgBgColor":  { "type": "string", "default": "" },
+		"successBorderColor": { "type": "string", "default": "" },
+
+		"errorMsgColor":    { "type": "string", "default": "" },
+		"errorMsgBgColor":  { "type": "string", "default": "" },
+		"errorBorderColor": { "type": "string", "default": "" }
+	}
+}
