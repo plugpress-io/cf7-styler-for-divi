@@ -1,7 +1,7 @@
 === Styler Mate for Contact Form 7 - CF7 Mate ===
 
 Contributors: badhonrocks, plugpressco
-Tags: contact form 7, cf7 styler, form entries, divi contact form, elementor form
+Tags: contact form 7, cf7 styler, bricks, divi, elementor
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -9,7 +9,7 @@ Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Style and extend Contact Form 7 with visual builders. Save entries, add star ratings, multi-step forms, and more.
+Style and enhance Contact Form 7 for Divi, Bricks, Elementor, Gutenberg, and more.
 
 == Description ==
 
