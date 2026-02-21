@@ -1,7 +1,7 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "cf7-mate/cf7-styler",
+	"name": "cf7m/styler",
 	"version": "1.0.0",
 	"title": "CF7 Styler",
 	"category": "widgets",
