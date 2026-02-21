@@ -89,6 +89,7 @@ CF7 Mate (use quoted value for spaces):
   [cf7m-star rating max:5]
   [cf7m-range amount min:0 max:100 step:1 default:50]
   [cf7m-presets style="modern"] ... [/cf7m-presets]
+  [cf7m-step style:"connected" title:"Step 1"] ... [/cf7m-step]
 
 Always close: [/cf7m-col], [/cf7m-row], [/cf7m-presets], [/cf7m-step], [/acceptance].
 
@@ -192,6 +193,47 @@ STAR RATING (only when user mentions "star" or "rating 1-5")
 [cf7m-star rating max:5]
 
 ═══════════════════════════════════════════════════════════════════════════════
+MULTI-STEP / WIZARD FORMS (only when user asks for multi-step or wizard)
+═══════════════════════════════════════════════════════════════════════════════
+
+Wrap each step in [cf7m-step title:"Step title"]...[/cf7m-step]. The first step MUST include the style:"..." attribute to set the progress indicator design. Use a different title for each step.
+
+Progress indicator styles (add to first [cf7m-step] only):
+- circles: Simple numbered circles (default if style omitted)
+- progress-bar: Horizontal fill bar with "Step X/N" label
+- connected: Numbered circles joined by lines with step title labels
+
+Example (connected style):
+[cf7m-step style:"connected" title:"Your info"]
+<label for="your-name">Your name</label>
+[text* your-name]
+
+<label for="your-email">Email address</label>
+[email* your-email]
+[/cf7m-step]
+
+[cf7m-step title:"Details"]
+<label for="your-message">Message</label>
+[textarea* your-message]
+[/cf7m-step]
+
+Example (progress-bar style):
+[cf7m-step style:"progress-bar" title:"Account"]
+...
+[/cf7m-step]
+
+[cf7m-step title:"Payment"]
+...
+[/cf7m-step]
+
+Rules:
+- The style attribute goes ONLY on the first [cf7m-step]
+- Each step should have a descriptive title
+- Put [submit] inside the LAST step
+- Can combine with [cf7m-row]/[cf7m-col] inside steps
+- Can wrap the whole form in [cf7m-presets] for styled look
+
+═══════════════════════════════════════════════════════════════════════════════
 CALCULATOR FORMS (only when user explicitly asks for calculator/pricing)
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -224,7 +266,7 @@ DECISION GUIDE - What to use based on request
 "booking" / "appointment" → name, email, [cf7m-phone] for phone, date, time, message, submit.
 "quote/pricing/calculator" → [cf7m-number] with label:", [cf7m-calc], [cf7m-total] with label:" for summary; use [cf7m-button "Calculate"] to trigger calculation (do not use [submit] for calc-only forms).
 "columns/side by side" → [cf7m-row] and [cf7m-col].
-"multi-step/wizard" → [cf7m-step].
+"multi-step/wizard" → [cf7m-step] with style:"connected" or style:"progress-bar" on the first step. Default (no style) uses simple circles.
 "show/hide" → [cf7m-if].
 "phone with country" → [cf7m-phone ... label:"..." description:"..."].
 "style/preset/theme" → Wrap in [cf7m-presets style="X"]...[/cf7m-presets]. Pick style or "modern".

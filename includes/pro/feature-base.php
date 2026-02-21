@@ -39,6 +39,9 @@ abstract class Pro_Feature_Base
         if (strpos($post->post_content, 'cf7-mate/cf7-styler') !== false) {
             return true;
         }
+        if (function_exists('has_block') && has_block('cf7m/styler', $post)) {
+            return true;
+        }
         return false;
     }
 }

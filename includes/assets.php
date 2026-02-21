@@ -32,7 +32,8 @@ class Assets
                 return;
             }
             $has_cf7 = has_shortcode($post->post_content, 'contact-form-7')
-                || (strpos($post->post_content, 'dvppl_cf7_styler') !== false);
+                || (strpos($post->post_content, 'dvppl_cf7_styler') !== false)
+                || (function_exists('has_block') && has_block('cf7m/styler', $post));
             if (!$has_cf7) {
                 return;
             }

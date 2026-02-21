@@ -199,6 +199,9 @@ class Block
 			return '<p>' . esc_html__('The selected Contact Form 7 form no longer exists.', 'cf7-styler-for-divi') . '</p>';
 		}
 
+		// Enqueue frontend assets (critical for FSE themes / template parts).
+		$this->enqueue_frontend_assets();
+
 		if (! $block_id) {
 			$block_id = 'cf7m-gb-' . substr(md5('cf7m' . $form_id . wp_json_encode($attrs)), 0, 8);
 		}
@@ -231,7 +234,15 @@ class Block
 		}
 
 		// Output.
-		$out = $css ? '<style>' . $css . '</style>' : '';
+		$out = '';
+
+		// In REST context (editor preview), inline form CSS so it applies
+		// inside the block editor iframe where enqueued styles may not reach.
+		if (defined('REST_REQUEST') && REST_REQUEST) {
+			$out .= $this->get_inline_editor_css();
+		}
+
+		$out .= $css ? '<style>' . $css . '</style>' : '';
 
 		$out .= '<div id="' . esc_attr($block_id) . '" class="' . esc_attr($classes) . '">';
 		$out .= $header_html;
@@ -240,6 +251,96 @@ class Block
 		$out .= '</div></div>';
 
 		return $out;
+	}
+
+	/* ═══════════════════════════════════════════════════════════════════════
+	   Frontend assets
+	   ═══════════════════════════════════════════════════════════════════════ */
+
+	/**
+	 * Enqueue frontend CSS/JS needed by the Gutenberg block.
+	 *
+	 * Called from render() so assets load even when the block lives in an
+	 * FSE template/template-part where wp_enqueue_scripts cannot detect it.
+	 * WordPress deduplicates by handle, so re-enqueuing is a no-op.
+	 */
+	private function enqueue_frontend_assets()
+	{
+		$url  = CF7M_PLUGIN_URL;
+		$path = CF7M_PLUGIN_PATH;
+		$ver  = CF7M_VERSION;
+
+		// Base form wrapper styles.
+		wp_enqueue_style('cf7-styler-for-divi', $url . 'dist/css/bundle-4.css', array(), $ver);
+
+		// Lite forms CSS (star-rating, range-slider, separator).
+		if (file_exists($path . 'assets/lite/css/cf7m-lite-forms.css')) {
+			wp_enqueue_style('cf7m-lite-forms', $url . 'assets/lite/css/cf7m-lite-forms.css', array(), $ver);
+		}
+
+		// Lite JS.
+		if (file_exists($path . 'assets/lite/js/cf7m-star-rating.js')) {
+			wp_enqueue_script('cf7m-star-rating', $url . 'assets/lite/js/cf7m-star-rating.js', array(), $ver, true);
+		}
+		if (file_exists($path . 'assets/lite/js/cf7m-range-slider.js')) {
+			wp_enqueue_script('cf7m-range-slider', $url . 'assets/lite/js/cf7m-range-slider.js', array(), $ver, true);
+		}
+
+		// Pro forms CSS (multi-column, multi-step, calculator).
+		if (file_exists($path . 'assets/pro/css/cf7m-pro-forms.css')) {
+			wp_enqueue_style('cf7m-pro-forms', $url . 'assets/pro/css/cf7m-pro-forms.css', array(), $ver);
+		}
+
+		// Pro presets CSS.
+		if (file_exists($path . 'assets/pro/css/cf7m-presets.css')) {
+			wp_enqueue_style('cf7m-presets', $url . 'assets/pro/css/cf7m-presets.css', array(), $ver);
+		}
+
+		// Pro phone-number CSS.
+		if (file_exists($path . 'assets/pro/css/cf7m-phone-number.css')) {
+			wp_enqueue_style('cf7m-phone-number', $url . 'assets/pro/css/cf7m-phone-number.css', array(), $ver);
+		}
+
+		// Pro JS.
+		if (file_exists($path . 'assets/pro/js/cf7m-multi-steps.js')) {
+			wp_enqueue_script('cf7m-multi-steps', $url . 'assets/pro/js/cf7m-multi-steps.js', array(), $ver, true);
+		}
+		if (file_exists($path . 'assets/pro/js/cf7m-calculator.js')) {
+			wp_enqueue_script('cf7m-calculator', $url . 'assets/pro/js/cf7m-calculator.js', array(), $ver, true);
+		}
+		if (file_exists($path . 'assets/pro/js/cf7m-conditional.js')) {
+			wp_enqueue_script('cf7m-conditional', $url . 'assets/pro/js/cf7m-conditional.js', array(), $ver, true);
+		}
+		if (file_exists($path . 'assets/pro/js/cf7m-phone-number.js')) {
+			wp_enqueue_script('cf7m-phone-number', $url . 'assets/pro/js/cf7m-phone-number.js', array(), $ver, true);
+		}
+	}
+
+	/**
+	 * Build inline CSS for the editor preview (REST context).
+	 *
+	 * The block editor iframe may not receive styles enqueued via
+	 * enqueue_block_editor_assets, so we inline the form CSS directly
+	 * in the rendered HTML returned by the REST endpoint.
+	 *
+	 * @return string <style> tag with combined CSS, or empty string.
+	 */
+	private function get_inline_editor_css()
+	{
+		$files = array(
+			CF7M_PLUGIN_PATH . 'dist/css/bundle-4.css',
+			CF7M_PLUGIN_PATH . 'assets/lite/css/cf7m-lite-forms.css',
+			CF7M_PLUGIN_PATH . 'assets/pro/css/cf7m-pro-forms.css',
+		);
+
+		$css = '';
+		foreach ($files as $file) {
+			if (file_exists($file)) {
+				$css .= file_get_contents($file) . "\n";
+			}
+		}
+
+		return $css ? '<style class="cf7m-editor-inline">' . $css . '</style>' : '';
 	}
 
 	/* ═══════════════════════════════════════════════════════════════════════
@@ -298,6 +399,27 @@ class Block
 			. $s . ' .dipe-cf7-styler .wpcf7 select,'
 			. $s . ' .dipe-cf7-styler .wpcf7 textarea';
 		$button_sel = $s . ' .dipe-cf7-styler .wpcf7-form input[type=submit]';
+
+		// ── Baseline defaults ────────────────────────────────────────────
+		// Provides a clean look out-of-the-box in block/FSE themes where
+		// the theme doesn't style CF7 inputs. Attribute-based rules below
+		// override these when the user customises settings.
+		$rules[] = $field_sel . '{box-sizing:border-box;transition:border-color .15s ease,box-shadow .15s ease}';
+		$rules[] = $s . ' .dipe-cf7-styler .wpcf7 input:not([type=submit]):focus,'
+			. $s . ' .dipe-cf7-styler .wpcf7 select:focus,'
+			. $s . ' .dipe-cf7-styler .wpcf7 textarea:focus'
+			. '{outline:0;box-shadow:0 0 0 2px rgba(46,163,242,.15)}';
+		$rules[] = $s . ' .dipe-cf7-styler .wpcf7 label{display:block;font-weight:500}';
+		$rules[] = $s . ' .dipe-cf7-styler .wpcf7 .wpcf7-form-control-wrap{display:block;width:100%}';
+
+		// Submit button should not stretch in flex columns.
+		$rules[] = $s . ' .dipe-cf7-styler .wpcf7-form input[type=submit]{width:auto;align-self:flex-start}';
+
+		// Multi-step nav buttons inherit submit button colours.
+		$nav_bg    = $this->has_val($a, 'buttonBgColor') ? $this->sanitize_css_color($a['buttonBgColor']) : '#2ea3f2';
+		$nav_color = $this->has_val($a, 'buttonTextColor') ? $this->sanitize_css_color($a['buttonTextColor']) : '#fff';
+		$nav_rad   = $this->has_val($a, 'buttonBorderRadius') ? $this->sanitize_css_length($a['buttonBorderRadius']) : '3px';
+		$rules[]   = $s . ' .cf7m-next-step,' . $s . ' .cf7m-prev-step{background:' . $nav_bg . ';color:' . $nav_color . ';border-radius:' . $nav_rad . '}';
 
 		// Form header.
 		$header = array();

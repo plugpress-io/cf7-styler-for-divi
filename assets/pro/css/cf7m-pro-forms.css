@@ -131,6 +131,13 @@
   margin-top: 0;
 }
 
+/* Submit button should not stretch inside flex columns */
+.cf7m-pro-col input[type="submit"],
+.cf7m-pro-col button.wpcf7-submit {
+  width: auto;
+  align-self: flex-start;
+}
+
 /* Responsive: stack columns on mobile with clear separation */
 @media (max-width: 600px) {
   .cf7m-pro-row {
@@ -204,13 +211,125 @@
   cursor: pointer;
 }
 
-.cf7m-prev-step {
-  background: #e5e7eb;
+.cf7m-prev-step,
+.cf7m-next-step {
+  background: #2ea3f2;
+  color: #fff;
 }
 
-.cf7m-next-step {
-  background: #3044D7;
+/* ── Style: Progress Bar ─────────────────────────────────────────────── */
+.cf7m-progress--bar {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.cf7m-progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cf7m-progress-bar-fill {
+  height: 100%;
+  background: #111827;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.cf7m-progress-bar-label {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* ── Style: Connected Circles with Labels ────────────────────────────── */
+.cf7m-progress--connected {
+  align-items: center;
+  gap: 0;
+}
+
+.cf7m-progress--connected .cf7m-progress-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cf7m-progress--connected .cf7m-progress-step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  background: #fff;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cf7m-progress--connected .cf7m-progress-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.cf7m-progress--connected .cf7m-progress-connector {
+  flex: 1;
+  min-width: 24px;
+  height: 2px;
+  background: #e5e7eb;
+  margin: 0 8px;
+  transition: background 0.2s;
+}
+
+/* Active item */
+.cf7m-progress--connected .cf7m-progress-item.active .cf7m-progress-step {
+  background: #111827;
+  border-color: #111827;
   color: #fff;
+}
+
+.cf7m-progress--connected .cf7m-progress-item.active .cf7m-progress-label {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Completed item */
+.cf7m-progress--connected .cf7m-progress-item.completed .cf7m-progress-step {
+  background: #111827;
+  border-color: #111827;
+  color: #fff;
+}
+
+.cf7m-progress--connected .cf7m-progress-item.completed .cf7m-progress-label {
+  color: #374151;
+}
+
+/* Completed connector (between completed steps) */
+.cf7m-progress--connected .cf7m-progress-connector.completed {
+  background: #111827;
+}
+
+/* Responsive: connected labels hide on small screens */
+@media (max-width: 600px) {
+  .cf7m-progress--connected .cf7m-progress-label {
+    display: none;
+  }
+
+  .cf7m-progress--connected .cf7m-progress-connector {
+    min-width: 16px;
+    margin: 0 4px;
+  }
 }
 
 /* Calculator / Price Estimator [cf7m-number] [cf7m-calc] [cf7m-total] */

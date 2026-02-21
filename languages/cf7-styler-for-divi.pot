@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-21 18:47+0000\n"
+"POT-Creation-Date: 2026-02-21 21:25+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -1195,28 +1195,53 @@ msgstr ""
 msgid "All elements inside columns are full width and stack vertically."
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:55
+#: includes/pro/features/multi-steps/module.php:63, includes/pro/features/multi-steps/module.php:171
 msgid "Step %d"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:82
+#: includes/pro/features/multi-steps/module.php:88
 msgid "Previous"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:83
+#: includes/pro/features/multi-steps/module.php:89
 msgid "Next"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:106
+#. translators: %1$d current step, %2$d total steps
+#: includes/pro/features/multi-steps/module.php:149
+msgid "Step %1$d/%2$d"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:192
 msgid "step"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:124
+#: includes/pro/features/multi-steps/module.php:210
 msgid "Multi-Step"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:126
+#: includes/pro/features/multi-steps/module.php:212
 msgid "Step Title"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:213
+msgid "Progress Style"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:215
+msgid "Circles (default)"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:216
+msgid "Progress Bar"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:217
+msgid "Connected with Labels"
+msgstr ""
+
+#: includes/pro/features/multi-steps/module.php:219
+msgid "Add this to the first [cf7m-step] tag only."
 msgstr ""
 
 #: includes/pro/features/phone-number/module.php:146
