@@ -1,4 +1,4 @@
-=== CF7 Mate - Styler Mate for Contact Form 7 ===
+=== Styler Mate for Contact Form 7 ===
 
 Contributors: badhonrocks, plugpressco
 Tags: contact form 7, cf7 styler, bricks, divi, elementor
