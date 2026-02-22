@@ -6,34 +6,46 @@
 /.git
 /.github
 /.claude
-/src
+/.vscode
+/bin
+/build
 /docs
 /node_modules
+/sass
+/src
 /tests
+/webpack
 
 # Build/Config files
-.distignore
 .DS_Store
+.babelrc.json
+.cursorrules
+.distignore
 .editorconfig
+.env
 .eslintignore
 .eslintrc.json
 .gitattributes
 .gitignore
-.babelrc.json
 .prettierignore
 .prettierrc.json
-.cursorrules
-package-lock.json
-package.json
+composer.json
 composer.lock
-phpcs.xml.dist
 Gruntfile.js
+package.json
+package-lock.json
+phpcs.xml.dist
+phpunit.xml
 postcss.config.js
+README.md
+tailwind.config.js
 webpack.config.js
 webpack.divi5.config.js
 wp-textdomain.js
-tailwind.config.js
 *.LICENSE.txt
+*.map
+*.sh
+*.zip
 
 # Pro bootstrap (free build uses cf7-styler.php only)
 cf7-mate-pro.php
@@ -43,5 +55,3 @@ cf7-mate-pro.php
 /includes/pro
 /assets/pro
 /dist/js/admin-pro.js
-
-.env

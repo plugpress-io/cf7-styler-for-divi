@@ -137,9 +137,7 @@ module.exports = {
 	},
 
 	optimization: {
-		minimizer: [
-			new TerserPlugin({ extractComments: false }),
-		],
+		minimizer: [new TerserPlugin({ extractComments: false })],
 	},
 
 	output: {
@@ -166,6 +164,6 @@ if (isProduction) {
 		domain: 'cf7-styler-for-divi',
 		destFile: 'languages/cf7-styler-for-divi.pot',
 		relativeTo: './',
-		team: 'PlugPress <support@cf7mate.com>',
+		team: 'PlugPress <support@plugpress.io>',
 	});
 }
