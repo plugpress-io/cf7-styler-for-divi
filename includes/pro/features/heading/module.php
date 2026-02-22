@@ -212,7 +212,7 @@ class Heading extends Pro_Feature_Base
                         <td>
                             <select id="cf7m-heading-tag" name="tag" class="oneline">
                                 <?php for ($i = 1; $i <= 6; $i++) : ?>
-                                    <option value="h<?php echo $i; ?>" <?php selected($i, 3); ?>>H<?php echo $i; ?></option>
+                                    <option value="h<?php echo esc_attr($i); ?>" <?php selected($i, 3); ?>>H<?php echo esc_html($i); ?></option>
                                 <?php endfor; ?>
                             </select>
                         </td>

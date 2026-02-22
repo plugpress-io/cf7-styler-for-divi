@@ -51,7 +51,7 @@ class Onboarding
         if (!current_user_can('manage_options')) {
             return;
         }
-        $param = isset($_GET['cf7m_guided_setup']) ? sanitize_text_field(wp_unslash($_GET['cf7m_guided_setup'])) : '';
+        $param = isset($_GET['cf7m_guided_setup']) ? sanitize_text_field(wp_unslash($_GET['cf7m_guided_setup'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if ($param !== '1') {
             return;
         }
@@ -167,7 +167,7 @@ class Onboarding
                 </p>
             </div>
             <div style="flex-shrink:0;display:flex;gap:8px;">
-                <a href="<?php echo $setup_url; ?>" class="button button-primary" style="background:#3044D7;border-color:#3044D7;">
+                <a href="<?php echo esc_url($setup_url); ?>" class="button button-primary" style="background:#3044D7;border-color:#3044D7;">
                     <?php esc_html_e('Run Setup Wizard', 'cf7-styler-for-divi'); ?>
                 </a>
                 <button type="button" class="button cf7m-skip-setup">
@@ -390,8 +390,8 @@ class Onboarding
             12 => 'DEC',
         ];
 
-        $current_month = (int) date('n');
-        $current_year = date('Y');
+        $current_month = (int) gmdate('n');
+        $current_year = gmdate('Y');
         $month_code = isset($month_names[$current_month]) ? $month_names[$current_month] : 'JAN';
 
         return $month_code . $current_year;

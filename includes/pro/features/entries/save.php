@@ -77,10 +77,10 @@ class Entries_Save
         $keys = ['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR'];
         foreach ($keys as $key) {
             if (!empty($_SERVER[$key])) {
-                $ip = is_array($_SERVER[$key]) ? reset($_SERVER[$key]) : $_SERVER[$key];
-                $ip = trim(explode(',', $ip)[0]);
+                $raw = sanitize_text_field(wp_unslash($_SERVER[$key]));
+                $ip  = trim(explode(',', $raw)[0]);
                 if (filter_var($ip, FILTER_VALIDATE_IP)) {
-                    return sanitize_text_field(wp_unslash($ip));
+                    return $ip;
                 }
             }
         }

@@ -427,7 +427,8 @@ class DCS_FFStyler extends ET_Builder_Module
         }
 
         ob_start();
-        echo self::generate_form_output($form_id);
+        // Shortcode output contains trusted HTML from Fluent Forms.
+        echo wp_kses_post(self::generate_form_output($form_id));
         return ob_get_clean();
     }
 

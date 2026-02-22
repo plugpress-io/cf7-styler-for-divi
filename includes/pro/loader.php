@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Pro features loader. Excluded from free via @fs_premium_only.
  *
@@ -83,9 +84,9 @@ class Premium_Loader
     private function __construct()
     {
         // Allow dev mode bypass for testing (define CF7M_DEV_MODE in wp-config.php).
-        $dev_mode = defined( 'CF7M_DEV_MODE' ) && \CF7M_DEV_MODE;
+        $dev_mode = defined('CF7M_DEV_MODE') && \CF7M_DEV_MODE;
 
-        if ( ! $dev_mode && ( ! function_exists( 'cf7m_can_use_premium' ) || ! cf7m_can_use_premium() ) ) {
+        if (! $dev_mode && (! function_exists('cf7m_can_use_premium') || ! cf7m_can_use_premium())) {
             return;
         }
 
@@ -93,28 +94,42 @@ class Premium_Loader
         $this->load_features();
 
         // Enqueue tag generator scripts for CF7 admin.
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+
+        // Enqueue pro admin app bundle on CF7 Mate admin pages.
+        add_action('cf7m_admin_enqueue_scripts', [$this, 'enqueue_admin_app_scripts']);
     }
 
-    /**
-     * Enqueue admin scripts for CF7 tag generators.
-     *
-     * @param string $hook Current admin page hook.
-     */
-    public function enqueue_admin_scripts( $hook )
+    public function enqueue_admin_scripts($hook)
     {
         // Only load on CF7 edit pages.
-        if ( 'toplevel_page_wpcf7' !== $hook && 'contact_page_wpcf7-new' !== $hook ) {
+        if ('toplevel_page_wpcf7' !== $hook && 'contact_page_wpcf7-new' !== $hook) {
             return;
         }
 
-        $version = defined( 'CF7M_VERSION' ) ? CF7M_VERSION : '3.0.0';
+        $version = defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0';
 
         wp_enqueue_script(
             'cf7m-tag-generators',
             CF7M_PLUGIN_URL . 'assets/pro/js/cf7m-tag-generators.js',
             [],
             $version,
+            true
+        );
+    }
+
+    public function enqueue_admin_app_scripts()
+    {
+        $path = CF7M_PLUGIN_PATH . 'dist/js/admin-pro.js';
+        if (! file_exists($path)) {
+            return;
+        }
+
+        wp_enqueue_script(
+            'cf7m-admin-pro',
+            CF7M_PLUGIN_URL . 'dist/js/admin-pro.js',
+            ['cf7m-admin'],
+            CF7M_VERSION,
             true
         );
     }
@@ -165,9 +180,9 @@ class Premium_Loader
     public static function is_feature_enabled($feature)
     {
         // Allow dev mode bypass for testing.
-        $dev_mode = defined( 'CF7M_DEV_MODE' ) && \CF7M_DEV_MODE;
+        $dev_mode = defined('CF7M_DEV_MODE') && \CF7M_DEV_MODE;
 
-        if ( ! $dev_mode && ( ! function_exists( 'cf7m_can_use_premium' ) || ! cf7m_can_use_premium() ) ) {
+        if (! $dev_mode && (! function_exists('cf7m_can_use_premium') || ! cf7m_can_use_premium())) {
             return false;
         }
 

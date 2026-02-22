@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-22 10:28+0000\n"
+"POT-Creation-Date: 2026-02-22 12:45+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -19,11 +19,11 @@ msgstr ""
 msgid "CF7 Styler (Lite) has been deactivated because CF7 Mate Pro is active."
 msgstr ""
 
-#: freemius.php:42
+#: freemius.php:46
 msgid "License"
 msgstr ""
 
-#: freemius.php:43
+#: freemius.php:47
 msgid "Help"
 msgstr ""
 
@@ -64,61 +64,60 @@ msgstr ""
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:95, includes/admin/admin.php:96, includes/notices/review.php:129
+#: includes/admin/admin.php:104, includes/admin/admin.php:105, includes/notices/review.php:133
 msgid "CF7 Mate"
 msgstr ""
 
-#: includes/admin/admin.php:106, includes/admin/admin.php:107, includes/admin/admin.php:182, includes/admin/admin.php:183
+#: includes/admin/admin.php:115, includes/admin/admin.php:116, includes/admin/admin.php:181, includes/admin/admin.php:182
 msgid "Dashboard"
 msgstr ""
 
-#: includes/admin/admin.php:115, includes/admin/admin.php:116
+#: includes/admin/admin.php:124, includes/admin/admin.php:125
 msgid "Modules"
 msgstr ""
 
-#: includes/admin/admin.php:125, includes/admin/admin.php:126
+#: includes/admin/admin.php:136, includes/admin/admin.php:137
 msgid "Entries"
 msgstr ""
 
-#: includes/admin/admin.php:134, includes/admin/admin.php:135
-msgid "AI Settings"
-msgstr ""
-
-#: includes/admin/admin.php:143, includes/admin/admin.php:144
+#: includes/admin/admin.php:145, includes/admin/admin.php:146
 msgid "Webhook"
 msgstr ""
 
 #: includes/admin/admin.php:154, includes/admin/admin.php:155
-msgid "Free vs Pro"
+msgid "Settings"
 msgstr ""
 
-#: includes/notices/promo.php:81
-msgid "Limited-Time Lifetime Deal – CF7 Mate Pro"
+#: includes/admin/onboarding.php:163
+msgid "You are nearly ready to start using CF7 Mate"
 msgstr ""
 
-#. translators: %s: promo code
-#: includes/notices/promo.php:86
-msgid "Use code %s at checkout and save 50%% on a lifetime license. One-time payment, updates forever."
+#: includes/admin/onboarding.php:166
+msgid "Go through the setup to configure your plugin."
 msgstr ""
 
-#: includes/notices/promo.php:92
-msgid "Claim Discount →"
+#: includes/admin/onboarding.php:171
+msgid "Run Setup Wizard"
 msgstr ""
 
-#: includes/notices/review.php:122
+#: includes/admin/onboarding.php:174
+msgid "Skip Setup"
+msgstr ""
+
+#: includes/notices/review.php:126
 msgid "🎉 You're creating amazing forms!"
 msgstr ""
 
 #. translators: %s: plugin name
-#: includes/notices/review.php:128
+#: includes/notices/review.php:132
 msgid "It looks like you've been using %s for a while now. That's awesome! If you're enjoying it, would you mind sharing the love with a quick 5-star review? It takes just 30 seconds and helps us grow! 💜"
 msgstr ""
 
-#: includes/notices/review.php:138
+#: includes/notices/review.php:142
 msgid "Sure! I'll leave a review"
 msgstr ""
 
-#: includes/notices/review.php:141
+#: includes/notices/review.php:145
 msgid "Maybe later"
 msgstr ""
 
@@ -398,7 +397,7 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: includes/lite/builders/bricks/bricks-element.php:925, includes/lite/builders/elementor/elementor-widget.php:820, includes/lite/builders/gutenberg/class-block.php:195, includes/lite/builders/divi5/CF7Styler/CF7Styler.php:250
+#: includes/lite/builders/bricks/bricks-element.php:925, includes/lite/builders/elementor/elementor-widget.php:820, includes/lite/builders/gutenberg/class-block.php:195, includes/lite/builders/divi5/CF7Styler/CF7Styler.php:247
 msgid "Please select a Contact Form 7 form."
 msgstr ""
 
@@ -566,7 +565,7 @@ msgstr ""
 msgid "Size (px)"
 msgstr ""
 
-#: includes/lite/features/icon/module.php:183, includes/lite/features/image/module.php:154, includes/lite/features/range-slider/module.php:232, includes/lite/features/separator/module.php:162, includes/lite/features/star-rating/module.php:209, includes/pro/features/calculator/module.php:428, includes/pro/features/calculator/module.php:465, includes/pro/features/calculator/module.php:523, includes/pro/features/calculator/module.php:554, includes/pro/features/conditional/module.php:271, includes/pro/features/heading/module.php:230, includes/pro/features/multi-column/module.php:224, includes/pro/features/multi-column/module.php:270, includes/pro/features/multi-steps/module.php:228, includes/pro/features/phone-number/module.php:250, includes/pro/features/presets/module.php:162
+#: includes/lite/features/icon/module.php:183, includes/lite/features/image/module.php:154, includes/lite/features/range-slider/module.php:232, includes/lite/features/separator/module.php:162, includes/lite/features/star-rating/module.php:178, includes/pro/features/calculator/module.php:428, includes/pro/features/calculator/module.php:465, includes/pro/features/calculator/module.php:523, includes/pro/features/calculator/module.php:554, includes/pro/features/conditional/module.php:271, includes/pro/features/heading/module.php:230, includes/pro/features/multi-column/module.php:224, includes/pro/features/multi-column/module.php:270, includes/pro/features/multi-steps/module.php:230, includes/pro/features/phone-number/module.php:250, includes/pro/features/presets/module.php:162
 msgid "Insert Tag"
 msgstr ""
 
@@ -606,15 +605,15 @@ msgstr ""
 msgid "Range Slider"
 msgstr ""
 
-#: includes/lite/features/range-slider/module.php:195, includes/lite/features/star-rating/module.php:184, includes/pro/features/calculator/module.php:387, includes/pro/features/phone-number/module.php:221
+#: includes/lite/features/range-slider/module.php:195, includes/lite/features/star-rating/module.php:152, includes/pro/features/calculator/module.php:387, includes/pro/features/phone-number/module.php:221
 msgid "Field type"
 msgstr ""
 
-#: includes/lite/features/range-slider/module.php:196, includes/lite/features/star-rating/module.php:185, includes/pro/features/calculator/module.php:388, includes/pro/features/phone-number/module.php:222
+#: includes/lite/features/range-slider/module.php:196, includes/lite/features/star-rating/module.php:153, includes/pro/features/calculator/module.php:388, includes/pro/features/phone-number/module.php:222
 msgid "Required"
 msgstr ""
 
-#: includes/lite/features/range-slider/module.php:199, includes/lite/features/star-rating/module.php:188, includes/pro/features/calculator/module.php:391, includes/pro/features/phone-number/module.php:225
+#: includes/lite/features/range-slider/module.php:199, includes/lite/features/star-rating/module.php:156, includes/pro/features/calculator/module.php:391, includes/pro/features/phone-number/module.php:225
 msgid "Name"
 msgstr ""
 
@@ -630,7 +629,7 @@ msgstr ""
 msgid "Step"
 msgstr ""
 
-#: includes/lite/features/range-slider/module.php:215, includes/lite/features/star-rating/module.php:196, includes/pro/features/calculator/module.php:399
+#: includes/lite/features/range-slider/module.php:215, includes/lite/features/star-rating/module.php:164, includes/pro/features/calculator/module.php:399
 msgid "Default Value"
 msgstr ""
 
@@ -662,27 +661,28 @@ msgstr ""
 msgid "Margin (px)"
 msgstr ""
 
-#: includes/lite/features/star-rating/module.php:116
+#: includes/lite/features/star-rating/module.php:97
 msgid "Star rating"
 msgstr ""
 
-#: includes/lite/features/star-rating/module.php:130
+#. translators: %d: star rating number (e.g. 1, 2, 3)
+#: includes/lite/features/star-rating/module.php:112
 msgid "Rate %d star"
 msgstr ""
 
-#: includes/lite/features/star-rating/module.php:163
+#: includes/lite/features/star-rating/module.php:136
 msgid "star rating"
 msgstr ""
 
-#: includes/lite/features/star-rating/module.php:181
+#: includes/lite/features/star-rating/module.php:148
 msgid "Star Rating"
 msgstr ""
 
-#: includes/lite/features/star-rating/module.php:192
+#: includes/lite/features/star-rating/module.php:160
 msgid "Max Stars"
 msgstr ""
 
-#: includes/lite/features/star-rating/module.php:200
+#: includes/lite/features/star-rating/module.php:168
 msgid "Star Color"
 msgstr ""
 
@@ -1251,52 +1251,53 @@ msgstr ""
 msgid "All elements inside columns are full width and stack vertically."
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:63, includes/pro/features/multi-steps/module.php:171
+#. translators: %d: step number
+#: includes/pro/features/multi-steps/module.php:64, includes/pro/features/multi-steps/module.php:173
 msgid "Step %d"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:88
+#: includes/pro/features/multi-steps/module.php:89
 msgid "Previous"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:89
+#: includes/pro/features/multi-steps/module.php:90
 msgid "Next"
 msgstr ""
 
 #. translators: %1$d current step, %2$d total steps
-#: includes/pro/features/multi-steps/module.php:149
+#: includes/pro/features/multi-steps/module.php:150
 msgid "Step %1$d/%2$d"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:192
+#: includes/pro/features/multi-steps/module.php:194
 msgid "step"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:210
+#: includes/pro/features/multi-steps/module.php:212
 msgid "Multi-Step"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:212
+#: includes/pro/features/multi-steps/module.php:214
 msgid "Step Title"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:213
+#: includes/pro/features/multi-steps/module.php:215
 msgid "Progress Style"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:215
+#: includes/pro/features/multi-steps/module.php:217
 msgid "Circles (default)"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:216
+#: includes/pro/features/multi-steps/module.php:218
 msgid "Progress Bar"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:217
+#: includes/pro/features/multi-steps/module.php:219
 msgid "Connected with Labels"
 msgstr ""
 
-#: includes/pro/features/multi-steps/module.php:219
+#: includes/pro/features/multi-steps/module.php:221
 msgid "Add this to the first [cf7m-step] tag only."
 msgstr ""
 
@@ -1612,11 +1613,11 @@ msgstr ""
 msgid "Choose the Fluent Form valid background color."
 msgstr ""
 
-#: includes/lite/builders/divi4/FluentForms/FluentForms.php:426, includes/lite/builders/divi4/FluentForms/FluentForms.php:442
+#: includes/lite/builders/divi4/FluentForms/FluentForms.php:426, includes/lite/builders/divi4/FluentForms/FluentForms.php:443
 msgid "Please install Fluent Forms plugin."
 msgstr ""
 
-#: includes/lite/builders/divi4/FluentForms/FluentForms.php:462
+#: includes/lite/builders/divi4/FluentForms/FluentForms.php:463
 msgid "Please select a Fluent Form."
 msgstr ""
 

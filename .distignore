@@ -42,5 +42,6 @@ cf7-mate-pro.php
 # Freemius auto-strips these via @fs_premium_only directive
 /includes/pro
 /assets/pro
+/dist/js/admin-pro.js
 
 .env

@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$base = __DIR__ . '/Base/Base.php';
-if (file_exists($base)) {
-    require_once $base;
+$cf7m_base = __DIR__ . '/Base/Base.php';
+if (file_exists($cf7m_base)) {
+    require_once $cf7m_base;
 }

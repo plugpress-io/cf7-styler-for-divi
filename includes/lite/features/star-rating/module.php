@@ -1,11 +1,4 @@
 <?php
-/**
- * Star Rating Module.
- * Processes [cf7m-star] shortcodes in form markup (same pattern as multi-steps).
- *
- * @package CF7_Mate\Lite\Features\Star_Rating
- * @since 3.0.0
- */
 
 namespace CF7_Mate\Lite\Features\Star_Rating;
 
@@ -34,12 +27,6 @@ class Star_Rating extends Feature_Base
         add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
     }
 
-    /**
-     * Process [cf7m-star name max:5 default:0] shortcodes in form markup.
-     *
-     * @param string $form
-     * @return string
-     */
     public function process_shortcodes($form)
     {
         if (strpos($form, '[cf7m-star') === false) {
@@ -56,12 +43,6 @@ class Star_Rating extends Feature_Base
         return $form;
     }
 
-    /**
-     * Render a single star rating field.
-     *
-     * @param array $matches Regex matches
-     * @return string HTML output
-     */
     public function render_star_rating($matches)
     {
         $raw_atts = trim($matches[1]);
@@ -127,6 +108,7 @@ class Star_Rating extends Feature_Base
                 '<button type="button" class="cf7m-star%s" data-value="%d" aria-label="%s">%s</button>',
                 $active,
                 $i,
+                /* translators: %d: star rating number (e.g. 1, 2, 3) */
                 sprintf(esc_attr__('Rate %d star', 'cf7-styler-for-divi'), $i),
                 $star_svg
             );
@@ -137,12 +119,6 @@ class Star_Rating extends Feature_Base
         return $html;
     }
 
-    /**
-     * Sanitize color value.
-     *
-     * @param string $value
-     * @return string
-     */
     private function sanitize_color($value)
     {
         $value = trim((string) $value);
@@ -152,9 +128,6 @@ class Star_Rating extends Feature_Base
         return '';
     }
 
-    /**
-     * Register CF7 tag generator for [cf7m-star].
-     */
     public function add_tag_generators()
     {
         if (class_exists('WPCF7_TagGenerator')) {
@@ -167,40 +140,36 @@ class Star_Rating extends Feature_Base
         }
     }
 
-    /**
-     * Tag generator callback for [cf7m-star].
-     *
-     * @param \WPCF7_ContactForm $contact_form
-     * @param string $options
-     */
     public function tag_generator_callback($contact_form, $options = '')
     {
-        ?>
+?>
         <div class="control-box">
             <fieldset>
                 <legend><?php esc_html_e('Star Rating', 'cf7-styler-for-divi'); ?></legend>
-                <table class="form-table"><tbody>
-                    <tr>
-                        <th><?php esc_html_e('Field type', 'cf7-styler-for-divi'); ?></th>
-                        <td><label><input type="checkbox" name="required" id="cf7m-star-required"> <?php esc_html_e('Required', 'cf7-styler-for-divi'); ?></label></td>
-                    </tr>
-                    <tr>
-                        <th><label for="cf7m-star-name"><?php esc_html_e('Name', 'cf7-styler-for-divi'); ?></label></th>
-                        <td><input type="text" name="name" id="cf7m-star-name" class="tg-name oneline" placeholder="rating"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="cf7m-star-max"><?php esc_html_e('Max Stars', 'cf7-styler-for-divi'); ?></label></th>
-                        <td><input type="number" name="max" id="cf7m-star-max" class="oneline" value="5" min="1" max="10"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="cf7m-star-default"><?php esc_html_e('Default Value', 'cf7-styler-for-divi'); ?></label></th>
-                        <td><input type="number" name="default" id="cf7m-star-default" class="oneline" value="0" min="0"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="cf7m-star-color"><?php esc_html_e('Star Color', 'cf7-styler-for-divi'); ?></label></th>
-                        <td><input type="text" name="color" id="cf7m-star-color" class="oneline" placeholder="#f59e0b"></td>
-                    </tr>
-                </tbody></table>
+                <table class="form-table">
+                    <tbody>
+                        <tr>
+                            <th><?php esc_html_e('Field type', 'cf7-styler-for-divi'); ?></th>
+                            <td><label><input type="checkbox" name="required" id="cf7m-star-required"> <?php esc_html_e('Required', 'cf7-styler-for-divi'); ?></label></td>
+                        </tr>
+                        <tr>
+                            <th><label for="cf7m-star-name"><?php esc_html_e('Name', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="text" name="name" id="cf7m-star-name" class="tg-name oneline" placeholder="rating"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="cf7m-star-max"><?php esc_html_e('Max Stars', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="number" name="max" id="cf7m-star-max" class="oneline" value="5" min="1" max="10"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="cf7m-star-default"><?php esc_html_e('Default Value', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="number" name="default" id="cf7m-star-default" class="oneline" value="0" min="0"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="cf7m-star-color"><?php esc_html_e('Star Color', 'cf7-styler-for-divi'); ?></label></th>
+                            <td><input type="text" name="color" id="cf7m-star-color" class="oneline" placeholder="#f59e0b"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </fieldset>
         </div>
         <div class="insert-box">
@@ -209,7 +178,7 @@ class Star_Rating extends Feature_Base
                 <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'cf7-styler-for-divi'); ?>">
             </div>
         </div>
-        <?php
+<?php
     }
 
     /**

@@ -30,13 +30,14 @@ class Admin
     {
         add_action('admin_menu', [$this, 'add_menu'], 20);
         add_action('admin_menu', [$this, 'ensure_dashboard_submenu'], 999999999);
+        add_action('admin_head', [$this, 'print_menu_badge_css']);
         add_action('admin_init', [$this, 'redirect_cf7_mate_to_settings'], 5);
         add_action('admin_init', [$this, 'redirect_pricing_if_freemius_inactive'], 5);
     }
 
     public function redirect_cf7_mate_to_settings()
     {
-        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if ($page !== self::TOP_LEVEL_SLUG || !current_user_can('manage_options')) {
             return;
         }
@@ -53,7 +54,7 @@ class Admin
 
     public function redirect_pricing_if_freemius_inactive()
     {
-        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if ($page !== 'cf7-mate-pricing') {
             return;
         }
@@ -71,13 +72,21 @@ class Admin
         }
 
         // Freemius not yet activated — the pricing page doesn't exist. Send to external URL.
-        $coupon = isset($_GET['coupon']) ? sanitize_text_field(wp_unslash($_GET['coupon'])) : '';
+        $coupon = isset($_GET['coupon']) ? sanitize_text_field(wp_unslash($_GET['coupon'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $url    = function_exists('cf7m_get_pricing_url')
             ? cf7m_get_pricing_url($coupon)
             : CF7M_URL_PRICING;
 
         wp_safe_redirect($url);
         exit;
+    }
+
+    public function print_menu_badge_css()
+    {
+        if (class_exists('CF7_Mate\Premium_Loader')) {
+            return;
+        }
+        echo '<style>.cf7m-menu-pro-badge{display:inline-block;padding:1px 6px;font-size:10px;line-height:16px;font-weight:600;border-radius:3px;background:transparent;color:#fff;vertical-align:middle}</style>';
     }
 
     public function add_menu()
@@ -120,7 +129,7 @@ class Admin
         );
 
         $is_pro_active = class_exists('CF7_Mate\Premium_Loader');
-        $pro_badge     = $is_pro_active ? '' : ' <span class="awaiting-mod">Pro</span>';
+        $pro_badge     = $is_pro_active ? '' : ' <span class="cf7m-menu-pro-badge">Pro</span>';
 
         add_submenu_page(
             self::TOP_LEVEL_SLUG,
@@ -234,6 +243,9 @@ class Admin
             [],
             CF7M_VERSION
         );
+
+        // Allow pro (or add-ons) to enqueue their own scripts/styles.
+        do_action('cf7m_admin_enqueue_scripts');
 
         $rebrand_seen = get_option('cf7m_rebrand_seen', '') === '1';
         $onboarding_done = get_option('cf7m_onboarding_completed', '') === '1' || get_option('cf7m_onboarding_skipped', '') === '1';

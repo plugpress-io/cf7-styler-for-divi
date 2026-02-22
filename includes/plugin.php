@@ -2,6 +2,10 @@
 
 namespace CF7_Mate;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Plugin
 {
     private static $instance = null;
@@ -92,6 +96,9 @@ class Plugin
 
     public function load_premium_loader()
     {
+        if (function_exists('cf7m_can_use_premium') && !cf7m_can_use_premium()) {
+            return;
+        }
         $premium_loader = CF7M_PLUGIN_PATH . 'includes/pro/loader.php';
         if (!file_exists($premium_loader)) {
             return;
@@ -126,7 +133,7 @@ class Plugin
     private function define_hooks()
     {
         register_activation_hook(self::BASENAME, [$this, 'on_activation']);
-        add_action('init', [$this, 'load_textdomain'], 0);
+
         add_action('et_builder_ready', [$this, 'load_modules'], 11);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_styles'], 20);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_cf7_tag_admin_scripts'], 20);
@@ -188,10 +195,6 @@ class Plugin
         update_option('cf7m_current_version', CF7M_VERSION);
     }
 
-    public function load_textdomain()
-    {
-        load_plugin_textdomain('cf7-styler-for-divi', false, CF7M_BASENAME_DIR . '/languages');
-    }
 
     public function load_modules()
     {

@@ -274,7 +274,7 @@ class Entries_API
             ]);
         }
         wp_reset_postdata();
-        fclose($out);
+        fclose($out); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- writing to php://output stream
         exit;
     }
 

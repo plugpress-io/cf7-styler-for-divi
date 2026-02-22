@@ -786,7 +786,7 @@ class DCS_CF7Styler extends ET_Builder_Module
 			$title       = isset($form_header_title) ? sprintf('<h2 class="dipe-form-header-title">%1$s</h2>', $form_header_title) : '';
 			$text        = isset($form_header_text) ? sprintf('<div class="dipe-form-header-text">%1$s</div>', $form_header_text) : '';
 			$header_info = $title || $text ? sprintf('<div class="dipe-form-header-info">%1$s%2$s</div>', $title, $text) : '';
-			dcs_inject_fa_icons($this->props['header_icon']);
+			cf7m_inject_fa_icons($this->props['header_icon']);
 
 			$form_header = sprintf(
 				'<div class="dipe-form-header-container">

@@ -165,8 +165,17 @@ require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 		grunt.log.writeln('Written package/cf7-mate-pro/cf7-mate-pro.php (v' + v + ')');
 	});
 
+	// Remove pro-only JS from the free package directory.
+	grunt.registerTask('strip_pro_js_from_wp', function () {
+		const f = 'package/cf7-styler-for-divi/dist/js/admin-pro.js';
+		if (grunt.file.exists(f)) {
+			grunt.file.delete(f);
+			grunt.log.writeln('Removed ' + f);
+		}
+	});
+
 	// WP repo zip (free, with Freemius)
-	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'replace:freemius_free', 'compress:wp', 'clean:main']);
+	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'replace:freemius_free', 'strip_pro_js_from_wp', 'compress:wp', 'clean:main']);
 
 	// Pro zip (cf7-mate-pro.php, for Freemius deploy)
 	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'replace:freemius_premium', 'write_pro_main', 'compress:pro', 'clean:main']);

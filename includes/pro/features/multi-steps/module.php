@@ -60,6 +60,7 @@ class Multi_Steps extends Pro_Feature_Base
         $form = preg_replace_callback('/\[cf7m-step\s*([^\]]*)\](.*?)\[\/cf7m-step\]/s', function ($matches) use (&$step_count) {
             $step_count++;
             $atts  = $this->parse_atts($matches[1]);
+            /* translators: %d: step number */
             $title = isset($atts['title']) ? $atts['title'] : sprintf(__('Step %d', 'cf7-styler-for-divi'), $step_count);
 
             $this->step_titles[] = $title;
@@ -168,6 +169,7 @@ class Multi_Steps extends Pro_Feature_Base
             if ($i > 1) {
                 $html .= '<div class="cf7m-progress-connector"></div>';
             }
+            /* translators: %d: step number */
             $title = isset($this->step_titles[$i - 1]) ? $this->step_titles[$i - 1] : sprintf(__('Step %d', 'cf7-styler-for-divi'), $i);
             $html .= sprintf(
                 '<div class="cf7m-progress-item %s" data-step="%d"><span class="cf7m-progress-step">%d</span><span class="cf7m-progress-label">%s</span></div>',

@@ -124,10 +124,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 									)}
 								>
 									<span className="cf7m-admin__nav-text">
-										{__(
-											'AI Settings',
-											'cf7-styler-for-divi'
-										)}
+										{__('AI Settings', 'cf7-styler-for-divi')}
 									</span>
 								</a>
 							)}

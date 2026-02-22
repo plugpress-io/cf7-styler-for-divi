@@ -2,6 +2,10 @@
 
 namespace CF7_Mate;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Assets
 {
     private static $instance;

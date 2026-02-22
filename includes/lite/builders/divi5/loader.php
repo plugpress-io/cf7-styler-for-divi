@@ -10,8 +10,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$dependency_interface = ABSPATH . 'wp-content/themes/Divi/includes/builder-5/server/Framework/DependencyManagement/Interfaces/DependencyInterface.php';
-if (!file_exists($dependency_interface)) {
+$cf7m_dependency_interface = ABSPATH . 'wp-content/themes/Divi/includes/builder-5/server/Framework/DependencyManagement/Interfaces/DependencyInterface.php';
+if (!file_exists($cf7m_dependency_interface)) {
     return;
 }
 

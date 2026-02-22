@@ -2,6 +2,10 @@
 
 namespace CF7_Mate;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Admin_Review_Notice
 {
     private static $instance = null;
@@ -83,7 +87,7 @@ class Admin_Review_Notice
      */
     private function is_cf7_mate_page()
     {
-        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         return in_array($page, ['cf7-mate-dashboard', 'cf7-mate-features', 'cf7-mate', 'cf7-mate-pricing'], true);
     }
 

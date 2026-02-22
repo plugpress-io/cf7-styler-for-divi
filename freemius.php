@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 if (!function_exists('cf7m_fs')) {
     function cf7m_fs()
     {
@@ -25,7 +29,7 @@ if (!function_exists('cf7m_fs')) {
                     'contact'    => false,
                     'support'    => false,
                     'account'    => false,
-                    'pricing'    => true
+                    'pricing'    => true,
                 ],
                 'is_live'          => true,
             ]);

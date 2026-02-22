@@ -29,6 +29,7 @@ jobs:
                   rm -rf includes/pro
                   rm -rf assets/pro
                   rm -f cf7-mate-pro.php
+                  rm -f dist/js/admin-pro.js
 
             - name: Strip premium helpers from freemius.php
               run: |

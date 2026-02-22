@@ -15,10 +15,10 @@ import { V3Banner } from './components/V3Banner';
 import { RebrandModal } from './components/RebrandModal';
 import { DashboardPage } from './pages/DashboardPage';
 import { ModulesPage } from './pages/ModulesPage';
-import { AISettingsPage } from './pages/AISettingsPage';
-import { EntriesPage } from './pages/EntriesPage';
 import { FreeVsProPage } from './pages/FreeVsProPage';
-import { WebhookPage } from './pages/WebhookPage';
+import { UpsellPlaceholder } from './components/UpsellPlaceholder';
+
+const getProPage = (name) => window.cf7mProPages && window.cf7mProPages[name];
 
 export function App() {
 	const [features, setFeatures] = useState({
@@ -118,6 +118,12 @@ export function App() {
 		else window.location.hash = '#/';
 	};
 
+	const renderProPage = (name, extraProps) => {
+		const Page = getProPage(name);
+		if (Page) return <Page {...extraProps} />;
+		return <UpsellPlaceholder feature={name} />;
+	};
+
 	if (loading) {
 		return (
 			<div className="cf7m-admin-wrapper">
@@ -137,22 +143,24 @@ export function App() {
 			<div className={`cf7m-admin ${currentView === 'entries' ? 'cf7m-admin--entries-full' : ''}`}>
 				<div className="cf7m-admin__content">
 					{currentView === 'entries' ? (
-						showEntries ? (
-							<EntriesPage
-								entryId={entriesEntryId}
-								onBack={entriesOnlyPage ? () => { window.location.href = cf7AdminUrl; } : () => handleNavigate('dashboard')}
-							/>
-						) : (
+						getProPage('entries') && showEntries ? (
+							renderProPage('entries', {
+								entryId: entriesEntryId,
+								onBack: entriesOnlyPage ? () => { window.location.href = cf7AdminUrl; } : () => handleNavigate('dashboard'),
+							})
+						) : getProPage('entries') && isPro && !features.database_entries ? (
 							<div className="cf7m-card">
 								<p className="cf7m-card__desc">{__('Enable Database Entries in Features to view form submissions.', 'cf7-styler-for-divi')}</p>
 							</div>
+						) : (
+							<UpsellPlaceholder feature="entries" />
 						)
 					) : currentView === 'features' ? (
 						<ModulesPage features={features} isPro={isPro} onToggle={handleToggle} saving={saving} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} />
 					) : currentView === 'ai-settings' ? (
-						<AISettingsPage />
+						renderProPage('ai-settings')
 					) : currentView === 'webhook' ? (
-						<WebhookPage />
+						renderProPage('webhook')
 					) : currentView === 'free-vs-pro' ? (
 						<FreeVsProPage />
 					) : (

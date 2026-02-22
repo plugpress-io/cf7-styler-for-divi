@@ -40,7 +40,7 @@ export function FeatureCard({ feature, enabled, isPro, onToggle, saving }) {
 			<div className="cf7m-feature__toggle">
 				{isProLocked ? (
 					<button type="button" onClick={handleUpgrade} className="cf7m-feature__upgrade">
-						{__('Upgrade', 'cf7-styler-for-divi')}
+						{__('Learn more', 'cf7-styler-for-divi')}
 					</button>
 				) : (
 					<Toggle checked={enabled} onChange={(val) => onToggle(feature.id, val)} disabled={saving} />
