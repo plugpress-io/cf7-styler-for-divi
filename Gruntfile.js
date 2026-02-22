@@ -43,7 +43,14 @@ module.exports = function (grunt) {
 		'!**/*.LICENSE.txt',
 	];
 
-	const wp_src = ['**', ...commonExcludes];
+	const wp_src = [
+		'**',
+		...commonExcludes,
+		'!includes/pro/**',
+		'!assets/pro/**',
+		'!dist/js/admin-pro.js',
+		'!cf7-mate-pro.php',
+	];
 	const pro_src = ['**', ...commonExcludes, '!cf7-styler.php'];
 
 	grunt.initConfig({
@@ -175,7 +182,7 @@ require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 	});
 
 	// WP repo zip (free, with Freemius)
-	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'replace:freemius_free', 'strip_pro_js_from_wp', 'compress:wp', 'clean:main']);
+	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'replace:freemius_free', 'compress:wp', 'clean:main']);
 
 	// Pro zip (cf7-mate-pro.php, for Freemius deploy)
 	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'replace:freemius_premium', 'write_pro_main', 'compress:pro', 'clean:main']);

@@ -1341,96 +1341,71 @@
 	}
 }
 
-.cf7m-upsell-card {
-	text-align: center;
-	padding: 32px 24px 28px;
-	max-width: 640px;
-	margin: 0 auto;
+// ===========================================
+// Upsell placeholder – two-column pro feature promo
+// ===========================================
+.cf7m-upsell {
+	display: flex;
+	align-items: center;
+	gap: 48px;
+	padding: 40px;
+	background: linear-gradient(135deg, #f5f4ff 0%, #eef0ff 100%);
 
-	&__illus {
+	@media (max-width: 768px) {
+		flex-direction: column;
+		gap: 32px;
+		padding: 28px 24px;
+	}
+
+	&__content {
+		flex: 1;
+		min-width: 0;
+	}
+
+	&__icon {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 64px;
-		height: 64px;
-		margin: 0 auto 16px;
-		background: rgba(87, 51, 255, 0.08);
-		border-radius: 16px;
+		width: 48px;
+		height: 48px;
+		background: rgba(48, 68, 215, 0.1);
+		border-radius: 12px;
 		color: var(--cf7m-primary);
+		margin-bottom: 16px;
 
 		svg {
-			width: 32px;
-			height: 32px;
+			width: 24px;
+			height: 24px;
 		}
 	}
-	&__discount {
-		font-size: 12px;
-		font-weight: 600;
-		margin: 0 auto 10px;
-		padding: 4px 10px;
-		display: inline-block;
-		background: rgba(87, 51, 255, 0.1);
-		color: var(--cf7m-primary);
-		border-radius: 6px;
-	}
-	&__tagline {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		font-size: 13px;
-		font-weight: 600;
-		color: var(--cf7m-primary);
-		margin: 0 0 8px;
-		text-transform: uppercase;
-		letter-spacing: 0.03em;
-	}
-	&__tagline-icon {
-		display: flex;
 
-		svg {
-			width: 16px;
-			height: 16px;
-		}
-	}
 	&__title {
-		font-size: 20px;
+		font-size: 22px;
 		font-weight: 700;
 		color: var(--cf7m-heading);
 		margin: 0 0 10px;
 		line-height: 1.3;
+		letter-spacing: -0.02em;
 	}
+
 	&__desc {
 		font-size: 14px;
 		color: var(--cf7m-text-muted);
-		line-height: 1.5;
+		line-height: 1.6;
 		margin: 0 0 20px;
-		max-width: 480px;
-		margin-left: auto;
-		margin-right: auto;
+		max-width: 420px;
 	}
-	&__features {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 8px 24px;
-		justify-content: center;
-		text-align: left;
+
+	&__list {
 		list-style: none;
 		margin: 0 0 24px;
 		padding: 0;
-		max-width: 400px;
-		margin-left: auto;
-		margin-right: auto;
-
-		@media (max-width: 480px) {
-			grid-template-columns: 1fr;
-		}
-	}
-	&__features-col {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: 10px;
 	}
-	&__feature {
+
+	&__list-item {
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -1438,38 +1413,115 @@
 		color: var(--cf7m-body);
 		line-height: 1.4;
 	}
+
 	&__check {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: 20px;
-		height: 20px;
+		width: 22px;
+		height: 22px;
+		background: rgba(48, 68, 215, 0.1);
+		border-radius: 50%;
 		color: var(--cf7m-primary);
 
 		svg {
-			width: 14px;
-			height: 14px;
+			width: 13px;
+			height: 13px;
 		}
 	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
 	&__cta {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 14px 32px;
-		font-size: 15px;
-		font-weight: 700;
+		padding: 12px 28px;
+		font-size: 14px;
+		font-weight: 600;
 		line-height: 1.3;
 		color: #fff;
 		background: var(--cf7m-primary);
 		border-radius: 10px;
 		text-decoration: none;
-		transition: background 0.15s;
+		transition: background 0.15s, box-shadow 0.15s;
+		box-shadow: 0 2px 8px rgba(48, 68, 215, 0.25);
 
 		&:hover {
 			background: var(--cf7m-primary-dark);
 			color: #fff;
+			box-shadow: 0 4px 12px rgba(48, 68, 215, 0.3);
 		}
+	}
+
+	&__link {
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--cf7m-primary);
+		text-decoration: none;
+		transition: color 0.15s;
+
+		&:hover {
+			color: var(--cf7m-primary-dark);
+			text-decoration: underline;
+		}
+	}
+
+	// Decorative illustration – abstract form card
+	&__visual {
+		flex-shrink: 0;
+		width: 240px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@media (max-width: 768px) {
+			width: 100%;
+			max-width: 240px;
+		}
+	}
+
+	&__visual-card {
+		width: 100%;
+		padding: 24px;
+		background: #fff;
+		border-radius: 14px;
+		box-shadow: 0 4px 24px rgba(48, 68, 215, 0.1);
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	&__visual-bar {
+		height: 10px;
+		width: 60%;
+		background: var(--cf7m-primary);
+		border-radius: 5px;
+		opacity: 0.7;
+	}
+
+	&__visual-line {
+		height: 8px;
+		background: #e8ebfe;
+		border-radius: 4px;
+
+		&--w80 { width: 80%; }
+		&--w60 { width: 60%; }
+		&--w90 { width: 90%; }
+	}
+
+	&__visual-btn {
+		height: 32px;
+		width: 50%;
+		background: linear-gradient(135deg, var(--cf7m-primary) 0%, var(--cf7m-primary-dark) 100%);
+		border-radius: 8px;
+		opacity: 0.8;
+		margin-top: 4px;
 	}
 }
 

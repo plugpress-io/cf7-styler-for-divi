@@ -69,12 +69,12 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 								href={dashboardUrl + '#/'}
 								className={`cf7m-admin__nav-link ${isDashboard ? 'cf7m-admin__nav-link--active' : ''}`}
 								aria-label={__(
-									'Dashboard',
+									'Overview',
 									'cf7-styler-for-divi'
 								)}
 							>
 								<span className="cf7m-admin__nav-text">
-									{__('Dashboard', 'cf7-styler-for-divi')}
+									{__('Overview', 'cf7-styler-for-divi')}
 								</span>
 							</a>
 							<a
@@ -156,27 +156,27 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 				>
 					<DocsIcon />
 				</a>
-				{isPro ? (
-					accountUrl ? (
-						<a
-							href={accountUrl}
-							className="cf7m-admin__nav-link cf7m-admin__nav-link--account"
-							aria-label={__('Account', 'cf7-styler-for-divi')}
-						>
-							<span className="cf7m-admin__nav-text">
-								{__('Account', 'cf7-styler-for-divi')}
-							</span>
-						</a>
-					) : null
-				) : (
+				{isPro && accountUrl ? (
+					<a
+						href={accountUrl}
+						className="cf7m-admin__nav-link cf7m-admin__nav-link--account"
+						aria-label={__('Account', 'cf7-styler-for-divi')}
+					>
+						<span className="cf7m-admin__nav-text">
+							{__('Account', 'cf7-styler-for-divi')}
+						</span>
+					</a>
+				) : !isPro ? (
 					<a
 						href={pricingUrl}
+						target="_blank"
+						rel="noopener noreferrer"
 						className="cf7m-admin__nav-link cf7m-admin__nav-link--pro"
 						aria-label={__('Upgrade to Pro', 'cf7-styler-for-divi')}
 					>
 						<CrownIconNav />
 					</a>
-				)}
+				) : null}
 			</div>
 		</header>
 	);

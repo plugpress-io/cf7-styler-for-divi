@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-22 12:45+0000\n"
+"POT-Creation-Date: 2026-02-22 13:48+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,15 +15,15 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cf7-styler.php:40
+#: cf7-styler.php:42
 msgid "CF7 Styler (Lite) has been deactivated because CF7 Mate Pro is active."
 msgstr ""
 
-#: freemius.php:46
+#: freemius.php:45
 msgid "License"
 msgstr ""
 
-#: freemius.php:47
+#: freemius.php:46
 msgid "Help"
 msgstr ""
 
@@ -69,7 +69,7 @@ msgid "CF7 Mate"
 msgstr ""
 
 #: includes/admin/admin.php:115, includes/admin/admin.php:116, includes/admin/admin.php:181, includes/admin/admin.php:182
-msgid "Dashboard"
+msgid "Overview"
 msgstr ""
 
 #: includes/admin/admin.php:124, includes/admin/admin.php:125

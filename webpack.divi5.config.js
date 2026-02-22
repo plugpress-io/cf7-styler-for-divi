@@ -7,6 +7,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const ConversionOutlineJsonPlugin = require('./webpack/config/plugins/conversion-outline-json-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -135,6 +136,12 @@ module.exports = {
       ],
     }),
   ],
+
+  optimization: {
+    minimizer: [
+      new TerserPlugin({ extractComments: false }),
+    ],
+  },
 
   output: {
     filename: 'js/[name].js',

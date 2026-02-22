@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const wpPot = require('wp-pot');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -133,6 +134,12 @@ module.exports = {
 		'@wordpress/server-side-render': ['wp', 'serverSideRender'],
 		react: 'React',
 		'react-dom': 'ReactDOM',
+	},
+
+	optimization: {
+		minimizer: [
+			new TerserPlugin({ extractComments: false }),
+		],
 	},
 
 	output: {

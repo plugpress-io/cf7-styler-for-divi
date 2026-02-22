@@ -30,8 +30,7 @@ if (!function_exists('cf7m_fs')) {
                     'support'    => false,
                     'account'    => false,
                     'pricing'    => true,
-                ],
-                'is_live'          => true,
+                ]
             ]);
         }
 

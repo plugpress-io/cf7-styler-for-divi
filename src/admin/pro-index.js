@@ -10,8 +10,12 @@
 import { EntriesPage } from './pages/EntriesPage';
 import { WebhookPage } from './pages/WebhookPage';
 import { AISettingsPage } from './pages/AISettingsPage';
+import { EntriesOverviewWidget } from './components/EntriesOverviewWidget';
 
 window.cf7mProPages = window.cf7mProPages || {};
 window.cf7mProPages.entries = EntriesPage;
 window.cf7mProPages.webhook = WebhookPage;
 window.cf7mProPages['ai-settings'] = AISettingsPage;
+
+window.cf7mProWidgets = window.cf7mProWidgets || {};
+window.cf7mProWidgets.entriesOverview = EntriesOverviewWidget;

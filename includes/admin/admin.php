@@ -12,7 +12,7 @@ class Admin
 
     const TOP_LEVEL_SLUG = 'cf7-mate';
     const PAGE_SLUG = 'cf7-mate-dashboard';
-    const FEATURES_PAGE_SLUG = 'cf7-mate-features';
+    const FEATURES_PAGE_SLUG = 'cf7-mate-modules';
     const ENTRIES_PAGE_SLUG = 'cf7-mate-entries';
     const AI_SETTINGS_PAGE_SLUG = 'cf7-mate-ai-settings';
     const FREE_VS_PRO_PAGE_SLUG = 'cf7-mate-free-vs-pro';
@@ -112,8 +112,8 @@ class Admin
 
         add_submenu_page(
             self::TOP_LEVEL_SLUG,
-            __('Dashboard', 'cf7-styler-for-divi'),
-            __('Dashboard', 'cf7-styler-for-divi'),
+            __('Overview', 'cf7-styler-for-divi'),
+            __('Overview', 'cf7-styler-for-divi'),
             'manage_options',
             self::PAGE_SLUG,
             [$this, 'render_page']
@@ -178,8 +178,8 @@ class Admin
         if (!$has_dashboard) {
             add_submenu_page(
                 $parent,
-                __('Dashboard', 'cf7-styler-for-divi'),
-                __('Dashboard', 'cf7-styler-for-divi'),
+                __('Overview', 'cf7-styler-for-divi'),
+                __('Overview', 'cf7-styler-for-divi'),
                 'manage_options',
                 self::PAGE_SLUG,
                 [$this, 'render_page']

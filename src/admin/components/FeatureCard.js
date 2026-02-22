@@ -11,11 +11,12 @@ import { Toggle } from './Toggle';
 
 export function FeatureCard({ feature, enabled, isPro, onToggle, saving }) {
 	const isProLocked = feature.isPro && !isPro;
-	const pricingUrl = typeof dcsCF7Styler !== 'undefined' ? dcsCF7Styler.pricing_url : '/wp-admin/admin.php?page=cf7-mate-pricing';
+	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate-dashboard';
+	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
 	const IconComponent = FEATURE_ICONS[feature.icon] || FEATURE_ICONS.module;
 
-	const handleUpgrade = () => {
-		window.location.href = pricingUrl;
+	const handleLearnMore = () => {
+		window.location.href = freeVsProUrl;
 	};
 
 	// Only show pro/golden styling when user does not have pro (locked pro feature).
@@ -39,7 +40,7 @@ export function FeatureCard({ feature, enabled, isPro, onToggle, saving }) {
 			</div>
 			<div className="cf7m-feature__toggle">
 				{isProLocked ? (
-					<button type="button" onClick={handleUpgrade} className="cf7m-feature__upgrade">
+					<button type="button" onClick={handleLearnMore} className="cf7m-feature__upgrade">
 						{__('Learn more', 'cf7-styler-for-divi')}
 					</button>
 				) : (
