@@ -29,7 +29,6 @@
 .gitignore
 .prettierignore
 .prettierrc.json
-composer.json
 composer.lock
 Gruntfile.js
 package.json

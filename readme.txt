@@ -5,7 +5,7 @@ Tags: contact form 7, cf7 styler, bricks, divi, elementor
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,9 @@ Visit [cf7mate.com](https://cf7mate.com) for documentation and support.
 4. Form entries dashboard — view and export submissions
 
 == Changelog ==
+
+= 3.0.3 =
+* Fixed: Add composer.json to distribution package for better dependency management and future updates
 
 = 3.0.2 =
 * Fixed: Minor bug fixes and performance improvements
