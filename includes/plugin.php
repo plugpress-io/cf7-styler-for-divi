@@ -39,7 +39,7 @@ class Plugin
             'assets.php',
             'rest-api.php',
             'notices/review.php',
-            'notices/promo.php',
+
             'admin/admin.php',
             'admin/onboarding.php',
         ];
@@ -94,10 +94,6 @@ class Plugin
     {
         $premium_loader = CF7M_PLUGIN_PATH . 'includes/pro/loader.php';
         if (!file_exists($premium_loader)) {
-            return;
-        }
-        // Use cf7m_can_use_premium() which handles all cases: dev mode, self-hosted, and licensed
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
             return;
         }
         require_once $premium_loader;
@@ -240,10 +236,6 @@ class Plugin
             Admin_Review_Notice::instance();
         }
 
-        // Initialize promotional notice (NEW2026 lifetime deal)
-        if (class_exists(__NAMESPACE__ . '\Admin_Promo_Notice')) {
-            Admin_Promo_Notice::instance();
-        }
 
         // Initialize onboarding
         if (class_exists(__NAMESPACE__ . '\Onboarding')) {

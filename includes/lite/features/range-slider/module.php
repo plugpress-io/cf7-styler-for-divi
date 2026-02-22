@@ -229,7 +229,7 @@ class Range_Slider extends Feature_Base
         <div class="insert-box">
             <input type="text" name="cf7m-range" class="tag code" readonly="readonly" onfocus="this.select()" value="[cf7m-range amount min:0 max:100 step:1 default:50]">
             <div class="submitbox">
-                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>">
+                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'cf7-styler-for-divi'); ?>">
             </div>
         </div>
         <?php

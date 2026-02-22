@@ -268,7 +268,7 @@ class Conditional extends Pro_Feature_Base {
 		<div class="insert-box">
 			<input type="text" name="cf7m-if" class="tag code" readonly onfocus="this.select()" value='[cf7m-if field:"service" is:"custom"]...[/cf7m-if]'>
 			<div class="submitbox">
-				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
+				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'cf7-styler-for-divi' ); ?>">
 			</div>
 		</div>
 		<?php

@@ -221,7 +221,7 @@ class Multi_Column extends Pro_Feature_Base
 
 [/cf7m-row]">
             <div class="submitbox">
-                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>">
+                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'cf7-styler-for-divi'); ?>">
             </div>
         </div>
         <?php
@@ -267,7 +267,7 @@ class Multi_Column extends Pro_Feature_Base
 
 [/cf7m-col]">
             <div class="submitbox">
-                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>">
+                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'cf7-styler-for-divi'); ?>">
             </div>
         </div>
         <?php

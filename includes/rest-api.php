@@ -186,7 +186,7 @@ class Rest_API {
 		return rest_ensure_response(
 			array(
 				'features' => $features,
-				'is_pro'   => function_exists( 'cf7m_can_use_premium' ) && cf7m_can_use_premium(),
+				'is_pro'   => class_exists( 'CF7_Mate\Premium_Loader' ),
 			)
 		);
 	}

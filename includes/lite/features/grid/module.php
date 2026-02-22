@@ -96,18 +96,52 @@ class Grid extends Feature_Base
         }
         $tg = \WPCF7_TagGenerator::get_instance();
 
-        foreach (self::TAG_LABELS as $tag => $labels) {
+        foreach (self::get_translated_labels() as $tag => $labels) {
             $tg->add(
                 $tag,
-                __($labels['title'], 'cf7-styler-for-divi'),
+                $labels['title'],
                 [$this, 'tag_generator_panel'],
                 [
-                    'title'       => __($labels['title'], 'cf7-styler-for-divi'),
-                    'description' => __($labels['description'], 'cf7-styler-for-divi'),
+                    'title'       => $labels['title'],
+                    'description' => $labels['description'],
                     'version'     => '2',
                 ]
             );
         }
+    }
+
+    private static function get_translated_labels()
+    {
+        return [
+            self::ROW_TAG => [
+                'title'       => __('row', 'cf7-styler-for-divi'),
+                'description' => __('Generate a row shortcode', 'cf7-styler-for-divi'),
+            ],
+            'dipe_one' => [
+                'title'       => __('1-col', 'cf7-styler-for-divi'),
+                'description' => __('Generate a full width column', 'cf7-styler-for-divi'),
+            ],
+            'dipe_one_half' => [
+                'title'       => __('1/2-col', 'cf7-styler-for-divi'),
+                'description' => __('Generate a half width column', 'cf7-styler-for-divi'),
+            ],
+            'dipe_one_third' => [
+                'title'       => __('1/3-col', 'cf7-styler-for-divi'),
+                'description' => __('Generate a one-third width column', 'cf7-styler-for-divi'),
+            ],
+            'dipe_one_fourth' => [
+                'title'       => __('1/4-col', 'cf7-styler-for-divi'),
+                'description' => __('Generate a one-fourth width column', 'cf7-styler-for-divi'),
+            ],
+            'dipe_two_third' => [
+                'title'       => __('2/3-col', 'cf7-styler-for-divi'),
+                'description' => __('Generate a two-thirds width column', 'cf7-styler-for-divi'),
+            ],
+            'dipe_three_fourth' => [
+                'title'       => __('3/4-col', 'cf7-styler-for-divi'),
+                'description' => __('Generate a three-fourths width column', 'cf7-styler-for-divi'),
+            ],
+        ];
     }
 
     public function tag_generator_panel($contact_form, $args = '')

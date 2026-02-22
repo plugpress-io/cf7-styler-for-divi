@@ -8,9 +8,6 @@ if (!defined('ABSPATH')) {
 
 require_once ABSPATH . 'wp-content/themes/Divi/includes/builder-5/server/Framework/DependencyManagement/Interfaces/DependencyInterface.php';
 
-if (defined('CF7M_PLUGIN_PATH')) {
-    require_once CF7M_PLUGIN_PATH . 'includes/pro/design-presets.php';
-}
 
 use ET\Builder\Framework\DependencyManagement\Interfaces\DependencyInterface;
 

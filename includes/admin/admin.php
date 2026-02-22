@@ -119,45 +119,35 @@ class Admin
             [$this, 'render_features_page']
         );
 
-        if (function_exists('cf7m_can_use_premium') && cf7m_can_use_premium()) {
-            add_submenu_page(
-                self::TOP_LEVEL_SLUG,
-                __('Entries', 'cf7-styler-for-divi'),
-                __('Entries', 'cf7-styler-for-divi'),
-                'manage_options',
-                self::ENTRIES_PAGE_SLUG,
-                [$this, 'render_entries_page']
-            );
+        $is_pro_active = class_exists('CF7_Mate\Premium_Loader');
+        $pro_badge     = $is_pro_active ? '' : ' <span class="awaiting-mod">Pro</span>';
 
-            add_submenu_page(
-                self::TOP_LEVEL_SLUG,
-                __('AI Settings', 'cf7-styler-for-divi'),
-                __('AI Settings', 'cf7-styler-for-divi'),
-                'manage_options',
-                self::AI_SETTINGS_PAGE_SLUG,
-                [$this, 'render_ai_settings_page']
-            );
+        add_submenu_page(
+            self::TOP_LEVEL_SLUG,
+            __('Entries', 'cf7-styler-for-divi'),
+            __('Entries', 'cf7-styler-for-divi') . $pro_badge,
+            'manage_options',
+            self::ENTRIES_PAGE_SLUG,
+            [$this, 'render_entries_page']
+        );
 
-            add_submenu_page(
-                self::TOP_LEVEL_SLUG,
-                __('Webhook', 'cf7-styler-for-divi'),
-                __('Webhook', 'cf7-styler-for-divi'),
-                'manage_options',
-                self::WEBHOOK_PAGE_SLUG,
-                [$this, 'render_webhook_page']
-            );
-        }
+        add_submenu_page(
+            self::TOP_LEVEL_SLUG,
+            __('Webhook', 'cf7-styler-for-divi'),
+            __('Webhook', 'cf7-styler-for-divi') . $pro_badge,
+            'manage_options',
+            self::WEBHOOK_PAGE_SLUG,
+            [$this, 'render_webhook_page']
+        );
 
-        if (!function_exists('cf7m_can_use_premium') || !cf7m_can_use_premium()) {
-            add_submenu_page(
-                self::TOP_LEVEL_SLUG,
-                __('Free vs Pro', 'cf7-styler-for-divi'),
-                __('Free vs Pro', 'cf7-styler-for-divi'),
-                'manage_options',
-                self::FREE_VS_PRO_PAGE_SLUG,
-                [$this, 'render_free_vs_pro_page']
-            );
-        }
+        add_submenu_page(
+            self::TOP_LEVEL_SLUG,
+            __('Settings', 'cf7-styler-for-divi'),
+            __('Settings', 'cf7-styler-for-divi') . $pro_badge,
+            'manage_options',
+            self::AI_SETTINGS_PAGE_SLUG,
+            [$this, 'render_ai_settings_page']
+        );
 
         remove_submenu_page(self::TOP_LEVEL_SLUG, self::TOP_LEVEL_SLUG);
     }
@@ -255,7 +245,7 @@ class Admin
             'root' => esc_url_raw(get_rest_url()),
             'ajax_url' => admin_url('admin-ajax.php'),
             'fs_account_url' => function_exists('cf7m_fs') ? cf7m_fs()->get_account_url() : '',
-            'is_pro' => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
+            'is_pro' => class_exists('CF7_Mate\Premium_Loader'),
             'pricing_url' => function_exists('cf7m_get_pricing_url') ? cf7m_get_pricing_url('NEW2026') : admin_url('admin.php?page=cf7-mate-pricing'),
             'promo_code' => 'NEW2026',
             'promo_text' => '',

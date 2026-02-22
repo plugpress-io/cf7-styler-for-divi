@@ -180,7 +180,7 @@ class Icon extends Feature_Base
         </div>
         <div class="insert-box">
             <input type="text" name="cf7m-icon" class="tag code" readonly="readonly" onfocus="this.select()" value="[cf7m-icon name:dashicons-star-filled size:24]" />
-            <div class="submitbox"><input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>" /></div>
+            <div class="submitbox"><input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'cf7-styler-for-divi'); ?>" /></div>
         </div>
         </div>
         <?php

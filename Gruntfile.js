@@ -81,8 +81,17 @@ module.exports = function (grunt) {
 					},
 				],
 			},
-			// Patch freemius.php inside the pro package: free source has is_premium=>false,
-			// premium build must have is_premium=>true.
+			// Strip premium-only helper functions from freemius.php in the free wp.org build.
+			// These are only called by includes/pro/ which is excluded from the free package.
+			freemius_free: {
+				src: ['package/cf7-styler-for-divi/freemius.php'],
+				overwrite: true,
+				replacements: [
+					{ from: /\nfunction cf7m_can_use_premium\(\)[\s\S]*?^}\n/m, to: '' },
+					{ from: /\nfunction cf7m_is_premium\(\)[\s\S]*?^}\n/m, to: '' },
+				],
+			},
+			// Patch freemius.php inside the pro package: is_premium=>false → true.
 			freemius_premium: {
 				src: ['package/cf7-mate-pro/freemius.php'],
 				overwrite: true,
@@ -157,7 +166,7 @@ require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 	});
 
 	// WP repo zip (free, with Freemius)
-	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'compress:wp', 'clean:main']);
+	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'replace:freemius_free', 'compress:wp', 'clean:main']);
 
 	// Pro zip (cf7-mate-pro.php, for Freemius deploy)
 	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'replace:freemius_premium', 'write_pro_main', 'compress:pro', 'clean:main']);

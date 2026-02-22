@@ -25,7 +25,6 @@
 .cursorrules
 package-lock.json
 package.json
-composer.json
 composer.lock
 phpcs.xml.dist
 Gruntfile.js

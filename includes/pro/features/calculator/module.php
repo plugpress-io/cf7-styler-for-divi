@@ -425,7 +425,7 @@ class Calculator extends Pro_Feature_Base {
 		<div class="insert-box">
 			<input type="text" name="cf7m-number" class="tag code" readonly onfocus="this.select()" value="[cf7m-number qty value:1 min:0 max:100]">
 			<div class="submitbox">
-				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
+				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'cf7-styler-for-divi' ); ?>">
 			</div>
 		</div>
 		<?php
@@ -462,7 +462,7 @@ class Calculator extends Pro_Feature_Base {
 		<div class="insert-box">
 			<input type="text" name="cf7m-calc" class="tag code" readonly onfocus="this.select()" value='[cf7m-calc id:total formula:"qty * price"]'>
 			<div class="submitbox">
-				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
+				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'cf7-styler-for-divi' ); ?>">
 			</div>
 		</div>
 		<?php
@@ -520,7 +520,7 @@ class Calculator extends Pro_Feature_Base {
 		<div class="insert-box">
 			<input type="text" name="cf7m-total" class="tag code" readonly onfocus="this.select()" value='[cf7m-total id:total format:currency prefix:$ decimals:2]'>
 			<div class="submitbox">
-				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
+				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'cf7-styler-for-divi' ); ?>">
 			</div>
 		</div>
 		<?php
@@ -551,7 +551,7 @@ class Calculator extends Pro_Feature_Base {
 		<div class="insert-box">
 			<input type="text" name="cf7m-button" class="tag code" readonly onfocus="this.select()" value='[cf7m-button "<?php esc_attr_e( 'Calculate', 'cf7-styler-for-divi' ); ?>"]'>
 			<div class="submitbox">
-				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'contact-form-7' ); ?>">
+				<input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e( 'Insert Tag', 'cf7-styler-for-divi' ); ?>">
 			</div>
 		</div>
 		<?php

@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@cf7mate.com>\n"
-"POT-Creation-Date: 2026-02-21 22:21+0000\n"
+"POT-Creation-Date: 2026-02-22 10:28+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cf7-styler.php:38
+#: cf7-styler.php:40
 msgid "CF7 Styler (Lite) has been deactivated because CF7 Mate Pro is active."
 msgstr ""
 
@@ -462,7 +462,63 @@ msgstr ""
 msgid "The selected Contact Form 7 form no longer exists."
 msgstr ""
 
-#: includes/lite/features/grid/module.php:120, includes/pro/features/ai-form-generator/module.php:155
+#: includes/lite/features/grid/module.php:117, includes/pro/features/multi-column/module.php:189
+msgid "row"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:118
+msgid "Generate a row shortcode"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:121
+msgid "1-col"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:122
+msgid "Generate a full width column"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:125
+msgid "1/2-col"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:126
+msgid "Generate a half width column"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:129
+msgid "1/3-col"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:130
+msgid "Generate a one-third width column"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:133
+msgid "1/4-col"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:134
+msgid "Generate a one-fourth width column"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:137
+msgid "2/3-col"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:138
+msgid "Generate a two-thirds width column"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:141
+msgid "3/4-col"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:142
+msgid "Generate a three-fourths width column"
+msgstr ""
+
+#: includes/lite/features/grid/module.php:154, includes/pro/features/ai-form-generator/module.php:155
 msgid "Insert"
 msgstr ""
 
@@ -508,6 +564,10 @@ msgstr ""
 
 #: includes/lite/features/icon/module.php:175
 msgid "Size (px)"
+msgstr ""
+
+#: includes/lite/features/icon/module.php:183, includes/lite/features/image/module.php:154, includes/lite/features/range-slider/module.php:232, includes/lite/features/separator/module.php:162, includes/lite/features/star-rating/module.php:209, includes/pro/features/calculator/module.php:428, includes/pro/features/calculator/module.php:465, includes/pro/features/calculator/module.php:523, includes/pro/features/calculator/module.php:554, includes/pro/features/conditional/module.php:271, includes/pro/features/heading/module.php:230, includes/pro/features/multi-column/module.php:224, includes/pro/features/multi-column/module.php:270, includes/pro/features/multi-steps/module.php:228, includes/pro/features/phone-number/module.php:250, includes/pro/features/presets/module.php:162
+msgid "Insert Tag"
 msgstr ""
 
 #: includes/lite/features/image/module.php:114
@@ -1137,10 +1197,6 @@ msgstr ""
 
 #: includes/pro/features/heading/module.php:211
 msgid "Tag"
-msgstr ""
-
-#: includes/pro/features/multi-column/module.php:189
-msgid "row"
 msgstr ""
 
 #: includes/pro/features/multi-column/module.php:190

@@ -159,7 +159,7 @@ class Separator extends Feature_Base
         <div class="insert-box">
             <input type="text" name="cf7m-separator" class="tag code" readonly="readonly" onfocus="this.select()" value="[cf7m-separator]">
             <div class="submitbox">
-                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'contact-form-7'); ?>">
+                <input type="button" class="button button-primary insert-tag" value="<?php esc_attr_e('Insert Tag', 'cf7-styler-for-divi'); ?>">
             </div>
         </div>
         <?php

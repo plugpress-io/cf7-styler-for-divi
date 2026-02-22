@@ -30,6 +30,11 @@ jobs:
                   rm -rf assets/pro
                   rm -f cf7-mate-pro.php
 
+            - name: Strip premium helpers from freemius.php
+              run: |
+                  sed -i '/^function cf7m_can_use_premium/,/^}/d' freemius.php
+                  sed -i '/^function cf7m_is_premium/,/^}/d' freemius.php
+
             - name: Commit and push to public repo
               run: |
                   git config user.name "github-actions[bot]"

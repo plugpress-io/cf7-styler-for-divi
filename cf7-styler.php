@@ -10,6 +10,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cf7-styler-for-divi
 Domain Path: /languages
+Requires Plugins: contact-form-7
 
 @fs_premium_only /includes/pro/, /assets/pro/
 */

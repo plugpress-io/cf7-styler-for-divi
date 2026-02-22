@@ -9,6 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - name: Strip premium helpers from freemius.php
+              run: |
+                  sed -i '/^function cf7m_can_use_premium/,/^}/d' freemius.php
+                  sed -i '/^function cf7m_is_premium/,/^}/d' freemius.php
             - name: WordPress Plugin Deploy
               uses: 10up/action-wordpress-plugin-deploy@stable
               env:

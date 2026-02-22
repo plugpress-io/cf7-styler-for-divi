@@ -131,7 +131,7 @@ class Admin_Review_Notice
                         ?>
                     </p>
                     <div class="cf7m-notice-actions">
-                        <a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/?filter=5#new-post" target="_blank" class="cf7m-review-button cf7m-review-button--primary" data-action="review">
+                        <a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/" target="_blank" class="cf7m-review-button cf7m-review-button--primary" data-action="review">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" />
                             </svg>

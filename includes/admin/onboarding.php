@@ -34,9 +34,11 @@ class Onboarding
         add_action('admin_init', [$this, 'maybe_restart_guided_setup'], 5);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('admin_footer', [$this, 'render_onboarding_root']);
+        add_action('admin_notices', [$this, 'display_setup_notice']);
         add_action('wp_ajax_cf7m_check_onboarding_status', [$this, 'check_onboarding_status']);
         add_action('wp_ajax_cf7m_complete_onboarding', [$this, 'complete_onboarding']);
         add_action('wp_ajax_cf7m_skip_onboarding', [$this, 'skip_onboarding']);
+        add_action('wp_ajax_cf7m_skip_setup_notice', [$this, 'skip_setup_notice']);
         add_action('wp_ajax_cf7m_next_onboarding_step', [$this, 'next_step']);
         add_action('wp_ajax_cf7m_dismiss_rebrand', [$this, 'dismiss_rebrand']);
     }
@@ -54,15 +56,21 @@ class Onboarding
             return;
         }
         self::reset_onboarding();
+        set_transient('cf7m_run_onboarding_' . get_current_user_id(), '1', 60);
         wp_safe_redirect(admin_url('admin.php?page=cf7-mate-dashboard'));
         exit;
     }
 
     public function enqueue_scripts($hook)
     {
+        // Only show the onboarding modal when explicitly triggered via "Run Setup Wizard".
+        $transient_key = 'cf7m_run_onboarding_' . get_current_user_id();
+        if (!get_transient($transient_key)) {
+            return;
+        }
+        delete_transient($transient_key);
+
         // Gate on ?page= directly — more reliable than hook name which Freemius can alter.
-        // Match any CF7 Mate admin page (cf7-mate, cf7-mate-dashboard, cf7-mate-account, etc.)
-        // so onboarding shows regardless of which page Freemius redirects to after opt-in.
         $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
         if (strpos($page, 'cf7-mate') !== 0) {
             return;
@@ -77,8 +85,7 @@ class Onboarding
             }
         }
 
-        // Only show full-screen onboarding for new users (not yet completed/skipped).
-        // Rebrand is handled by the subtle dashboard banner (V3Banner), not part of onboarding.
+        // Only show for users who haven't completed/skipped onboarding.
         $onboarding_done = $this->is_onboarding_completed() || $this->is_onboarding_skipped();
         if ($onboarding_done) {
             return;
@@ -111,7 +118,7 @@ class Onboarding
             'cf7_admin_url' => admin_url('admin.php?page=wpcf7'),
             'dashboard_url' => admin_url('admin.php?page=cf7-mate-dashboard'),
             'pricing_url' => function_exists('cf7m_get_pricing_url') ? cf7m_get_pricing_url('NEW2026') : CF7M_URL_PRICING,
-            'is_pro' => function_exists('cf7m_can_use_premium') && cf7m_can_use_premium(),
+            'is_pro' => class_exists('CF7_Mate\Premium_Loader'),
             'rebrand_seen' => $this->is_rebrand_seen(),
             'onboarding_completed' => $this->is_onboarding_completed(),
             'version' => defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0',
@@ -120,19 +127,90 @@ class Onboarding
 
     public function render_onboarding_root()
     {
-        // Only render onboarding root for new users (rebrand is not part of onboarding)
-        $onboarding_done = $this->is_onboarding_completed() || $this->is_onboarding_skipped();
-        if ($onboarding_done) {
-            return;
-        }
-
-        // Only on CF7 Mate pages — same broad match as enqueue_scripts.
-        $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-        if (strpos($page, 'cf7-mate') !== 0) {
+        // Only render when the onboarding script was explicitly enqueued (via "Run Setup Wizard").
+        if (!wp_script_is('cf7m-onboarding', 'enqueued')) {
             return;
         }
 
         echo '<div id="cf7m-onboarding-root"></div>';
+    }
+
+    /**
+     * Display a non-intrusive admin notice prompting the user to run the setup wizard.
+     * Shown on all admin pages until the user completes or skips onboarding.
+     *
+     * @since 3.0.1
+     */
+    public function display_setup_notice()
+    {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        if ($this->is_onboarding_completed() || $this->is_onboarding_skipped()) {
+            return;
+        }
+
+        $setup_url    = esc_url(admin_url('admin.php?page=cf7-mate-dashboard&cf7m_guided_setup=1'));
+        $dismiss_nonce = wp_create_nonce('cf7m_skip_setup_notice');
+        ?>
+        <div id="cf7m-setup-notice" class="notice notice-info" style="display:flex;align-items:center;padding:16px 40px 16px 16px;gap:16px;border-left-color:#3044D7;background:#f0f2ff;">
+            <div style="flex-shrink:0;width:40px;height:40px;background:#e0e4ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;">
+                &#9786;
+            </div>
+            <div style="flex:1;">
+                <p style="margin:0 0 4px;font-size:14px;font-weight:600;color:#1e1e1e;">
+                    <?php esc_html_e('You are nearly ready to start using CF7 Mate', 'cf7-styler-for-divi'); ?>
+                </p>
+                <p style="margin:0;color:#50575e;">
+                    <?php esc_html_e('Go through the setup to configure your plugin.', 'cf7-styler-for-divi'); ?>
+                </p>
+            </div>
+            <div style="flex-shrink:0;display:flex;gap:8px;">
+                <a href="<?php echo $setup_url; ?>" class="button button-primary" style="background:#3044D7;border-color:#3044D7;">
+                    <?php esc_html_e('Run Setup Wizard', 'cf7-styler-for-divi'); ?>
+                </a>
+                <button type="button" class="button cf7m-skip-setup">
+                    <?php esc_html_e('Skip Setup', 'cf7-styler-for-divi'); ?>
+                </button>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $('#cf7m-setup-notice').on('click', '.cf7m-skip-setup', function() {
+                    var $notice = $('#cf7m-setup-notice');
+                    $.post(ajaxurl, {
+                        action: 'cf7m_skip_setup_notice',
+                        nonce: '<?php echo esc_js($dismiss_nonce); ?>'
+                    }, function() {
+                        $notice.fadeOut(200, function() { $(this).remove(); });
+                    });
+                });
+            });
+        </script>
+        <?php
+    }
+
+    /**
+     * AJAX handler: skip onboarding from the setup notice.
+     *
+     * @since 3.0.1
+     */
+    public function skip_setup_notice()
+    {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'cf7m_skip_setup_notice')) {
+            wp_send_json_error(['message' => 'Security check failed']);
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Insufficient permissions']);
+        }
+
+        update_option(self::ONBOARDING_SKIPPED_OPTION, '1');
+        delete_option(self::ONBOARDING_STEP_OPTION);
+
+        wp_send_json_success();
     }
 
     public function check_onboarding_status()

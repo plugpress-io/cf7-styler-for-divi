@@ -24,8 +24,8 @@ if (!function_exists('cf7m_fs')) {
                     'first-path'  => 'admin.php?page=cf7-mate-dashboard',
                     'contact'    => false,
                     'support'    => false,
-                    'pricing'    => true,
-                    'account'    => true
+                    'account'    => false,
+                    'pricing'    => true
                 ],
                 'is_live'          => true,
             ]);
