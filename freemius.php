@@ -69,19 +69,4 @@ if (!function_exists('cf7m_fs')) {
     do_action('cf7m_fs_loaded');
 }
 
-function cf7m_can_use_premium()
-{
-    $pro = defined('CF7M_PLUGIN_PATH') ? CF7M_PLUGIN_PATH . 'includes/pro/loader.php' : '';
-    if (!$pro || !file_exists($pro)) {
-        return false;
-    }
-    if (defined('CF7M_DEV_MODE') && CF7M_DEV_MODE) {
-        return true;
-    }
-    return function_exists('cf7m_fs') && cf7m_fs()->can_use_premium_code();
-}
 
-function cf7m_is_premium()
-{
-    return function_exists('cf7m_fs') && cf7m_fs()->is__premium_only();
-}
