@@ -6,6 +6,12 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import {
+	DocumentTextIcon,
+	InboxIcon,
+	SparklesIcon,
+	CheckCircleIcon,
+} from '@heroicons/react/24/outline';
 
 const getProWidget = (name) => window.cf7mProWidgets && window.cf7mProWidgets[name];
 
@@ -68,26 +74,26 @@ export function DashboardView({
 			{/* Stats Grid */}
 			<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
 				<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-					<div className="text-2xl mb-2">📝</div>
+					<DocumentTextIcon className="w-6 h-6 text-blue-600 mb-3" />
 					<div className="text-2xl font-bold text-gray-900">{stats.total_forms || 0}</div>
 					<div className="text-xs text-gray-600 mt-1">{__('Forms', 'cf7-styler-for-divi')}</div>
 				</div>
 				{showEntries && (
 					<>
 						<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-							<div className="text-2xl mb-2">📧</div>
+							<InboxIcon className="w-6 h-6 text-green-600 mb-3" />
 							<div className="text-2xl font-bold text-gray-900">{stats.total_entries || 0}</div>
 							<div className="text-xs text-gray-600 mt-1">{__('Entries', 'cf7-styler-for-divi')}</div>
 						</div>
 						<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-							<div className="text-2xl mb-2">⭐</div>
+							<CheckCircleIcon className="w-6 h-6 text-amber-600 mb-3" />
 							<div className="text-2xl font-bold text-gray-900">{stats.new_today || 0}</div>
 							<div className="text-xs text-gray-600 mt-1">{__('Today', 'cf7-styler-for-divi')}</div>
 						</div>
 					</>
 				)}
 				<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-					<div className="text-2xl mb-2">✨</div>
+					<SparklesIcon className="w-6 h-6 text-purple-600 mb-3" />
 					<div className="text-2xl font-bold text-gray-900">{stats.enabled_features || 0}</div>
 					<div className="text-xs text-gray-600 mt-1">{__('Enabled', 'cf7-styler-for-divi')}</div>
 				</div>

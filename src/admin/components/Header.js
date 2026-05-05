@@ -46,22 +46,17 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 	const isWebhook = currentView === 'webhook';
 	const isLicense = currentView === 'license';
 
-	const NavLink = ({ href, icon: Icon, label, active = false, badge = null }) => (
+	const NavLink = ({ href, icon: Icon, label, active = false }) => (
 		<a
 			href={href}
-			className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+			className={`flex items-center gap-2 px-3 py-2 rounded text-sm font-medium whitespace-nowrap transition-all ${
 				active
-					? 'text-blue-600 bg-blue-50'
-					: 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+					? 'text-blue-600 border-b-2 border-blue-600'
+					: 'text-gray-600 border-b-2 border-transparent hover:text-gray-900'
 			}`}
 		>
 			{Icon && <Icon className="w-5 h-5" />}
 			<span>{label}</span>
-			{badge && (
-				<span className="ml-1 bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">
-					{badge}
-				</span>
-			)}
 		</a>
 	);
 
@@ -69,10 +64,10 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 		<div className="relative">
 			<button
 				onClick={onClick}
-				className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+				className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm font-medium whitespace-nowrap transition-all ${
 					open || isEntries || isWebhook || isLicense
-						? 'text-blue-600 bg-blue-50'
-						: 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+						? 'text-blue-600 border-b-2 border-blue-600'
+						: 'text-gray-600 border-b-2 border-transparent hover:text-gray-900'
 				}`}
 			>
 				<span>{label}</span>
@@ -81,7 +76,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 				/>
 			</button>
 			{open && (
-				<div className="absolute left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+				<div className="absolute left-0 mt-0 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
 					{children}
 				</div>
 			)}
@@ -130,7 +125,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 									{showEntries && (
 										<a
 											href={`${dashboardUrl}#/entries`}
-											className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 first:rounded-t-md"
+											className={`flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors ${isEntries ? 'bg-blue-50 text-blue-600 font-medium' : ''}`}
 											onClick={() => setDataOpen(false)}
 										>
 											<DocumentDuplicateIcon className="w-4 h-4" />
@@ -140,7 +135,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 									{showWebhook && (
 										<a
 											href={`${dashboardUrl}#/webhook`}
-											className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 last:rounded-b-md"
+											className={`flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors ${isWebhook ? 'bg-blue-50 text-blue-600 font-medium' : ''}`}
 											onClick={() => setDataOpen(false)}
 										>
 											<WebhookIcon className="w-4 h-4" />
@@ -159,7 +154,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 								>
 									<a
 										href={`${dashboardUrl}#/license`}
-										className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+										className={`flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors ${isLicense ? 'bg-blue-50 text-blue-600 font-medium' : ''}`}
 										onClick={() => setAccountOpen(false)}
 									>
 										<CogIcon className="w-4 h-4" />
