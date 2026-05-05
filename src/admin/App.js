@@ -15,6 +15,7 @@ import { V3Banner } from './components/V3Banner';
 import { RebrandModal } from './components/RebrandModal';
 import { DashboardPage } from './pages/DashboardPage';
 import { ModulesPage } from './pages/ModulesPage';
+import { SettingsPage } from './pages/SettingsPage';
 import { FreeVsProPage } from './pages/FreeVsProPage';
 import { UpsellPlaceholder } from './components/UpsellPlaceholder';
 
@@ -40,12 +41,16 @@ export function App() {
 	const [saving, setSaving] = useState(false);
 	const [toast, setToast] = useState(null);
 	const getInitialRoute = () => {
-		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'features') return { view: 'features', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'entries') return { view: 'entries', entryId: null };
-		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') return { view: 'ai-settings', entryId: null };
-		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'webhook') return { view: 'webhook', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'free-vs-pro') return { view: 'free-vs-pro', entryId: null };
-		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'license') return { view: 'license', entryId: null };
+		// All settings-related pages now route to settings
+		if (typeof dcsCF7Styler !== 'undefined' &&
+			(dcsCF7Styler.currentPage === 'features' ||
+			 dcsCF7Styler.currentPage === 'webhook' ||
+			 dcsCF7Styler.currentPage === 'ai-settings' ||
+			 dcsCF7Styler.currentPage === 'license')) {
+			return { view: 'settings', entryId: null };
+		}
 		return getViewFromHash();
 	};
 	const [route, setRoute] = useState(getInitialRoute);
@@ -156,14 +161,8 @@ export function App() {
 						) : (
 							<UpsellPlaceholder feature="entries" />
 						)
-					) : currentView === 'features' ? (
-						<ModulesPage features={features} isPro={isPro} onToggle={handleToggle} saving={saving} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} />
-					) : currentView === 'ai-settings' ? (
-						renderProPage('ai-settings')
-					) : currentView === 'webhook' ? (
-						renderProPage('webhook')
-					) : currentView === 'license' ? (
-						renderProPage('license')
+					) : currentView === 'settings' ? (
+						<SettingsPage features={features} isPro={isPro} onToggle={handleToggle} saving={saving} showV3Banner={showV3Banner} rebrandDismissed={rebrandDismissed} />
 					) : currentView === 'free-vs-pro' ? (
 						<FreeVsProPage />
 					) : (

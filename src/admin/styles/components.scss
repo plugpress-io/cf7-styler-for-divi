@@ -437,3 +437,48 @@ textarea {
 .components-spacer {
   flex: 1;
 }
+
+// ===== Settings Page Styles =====
+.cf7m-settings-page {
+  width: 100%;
+}
+
+.cf7m-tab-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.cf7m-tab-panel__tabs {
+  display: flex;
+  gap: space(md);
+  border-bottom: 1px solid color(border);
+  margin-bottom: space(lg);
+  overflow-x: auto;
+}
+
+.cf7m-tab-panel__tabs-item {
+  padding: space(md) space(lg);
+  border-bottom: 2px solid transparent;
+  font-size: font-size(sm);
+  font-weight: font-weight(medium);
+  color: color(text-muted);
+  @include transition;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    color: color(text);
+    border-bottom-color: color(primary-light);
+  }
+
+  &.is-active {
+    color: color(primary);
+    border-bottom-color: color(primary);
+  }
+}
+
+.cf7m-settings-tab {
+  &__content {
+    padding: space(lg) 0;
+  }
+}
