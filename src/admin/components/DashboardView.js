@@ -1,16 +1,18 @@
 /**
- * Dashboard view – role-specific layouts
- * Uses Tailwind CSS for styling
+ * Dashboard view – role-specific layouts using @wordpress/components
+ * Minimal, Notion-like design with clear information hierarchy
  *
  * @package CF7_Mate
  */
 
+import { Heading, Button, Flex, FlexItem, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import {
 	DocumentTextIcon,
 	InboxIcon,
 	SparklesIcon,
 	CheckCircleIcon,
+	ArrowRightIcon,
 } from '@heroicons/react/24/outline';
 
 const getProWidget = (name) => window.cf7mProWidgets && window.cf7mProWidgets[name];
@@ -23,85 +25,105 @@ export function DashboardView({
 	dashboardUrl,
 	modulesUrl,
 }) {
-
 	if (loading) {
 		return (
-			<div className="flex items-center justify-center py-12">
-				<div className="text-center">
-					<p className="text-gray-500 text-sm">
-						{__('Loading…', 'cf7-styler-for-divi')}
-					</p>
-				</div>
+			<div className="cf7m-section" style={{ textAlign: 'center', padding: '40px 0' }}>
+				<Spinner />
+				<p className="text-muted" style={{ marginTop: '16px' }}>
+					{__('Loading dashboard…', 'cf7-styler-for-divi')}
+				</p>
 			</div>
 		);
 	}
 
 	const EntriesOverview = getProWidget('entriesOverview');
 
-	// Free version: welcome card with quick actions
+	// Free version: welcome section
 	if (!isPro) {
 		return (
-			<div className="flex justify-center py-12">
-				<div className="bg-white rounded-lg border border-gray-200 p-8 max-w-md text-center shadow-sm">
-					<h1 className="text-2xl font-bold text-gray-900 mb-2">
+			<div className="cf7m-section">
+				<div className="cf7m-card" style={{ textAlign: 'center', maxWidth: '500px', margin: '0 auto' }}>
+					<Heading level={1} className="cf7m-card__title" style={{ marginBottom: '12px' }}>
 						{__('Welcome to CF7 Mate', 'cf7-styler-for-divi')}
-					</h1>
-					<p className="text-gray-600 text-sm mb-6">
-						{__('Style Contact Form 7, add custom fields, and unlock pro features.', 'cf7-styler-for-divi')}
+					</Heading>
+					<p className="cf7m-card__subtitle" style={{ margin: '0 0 24px 0' }}>
+						{__('Style Contact Form 7, add custom fields, and unlock powerful pro features.', 'cf7-styler-for-divi')}
 					</p>
-					<div className="flex gap-3">
-						<a
-							href={modulesUrl}
-							className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
-						>
-							{__('Explore Features', 'cf7-styler-for-divi')}
-						</a>
-						<a
-							href={dashboardUrl + '#/free-vs-pro'}
-							className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-md transition-colors"
-						>
-							{__('See What\'s Pro', 'cf7-styler-for-divi')}
-						</a>
-					</div>
+					<Flex gap={3} direction="column">
+						<FlexItem>
+							<Button href={modulesUrl} variant="primary" style={{ width: '100%' }}>
+								{__('Explore Modules', 'cf7-styler-for-divi')}
+							</Button>
+						</FlexItem>
+						<FlexItem>
+							<Button href={dashboardUrl + '#/free-vs-pro'} style={{ width: '100%' }}>
+								{__('Compare Free vs Pro', 'cf7-styler-for-divi')}
+							</Button>
+						</FlexItem>
+					</Flex>
 				</div>
 			</div>
 		);
 	}
 
-	// Pro version: dashboard with stats and entries
+	// Pro version: dashboard with stats and activity
 	return (
-		<div className="space-y-6">
+		<div className="cf7m-dashboard">
+			{/* Welcome Section */}
+			<div className="cf7m-section">
+				<Heading level={1} className="cf7m-section__title">
+					{__('Dashboard', 'cf7-styler-for-divi')}
+				</Heading>
+				<p className="cf7m-section__subtitle">
+					{__('Overview of your CF7 Mate Pro activity and settings.', 'cf7-styler-for-divi')}
+				</p>
+			</div>
+
 			{/* Stats Grid */}
-			<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-				<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-					<DocumentTextIcon className="w-6 h-6 text-blue-600 mb-3" />
-					<div className="text-2xl font-bold text-gray-900">{stats.total_forms || 0}</div>
-					<div className="text-xs text-gray-600 mt-1">{__('Forms', 'cf7-styler-for-divi')}</div>
-				</div>
+			<div className="cf7m-stats-grid grid grid-cols-2 md:grid-cols-4 gap-lg">
+				<StatCard
+					icon={DocumentTextIcon}
+					color="primary"
+					value={stats.total_forms || 0}
+					label={__('Forms', 'cf7-styler-for-divi')}
+					href={`${dashboardUrl}#/entries`}
+					showArrow={showEntries}
+				/>
+
 				{showEntries && (
 					<>
-						<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-							<InboxIcon className="w-6 h-6 text-green-600 mb-3" />
-							<div className="text-2xl font-bold text-gray-900">{stats.total_entries || 0}</div>
-							<div className="text-xs text-gray-600 mt-1">{__('Entries', 'cf7-styler-for-divi')}</div>
-						</div>
-						<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-							<CheckCircleIcon className="w-6 h-6 text-amber-600 mb-3" />
-							<div className="text-2xl font-bold text-gray-900">{stats.new_today || 0}</div>
-							<div className="text-xs text-gray-600 mt-1">{__('Today', 'cf7-styler-for-divi')}</div>
-						</div>
+						<StatCard
+							icon={InboxIcon}
+							color="success"
+							value={stats.total_entries || 0}
+							label={__('Submissions', 'cf7-styler-for-divi')}
+							href={`${dashboardUrl}#/entries`}
+							showArrow={true}
+						/>
+						<StatCard
+							icon={CheckCircleIcon}
+							color="warning"
+							value={stats.new_today || 0}
+							label={__('Today', 'cf7-styler-for-divi')}
+							href={`${dashboardUrl}#/entries`}
+							showArrow={true}
+						/>
 					</>
 				)}
-				<div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-					<SparklesIcon className="w-6 h-6 text-purple-600 mb-3" />
-					<div className="text-2xl font-bold text-gray-900">{stats.enabled_features || 0}</div>
-					<div className="text-xs text-gray-600 mt-1">{__('Enabled', 'cf7-styler-for-divi')}</div>
-				</div>
+
+				<StatCard
+					icon={SparklesIcon}
+					color="primary"
+					value={stats.enabled_features || 0}
+					label={__('Modules', 'cf7-styler-for-divi')}
+					href={`${dashboardUrl}#/settings`}
+					showArrow={true}
+				/>
 			</div>
 
 			{/* Entries Overview */}
 			{EntriesOverview && showEntries && (
-				<div>
+				<div className="cf7m-section">
 					<EntriesOverview
 						showEntries={showEntries}
 						dashboardUrl={dashboardUrl}
@@ -109,6 +131,56 @@ export function DashboardView({
 					/>
 				</div>
 			)}
+
+			{/* Quick Actions */}
+			<div className="cf7m-section">
+				<Heading level={2} className="cf7m-section__title">
+					{__('Quick Actions', 'cf7-styler-for-divi')}
+				</Heading>
+				<Flex gap={3}>
+					<FlexItem>
+						<Button href={`${dashboardUrl}#/settings`} variant="primary">
+							{__('View Settings', 'cf7-styler-for-divi')}
+						</Button>
+					</FlexItem>
+					<FlexItem>
+						<Button href={modulesUrl}>
+							{__('Manage Modules', 'cf7-styler-for-divi')}
+						</Button>
+					</FlexItem>
+				</Flex>
+			</div>
 		</div>
 	);
+}
+
+// Stat Card Component
+function StatCard({ icon: Icon, color, value, label, href, showArrow }) {
+	const colorMap = {
+		primary: '#3a57fc',
+		success: '#10b981',
+		warning: '#f59e0b',
+		danger: '#ef4444',
+	};
+
+	const content = (
+		<div className="cf7m-stat-card">
+			<div className="cf7m-stat-card__icon" style={{ color: colorMap[color] }}>
+				<Icon className="w-6 h-6" aria-hidden="true" />
+			</div>
+			<div className="cf7m-stat-card__value">{value}</div>
+			<div className="cf7m-stat-card__label">{label}</div>
+			{showArrow && (
+				<div className="cf7m-stat-card__arrow">
+					<ArrowRightIcon className="w-4 h-4" aria-hidden="true" />
+				</div>
+			)}
+		</div>
+	);
+
+	if (href) {
+		return <a href={href} className="cf7m-stat-card-link">{content}</a>;
+	}
+
+	return content;
 }
