@@ -39,6 +39,50 @@
 	*::after {
 		box-sizing: border-box;
 	}
+
+	// Override WordPress admin styles
+	input[type="text"],
+	input[type="email"],
+	input[type="url"],
+	textarea {
+		border: 1px solid var(--cf7m-border) !important;
+		border-radius: 6px !important;
+		padding: 8px 12px !important;
+		font-size: 14px !important;
+
+		&:focus {
+			outline: none !important;
+			box-shadow: 0 0 0 3px rgba(58, 87, 252, 0.1) !important;
+			border-color: var(--cf7m-primary) !important;
+		}
+	}
+
+	button,
+	input[type="button"],
+	input[type="submit"],
+	.button {
+		box-shadow: none !important;
+		text-shadow: none !important;
+		background: var(--cf7m-primary) !important;
+		border: 1px solid var(--cf7m-primary) !important;
+		color: white !important;
+		padding: 8px 16px !important;
+		border-radius: 6px !important;
+		font-size: 14px !important;
+		font-weight: 500 !important;
+		cursor: pointer !important;
+		transition: all 0.15s ease !important;
+
+		&:hover {
+			background: var(--cf7m-primary-dark) !important;
+			border-color: var(--cf7m-primary-dark) !important;
+		}
+
+		&:focus {
+			outline: none !important;
+			box-shadow: 0 0 0 3px rgba(58, 87, 252, 0.1) !important;
+		}
+	}
 }
 
 .cf7m-admin-wrapper {
