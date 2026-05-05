@@ -11,7 +11,7 @@ class Admin
     private static $instance;
 
     const TOP_LEVEL_SLUG = 'cf7-mate';
-    const PAGE_SLUG = 'cf7-mate-dashboard';
+    const PAGE_SLUG = 'cf7-mate';
     const FEATURES_PAGE_SLUG = 'cf7-mate-modules';
     const ENTRIES_PAGE_SLUG = 'cf7-mate-entries';
     const AI_SETTINGS_PAGE_SLUG = 'cf7-mate-ai-settings';

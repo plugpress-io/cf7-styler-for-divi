@@ -108,7 +108,7 @@ export function App() {
 	const showWebhook = isPro && !!features.webhook;
 	const entriesOnlyPage = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
 	const cf7AdminUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.cf7_admin_url ? dcsCF7Styler.cf7_admin_url : 'admin.php?page=wpcf7';
-	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate-dashboard';
+	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate';
 	const modulesUrl = `${dashboardUrl}#/features`;
 	const pricingUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url ? dcsCF7Styler.pricing_url : '';
 	const promoCode = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.promo_code ? dcsCF7Styler.promo_code : '';

@@ -38,7 +38,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 	const dashboardUrl =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url
 			? dcsCF7Styler.dashboard_url
-			: 'admin.php?page=cf7-mate-dashboard';
+			: 'admin.php?page=cf7-mate';
 
 	const isDashboard = currentView === 'dashboard';
 	const isModules = currentView === 'features';

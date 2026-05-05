@@ -50,7 +50,7 @@ const FEATURE_DATA = {
 export function UpsellPlaceholder({ feature }) {
 	const data = FEATURE_DATA[feature] || FEATURE_DATA.entries;
 	const pricingUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url) || 'admin.php?page=cf7-mate-pricing';
-	const dashboardUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url) || 'admin.php?page=cf7-mate-dashboard';
+	const dashboardUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url) || 'admin.php?page=cf7-mate';
 	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
 	const IconComponent = FEATURE_ICONS[data.icon] || FEATURE_ICONS.module;
 

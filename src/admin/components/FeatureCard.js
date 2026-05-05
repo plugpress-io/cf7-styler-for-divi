@@ -11,7 +11,7 @@ import { Toggle } from './Toggle';
 
 export function FeatureCard({ feature, enabled, isPro, onToggle, saving }) {
 	const isProLocked = feature.isPro && !isPro;
-	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate-dashboard';
+	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate';
 	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
 	const IconComponent = FEATURE_ICONS[feature.icon] || FEATURE_ICONS.module;
 
