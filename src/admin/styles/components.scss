@@ -1,0 +1,439 @@
+// ===========================================
+// CF7 Mate Admin – Components Styling
+// WordPress Components Theme Overrides
+// ===========================================
+
+@import './tokens.scss';
+
+// ===== Button Component =====
+.components-button {
+  @include button-base;
+
+  // Default (secondary) button
+  &:not(.is-primary):not(.is-destructive) {
+    color: color(text);
+    background-color: color(bg);
+    border-color: color(border);
+
+    &:hover:not(:disabled) {
+      background-color: color(gray-100);
+      border-color: color(primary);
+    }
+  }
+
+  // Primary button
+  &.is-primary {
+    color: white;
+    background-color: color(primary);
+    border-color: color(primary);
+
+    &:hover:not(:disabled) {
+      background-color: color(primary-hover);
+      border-color: color(primary-hover);
+    }
+  }
+
+  // Destructive button
+  &.is-destructive {
+    color: white;
+    background-color: color(danger);
+    border-color: color(danger);
+
+    &:hover:not(:disabled) {
+      background-color: darken(color(danger), 10%);
+      border-color: darken(color(danger), 10%);
+    }
+  }
+
+  // Loading state
+  &.is-busy {
+    opacity: 0.6;
+    cursor: wait;
+  }
+}
+
+// ===== Text Control & Input =====
+.components-text-control,
+.components-textarea-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.components-text-control__input,
+.components-textarea-control__input,
+input[type='text'],
+input[type='email'],
+input[type='url'],
+input[type='password'],
+textarea {
+  @include form-control;
+}
+
+// Input label
+.components-text-control__label,
+.components-textarea-control__label,
+.components-base-control__label {
+  display: block;
+  margin-bottom: space(sm);
+  font-size: font-size(sm);
+  font-weight: font-weight(medium);
+  color: color(text);
+}
+
+// Help text
+.components-text-control__help,
+.components-textarea-control__help,
+.components-base-control__help {
+  display: block;
+  margin-top: space(sm);
+  font-size: font-size(xs);
+  color: color(text-muted);
+  line-height: map-get($line-heights, normal);
+}
+
+// ===== Select Control =====
+.components-select-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.components-select-control__input {
+  @include form-control;
+  appearance: none;
+  padding-right: space(xl);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343434' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right space(md) center;
+  background-size: 16px;
+
+  &:disabled {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23999' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  }
+}
+
+// ===== Toggle Control =====
+.components-toggle-control {
+  @include flex(row, md);
+  align-items: center;
+}
+
+.components-toggle-control__label {
+  font-size: font-size(sm);
+  color: color(text);
+  margin: 0;
+  flex: 1;
+}
+
+// Toggle switch styling
+.components-form-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: radius(full);
+  background-color: color(border);
+  @include transition;
+  cursor: pointer;
+
+  &.is-checked {
+    background-color: color(primary);
+
+    .components-form-toggle__input {
+      &:focus {
+        box-shadow: 0 0 0 3px color(primary-light);
+      }
+    }
+  }
+
+  .components-form-toggle__input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: radius(full);
+    opacity: 0;
+    cursor: pointer;
+
+    &:focus + .components-form-toggle__on,
+    &:focus + .components-form-toggle__off {
+      box-shadow: 0 0 0 3px color(primary-light);
+      outline: none;
+    }
+  }
+
+  .components-form-toggle__on,
+  .components-form-toggle__off {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: radius(full);
+    background-color: white;
+    transform: translateY(-50%);
+    @include transition;
+  }
+
+  .components-form-toggle__off {
+    left: 2px;
+  }
+
+  .components-form-toggle__on {
+    right: 2px;
+  }
+
+  &.is-checked .components-form-toggle__off {
+    left: -100%;
+  }
+
+  &.is-checked .components-form-toggle__on {
+    right: 2px;
+  }
+}
+
+// ===== Checkbox & Radio =====
+.components-checkbox-control,
+.components-radio-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: space(md);
+
+  input {
+    width: 18px;
+    height: 18px;
+    margin-right: space(md);
+    cursor: pointer;
+    accent-color: color(primary);
+  }
+
+  label {
+    margin: 0;
+    font-size: font-size(sm);
+    color: color(text);
+    cursor: pointer;
+  }
+}
+
+// ===== Card Component =====
+.components-card {
+  @include card;
+
+  .components-card__body {
+    &:not(:first-child) {
+      padding-top: space(lg);
+      border-top: 1px solid color(border-light);
+    }
+
+    &:not(:last-child) {
+      padding-bottom: space(lg);
+      border-bottom: 1px solid color(border-light);
+    }
+  }
+
+  .components-card__header {
+    padding: space(lg);
+    border-bottom: 1px solid color(border-light);
+
+    h2 {
+      margin: 0;
+      font-size: font-size(lg);
+      font-weight: font-weight(bold);
+    }
+  }
+
+  .components-card__footer {
+    padding: space(lg);
+    border-top: 1px solid color(border-light);
+  }
+}
+
+// ===== Panel Component =====
+.components-panel {
+  @include flex(column, 0);
+  border: 1px solid color(border);
+  border-radius: radius(lg);
+  overflow: hidden;
+}
+
+.components-panel__body {
+  padding: space(lg);
+
+  &:not(:first-child) {
+    border-top: 1px solid color(border-light);
+  }
+}
+
+.components-panel__header {
+  padding: space(lg);
+  background-color: color(bg);
+  border-bottom: 1px solid color(border-light);
+
+  h2 {
+    margin: 0;
+    font-size: font-size(base);
+    font-weight: font-weight(bold);
+  }
+}
+
+// ===== Notice Component =====
+.components-notice {
+  padding: space(lg);
+  border-left: 4px solid;
+  border-radius: radius(md);
+  margin-bottom: space(lg);
+  @include flex(row, md);
+  align-items: flex-start;
+
+  &.is-success {
+    background-color: color(success-light);
+    border-color: color(success);
+    color: color(success);
+
+    a {
+      color: color(success);
+      font-weight: font-weight(semibold);
+    }
+  }
+
+  &.is-warning {
+    background-color: color(warning-light);
+    border-color: color(warning);
+    color: color(warning);
+
+    a {
+      color: color(warning);
+      font-weight: font-weight(semibold);
+    }
+  }
+
+  &.is-error {
+    background-color: color(danger-light);
+    border-color: color(danger);
+    color: color(danger);
+
+    a {
+      color: color(danger);
+      font-weight: font-weight(semibold);
+    }
+  }
+
+  &.is-info {
+    background-color: color(primary-light);
+    border-color: color(primary);
+    color: color(primary);
+
+    a {
+      color: color(primary);
+      font-weight: font-weight(semibold);
+    }
+  }
+
+  .components-notice__dismiss {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+}
+
+// ===== Popover / Dropdown =====
+.components-popover {
+  z-index: zindex(popover) !important;
+
+  .components-popover__content {
+    background-color: color(bg-card);
+    border: 1px solid color(border);
+    box-shadow: shadow(lg);
+    border-radius: radius(md);
+  }
+}
+
+// ===== Modal Dialog =====
+.components-modal {
+  z-index: zindex(modal) !important;
+}
+
+.components-modal__frame {
+  background-color: color(bg-card);
+  border-radius: radius(lg);
+  box-shadow: shadow(xl);
+}
+
+.components-modal__header {
+  padding: space(xl);
+  border-bottom: 1px solid color(border);
+
+  h1 {
+    margin: 0;
+    font-size: font-size(xl);
+    font-weight: font-weight(bold);
+  }
+}
+
+// ===== Tab Panel =====
+.components-tab-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.components-tab-panel__tabs {
+  display: flex;
+  gap: space(md);
+  border-bottom: 1px solid color(border);
+  margin-bottom: space(lg);
+  overflow-x: auto;
+}
+
+.components-tab-panel__tabs-item {
+  padding: space(md) space(lg);
+  border-bottom: 2px solid transparent;
+  font-size: font-size(sm);
+  font-weight: font-weight(medium);
+  color: color(text-muted);
+  @include transition;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    color: color(text);
+    border-bottom-color: color(primary-light);
+  }
+
+  &[aria-selected='true'] {
+    color: color(primary);
+    border-bottom-color: color(primary);
+  }
+}
+
+// ===== Spinner / Loading =====
+.components-spinner {
+  color: color(primary);
+}
+
+// ===== Divider =====
+.components-divider {
+  border: none;
+  border-top: 1px solid color(border);
+  margin: space(lg) 0;
+}
+
+// ===== Flex Component =====
+.components-flex {
+  display: flex;
+  gap: space(md);
+
+  &.is-direction-row {
+    flex-direction: row;
+  }
+
+  &.is-direction-column {
+    flex-direction: column;
+  }
+}
+
+.components-flex-item {
+  flex: 1;
+  min-width: 0;
+}
+
+// ===== Space/Spacer Component =====
+.components-spacer {
+  flex: 1;
+}
