@@ -1,13 +1,14 @@
 /**
  * Admin header with navigation
- * Uses @wordpress/components (Flex, Button) and Heroicons
+ * Uses @wordpress/components (Flex, FlexItem) and Heroicons
+ * Keyboard accessible with Escape to close dropdowns
  *
  * @package CF7_Mate
  */
 
-import { useState } from '@wordpress/element';
+import { useState, useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Flex, FlexItem, Button } from '@wordpress/components';
+import { Flex, FlexItem } from '@wordpress/components';
 import {
 	HomeIcon,
 	SparklesIcon,
@@ -21,6 +22,8 @@ import CF7MateLogo from '../../components/CF7MateLogo';
 export function Header({ isPro, showEntries, showWebhook, currentView }) {
 	const [dataOpen, setDataOpen] = useState(false);
 	const [accountOpen, setAccountOpen] = useState(false);
+	const dataDropdownRef = useRef(null);
+	const accountDropdownRef = useRef(null);
 
 	const entriesOnlyPage =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
@@ -43,27 +46,82 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 	const isWebhook = currentView === 'webhook';
 	const isLicense = currentView === 'license';
 
+	// Close dropdowns when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (dataDropdownRef.current && !dataDropdownRef.current.contains(event.target)) {
+				setDataOpen(false);
+			}
+			if (accountDropdownRef.current && !accountDropdownRef.current.contains(event.target)) {
+				setAccountOpen(false);
+			}
+		};
+
+		if (dataOpen || accountOpen) {
+			document.addEventListener('mousedown', handleClickOutside);
+			return () => document.removeEventListener('mousedown', handleClickOutside);
+		}
+	}, [dataOpen, accountOpen]);
+
+	// Close dropdowns when pressing Escape
+	useEffect(() => {
+		const handleEscape = (event) => {
+			if (event.key === 'Escape') {
+				setDataOpen(false);
+				setAccountOpen(false);
+			}
+		};
+
+		if (dataOpen || accountOpen) {
+			document.addEventListener('keydown', handleEscape);
+			return () => document.removeEventListener('keydown', handleEscape);
+		}
+	}, [dataOpen, accountOpen]);
+
+	const toggleDropdown = (dropdownName) => {
+		if (dropdownName === 'data') {
+			setDataOpen(!dataOpen);
+			if (accountOpen) setAccountOpen(false);
+		} else if (dropdownName === 'account') {
+			setAccountOpen(!accountOpen);
+			if (dataOpen) setDataOpen(false);
+		}
+	};
+
+	const closeAllDropdowns = () => {
+		setDataOpen(false);
+		setAccountOpen(false);
+	};
+
 	const NavLink = ({ href, icon: Icon, label, active = false }) => (
 		<a
 			href={href}
 			className={`cf7m-nav__link ${active ? 'active' : ''}`}
+			title={label}
 		>
-			{Icon && <Icon className="w-5 h-5" style={{ marginRight: '8px' }} />}
+			{Icon && <Icon className="cf7m-nav__icon" aria-hidden="true" />}
 			<span>{label}</span>
 		</a>
 	);
 
-	const DropdownButton = ({ label, open, onClick, children }) => (
-		<div className="cf7m-nav__dropdown">
+	const DropdownButton = ({ label, open, dropdownName, children }) => (
+		<div
+			className="cf7m-nav__dropdown"
+			ref={dropdownName === 'data' ? dataDropdownRef : accountDropdownRef}
+		>
 			<button
-				onClick={onClick}
+				onClick={() => toggleDropdown(dropdownName)}
 				className={`cf7m-nav__dropdown-trigger ${
-					open || isEntries || isWebhook || isLicense ? 'active' : ''
+					open || (dropdownName === 'data' && (isEntries || isWebhook)) || (dropdownName === 'account' && isLicense)
+						? 'active'
+						: ''
 				}`}
 				aria-expanded={open}
+				aria-haspopup="menu"
+				title={label}
 			>
 				<span>{label}</span>
-				<ChevronDownIcon className="w-4 h-4" />
+				<ChevronDownIcon className="cf7m-nav__dropdown-icon" aria-hidden="true" />
 			</button>
 			{open && (
 				<div className="cf7m-nav__dropdown-menu" role="menu">
@@ -78,9 +136,12 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 			href={href}
 			className={`cf7m-nav__dropdown-item ${active ? 'active' : ''}`}
 			role="menuitem"
-			onClick={onClick}
+			onClick={(e) => {
+				onClick?.();
+				closeAllDropdowns();
+			}}
 		>
-			{Icon && <Icon className="w-4 h-4" />}
+			{Icon && <Icon className="cf7m-nav__dropdown-item-icon" aria-hidden="true" />}
 			<span>{label}</span>
 		</a>
 	);
@@ -92,7 +153,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 					<CF7MateLogo width={36} height={36} />
 				</FlexItem>
 
-				<nav className="cf7m-nav">
+				<nav className="cf7m-nav" role="navigation" aria-label={__('Main navigation', 'cf7-styler-for-divi')}>
 					{entriesOnlyPage && isEntries ? (
 						<NavLink
 							href={cf7AdminUrl}
@@ -122,7 +183,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 								<DropdownButton
 									label={__('Data', 'cf7-styler-for-divi')}
 									open={dataOpen}
-									onClick={() => setDataOpen(!dataOpen)}
+									dropdownName="data"
 								>
 									{showEntries && (
 										<DropdownItem
@@ -130,7 +191,6 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 											icon={DocumentDuplicateIcon}
 											label={__('Form Entries', 'cf7-styler-for-divi')}
 											active={isEntries}
-											onClick={() => setDataOpen(false)}
 										/>
 									)}
 									{showWebhook && (
@@ -139,7 +199,6 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 											icon={WebhookIcon}
 											label={__('Webhook', 'cf7-styler-for-divi')}
 											active={isWebhook}
-											onClick={() => setDataOpen(false)}
 										/>
 									)}
 								</DropdownButton>
@@ -150,14 +209,13 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 								<DropdownButton
 									label={__('Account', 'cf7-styler-for-divi')}
 									open={accountOpen}
-									onClick={() => setAccountOpen(!accountOpen)}
+									dropdownName="account"
 								>
 									<DropdownItem
 										href={`${dashboardUrl}#/license`}
 										icon={CogIcon}
 										label={__('License', 'cf7-styler-for-divi')}
 										active={isLicense}
-										onClick={() => setAccountOpen(false)}
 									/>
 								</DropdownButton>
 							)}
@@ -167,7 +225,7 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 			</Flex>
 
 			{/* Version info (right side) */}
-			<div className="text-xs text-muted" style={{ marginLeft: 'auto' }}>
+			<div className="cf7m-header__version">
 				v{version}
 			</div>
 		</header>
