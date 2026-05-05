@@ -73,11 +73,12 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 		</div>
 	);
 
-	const DropdownItem = ({ href, icon: Icon, label, active = false }) => (
+	const DropdownItem = ({ href, icon: Icon, label, active = false, onClick }) => (
 		<a
 			href={href}
 			className={`cf7m-nav__dropdown-item ${active ? 'active' : ''}`}
 			role="menuitem"
+			onClick={onClick}
 		>
 			{Icon && <Icon className="w-4 h-4" />}
 			<span>{label}</span>
