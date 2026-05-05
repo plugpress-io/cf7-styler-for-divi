@@ -84,7 +84,12 @@ module.exports = function (grunt) {
 			plugin_const: {
 				src: ['cf7-styler.php'],
 				overwrite: true,
-				replacements: [{ from: /CF7M_VERSION', '.*?'/g, to: "CF7M_VERSION', '<%= pkg.version %>'" }],
+				replacements: [
+					{
+						from: /CF7M_VERSION', '.*?'/g,
+						to: "CF7M_VERSION', '<%= pkg.version %>'",
+					},
+				],
 			},
 			plugin_main: {
 				src: ['cf7-styler.php'],
@@ -96,34 +101,38 @@ module.exports = function (grunt) {
 					},
 				],
 			},
-			// Strip premium-only helper functions from freemius.php in the free wp.org build.
-			// These are only called by includes/pro/ which is excluded from the free package.
-			freemius_free: {
-				src: ['package/cf7-styler-for-divi/freemius.php'],
-				overwrite: true,
-				replacements: [
-					{ from: /\nfunction cf7m_can_use_premium\(\)[\s\S]*?^}\n/m, to: '' },
-					{ from: /\nfunction cf7m_is_premium\(\)[\s\S]*?^}\n/m, to: '' },
-				],
-			},
-			// Patch freemius.php inside the pro package: is_premium=>false → true.
-			freemius_premium: {
-				src: ['package/cf7-mate-pro/freemius.php'],
-				overwrite: true,
-				replacements: [
-					{ from: "'is_premium'          => false,", to: "'is_premium'          => true," },
-				],
-			},
 		},
 
 		compress: {
 			wp: {
-				options: { archive: `cf7-styler-for-divi-${pkg.version}.zip`, mode: 'zip', level: 5 },
-				files: [{ expand: true, cwd: 'package/', src: ['cf7-styler-for-divi/**'], dest: '/' }],
+				options: {
+					archive: `cf7-styler-for-divi-${pkg.version}.zip`,
+					mode: 'zip',
+					level: 5,
+				},
+				files: [
+					{
+						expand: true,
+						cwd: 'package/',
+						src: ['cf7-styler-for-divi/**'],
+						dest: '/',
+					},
+				],
 			},
 			pro: {
-				options: { archive: `cf7-mate-pro-${pkg.proVersion || pkg.version}.zip`, mode: 'zip', level: 5 },
-				files: [{ expand: true, cwd: 'package/', src: ['cf7-mate-pro/**'], dest: '/' }],
+				options: {
+					archive: `cf7-mate-pro-${pkg.proVersion || pkg.version}.zip`,
+					mode: 'zip',
+					level: 5,
+				},
+				files: [
+					{
+						expand: true,
+						cwd: 'package/',
+						src: ['cf7-mate-pro/**'],
+						dest: '/',
+					},
+				],
 			},
 		},
 
@@ -142,7 +151,11 @@ module.exports = function (grunt) {
 	grunt.registerTask('bump-version', function () {
 		const ver = grunt.option('ver');
 		if (ver) {
-			grunt.task.run(['bumpup:' + (ver || 'patch'), 'replace:plugin_const', 'replace:plugin_main']);
+			grunt.task.run([
+				'bumpup:' + (ver || 'patch'),
+				'replace:plugin_const',
+				'replace:plugin_main',
+			]);
 		}
 	});
 
@@ -168,16 +181,20 @@ Domain Path: /languages
 if (!defined('ABSPATH')) exit;
 
 define('CF7M_VERSION', '${v}');
+define('CF7M_IS_PRO_VERSION', true);
 define('CF7M_BASENAME', plugin_basename(__FILE__));
 define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
 define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('CF7M_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CF7M_MODULES_JSON_PATH', CF7M_PLUGIN_PATH . 'modules-json/');
-require_once CF7M_PLUGIN_PATH . 'freemius.php';
+define('CF7M_LS_PRODUCT_ID', '');
+define('CF7M_LS_STORE_ID', '');
 require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 `;
 		grunt.file.write('package/cf7-mate-pro/cf7-mate-pro.php', content);
-		grunt.log.writeln('Written package/cf7-mate-pro/cf7-mate-pro.php (v' + v + ')');
+		grunt.log.writeln(
+			'Written package/cf7-mate-pro/cf7-mate-pro.php (v' + v + ')',
+		);
 	});
 
 	// Remove pro-only JS from the free package directory.
@@ -189,9 +206,22 @@ require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';
 		}
 	});
 
-	// WP repo zip (free, with Freemius)
-	grunt.registerTask('package:wp', ['clean:main', 'clean:zip', 'copy:wp', 'replace:freemius_free', 'compress:wp', 'clean:main']);
+	// WP repo zip (free)
+	grunt.registerTask('package:wp', [
+		'clean:main',
+		'clean:zip',
+		'copy:wp',
+		'compress:wp',
+		'clean:main',
+	]);
 
-	// Pro zip (cf7-mate-pro.php, for Freemius deploy)
-	grunt.registerTask('package:pro', ['clean:main', 'clean:zip', 'copy:pro', 'replace:freemius_premium', 'write_pro_main', 'compress:pro', 'clean:main']);
+	// Pro zip (cf7-mate-pro.php)
+	grunt.registerTask('package:pro', [
+		'clean:main',
+		'clean:zip',
+		'copy:pro',
+		'write_pro_main',
+		'compress:pro',
+		'clean:main',
+	]);
 };

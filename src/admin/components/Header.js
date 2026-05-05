@@ -1,14 +1,26 @@
 /**
- * Admin app header: logo, nav (Dashboard, Modules, AI Settings, Entries), version, docs, pro.
+ * Admin header with navigation
+ * Uses Tailwind CSS and Heroicons for clean, simple design
  *
  * @package CF7_Mate
  */
 
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { DocsIcon, CrownIconNav } from './icons/NavIcons';
+import {
+	HomeIcon,
+	SparklesIcon,
+	DocumentDuplicateIcon,
+	WebhookIcon,
+	CogIcon,
+	ChevronDownIcon,
+} from '@heroicons/react/24/outline';
 import CF7MateLogo from '../../components/CF7MateLogo';
 
 export function Header({ isPro, showEntries, showWebhook, currentView }) {
+	const [dataOpen, setDataOpen] = useState(false);
+	const [accountOpen, setAccountOpen] = useState(false);
+
 	const entriesOnlyPage =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
 	const cf7AdminUrl =
@@ -19,10 +31,6 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 		typeof dcsCF7Styler !== 'undefined'
 			? dcsCF7Styler.pricing_url
 			: '/wp-admin/admin.php?page=cf7-mate-pricing';
-	const accountUrl =
-		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.fs_account_url
-			? dcsCF7Styler.fs_account_url
-			: '';
 	const version =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.version
 			? dcsCF7Styler.version
@@ -31,152 +39,142 @@ export function Header({ isPro, showEntries, showWebhook, currentView }) {
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url
 			? dcsCF7Styler.dashboard_url
 			: 'admin.php?page=cf7-mate-dashboard';
-	const modulesUrl = `${dashboardUrl}#/features`;
-	const entriesUrl = `${dashboardUrl}#/entries`;
-	const webhookUrl = `${dashboardUrl}#/webhook`;
 
 	const isDashboard = currentView === 'dashboard';
 	const isModules = currentView === 'features';
 	const isEntries = currentView === 'entries';
-	const isAiSettings = currentView === 'ai-settings';
 	const isWebhook = currentView === 'webhook';
-	const isFreeVsPro = currentView === 'free-vs-pro';
-	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
+	const isLicense = currentView === 'license';
+
+	const NavLink = ({ href, icon: Icon, label, active = false, badge = null }) => (
+		<a
+			href={href}
+			className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+				active
+					? 'text-blue-600 bg-blue-50'
+					: 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+			}`}
+		>
+			{Icon && <Icon className="w-5 h-5" />}
+			<span>{label}</span>
+			{badge && (
+				<span className="ml-1 bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">
+					{badge}
+				</span>
+			)}
+		</a>
+	);
+
+	const DropdownButton = ({ label, open, onClick, children }) => (
+		<div className="relative">
+			<button
+				onClick={onClick}
+				className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+					open || isEntries || isWebhook || isLicense
+						? 'text-blue-600 bg-blue-50'
+						: 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+				}`}
+			>
+				<span>{label}</span>
+				<ChevronDownIcon
+					className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`}
+				/>
+			</button>
+			{open && (
+				<div className="absolute left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+					{children}
+				</div>
+			)}
+		</div>
+	);
 
 	return (
-		<header className="cf7m-admin__header">
+		<header className="cf7m-admin__header bg-white border-b border-gray-200">
 			<div className="cf7m-admin__header-left">
 				<div className="cf7m-admin__logo">
 					<CF7MateLogo width={36} height={36} />
 				</div>
-				<nav className="cf7m-admin__nav">
+
+				<nav className="cf7m-admin__nav flex items-center gap-1">
 					{entriesOnlyPage && isEntries ? (
-						<a
+						<NavLink
 							href={cf7AdminUrl}
-							className="cf7m-admin__nav-link"
-							aria-label={__(
-								'Back to Contact Form 7',
-								'cf7-styler-for-divi'
-							)}
-						>
-							<span className="cf7m-admin__nav-text">
-								{__('Contact Form 7', 'cf7-styler-for-divi')}
-							</span>
-						</a>
+							icon={DocumentDuplicateIcon}
+							label={__('Contact Form 7', 'cf7-styler-for-divi')}
+						/>
 					) : (
 						<>
-							<a
-								href={dashboardUrl + '#/'}
-								className={`cf7m-admin__nav-link ${isDashboard ? 'cf7m-admin__nav-link--active' : ''}`}
-								aria-label={__(
-									'Overview',
-									'cf7-styler-for-divi'
-								)}
-							>
-								<span className="cf7m-admin__nav-text">
-									{__('Overview', 'cf7-styler-for-divi')}
-								</span>
-							</a>
-							<a
-								href={modulesUrl}
-								className={`cf7m-admin__nav-link ${isModules ? 'cf7m-admin__nav-link--active' : ''}`}
-								aria-label={__(
-									'Modules',
-									'cf7-styler-for-divi'
-								)}
-							>
-								<span className="cf7m-admin__nav-text">
-									{__('Modules', 'cf7-styler-for-divi')}
-								</span>
-							</a>
-							{!isPro && !entriesOnlyPage && (
-								<a
-									href={freeVsProUrl}
-									className={`cf7m-admin__nav-link ${isFreeVsPro ? 'cf7m-admin__nav-link--active' : ''}`}
-									aria-label={__('Free vs Pro', 'cf7-styler-for-divi')}
+							{/* Overview */}
+							<NavLink
+								href={dashboardUrl}
+								icon={HomeIcon}
+								label={__('Overview', 'cf7-styler-for-divi')}
+								active={isDashboard}
+							/>
+
+							{/* Modules */}
+							<NavLink
+								href={`${dashboardUrl}#/features`}
+								icon={SparklesIcon}
+								label={__('Modules', 'cf7-styler-for-divi')}
+								active={isModules}
+							/>
+
+							{/* Data Dropdown */}
+							{(showEntries || showWebhook) && !entriesOnlyPage && (
+								<DropdownButton
+									label={__('Data', 'cf7-styler-for-divi')}
+									open={dataOpen}
+									onClick={() => setDataOpen(!dataOpen)}
 								>
-									<span className="cf7m-admin__nav-text">
-										{__('Free vs Pro', 'cf7-styler-for-divi')}
-									</span>
-								</a>
-							)}
-							{showEntries && !entriesOnlyPage && (
-								<a
-									href={entriesUrl}
-									className={`cf7m-admin__nav-link ${isEntries ? 'cf7m-admin__nav-link--active' : ''}`}
-									aria-label={__(
-										'Form Entries',
-										'cf7-styler-for-divi'
+									{showEntries && (
+										<a
+											href={`${dashboardUrl}#/entries`}
+											className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 first:rounded-t-md"
+											onClick={() => setDataOpen(false)}
+										>
+											<DocumentDuplicateIcon className="w-4 h-4" />
+											{__('Form Entries', 'cf7-styler-for-divi')}
+										</a>
 									)}
-								>
-									<span className="cf7m-admin__nav-text">
-										{__('Entries', 'cf7-styler-for-divi')}
-									</span>
-								</a>
+									{showWebhook && (
+										<a
+											href={`${dashboardUrl}#/webhook`}
+											className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 last:rounded-b-md"
+											onClick={() => setDataOpen(false)}
+										>
+											<WebhookIcon className="w-4 h-4" />
+											{__('Webhook', 'cf7-styler-for-divi')}
+										</a>
+									)}
+								</DropdownButton>
 							)}
+
+							{/* Account Dropdown (Pro only) */}
 							{isPro && !entriesOnlyPage && (
-								<a
-									href={dashboardUrl + '#/ai-settings'}
-									className={`cf7m-admin__nav-link ${isAiSettings ? 'cf7m-admin__nav-link--active' : ''}`}
-									aria-label={__(
-										'AI Settings',
-										'cf7-styler-for-divi'
-									)}
+								<DropdownButton
+									label={__('Account', 'cf7-styler-for-divi')}
+									open={accountOpen}
+									onClick={() => setAccountOpen(!accountOpen)}
 								>
-									<span className="cf7m-admin__nav-text">
-										{__('AI Settings', 'cf7-styler-for-divi')}
-									</span>
-								</a>
-							)}
-							{showWebhook && !entriesOnlyPage && (
-								<a
-									href={webhookUrl}
-									className={`cf7m-admin__nav-link ${isWebhook ? 'cf7m-admin__nav-link--active' : ''}`}
-									aria-label={__('Webhook', 'cf7-styler-for-divi')}
-								>
-									<span className="cf7m-admin__nav-text">
-										{__('Webhook', 'cf7-styler-for-divi')}
-									</span>
-								</a>
+									<a
+										href={`${dashboardUrl}#/license`}
+										className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+										onClick={() => setAccountOpen(false)}
+									>
+										<CogIcon className="w-4 h-4" />
+										{__('License', 'cf7-styler-for-divi')}
+									</a>
+								</DropdownButton>
 							)}
 						</>
 					)}
 				</nav>
 			</div>
-			<div className="cf7m-admin__header-right">
-				<span className="cf7m-admin__version-right" aria-hidden="true">
-					v{version}
-				</span>
-				<a
-					href="https://cf7mate.com/docs"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="cf7m-admin__nav-link cf7m-admin__nav-link--docs"
-					aria-label={__('Documentation', 'cf7-styler-for-divi')}
-				>
-					<DocsIcon />
-				</a>
-				{isPro && accountUrl ? (
-					<a
-						href={accountUrl}
-						className="cf7m-admin__nav-link cf7m-admin__nav-link--account"
-						aria-label={__('Account', 'cf7-styler-for-divi')}
-					>
-						<span className="cf7m-admin__nav-text">
-							{__('Account', 'cf7-styler-for-divi')}
-						</span>
-					</a>
-				) : !isPro ? (
-					<a
-						href={pricingUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="cf7m-admin__nav-link cf7m-admin__nav-link--pro"
-						aria-label={__('Upgrade to Pro', 'cf7-styler-for-divi')}
-					>
-						<CrownIconNav />
-					</a>
-				) : null}
+
+			{/* Version info (right side) */}
+			<div className="ml-auto text-xs text-gray-500">
+				v{version}
 			</div>
 		</header>
 	);

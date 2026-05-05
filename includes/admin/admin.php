@@ -17,6 +17,7 @@ class Admin
     const AI_SETTINGS_PAGE_SLUG = 'cf7-mate-ai-settings';
     const FREE_VS_PRO_PAGE_SLUG = 'cf7-mate-free-vs-pro';
     const WEBHOOK_PAGE_SLUG = 'cf7-mate-webhook';
+    const LICENSE_PAGE_SLUG = 'cf7-mate-license';
 
     public static function get_instance()
     {
@@ -32,7 +33,7 @@ class Admin
         add_action('admin_menu', [$this, 'ensure_dashboard_submenu'], 999999999);
         add_action('admin_head', [$this, 'print_menu_badge_css']);
         add_action('admin_init', [$this, 'redirect_cf7_mate_to_settings'], 5);
-        add_action('admin_init', [$this, 'redirect_pricing_if_freemius_inactive'], 5);
+        add_filter('cf7m_admin_app_localize', [$this, 'inject_license_data'], 10, 2);
     }
 
     public function redirect_cf7_mate_to_settings()
@@ -42,48 +43,13 @@ class Admin
             return;
         }
 
-        if (function_exists('cf7m_fs')) {
-            $fs = cf7m_fs();
-            if (!$fs->is_registered() && !$fs->is_anonymous()) {
-                return;
-            }
-        }
         wp_safe_redirect(admin_url('admin.php?page=' . self::PAGE_SLUG));
-        exit;
-    }
-
-    public function redirect_pricing_if_freemius_inactive()
-    {
-        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        if ($page !== 'cf7-mate-pricing') {
-            return;
-        }
-        if (!current_user_can('manage_options')) {
-            return;
-        }
-
-        // If Freemius is activated (user registered or opted out anonymously), it has already
-        // registered the pricing page in admin_menu — let WordPress/Freemius handle it.
-        if (function_exists('cf7m_fs')) {
-            $fs = cf7m_fs();
-            if ($fs->is_registered() || $fs->is_anonymous()) {
-                return;
-            }
-        }
-
-        // Freemius not yet activated — the pricing page doesn't exist. Send to external URL.
-        $coupon = isset($_GET['coupon']) ? sanitize_text_field(wp_unslash($_GET['coupon'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $url    = function_exists('cf7m_get_pricing_url')
-            ? cf7m_get_pricing_url($coupon)
-            : CF7M_URL_PRICING;
-
-        wp_safe_redirect($url);
         exit;
     }
 
     public function print_menu_badge_css()
     {
-        if (class_exists('CF7_Mate\Premium_Loader')) {
+        if (cf7m_is_pro()) {
             return;
         }
         echo '<style>.cf7m-menu-pro-badge{display:inline-block;padding:1px 6px;font-size:10px;line-height:16px;font-weight:600;border-radius:3px;background:transparent;color:#fff;vertical-align:middle}</style>';
@@ -128,7 +94,7 @@ class Admin
             [$this, 'render_features_page']
         );
 
-        $is_pro_active = class_exists('CF7_Mate\Premium_Loader');
+        $is_pro_active = cf7m_is_pro();
         $pro_badge     = $is_pro_active ? '' : ' <span class="cf7m-menu-pro-badge">Pro</span>';
 
         add_submenu_page(
@@ -157,6 +123,17 @@ class Admin
             self::AI_SETTINGS_PAGE_SLUG,
             [$this, 'render_ai_settings_page']
         );
+
+        if ($is_pro_active) {
+            add_submenu_page(
+                self::TOP_LEVEL_SLUG,
+                __('License', 'cf7-styler-for-divi'),
+                __('License', 'cf7-styler-for-divi'),
+                'manage_options',
+                self::LICENSE_PAGE_SLUG,
+                [$this, 'render_license_page']
+            );
+        }
 
         remove_submenu_page(self::TOP_LEVEL_SLUG, self::TOP_LEVEL_SLUG);
     }
@@ -224,6 +201,11 @@ class Admin
         $this->render_app_root(['current_page' => 'webhook']);
     }
 
+    public function render_license_page()
+    {
+        $this->render_app_root(['current_page' => 'license']);
+    }
+
     public function render_app_root(array $options = [])
     {
         $entries_only = !empty($options['entries_only']);
@@ -256,9 +238,8 @@ class Admin
         $localize = [
             'root' => esc_url_raw(get_rest_url()),
             'ajax_url' => admin_url('admin-ajax.php'),
-            'fs_account_url' => function_exists('cf7m_fs') ? cf7m_fs()->get_account_url() : '',
-            'is_pro' => class_exists('CF7_Mate\Premium_Loader'),
-            'pricing_url' => function_exists('cf7m_get_pricing_url') ? cf7m_get_pricing_url('NEW2026') : admin_url('admin.php?page=cf7-mate-pricing'),
+            'is_pro' => cf7m_is_pro(),
+            'pricing_url' => CF7M_URL_PRICING . '?coupon=NEW2026',
             'promo_code' => 'NEW2026',
             'promo_text' => '',
             'nonce' => wp_create_nonce('wp_rest'),
@@ -281,5 +262,14 @@ class Admin
         wp_localize_script('cf7m-admin', 'dcsCF7Styler', $localize);
 
         echo '<div id="cf7-mate-app-root"></div>';
+    }
+
+    public function inject_license_data($localize, $options)
+    {
+        if (class_exists('CF7_Mate\License\License_Manager')) {
+            $license_manager = \CF7_Mate\License\License_Manager::instance();
+            $localize['license'] = $license_manager->get_status();
+        }
+        return $localize;
     }
 }

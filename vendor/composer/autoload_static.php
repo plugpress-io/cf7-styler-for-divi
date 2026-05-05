@@ -6,10 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit275c89978d469a59ae2dccdb32f6b264
 {
-    public static $files = array (
-        '8d50dc88e56bace65e1e72f6017983ed' => __DIR__ . '/..' . '/freemius/wordpress-sdk/start.php',
-    );
-
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );

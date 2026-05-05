@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@plugpress.io>\n"
-"POT-Creation-Date: 2026-02-22 14:10+0000\n"
+"POT-Creation-Date: 2026-05-05 02:25+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,92 +15,92 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cf7-styler.php:42
+#: cf7-styler.php:41
 msgid "CF7 Styler (Lite) has been deactivated because CF7 Mate Pro is active."
-msgstr ""
-
-#: freemius.php:45
-msgid "License"
-msgstr ""
-
-#: freemius.php:46
-msgid "Help"
 msgstr ""
 
 #: includes/functions.php:24
 msgid "Select a Contact form"
 msgstr ""
 
-#: includes/rest-api.php:207
+#: includes/rest-api.php:248
 msgid "Invalid features data."
 msgstr ""
 
-#: includes/rest-api.php:255
+#: includes/rest-api.php:296
 msgid "Invalid webhook URLs."
 msgstr ""
 
-#: includes/rest-api.php:368
+#: includes/rest-api.php:409
 msgid "Invalid form ID."
 msgstr ""
 
-#: includes/rest-api.php:378
+#: includes/rest-api.php:419
 msgid "Form not found."
 msgstr ""
 
-#: includes/rest-api.php:455
+#: includes/rest-api.php:496
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:473
+#: includes/rest-api.php:514
 msgid "Select a form"
 msgstr ""
 
 #. translators: %d: form ID
-#: includes/rest-api.php:482
+#: includes/rest-api.php:523
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:525
+#: includes/rest-api.php:566
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/admin/admin.php:104, includes/admin/admin.php:105, includes/notices/review.php:133
+#: includes/rest-api.php:605, includes/rest-api.php:633
+msgid "License manager is not available."
+msgstr ""
+
+#: includes/admin/admin.php:70, includes/admin/admin.php:71, includes/notices/review.php:133
 msgid "CF7 Mate"
 msgstr ""
 
-#: includes/admin/admin.php:115, includes/admin/admin.php:116, includes/admin/admin.php:181, includes/admin/admin.php:182
+#: includes/admin/admin.php:81, includes/admin/admin.php:82, includes/admin/admin.php:158, includes/admin/admin.php:159
 msgid "Overview"
 msgstr ""
 
-#: includes/admin/admin.php:124, includes/admin/admin.php:125
+#: includes/admin/admin.php:90, includes/admin/admin.php:91
 msgid "Modules"
 msgstr ""
 
-#: includes/admin/admin.php:136, includes/admin/admin.php:137
+#: includes/admin/admin.php:102, includes/admin/admin.php:103
 msgid "Entries"
 msgstr ""
 
-#: includes/admin/admin.php:145, includes/admin/admin.php:146
+#: includes/admin/admin.php:111, includes/admin/admin.php:112
 msgid "Webhook"
 msgstr ""
 
-#: includes/admin/admin.php:154, includes/admin/admin.php:155
+#: includes/admin/admin.php:120, includes/admin/admin.php:121
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/onboarding.php:163
+#: includes/admin/admin.php:130, includes/admin/admin.php:131
+msgid "License"
+msgstr ""
+
+#: includes/admin/onboarding.php:153
 msgid "You are nearly ready to start using CF7 Mate"
 msgstr ""
 
-#: includes/admin/onboarding.php:166
+#: includes/admin/onboarding.php:156
 msgid "Go through the setup to configure your plugin."
 msgstr ""
 
-#: includes/admin/onboarding.php:171
+#: includes/admin/onboarding.php:161
 msgid "Run Setup Wizard"
 msgstr ""
 
-#: includes/admin/onboarding.php:174
+#: includes/admin/onboarding.php:164
 msgid "Skip Setup"
 msgstr ""
 
@@ -119,6 +119,34 @@ msgstr ""
 
 #: includes/notices/review.php:145
 msgid "Maybe later"
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:35
+msgid "License key cannot be empty."
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:60
+msgid "Connection to Lemon Squeezy failed: %s"
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:71
+msgid "Activation failed. Check your license key."
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:76
+msgid "License activation was not successful."
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:120
+msgid "No active license to deactivate."
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:126
+msgid "Could not decrypt license key."
+msgstr ""
+
+#: includes/pro/license/class-updater.php:106
+msgid "Premium features for CF7 Mate."
 msgstr ""
 
 #: includes/lite/builders/bricks/bricks-element.php:21, includes/lite/builders/elementor/elementor-widget.php:20, includes/lite/builders/divi4/CF7Styler/CF7Styler.php:17

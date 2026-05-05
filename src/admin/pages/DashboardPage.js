@@ -10,7 +10,7 @@ import { DashboardView } from '../components/DashboardView';
 export function DashboardPage({ stats, loading, showEntries, modulesUrl, dashboardUrl, pricingUrl, promoCode, promoText, showV3Banner, rebrandDismissed, isPro }) {
 	return (
 		<>
-			{showV3Banner && rebrandDismissed && <V3Banner />}
+			{showV3Banner && !rebrandDismissed && <V3Banner />}
 			<DashboardView
 				stats={stats}
 				loading={loading}

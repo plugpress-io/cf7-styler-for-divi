@@ -70,19 +70,9 @@ class Onboarding
         }
         delete_transient($transient_key);
 
-        // Gate on ?page= directly — more reliable than hook name which Freemius can alter.
         $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification
         if (strpos($page, 'cf7-mate') !== 0) {
             return;
-        }
-
-        // On the top-level cf7-mate page Freemius shows its own opt-in modal.
-        // Suppress onboarding there while opt-in is still pending to avoid two modals at once.
-        if ($page === 'cf7-mate' && function_exists('cf7m_fs')) {
-            $fs = cf7m_fs();
-            if (!$fs->is_registered() && !$fs->is_anonymous()) {
-                return;
-            }
         }
 
         // Only show for users who haven't completed/skipped onboarding.

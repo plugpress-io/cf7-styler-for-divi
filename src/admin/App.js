@@ -45,6 +45,7 @@ export function App() {
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'ai-settings') return { view: 'ai-settings', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'webhook') return { view: 'webhook', entryId: null };
 		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'free-vs-pro') return { view: 'free-vs-pro', entryId: null };
+		if (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.currentPage === 'license') return { view: 'license', entryId: null };
 		return getViewFromHash();
 	};
 	const [route, setRoute] = useState(getInitialRoute);
@@ -161,6 +162,8 @@ export function App() {
 						renderProPage('ai-settings')
 					) : currentView === 'webhook' ? (
 						renderProPage('webhook')
+					) : currentView === 'license' ? (
+						renderProPage('license')
 					) : currentView === 'free-vs-pro' ? (
 						<FreeVsProPage />
 					) : (

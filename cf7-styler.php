@@ -14,7 +14,6 @@ Requires at least: 6.0
 Requires PHP: 7.4
 Requires Plugins: contact-form-7
 
-@fs_premium_only /includes/pro/, /assets/pro/, /dist/js/admin-pro.js
 */
 
 // Exit if accessed directly.
@@ -61,6 +60,7 @@ if (!function_exists('cf7m_lite_maybe_self_deactivate')) {
 }
 
 define('CF7M_VERSION', '3.0.3');
+define('CF7M_IS_PRO_VERSION', true);
 define('CF7M_BASENAME', plugin_basename(__FILE__));
 define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
 define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));
@@ -69,8 +69,5 @@ define('CF7M_MODULES_JSON_PATH', CF7M_PLUGIN_PATH . 'modules-json/');
 define('CF7M_URL_MAIN', 'https://cf7mate.com');
 define('CF7M_URL_DOCS', 'https://cf7mate.com/docs');
 define('CF7M_URL_PRICING', 'https://cf7mate.com/pricing');
-
-// Freemius
-require_once CF7M_PLUGIN_PATH . 'freemius.php';
 
 require_once CF7M_PLUGIN_PATH . 'includes/plugin.php';

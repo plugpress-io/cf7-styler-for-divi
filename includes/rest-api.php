@@ -150,6 +150,47 @@ class Rest_API {
 				),
 			)
 		);
+
+		// License endpoints
+		register_rest_route(
+			$namespace,
+			'/license/status',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_license_status' ),
+				'permission_callback' => array( $this, 'check_admin_permission' ),
+			)
+		);
+
+		register_rest_route(
+			$namespace,
+			'/license/activate',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'activate_license' ),
+				'permission_callback' => array( $this, 'check_admin_permission' ),
+				'args'                => array(
+					'license_key' => array(
+						'required'          => true,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'validate_callback' => function( $value ) {
+							return ! empty( trim( $value ) );
+						},
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			$namespace,
+			'/license/deactivate',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'deactivate_license' ),
+				'permission_callback' => array( $this, 'check_admin_permission' ),
+			)
+		);
 	}
 
 	/**
@@ -525,6 +566,87 @@ class Rest_API {
 				'message' => __( 'Onboarding reset successfully.', 'cf7-styler-for-divi' ),
 			)
 		);
+	}
+
+	/**
+	 * Get license status.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_license_status() {
+		if ( ! class_exists( 'CF7_Mate\License\License_Manager' ) ) {
+			return rest_ensure_response(
+				array(
+					'status'     => '',
+					'is_valid'   => false,
+					'has_key'    => false,
+					'masked_key' => '',
+					'expires_at' => '',
+				)
+			);
+		}
+
+		$lm = \CF7_Mate\License\License_Manager::instance();
+		return rest_ensure_response( $lm->get_status() );
+	}
+
+	/**
+	 * Activate a license.
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function activate_license( \WP_REST_Request $request ) {
+		$key = $request->get_param( 'license_key' );
+
+		if ( ! class_exists( 'CF7_Mate\License\License_Manager' ) ) {
+			return new \WP_Error(
+				'license_not_available',
+				__( 'License manager is not available.', 'cf7-styler-for-divi' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$lm     = \CF7_Mate\License\License_Manager::instance();
+		$result = $lm->activate( $key );
+
+		if ( is_wp_error( $result ) ) {
+			return new \WP_Error(
+				$result->get_error_code(),
+				$result->get_error_message(),
+				array( 'status' => 400 )
+			);
+		}
+
+		return rest_ensure_response( array_merge( array( 'success' => true ), $result ) );
+	}
+
+	/**
+	 * Deactivate the current license.
+	 *
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function deactivate_license() {
+		if ( ! class_exists( 'CF7_Mate\License\License_Manager' ) ) {
+			return new \WP_Error(
+				'license_not_available',
+				__( 'License manager is not available.', 'cf7-styler-for-divi' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$lm     = \CF7_Mate\License\License_Manager::instance();
+		$result = $lm->deactivate();
+
+		if ( is_wp_error( $result ) ) {
+			return new \WP_Error(
+				$result->get_error_code(),
+				$result->get_error_message(),
+				array( 'status' => 400 )
+			);
+		}
+
+		return rest_ensure_response( array( 'success' => true ) );
 	}
 }
 

@@ -61,6 +61,9 @@ class Plugin
             require_once $lite_loader;
         }
 
+        // Bootstrap License Manager early (before plugins_loaded priority 5) so cf7m_is_pro() can call it.
+        $this->bootstrap_license_manager();
+
         // Load Premium Features early so form-tag registration (wpcf7_init) is hooked before CF7 runs.
         add_action('plugins_loaded', [$this, 'load_premium_loader'], 5);
 
@@ -94,9 +97,30 @@ class Plugin
         }
     }
 
+    private function bootstrap_license_manager()
+    {
+        if (!defined('CF7M_IS_PRO_VERSION') || !CF7M_IS_PRO_VERSION) {
+            return;
+        }
+
+        // Load Singleton trait first (needed by License_Manager)
+        $trait_file = CF7M_PLUGIN_PATH . 'includes/pro/Traits/singleton.php';
+        if (file_exists($trait_file)) {
+            require_once $trait_file;
+        }
+
+        $license_file = CF7M_PLUGIN_PATH . 'includes/pro/license/class-license-manager.php';
+        if (!file_exists($license_file)) {
+            return;
+        }
+
+        require_once $license_file;
+        \CF7_Mate\License\License_Manager::instance();
+    }
+
     public function load_premium_loader()
     {
-        if (function_exists('cf7m_can_use_premium') && !cf7m_can_use_premium()) {
+        if (!cf7m_is_pro()) {
             return;
         }
         $premium_loader = CF7M_PLUGIN_PATH . 'includes/pro/loader.php';

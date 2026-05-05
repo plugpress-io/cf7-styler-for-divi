@@ -34,28 +34,44 @@ function cf7m_get_contact_forms()
 
 function cf7m_get_pricing_url($coupon = '')
 {
-    $use_admin_page = false;
-
-    if (function_exists('cf7m_fs')) {
-        $fs = cf7m_fs();
-        // Freemius registers its menu pages only after the user has completed
-        // the opt-in (is_registered) or explicitly opted out (is_anonymous).
-        if ($fs->is_registered() || $fs->is_anonymous()) {
-            $use_admin_page = true;
-        }
-    }
-
-    if ($use_admin_page) {
-        $url = admin_url('admin.php?page=cf7-mate-pricing');
-    } else {
-        $url = CF7M_URL_PRICING;
-    }
+    $url = CF7M_URL_PRICING;
 
     if ($coupon) {
         $url = add_query_arg('coupon', rawurlencode($coupon), $url);
     }
 
     return $url;
+}
+
+function cf7m_is_pro(): bool
+{
+    // Step 1: Must be the pro build
+    if (!defined('CF7M_IS_PRO_VERSION') || !CF7M_IS_PRO_VERSION) {
+        return false;
+    }
+
+    // Step 2: Dev mode bypass (wp-config.php: define('CF7M_DEV_MODE', true))
+    if (defined('CF7M_DEV_MODE') && CF7M_DEV_MODE) {
+        return true;
+    }
+
+    // Step 3: License check — ONLY reads transient/option, never makes HTTP calls
+    if (class_exists('CF7_Mate\License\License_Manager')) {
+        return \CF7_Mate\License\License_Manager::instance()->is_valid();
+    }
+
+    // License manager not yet loaded (very early boot) — deny
+    return false;
+}
+
+function cf7m_can_use_premium()
+{
+    return cf7m_is_pro();
+}
+
+function cf7m_is_premium()
+{
+    return cf7m_is_pro();
 }
 
 function cf7m_global_assets_list($global_list)

@@ -14,6 +14,7 @@ export function getViewFromHash() {
 	if (hash === 'features') return { view: 'features', entryId: null };
 	if (hash === 'ai-settings') return { view: 'ai-settings', entryId: null };
 	if (hash === 'webhook') return { view: 'webhook', entryId: null };
+	if (hash === 'license') return { view: 'license', entryId: null };
 	if (hash === 'free-vs-pro') return { view: 'free-vs-pro', entryId: null };
 	const entriesOnly = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
 	if (entriesOnly && !hash) return { view: 'entries', entryId: null };

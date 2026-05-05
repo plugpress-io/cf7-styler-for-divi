@@ -115,3 +115,20 @@ export const ExternalIcon = () => (
 		<line x1="10" y1="14" x2="21" y2="3" />
 	</svg>
 );
+
+export const ChevronDownIcon = () => (
+	<svg
+		className="cf7m-nav-dropdown__chevron"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		width="16"
+		height="16"
+		aria-hidden="true"
+	>
+		<polyline points="6 9 12 15 18 9" />
+	</svg>
+);

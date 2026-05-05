@@ -92,6 +92,7 @@ class Premium_Loader
 
         $this->load_bootstrap();
         $this->load_features();
+        $this->init_updater();
 
         // Enqueue tag generator scripts for CF7 admin.
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
@@ -143,6 +144,7 @@ class Premium_Loader
             'Traits/shortcode-atts.php',
             'feature-base.php',
             'form-tag-feature.php',
+            'license/class-updater.php',
         ];
 
         foreach ($files as $file) {
@@ -175,6 +177,19 @@ class Premium_Loader
                 $config['class']::instance();
             }
         }
+    }
+
+    private function init_updater()
+    {
+        if (!class_exists('CF7_Mate\License\Updater')) {
+            return;
+        }
+
+        new \CF7_Mate\License\Updater(
+            CF7M_BASENAME,
+            ['version' => CF7M_VERSION, 'name' => 'CF7 Mate Pro'],
+            \CF7_Mate\License\License_Manager::instance()
+        );
     }
 
     public static function is_feature_enabled($feature)
