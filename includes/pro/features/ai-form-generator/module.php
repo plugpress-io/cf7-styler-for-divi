@@ -142,7 +142,7 @@ class AI_Form_Generator extends Pro_Feature_Base
 			'cf7mAI',
 			array(
 				'generateUrl' => esc_url_raw(rest_url('cf7-styler/v1/ai-generate')),
-				'settingsUrl' => esc_url(admin_url('admin.php?page=cf7-mate-ai-provider')),
+				'settingsUrl' => esc_url(admin_url('admin.php?page=cf7-mate-dash#/ai-settings')),
 				'nonce'       => wp_create_nonce('wp_rest'),
 				'hasApiKey'   => $has_key,
 				'provider'    => $providers[$provider]['name'] ?? 'AI',

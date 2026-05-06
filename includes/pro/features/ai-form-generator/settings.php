@@ -11,8 +11,6 @@ class AI_Settings
 
 	const OPTION_KEY = 'cf7m_ai_settings';
 
-	const MENU_SLUG = 'cf7-mate-ai-provider';
-
 	private static $instance = null;
 
 	public static function instance()
@@ -25,40 +23,16 @@ class AI_Settings
 
 	private function __construct()
 	{
-		add_action('admin_menu', array($this, 'add_menu_page'), 99);
-		add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
+		add_action('cf7m_admin_enqueue_scripts', array($this, 'enqueue_assets'));
 		add_action('rest_api_init', array($this, 'register_routes'));
 		add_filter('cf7m_admin_app_localize', array($this, 'filter_admin_localize'), 10, 2);
 	}
 
-	public function add_menu_page()
-	{
-		// Register under CF7 Mate dashboard (like features page).
-		add_submenu_page(
-			'cf7-mate-dashboard',
-			__('AI Provider', 'cf7-styler-for-divi'),
-			__('AI Provider', 'cf7-styler-for-divi'),
-			'manage_options',
-			self::MENU_SLUG,
-			array($this, 'render_page')
-		);
-	}
-
-	public function render_page()
-	{
-		if (! current_user_can('manage_options')) {
-			wp_die(esc_html__('Unauthorized access.', 'cf7-styler-for-divi'));
-		}
-		// Use main admin app root so AI Settings is a view inside the same React app.
-		\CF7_Mate\Admin::get_instance()->render_app_root(array('current_page' => 'ai-settings'));
-	}
-
 	/**
-	 * Inject AI provider config so the admin app can show AI Settings view when user navigates via hash (#/ai-settings).
-	 * Always add when admin app loads (dashboard, modules, entries, or AI Provider page).
+	 * Inject AI provider config so the Settings app can render the AI Provider tab.
 	 *
 	 * @param array $localize Existing localize data.
-	 * @param array $options  Options passed to render_app_root (e.g. current_page).
+	 * @param array $options  Options passed to render_app_root.
 	 * @return array
 	 */
 	public function filter_admin_localize($localize, $options)
@@ -67,28 +41,10 @@ class AI_Settings
 		return $localize;
 	}
 
-	public function enqueue_assets($hook)
+	public function enqueue_assets($app)
 	{
-		if (false === strpos($hook, self::MENU_SLUG)) {
-			return;
-		}
-
-		if (! current_user_can('manage_options')) {
-			return;
-		}
-
-		wp_enqueue_style(
-			'cf7m-admin',
-			CF7M_PLUGIN_URL . 'dist/css/admin.css',
-			array(),
-			CF7M_VERSION
-		);
-		wp_enqueue_style(
-			'cf7m-ai-settings',
-			CF7M_PLUGIN_URL . 'assets/pro/css/cf7m-ai-settings.css',
-			array('cf7m-admin'),
-			CF7M_VERSION
-		);
+		// AI settings styles are bundled into the main settings.css; nothing extra to enqueue.
+		unset($app);
 	}
 
 	/**

@@ -12,14 +12,22 @@
   background-color: color(bg);
 }
 
-// Header container
-.cf7m-admin__header {
+// ===== New full-width Header =====
+.cf7m-header {
   background-color: color(bg-card);
   border-bottom: 1px solid color(border);
-  padding: space(lg) space(xxl);
-  @include flex-between;
   flex-shrink: 0;
   z-index: zindex(sticky);
+  width: 100%;
+}
+
+.cf7m-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: space(lg);
+  padding: space(md) space(xxl);
+  min-height: 56px;
 
   @include respond-to(md) {
     padding: space(md) space(xl);
@@ -30,57 +38,88 @@
   }
 }
 
-.cf7m-admin__header-left {
-  @include flex(row, lg);
+.cf7m-header__brand {
+  display: inline-flex;
   align-items: center;
+  gap: space(sm);
 }
 
-.cf7m-admin__logo {
-  @include flex-center;
-  flex-shrink: 0;
+.cf7m-header__brand-name {
+  font-size: font-size(md);
+  font-weight: font-weight(semibold);
+  color: color(text);
+  letter-spacing: -0.01em;
+}
 
-  img {
-    width: 36px;
-    height: 36px;
-    display: block;
+.cf7m-header__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: space(md);
+}
+
+.cf7m-header__icon-btn {
+  @include transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: radius(md);
+  color: color(text-muted);
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  &:hover {
+    color: color(text);
+    background-color: color(bg);
+    border-color: color(border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid color(primary);
+    outline-offset: 2px;
   }
 }
 
-// Main content area
+.cf7m-header__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.cf7m-header__upgrade {
+  font-size: font-size(sm);
+  font-weight: font-weight(medium);
+  color: color(primary);
+  text-decoration: none;
+  white-space: nowrap;
+  @include transition;
+
+  &:hover {
+    color: color(primary);
+    text-decoration: underline;
+  }
+}
+
+// Main content area – minimal: full-width flex container, each page owns its padding/width.
 .cf7m-admin {
   flex: 1;
   display: flex;
-  justify-content: center;
-  padding: space(xxxl) space(xxl);
   background-color: color(bg);
-
-  @include respond-to(md) {
-    padding: space(xxl) space(xl);
-  }
-
-  @include respond-to(sm) {
-    padding: space(xl) space(lg);
-  }
 }
 
 .cf7m-admin__content {
+  flex: 1;
   width: 100%;
-  max-width: 960px;
-  @include flex(column, xxxl);
+  min-width: 0;
 }
 
-// Full-width content (for entries page, etc.)
-.cf7m-admin--entries-full .cf7m-admin__content {
-  max-width: none;
-}
-
-// Header version
+// Header version label
 .cf7m-header__version {
   font-size: font-size(xs);
   color: color(text-muted);
-  margin-left: auto;
-  flex-shrink: 0;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 // ===== Navigation Styles =====

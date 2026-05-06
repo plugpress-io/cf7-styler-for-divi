@@ -14,6 +14,12 @@ if (!defined('ABSPATH')) {
 
 class Entries_Save
 {
+    /**
+     * Per-form post-meta key. Value is '0' to disable response saving for that form.
+     * Absent / '1' means enabled (default-on).
+     */
+    const PER_FORM_META_KEY = '_cf7m_save_to_db';
+
     public function __construct()
     {
         add_action('wpcf7_before_send_mail', [$this, 'capture_submission'], 5);
@@ -32,6 +38,11 @@ class Entries_Save
         }
 
         if (!post_type_exists(Entries_CPT::POST_TYPE)) {
+            return;
+        }
+
+        // Per-form opt-out: if explicitly disabled on the form, skip saving.
+        if (! self::is_enabled_for_form($contact_form->id())) {
             return;
         }
 
@@ -92,5 +103,19 @@ class Entries_Save
         return isset($_SERVER['HTTP_USER_AGENT'])
             ? sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT']))
             : '';
+    }
+
+    /**
+     * Whether response saving is enabled for the given CF7 form.
+     * Default-on: only disabled when meta is explicitly '0'.
+     */
+    public static function is_enabled_for_form($form_id)
+    {
+        $form_id = (int) $form_id;
+        if ($form_id <= 0) {
+            return true;
+        }
+        $value = get_post_meta($form_id, self::PER_FORM_META_KEY, true);
+        return $value !== '0';
     }
 }

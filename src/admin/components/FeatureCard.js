@@ -1,50 +1,48 @@
 /**
- * Single feature card (icon, name, description, toggle or upgrade).
+ * Single feature row – name + description on the left, Toggle / upgrade on the right.
  *
  * @package CF7_Mate
  */
 
 import { __ } from '@wordpress/i18n';
-import { CrownIcon } from './icons/NavIcons';
-import { FEATURE_ICONS } from './icons/FeatureIcons';
 import { Toggle } from './Toggle';
 
 export function FeatureCard({ feature, enabled, isPro, onToggle, saving }) {
 	const isProLocked = feature.isPro && !isPro;
-	const dashboardUrl = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url ? dcsCF7Styler.dashboard_url : 'admin.php?page=cf7-mate';
-	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
-	const IconComponent = FEATURE_ICONS[feature.icon] || FEATURE_ICONS.module;
-
-	const handleLearnMore = () => {
-		window.location.href = freeVsProUrl;
-	};
-
-	// Only show pro/golden styling when user does not have pro (locked pro feature).
-	const showProStyle = feature.isPro && !isPro;
+	const pricingUrl =
+		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url
+			? dcsCF7Styler.pricing_url
+			: '';
 
 	return (
-		<div className={`cf7m-feature ${showProStyle ? 'cf7m-feature--pro' : ''} ${isProLocked ? 'cf7m-feature--locked' : ''}`}>
-			<div className="cf7m-feature__icon" aria-hidden="true">
-				<IconComponent />
-			</div>
-			<div className="cf7m-feature__name-wrap">
-				<span className="cf7m-feature__name">
+		<div className="cf7m-dash-row">
+			<div className="cf7m-dash-row__label">
+				<h4 className="cf7m-dash-row__title">
 					{feature.name}
 					{feature.isPro && !isPro && (
 						<span className="cf7m-feature__badge" aria-label={__('Pro', 'cf7-styler-for-divi')}>
-							<CrownIcon />
+							Pro
 						</span>
 					)}
-				</span>
-				<p className="cf7m-feature__desc">{feature.description}</p>
+				</h4>
+				<p className="cf7m-dash-row__desc">{feature.description}</p>
 			</div>
-			<div className="cf7m-feature__toggle">
+			<div className="cf7m-dash-row__control">
 				{isProLocked ? (
-					<button type="button" onClick={handleLearnMore} className="cf7m-feature__upgrade">
-						{__('Learn more', 'cf7-styler-for-divi')}
-					</button>
+					<a
+						href={pricingUrl || '#'}
+						target={pricingUrl ? '_blank' : undefined}
+						rel={pricingUrl ? 'noopener noreferrer' : undefined}
+						className="cf7m-feature__upgrade"
+					>
+						{__('Upgrade', 'cf7-styler-for-divi')}
+					</a>
 				) : (
-					<Toggle checked={enabled} onChange={(val) => onToggle(feature.id, val)} disabled={saving} />
+					<Toggle
+						checked={!!enabled}
+						onChange={(val) => onToggle(feature.id, val)}
+						disabled={saving}
+					/>
 				)}
 			</div>
 		</div>

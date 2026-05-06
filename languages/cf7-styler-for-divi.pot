@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@plugpress.io>\n"
-"POT-Creation-Date: 2026-05-05 21:24+0000\n"
+"POT-Creation-Date: 2026-05-06 01:41+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -60,32 +60,16 @@ msgstr ""
 msgid "License manager is not available."
 msgstr ""
 
-#: includes/admin/admin.php:70, includes/admin/admin.php:71, includes/notices/review.php:133
-msgid "CF7 Mate"
+#: includes/admin/admin.php:37
+msgid "Dash"
 msgstr ""
 
-#: includes/admin/admin.php:81, includes/admin/admin.php:82, includes/admin/admin.php:158, includes/admin/admin.php:159
-msgid "Overview"
+#: includes/admin/admin.php:51, includes/admin/admin.php:52, includes/pro/features/entries/editor-panel.php:51
+msgid "Responses"
 msgstr ""
 
-#: includes/admin/admin.php:90, includes/admin/admin.php:91
-msgid "Modules"
-msgstr ""
-
-#: includes/admin/admin.php:102, includes/admin/admin.php:103
-msgid "Entries"
-msgstr ""
-
-#: includes/admin/admin.php:111, includes/admin/admin.php:112
-msgid "Webhook"
-msgstr ""
-
-#: includes/admin/admin.php:120, includes/admin/admin.php:121
-msgid "Settings"
-msgstr ""
-
-#: includes/admin/admin.php:130, includes/admin/admin.php:131
-msgid "License"
+#: includes/admin/admin.php:60, includes/admin/admin.php:61
+msgid "Mate Dash"
 msgstr ""
 
 #: includes/admin/onboarding.php:153
@@ -111,6 +95,10 @@ msgstr ""
 #. translators: %s: plugin name
 #: includes/notices/review.php:132
 msgid "It looks like you've been using %s for a while now. That's awesome! If you're enjoying it, would you mind sharing the love with a quick 5-star review? It takes just 30 seconds and helps us grow! 💜"
+msgstr ""
+
+#: includes/notices/review.php:133, includes/pro/features/entries/editor-panel.php:32, includes/pro/features/entries/editor-panel.php:48
+msgid "CF7 Mate"
 msgstr ""
 
 #: includes/notices/review.php:142
@@ -979,14 +967,6 @@ msgstr ""
 msgid "Complaint form."
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/settings.php:39, includes/pro/features/ai-form-generator/settings.php:40
-msgid "AI Provider"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/settings.php:50
-msgid "Unauthorized access."
-msgstr ""
-
 #: includes/pro/features/calculator/module.php:124, includes/pro/features/calculator/module.php:127, includes/pro/features/calculator/module.php:545, includes/pro/features/calculator/module.php:552
 msgid "Calculate"
 msgstr ""
@@ -1206,8 +1186,16 @@ msgstr ""
 msgid "Submitter user agent"
 msgstr ""
 
+#: includes/pro/features/entries/editor-panel.php:63
+msgid "Save submissions of this form to the database."
+msgstr ""
+
+#: includes/pro/features/entries/editor-panel.php:68
+msgid "When enabled, every submission is stored and viewable from CF7 Mate → Responses. Disable for forms you don't want to log (e.g. search, login)."
+msgstr ""
+
 #. translators: 1: form title, 2: date
-#: includes/pro/features/entries/save.php:51
+#: includes/pro/features/entries/save.php:62
 msgid "%1$s — %2$s"
 msgstr ""
 

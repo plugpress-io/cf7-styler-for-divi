@@ -1,22 +1,14 @@
 /**
- * Hash-based routing for admin app.
- * #/ -> dashboard, #/features -> features, #/entries -> entries, #/entries/123 -> single entry, #/ai-settings -> ai-settings.
+ * Hash-based routing helpers for the Mate Dash app.
+ * Tabs: overview (default), features, webhook, license, ai-settings.
  *
  * @package CF7_Mate
  */
 
-export function getViewFromHash() {
+const VALID_TABS = ['overview', 'features', 'webhook', 'license', 'ai-settings'];
+
+export function getDashTabFromHash() {
 	const hash = (window.location.hash || '').replace(/^#\/?/, '');
-	// #/entries/123 -> single entry view
-	const entriesMatch = hash.match(/^entries\/(\d+)$/);
-	if (entriesMatch) return { view: 'entries', entryId: parseInt(entriesMatch[1], 10) };
-	if (hash === 'entries') return { view: 'entries', entryId: null };
-	if (hash === 'features') return { view: 'features', entryId: null };
-	if (hash === 'ai-settings') return { view: 'ai-settings', entryId: null };
-	if (hash === 'webhook') return { view: 'webhook', entryId: null };
-	if (hash === 'license') return { view: 'license', entryId: null };
-	if (hash === 'free-vs-pro') return { view: 'free-vs-pro', entryId: null };
-	const entriesOnly = typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.entriesOnlyPage;
-	if (entriesOnly && !hash) return { view: 'entries', entryId: null };
-	return { view: 'dashboard', entryId: null };
+	if (VALID_TABS.includes(hash)) return hash;
+	return 'overview';
 }

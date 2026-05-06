@@ -42,6 +42,10 @@ class Entries extends Pro_Feature_Base
             require_once $dir . 'save.php';
             new Entries_Save();
         }
+        if (is_admin() && file_exists($dir . 'editor-panel.php')) {
+            require_once $dir . 'editor-panel.php';
+            new Entries_Editor_Panel();
+        }
         if (file_exists($dir . 'api.php')) {
             require_once $dir . 'api.php';
             new Entries_API();

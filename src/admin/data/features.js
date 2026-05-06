@@ -132,7 +132,7 @@ export const FEATURES = [
 	},
 	{
 		id: 'database_entries',
-		name: __('Form Entries (Database Entries)', 'cf7-styler-for-divi'),
+		name: __('Form Responses (Database)', 'cf7-styler-for-divi'),
 		description: __(
 			'Save form submissions to database and export to CSV.',
 			'cf7-styler-for-divi'

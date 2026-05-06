@@ -15,14 +15,14 @@ const CheckIcon = () => (
 );
 
 const FEATURE_DATA = {
-	entries: {
-		title: __('Form Entries', 'cf7-styler-for-divi'),
+	responses: {
+		title: __('Form Responses', 'cf7-styler-for-divi'),
 		icon: 'database',
-		desc: __('Save every Contact Form 7 submission to your WordPress database. Never lose a lead — view, search, filter, and export entries anytime.', 'cf7-styler-for-divi'),
+		desc: __('Save every Contact Form 7 submission to your WordPress database. Never lose a lead — view, search, filter, and export responses anytime.', 'cf7-styler-for-divi'),
 		features: [
 			__('Save all submissions to database', 'cf7-styler-for-divi'),
-			__('Search, filter & sort entries', 'cf7-styler-for-divi'),
-			__('Export entries to CSV', 'cf7-styler-for-divi'),
+			__('Search, filter & sort responses', 'cf7-styler-for-divi'),
+			__('Export responses to CSV', 'cf7-styler-for-divi'),
 		],
 	},
 	webhook: {
@@ -48,10 +48,10 @@ const FEATURE_DATA = {
 };
 
 export function UpsellPlaceholder({ feature }) {
-	const data = FEATURE_DATA[feature] || FEATURE_DATA.entries;
-	const pricingUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url) || 'admin.php?page=cf7-mate-pricing';
-	const dashboardUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dashboard_url) || 'admin.php?page=cf7-mate';
-	const freeVsProUrl = `${dashboardUrl}#/free-vs-pro`;
+	const data = FEATURE_DATA[feature] || FEATURE_DATA.responses;
+	const pricingUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url) || '#';
+	const settingsUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.settings_url) || 'admin.php?page=cf7-mate-settings';
+	const freeVsProUrl = pricingUrl;
 	const IconComponent = FEATURE_ICONS[data.icon] || FEATURE_ICONS.module;
 
 	return (

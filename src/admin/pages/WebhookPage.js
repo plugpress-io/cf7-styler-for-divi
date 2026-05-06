@@ -1,17 +1,31 @@
 /**
- * Webhook settings page – add/remove webhook URLs and test
- * Uses Tailwind CSS for styling
+ * Webhook – Notion-style: list of URLs, add row, footer actions.
  *
  * @package CF7_Mate
  */
 
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { TrashIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { Button, TextControl } from '@wordpress/components';
+import { TrashIcon } from '@heroicons/react/24/outline';
 import apiFetch from '@wordpress/api-fetch';
+
+const examplePayload = {
+	form_id: 1,
+	form_title: 'Contact Us',
+	submitted_at: '2026-05-05T10:30:45Z',
+	posted_data: {
+		name: 'John Doe',
+		email: 'john@example.com',
+		message: 'This is a test message',
+	},
+	ip: '192.168.1.1',
+	user_agent: 'Mozilla/5.0...',
+};
 
 export function WebhookPage() {
 	const [urls, setUrls] = useState([]);
+	const [savedUrls, setSavedUrls] = useState([]);
 	const [newUrl, setNewUrl] = useState('');
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
@@ -20,27 +34,23 @@ export function WebhookPage() {
 	const [showExample, setShowExample] = useState(false);
 
 	useEffect(() => {
-		const load = async () => {
+		(async () => {
 			try {
-				const data = await apiFetch({
-					path: '/cf7-styler/v1/settings/webhook',
-				});
-				setUrls(Array.isArray(data.urls) ? data.urls : []);
+				const data = await apiFetch({ path: '/cf7-styler/v1/settings/webhook' });
+				const list = Array.isArray(data.urls) ? data.urls : [];
+				setUrls(list);
+				setSavedUrls(list);
 			} catch (err) {
 				setNotice({
 					type: 'error',
 					message:
 						err.message ||
-						__(
-							'Failed to load webhook settings.',
-							'cf7-styler-for-divi',
-						),
+						__('Failed to load webhook settings.', 'cf7-styler-for-divi'),
 				});
 			} finally {
 				setLoading(false);
 			}
-		};
-		load();
+		})();
 	}, []);
 
 	const showNotice = (type, message) => {
@@ -54,17 +64,11 @@ export function WebhookPage() {
 		try {
 			new URL(trimmed);
 		} catch {
-			showNotice(
-				'error',
-				__('Please enter a valid URL.', 'cf7-styler-for-divi'),
-			);
+			showNotice('error', __('Please enter a valid URL.', 'cf7-styler-for-divi'));
 			return;
 		}
 		if (urls.includes(trimmed)) {
-			showNotice(
-				'error',
-				__('This URL is already in the list.', 'cf7-styler-for-divi'),
-			);
+			showNotice('error', __('This URL is already in the list.', 'cf7-styler-for-divi'));
 			return;
 		}
 		setUrls([...urls, trimmed]);
@@ -75,6 +79,8 @@ export function WebhookPage() {
 		setUrls(urls.filter((_, i) => i !== index));
 	};
 
+	const dirty = JSON.stringify(urls) !== JSON.stringify(savedUrls);
+
 	const save = async () => {
 		setSaving(true);
 		setNotice(null);
@@ -84,15 +90,10 @@ export function WebhookPage() {
 				method: 'POST',
 				data: { urls },
 			});
-			showNotice(
-				'success',
-				__('Webhook URLs saved.', 'cf7-styler-for-divi'),
-			);
+			setSavedUrls(urls);
+			showNotice('success', __('Webhook URLs saved.', 'cf7-styler-for-divi'));
 		} catch (err) {
-			showNotice(
-				'error',
-				err.message || __('Save failed.', 'cf7-styler-for-divi'),
-			);
+			showNotice('error', err.message || __('Save failed.', 'cf7-styler-for-divi'));
 		} finally {
 			setSaving(false);
 		}
@@ -116,187 +117,149 @@ export function WebhookPage() {
 				}),
 			});
 			if (response.ok) {
-				showNotice(
-					'success',
-					__('Test webhook sent successfully!', 'cf7-styler-for-divi'),
-				);
+				showNotice('success', __('Test webhook delivered.', 'cf7-styler-for-divi'));
 			} else {
 				showNotice(
 					'error',
-					__(`Server returned ${response.status}`, 'cf7-styler-for-divi'),
+					__('Server returned ', 'cf7-styler-for-divi') + response.status
 				);
 			}
 		} catch (err) {
 			showNotice(
 				'error',
 				__('Failed to send test webhook: ', 'cf7-styler-for-divi') +
-					(err.message || __('Network error', 'cf7-styler-for-divi')),
+					(err.message || __('Network error', 'cf7-styler-for-divi'))
 			);
 		} finally {
 			setTestingIndex(null);
 		}
 	};
 
-	const examplePayload = {
-		form_id: 1,
-		form_title: 'Contact Us',
-		submitted_at: '2026-05-05T10:30:45Z',
-		posted_data: {
-			name: 'John Doe',
-			email: 'john@example.com',
-			message: 'This is a test message',
-		},
-		ip: '192.168.1.1',
-		user_agent: 'Mozilla/5.0...',
-	};
-
 	if (loading) {
 		return (
-			<div className="bg-white rounded-lg border border-gray-200 p-6">
-				<p className="text-gray-500 text-sm">
-					{__('Loading...', 'cf7-styler-for-divi')}
-				</p>
-			</div>
+			<p className="cf7m-dash-row__desc">
+				{__('Loading webhook settings…', 'cf7-styler-for-divi')}
+			</p>
 		);
 	}
 
 	return (
-		<div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-			{/* Header */}
-			<div className="border-b border-gray-200 px-6 py-4">
-				<h2 className="text-xl font-bold text-gray-900">
-					{__('Webhook URLs', 'cf7-styler-for-divi')}
-				</h2>
-				<p className="text-sm text-gray-600 mt-1">
-					{__(
-						'Send form submission data instantly to these URLs when a form is submitted. Each submission is sent as a JSON POST with form_id, form_title, submitted_at, posted_data, ip, and user_agent.',
-						'cf7-styler-for-divi',
-					)}
-				</p>
-			</div>
-
-			{/* Body */}
-			<div className="px-6 py-6 space-y-6">
-				{/* Notice */}
-				{notice && (
-					<div
-						role="alert"
-						className={`p-4 rounded-md text-sm ${
-							notice.type === 'success'
-								? 'bg-green-50 text-green-800 border border-green-200'
-								: 'bg-red-50 text-red-800 border border-red-200'
-						}`}
-					>
-						{notice.message}
-					</div>
-				)}
-
-				{/* Add URL */}
-				<div className="flex gap-2">
-					<input
-						type="url"
-						value={newUrl}
-						onChange={(e) => setNewUrl(e.target.value)}
-						onKeyDown={(e) =>
-							e.key === 'Enter' && (e.preventDefault(), addUrl())
-						}
-						placeholder="https://your-service.com/webhook"
-						aria-label={__('Webhook URL', 'cf7-styler-for-divi')}
-						className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-					/>
+		<div className="cf7m-dash__panel">
+			{notice && (
+				<div className={`cf7m-dash-notice cf7m-dash-notice--${notice.type}`}>
+					<span>{notice.message}</span>
 					<button
-						onClick={addUrl}
-						className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md transition-colors"
-					>
-						{__('Add URL', 'cf7-styler-for-divi')}
-					</button>
+						type="button"
+						className="cf7m-dash-notice__close"
+						onClick={() => setNotice(null)}
+						aria-label={__('Dismiss', 'cf7-styler-for-divi')}
+					>×</button>
 				</div>
+			)}
 
-				{/* URLs List */}
-				{urls.length > 0 ? (
-					<div className="space-y-2 border-y border-gray-200 py-4">
+			<section className="cf7m-dash-section">
+				<h3 className="cf7m-dash-section__title">
+					{__('Add a webhook URL', 'cf7-styler-for-divi')}
+				</h3>
+				<p className="cf7m-dash-section__desc">
+					{__('Form submissions will be POSTed to every URL in this list.', 'cf7-styler-for-divi')}
+				</p>
+				<div className="cf7m-dash-row">
+					<div className="cf7m-dash-row__label cf7m-webhook__add">
+						<TextControl
+							__nextHasNoMarginBottom
+							value={newUrl}
+							onChange={setNewUrl}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter') {
+									e.preventDefault();
+									addUrl();
+								}
+							}}
+							placeholder="https://your-service.com/webhook"
+							aria-label={__('Webhook URL', 'cf7-styler-for-divi')}
+						/>
+					</div>
+					<div className="cf7m-dash-row__control">
+						<Button variant="secondary" onClick={addUrl}>
+							{__('Add URL', 'cf7-styler-for-divi')}
+						</Button>
+					</div>
+				</div>
+			</section>
+
+			<section className="cf7m-dash-section">
+				<h3 className="cf7m-dash-section__title">
+					{__('Active URLs', 'cf7-styler-for-divi')}
+				</h3>
+				{urls.length === 0 ? (
+					<p className="cf7m-dash-section__desc">
+						{__('No webhook URLs yet. Add one above to start receiving submissions.', 'cf7-styler-for-divi')}
+					</p>
+				) : (
+					<div>
 						{urls.map((url, index) => (
-							<div
-								key={index}
-								className="flex items-center justify-between bg-gray-50 p-3 rounded-md"
-							>
-								<div className="flex-1 min-w-0">
-									<p className="text-sm text-gray-700 truncate" title={url}>
-										{url}
-									</p>
+							<div key={index} className="cf7m-dash-row">
+								<div className="cf7m-dash-row__label">
+									<code className="cf7m-webhook__url" title={url}>{url}</code>
 								</div>
-								<div className="flex gap-2 ml-4">
-									<button
+								<div className="cf7m-dash-row__control">
+									<Button
+										variant="tertiary"
+										size="small"
 										onClick={() => testWebhook(index)}
 										disabled={testingIndex === index}
-										aria-label={__('Test', 'cf7-styler-for-divi')}
-										className="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 transition-colors"
 									>
 										{testingIndex === index
-											? __('Testing...', 'cf7-styler-for-divi')
+											? __('Testing…', 'cf7-styler-for-divi')
 											: __('Test', 'cf7-styler-for-divi')}
-									</button>
-									<button
+									</Button>
+									<Button
+										variant="tertiary"
+										size="small"
+										isDestructive
 										onClick={() => removeUrl(index)}
-										aria-label={__('Remove URL', 'cf7-styler-for-divi')}
-										className="p-1 text-gray-500 hover:text-red-600 transition-colors"
-									>
-										<TrashIcon className="w-5 h-5" />
-									</button>
+										icon={<TrashIcon className="cf7m-resp__icon" />}
+										label={__('Remove', 'cf7-styler-for-divi')}
+										showTooltip
+									/>
 								</div>
 							</div>
 						))}
 					</div>
-				) : (
-					<div className="text-center py-8 bg-gray-50 rounded-md">
-						<p className="text-gray-500 text-sm">
-							{__(
-								'No webhook URLs yet. Add one above to start receiving form submissions.',
-								'cf7-styler-for-divi',
-							)}
-						</p>
-					</div>
 				)}
+			</section>
 
-				{/* Actions */}
-				<div className="flex gap-3">
-					<button
-						onClick={save}
-						disabled={saving}
-						className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium py-2 px-4 rounded-md transition-colors"
-					>
-						{saving
-							? __('Saving...', 'cf7-styler-for-divi')
-							: __('Save URLs', 'cf7-styler-for-divi')}
-					</button>
-					<button
-						onClick={() => setShowExample(!showExample)}
-						className="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2 px-4 rounded-md transition-colors"
-					>
-						{showExample
-							? __('Hide Example', 'cf7-styler-for-divi')
-							: __('Show Example', 'cf7-styler-for-divi')}
-					</button>
-				</div>
-
-				{/* Example Payload */}
-				{showExample && (
-					<div className="border border-gray-300 rounded-md p-4 bg-gray-50">
-						<h3 className="text-sm font-bold text-gray-900 mb-2">
-							{__('Example Webhook Payload', 'cf7-styler-for-divi')}
-						</h3>
-						<p className="text-xs text-gray-600 mb-3">
-							{__(
-								'This is the JSON data sent to your webhook URL when a form is submitted:',
-								'cf7-styler-for-divi',
-							)}
-						</p>
-						<pre className="bg-gray-900 text-green-400 p-3 rounded text-xs overflow-auto max-h-96 font-mono">
-							{JSON.stringify(examplePayload, null, 2)}
-						</pre>
-					</div>
-				)}
+			<div className="cf7m-dash-footer cf7m-dash-footer--split">
+				<Button variant="tertiary" onClick={() => setShowExample(!showExample)}>
+					{showExample
+						? __('Hide example payload', 'cf7-styler-for-divi')
+						: __('Show example payload', 'cf7-styler-for-divi')}
+				</Button>
+				<Button
+					variant="primary"
+					onClick={save}
+					disabled={saving || !dirty}
+				>
+					{saving
+						? __('Saving…', 'cf7-styler-for-divi')
+						: __('Save URLs', 'cf7-styler-for-divi')}
+				</Button>
 			</div>
+
+			{showExample && (
+				<section className="cf7m-dash-section">
+					<h3 className="cf7m-dash-section__title">
+						{__('Example payload', 'cf7-styler-for-divi')}
+					</h3>
+					<p className="cf7m-dash-section__desc">
+						{__('This JSON is POSTed to every webhook URL on form submission.', 'cf7-styler-for-divi')}
+					</p>
+					<pre className="cf7m-webhook__code">
+						{JSON.stringify(examplePayload, null, 2)}
+					</pre>
+				</section>
+			)}
 		</div>
 	);
 }

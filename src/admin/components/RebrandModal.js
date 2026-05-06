@@ -54,7 +54,7 @@ export function RebrandModal({ onDismiss }) {
 				</svg>
 			),
 			title: __('More in Pro', 'cf7-styler-for-divi'),
-			desc: __('Form entries, multi-step forms, conditional logic & more.', 'cf7-styler-for-divi'),
+			desc: __('Form responses, multi-step forms, conditional logic & more.', 'cf7-styler-for-divi'),
 		},
 	];
 

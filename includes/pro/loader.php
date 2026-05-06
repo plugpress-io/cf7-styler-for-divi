@@ -119,17 +119,19 @@ class Premium_Loader
         );
     }
 
-    public function enqueue_admin_app_scripts()
+    public function enqueue_admin_app_scripts($app = 'settings')
     {
-        $path = CF7M_PLUGIN_PATH . 'dist/js/admin-pro.js';
+        $bundle      = $app === 'responses' ? 'responses-pro' : 'settings-pro';
+        $parent      = $app === 'responses' ? 'cf7m-responses' : 'cf7m-settings';
+        $path        = CF7M_PLUGIN_PATH . 'dist/js/' . $bundle . '.js';
         if (! file_exists($path)) {
             return;
         }
 
         wp_enqueue_script(
-            'cf7m-admin-pro',
-            CF7M_PLUGIN_URL . 'dist/js/admin-pro.js',
-            ['cf7m-admin'],
+            'cf7m-' . $bundle,
+            CF7M_PLUGIN_URL . 'dist/js/' . $bundle . '.js',
+            [$parent],
             CF7M_VERSION,
             true
         );

@@ -28,7 +28,7 @@ export function UnlockPremiumCard({ pricingUrl, freeVsProUrl, promoCode, promoTe
 				</div>
 			</div>
 			<p className="cf7m-unlock-premium-card__text">
-				{__('Extra fields, entries, and AI. Compare free vs Pro when you’re ready.', 'cf7-styler-for-divi')}
+				{__('Extra fields, responses, and AI. Compare free vs Pro when you’re ready.', 'cf7-styler-for-divi')}
 			</p>
 			<div className="cf7m-unlock-premium-card__actions">
 				<a href={priceUrl} className="cf7m-unlock-premium-card__cta" target="_blank" rel="noopener noreferrer">

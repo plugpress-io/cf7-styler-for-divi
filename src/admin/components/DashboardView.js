@@ -1,186 +1,392 @@
 /**
- * Dashboard view – role-specific layouts using @wordpress/components
- * Minimal, Notion-like design with clear information hierarchy
+ * Overview – cleaner Notion-style: stat tiles, quick actions, resources.
  *
  * @package CF7_Mate
  */
 
-import { Heading, Button, Flex, FlexItem, Spinner } from '@wordpress/components';
+import { Button, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import {
 	DocumentTextIcon,
 	InboxIcon,
 	SparklesIcon,
 	CheckCircleIcon,
-	ArrowRightIcon,
+	ArrowUpRightIcon,
+	BookOpenIcon,
+	LifebuoyIcon,
+	UserGroupIcon,
+	BellAlertIcon,
+	ExclamationTriangleIcon,
+	EnvelopeIcon,
+	KeyIcon,
 } from '@heroicons/react/24/outline';
 
-const getProWidget = (name) => window.cf7mProWidgets && window.cf7mProWidgets[name];
+const cfg = (key, fallback = '') => {
+	if (typeof dcsCF7Styler === 'undefined') return fallback;
+	return dcsCF7Styler[key] || fallback;
+};
 
 export function DashboardView({
 	stats,
 	loading,
-	showEntries,
+	showResponses,
 	isPro,
-	dashboardUrl,
-	modulesUrl,
+	responsesUrl,
 }) {
 	if (loading) {
 		return (
-			<div className="cf7m-section" style={{ textAlign: 'center', padding: '40px 0' }}>
+			<div className="cf7m-overview__loading">
 				<Spinner />
-				<p className="text-muted" style={{ marginTop: '16px' }}>
-					{__('Loading dashboard…', 'cf7-styler-for-divi')}
-				</p>
 			</div>
 		);
 	}
 
-	const EntriesOverview = getProWidget('entriesOverview');
-
-	// Free version: welcome section
 	if (!isPro) {
 		return (
-			<div className="cf7m-section">
-				<div className="cf7m-card" style={{ textAlign: 'center', maxWidth: '500px', margin: '0 auto' }}>
-					<Heading level={1} className="cf7m-card__title" style={{ marginBottom: '12px' }}>
-						{__('Welcome to CF7 Mate', 'cf7-styler-for-divi')}
-					</Heading>
-					<p className="cf7m-card__subtitle" style={{ margin: '0 0 24px 0' }}>
-						{__('Style Contact Form 7, add custom fields, and unlock powerful pro features.', 'cf7-styler-for-divi')}
+			<div className="cf7m-overview">
+				<div className="cf7m-overview__welcome">
+					<p className="cf7m-overview__welcome-eyebrow">
+						{__('Free plan', 'cf7-styler-for-divi')}
 					</p>
-					<Flex gap={3} direction="column">
-						<FlexItem>
-							<Button href={modulesUrl} variant="primary" style={{ width: '100%' }}>
-								{__('Explore Modules', 'cf7-styler-for-divi')}
-							</Button>
-						</FlexItem>
-						<FlexItem>
-							<Button href={dashboardUrl + '#/free-vs-pro'} style={{ width: '100%' }}>
-								{__('Compare Free vs Pro', 'cf7-styler-for-divi')}
-							</Button>
-						</FlexItem>
-					</Flex>
+					<h2 className="cf7m-overview__welcome-title">
+						{__('Style and extend Contact Form 7.', 'cf7-styler-for-divi')}
+					</h2>
+					<p className="cf7m-overview__welcome-text">
+						{__(
+							'Toggle modules, hook up webhooks, and unlock submissions, AI form generation, and more with Pro.',
+							'cf7-styler-for-divi'
+						)}
+					</p>
+					<div className="cf7m-overview__welcome-actions">
+						<Button
+							variant="primary"
+							onClick={() => {
+								window.location.hash = '#/features';
+							}}
+						>
+							{__('Explore features', 'cf7-styler-for-divi')}
+						</Button>
+					</div>
 				</div>
+
+				<ResourcesSection />
 			</div>
 		);
 	}
 
-	// Pro version: dashboard with stats and activity
+	const tiles = [
+		{
+			icon: DocumentTextIcon,
+			value: stats.total_forms || 0,
+			label: __('Forms', 'cf7-styler-for-divi'),
+			href: 'admin.php?page=wpcf7',
+		},
+		showResponses && {
+			icon: InboxIcon,
+			value: stats.total_entries || 0,
+			label: __('Total submissions', 'cf7-styler-for-divi'),
+			href: responsesUrl,
+		},
+		showResponses && {
+			icon: CheckCircleIcon,
+			value: stats.new_today || 0,
+			label: __('New today', 'cf7-styler-for-divi'),
+			href: responsesUrl,
+		},
+		{
+			icon: SparklesIcon,
+			value: stats.enabled_features || 0,
+			label: __('Active modules', 'cf7-styler-for-divi'),
+			onClick: () => {
+				window.location.hash = '#/features';
+			},
+		},
+	].filter(Boolean);
+
+	const quickActions = [
+		{
+			label: __('Manage features', 'cf7-styler-for-divi'),
+			hint: __('Turn modules on or off', 'cf7-styler-for-divi'),
+			onClick: () => { window.location.hash = '#/features'; },
+		},
+		showResponses && {
+			label: __('View responses', 'cf7-styler-for-divi'),
+			hint: __('Browse form submissions', 'cf7-styler-for-divi'),
+			href: responsesUrl,
+		},
+		{
+			label: __('Configure webhook', 'cf7-styler-for-divi'),
+			hint: __('Send data to Zapier, Make, or any URL', 'cf7-styler-for-divi'),
+			onClick: () => { window.location.hash = '#/webhook'; },
+		},
+		{
+			label: __('AI form generator', 'cf7-styler-for-divi'),
+			hint: __('Generate forms from a prompt', 'cf7-styler-for-divi'),
+			onClick: () => { window.location.hash = '#/ai-settings'; },
+		},
+	].filter(Boolean);
+
 	return (
-		<div className="cf7m-dashboard">
-			{/* Welcome Section */}
-			<div className="cf7m-section">
-				<Heading level={1} className="cf7m-section__title">
-					{__('Dashboard', 'cf7-styler-for-divi')}
-				</Heading>
-				<p className="cf7m-section__subtitle">
-					{__('Overview of your CF7 Mate Pro activity and settings.', 'cf7-styler-for-divi')}
-				</p>
+		<div className="cf7m-overview">
+			<NoticesBlock
+				stats={stats}
+				showResponses={showResponses}
+				responsesUrl={responsesUrl}
+			/>
+
+			<div className="cf7m-overview__stats">
+				{tiles.map((tile, i) => (
+					<StatTile key={i} {...tile} />
+				))}
 			</div>
 
-			{/* Stats Grid */}
-			<div className="cf7m-stats-grid grid grid-cols-2 md:grid-cols-4 gap-lg">
-				<StatCard
-					icon={DocumentTextIcon}
-					color="primary"
-					value={stats.total_forms || 0}
-					label={__('Forms', 'cf7-styler-for-divi')}
-					href={`${dashboardUrl}#/entries`}
-					showArrow={showEntries}
-				/>
-
-				{showEntries && (
-					<>
-						<StatCard
-							icon={InboxIcon}
-							color="success"
-							value={stats.total_entries || 0}
-							label={__('Submissions', 'cf7-styler-for-divi')}
-							href={`${dashboardUrl}#/entries`}
-							showArrow={true}
-						/>
-						<StatCard
-							icon={CheckCircleIcon}
-							color="warning"
-							value={stats.new_today || 0}
-							label={__('Today', 'cf7-styler-for-divi')}
-							href={`${dashboardUrl}#/entries`}
-							showArrow={true}
-						/>
-					</>
-				)}
-
-				<StatCard
-					icon={SparklesIcon}
-					color="primary"
-					value={stats.enabled_features || 0}
-					label={__('Modules', 'cf7-styler-for-divi')}
-					href={`${dashboardUrl}#/settings`}
-					showArrow={true}
-				/>
-			</div>
-
-			{/* Entries Overview */}
-			{EntriesOverview && showEntries && (
-				<div className="cf7m-section">
-					<EntriesOverview
-						showEntries={showEntries}
-						dashboardUrl={dashboardUrl}
-						stats={stats}
-					/>
+			<section className="cf7m-overview__group">
+				<h3 className="cf7m-overview__group-title">
+					{__('Quick actions', 'cf7-styler-for-divi')}
+				</h3>
+				<div className="cf7m-overview__list">
+					{quickActions.map((a, i) => (
+						<QuickRow key={i} {...a} />
+					))}
 				</div>
-			)}
+			</section>
 
-			{/* Quick Actions */}
-			<div className="cf7m-section">
-				<Heading level={2} className="cf7m-section__title">
-					{__('Quick Actions', 'cf7-styler-for-divi')}
-				</Heading>
-				<Flex gap={3}>
-					<FlexItem>
-						<Button href={`${dashboardUrl}#/settings`} variant="primary">
-							{__('View Settings', 'cf7-styler-for-divi')}
-						</Button>
-					</FlexItem>
-					<FlexItem>
-						<Button href={modulesUrl}>
-							{__('Manage Modules', 'cf7-styler-for-divi')}
-						</Button>
-					</FlexItem>
-				</Flex>
-			</div>
+			<ResourcesSection />
 		</div>
 	);
 }
 
-// Stat Card Component
-function StatCard({ icon: Icon, color, value, label, href, showArrow }) {
-	const colorMap = {
-		primary: '#3a57fc',
-		success: '#10b981',
-		warning: '#f59e0b',
-		danger: '#ef4444',
-	};
+function NoticesBlock({ stats, showResponses, responsesUrl }) {
+	const license =
+		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.license
+			? dcsCF7Styler.license
+			: null;
+	const aiProviders =
+		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.aiProviders
+			? dcsCF7Styler.aiProviders
+			: {};
 
-	const content = (
-		<div className="cf7m-stat-card">
-			<div className="cf7m-stat-card__icon" style={{ color: colorMap[color] }}>
-				<Icon className="w-6 h-6" aria-hidden="true" />
+	const notices = [];
+
+	// Unread / new responses today
+	if (showResponses && (stats?.new_today || 0) > 0) {
+		notices.push({
+			tone: 'info',
+			icon: BellAlertIcon,
+			title: __('You have new responses', 'cf7-styler-for-divi'),
+			body: __('%d submission(s) arrived today.', 'cf7-styler-for-divi').replace(
+				'%d',
+				stats.new_today
+			),
+			cta: __('View responses', 'cf7-styler-for-divi'),
+			href: responsesUrl,
+		});
+	}
+
+	// License expiring soon
+	if (license && license.is_valid && license.expires_at) {
+		const days = Math.ceil(
+			(new Date(license.expires_at).getTime() - Date.now()) / 86400000
+		);
+		if (days >= 0 && days <= 30) {
+			notices.push({
+				tone: 'warning',
+				icon: ExclamationTriangleIcon,
+				title: __('License renews soon', 'cf7-styler-for-divi'),
+				body: __('Your CF7 Mate Pro license expires in %d day(s).', 'cf7-styler-for-divi').replace(
+					'%d',
+					days
+				),
+				cta: __('Manage license', 'cf7-styler-for-divi'),
+				onClick: () => { window.location.hash = '#/license'; },
+			});
+		}
+	}
+
+	// AI provider not configured (only mention if at least one provider exists in localize)
+	const aiProviderCount = Object.keys(aiProviders).length;
+	const aiKeySet = Object.keys(aiProviders).some(
+		(p) => typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler[`${p}_key_set`]
+	);
+	if (aiProviderCount > 0 && !aiKeySet) {
+		notices.push({
+			tone: 'info',
+			icon: SparklesIcon,
+			title: __('Connect an AI provider', 'cf7-styler-for-divi'),
+			body: __('Add an API key to start generating forms from prompts.', 'cf7-styler-for-divi'),
+			cta: __('Open AI settings', 'cf7-styler-for-divi'),
+			onClick: () => { window.location.hash = '#/ai-settings'; },
+		});
+	}
+
+	// CF7 mail config nudge — link out to CF7 docs (we can't reliably detect SMTP)
+	const cf7MailKnown =
+		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.smtp_configured;
+	if (cf7MailKnown === false) {
+		notices.push({
+			tone: 'warning',
+			icon: EnvelopeIcon,
+			title: __('Emails may not be sending', 'cf7-styler-for-divi'),
+			body: __('No SMTP plugin detected. Configure one to ensure form notifications reach inboxes.', 'cf7-styler-for-divi'),
+			cta: __('Learn more', 'cf7-styler-for-divi'),
+			href: 'https://contactform7.com/configuration-errors/',
+		});
+	}
+
+	if (notices.length === 0) return null;
+
+	return (
+		<section className="cf7m-overview__notices">
+			{notices.map((n, i) => (
+				<NoticeRow key={i} {...n} />
+			))}
+		</section>
+	);
+}
+
+function NoticeRow({ tone, icon: Icon, title, body, cta, href, onClick }) {
+	const inner = (
+		<>
+			<span className={`cf7m-notice__icon cf7m-notice__icon--${tone}`}>
+				<Icon aria-hidden="true" />
+			</span>
+			<div className="cf7m-notice__body">
+				<span className="cf7m-notice__title">{title}</span>
+				<span className="cf7m-notice__text">{body}</span>
 			</div>
-			<div className="cf7m-stat-card__value">{value}</div>
-			<div className="cf7m-stat-card__label">{label}</div>
-			{showArrow && (
-				<div className="cf7m-stat-card__arrow">
-					<ArrowRightIcon className="w-4 h-4" aria-hidden="true" />
-				</div>
+			{cta && (
+				<span className="cf7m-notice__cta">
+					{cta}
+					<ArrowUpRightIcon aria-hidden="true" />
+				</span>
 			)}
-		</div>
+		</>
 	);
 
 	if (href) {
-		return <a href={href} className="cf7m-stat-card-link">{content}</a>;
+		return (
+			<a
+				href={href}
+				className={`cf7m-notice cf7m-notice--${tone}`}
+				target={href.startsWith('http') ? '_blank' : undefined}
+				rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+			>
+				{inner}
+			</a>
+		);
 	}
+	return (
+		<button
+			type="button"
+			onClick={onClick}
+			className={`cf7m-notice cf7m-notice--${tone}`}
+		>
+			{inner}
+		</button>
+	);
+}
 
-	return content;
+function StatTile({ icon: Icon, value, label, href, onClick }) {
+	const inner = (
+		<>
+			<div className="cf7m-overview__tile-head">
+				<Icon className="cf7m-overview__tile-icon" aria-hidden="true" />
+				{(href || onClick) && (
+					<ArrowUpRightIcon
+						className="cf7m-overview__tile-arrow"
+						aria-hidden="true"
+					/>
+				)}
+			</div>
+			<div className="cf7m-overview__tile-value">{value}</div>
+			<div className="cf7m-overview__tile-label">{label}</div>
+		</>
+	);
+
+	if (href) return <a href={href} className="cf7m-overview__tile">{inner}</a>;
+	if (onClick) return (
+		<button type="button" onClick={onClick} className="cf7m-overview__tile cf7m-overview__tile--button">
+			{inner}
+		</button>
+	);
+	return <div className="cf7m-overview__tile">{inner}</div>;
+}
+
+function QuickRow({ label, hint, href, onClick }) {
+	const inner = (
+		<>
+			<div className="cf7m-overview__row-text">
+				<span className="cf7m-overview__row-label">{label}</span>
+				<span className="cf7m-overview__row-hint">{hint}</span>
+			</div>
+			<ArrowUpRightIcon className="cf7m-overview__row-arrow" aria-hidden="true" />
+		</>
+	);
+	if (href) return <a href={href} className="cf7m-overview__row">{inner}</a>;
+	return (
+		<button type="button" onClick={onClick} className="cf7m-overview__row">
+			{inner}
+		</button>
+	);
+}
+
+function ResourcesSection() {
+	const docsUrl = cfg('docs_url', 'https://cf7mate.com/docs');
+	const supportUrl = cfg('support_url', 'https://cf7mate.com/support');
+	const communityUrl = cfg('community_url', 'https://facebook.com/groups/plugpress');
+
+	const cards = [
+		{
+			icon: BookOpenIcon,
+			title: __('Documentation', 'cf7-styler-for-divi'),
+			desc: __('Setup guides, module references, and how-tos.', 'cf7-styler-for-divi'),
+			cta: __('Read the docs', 'cf7-styler-for-divi'),
+			href: docsUrl,
+		},
+		{
+			icon: LifebuoyIcon,
+			title: __('Support', 'cf7-styler-for-divi'),
+			desc: __('Stuck on something? Open a ticket and we\'ll help.', 'cf7-styler-for-divi'),
+			cta: __('Contact support', 'cf7-styler-for-divi'),
+			href: supportUrl,
+		},
+		{
+			icon: UserGroupIcon,
+			title: __('Community', 'cf7-styler-for-divi'),
+			desc: __('Trade tips and feature requests with other users.', 'cf7-styler-for-divi'),
+			cta: __('Join the group', 'cf7-styler-for-divi'),
+			href: communityUrl,
+		},
+	].filter((c) => c.href);
+
+	if (cards.length === 0) return null;
+
+	return (
+		<section className="cf7m-overview__group">
+			<h3 className="cf7m-overview__group-title">
+				{__('Resources', 'cf7-styler-for-divi')}
+			</h3>
+			<div className="cf7m-overview__resources">
+				{cards.map((c, i) => (
+					<a
+						key={i}
+						href={c.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="cf7m-overview__resource"
+					>
+						<c.icon className="cf7m-overview__resource-icon" aria-hidden="true" />
+						<div className="cf7m-overview__resource-body">
+							<h4 className="cf7m-overview__resource-title">{c.title}</h4>
+							<p className="cf7m-overview__resource-desc">{c.desc}</p>
+							<span className="cf7m-overview__resource-cta">
+								{c.cta}
+								<ArrowUpRightIcon className="cf7m-resp__icon" aria-hidden="true" />
+							</span>
+						</div>
+					</a>
+				))}
+			</div>
+		</section>
+	);
 }

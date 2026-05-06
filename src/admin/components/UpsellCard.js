@@ -19,7 +19,7 @@ const FEATURES_LEFT = [
 ];
 
 const FEATURES_RIGHT = [
-	__('Form Entries (Database)', 'cf7-styler-for-divi'),
+	__('Form Responses (Database)', 'cf7-styler-for-divi'),
 	__('Star Rating & Range Slider', 'cf7-styler-for-divi'),
 	__('AI Form Generator & more…', 'cf7-styler-for-divi'),
 ];
