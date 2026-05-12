@@ -88,7 +88,7 @@ class Admin_Review_Notice
     private function is_cf7_mate_page()
     {
         $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        return in_array($page, ['cf7-mate-settings', 'cf7-mate-responses'], true);
+        return in_array($page, ['cf7-mate-settings', 'cf7-mate-responses', 'cf7-mate-analytics'], true);
     }
 
     private function should_display_notice()
@@ -112,264 +112,237 @@ class Admin_Review_Notice
 
     private function render_notice()
     {
+        $notice_id  = esc_attr(self::NOTICE_ID);
+        $review_url = 'https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/#new-post';
+        $support_url = 'https://cf7mate.com/support';
 ?>
-        <div id="<?php echo esc_attr(self::NOTICE_ID); ?>" class="cf7m-admin-notice cf7m-review-notice notice is-dismissible">
-            <div class="cf7m-notice-inner">
-                <div class="cf7m-notice-icon">
-                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="24" fill="#3044D7" fill-opacity="0.1" />
-                        <path d="M24 16l2.472 7.61h8.004l-6.476 4.708 2.472 7.61L24 31.22l-6.472 4.708 2.472-7.61-6.476-4.708h8.004L24 16z" fill="#3044D7" />
-                    </svg>
-                </div>
-                <div class="cf7m-notice-content">
-                    <h3 class="cf7m-notice-title">
-                        <?php esc_html_e('🎉 You\'re creating amazing forms!', 'cf7-styler-for-divi'); ?>
-                    </h3>
-                    <p class="cf7m-notice-description">
+        <div id="<?php echo $notice_id; ?>" class="cf7m-rn-wrap notice">
+            <div class="cf7m-rn">
+                <!-- Icon -->
+                <svg class="cf7m-rn__icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 1l2.39 5.26 5.61.82-4.06 3.95.96 5.58L10 14.27 5.1 16.61l.96-5.58L2 7.08l5.61-.82L10 1z" fill="#3858e9" fill-opacity=".15" stroke="#3858e9" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+
+                <!-- Text block -->
+                <div class="cf7m-rn__body">
+                    <span class="cf7m-rn__label" id="cf7m-rn-label">
                         <?php
                         printf(
                             /* translators: %s: plugin name */
-                            esc_html__('It looks like you\'ve been using %s for a while now. That\'s awesome! If you\'re enjoying it, would you mind sharing the love with a quick 5-star review? It takes just 30 seconds and helps us grow! 💜', 'cf7-styler-for-divi'),
-                            '<strong>' . esc_html__('CF7 Mate', 'cf7-styler-for-divi') . '</strong>'
+                            esc_html__('How are you finding %s?', 'cf7-styler-for-divi'),
+                            '<strong>CF7 Mate</strong>'
                         );
                         ?>
-                    </p>
-                    <div class="cf7m-notice-actions">
-                        <a href="https://wordpress.org/support/plugin/cf7-styler-for-divi/reviews/" target="_blank" class="cf7m-review-button cf7m-review-button--primary" data-action="review">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" />
+                    </span>
+
+                    <!-- Star rating -->
+                    <span class="cf7m-rn__stars" id="cf7m-rn-stars" role="group" aria-label="<?php esc_attr_e('Rate CF7 Mate', 'cf7-styler-for-divi'); ?>">
+                        <?php for ($i = 1; $i <= 5; $i++) : ?>
+                        <button type="button" class="cf7m-rn__star" data-rating="<?php echo $i; ?>" aria-label="<?php echo esc_attr(sprintf(__('%d star', 'cf7-styler-for-divi'), $i)); ?>">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M10 1l2.39 5.26 5.61.82-4.06 3.95.96 5.58L10 14.27 5.1 16.61l.96-5.58L2 7.08l5.61-.82L10 1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
                             </svg>
-                            <?php esc_html_e('Sure! I\'ll leave a review', 'cf7-styler-for-divi'); ?>
-                        </a>
-                        <button type="button" class="cf7m-review-button cf7m-review-button--secondary" data-action="dismiss">
-                            <?php esc_html_e('Maybe later', 'cf7-styler-for-divi'); ?>
                         </button>
-                    </div>
+                        <?php endfor; ?>
+                    </span>
+
+                    <!-- CTA (shown after high rating) -->
+                    <a href="<?php echo esc_url($review_url); ?>" target="_blank" rel="noopener noreferrer"
+                       class="cf7m-rn__cta" id="cf7m-rn-cta" style="display:none">
+                        <?php esc_html_e('Leave a review', 'cf7-styler-for-divi'); ?>
+                        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
                 </div>
+
+                <!-- Dismiss -->
+                <button type="button" class="cf7m-rn__later" data-action="dismiss">
+                    <?php esc_html_e('Not now', 'cf7-styler-for-divi'); ?>
+                </button>
+                <button type="button" class="cf7m-rn__close" data-action="dismiss" aria-label="<?php esc_attr_e('Dismiss', 'cf7-styler-for-divi'); ?>">
+                    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
             </div>
         </div>
 
         <style>
-            .cf7m-review-notice {
-                position: relative !important;
+            /* Strip WordPress default notice styles */
+            .cf7m-rn-wrap.notice {
                 padding: 0 !important;
-                border: none !important;
-                background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%) !important;
-                border-radius: 12px !important;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
-                margin: 16px 20px 16px 0 !important;
+                border-left: none !important;
+                background: #fff !important;
+                border: 1px solid #e5e7eb !important;
+                border-radius: 8px !important;
+                box-shadow: 0 1px 3px rgba(0,0,0,.06) !important;
+                margin: 12px 20px 4px 0 !important;
                 overflow: hidden !important;
-                border-left: 4px solid #3044D7 !important;
             }
 
-            .cf7m-review-notice::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 100%;
-                background: linear-gradient(135deg, rgba(87, 51, 255, 0.03) 0%, transparent 50%);
-                pointer-events: none;
-            }
+            /* Remove WP's dismiss button — we have our own */
+            .cf7m-rn-wrap .notice-dismiss { display: none !important; }
 
-            .cf7m-review-notice .notice-dismiss {
-                top: 16px !important;
-                right: 16px !important;
-                width: 28px !important;
-                height: 28px !important;
-                border-radius: 6px !important;
-                color: #9ca3af !important;
-                transition: all 0.2s ease !important;
-                z-index: 10 !important;
-            }
-
-            .cf7m-review-notice .notice-dismiss:hover {
-                background: rgba(87, 51, 255, 0.1) !important;
-                color: #3044D7 !important;
-            }
-
-            .cf7m-review-notice .notice-dismiss::before {
-                width: 28px !important;
-                height: 28px !important;
-                font-size: 18px !important;
-            }
-
-            .cf7m-notice-inner {
-                display: flex;
-                gap: 20px;
-                padding: 24px 60px 24px 24px;
-                position: relative;
-                z-index: 2;
-            }
-
-            .cf7m-notice-icon {
-                flex-shrink: 0;
-                width: 48px;
-                height: 48px;
+            .cf7m-rn {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                animation: cf7m-notice-pulse 2s ease-in-out infinite;
+                gap: 10px;
+                padding: 10px 14px;
+                min-height: 44px;
             }
 
-            @keyframes cf7m-notice-pulse {
-
-                0%,
-                100% {
-                    transform: scale(1);
-                }
-
-                50% {
-                    transform: scale(1.05);
-                }
+            .cf7m-rn__icon {
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
             }
 
-            .cf7m-notice-content {
+            .cf7m-rn__body {
+                display: flex;
+                align-items: center;
+                gap: 10px;
                 flex: 1;
                 min-width: 0;
-            }
-
-            .cf7m-notice-title {
-                margin: 0 0 8px 0 !important;
-                font-size: 18px !important;
-                font-weight: 600 !important;
-                color: #111827 !important;
-                line-height: 1.4 !important;
-                letter-spacing: -0.02em !important;
-            }
-
-            .cf7m-notice-description {
-                margin: 0 0 16px 0 !important;
-                font-size: 14px !important;
-                color: #4b5563 !important;
-                line-height: 1.6 !important;
-                font-weight: 400 !important;
-            }
-
-            .cf7m-notice-description strong {
-                color: #3044D7;
-                font-weight: 600;
-            }
-
-            .cf7m-notice-actions {
-                display: flex;
-                gap: 12px;
                 flex-wrap: wrap;
             }
 
-            .cf7m-review-button {
+            .cf7m-rn__label {
+                font-size: 13px;
+                color: #374151;
+                white-space: nowrap;
+            }
+            .cf7m-rn__label strong {
+                color: #111827;
+                font-weight: 600;
+            }
+
+            /* Stars */
+            .cf7m-rn__stars {
+                display: inline-flex;
+                gap: 2px;
+                align-items: center;
+            }
+
+            .cf7m-rn__star {
+                background: none;
+                border: none;
+                padding: 2px;
+                cursor: pointer;
+                color: #d1d5db;
+                transition: color 0.1s ease, transform 0.1s ease;
                 display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                gap: 8px;
-                padding: 10px 20px !important;
-                border-radius: 8px !important;
-                font-weight: 500 !important;
-                font-size: 14px !important;
-                transition: all 0.2s ease !important;
-                cursor: pointer !important;
-                text-decoration: none !important;
-                border: none !important;
-                font-family: inherit !important;
-                line-height: 1.4 !important;
+                line-height: 1;
+            }
+            .cf7m-rn__star svg {
+                width: 18px;
+                height: 18px;
+                display: block;
+            }
+            .cf7m-rn__star:hover,
+            .cf7m-rn__star.is-lit {
+                color: #f59e0b;
+                transform: scale(1.15);
+            }
+            .cf7m-rn__star.is-lit svg path {
+                fill: #f59e0b;
+                stroke: #f59e0b;
             }
 
-            .cf7m-review-button--primary {
-                background: linear-gradient(135deg, #3044D7 0%, #2535b0 100%) !important;
-                color: #ffffff !important;
-                box-shadow: 0 2px 8px rgba(48, 68, 215, 0.25) !important;
+            /* CTA link */
+            .cf7m-rn__cta {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 13px;
+                font-weight: 600;
+                color: #3858e9;
+                text-decoration: none;
+                white-space: nowrap;
+                transition: opacity 0.15s;
             }
+            .cf7m-rn__cta:hover { opacity: 0.8; color: #3858e9; }
+            .cf7m-rn__cta svg { width: 11px; height: 11px; }
 
-            .cf7m-review-button--primary:hover {
-                background: linear-gradient(135deg, #2535b0 0%, #1e2990 100%) !important;
-                color: #ffffff !important;
-                transform: translateY(-2px) !important;
-                box-shadow: 0 4px 12px rgba(48, 68, 215, 0.35) !important;
+            /* Not now */
+            .cf7m-rn__later {
+                background: none;
+                border: none;
+                padding: 4px 8px;
+                font-size: 12px;
+                color: #9ca3af;
+                cursor: pointer;
+                white-space: nowrap;
+                border-radius: 4px;
+                transition: color 0.15s;
+                margin-left: auto;
             }
+            .cf7m-rn__later:hover { color: #6b7280; }
 
-            .cf7m-review-button--primary:active {
-                transform: translateY(0) !important;
-                box-shadow: 0 2px 6px rgba(48, 68, 215, 0.3) !important;
+            /* Close ×  */
+            .cf7m-rn__close {
+                background: none;
+                border: none;
+                padding: 4px;
+                cursor: pointer;
+                color: #9ca3af;
+                display: inline-flex;
+                align-items: center;
+                border-radius: 4px;
+                transition: color 0.15s, background 0.15s;
+                flex-shrink: 0;
             }
-
-            .cf7m-review-button--secondary {
-                background: transparent !important;
-                color: #6b7280 !important;
-                border: 1px solid #d1d5db !important;
-            }
-
-            .cf7m-review-button--secondary:hover {
-                background: #f3f4f6 !important;
-                color: #374151 !important;
-                border-color: #9ca3af !important;
-            }
-
-            @media (max-width: 768px) {
-                .cf7m-notice-inner {
-                    flex-direction: column;
-                    gap: 16px;
-                    padding: 20px 50px 20px 20px;
-                }
-
-                .cf7m-notice-icon {
-                    width: 40px;
-                    height: 40px;
-                }
-
-                .cf7m-notice-icon svg {
-                    width: 32px;
-                    height: 32px;
-                }
-
-                .cf7m-notice-actions {
-                    flex-direction: column;
-                }
-
-                .cf7m-review-button {
-                    width: 100%;
-                    justify-content: center;
-                }
-
-                .cf7m-review-notice .notice-dismiss {
-                    top: 12px !important;
-                    right: 12px !important;
-                }
-            }
+            .cf7m-rn__close svg { width: 12px; height: 12px; display: block; }
+            .cf7m-rn__close:hover { color: #374151; background: #f3f4f6; }
         </style>
 
         <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                // Handle review button click
-                $('.cf7m-review-button[data-action="review"]').on('click', function(e) {
-                    // Dismiss the notice when user clicks review
-                    $.ajax({
-                        url: dcs_admin_notice.ajax_url,
-                        type: 'POST',
-                        data: {
-                            action: 'dcs_dismiss_review_notice',
-                            nonce: dcs_admin_notice.nonce
-                        }
-                    });
-                });
+        jQuery(document).ready(function($) {
+            var $notice  = $('#<?php echo esc_js(self::NOTICE_ID); ?>');
+            var $stars   = $notice.find('.cf7m-rn__star');
+            var $label   = $notice.find('#cf7m-rn-label');
+            var $starWrap = $notice.find('#cf7m-rn-stars');
+            var $cta     = $notice.find('#cf7m-rn-cta');
+            var ajaxUrl  = <?php echo json_encode(admin_url('admin-ajax.php')); ?>;
+            var nonce    = <?php echo json_encode(wp_create_nonce('dcs_dismiss_notice')); ?>;
+            var reviewUrl = <?php echo json_encode($review_url); ?>;
+            var supportUrl = <?php echo json_encode($support_url); ?>;
 
-                // Handle "Maybe later" button
-                $('.cf7m-review-button[data-action="dismiss"]').on('click', function(e) {
-                    e.preventDefault();
-                    $('#<?php echo esc_js(self::NOTICE_ID); ?>').fadeOut(300, function() {
-                        $(this).remove();
-                    });
+            function dismiss() {
+                $notice.fadeOut(250, function() { $(this).remove(); });
+                $.post(ajaxUrl, { action: 'dcs_dismiss_review_notice', nonce: nonce });
+            }
 
-                    $.ajax({
-                        url: dcs_admin_notice.ajax_url,
-                        type: 'POST',
-                        data: {
-                            action: 'dcs_dismiss_review_notice',
-                            nonce: dcs_admin_notice.nonce
-                        }
-                    });
+            /* Star hover */
+            $stars.on('mouseenter', function() {
+                var rating = parseInt($(this).data('rating'), 10);
+                $stars.each(function() {
+                    var r = parseInt($(this).data('rating'), 10);
+                    $(this).toggleClass('is-lit', r <= rating);
                 });
+            }).on('mouseleave', function() {
+                $stars.removeClass('is-lit');
             });
+
+            /* Star click */
+            $stars.on('click', function() {
+                var rating = parseInt($(this).data('rating'), 10);
+                if (rating >= 4) {
+                    $label.html('<?php echo esc_js(__('Thanks! One click and you\'re done.', 'cf7-styler-for-divi')); ?>');
+                    $starWrap.hide();
+                    $cta.show();
+                    window.open(reviewUrl, '_blank', 'noopener');
+                    setTimeout(dismiss, 4000);
+                } else {
+                    $label.html('<?php echo esc_js(__('Thanks for the feedback! We\'d love to help.', 'cf7-styler-for-divi')); ?> <a href="' + supportUrl + '" target="_blank" rel="noopener" style="color:#3858e9;font-weight:600;text-decoration:none;"><?php echo esc_js(__('Contact support →', 'cf7-styler-for-divi')); ?></a>');
+                    $starWrap.hide();
+                    setTimeout(dismiss, 5000);
+                }
+            });
+
+            /* Dismiss buttons */
+            $notice.on('click', '[data-action="dismiss"]', function(e) {
+                e.preventDefault();
+                dismiss();
+            });
+        });
         </script>
 <?php
     }

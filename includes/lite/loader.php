@@ -24,7 +24,8 @@ class Lite_Loader
         'separator'     => true,
         'image'         => true,
         'icon'          => true,
-        'grid_layout'   => true,
+        'grid_layout'      => true,
+        'ai_form_generator' => true,
     ];
 
     private static $features = [
@@ -48,9 +49,13 @@ class Lite_Loader
             'file'  => 'icon/module.php',
             'class' => 'CF7_Mate\Lite\Features\Icon\Icon',
         ],
-        'grid_layout'   => [
+        'grid_layout'      => [
             'file'  => 'grid/module.php',
             'class' => 'CF7_Mate\Lite\Features\Grid\Grid',
+        ],
+        'ai_form_generator' => [
+            'file'  => 'ai-form-generator/module.php',
+            'class' => 'CF7_Mate\Lite\Features\AI_Form_Generator\AI_Form_Generator',
         ],
     ];
 

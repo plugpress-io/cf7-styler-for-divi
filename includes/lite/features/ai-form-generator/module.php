@@ -5,14 +5,14 @@
  *
  * Adds AI-powered form generation to Contact Form 7 editor.
  *
- * @package CF7_Mate\Features\AI_Form_Generator
+ * @package CF7_Mate\Lite\Features\AI_Form_Generator
  * @since   3.0.0
  */
 
-namespace CF7_Mate\Features\AI_Form_Generator;
+namespace CF7_Mate\Lite\Features\AI_Form_Generator;
 
-use CF7_Mate\Pro\Pro_Feature_Base;
-use CF7_Mate\Pro\Traits\Singleton;
+use CF7_Mate\Lite\Feature_Base;
+use CF7_Mate\Lite\Traits\Singleton;
 
 if (! defined('ABSPATH')) {
 	exit;
@@ -28,7 +28,7 @@ require_once __DIR__ . '/api-handler.php';
  *
  * @since 3.0.0
  */
-class AI_Form_Generator extends Pro_Feature_Base
+class AI_Form_Generator extends Feature_Base
 {
 
 	use Singleton;
@@ -137,31 +137,47 @@ class AI_Form_Generator extends Pro_Feature_Base
 		// Get presets for one-click generation.
 		$presets = function_exists('cf7m_get_ai_presets') ? cf7m_get_ai_presets() : array();
 
+		$model_field = $provider . '_model';
+		$model_id    = $settings[$model_field] ?? '';
+		$model_label = $providers[$provider]['models'][$model_id] ?? $model_id;
+
 		wp_localize_script(
 			'cf7m-ai-generator',
 			'cf7mAI',
 			array(
-				'generateUrl' => esc_url_raw(rest_url('cf7-styler/v1/ai-generate')),
-				'settingsUrl' => esc_url(admin_url('admin.php?page=cf7-mate-dash#/ai-settings')),
-				'nonce'       => wp_create_nonce('wp_rest'),
-				'hasApiKey'   => $has_key,
-				'provider'    => $providers[$provider]['name'] ?? 'AI',
-				'presets'     => $presets,
-				'strings'     => array(
+				'generateUrl'     => esc_url_raw(rest_url('cf7-styler/v1/ai-generate')),
+				'settingsUrl'     => esc_url(admin_url('admin.php?page=cf7-mate#/ai-settings')),
+				'dashUrl'         => esc_url(admin_url('admin.php?page=cf7-mate#/ai-settings')),
+				'nonce'           => wp_create_nonce('wp_rest'),
+				'hasApiKey'       => $has_key,
+				'provider'        => $providers[$provider]['name'] ?? 'AI',
+				'model'           => $model_label,
+				'presets'         => $presets,
+				'categoryLabels'  => array(
+					'lead-contact' => __('Lead & contact', 'cf7-styler-for-divi'),
+					'booking'      => __('Booking', 'cf7-styler-for-divi'),
+				),
+				'strings'         => array(
 					'title'       => __('AI Form Generator', 'cf7-styler-for-divi'),
-					'presets'     => __('Quick Presets', 'cf7-styler-for-divi'),
-					'custom'      => __('Custom Prompt', 'cf7-styler-for-divi'),
+					'presets'     => __('Quick presets', 'cf7-styler-for-divi'),
+					'custom'      => __('Describe your form', 'cf7-styler-for-divi'),
 					'generate'    => __('Generate', 'cf7-styler-for-divi'),
+					'regenerate'  => __('Regenerate', 'cf7-styler-for-divi'),
 					'insert'      => __('Insert', 'cf7-styler-for-divi'),
+					'insertEdited' => __('Insert edited form', 'cf7-styler-for-divi'),
 					'copy'        => __('Copy', 'cf7-styler-for-divi'),
-					'generating'  => __('Generating...', 'cf7-styler-for-divi'),
+					'generating'  => __('Generating…', 'cf7-styler-for-divi'),
 					'error'       => __('Error generating form.', 'cf7-styler-for-divi'),
 					'copied'      => __('Copied!', 'cf7-styler-for-divi'),
 					'configure'   => __('Configure', 'cf7-styler-for-divi'),
 					'noKey'       => __('Configure AI provider first.', 'cf7-styler-for-divi'),
-					'or'          => __('or describe your form', 'cf7-styler-for-divi'),
-					'uploadImage' => __('Upload form image', 'cf7-styler-for-divi'),
+					'change'      => __('Change', 'cf7-styler-for-divi'),
+					'shortcut'    => __('⌘ + Enter to generate', 'cf7-styler-for-divi'),
+					'placeholder' => __('Describe the form you want to create, or pick a preset below…', 'cf7-styler-for-divi'),
+					'dropImage'   => __('Drop an image here, or click to upload', 'cf7-styler-for-divi'),
 					'removeImage' => __('Remove image', 'cf7-styler-for-divi'),
+					'emptyError'  => __('Please describe the form, pick a preset, or upload an image.', 'cf7-styler-for-divi'),
+					'noEditor'    => __('Form editor not found.', 'cf7-styler-for-divi'),
 				),
 			)
 		);

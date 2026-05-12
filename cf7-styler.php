@@ -21,15 +21,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Auto-deactivate lite when the pro plugin is active.
-if (!function_exists('cf7m_lite_maybe_self_deactivate')) {
+define('CF7M_VERSION', '3.0.3');
+define('CF7M_IS_PRO_VERSION', true);
+
+// Auto-deactivate the free build when the pro plugin is active.
+// Guard ensures this only runs on the free build; the pro plugin skips it entirely.
+if (!CF7M_IS_PRO_VERSION && !function_exists('cf7m_lite_maybe_self_deactivate')) {
     function cf7m_lite_maybe_self_deactivate()
     {
         if (!function_exists('is_plugin_active')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
 
-        if (is_plugin_active('cf7-mate-pro/cf7-mate-pro.php')) {
+        if (is_plugin_active('cf7-mate-pro/cf7-styler.php')) {
             deactivate_plugins(plugin_basename(__FILE__));
 
             if (isset($_GET['activate'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -53,14 +57,11 @@ if (!function_exists('cf7m_lite_maybe_self_deactivate')) {
 
     // Immediate check when the pro plugin is activated.
     add_action('activated_plugin', function ($plugin) {
-        if ($plugin === 'cf7-mate-pro/cf7-mate-pro.php') {
+        if ($plugin === 'cf7-mate-pro/cf7-styler.php') {
             cf7m_lite_maybe_self_deactivate();
         }
     });
 }
-
-define('CF7M_VERSION', '3.0.3');
-define('CF7M_IS_PRO_VERSION', true);
 define('CF7M_BASENAME', plugin_basename(__FILE__));
 define('CF7M_BASENAME_DIR', plugin_basename(__DIR__));
 define('CF7M_PLUGIN_PATH', plugin_dir_path(__FILE__));

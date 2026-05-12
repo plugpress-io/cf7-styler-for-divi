@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Pro features loader. Excluded from free via @fs_premium_only.
+ * Pro features loader. Only runs when a valid license is active.
  *
  * @package CF7_Mate
  * @since 3.0.0
@@ -23,11 +23,14 @@ class Premium_Loader
         'database_entries'  => true,
         'phone_number'      => true,
         'heading'           => true,
-        'calculator'        => true,
+        // 'calculator'     => true, // Hidden — module being reworked.
         'conditional'       => true,
-        'ai_form_generator' => true,
         'presets'           => true,
         'webhook'           => true,
+        'analytics'         => true,
+        'form_scheduling'   => true,
+        'email_routing'     => true,
+        'partial_save'      => false,
     ];
 
     private static $features = [
@@ -51,17 +54,14 @@ class Premium_Loader
             'file'  => 'heading/module.php',
             'class' => 'CF7_Mate\Features\Heading\Heading',
         ],
-        'calculator'      => [
-            'file'  => 'calculator/module.php',
-            'class' => 'CF7_Mate\Features\Calculator\Calculator',
-        ],
+        // Calculator hidden until rework.
+        // 'calculator'      => [
+        //     'file'  => 'calculator/module.php',
+        //     'class' => 'CF7_Mate\Features\Calculator\Calculator',
+        // ],
         'conditional'     => [
             'file'  => 'conditional/module.php',
             'class' => 'CF7_Mate\Features\Conditional\Conditional',
-        ],
-        'ai_form_generator' => [
-            'file'  => 'ai-form-generator/module.php',
-            'class' => 'CF7_Mate\Features\AI_Form_Generator\AI_Form_Generator',
         ],
         'presets'           => [
             'file'  => 'presets/module.php',
@@ -70,6 +70,22 @@ class Premium_Loader
         'webhook'           => [
             'file'  => 'webhook/module.php',
             'class' => 'CF7_Mate\Features\Webhook\Webhook',
+        ],
+        'analytics'         => [
+            'file'  => 'analytics/module.php',
+            'class' => 'CF7_Mate\Features\Analytics\Analytics',
+        ],
+        'form_scheduling'   => [
+            'file'  => 'scheduling/module.php',
+            'class' => 'CF7_Mate\Features\Scheduling\Form_Scheduling',
+        ],
+        'email_routing'     => [
+            'file'  => 'email-routing/module.php',
+            'class' => 'CF7_Mate\Features\Email_Routing\Email_Routing',
+        ],
+        'partial_save'      => [
+            'file'  => 'partial-save/module.php',
+            'class' => 'CF7_Mate\Features\Partial_Save\Partial_Save',
         ],
     ];
 
@@ -86,19 +102,50 @@ class Premium_Loader
         // Allow dev mode bypass for testing (define CF7M_DEV_MODE in wp-config.php).
         $dev_mode = defined('CF7M_DEV_MODE') && \CF7M_DEV_MODE;
 
-        if (! $dev_mode && (! function_exists('cf7m_can_use_premium') || ! cf7m_can_use_premium())) {
+        if (! $dev_mode && ! cf7m_is_pro()) {
             return;
         }
 
         $this->load_bootstrap();
+        \CF7_Mate\Pro\White_Label::instance();
         $this->load_features();
         $this->init_updater();
+
+        // Register pro-only admin subpages (Responses, Analytics).
+        add_action('admin_menu', [$this, 'add_pro_menu'], 20);
 
         // Enqueue tag generator scripts for CF7 admin.
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
 
         // Enqueue pro admin app bundle on CF7 Mate admin pages.
         add_action('cf7m_admin_enqueue_scripts', [$this, 'enqueue_admin_app_scripts']);
+    }
+
+    public function add_pro_menu()
+    {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        $admin = \CF7_Mate\Admin::get_instance();
+
+        add_submenu_page(
+            \CF7_Mate\Admin::CF7_PARENT_SLUG,
+            __('Responses', 'cf7-styler-for-divi'),
+            __('Responses', 'cf7-styler-for-divi'),
+            'manage_options',
+            \CF7_Mate\Admin::RESPONSES_PAGE_SLUG,
+            [$admin, 'render_responses_page']
+        );
+
+        add_submenu_page(
+            \CF7_Mate\Admin::CF7_PARENT_SLUG,
+            __('Analytics', 'cf7-styler-for-divi'),
+            __('Analytics', 'cf7-styler-for-divi'),
+            'manage_options',
+            \CF7_Mate\Admin::ANALYTICS_PAGE_SLUG,
+            [$admin, 'render_analytics_page']
+        );
     }
 
     public function enqueue_admin_scripts($hook)
@@ -121,8 +168,16 @@ class Premium_Loader
 
     public function enqueue_admin_app_scripts($app = 'settings')
     {
-        $bundle      = $app === 'responses' ? 'responses-pro' : 'settings-pro';
-        $parent      = $app === 'responses' ? 'cf7m-responses' : 'cf7m-settings';
+        if ($app === 'analytics') {
+            $bundle = 'analytics-pro';
+            $parent = 'cf7m-analytics';
+        } elseif ($app === 'responses') {
+            $bundle = 'responses-pro';
+            $parent = 'cf7m-responses';
+        } else {
+            $bundle = 'settings-pro';
+            $parent = 'cf7m-settings';
+        }
         $path        = CF7M_PLUGIN_PATH . 'dist/js/' . $bundle . '.js';
         if (! file_exists($path)) {
             return;
@@ -147,6 +202,7 @@ class Premium_Loader
             'feature-base.php',
             'form-tag-feature.php',
             'license/class-updater.php',
+            'white-label/class-white-label.php',
         ];
 
         foreach ($files as $file) {
@@ -199,7 +255,7 @@ class Premium_Loader
         // Allow dev mode bypass for testing.
         $dev_mode = defined('CF7M_DEV_MODE') && \CF7M_DEV_MODE;
 
-        if (! $dev_mode && (! function_exists('cf7m_can_use_premium') || ! cf7m_can_use_premium())) {
+        if (! $dev_mode && ! cf7m_is_pro()) {
             return false;
         }
 

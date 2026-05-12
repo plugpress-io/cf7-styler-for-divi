@@ -10,9 +10,10 @@ class Admin
 {
     private static $instance;
 
-    const CF7_PARENT_SLUG     = 'wpcf7';
+    const CF7_PARENT_SLUG     = 'cf7-mate';
     const RESPONSES_PAGE_SLUG = 'cf7-mate-responses';
-    const SETTINGS_PAGE_SLUG  = 'cf7-mate-dash';
+    const ANALYTICS_PAGE_SLUG = 'cf7-mate-analytics';
+    const SETTINGS_PAGE_SLUG  = 'cf7-mate';
 
     public static function get_instance()
     {
@@ -34,7 +35,7 @@ class Admin
         $dash_link = sprintf(
             '<a href="%s">%s</a>',
             esc_url(admin_url('admin.php?page=' . self::SETTINGS_PAGE_SLUG)),
-            esc_html__('Dash', 'cf7-styler-for-divi')
+            esc_html__('CF7Mate', 'cf7-styler-for-divi')
         );
         array_unshift($links, $dash_link);
         return $links;
@@ -46,19 +47,24 @@ class Admin
             return;
         }
 
-        add_submenu_page(
-            self::CF7_PARENT_SLUG,
-            __('Responses', 'cf7-styler-for-divi'),
-            __('Responses', 'cf7-styler-for-divi'),
+        $menu_label  = apply_filters( 'cf7m_admin_menu_label', __( 'CF7Mate', 'cf7-styler-for-divi' ) );
+        $menu_icon   = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yNCAwQzM3LjI1NDggMCA0OCAxMC43NDUyIDQ4IDI0QzQ4IDM3LjI1NDggMzcuMjU0OCA0OCAyNCA0OEMxMC43NDUyIDQ4IDAgMzcuMjU0OCAwIDI0QzAgMTAuNzQ1MiAxMC43NDUyIDAgMjQgMFpNMTYuOCAxMkMxNC4xNDkgMTIgMTIgMTQuMTQ5IDEyIDE2LjhWMzEuMkMxMiAzMy44NTEgMTQuMTQ5IDM2IDE2LjggMzZIMjEuNkMyNC4yNTEgMzYgMjYuNCAzMy44NTEgMjYuNCAzMS4yVjE2LjhDMjYuNCAxNC4xNDkgMjQuMjUxIDEyIDIxLjYgMTJIMTYuOFpNMzIuNCAxMkMzMC40MTE4IDEyIDI4LjggMTMuNjExOCAyOC44IDE1LjZWMzIuNEMyOC44IDM0LjM4ODIgMzAuNDExOCAzNiAzMi40IDM2QzM0LjM4ODIgMzYgMzYgMzQuMzg4MiAzNiAzMi40VjE1LjZDMzYgMTMuNjExOCAzNC4zODgyIDEyIDMyLjQgMTJaIiBmaWxsPSIjYTdhYWFkIi8+PC9zdmc+';
+
+        add_menu_page(
+            $menu_label,
+            $menu_label,
             'manage_options',
-            self::RESPONSES_PAGE_SLUG,
-            [$this, 'render_responses_page']
+            self::SETTINGS_PAGE_SLUG,
+            [$this, 'render_settings_page'],
+            $menu_icon,
+            26
         );
 
+        // First submenu mirrors the parent so the top-level label reads "Settings".
         add_submenu_page(
-            self::CF7_PARENT_SLUG,
-            __('Mate Dash', 'cf7-styler-for-divi'),
-            __('Mate Dash', 'cf7-styler-for-divi'),
+            self::SETTINGS_PAGE_SLUG,
+            $menu_label,
+            __( 'Settings', 'cf7-styler-for-divi' ),
             'manage_options',
             self::SETTINGS_PAGE_SLUG,
             [$this, 'render_settings_page']
@@ -70,6 +76,14 @@ class Admin
         $this->render_app_root([
             'app'          => 'responses',
             'current_page' => 'responses',
+        ]);
+    }
+
+    public function render_analytics_page()
+    {
+        $this->render_app_root([
+            'app'          => 'analytics',
+            'current_page' => 'analytics',
         ]);
     }
 
@@ -86,10 +100,22 @@ class Admin
         $app          = isset($options['app']) ? $options['app'] : 'settings';
         $current_page = isset($options['current_page']) ? $options['current_page'] : 'settings';
 
-        $script_handle = $app === 'responses' ? 'cf7m-responses' : 'cf7m-settings';
-        $script_file   = $app === 'responses' ? 'dist/js/responses.js' : 'dist/js/settings.js';
-        $style_handle  = $app === 'responses' ? 'cf7m-responses' : 'cf7m-settings';
-        $style_file    = $app === 'responses' ? 'dist/css/responses.css' : 'dist/css/settings.css';
+        if ($app === 'responses') {
+            $script_handle = 'cf7m-responses';
+            $script_file   = 'dist/js/responses.js';
+            $style_handle  = 'cf7m-responses';
+            $style_file    = 'dist/css/responses.css';
+        } elseif ($app === 'analytics') {
+            $script_handle = 'cf7m-analytics';
+            $script_file   = 'dist/js/analytics.js';
+            $style_handle  = 'cf7m-analytics';
+            $style_file    = 'dist/css/analytics.css';
+        } else {
+            $script_handle = 'cf7m-settings';
+            $script_file   = 'dist/js/settings.js';
+            $style_handle  = 'cf7m-settings';
+            $style_file    = 'dist/css/settings.css';
+        }
 
         wp_enqueue_script(
             $script_handle,
@@ -120,12 +146,12 @@ class Admin
             'root'                   => esc_url_raw(get_rest_url()),
             'ajax_url'               => admin_url('admin-ajax.php'),
             'is_pro'                 => cf7m_is_pro(),
-            'pricing_url'            => CF7M_URL_PRICING . '?coupon=NEW2026',
+            'pricing_url'            => CF7M_URL_PRICING,
             'docs_url'               => defined('CF7M_URL_DOCS') ? CF7M_URL_DOCS : '',
             'support_url'            => defined('CF7M_URL_SUPPORT') ? CF7M_URL_SUPPORT : '',
             'community_url'          => defined('CF7M_URL_COMMUNITY') ? CF7M_URL_COMMUNITY : '',
             'builders'               => $builders,
-            'promo_code'             => 'NEW2026',
+            'promo_code'             => '',
             'promo_text'             => '',
             'nonce'                  => wp_create_nonce('wp_rest'),
             'pluginUrl'              => CF7M_PLUGIN_URL,
@@ -133,9 +159,10 @@ class Admin
             'show_guided_setup_link' => $show_guided_setup_link,
             'dismiss_rebrand_nonce'  => wp_create_nonce('cf7m_onboarding_nonce'),
             'version'                => defined('CF7M_VERSION') ? CF7M_VERSION : '3.0.0',
-            'cf7_admin_url'          => admin_url('admin.php?page=' . self::CF7_PARENT_SLUG),
+            'cf7_admin_url'          => admin_url('admin.php?page=wpcf7'),
             'dash_url'               => admin_url('admin.php?page=' . self::SETTINGS_PAGE_SLUG),
             'responses_url'          => admin_url('admin.php?page=' . self::RESPONSES_PAGE_SLUG),
+            'analytics_url'          => admin_url('admin.php?page=' . self::ANALYTICS_PAGE_SLUG),
             'currentPage'            => $current_page,
             'app'                    => $app,
         ];
@@ -182,7 +209,10 @@ class Admin
     {
         if (class_exists('CF7_Mate\License\License_Manager')) {
             $license_manager = \CF7_Mate\License\License_Manager::instance();
-            $localize['license'] = $license_manager->get_status();
+            $status = $license_manager->get_status();
+            $status['is_agency'] = class_exists('CF7_Mate\Pro\White_Label')
+                && \CF7_Mate\Pro\White_Label::is_agency_plan();
+            $localize['license'] = $status;
         }
         return $localize;
     }

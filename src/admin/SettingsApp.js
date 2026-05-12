@@ -6,6 +6,7 @@
 
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { Spinner } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
 import { Header } from './components/Header';
@@ -32,32 +33,10 @@ export function SettingsApp() {
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [toast, setToast] = useState(null);
-	const [dashboardStats, setDashboardStats] = useState({
-		total_entries: 0,
-		new_today: 0,
-		total_forms: 0,
-		enabled_features: 0,
-	});
-	const [dashboardStatsLoading, setDashboardStatsLoading] = useState(true);
 	const [rebrandDismissed, setRebrandDismissed] = useState(false);
 
 	useEffect(() => {
 		loadFeatures();
-	}, []);
-
-	useEffect(() => {
-		setDashboardStatsLoading(true);
-		apiFetch({ path: '/cf7-styler/v1/dashboard-stats' })
-			.then((data) => setDashboardStats(data))
-			.catch(() =>
-				setDashboardStats({
-					total_entries: 0,
-					new_today: 0,
-					total_forms: 0,
-					enabled_features: 0,
-				}),
-			)
-			.finally(() => setDashboardStatsLoading(false));
 	}, []);
 
 	const loadFeatures = async () => {
@@ -75,23 +54,25 @@ export function SettingsApp() {
 	};
 
 	const persistFeatures = async (newFeatures) => {
+		const previous = features;
+		// Optimistic update + immediate toast so the UI reacts instantly.
 		setFeatures(newFeatures);
 		setSaving(true);
+		setToast({
+			message: __('Saved', 'cf7-styler-for-divi'),
+			type: 'success',
+		});
 		try {
 			await apiFetch({
 				path: '/cf7-styler/v1/settings/features',
 				method: 'POST',
 				data: { features: newFeatures },
 			});
-			setToast({
-				message: __('Settings saved', 'cf7-styler-for-divi'),
-				type: 'success',
-			});
 		} catch (error) {
 			console.error('Error saving features:', error);
-			setFeatures(features);
+			setFeatures(previous);
 			setToast({
-				message: __('Error saving settings', 'cf7-styler-for-divi'),
+				message: __('Could not save — change reverted', 'cf7-styler-for-divi'),
 				type: 'error',
 			});
 		} finally {
@@ -107,41 +88,25 @@ export function SettingsApp() {
 
 	const showV3Banner =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.show_v3_banner;
-	const showResponses = isPro && !!features.database_entries;
 	const responsesUrl =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.responses_url
 			? dcsCF7Styler.responses_url
 			: 'admin.php?page=cf7-mate-responses';
-	const dashUrl =
-		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dash_url
-			? dcsCF7Styler.dash_url
-			: 'admin.php?page=cf7-mate-dash';
-	const pricingUrl =
-		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.pricing_url
-			? dcsCF7Styler.pricing_url
-			: '';
-	const promoCode =
-		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.promo_code
-			? dcsCF7Styler.promo_code
-			: '';
-	const promoText =
-		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.promo_text
-			? dcsCF7Styler.promo_text
-			: '';
 
 	if (loading) {
 		return (
-			<>
+			<div className="cf7m-wrap">
 				<Header isPro={false} />
-				<div className="cf7m-loading">
-					{__('Loading...', 'cf7-styler-for-divi')}
+				<div className="cf7m-resp__loading">
+					<Spinner />
+					<span>{__('Loading…', 'cf7-styler-for-divi')}</span>
 				</div>
-			</>
+			</div>
 		);
 	}
 
 	return (
-		<>
+		<div className="cf7m-wrap">
 			<Header isPro={isPro} />
 			<SettingsPage
 				features={features}
@@ -151,14 +116,7 @@ export function SettingsApp() {
 				saving={saving}
 				showV3Banner={showV3Banner}
 				rebrandDismissed={rebrandDismissed}
-				stats={dashboardStats}
-				statsLoading={dashboardStatsLoading}
-				showResponses={showResponses}
 				responsesUrl={responsesUrl}
-				dashUrl={dashUrl}
-				pricingUrl={pricingUrl}
-				promoCode={promoCode}
-				promoText={promoText}
 			/>
 			{toast && (
 				<Toast
@@ -170,6 +128,6 @@ export function SettingsApp() {
 			{showV3Banner && !rebrandDismissed && (
 				<RebrandModal onDismiss={() => setRebrandDismissed(true)} />
 			)}
-		</>
+		</div>
 	);
 }

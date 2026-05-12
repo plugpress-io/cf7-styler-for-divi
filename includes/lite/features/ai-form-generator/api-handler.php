@@ -2,11 +2,11 @@
 /**
  * AI API Handler.
  *
- * @package CF7_Mate\Features\AI_Form_Generator
+ * @package CF7_Mate\Lite\Features\AI_Form_Generator
  * @since   3.0.0
  */
 
-namespace CF7_Mate\Features\AI_Form_Generator;
+namespace CF7_Mate\Lite\Features\AI_Form_Generator;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -71,11 +71,11 @@ class AI_API_Handler {
 			case 'anthropic':
 				return $this->call_anthropic( $system_prompt, $prompt, $image_base64, $image_media_type );
 
-			case 'grok':
-				return $this->call_grok( $system_prompt, $prompt );
+			case 'google':
+				return $this->call_google( $system_prompt, $prompt );
 
-			case 'kimi':
-				return $this->call_kimi( $system_prompt, $prompt );
+			case 'openrouter':
+				return $this->call_openrouter( $system_prompt, $prompt );
 
 			default:
 				return $this->call_openai( $system_prompt, $prompt, $image_base64, $image_media_type );
@@ -98,12 +98,12 @@ class AI_API_Handler {
 					$result = $this->call_anthropic( 'Reply briefly.', $test );
 					break;
 
-				case 'grok':
-					$result = $this->call_grok( 'Reply briefly.', $test );
+				case 'google':
+					$result = $this->call_google( 'Reply briefly.', $test );
 					break;
 
-				case 'kimi':
-					$result = $this->call_kimi( 'Reply briefly.', $test );
+				case 'openrouter':
+					$result = $this->call_openrouter( 'Reply briefly.', $test );
 					break;
 
 				default:
@@ -163,6 +163,16 @@ class AI_API_Handler {
 			);
 		}
 
+		$payload = array(
+			'model'    => $this->settings['openai_model'],
+			'messages' => array(
+				array( 'role' => 'system', 'content' => $system ),
+				array( 'role' => 'user',   'content' => $user_content ),
+			),
+		);
+
+		$payload = $this->apply_openai_token_limits( $this->settings['openai_model'], $payload, 4000 );
+
 		$response = wp_remote_post(
 			'https://api.openai.com/v1/chat/completions',
 			array(
@@ -172,28 +182,48 @@ class AI_API_Handler {
 					'Authorization' => 'Bearer ' . $key,
 					'Content-Type'  => 'application/json',
 				),
-				'body'        => wp_json_encode(
-					array(
-						'model'       => $this->settings['openai_model'],
-						'messages'    => array(
-							array(
-								'role'    => 'system',
-								'content' => $system,
-							),
-							array(
-								'role'    => 'user',
-								'content' => $user_content,
-							),
-						),
-						'temperature' => 0.7,
-						'max_tokens'  => 4000,
-					),
-					JSON_UNESCAPED_UNICODE
-				),
+				'body'        => wp_json_encode( $payload, JSON_UNESCAPED_UNICODE ),
 			)
 		);
 
 		return $this->parse_openai_response( $response );
+	}
+
+	/**
+	 * Add the correct token-limit + temperature parameters for an OpenAI-style
+	 * chat-completions call, depending on the model family.
+	 *
+	 *  - GPT-5 family + reasoning models (o1, o3, o4) use `max_completion_tokens`
+	 *    and don't accept a custom `temperature`.
+	 *  - Older models (gpt-4o, gpt-4.1, gpt-4-turbo, gpt-3.5) keep `max_tokens` +
+	 *    `temperature`.
+	 *
+	 * Strips a leading `openai/` / `anthropic/` etc. prefix so it works for
+	 * OpenRouter routes too.
+	 *
+	 * @param string $model      Model identifier.
+	 * @param array  $payload    Existing payload.
+	 * @param int    $max_tokens Token cap.
+	 * @return array
+	 */
+	private function apply_openai_token_limits( $model, array $payload, $max_tokens = 4000 ) {
+		$id   = strtolower( (string) $model );
+		$base = strpos( $id, '/' ) !== false ? substr( $id, strpos( $id, '/' ) + 1 ) : $id;
+
+		$needs_new_param = (
+			strpos( $base, 'gpt-5' ) === 0 ||
+			preg_match( '/^o[1-9]/', $base )
+		);
+
+		if ( $needs_new_param ) {
+			$payload['max_completion_tokens'] = $max_tokens;
+			// Reasoning + GPT-5 models only accept default temperature.
+		} else {
+			$payload['max_tokens']  = $max_tokens;
+			$payload['temperature'] = 0.7;
+		}
+
+		return $payload;
 	}
 
 	/**
@@ -256,47 +286,96 @@ class AI_API_Handler {
 	}
 
 	/**
-	 * Call Kimi API.
+	 * Call Google Gemini API.
 	 *
 	 * @since  3.0.0
 	 * @param  string $system System prompt.
 	 * @param  string $user   User prompt.
 	 * @return string|\WP_Error
 	 */
-	private function call_kimi( $system, $user ) {
-		$key = $this->settings['kimi_key'];
+	private function call_google( $system, $user ) {
+		$key = $this->settings['google_key'];
 
 		if ( empty( $key ) ) {
-			return new \WP_Error( 'no_key', __( 'Kimi key not configured.', 'cf7-styler-for-divi' ) );
+			return new \WP_Error( 'no_key', __( 'Google API key not configured.', 'cf7-styler-for-divi' ) );
 		}
 
+		$model = $this->settings['google_model'];
+		$url   = sprintf(
+			'https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent?key=%s',
+			rawurlencode( $model ),
+			rawurlencode( $key )
+		);
+
 		$response = wp_remote_post(
-			'https://api.moonshot.cn/v1/chat/completions',
+			$url,
+			array(
+				'timeout'     => self::TIMEOUT,
+				'httpversion' => '1.1',
+				'headers'     => array(
+					'Content-Type' => 'application/json',
+				),
+				'body'        => wp_json_encode(
+					array(
+						'systemInstruction' => array(
+							'parts' => array( array( 'text' => $system ) ),
+						),
+						'contents'          => array(
+							array(
+								'role'  => 'user',
+								'parts' => array( array( 'text' => $user ) ),
+							),
+						),
+						'generationConfig'  => array(
+							'temperature'     => 0.7,
+							'maxOutputTokens' => 4000,
+						),
+					),
+					JSON_UNESCAPED_UNICODE
+				),
+			)
+		);
+
+		return $this->parse_google_response( $response );
+	}
+
+	/**
+	 * Call OpenRouter API (OpenAI-compatible chat completions).
+	 *
+	 * @since  3.0.0
+	 * @param  string $system System prompt.
+	 * @param  string $user   User prompt.
+	 * @return string|\WP_Error
+	 */
+	private function call_openrouter( $system, $user ) {
+		$key = $this->settings['openrouter_key'];
+
+		if ( empty( $key ) ) {
+			return new \WP_Error( 'no_key', __( 'OpenRouter key not configured.', 'cf7-styler-for-divi' ) );
+		}
+
+		$payload = array(
+			'model'    => $this->settings['openrouter_model'],
+			'messages' => array(
+				array( 'role' => 'system', 'content' => $system ),
+				array( 'role' => 'user',   'content' => $user ),
+			),
+		);
+
+		$payload = $this->apply_openai_token_limits( $this->settings['openrouter_model'], $payload, 4000 );
+
+		$response = wp_remote_post(
+			'https://openrouter.ai/api/v1/chat/completions',
 			array(
 				'timeout'     => self::TIMEOUT,
 				'httpversion' => '1.1',
 				'headers'     => array(
 					'Authorization' => 'Bearer ' . $key,
 					'Content-Type'  => 'application/json',
+					'HTTP-Referer'  => home_url(),
+					'X-Title'       => 'CF7 Mate',
 				),
-				'body'        => wp_json_encode(
-					array(
-						'model'       => $this->settings['kimi_model'],
-						'messages'    => array(
-							array(
-								'role'    => 'system',
-								'content' => $system,
-							),
-							array(
-								'role'    => 'user',
-								'content' => $user,
-							),
-						),
-						'temperature' => 0.7,
-						'max_tokens'  => 4000,
-					),
-					JSON_UNESCAPED_UNICODE
-				),
+				'body'        => wp_json_encode( $payload, JSON_UNESCAPED_UNICODE ),
 			)
 		);
 
@@ -304,51 +383,45 @@ class AI_API_Handler {
 	}
 
 	/**
-	 * Call Grok (xAI) API.
+	 * Parse Google Gemini response.
 	 *
-	 * @since  3.0.0
-	 * @param  string $system System prompt.
-	 * @param  string $user   User prompt.
+	 * @param  array|\WP_Error $response Response.
 	 * @return string|\WP_Error
 	 */
-	private function call_grok( $system, $user ) {
-		$key = $this->settings['grok_key'];
-
-		if ( empty( $key ) ) {
-			return new \WP_Error( 'no_key', __( 'Grok API key not configured.', 'cf7-styler-for-divi' ) );
+	private function parse_google_response( $response ) {
+		if ( is_wp_error( $response ) ) {
+			return new \WP_Error(
+				'request_failed',
+				sprintf(
+					/* translators: %s: error message */
+					__( 'Request failed: %s', 'cf7-styler-for-divi' ),
+					$response->get_error_message()
+				)
+			);
 		}
 
-		$response = wp_remote_post(
-			'https://api.x.ai/v1/chat/completions',
-			array(
-				'timeout'     => self::TIMEOUT,
-				'httpversion' => '1.1',
-				'headers'     => array(
-					'Authorization' => 'Bearer ' . $key,
-					'Content-Type'  => 'application/json',
-				),
-				'body'        => wp_json_encode(
-					array(
-						'model'       => $this->settings['grok_model'],
-						'messages'    => array(
-							array(
-								'role'    => 'system',
-								'content' => $system,
-							),
-							array(
-								'role'    => 'user',
-								'content' => $user,
-							),
-						),
-						'temperature' => 0.7,
-						'max_tokens'  => 4000,
-					),
-					JSON_UNESCAPED_UNICODE
-				),
-			)
-		);
+		$code = wp_remote_retrieve_response_code( $response );
+		$body = wp_remote_retrieve_body( $response );
+		$data = json_decode( $body, true );
 
-		return $this->parse_openai_response( $response );
+		if ( $code >= 400 ) {
+			$message = $data['error']['message'] ?? __( 'API request failed.', 'cf7-styler-for-divi' );
+			return new \WP_Error( 'api_error', $message );
+		}
+
+		if ( isset( $data['candidates'][0]['content']['parts'] ) ) {
+			$text = '';
+			foreach ( $data['candidates'][0]['content']['parts'] as $part ) {
+				if ( isset( $part['text'] ) ) {
+					$text .= $part['text'];
+				}
+			}
+			if ( '' !== $text ) {
+				return $text;
+			}
+		}
+
+		return new \WP_Error( 'invalid_response', __( 'Invalid API response.', 'cf7-styler-for-divi' ) );
 	}
 
 	/**

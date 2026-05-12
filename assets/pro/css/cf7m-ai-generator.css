@@ -126,8 +126,64 @@ button.cf7m-ai-btn.page-title-action {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 14px 18px;
   border-bottom: 1px solid var(--cf7m-border);
+}
+
+/* Provider · model · Change row inside header */
+.cf7m-ai__provider-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  margin-right: 8px;
+  font-size: 12px;
+  color: var(--cf7m-muted);
+  white-space: nowrap;
+}
+
+.cf7m-ai__provider-name {
+  font-weight: 600;
+  color: var(--cf7m-text);
+}
+
+.cf7m-ai__provider-sep {
+  color: var(--cf7m-muted);
+  opacity: 0.6;
+}
+
+.cf7m-ai__provider-model {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px;
+  background: var(--cf7m-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--cf7m-text);
+}
+
+.cf7m-ai__provider-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  margin-left: 4px;
+  border-radius: 4px;
+  color: var(--cf7m-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 11px;
+  transition: background 0.15s;
+}
+
+.cf7m-ai__provider-change:hover {
+  background: rgba(87, 51, 255, 0.08);
+  text-decoration: none;
+}
+
+.cf7m-ai__provider-change svg {
+  width: 11px;
+  height: 11px;
 }
 
 .cf7m-modal-title {
@@ -238,13 +294,89 @@ button.cf7m-ai-btn.page-title-action {
   border-color: var(--cf7m-primary);
 }
 
-/* Image upload: read image and convert to form */
-.cf7m-image-upload-row {
+/* Drag-drop image zone (replaces .cf7m-image-upload-row) */
+.cf7m-ai__dropzone {
+  position: relative;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center;
+  min-height: 64px;
+  padding: 12px;
   margin-top: 10px;
+  background: var(--cf7m-bg);
+  border: 1px dashed var(--cf7m-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.cf7m-ai__dropzone:hover,
+.cf7m-ai__dropzone.is-dragover {
+  border-color: var(--cf7m-primary);
+  background: rgba(87, 51, 255, 0.05);
+}
+
+.cf7m-ai__dropzone-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cf7m-muted);
+  font-size: 12px;
+}
+
+.cf7m-ai__dropzone-empty svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cf7m-ai__dropzone.has-image .cf7m-ai__dropzone-empty {
+  display: none;
+}
+
+.cf7m-ai__dropzone-preview {
+  display: none;
+  align-items: center;
+}
+
+.cf7m-ai__dropzone.has-image .cf7m-ai__dropzone-preview {
+  display: inline-flex;
+}
+
+.cf7m-ai__dropzone .cf7m-image-thumb {
+  display: block;
+  max-width: 120px;
+  max-height: 80px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--cf7m-border);
+}
+
+.cf7m-ai__dropzone .cf7m-image-clear {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cf7m-ai__dropzone .cf7m-image-clear[hidden] {
+  display: none !important;
+}
+
+/* Legacy class kept around in case old markup is cached — harmless. */
+.cf7m-image-upload-row {
+  display: none;
 }
 
 .cf7m-image-label {
@@ -309,8 +441,16 @@ button.cf7m-ai-btn.page-title-action {
 
 .cf7m-generate-row {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cf7m-ai__shortcut {
+  font-size: 11px;
+  color: var(--cf7m-muted);
+  white-space: nowrap;
 }
 
 .cf7m-generate-btn {
@@ -337,10 +477,10 @@ button.cf7m-ai-btn.page-title-action {
   box-shadow: 0 3px 10px rgba(87, 51, 255, 0.35);
 }
 
-/* Presets – title-only list below prompt */
+/* Presets – grouped, one-click */
 .cf7m-presets-section {
   margin-bottom: 16px;
-  padding-top: 12px;
+  padding-top: 14px;
   border-top: 1px solid var(--cf7m-border);
 }
 
@@ -348,12 +488,23 @@ button.cf7m-ai-btn.page-title-action {
   font-size: 11px;
   font-weight: 600;
   color: var(--cf7m-muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-.cf7m-presets-list {
+.cf7m-ai__preset-group + .cf7m-ai__preset-group {
+  margin-top: 12px;
+}
+
+.cf7m-ai__group-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cf7m-text);
+  margin-bottom: 6px;
+}
+
+.cf7m-ai__preset-row {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -468,15 +619,32 @@ button.cf7m-ai-btn.page-title-action {
   cursor: pointer;
 }
 
-.cf7m-copy-btn {
+.cf7m-copy-btn,
+.cf7m-regen-btn {
   background: #fff;
   border: 1px solid var(--cf7m-border);
   color: var(--cf7m-muted);
 }
 
-.cf7m-copy-btn:hover {
+.cf7m-copy-btn:hover,
+.cf7m-regen-btn:hover:not(:disabled) {
   border-color: var(--cf7m-primary);
   color: var(--cf7m-primary);
+}
+
+.cf7m-regen-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cf7m-regen-btn .spinner {
+  width: 11px;
+  height: 11px;
+  border: 2px solid rgba(87, 51, 255, 0.25);
+  border-top-color: var(--cf7m-primary);
+  border-radius: 50%;
+  animation: cf7m-spin 0.5s linear infinite;
+  margin-right: 4px;
 }
 
 .cf7m-insert-btn {
@@ -489,30 +657,50 @@ button.cf7m-ai-btn.page-title-action {
   opacity: 0.9;
 }
 
-/* Code Box */
+/* Code Box – now an editable textarea */
 .cf7m-code-box {
   background: #1e1e2e;
   border-radius: 8px;
-  padding: 14px;
-  max-height: 250px;
-  overflow: auto;
+  padding: 0;
+  max-height: 280px;
+  overflow: hidden;
 }
 
-.cf7m-code-box pre {
+.cf7m-code-box textarea {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  max-height: 280px;
   margin: 0;
+  padding: 14px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: vertical;
+  box-shadow: none;
   font-family: 'SFMono-Regular', Consolas, monospace;
   font-size: 11px;
   line-height: 1.5;
   color: #cdd6f4;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: pre;
+  overflow: auto;
+  tab-size: 2;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-.cf7m-code-box::-webkit-scrollbar {
+.cf7m-code-box textarea:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgba(87, 51, 255, 0.4);
+  border-radius: 8px;
+}
+
+.cf7m-code-box textarea::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
-.cf7m-code-box::-webkit-scrollbar-thumb {
+.cf7m-code-box textarea::-webkit-scrollbar-thumb {
   background: #45475a;
   border-radius: 3px;
 }

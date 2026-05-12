@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: PlugPress <support@plugpress.io>\n"
-"POT-Creation-Date: 2026-05-06 01:41+0000\n"
+"POT-Creation-Date: 2026-05-12 22:07+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cf7-styler.php:41
+#: cf7-styler.php:45
 msgid "CF7 Styler (Lite) has been deactivated because CF7 Mate Pro is active."
 msgstr ""
 
@@ -23,53 +23,57 @@ msgstr ""
 msgid "Select a Contact form"
 msgstr ""
 
-#: includes/rest-api.php:248
+#: includes/rest-api.php:265
+msgid "A valid CF7 Mate Pro license is required."
+msgstr ""
+
+#: includes/rest-api.php:304
 msgid "Invalid features data."
 msgstr ""
 
-#: includes/rest-api.php:296
+#: includes/rest-api.php:352
 msgid "Invalid webhook URLs."
 msgstr ""
 
-#: includes/rest-api.php:409
+#: includes/rest-api.php:465
 msgid "Invalid form ID."
 msgstr ""
 
-#: includes/rest-api.php:419
+#: includes/rest-api.php:475
 msgid "Form not found."
 msgstr ""
 
-#: includes/rest-api.php:496
+#: includes/rest-api.php:556
 msgid "Contact Form 7 is not installed."
 msgstr ""
 
-#: includes/rest-api.php:514
+#: includes/rest-api.php:574
 msgid "Select a form"
 msgstr ""
 
 #. translators: %d: form ID
-#: includes/rest-api.php:523
+#: includes/rest-api.php:583
 msgid "Form #%d"
 msgstr ""
 
-#: includes/rest-api.php:566
+#: includes/rest-api.php:626
 msgid "Onboarding reset successfully."
 msgstr ""
 
-#: includes/rest-api.php:605, includes/rest-api.php:633
+#: includes/rest-api.php:665, includes/rest-api.php:693, includes/rest-api.php:721
 msgid "License manager is not available."
 msgstr ""
 
-#: includes/admin/admin.php:37
-msgid "Dash"
+#: includes/rest-api.php:748
+msgid "An Agency plan license is required."
 msgstr ""
 
-#: includes/admin/admin.php:51, includes/admin/admin.php:52, includes/pro/features/entries/editor-panel.php:51
-msgid "Responses"
+#: includes/admin/admin.php:38, includes/admin/admin.php:50
+msgid "CF7Mate"
 msgstr ""
 
-#: includes/admin/admin.php:60, includes/admin/admin.php:61
-msgid "Mate Dash"
+#: includes/admin/admin.php:67
+msgid "Settings"
 msgstr ""
 
 #: includes/admin/onboarding.php:153
@@ -88,48 +92,72 @@ msgstr ""
 msgid "Skip Setup"
 msgstr ""
 
-#: includes/notices/review.php:126
-msgid "🎉 You're creating amazing forms!"
-msgstr ""
-
 #. translators: %s: plugin name
 #: includes/notices/review.php:132
-msgid "It looks like you've been using %s for a while now. That's awesome! If you're enjoying it, would you mind sharing the love with a quick 5-star review? It takes just 30 seconds and helps us grow! 💜"
+msgid "How are you finding %s?"
 msgstr ""
 
-#: includes/notices/review.php:133, includes/pro/features/entries/editor-panel.php:32, includes/pro/features/entries/editor-panel.php:48
-msgid "CF7 Mate"
+#: includes/notices/review.php:139
+msgid "Rate CF7 Mate"
 msgstr ""
 
-#: includes/notices/review.php:142
-msgid "Sure! I'll leave a review"
+#: includes/notices/review.php:141
+msgid "%d star"
 msgstr ""
 
-#: includes/notices/review.php:145
-msgid "Maybe later"
+#: includes/notices/review.php:152
+msgid "Leave a review"
 msgstr ""
 
-#: includes/pro/license/class-license-manager.php:35
+#: includes/notices/review.php:159
+msgid "Not now"
+msgstr ""
+
+#: includes/notices/review.php:161
+msgid "Dismiss"
+msgstr ""
+
+#: includes/notices/review.php:328
+msgid "Thanks! One click and you're done."
+msgstr ""
+
+#: includes/notices/review.php:334
+msgid "Thanks for the feedback! We'd love to help."
+msgstr ""
+
+#: includes/notices/review.php:334
+msgid "Contact support →"
+msgstr ""
+
+#: includes/pro/loader.php:134, includes/pro/loader.php:135, includes/pro/features/entries/editor-panel.php:51
+msgid "Responses"
+msgstr ""
+
+#: includes/pro/loader.php:143, includes/pro/loader.php:144
+msgid "Analytics"
+msgstr ""
+
+#: includes/pro/license/class-license-manager.php:36
 msgid "License key cannot be empty."
 msgstr ""
 
-#: includes/pro/license/class-license-manager.php:60
+#: includes/pro/license/class-license-manager.php:61
 msgid "Connection to Lemon Squeezy failed: %s"
 msgstr ""
 
-#: includes/pro/license/class-license-manager.php:71
+#: includes/pro/license/class-license-manager.php:72
 msgid "Activation failed. Check your license key."
 msgstr ""
 
-#: includes/pro/license/class-license-manager.php:76
+#: includes/pro/license/class-license-manager.php:77
 msgid "License activation was not successful."
 msgstr ""
 
-#: includes/pro/license/class-license-manager.php:120
+#: includes/pro/license/class-license-manager.php:124
 msgid "No active license to deactivate."
 msgstr ""
 
-#: includes/pro/license/class-license-manager.php:126
+#: includes/pro/license/class-license-manager.php:130
 msgid "Could not decrypt license key."
 msgstr ""
 
@@ -389,7 +417,7 @@ msgstr ""
 msgid "Form Common"
 msgstr ""
 
-#: includes/lite/builders/bricks/bricks-element.php:890, includes/lite/builders/elementor/elementor-widget.php:318, includes/lite/builders/divi4/CF7Styler/CF7Styler.php:70, includes/lite/builders/divi4/FluentForms/FluentForms.php:31, includes/lite/builders/divi4/GravityForms/GravityForms.php:30
+#: includes/lite/builders/bricks/bricks-element.php:890, includes/lite/builders/elementor/elementor-widget.php:318, includes/pro/features/entries/print.php:118, includes/lite/builders/divi4/CF7Styler/CF7Styler.php:70, includes/lite/builders/divi4/FluentForms/FluentForms.php:31, includes/lite/builders/divi4/GravityForms/GravityForms.php:30
 msgid "Form Fields"
 msgstr ""
 
@@ -477,6 +505,179 @@ msgstr ""
 msgid "The selected Contact Form 7 form no longer exists."
 msgstr ""
 
+#: includes/lite/features/ai-form-generator/api-handler.php:66
+msgid "Image upload is supported only with OpenAI or Anthropic. Please switch provider or use a text prompt."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:123
+msgid "Connected!"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:147
+msgid "OpenAI key not configured."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:243
+msgid "Anthropic key not configured."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:300
+msgid "Google API key not configured."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:354
+msgid "OpenRouter key not configured."
+msgstr ""
+
+#. translators: %s: error message
+#: includes/lite/features/ai-form-generator/api-handler.php:397, includes/lite/features/ai-form-generator/api-handler.php:440, includes/lite/features/ai-form-generator/api-handler.php:475
+msgid "Request failed: %s"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:408, includes/lite/features/ai-form-generator/api-handler.php:451, includes/lite/features/ai-form-generator/api-handler.php:486
+msgid "API request failed."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/api-handler.php:424, includes/lite/features/ai-form-generator/api-handler.php:459, includes/lite/features/ai-form-generator/api-handler.php:494
+msgid "Invalid API response."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:75
+msgid "AI Generate"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:157
+msgid "Lead & contact"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:158
+msgid "Booking"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:161
+msgid "AI Form Generator"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:162
+msgid "Quick presets"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:163
+msgid "Describe your form"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:164
+msgid "Generate"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:165
+msgid "Regenerate"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:166, includes/lite/features/grid/module.php:154
+msgid "Insert"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:167
+msgid "Insert edited form"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:168
+msgid "Copy"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:169
+msgid "Generating…"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:170
+msgid "Error generating form."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:171
+msgid "Copied!"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:172
+msgid "Configure"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:173
+msgid "Configure AI provider first."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:174
+msgid "Change"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:175
+msgid "⌘ + Enter to generate"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:176
+msgid "Describe the form you want to create, or pick a preset below…"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:177
+msgid "Drop an image here, or click to upload"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:178
+msgid "Remove image"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:179
+msgid "Please describe the form, pick a preset, or upload an image."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:180
+msgid "Form editor not found."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:217
+msgid "Please describe the form or upload an image."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:225
+msgid "Invalid image data."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/module.php:231
+msgid "Convert this form design or screenshot into valid Contact Form 7 form code. Output only the form code."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:263
+msgid "Contact Form"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:264
+msgid "Simple contact form."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:269
+msgid "Newsletter"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:270
+msgid "Email subscription."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:275
+msgid "Appointment"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:276
+msgid "Booking form."
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:281
+msgid "Feedback"
+msgstr ""
+
+#: includes/lite/features/ai-form-generator/prompt.php:282
+msgid "Customer feedback."
+msgstr ""
+
 #: includes/lite/features/grid/module.php:117, includes/pro/features/multi-column/module.php:189
 msgid "row"
 msgstr ""
@@ -531,10 +732,6 @@ msgstr ""
 
 #: includes/lite/features/grid/module.php:142
 msgid "Generate a three-fourths width column"
-msgstr ""
-
-#: includes/lite/features/grid/module.php:154, includes/pro/features/ai-form-generator/module.php:155
-msgid "Insert"
 msgstr ""
 
 #: includes/lite/features/icon/module.php:134
@@ -702,271 +899,6 @@ msgstr ""
 msgid "Star Color"
 msgstr ""
 
-#: includes/pro/features/ai-form-generator/api-handler.php:66
-msgid "Image upload is supported only with OpenAI or Anthropic. Please switch provider or use a text prompt."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:123
-msgid "Connected!"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:147
-msgid "OpenAI key not configured."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:213
-msgid "Anthropic key not configured."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:270
-msgid "Kimi key not configured."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:318
-msgid "Grok API key not configured."
-msgstr ""
-
-#. translators: %s: error message
-#: includes/pro/features/ai-form-generator/api-handler.php:367, includes/pro/features/ai-form-generator/api-handler.php:402
-msgid "Request failed: %s"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:378, includes/pro/features/ai-form-generator/api-handler.php:413
-msgid "API request failed."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/api-handler.php:386, includes/pro/features/ai-form-generator/api-handler.php:421
-msgid "Invalid API response."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:75
-msgid "AI Generate"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:151
-msgid "AI Form Generator"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:152
-msgid "Quick Presets"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:153
-msgid "Custom Prompt"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:154
-msgid "Generate"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:156
-msgid "Copy"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:157
-msgid "Generating..."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:158
-msgid "Error generating form."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:159
-msgid "Copied!"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:160
-msgid "Configure"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:161
-msgid "Configure AI provider first."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:162
-msgid "or describe your form"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:163
-msgid "Upload form image"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:164
-msgid "Remove image"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:201
-msgid "Please describe the form or upload an image."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:209
-msgid "Invalid image data."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/module.php:215
-msgid "Convert this form design or screenshot into valid Contact Form 7 form code. Output only the form code."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:293
-msgid "Contact Form"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:294
-msgid "Simple contact form."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:298
-msgid "Newsletter"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:299
-msgid "Email subscription."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:303
-msgid "Feedback"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:304
-msgid "Customer feedback."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:308
-msgid "Support Ticket"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:309
-msgid "Support request."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:315
-msgid "Appointment"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:316
-msgid "Booking form."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:320
-msgid "Reservation"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:321
-msgid "Restaurant booking."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:325
-msgid "Event RSVP"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:326
-msgid "Event registration."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:332
-msgid "Quote Request"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:333
-msgid "Get a quote."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:337
-msgid "Job Application"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:338
-msgid "Employment form."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:342
-msgid "Lead Form"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:343
-msgid "Lead generation."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:349
-msgid "Registration"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:350
-msgid "Account signup."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:356
-msgid "Survey"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:357
-msgid "Customer survey."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:361
-msgid "Review"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:362
-msgid "Product review."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:368
-msgid "Mortgage Calc"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:369
-msgid "Mortgage calculator."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:373
-msgid "Loan Calc"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:374
-msgid "Loan calculator."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:378
-msgid "Price Quote"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:379
-msgid "Service pricing."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:383
-msgid "Tip Calc"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:384
-msgid "Tip calculator."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:390
-msgid "Order Form"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:391
-msgid "Product order."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:395
-msgid "Volunteer"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:396
-msgid "Volunteer signup."
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:400
-msgid "Complaint"
-msgstr ""
-
-#: includes/pro/features/ai-form-generator/prompt.php:401
-msgid "Complaint form."
-msgstr ""
-
 #: includes/pro/features/calculator/module.php:124, includes/pro/features/calculator/module.php:127, includes/pro/features/calculator/module.php:545, includes/pro/features/calculator/module.php:552
 msgid "Calculate"
 msgstr ""
@@ -1091,7 +1023,7 @@ msgstr ""
 msgid "less than or equal"
 msgstr ""
 
-#: includes/pro/features/conditional/module.php:251
+#: includes/pro/features/conditional/module.php:251, includes/pro/features/email-routing/editor-panel.php:37, includes/pro/features/email-routing/editor-panel.php:97
 msgid "contains"
 msgstr ""
 
@@ -1107,7 +1039,7 @@ msgstr ""
 msgid "matches any"
 msgstr ""
 
-#: includes/pro/features/conditional/module.php:259
+#: includes/pro/features/conditional/module.php:259, includes/pro/features/email-routing/editor-panel.php:54
 msgid "Value"
 msgstr ""
 
@@ -1115,30 +1047,66 @@ msgstr ""
 msgid "For \"any\": comma-separated values. For \"empty/checked\": true or false."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:152, includes/pro/features/entries/api.php:161, includes/pro/features/entries/api.php:172
+#: includes/pro/features/email-routing/editor-panel.php:35, includes/pro/features/email-routing/editor-panel.php:95
+msgid "is"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:36, includes/pro/features/email-routing/editor-panel.php:96
+msgid "is not"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:41
+msgid "Email Routing"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:43
+msgid "Override the notification recipient based on a field value. Rules are evaluated in order — the first match wins."
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:52
+msgid "Field name"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:53
+msgid "Operator"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:55
+msgid "Send to (comma-separated emails)"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:72, includes/pro/features/email-routing/editor-panel.php:107
+msgid "Remove"
+msgstr ""
+
+#: includes/pro/features/email-routing/editor-panel.php:80
+msgid "+ Add rule"
+msgstr ""
+
+#: includes/pro/features/entries/api.php:154, includes/pro/features/entries/api.php:163, includes/pro/features/entries/api.php:174, includes/pro/features/entries/print.php:52
 msgid "Entry not found."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:164
+#: includes/pro/features/entries/api.php:166
 msgid "Entry updated."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:175
+#: includes/pro/features/entries/api.php:177
 msgid "Delete failed."
 msgstr ""
 
-#: includes/pro/features/entries/api.php:177
+#: includes/pro/features/entries/api.php:179
 msgid "Entry deleted."
 msgstr ""
 
 #. translators: %d: number
-#: includes/pro/features/entries/api.php:195, includes/pro/features/entries/api.php:223
+#: includes/pro/features/entries/api.php:197, includes/pro/features/entries/api.php:225
 msgid "%d entry deleted."
 msgid_plural "%d entries deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/pro/features/entries/api.php:255
+#: includes/pro/features/entries/api.php:257
 msgid "No entries to export."
 msgstr ""
 
@@ -1186,12 +1154,53 @@ msgstr ""
 msgid "Submitter user agent"
 msgstr ""
 
+#: includes/pro/features/entries/editor-panel.php:32, includes/pro/features/entries/editor-panel.php:48
+msgid "CF7 Mate"
+msgstr ""
+
 #: includes/pro/features/entries/editor-panel.php:63
 msgid "Save submissions of this form to the database."
 msgstr ""
 
 #: includes/pro/features/entries/editor-panel.php:68
 msgid "When enabled, every submission is stored and viewable from CF7 Mate → Responses. Disable for forms you don't want to log (e.g. search, login)."
+msgstr ""
+
+#: includes/pro/features/entries/print.php:78, includes/pro/features/entries/print.php:106
+msgid "Form Submission"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:102
+msgid "Print / Save PDF"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:110
+msgid "Entry #"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:133
+msgid "Submission Info"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:136
+msgid "Form ID"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:138
+msgid "Submitted"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:140
+msgid "IP Address"
+msgstr ""
+
+#: includes/pro/features/entries/print.php:142
+msgid "Status"
+msgstr ""
+
+#. translators: plugin name
+#: includes/pro/features/entries/print.php:149
+msgid "Exported by CF7 Mate · %s"
 msgstr ""
 
 #. translators: 1: form title, 2: date
@@ -1317,6 +1326,42 @@ msgstr ""
 msgid "Add this to the first [cf7m-step] tag only."
 msgstr ""
 
+#: includes/pro/features/partial-save/api.php:97
+msgid "Invalid form."
+msgstr ""
+
+#: includes/pro/features/partial-save/editor-panel.php:31
+msgid "Save & Continue"
+msgstr ""
+
+#: includes/pro/features/partial-save/editor-panel.php:38
+msgid "Allow users to save their progress and return later."
+msgstr ""
+
+#: includes/pro/features/partial-save/editor-panel.php:42
+msgid "When enabled, a \"Save progress\" button appears in the form. Progress is saved for 7 days using a browser token — no account required."
+msgstr ""
+
+#: includes/pro/features/partial-save/module.php:71, includes/pro/features/partial-save/module.php:103
+msgid "Save progress"
+msgstr ""
+
+#: includes/pro/features/partial-save/module.php:72
+msgid "Progress saved"
+msgstr ""
+
+#: includes/pro/features/partial-save/module.php:73
+msgid "Progress restored"
+msgstr ""
+
+#: includes/pro/features/partial-save/module.php:74
+msgid "Saving…"
+msgstr ""
+
+#: includes/pro/features/partial-save/module.php:75
+msgid "Could not save progress."
+msgstr ""
+
 #: includes/pro/features/phone-number/module.php:146
 msgid "Select country"
 msgstr ""
@@ -1379,6 +1424,42 @@ msgstr ""
 
 #: includes/pro/features/presets/module.php:154
 msgid "Wrap your form fields in this shortcode to apply a preset style. Put all fields inside the opening and closing tags."
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:37, includes/pro/features/scheduling/module.php:53
+msgid "This form is no longer accepting submissions."
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:45
+msgid "Form Scheduling"
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:53
+msgid "Enable scheduling for this form"
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:60
+msgid "Open date"
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:69
+msgid "Leave blank to accept submissions immediately."
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:74
+msgid "Close date"
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:83
+msgid "Leave blank to keep the form open indefinitely."
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:88
+msgid "Closed message"
+msgstr ""
+
+#: includes/pro/features/scheduling/editor-panel.php:97
+msgid "Shown when the form is outside its scheduling window."
 msgstr ""
 
 #: includes/lite/builders/divi4/CF7Styler/CF7Styler.php:23

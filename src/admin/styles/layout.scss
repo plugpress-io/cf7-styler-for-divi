@@ -12,12 +12,11 @@
   background-color: color(bg);
 }
 
-// ===== New full-width Header =====
+// ===== Plugin Header =====
 .cf7m-header {
   background-color: color(bg-card);
   border-bottom: 1px solid color(border);
   flex-shrink: 0;
-  z-index: zindex(sticky);
   width: 100%;
 }
 
@@ -25,101 +24,100 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: space(lg);
-  padding: space(md) space(xxl);
-  min-height: 56px;
-
-  @include respond-to(md) {
-    padding: space(md) space(xl);
-  }
-
-  @include respond-to(sm) {
-    padding: space(md) space(lg);
-  }
+  padding: 0 20px;
+  height: 50px;
 }
 
 .cf7m-header__brand {
   display: inline-flex;
   align-items: center;
   gap: space(sm);
+  text-decoration: none;
+  color: color(text);
+
+  &:hover {
+    text-decoration: none;
+    color: color(text);
+  }
 }
 
 .cf7m-header__brand-name {
-  font-size: font-size(md);
+  font-size: font-size(sm);
   font-weight: font-weight(semibold);
   color: color(text);
   letter-spacing: -0.01em;
 }
 
-.cf7m-header__meta {
-  display: inline-flex;
-  align-items: center;
-  gap: space(md);
+.cf7m-header__brand-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
-.cf7m-header__icon-btn {
-  @include transition;
-  display: inline-flex;
+// Right-side nav links
+.cf7m-header__links {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: radius(md);
-  color: color(text-muted);
-  text-decoration: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-
-  &:hover {
-    color: color(text);
-    background-color: color(bg);
-    border-color: color(border);
-  }
-
-  &:focus-visible {
-    outline: 2px solid color(primary);
-    outline-offset: 2px;
-  }
-}
-
-.cf7m-header__icon {
-  width: 18px;
-  height: 18px;
+  gap: 2px;
 }
 
 .cf7m-header__upgrade {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: radius(md);
   font-size: font-size(sm);
   font-weight: font-weight(medium);
   color: color(primary);
   text-decoration: none;
+  transition: background-color 0.1s;
   white-space: nowrap;
-  @include transition;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    flex-shrink: 0;
+  }
 
   &:hover {
+    background-color: color(primary-tint);
+    text-decoration: none;
     color: color(primary);
-    text-decoration: underline;
   }
 }
 
-// Main content area – minimal: full-width flex container, each page owns its padding/width.
-.cf7m-admin {
-  flex: 1;
-  display: flex;
-  background-color: color(bg);
-}
-
-.cf7m-admin__content {
-  flex: 1;
-  width: 100%;
-  min-width: 0;
-}
-
-// Header version label
-.cf7m-header__version {
-  font-size: font-size(xs);
+.cf7m-header__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: radius(md);
+  font-size: font-size(sm);
   color: color(text-muted);
+  text-decoration: none;
+  transition: color 0.1s, background-color 0.1s;
   white-space: nowrap;
-  font-variant-numeric: tabular-nums;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    color: color(text);
+    background-color: rgba(0, 0, 0, 0.04);
+    text-decoration: none;
+  }
 }
 
 // ===== Navigation Styles =====

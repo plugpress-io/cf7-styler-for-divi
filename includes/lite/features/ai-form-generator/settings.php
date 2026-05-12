@@ -1,6 +1,6 @@
 <?php
 
-namespace CF7_Mate\Features\AI_Form_Generator;
+namespace CF7_Mate\Lite\Features\AI_Form_Generator;
 
 if (! defined('ABSPATH')) {
 	exit;
@@ -183,15 +183,15 @@ class AI_Settings
 	public static function get_all_settings()
 	{
 		$defaults = array(
-			'provider'        => 'openai',
-			'openai_key'      => '',
-			'openai_model'    => 'gpt-4o-mini',           // Fast, accurate, cost-effective.
-			'anthropic_key'   => '',
-			'anthropic_model' => 'claude-sonnet-4-20250514', // Best structured output.
-			'kimi_key'        => '',
-			'kimi_model'      => 'moonshot-v1-32k',       // Good balance for Kimi.
-			'grok_key'        => '',
-			'grok_model'      => 'grok-3-mini',           // Fast and capable.
+			'provider'         => 'openai',
+			'openai_key'       => '',
+			'openai_model'     => 'gpt-5-mini',
+			'anthropic_key'    => '',
+			'anthropic_model'  => 'claude-sonnet-4-6',
+			'google_key'       => '',
+			'google_model'     => 'gemini-2.5-flash',
+			'openrouter_key'   => '',
+			'openrouter_model' => 'openai/gpt-5-mini',
 		);
 
 		$saved = get_option(self::OPTION_KEY, array());
@@ -200,7 +200,7 @@ class AI_Settings
 		$settings = wp_parse_args($saved, $defaults);
 		$instance = self::instance();
 
-		foreach (array('openai_key', 'anthropic_key', 'kimi_key', 'grok_key') as $key) {
+		foreach (array('openai_key', 'anthropic_key', 'google_key', 'openrouter_key') as $key) {
 			if (! empty($settings[$key])) {
 				$settings[$key] = $instance->decrypt_key($settings[$key]);
 			}
@@ -224,57 +224,84 @@ class AI_Settings
 	public static function get_providers()
 	{
 		return array(
-			'openai'    => array(
+			'openai'     => array(
 				'name'            => 'OpenAI',
 				'models'          => array(
-					// Best: Fast, excellent instruction-following, cost-effective.
-					'gpt-4o-mini'   => 'GPT-4o Mini (Recommended)',
-					// Premium: Higher quality for complex multi-step forms.
-					'gpt-4o'        => 'GPT-4o',
-					// Budget: Fastest and cheapest, good for simple forms.
-					'gpt-4o-mini-2024-07-18' => 'GPT-4o Mini (Stable)',
+					// GPT-5.4 family — latest flagship.
+					'gpt-5.4'        => 'GPT-5.4',
+					'gpt-5.4-mini'   => 'GPT-5.4 Mini',
+					'gpt-5.4-nano'   => 'GPT-5.4 Nano',
+					// GPT-5 family.
+					'gpt-5'          => 'GPT-5',
+					'gpt-5-mini'     => 'GPT-5 Mini (Recommended)',
+					'gpt-5-nano'     => 'GPT-5 Nano',
+					// GPT-4.1 family.
+					'gpt-4.1'        => 'GPT-4.1',
+					'gpt-4.1-mini'   => 'GPT-4.1 Mini',
+					'gpt-4.1-nano'   => 'GPT-4.1 Nano',
+					// 4o family.
+					'gpt-4o'         => 'GPT-4o',
+					'gpt-4o-mini'    => 'GPT-4o Mini',
 				),
 				'key_placeholder' => 'sk-...',
 				'key_url'         => 'https://platform.openai.com/api-keys',
 			),
-			'anthropic' => array(
-				'name'            => 'Claude',
+			'anthropic'  => array(
+				'name'            => 'Anthropic',
 				'models'          => array(
-					// Best: Excellent at structured output, follows templates precisely.
-					'claude-sonnet-4-20250514'   => 'Claude Sonnet 4 (Recommended)',
-					// Premium: Highest quality, best for complex calculator forms.
-					'claude-opus-4-20250514'     => 'Claude Opus 4',
-					// Budget: Fast and accurate for standard forms.
-					'claude-3-5-haiku-20241022'  => 'Claude 3.5 Haiku (Fast)',
+					'claude-opus-4-6'   => 'Claude Opus 4.6',
+					'claude-sonnet-4-6' => 'Claude Sonnet 4.6 (Recommended)',
+					'claude-haiku-4-5'  => 'Claude Haiku 4.5 (Fast)',
 				),
 				'key_placeholder' => 'sk-ant-...',
 				'key_url'         => 'https://console.anthropic.com/settings/keys',
 			),
-			'grok'      => array(
-				'name'            => 'Grok (xAI)',
+			'google'     => array(
+				'name'            => 'Google',
 				'models'          => array(
-					// Best: Good balance of speed and quality.
-					'grok-3-mini'  => 'Grok 3 Mini (Recommended)',
-					// Premium: Full capability for complex forms.
-					'grok-3'       => 'Grok 3',
-					// Budget: Fastest option.
-					'grok-3-fast'  => 'Grok 3 Fast',
+					// Gemini 3.1 preview line.
+					'gemini-3.1-pro-preview'         => 'Gemini 3.1 Pro Preview',
+					'gemini-3.1-flash-preview'       => 'Gemini 3.1 Flash Preview',
+					'gemini-3.1-flash-lite-preview'  => 'Gemini 3.1 Flash Lite Preview',
+					// Gemini 2.5 stable.
+					'gemini-2.5-pro'                 => 'Gemini 2.5 Pro',
+					'gemini-2.5-flash'               => 'Gemini 2.5 Flash (Recommended)',
+					'gemini-2.5-flash-lite'          => 'Gemini 2.5 Flash Lite',
 				),
-				'key_placeholder' => 'xai-...',
-				'key_url'         => 'https://console.x.ai/',
+				'key_placeholder' => 'AIza...',
+				'key_url'         => 'https://aistudio.google.com/app/apikey',
 			),
-			'kimi'      => array(
-				'name'            => 'Kimi',
+			'openrouter' => array(
+				'name'            => 'OpenRouter',
 				'models'          => array(
-					// Best: Good for Chinese users, solid instruction-following.
-					'moonshot-v1-32k'  => 'Moonshot 32K (Recommended)',
-					// Premium: Handles very long form templates.
-					'moonshot-v1-128k' => 'Moonshot 128K',
-					// Budget: Fast for simple forms.
-					'moonshot-v1-8k'   => 'Moonshot 8K (Fast)',
+					// OpenAI through OpenRouter.
+					'openai/gpt-5.4'                  => 'OpenAI · GPT-5.4',
+					'openai/gpt-5.4-mini'             => 'OpenAI · GPT-5.4 Mini',
+					'openai/gpt-5.4-nano'             => 'OpenAI · GPT-5.4 Nano',
+					'openai/gpt-5'                    => 'OpenAI · GPT-5',
+					'openai/gpt-5-mini'               => 'OpenAI · GPT-5 Mini (Recommended)',
+					'openai/gpt-5-nano'               => 'OpenAI · GPT-5 Nano',
+					'openai/gpt-4.1'                  => 'OpenAI · GPT-4.1',
+					'openai/gpt-4.1-mini'             => 'OpenAI · GPT-4.1 Mini',
+					'openai/gpt-4.1-nano'             => 'OpenAI · GPT-4.1 Nano',
+					'openai/gpt-4o'                   => 'OpenAI · GPT-4o',
+					'openai/gpt-4o-mini'              => 'OpenAI · GPT-4o Mini',
+					// Anthropic through OpenRouter.
+					'anthropic/claude-opus-4.6'       => 'Anthropic · Claude Opus 4.6',
+					'anthropic/claude-sonnet-4.6'     => 'Anthropic · Claude Sonnet 4.6',
+					'anthropic/claude-haiku-4.5'      => 'Anthropic · Claude Haiku 4.5',
+					// Google through OpenRouter.
+					'google/gemini-3.1-pro-preview'        => 'Google · Gemini 3.1 Pro Preview',
+					'google/gemini-3.1-flash-preview'      => 'Google · Gemini 3.1 Flash Preview',
+					'google/gemini-3.1-flash-lite-preview' => 'Google · Gemini 3.1 Flash Lite Preview',
+					'google/gemini-2.5-pro'                => 'Google · Gemini 2.5 Pro',
+					'google/gemini-2.5-flash'              => 'Google · Gemini 2.5 Flash',
+					'google/gemini-2.5-flash-lite'         => 'Google · Gemini 2.5 Flash Lite',
+					// DeepSeek.
+					'deepseek/deepseek-v3.2'          => 'DeepSeek · DeepSeek V3.2',
 				),
-				'key_placeholder' => 'sk-...',
-				'key_url'         => 'https://platform.moonshot.cn/console/api-keys',
+				'key_placeholder' => 'sk-or-...',
+				'key_url'         => 'https://openrouter.ai/keys',
 			),
 		);
 	}

@@ -6,12 +6,10 @@
  * @package CF7_Mate
  */
 
-import { AISettingsPage } from './pages/AISettingsPage';
 import LicensePage from './pages/LicensePage';
 import { ResponsesOverviewWidget } from './components/ResponsesOverviewWidget';
 
 window.cf7mProPages = window.cf7mProPages || {};
-window.cf7mProPages['ai-settings'] = AISettingsPage;
 window.cf7mProPages.license = LicensePage;
 
 window.cf7mProWidgets = window.cf7mProWidgets || {};

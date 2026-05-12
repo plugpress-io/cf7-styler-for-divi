@@ -6,7 +6,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { FeatureIconDatabase } from './icons/FeatureIcons';
+import { CircleStackIcon } from '@heroicons/react/24/outline';
 
 export function ResponsesOverviewWidget({ showResponses, responsesUrl }) {
 	return (
@@ -24,7 +24,7 @@ export function ResponsesOverviewWidget({ showResponses, responsesUrl }) {
 			<div className="cf7m-dashboard-card__body">
 				<div className="cf7m-responses-overview__empty">
 					<span className="cf7m-responses-overview__icon" aria-hidden="true">
-						<FeatureIconDatabase />
+						<CircleStackIcon />
 					</span>
 					<p className="cf7m-responses-overview__message">
 						{showResponses

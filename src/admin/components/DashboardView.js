@@ -18,7 +18,10 @@ import {
 	BellAlertIcon,
 	ExclamationTriangleIcon,
 	EnvelopeIcon,
-	KeyIcon,
+	BoltIcon,
+	ChartBarIcon,
+	FunnelIcon,
+	QueueListIcon,
 } from '@heroicons/react/24/outline';
 
 const cfg = (key, fallback = '') => {
@@ -45,29 +48,12 @@ export function DashboardView({
 		return (
 			<div className="cf7m-overview">
 				<div className="cf7m-overview__welcome">
-					<p className="cf7m-overview__welcome-eyebrow">
-						{__('Free plan', 'cf7-styler-for-divi')}
-					</p>
 					<h2 className="cf7m-overview__welcome-title">
 						{__('Style and extend Contact Form 7.', 'cf7-styler-for-divi')}
 					</h2>
-					<p className="cf7m-overview__welcome-text">
-						{__(
-							'Toggle modules, hook up webhooks, and unlock submissions, AI form generation, and more with Pro.',
-							'cf7-styler-for-divi'
-						)}
-					</p>
-					<div className="cf7m-overview__welcome-actions">
-						<Button
-							variant="primary"
-							onClick={() => {
-								window.location.hash = '#/features';
-							}}
-						>
-							{__('Explore features', 'cf7-styler-for-divi')}
-						</Button>
-					</div>
 				</div>
+
+				<ProPerksCard />
 
 				<ResourcesSection />
 			</div>
@@ -92,14 +78,6 @@ export function DashboardView({
 			value: stats.new_today || 0,
 			label: __('New today', 'cf7-styler-for-divi'),
 			href: responsesUrl,
-		},
-		{
-			icon: SparklesIcon,
-			value: stats.enabled_features || 0,
-			label: __('Active modules', 'cf7-styler-for-divi'),
-			onClick: () => {
-				window.location.hash = '#/features';
-			},
 		},
 	].filter(Boolean);
 
@@ -134,22 +112,26 @@ export function DashboardView({
 				responsesUrl={responsesUrl}
 			/>
 
-			<div className="cf7m-overview__stats">
-				{tiles.map((tile, i) => (
-					<StatTile key={i} {...tile} />
-				))}
+			{/* Stats */}
+			<div className="cf7m-card">
+				<div className="cf7m-overview__stats">
+					{tiles.map((tile, i) => (
+						<StatTile key={i} {...tile} />
+					))}
+				</div>
 			</div>
 
-			<section className="cf7m-overview__group">
-				<h3 className="cf7m-overview__group-title">
-					{__('Quick actions', 'cf7-styler-for-divi')}
-				</h3>
+			{/* Quick actions */}
+			<div className="cf7m-card cf7m-card--flush">
+				<div className="cf7m-card__header">
+					<h2 className="cf7m-card__title">{__('Quick actions', 'cf7-styler-for-divi')}</h2>
+				</div>
 				<div className="cf7m-overview__list">
 					{quickActions.map((a, i) => (
 						<QuickRow key={i} {...a} />
 					))}
 				</div>
-			</section>
+			</div>
 
 			<ResourcesSection />
 		</div>
@@ -244,16 +226,13 @@ function NoticesBlock({ stats, showResponses, responsesUrl }) {
 	);
 }
 
-function NoticeRow({ tone, icon: Icon, title, body, cta, href, onClick }) {
+function NoticeRow({ tone, icon: Icon, title, cta, href, onClick }) {
 	const inner = (
 		<>
 			<span className={`cf7m-notice__icon cf7m-notice__icon--${tone}`}>
 				<Icon aria-hidden="true" />
 			</span>
-			<div className="cf7m-notice__body">
-				<span className="cf7m-notice__title">{title}</span>
-				<span className="cf7m-notice__text">{body}</span>
-			</div>
+			<span className="cf7m-notice__title">{title}</span>
 			{cta && (
 				<span className="cf7m-notice__cta">
 					{cta}
@@ -286,18 +265,17 @@ function NoticeRow({ tone, icon: Icon, title, body, cta, href, onClick }) {
 	);
 }
 
-function StatTile({ icon: Icon, value, label, href, onClick }) {
+function StatTile({ value, label, href, onClick }) {
 	const inner = (
 		<>
-			<div className="cf7m-overview__tile-head">
-				<Icon className="cf7m-overview__tile-icon" aria-hidden="true" />
-				{(href || onClick) && (
+			{(href || onClick) && (
+				<div className="cf7m-overview__tile-head">
 					<ArrowUpRightIcon
 						className="cf7m-overview__tile-arrow"
 						aria-hidden="true"
 					/>
-				)}
-			</div>
+				</div>
+			)}
 			<div className="cf7m-overview__tile-value">{value}</div>
 			<div className="cf7m-overview__tile-label">{label}</div>
 		</>
@@ -312,13 +290,10 @@ function StatTile({ icon: Icon, value, label, href, onClick }) {
 	return <div className="cf7m-overview__tile">{inner}</div>;
 }
 
-function QuickRow({ label, hint, href, onClick }) {
+function QuickRow({ label, href, onClick }) {
 	const inner = (
 		<>
-			<div className="cf7m-overview__row-text">
-				<span className="cf7m-overview__row-label">{label}</span>
-				<span className="cf7m-overview__row-hint">{hint}</span>
-			</div>
+			<span className="cf7m-overview__row-label">{label}</span>
 			<ArrowUpRightIcon className="cf7m-overview__row-arrow" aria-hidden="true" />
 		</>
 	);
@@ -327,6 +302,75 @@ function QuickRow({ label, hint, href, onClick }) {
 		<button type="button" onClick={onClick} className="cf7m-overview__row">
 			{inner}
 		</button>
+	);
+}
+
+function ProPerksCard() {
+	const pricingUrl = cfg('pricing_url', 'https://cf7mate.com/pricing');
+
+	const perks = [
+		{
+			icon: InboxIcon,
+			name: __('Form Responses', 'cf7-styler-for-divi'),
+			desc: __('Save every submission to your database', 'cf7-styler-for-divi'),
+		},
+		{
+			icon: BoltIcon,
+			name: __('Webhooks', 'cf7-styler-for-divi'),
+			desc: __('Send data to Zapier, Make, Slack & more', 'cf7-styler-for-divi'),
+		},
+		{
+			icon: SparklesIcon,
+			name: __('AI Form Generator', 'cf7-styler-for-divi'),
+			desc: __('Build forms from a plain-text prompt', 'cf7-styler-for-divi'),
+		},
+		{
+			icon: ChartBarIcon,
+			name: __('Analytics', 'cf7-styler-for-divi'),
+			desc: __('Track views, submissions & conversion rate', 'cf7-styler-for-divi'),
+		},
+		{
+			icon: FunnelIcon,
+			name: __('Conditional Logic', 'cf7-styler-for-divi'),
+			desc: __('Show or hide fields dynamically', 'cf7-styler-for-divi'),
+		},
+		{
+			icon: QueueListIcon,
+			name: __('Multi-step Forms', 'cf7-styler-for-divi'),
+			desc: __('Break long forms into guided steps', 'cf7-styler-for-divi'),
+		},
+	];
+
+	return (
+		<div className="cf7m-card">
+			<div className="cf7m-card__header">
+				<h2 className="cf7m-card__title">
+					{__('What\'s in Pro', 'cf7-styler-for-divi')}
+				</h2>
+				{pricingUrl && (
+					<a
+						href={pricingUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="cf7m-perks__upgrade"
+					>
+						{__('Get Pro', 'cf7-styler-for-divi')}
+						<ArrowUpRightIcon aria-hidden="true" />
+					</a>
+				)}
+			</div>
+			<div className="cf7m-perks">
+				{perks.map(({ icon: Icon, name, desc }, i) => (
+					<div key={i} className="cf7m-perks__item">
+						<Icon className="cf7m-perks__icon" aria-hidden="true" />
+						<div>
+							<div className="cf7m-perks__name">{name}</div>
+							<div className="cf7m-perks__desc">{desc}</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
 	);
 }
 
@@ -362,31 +406,19 @@ function ResourcesSection() {
 	if (cards.length === 0) return null;
 
 	return (
-		<section className="cf7m-overview__group">
-			<h3 className="cf7m-overview__group-title">
-				{__('Resources', 'cf7-styler-for-divi')}
-			</h3>
-			<div className="cf7m-overview__resources">
-				{cards.map((c, i) => (
-					<a
-						key={i}
-						href={c.href}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="cf7m-overview__resource"
-					>
-						<c.icon className="cf7m-overview__resource-icon" aria-hidden="true" />
-						<div className="cf7m-overview__resource-body">
-							<h4 className="cf7m-overview__resource-title">{c.title}</h4>
-							<p className="cf7m-overview__resource-desc">{c.desc}</p>
-							<span className="cf7m-overview__resource-cta">
-								{c.cta}
-								<ArrowUpRightIcon className="cf7m-resp__icon" aria-hidden="true" />
-							</span>
-						</div>
-					</a>
-				))}
-			</div>
-		</section>
+		<div className="cf7m-overview__links">
+			{cards.map((c, i) => (
+				<a
+					key={i}
+					href={c.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="cf7m-overview__link"
+				>
+					<c.icon aria-hidden="true" />
+					{c.title}
+				</a>
+			))}
+		</div>
 	);
 }

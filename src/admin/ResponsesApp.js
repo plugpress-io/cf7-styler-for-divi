@@ -6,6 +6,7 @@
 
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { Spinner } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
 import { Header } from './components/Header';
@@ -52,24 +53,25 @@ export function ResponsesApp() {
 	const dashUrl =
 		typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.dash_url
 			? dcsCF7Styler.dash_url
-			: 'admin.php?page=cf7-mate-dash';
+			: 'admin.php?page=cf7-mate';
 
 	const ResponsesPage = getProPage('responses');
 	const showResponses = isPro && !!features.database_entries;
 
 	if (loading) {
 		return (
-			<>
+			<div className="cf7m-wrap">
 				<Header isPro={false} />
-				<div className="cf7m-loading">
-					{__('Loading...', 'cf7-styler-for-divi')}
+				<div className="cf7m-resp__loading">
+					<Spinner />
+					<span>{__('Loading…', 'cf7-styler-for-divi')}</span>
 				</div>
-			</>
+			</div>
 		);
 	}
 
 	return (
-		<>
+		<div className="cf7m-wrap">
 			<Header isPro={isPro} />
 			<div className="cf7m-responses">
 				{ResponsesPage && showResponses ? (
@@ -87,6 +89,6 @@ export function ResponsesApp() {
 					<UpsellPlaceholder feature="responses" />
 				)}
 			</div>
-		</>
+		</div>
 	);
 }

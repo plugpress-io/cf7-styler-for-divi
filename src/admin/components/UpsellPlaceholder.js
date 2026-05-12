@@ -6,13 +6,20 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { FEATURE_ICONS } from './icons/FeatureIcons';
+import {
+	CheckIcon,
+	CircleStackIcon,
+	BoltIcon,
+	SparklesIcon,
+	Squares2X2Icon,
+} from '@heroicons/react/24/outline';
 
-const CheckIcon = () => (
-	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-		<polyline points="20 6 9 17 4 12" />
-	</svg>
-);
+const FEATURE_ICONS = {
+	database: CircleStackIcon,
+	webhook: BoltIcon,
+	ai: SparklesIcon,
+	module: Squares2X2Icon,
+};
 
 const FEATURE_DATA = {
 	responses: {
@@ -53,6 +60,7 @@ export function UpsellPlaceholder({ feature }) {
 	const settingsUrl = (typeof dcsCF7Styler !== 'undefined' && dcsCF7Styler.settings_url) || 'admin.php?page=cf7-mate-settings';
 	const freeVsProUrl = pricingUrl;
 	const IconComponent = FEATURE_ICONS[data.icon] || FEATURE_ICONS.module;
+	const checkClass = 'cf7m-upsell__check-icon';
 
 	return (
 		<div className="cf7m-card cf7m-upsell">
@@ -65,7 +73,7 @@ export function UpsellPlaceholder({ feature }) {
 				<ul className="cf7m-upsell__list" aria-label={__('Feature highlights', 'cf7-styler-for-divi')}>
 					{data.features.map((label) => (
 						<li key={label} className="cf7m-upsell__list-item">
-							<span className="cf7m-upsell__check" aria-hidden="true"><CheckIcon /></span>
+							<span className="cf7m-upsell__check" aria-hidden="true"><CheckIcon className={checkClass} /></span>
 							{label}
 						</li>
 					))}

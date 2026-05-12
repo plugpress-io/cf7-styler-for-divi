@@ -14,6 +14,8 @@ $colors: (
   text-light: #8b8b8b,
   bg: #f8f8f8,
   bg-card: #ffffff,
+  bg-secondary: #f1f5f9,
+  toast-bg: #18181b,
   border: #e0e0e0,
   border-light: #ededed,
   success: #10b981,
@@ -118,6 +120,7 @@ $zindex: (
   modal: 500,
   popover: 600,
   tooltip: 700,
+  toast: 99000,
 );
 
 // ===== Helper Functions & Mixins =====

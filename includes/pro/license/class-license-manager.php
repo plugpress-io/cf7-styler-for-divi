@@ -14,6 +14,7 @@ class License_Manager {
     const OPT_INSTANCE_ID   = 'cf7m_license_instance_id';
     const OPT_STATUS        = 'cf7m_license_status';
     const OPT_EXPIRES_AT    = 'cf7m_license_expires_at';
+    const OPT_META          = 'cf7m_license_meta'; // product/customer/activation usage
     const TRANSIENT_VALID   = 'cf7m_license_valid';
     const CRON_HOOK         = 'cf7m_daily_license_check';
     const REQUEST_TIMEOUT   = 15;
@@ -91,6 +92,9 @@ class License_Manager {
         update_option(self::OPT_STATUS, $status, false);
         update_option(self::OPT_EXPIRES_AT, $expires_at, false);
 
+        // Capture LS metadata (product / customer / activation usage / created date).
+        update_option(self::OPT_META, $this->extract_meta($data, $license_data), false);
+
         // Set transient
         set_transient(self::TRANSIENT_VALID, true, \DAY_IN_SECONDS);
 
@@ -148,6 +152,7 @@ class License_Manager {
         delete_option(self::OPT_INSTANCE_ID);
         delete_option(self::OPT_STATUS);
         delete_option(self::OPT_EXPIRES_AT);
+        delete_option(self::OPT_META);
         delete_transient(self::TRANSIENT_VALID);
 
         // Unschedule cron
@@ -220,6 +225,7 @@ class License_Manager {
             $expires_at = isset($license['expires_at']) ? sanitize_text_field($license['expires_at']) : '';
             update_option(self::OPT_STATUS, 'active', false);
             update_option(self::OPT_EXPIRES_AT, $expires_at, false);
+            update_option(self::OPT_META, $this->extract_meta($data, $license), false);
             set_transient(self::TRANSIENT_VALID, true, \DAY_IN_SECONDS);
             return true;
         }
@@ -267,13 +273,61 @@ class License_Manager {
      * @return array License status data.
      */
     public function get_status(): array {
+        $meta = get_option(self::OPT_META, []);
+        if (! is_array($meta)) {
+            $meta = [];
+        }
+
         return [
-            'status'     => get_option(self::OPT_STATUS, ''),
-            'expires_at' => get_option(self::OPT_EXPIRES_AT, ''),
-            'masked_key' => $this->get_masked_key(),
-            'is_valid'   => $this->is_valid(),
-            'has_key'    => !empty(get_option(self::OPT_LICENSE_KEY, '')),
+            'status'              => get_option(self::OPT_STATUS, ''),
+            'expires_at'          => get_option(self::OPT_EXPIRES_AT, ''),
+            'masked_key'          => $this->get_masked_key(),
+            'is_valid'            => $this->is_valid(),
+            'has_key'             => !empty(get_option(self::OPT_LICENSE_KEY, '')),
+            'product_name'        => $meta['product_name']   ?? '',
+            'variant_name'        => $meta['variant_name']   ?? '',
+            'customer_name'       => $meta['customer_name']  ?? '',
+            'customer_email'      => $meta['customer_email'] ?? '',
+            'activation_limit'    => isset($meta['activation_limit']) ? (int) $meta['activation_limit'] : null,
+            'activation_usage'    => isset($meta['activation_usage']) ? (int) $meta['activation_usage'] : null,
+            'created_at'          => $meta['created_at']     ?? '',
+            'instance_name'       => $meta['instance_name']  ?? '',
         ];
+    }
+
+    /**
+     * Pull display-friendly fields out of a Lemon Squeezy activate/validate
+     * response and return a flat associative array suitable for storage.
+     *
+     * @param array $data         Full decoded LS response.
+     * @param array $license_data The "license_key" sub-object from the response.
+     * @return array
+     */
+    private function extract_meta(array $data, array $license_data): array {
+        $meta_obj = isset($data['meta']) && is_array($data['meta']) ? $data['meta'] : [];
+
+        $meta = [
+            'product_name'     => sanitize_text_field($meta_obj['product_name']   ?? ''),
+            'variant_name'     => sanitize_text_field($meta_obj['variant_name']   ?? ''),
+            'customer_name'    => sanitize_text_field($meta_obj['customer_name']  ?? ''),
+            'customer_email'   => sanitize_email($meta_obj['customer_email']      ?? ''),
+            'activation_limit' => isset($license_data['activation_limit']) ? (int) $license_data['activation_limit'] : null,
+            'activation_usage' => isset($license_data['activation_usage']) ? (int) $license_data['activation_usage'] : null,
+            'created_at'       => sanitize_text_field($license_data['created_at'] ?? ''),
+            'instance_name'    => sanitize_text_field($data['instance']['name']   ?? home_url()),
+        ];
+
+        // Merge with any prior meta so missing fields aren't blanked out.
+        $existing = get_option(self::OPT_META, []);
+        if (is_array($existing)) {
+            foreach ($meta as $k => $v) {
+                if (($v === '' || $v === null) && isset($existing[$k]) && $existing[$k] !== '' && $existing[$k] !== null) {
+                    $meta[$k] = $existing[$k];
+                }
+            }
+        }
+
+        return $meta;
     }
 
     /**

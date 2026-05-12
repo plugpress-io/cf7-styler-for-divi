@@ -18,6 +18,8 @@ class Entries_API
 
     public function __construct()
     {
+        require_once __DIR__ . '/print.php';
+        new Entry_Print();
         add_action('rest_api_init', [$this, 'register_routes']);
     }
 

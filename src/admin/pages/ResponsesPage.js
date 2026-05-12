@@ -23,6 +23,9 @@ import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	InboxIcon,
+	PrinterIcon,
+	ArrowLeftIcon,
+	ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 
 const STATUS_OPTIONS = [
@@ -72,7 +75,16 @@ export function ResponsesPage({ entryId, onBack }) {
 	const [formIdFilter, setFormIdFilter] = useState('all');
 	const [searchTerm, setSearchTerm] = useState('');
 	const [selectedIds, setSelectedIds] = useState([]);
+	// confirmPending: { id: number|'bulk', action: 'trash'|'delete' } | null
+	const [confirmPending, setConfirmPending] = useState(null);
 	const restBase = '/cf7-styler/v1/entries';
+
+	// Auto-cancel inline confirm after 5s
+	useEffect(() => {
+		if (!confirmPending) return;
+		const t = setTimeout(() => setConfirmPending(null), 5000);
+		return () => clearTimeout(t);
+	}, [confirmPending]);
 
 	const fetchEntries = useCallback(() => {
 		const params = new URLSearchParams({ per_page: perPage, page: currentPage });
@@ -132,11 +144,6 @@ export function ResponsesPage({ entryId, onBack }) {
 	}, [statusFilter, formIdFilter, searchTerm]);
 
 	const moveToTrash = async (id) => {
-		const msg = __(
-			'Move to trash? You can restore it later from the Trash filter.',
-			'cf7-styler-for-divi'
-		);
-		if (!window.confirm(msg)) return;
 		try {
 			await apiFetch({
 				path: `${restBase}/${id}`,
@@ -153,11 +160,6 @@ export function ResponsesPage({ entryId, onBack }) {
 	};
 
 	const deletePermanently = async (id) => {
-		const msg = __(
-			'Permanently delete this response? It will never be recovered.',
-			'cf7-styler-for-divi'
-		);
-		if (!window.confirm(msg)) return;
 		try {
 			await apiFetch({ path: `${restBase}/${id}`, method: 'DELETE' });
 			setEntries((prev) => prev.filter((e) => e.id !== id));
@@ -184,11 +186,7 @@ export function ResponsesPage({ entryId, onBack }) {
 	};
 
 	const bulkMoveToTrash = async () => {
-		const msg = __(
-			'Move selected responses to trash?',
-			'cf7-styler-for-divi'
-		);
-		if (!selectedIds.length || !window.confirm(msg)) return;
+		if (!selectedIds.length) return;
 		try {
 			for (const id of selectedIds) {
 				await apiFetch({
@@ -203,11 +201,7 @@ export function ResponsesPage({ entryId, onBack }) {
 	};
 
 	const bulkDeletePermanently = async () => {
-		const msg = __(
-			'Permanently delete selected responses? They will never be recovered.',
-			'cf7-styler-for-divi'
-		);
-		if (!selectedIds.length || !window.confirm(msg)) return;
+		if (!selectedIds.length) return;
 		try {
 			await apiFetch({
 				path: `${restBase}/bulk-delete`,
@@ -347,37 +341,87 @@ export function ResponsesPage({ entryId, onBack }) {
 									</h2>
 								</header>
 								<div className="cf7m-resp__panel-body cf7m-resp__actions">
-									<Button
-										variant="secondary"
-										href="#/"
-										icon={<ArrowUturnLeftIcon className="cf7m-resp__icon" />}
-									>
+									<a href="#/" className="cf7m-resp__action-btn">
+										<ArrowLeftIcon className="cf7m-resp__btn-icon" aria-hidden="true" />
 										{__('Back to list', 'cf7-styler-for-divi')}
-									</Button>
+									</a>
+									{typeof wp !== 'undefined' && wp.apiSettings?.root && (
+										<a
+											href={`${wp.apiSettings.root}cf7-styler/v1/entries/${singleEntry.id}/print?_wpnonce=${wp.apiSettings.nonce || ''}`}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="cf7m-resp__action-btn"
+										>
+											<PrinterIcon className="cf7m-resp__btn-icon" aria-hidden="true" />
+											{__('Print / Save PDF', 'cf7-styler-for-divi')}
+										</a>
+									)}
 									{singleEntry.status === 'trash' ? (
 										<>
-											<Button
-												variant="secondary"
+											<button
+												type="button"
+												className="cf7m-resp__action-btn"
 												onClick={() => updateStatus(singleEntry.id, 'read')}
 											>
+												<ArrowPathIcon className="cf7m-resp__btn-icon" aria-hidden="true" />
 												{__('Restore', 'cf7-styler-for-divi')}
-											</Button>
-											<Button
-												variant="secondary"
-												isDestructive
-												onClick={() => deletePermanently(singleEntry.id)}
-											>
-												{__('Delete permanently', 'cf7-styler-for-divi')}
-											</Button>
+											</button>
+											{confirmPending?.id === singleEntry.id && confirmPending?.action === 'delete' ? (
+												<div className="cf7m-resp__action-confirm">
+													<span>{__('Delete permanently?', 'cf7-styler-for-divi')}</span>
+													<button
+														type="button"
+														className="cf7m-resp__confirm-yes"
+														onClick={() => { setConfirmPending(null); deletePermanently(singleEntry.id); }}
+													>
+														{__('Yes', 'cf7-styler-for-divi')}
+													</button>
+													<button
+														type="button"
+														className="cf7m-resp__confirm-cancel"
+														onClick={() => setConfirmPending(null)}
+													>
+														{__('Cancel', 'cf7-styler-for-divi')}
+													</button>
+												</div>
+											) : (
+												<button
+													type="button"
+													className="cf7m-resp__action-btn cf7m-resp__action-btn--danger"
+													onClick={() => setConfirmPending({ id: singleEntry.id, action: 'delete' })}
+												>
+													<TrashIcon className="cf7m-resp__btn-icon" aria-hidden="true" />
+													{__('Delete permanently', 'cf7-styler-for-divi')}
+												</button>
+											)}
 										</>
+									) : confirmPending?.id === singleEntry.id && confirmPending?.action === 'trash' ? (
+										<div className="cf7m-resp__action-confirm">
+											<span>{__('Move to trash?', 'cf7-styler-for-divi')}</span>
+											<button
+												type="button"
+												className="cf7m-resp__confirm-yes"
+												onClick={() => { setConfirmPending(null); moveToTrash(singleEntry.id); }}
+											>
+												{__('Yes', 'cf7-styler-for-divi')}
+											</button>
+											<button
+												type="button"
+												className="cf7m-resp__confirm-cancel"
+												onClick={() => setConfirmPending(null)}
+											>
+												{__('Cancel', 'cf7-styler-for-divi')}
+											</button>
+										</div>
 									) : (
-										<Button
-											variant="secondary"
-											isDestructive
-											onClick={() => moveToTrash(singleEntry.id)}
+										<button
+											type="button"
+											className="cf7m-resp__action-btn cf7m-resp__action-btn--danger"
+											onClick={() => setConfirmPending({ id: singleEntry.id, action: 'trash' })}
 										>
+											<TrashIcon className="cf7m-resp__btn-icon" aria-hidden="true" />
 											{__('Move to trash', 'cf7-styler-for-divi')}
-										</Button>
+										</button>
 									)}
 								</div>
 							</div>
@@ -396,23 +440,21 @@ export function ResponsesPage({ entryId, onBack }) {
 					<h1 className="cf7m-resp__title">
 						{__('Responses', 'cf7-styler-for-divi')}
 					</h1>
-					<p className="cf7m-resp__subtitle">
-						{total > 0
-							? __(
-								'%d total submissions across all forms.',
-								'cf7-styler-for-divi'
-							).replace('%d', total)
-							: __('All form submissions appear here.', 'cf7-styler-for-divi')}
-					</p>
+					{total > 0 && (
+						<span className="cf7m-resp__count">
+							{total}
+						</span>
+					)}
 				</div>
-				{exportUrl && (
+				{exportUrl && entries.length > 0 && (
 					<a className="cf7m-resp__export" href={exportUrl}>
 						<ArrowDownTrayIcon className="cf7m-resp__icon" aria-hidden="true" />
-						{__('Export CSV', 'cf7-styler-for-divi')}
+						{__('Export', 'cf7-styler-for-divi')}
 					</a>
 				)}
 			</header>
 
+			<div className="cf7m-resp__card">
 			<div className="cf7m-resp__toolbar">
 				<div className="cf7m-resp__filters">
 					<SelectControl
@@ -455,12 +497,46 @@ export function ResponsesPage({ entryId, onBack }) {
 						)}
 					</span>
 					<div className="cf7m-resp__bulk-actions">
-						{statusFilter === 'trash' ? (
-							<Button variant="secondary" isDestructive onClick={bulkDeletePermanently}>
+						{confirmPending?.id === 'bulk' ? (
+							<>
+								<span className="cf7m-resp__confirm-label">
+									{confirmPending.action === 'delete'
+										? __('Delete permanently?', 'cf7-styler-for-divi')
+										: __('Move to trash?', 'cf7-styler-for-divi')}
+								</span>
+								<button
+									type="button"
+									className="cf7m-resp__confirm-yes"
+									onClick={() => {
+										const action = confirmPending.action;
+										setConfirmPending(null);
+										if (action === 'delete') bulkDeletePermanently();
+										else bulkMoveToTrash();
+									}}
+								>
+									{__('Yes', 'cf7-styler-for-divi')}
+								</button>
+								<button
+									type="button"
+									className="cf7m-resp__confirm-cancel"
+									onClick={() => setConfirmPending(null)}
+								>
+									{__('Cancel', 'cf7-styler-for-divi')}
+								</button>
+							</>
+						) : statusFilter === 'trash' ? (
+							<Button
+								variant="secondary"
+								isDestructive
+								onClick={() => setConfirmPending({ id: 'bulk', action: 'delete' })}
+							>
 								{__('Delete permanently', 'cf7-styler-for-divi')}
 							</Button>
 						) : (
-							<Button variant="secondary" onClick={bulkMoveToTrash}>
+							<Button
+								variant="secondary"
+								onClick={() => setConfirmPending({ id: 'bulk', action: 'trash' })}
+							>
 								{__('Move to trash', 'cf7-styler-for-divi')}
 							</Button>
 						)}
@@ -500,13 +576,7 @@ export function ResponsesPage({ entryId, onBack }) {
 									/>
 								</th>
 								<th className="cf7m-resp__th">
-									{__('ID', 'cf7-styler-for-divi')}
-								</th>
-								<th className="cf7m-resp__th">
 									{__('Form', 'cf7-styler-for-divi')}
-								</th>
-								<th className="cf7m-resp__th">
-									{__('Status', 'cf7-styler-for-divi')}
 								</th>
 								<th className="cf7m-resp__th">
 									{__('Preview', 'cf7-styler-for-divi')}
@@ -519,7 +589,7 @@ export function ResponsesPage({ entryId, onBack }) {
 						</thead>
 						<tbody>
 							{entries.map((e) => (
-								<tr key={e.id} className="cf7m-resp__row">
+								<tr key={e.id} className={`cf7m-resp__row${e.status === 'new' ? ' is-unread' : ''}`}>
 									<td className="cf7m-resp__td cf7m-resp__td--check">
 										<CheckboxControl
 											__nextHasNoMarginBottom
@@ -528,16 +598,14 @@ export function ResponsesPage({ entryId, onBack }) {
 											aria-label={__('Select response', 'cf7-styler-for-divi')}
 										/>
 									</td>
-									<td className="cf7m-resp__td">
-										<a href={`#/responses/${e.id}`} className="cf7m-resp__id-link">
-											#{e.id}
-										</a>
-									</td>
 									<td className="cf7m-resp__td cf7m-resp__td--strong">
-										{e.form_title_with_id || e.form_title || '—'}
-									</td>
-									<td className="cf7m-resp__td">
-										<StatusPill status={e.status} />
+										<span
+											className={`cf7m-resp__dot cf7m-resp__dot--${e.status}`}
+											aria-label={e.status}
+										/>
+										<a href={`#/responses/${e.id}`} className="cf7m-resp__id-link">
+											{e.form_title_with_id || e.form_title || `#${e.id}`}
+										</a>
 									</td>
 									<td className="cf7m-resp__td cf7m-resp__td--muted cf7m-resp__td--truncate">
 										{getFirstFieldValue(e)}
@@ -547,45 +615,79 @@ export function ResponsesPage({ entryId, onBack }) {
 									</td>
 									<td className="cf7m-resp__td cf7m-resp__td--actions">
 										<div className="cf7m-resp__row-actions">
-											{e.status !== 'trash' && (
-												<Button
-													variant="tertiary"
-													size="small"
-													href={`#/responses/${e.id}`}
-													icon={<EyeIcon className="cf7m-resp__icon" />}
-													label={__('View', 'cf7-styler-for-divi')}
-													showTooltip
-												/>
-											)}
-											{e.status === 'trash' ? (
+											{confirmPending?.id === e.id ? (
 												<>
-													<Button
-														variant="tertiary"
-														size="small"
-														onClick={() => updateStatus(e.id, 'read')}
-														icon={<ArrowUturnLeftIcon className="cf7m-resp__icon" />}
-														label={__('Restore', 'cf7-styler-for-divi')}
-														showTooltip
-													/>
-													<Button
-														variant="tertiary"
-														size="small"
-														isDestructive
-														onClick={() => deletePermanently(e.id)}
-														icon={<TrashIcon className="cf7m-resp__icon" />}
-														label={__('Delete permanently', 'cf7-styler-for-divi')}
-														showTooltip
-													/>
+													<span className="cf7m-resp__confirm-label">
+														{confirmPending.action === 'delete'
+															? __('Delete?', 'cf7-styler-for-divi')
+															: __('Trash?', 'cf7-styler-for-divi')}
+													</span>
+													<button
+														type="button"
+														className="cf7m-resp__confirm-yes"
+														onClick={() => {
+															const action = confirmPending.action;
+															const id = confirmPending.id;
+															setConfirmPending(null);
+															if (action === 'delete') deletePermanently(id);
+															else moveToTrash(id);
+														}}
+													>
+														{__('Yes', 'cf7-styler-for-divi')}
+													</button>
+													<button
+														type="button"
+														className="cf7m-resp__confirm-cancel"
+														onClick={() => setConfirmPending(null)}
+													>
+														{__('No', 'cf7-styler-for-divi')}
+													</button>
 												</>
 											) : (
-												<Button
-													variant="tertiary"
-													size="small"
-													onClick={() => moveToTrash(e.id)}
-													icon={<TrashIcon className="cf7m-resp__icon" />}
-													label={__('Move to trash', 'cf7-styler-for-divi')}
-													showTooltip
-												/>
+												<>
+													{e.status !== 'trash' && (
+														<a
+															href={`#/responses/${e.id}`}
+															className="cf7m-resp__icon-btn"
+															title={__('View', 'cf7-styler-for-divi')}
+															aria-label={__('View', 'cf7-styler-for-divi')}
+														>
+															<EyeIcon aria-hidden="true" />
+														</a>
+													)}
+													{e.status === 'trash' ? (
+														<>
+															<button
+																type="button"
+																className="cf7m-resp__icon-btn"
+																title={__('Restore', 'cf7-styler-for-divi')}
+																aria-label={__('Restore', 'cf7-styler-for-divi')}
+																onClick={() => updateStatus(e.id, 'read')}
+															>
+																<ArrowUturnLeftIcon aria-hidden="true" />
+															</button>
+															<button
+																type="button"
+																className="cf7m-resp__icon-btn cf7m-resp__icon-btn--danger"
+																title={__('Delete permanently', 'cf7-styler-for-divi')}
+																aria-label={__('Delete permanently', 'cf7-styler-for-divi')}
+																onClick={() => setConfirmPending({ id: e.id, action: 'delete' })}
+															>
+																<TrashIcon aria-hidden="true" />
+															</button>
+														</>
+													) : (
+														<button
+															type="button"
+															className="cf7m-resp__icon-btn cf7m-resp__icon-btn--danger"
+															title={__('Move to trash', 'cf7-styler-for-divi')}
+															aria-label={__('Move to trash', 'cf7-styler-for-divi')}
+															onClick={() => setConfirmPending({ id: e.id, action: 'trash' })}
+														>
+															<TrashIcon aria-hidden="true" />
+														</button>
+													)}
+												</>
 											)}
 										</div>
 									</td>
@@ -640,6 +742,7 @@ export function ResponsesPage({ entryId, onBack }) {
 					</div>
 				</footer>
 			)}
+			</div>
 		</div>
 	);
 }

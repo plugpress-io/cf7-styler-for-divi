@@ -5,10 +5,10 @@
  * @package CF7_Mate
  */
 
-const VALID_TABS = ['overview', 'features', 'webhook', 'license', 'ai-settings'];
+const VALID_TABS = ['features', 'tools', 'license'];
 
 export function getDashTabFromHash() {
 	const hash = (window.location.hash || '').replace(/^#\/?/, '');
 	if (VALID_TABS.includes(hash)) return hash;
-	return 'overview';
+	return 'features';
 }

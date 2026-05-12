@@ -1,5 +1,5 @@
 // ===========================================
-// CF7 Mate – Responses (Notion-style)
+// CF7 Mate – Responses (minimalist)
 // ===========================================
 
 @import './tokens.scss';
@@ -8,157 +8,181 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: space(xl);
+  gap: 18px;
   font-size: font-size(sm);
   color: color(text);
+  padding: 40px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-// ===== Header =====
+// ===== Header — single row, low chrome =====
 .cf7m-resp__head {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: space-between;
-  gap: space(lg);
+  gap: 16px;
   flex-wrap: wrap;
+  padding: 0 4px;
 }
 
 .cf7m-resp__head-titles {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: baseline;
+  gap: 10px;
   min-width: 0;
 }
 
 .cf7m-resp__title {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: font-weight(semibold);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   margin: 0;
   color: color(text);
 }
 
-.cf7m-resp__subtitle {
-  font-size: font-size(sm);
+.cf7m-resp__count {
+  font-size: 13px;
   color: color(text-muted);
-  margin: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .cf7m-resp__export {
   display: inline-flex;
   align-items: center;
-  gap: space(sm);
-  padding: 6px 14px;
-  font-size: font-size(sm);
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
   font-weight: font-weight(medium);
   color: color(text);
   text-decoration: none;
   background-color: color(bg-card);
-  border: 1px solid color(border);
-  border-radius: radius(md);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.04),
+    0 1px 2px rgba(15, 23, 42, 0.04);
   @include transition;
 
   &:hover {
-    background-color: color(bg);
-    color: color(text);
+    color: color(primary);
+    box-shadow:
+      0 0 0 1px rgba(58, 87, 252, 0.25),
+      0 2px 6px rgba(15, 23, 42, 0.06);
   }
 }
 
-// ===== Toolbar =====
+// ===== Card surface — white with shadow, holds toolbar + table + pagination =====
+.cf7m-resp__card {
+  background-color: color(bg-card);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.04),
+    0 2px 4px rgba(15, 23, 42, 0.04),
+    0 8px 24px -8px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+// ===== Toolbar — inside the card =====
 .cf7m-resp__toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: space(md);
+  gap: 8px;
   flex-wrap: wrap;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .cf7m-resp__filters {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: space(sm);
-  flex-wrap: wrap;
+  gap: 8px;
 
+  .components-base-control,
   .components-input-control,
   .components-select-control {
-    min-width: 160px;
+    min-width: 140px;
   }
 }
 
 .cf7m-resp__search {
   flex: 1;
-  min-width: 240px;
-  max-width: 380px;
+  min-width: 220px;
+  max-width: 360px;
 
   .components-search-control {
     width: 100%;
   }
 }
 
-// ===== Bulk action bar =====
+// ===== Bulk action bar — appears between toolbar & table when rows selected =====
 .cf7m-resp__bulk {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: space(md);
-  padding: 8px 14px;
-  background-color: rgba(58, 87, 252, 0.06);
-  border: 1px solid rgba(58, 87, 252, 0.2);
-  border-radius: radius(md);
-  font-size: font-size(sm);
+  gap: 12px;
+  padding: 10px 18px;
+  background-color: color(primary-tint);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  font-size: 13px;
 }
 
 .cf7m-resp__bulk-count {
-  font-weight: font-weight(medium);
-  color: color(primary);
+  color: color(text-muted);
 }
 
 .cf7m-resp__bulk-actions {
   display: inline-flex;
   align-items: center;
-  gap: space(sm);
+  gap: 6px;
 }
 
-// ===== Table =====
+// ===== Table — sits inside the card surface =====
 .cf7m-resp__table-wrap {
   background-color: color(bg-card);
-  border: 1px solid color(border);
-  border-radius: radius(lg);
-  overflow: hidden;
 }
 
 .cf7m-resp__table {
   width: 100%;
   border-collapse: collapse;
-  font-size: font-size(sm);
+  font-size: 13px;
 }
 
 .cf7m-resp__th {
   text-align: left;
   font-weight: font-weight(medium);
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: color(text-muted);
-  padding: 10px 16px;
-  border-bottom: 1px solid color(border);
-  background-color: color(bg);
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  background-color: rgba(15, 23, 42, 0.015);
   white-space: nowrap;
 
   &--check {
-    width: 40px;
+    width: 36px;
     padding-right: 0;
+    padding-left: 18px;
+  }
+
+  &--num {
+    text-align: right;
+  }
+
+  &--muted {
+    color: color(text-light);
   }
 
   &--actions {
     width: 1%;
     text-align: right;
+    padding-right: 18px;
   }
 }
 
 .cf7m-resp__row {
   @include transition;
-  border-bottom: 1px solid color(border);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 
   &:last-child {
     border-bottom: 0;
@@ -171,16 +195,23 @@
       opacity: 1;
     }
   }
+
+  &.is-unread {
+    .cf7m-resp__td--strong {
+      font-weight: font-weight(semibold);
+    }
+  }
 }
 
 .cf7m-resp__td {
-  padding: 12px 16px;
+  padding: 12px 18px;
   vertical-align: middle;
   color: color(text);
 
   &--check {
-    width: 40px;
+    width: 36px;
     padding-right: 0;
+    padding-left: 18px;
   }
 
   &--strong {
@@ -191,12 +222,25 @@
     color: color(text-muted);
   }
 
+  &--num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 11px;
+    color: color(text-muted);
+    font-weight: font-weight(normal);
+    margin-top: 1px;
+  }
+
   &--nowrap {
     white-space: nowrap;
   }
 
   &--truncate {
-    max-width: 320px;
+    max-width: 280px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -206,13 +250,27 @@
     text-align: right;
     width: 1%;
     white-space: nowrap;
+    padding-right: 18px;
   }
 }
 
+// Status dot (replaces colored pill)
+.cf7m-resp__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.18);
+  margin-right: 8px;
+  vertical-align: middle;
+
+  &--new   { background-color: color(primary); }
+  &--read  { background-color: rgba(0, 0, 0, 0.18); }
+  &--trash { background-color: color(danger); }
+}
+
 .cf7m-resp__id-link {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: 12px;
-  color: color(text-muted);
+  color: color(text);
   text-decoration: none;
 
   &:hover {
@@ -224,14 +282,51 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  opacity: 0.55;
+  opacity: 0;
   @include transition;
 }
 
-// ===== Status pill =====
+// Icon-only action button (row actions, no WP Button chrome)
+.cf7m-resp__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: radius(sm);
+  background: none;
+  border: 0;
+  color: color(text-muted);
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  @include transition;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background-color: color(primary-tint);
+    color: color(primary);
+  }
+
+  &--danger:hover {
+    background-color: rgba(239, 68, 68, 0.08);
+    color: color(danger);
+  }
+}
+
+// Status pill kept for License page reuse — minimalist version.
 .cf7m-resp-pill {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   font-size: 11px;
   font-weight: font-weight(medium);
   padding: 2px 8px;
@@ -239,18 +334,21 @@
   text-transform: capitalize;
   line-height: 1.5;
 
-  &--new {
-    background-color: rgba(58, 87, 252, 0.1);
+  &--new,
+  &--active {
+    background-color: rgba(58, 87, 252, 0.08);
     color: color(primary);
   }
 
-  &--read {
-    background-color: rgba(0, 0, 0, 0.05);
+  &--read,
+  &--inactive {
+    background-color: rgba(0, 0, 0, 0.04);
     color: color(text-muted);
   }
 
-  &--trash {
-    background-color: rgba(239, 68, 68, 0.08);
+  &--trash,
+  &--expired {
+    background-color: rgba(239, 68, 68, 0.06);
     color: #b91c1c;
   }
 }
@@ -260,8 +358,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: space(sm);
-  padding: 64px 16px;
+  gap: 8px;
+  padding: 80px 16px;
   color: color(text-muted);
   font-size: font-size(sm);
 }
@@ -272,61 +370,63 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 64px 16px;
-  gap: space(sm);
+  padding: 80px 16px;
+  gap: 8px;
   color: color(text-muted);
 }
 
 .cf7m-resp__empty-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   color: color(text-muted);
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .cf7m-resp__empty-title {
   margin: 0;
-  font-size: font-size(md);
+  font-size: 14px;
   font-weight: font-weight(medium);
   color: color(text);
 }
 
 .cf7m-resp__empty-sub {
   margin: 0;
-  font-size: font-size(sm);
+  font-size: 12px;
 }
 
-// ===== Pagination =====
+// ===== Pagination — inside card footer =====
 .cf7m-resp__pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: space(md);
-  padding-top: space(sm);
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  font-size: 12px;
+  color: color(text-muted);
+  background-color: color(bg-card);
 }
 
 .cf7m-resp__pagination-info {
   display: inline-flex;
   align-items: center;
-  gap: space(md);
-  font-size: font-size(sm);
-  color: color(text-muted);
+  gap: 12px;
 
   .components-select-control {
-    min-width: 130px;
+    min-width: 110px;
   }
 }
 
 .cf7m-resp__pagination-nav {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 // ===== Icon helper =====
 .cf7m-resp__icon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
 }
 
@@ -334,8 +434,8 @@
 .cf7m-resp__crumb {
   display: inline-flex;
   align-items: center;
-  gap: space(xs);
-  font-size: font-size(sm);
+  gap: 6px;
+  font-size: 13px;
   color: color(text-muted);
 }
 
@@ -350,7 +450,7 @@
 
 .cf7m-resp__crumb-sep {
   color: color(text-muted);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .cf7m-resp__crumb-current {
@@ -360,8 +460,8 @@
 
 .cf7m-resp__single {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: space(xl);
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 24px;
   align-items: start;
 
   @include respond-to(md) {
@@ -372,39 +472,37 @@
 .cf7m-resp__single-main {
   display: flex;
   flex-direction: column;
-  gap: space(lg);
+  gap: 16px;
   min-width: 0;
 }
 
 .cf7m-resp__single-side {
   display: flex;
   flex-direction: column;
-  gap: space(lg);
+  gap: 16px;
 }
 
 .cf7m-resp__panel {
   background-color: color(bg-card);
-  border: 1px solid color(border);
-  border-radius: radius(lg);
+  border-radius: radius(md);
   overflow: hidden;
 }
 
 .cf7m-resp__panel-header {
-  padding: 14px 18px;
-  border-bottom: 1px solid color(border);
+  padding: 12px 16px 4px;
 }
 
 .cf7m-resp__panel-title {
   margin: 0;
-  font-size: font-size(sm);
+  font-size: 11px;
   font-weight: font-weight(semibold);
-  color: color(text);
+  color: color(text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .cf7m-resp__panel-body {
-  padding: 12px 18px;
+  padding: 4px 16px 14px;
 }
 
 .cf7m-resp__data {
@@ -415,10 +513,11 @@
 
 .cf7m-resp__data-row {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
-  gap: space(md);
-  padding: 10px 0;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  font-size: 13px;
 
   &:last-child {
     border-bottom: 0;
@@ -426,20 +525,20 @@
 
   @include respond-to(sm) {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 2px;
   }
 }
 
 .cf7m-resp__data-key {
   margin: 0;
-  font-size: font-size(sm);
+  font-size: 12px;
   color: color(text-muted);
-  font-weight: font-weight(medium);
+  font-weight: font-weight(normal);
 }
 
 .cf7m-resp__data-val {
   margin: 0;
-  font-size: font-size(sm);
+  font-size: 13px;
   color: color(text);
   word-break: break-word;
   white-space: pre-wrap;
@@ -447,17 +546,148 @@
 
 .cf7m-resp__muted {
   color: color(text-muted);
-  font-size: font-size(sm);
+  font-size: 13px;
   margin: 0;
 }
 
 .cf7m-resp__actions {
   display: flex;
   flex-direction: column;
-  gap: space(sm);
+  gap: 6px;
+  padding: 12px 16px;
+}
 
-  > * {
-    width: 100%;
-    justify-content: center;
+.cf7m-resp__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 7px 12px;
+  background: color(bg-secondary);
+  border: 1px solid color(border);
+  border-radius: radius(md);
+  font-size: font-size(sm);
+  font-weight: font-weight(medium);
+  color: color(text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+
+  &:hover,
+  &:focus {
+    background: color(bg);
+    border-color: color(text-muted);
+    color: color(text);
+  }
+
+  &--danger {
+    color: #b91c1c;
+    border-color: rgba(185, 28, 28, 0.2);
+    background: rgba(185, 28, 28, 0.04);
+
+    &:hover,
+    &:focus {
+      background: rgba(185, 28, 28, 0.08);
+      border-color: rgba(185, 28, 28, 0.35);
+      color: #b91c1c;
+    }
+  }
+}
+
+.cf7m-resp__btn-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke-width: 1.75;
+}
+
+// ===== Inline confirm (row + bulk) =====
+.cf7m-resp__confirm-label {
+  font-size: 12px;
+  color: color(text-muted);
+  white-space: nowrap;
+}
+
+.cf7m-resp__confirm-yes,
+.cf7m-resp__confirm-cancel {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: font-weight(medium);
+  border-radius: radius(sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  @include transition;
+}
+
+.cf7m-resp__confirm-yes {
+  background-color: color(danger);
+  color: #fff;
+  border-color: color(danger);
+
+  &:hover {
+    background-color: #dc2626;
+  }
+}
+
+.cf7m-resp__confirm-cancel {
+  background-color: transparent;
+  color: color(text-muted);
+  border-color: color(border);
+
+  &:hover {
+    color: color(text);
+    border-color: color(text-muted);
+  }
+}
+
+// Confirm block inside single-entry actions panel
+.cf7m-resp__action-confirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  font-size: 12px;
+  color: color(text-muted);
+  flex-wrap: wrap;
+}
+
+// ===== Analytics – total footer row =====
+.cf7m-resp__row--total {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: rgba(15, 23, 42, 0.015);
+
+  .cf7m-resp__td {
+    font-weight: font-weight(semibold);
+    color: color(text);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+// ===== Analytics – conversion rate badge =====
+.cf7m-analytics__rate {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: font-weight(medium);
+  font-variant-numeric: tabular-nums;
+  padding: 2px 7px;
+  border-radius: radius(full);
+
+  &.is-high {
+    background: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+  }
+
+  &.is-mid {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+  }
+
+  &.is-low {
+    background: rgba(239, 68, 68, 0.08);
+    color: #b91c1c;
   }
 }

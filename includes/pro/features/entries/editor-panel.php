@@ -68,6 +68,8 @@ class Entries_Editor_Panel
                 <?php esc_html_e('When enabled, every submission is stored and viewable from CF7 Mate → Responses. Disable for forms you don\'t want to log (e.g. search, login).', 'cf7-styler-for-divi'); ?>
             </p>
         </fieldset>
+
+        <?php do_action( 'cf7m_editor_panel_sections', $contact_form ); ?>
         <?php
     }
 
