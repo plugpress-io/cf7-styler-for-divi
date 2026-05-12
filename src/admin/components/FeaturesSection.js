@@ -31,8 +31,8 @@ const ALL_FEATURES = [
 	{ id: 'separator',        name: __('Separator',           'cf7-styler-for-divi'), desc: __('Add a visual divider line between fields.',            'cf7-styler-for-divi'), isPro: false },
 	{ id: 'image',            name: __('Image',               'cf7-styler-for-divi'), desc: __('Insert a static image inside the form.',               'cf7-styler-for-divi'), isPro: false },
 	{ id: 'icon',             name: __('Icon',                'cf7-styler-for-divi'), desc: __('Add an icon element to the form.',                     'cf7-styler-for-divi'), isPro: false },
-	{ id: 'phone_number',     name: __('Phone number',        'cf7-styler-for-divi'), desc: __('International phone input with country flag picker.',  'cf7-styler-for-divi'), isPro: true },
-	{ id: 'heading',          name: __('Heading',             'cf7-styler-for-divi'), desc: __('Add a heading or label inside the form.',              'cf7-styler-for-divi'), isPro: true },
+	{ id: 'phone_number',     name: __('Phone number',        'cf7-styler-for-divi'), desc: __('International phone input with country flag picker.',  'cf7-styler-for-divi'), isPro: false },
+	{ id: 'heading',          name: __('Heading',             'cf7-styler-for-divi'), desc: __('Add a heading or label inside the form.',              'cf7-styler-for-divi'), isPro: false },
 ];
 
 export function FeaturesSection({ features, isPro, onToggle, saving }) {

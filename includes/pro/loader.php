@@ -21,8 +21,6 @@ class Premium_Loader
         'multi_column'      => true,
         'multi_step'        => true,
         'database_entries'  => true,
-        'phone_number'      => true,
-        'heading'           => true,
         // 'calculator'     => true, // Hidden — module being reworked.
         'conditional'       => true,
         'presets'           => true,
@@ -45,14 +43,6 @@ class Premium_Loader
         'database_entries' => [
             'file'  => 'entries/module.php',
             'class' => 'CF7_Mate\Features\Entries\Entries',
-        ],
-        'phone_number'   => [
-            'file'  => 'phone-number/module.php',
-            'class' => 'CF7_Mate\Features\Phone_Number\Phone_Number',
-        ],
-        'heading'         => [
-            'file'  => 'heading/module.php',
-            'class' => 'CF7_Mate\Features\Heading\Heading',
         ],
         // Calculator hidden until rework.
         // 'calculator'      => [

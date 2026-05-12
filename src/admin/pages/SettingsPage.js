@@ -8,7 +8,7 @@
 
 import { useEffect, useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
+import { ArrowUpRightIcon, CheckIcon } from '@heroicons/react/24/outline';
 
 import { V3Banner } from '../components/V3Banner';
 import { FeaturesSection } from '../components/FeaturesSection';
@@ -133,18 +133,39 @@ export function SettingsPage({
 
 // ===== Sidebar cards (free plan only) =====
 
+const PRO_FEATURES = [
+	__('Conditional Logic',      'cf7-styler-for-divi'),
+	__('Multi-Step Forms',       'cf7-styler-for-divi'),
+	__('Form Entries & Export',  'cf7-styler-for-divi'),
+	__('Form Scheduling',        'cf7-styler-for-divi'),
+	__('Email Routing',          'cf7-styler-for-divi'),
+	__('Analytics',              'cf7-styler-for-divi'),
+];
+
 function UpgradeCard() {
 	const pricingUrl = cfg('pricing_url', '');
 	if (!pricingUrl) return null;
 
 	return (
-		<div className="cf7m-sidebar-card">
-			<h3 className="cf7m-sidebar-card__title">
-				{__('Upgrade to Pro', 'cf7-styler-for-divi')}
-			</h3>
-			<p className="cf7m-sidebar-card__body">
-				{__('Unlock form responses, webhooks, AI generator, analytics, conditional logic, and more.', 'cf7-styler-for-divi')}
-			</p>
+		<div className="cf7m-sidebar-card cf7m-upgrade-card">
+			<div className="cf7m-upgrade-card__head">
+				<span className="cf7m-upgrade-card__badge">
+					{__('Pro', 'cf7-styler-for-divi')}
+				</span>
+				<h3 className="cf7m-upgrade-card__title">
+					{__('Unlock the full power of CF7 Mate', 'cf7-styler-for-divi')}
+				</h3>
+			</div>
+
+			<ul className="cf7m-upgrade-card__features" aria-label={__('Pro features', 'cf7-styler-for-divi')}>
+				{PRO_FEATURES.map((feat) => (
+					<li key={feat} className="cf7m-upgrade-card__feature">
+						<CheckIcon className="cf7m-upgrade-card__check" aria-hidden="true" />
+						{feat}
+					</li>
+				))}
+			</ul>
+
 			<a
 				href={pricingUrl}
 				target="_blank"
@@ -158,39 +179,53 @@ function UpgradeCard() {
 	);
 }
 
-function ProductsCard() {
-	const products = [
-		{
-			name: 'Divi Carousel',
-			desc: __('Beautiful carousel module for Divi', 'cf7-styler-for-divi'),
-			url: 'https://wordpress.org/plugins/divi-carousel/',
-		},
-		{
-			name: 'Divi Instagram Feed',
-			desc: __('Display Instagram feed in Divi', 'cf7-styler-for-divi'),
-			url: 'https://wordpress.org/plugins/divi-instagram-feed/',
-		},
-	];
+const PRODUCTS = [
+	{
+		name: 'DiviPeople',
+		tag:  __('Divi Theme', 'cf7-styler-for-divi'),
+		desc: __('Multipurpose Divi child theme for teams, agencies, and creatives.', 'cf7-styler-for-divi'),
+		url:  'https://divipeople.com',
+	},
+	{
+		name: 'DiviTorque',
+		tag:  __('Divi Plugin', 'cf7-styler-for-divi'),
+		desc: __('Advanced modules and effects that supercharge your Divi site.', 'cf7-styler-for-divi'),
+		url:  'https://divitorque.com',
+	},
+	{
+		name: 'Divi Carousel',
+		tag:  __('Free Plugin', 'cf7-styler-for-divi'),
+		desc: __('Beautiful carousel module for the Divi Builder.', 'cf7-styler-for-divi'),
+		url:  'https://wordpress.org/plugins/divi-carousel/',
+	},
+	{
+		name: 'Divi Instagram Feed',
+		tag:  __('Free Plugin', 'cf7-styler-for-divi'),
+		desc: __('Display your Instagram feed beautifully inside Divi.', 'cf7-styler-for-divi'),
+		url:  'https://wordpress.org/plugins/divi-instagram-feed/',
+	},
+];
 
+function ProductsCard() {
 	return (
 		<div className="cf7m-sidebar-card">
 			<h3 className="cf7m-sidebar-card__title">
-				{__('Our WordPress products', 'cf7-styler-for-divi')}
+				{__('More from PlugPress', 'cf7-styler-for-divi')}
 			</h3>
-			<p className="cf7m-sidebar-card__body">
-				{__('Like this plugin? Check out our other products:', 'cf7-styler-for-divi')}
-			</p>
-			<div className="cf7m-sidebar-card__products">
-				{products.map(({ name, desc, url }) => (
+			<div className="cf7m-products-list">
+				{PRODUCTS.map(({ name, tag, desc, url }) => (
 					<a
 						key={name}
 						href={url}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="cf7m-sidebar-card__product-link"
+						className="cf7m-product-item"
 					>
-						<span className="cf7m-sidebar-card__product-name">{name}</span>
-						<span className="cf7m-sidebar-card__product-desc">{desc}</span>
+						<div className="cf7m-product-item__head">
+							<span className="cf7m-product-item__name">{name}</span>
+							<span className="cf7m-product-item__tag">{tag}</span>
+						</div>
+						<span className="cf7m-product-item__desc">{desc}</span>
 					</a>
 				))}
 			</div>
